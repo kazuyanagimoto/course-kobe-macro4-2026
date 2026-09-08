@@ -1,0 +1,84 @@
+project:
+  type: book
+  execute-dir: file
+  resources:
+    # 課題は問題PDFだけをサイトに配信する (解答PDFは含めない).
+    - assignment/**/*-exercise.pdf
+    - assignment/choo-siow/choo-siow.pdf
+
+book:
+  title: Family Macroeconomics
+  search: false
+  author:
+    - name: Kazuharu Yanagimoto
+      email: yanagimoto@econ.kobe-u.ac.jp
+      orcid: 0009-0007-1967-8304
+      affiliations:
+      - name: Kobe University
+  date: 2026-10-01
+  downloads: [pdf]
+  chapters:
+    - index.qmd
+    - part: 数値計算
+      chapters:
+        - lesson/numerical/nonlinear-opt.qmd
+        - lesson/numerical/function-approximation.qmd
+        - lesson/numerical/dynamic-programming.qmd
+        - lesson/numerical/gmm.qmd
+    - part: lesson/marriage/index.qmd
+      chapters:
+        - lesson/marriage/search-matching.qmd
+        - lesson/marriage/frictionless-marriage.qmd
+        - lesson/marriage/fertility.qmd
+  appendices:
+    - lesson/appendix/proof.qmd
+    - lesson/appendix/matching.qmd
+    - lesson/appendix/continuous-time.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+number-depth: 3
+
+format:
+  html:
+    code-tools: true
+    theme:
+      - cosmo
+      - brand
+    highlight-style: atom-one
+    css: styles.css
+    lightbox: true
+  jsbook-typst:
+    CJKmainfont: Noto Serif CJK JP
+    CJKsansfont: Noto Sans CJK JP
+    codefont: JuliaMono
+    linkcolor: "#0F6A81"
+    citecolor: "#0F6A81"
+    # Use citeproc so the bibliography lands in the #refs div of references.qmd
+    # instead of Typst's native #bibliography (which would duplicate the heading).
+    citeproc: true
+    # Source cells are shown on the website but hidden in the PDF.
+    execute:
+      echo: false
+
+execute:
+  freeze: auto
+
+crossref:
+  fig-title: "図"
+  fig-prefix: "図"
+  tbl-title: "表"
+  tbl-prefix: "表"
+  eq-title: "式"
+  eq-prefix: "式"
+  def-title: "定義"
+  def-prefix: "定義"
+  thm-title: "定理"
+  thm-prefix: "定理"
+  prp-title: "命題"
+  prp-prefix: "命題"
+  lem-title: "補題"
+  lem-prefix: "補題"
+  exm-title: "例"
+  exm-prefix: "例"

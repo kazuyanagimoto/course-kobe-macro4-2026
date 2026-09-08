@@ -1,0 +1,821 @@
+---
+title: Frictionless Marriage Market
+---
+
+**摩擦のない結婚市場モデル**
+
+- モデルの初期時点において, 全ての個人が結婚市場に参加し, 結婚相手を選ぶことができる
+- 全ての独身者が全ての潜在的な相手に会うことができ, 相手の特徴を完全に知っているという意味で「摩擦がない」と呼ばれる
+- 結婚後は静的なモデルまたはライフサイクルモデルなどの動学的なモデルを用いる
+
+**前提知識**
+
+- 離散選択 (第一種極値分布のショックとロジット選択確率, 対数和): この章の前半で準備する
+- マッチングと家計内配分 (付録): TU マッチング (安定性 = 余剰最大化), Pareto ウェイト, Becker–Coase 定理
+
+**この章で扱う3本の論文**
+
+1. @choo2006: TU マッチング + 離散選択から**推定可能な結婚マッチング関数**を導いた出発点
+1. @ciscato2025: 同類婚の原因を**出会いの分断 (segmentation) と余剰の補完性**に分解する
+1. @reynoso2024: ライフサイクル + limited commitment のマッチングモデルで**離婚制度の変更**を分析する
+
+この章の前半では, まず離散選択の一般的な枠組みである確率効用モデルとロジットモデルを @train2009 に基づいて準備します. @choo2006 のマッチングモデルは, 個人の結婚相手選びをまさにこの離散選択として定式化するからです.
+
+## 確率効用モデル
+
+意思決定者 $n$ が $J$ 個の選択肢から1つを選ぶ状況を考えます. 意思決定者自身は各選択肢の効用を知って選んでいますが, 研究者はその一部しか観察できません. そこで, 効用を研究者が観察・特定できる部分と, できない部分に分解します.
+
+::: {.callout-note}
+
+## 確率効用モデル (Random Utility Model)
+
+意思決定者 $n$ は選択肢 $j = 1, \ldots, J$ のうち, 効用 $U_{nj}$ が最大になるものを選ぶ. 効用を
+
+$$
+U_{nj} = V_{nj} + \varepsilon_{nj}
+$$
+
+と分解する. $V_{nj}$ は研究者が観察できる属性から特定する部分 (代表効用, representative utility), $\varepsilon_{nj}$ はその残差である. $\varepsilon_n = \left(\varepsilon_{n1}, \ldots, \varepsilon_{nJ}\right)$ が同時密度 $f\left(\varepsilon_n\right)$ に従うとき, 選択肢 $i$ が選ばれる確率は
+
+$$
+\begin{aligned}
+P_{ni}
+&= \text{Pr}\left(V_{ni} + \varepsilon_{ni} > V_{nj} + \varepsilon_{nj} \quad \forall j \neq i\right) \\
+&= \int \mathbb{1}\left(\varepsilon_{nj} - \varepsilon_{ni} < V_{ni} - V_{nj} \quad \forall j \neq i\right) f\left(\varepsilon_n\right)\, d\varepsilon_n.
+\end{aligned}
+$${#eq-rum-prob}
+
+ここで $\mathbb{1}\left(\cdot\right)$ は指示関数.
+
+:::
+
+重要なのは, $\varepsilon_{nj}$ が「選択そのものに内在するランダムネス」ではなく, 研究者の特定した $V_{nj}$ に対して定義される残差だという点です. どの分布を $\varepsilon_n$ に仮定するかは, $V_{nj}$ をどれだけうまく特定できたかに依存する, 研究者側のモデリング上の選択です. $P_{ni}$ は「観察可能な部分が同じ人々の集団のうち, 選択肢 $i$ を選ぶ人の割合」と解釈できます.
+
+@eq-rum-prob の密度 $f\left(\varepsilon_n\right)$ の仮定を変えることで, さまざまな離散選択モデルが得られます.
+
+- iid の第一種極値分布: ロジット (閉形式)
+- 一般化極値 (GEV) 分布: 入れ子ロジットなど (閉形式)
+- 多変量正規分布: プロビット (シミュレーションが必要)
+- 任意の分布と極値分布の混合: 混合ロジット (シミュレーションが必要)
+
+分布の仮定に入る前に, どんな分布のもとでも成り立つ, 識別に関する2つの性質を確認します.
+
+### 効用の差だけが重要
+
+@eq-rum-prob から明らかなように, 選択確率は効用の**差** $U_{ni} - U_{nj}$ のみに依存します. すべての選択肢の効用に同じ定数を足しても, 選択は変わりません. このことは, モデルの特定に次のような制約を課します.
+
+- **選択肢固有の定数項**: $V_{nj} = x_{nj}' \beta + k_j$ と定数項を入れる場合, 識別できるのは差 $k_j - k_l$ だけである. したがって定数項は高々 $J - 1$ 個しか入れられず, 1つを $0$ に基準化する. 残った定数項は「基準の選択肢に対する, 観察されない要因の平均的な効果」と解釈される.
+- **個人属性**: 所得や学歴のような, 選択肢間で変化しない変数は, そのままでは効用の差に寄与しないためモデルに入れられない. 選択肢ごとに異なる係数を与える (1つを $0$ に基準化する) か, 選択肢の属性と交差させて入れる必要がある.
+
+### 効用のスケールは任意
+
+効用を正の定数倍しても選択は変わりません: $U_{nj} = V_{nj} + \varepsilon_{nj}$ と $\lambda U_{nj} = \lambda V_{nj} + \lambda \varepsilon_{nj}$ ($\lambda > 0$) は同じ選択行動を意味します. したがって効用のスケールを固定する基準化が必要で, 慣習的には誤差項の分散を固定します. たとえば $\text{Var}\left(\varepsilon_{nj}\right) = \sigma^2$ の誤差を分散 $1$ に基準化すると, $V_{nj} = x_{nj}' \beta$ のモデルは
+
+$$
+U_{nj} = x_{nj}' \left(\frac{\beta}{\sigma}\right) + \frac{\varepsilon_{nj}}{\sigma}
+$$
+
+となり, 推定されるのは $\beta / \sigma$ です. つまり係数は「観察される要因の効果を, 観察されない要因の標準偏差との比で測ったもの」であり, $\beta$ と $\sigma$ は別々には識別されません. 後で見るようにロジットは誤差の分散を $\pi^2 / 6$ に固定するので, 異なるモデルやデータセット間で係数の絶対値を直接比較することはできません. 一方, 係数の**比** (たとえば支払意思額 = 属性の係数 / 価格の係数) はスケールに依存しないため, 比較可能です.
+
+## ロジット
+
+### 第一種極値分布
+
+ロジットモデルは, $\varepsilon_{nj}$ が独立同一に第一種極値分布に従うと仮定します.
+
+::: {.callout-note}
+
+## 第一種極値分布 (Gumbel 分布)
+
+確率変数 $\varepsilon$ が第一種極値分布 (type I extreme value, Gumbel) に従うとは, 分布関数と密度関数が
+
+$$
+F\left(\varepsilon\right) = e^{-e^{-\varepsilon}}, \qquad
+f\left(\varepsilon\right) = e^{-\varepsilon} e^{-e^{-\varepsilon}}
+$$
+
+で与えられることをいう. 平均はオイラー・マスケローニ定数 $\gamma \approx 0.5772$, 分散は $\pi^2 / 6$ である.
+
+:::
+
+分散を $\pi^2 / 6$ に固定していることが, 前節で述べた効用のスケールの基準化に対応します. 平均が $0$ でないことは問題になりません. 効用の差だけが重要であり, 共通の平均は差をとると消えるからです. なお, 2つの独立な第一種極値分布の差はロジスティック分布に従います. これが「ロジット」という名前の由来です.
+
+### 選択確率
+
+第一種極値分布の仮定のもとで, 選択確率は閉形式で求まります.
+
+::: {#prp-logit}
+
+## ロジットの選択確率
+
+$\varepsilon_{nj}$ が iid で第一種極値分布に従うとき,
+
+$$
+P_{ni} = \frac{e^{V_{ni}}}{\sum_{j=1}^{J} e^{V_{nj}}}.
+$${#eq-logit}
+
+:::
+
+証明は第一種極値分布の分布関数を使った素直な積分の計算で, 付録 (-@sec-apdx-logit 節) にあります.
+
+@eq-logit はいくつかの望ましい性質を持ちます. 選択確率は必ず $0 < P_{ni} < 1$ の範囲に収まり, 全選択肢について足すと $1$ になります. また $P_{ni}$ は $V_{ni}$ の増加に対してシグモイド型に変化し, $P_{ni} = 1/2$ の付近で限界効果が最大になります. 線形の特定 $V_{nj} = x_{nj}' \beta$ のもとでは対数尤度が $\beta$ について大域的に凹になることが知られており, 最尤推定が数値的に安定するのもロジットの利点です [@train2009, sec. 3.1].
+
+### 対数和と期待効用
+
+ロジットのもう1つの強力な性質は, 効用の最大値の分布と期待値が閉形式で求まることです.
+
+::: {#prp-gumbel-max}
+
+## 最大効用の分布
+
+$U_j = V_j + \varepsilon_j$ ($j = 1, \ldots, J$) で $\varepsilon_j$ が iid の第一種極値分布に従うとき, 最大値 $\max_j U_j$ は位置パラメータ $\ln \sum_j e^{V_j}$ の第一種極値分布に従う.
+
+$$
+\text{Prob}\left(\max_j U_j \leq x\right) = \exp\left(-e^{-\left(x - \ln \sum_j e^{V_j}\right)}\right).
+$$
+
+:::
+
+つまり, 第一種極値分布は最大値をとる操作に関して閉じており, 位置パラメータが対数和 (log-sum) $\ln \sum_j e^{V_j}$ にずれるだけです. これが「極値分布」という名前の由来でもあります. 期待値をとると, 次の対数和公式が得られます.
+
+::: {#prp-logsum}
+
+## 期待最大効用 (対数和公式)
+
+@prp-gumbel-max と同じ仮定のもとで,
+
+$$
+\mathbb{E}\left[\max_j U_j\right] = \ln \sum_{j=1}^{J} e^{V_j} + \gamma.
+$${#eq-logsum}
+
+ここで $\gamma \approx 0.5772$ はオイラー・マスケローニ定数.
+
+:::
+
+2つの命題の証明も付録 (-@sec-apdx-logit 節) にあります. 対数和 $\ln \sum_j e^{V_j}$ は @eq-logit の分母の対数にほかなりません. この量はそのまま厚生分析の道具になります. 選択環境の変化の厚生効果 (選択肢の質の変化はもちろん, 選択肢の追加・削除も) は, 変化前後の**対数和の差**で測れるからです [@train2009, sec. 3.5]. 効用の水準が測れないことに対応する定数 ($\gamma$ を含む) は, 差をとると消えます.
+
+### 無関係な選択肢からの独立 (IIA)
+
+@eq-logit から, 2つの選択肢 $i, k$ の選択確率の比は
+
+$$
+\frac{P_{ni}}{P_{nk}} = \frac{e^{V_{ni}}}{e^{V_{nk}}} = e^{V_{ni} - V_{nk}}
+$$
+
+となり, **他の選択肢の存在や質に一切依存しません**. この性質を無関係な選択肢からの独立 (independence from irrelevant alternatives, IIA) と呼びます. IIA は便利な性質でもあり (選択肢の一部だけを使った推定が一致性を持つ), 深刻な制約でもあります. 制約としての側面を示すのが, 有名な赤バス・青バスの例です [@train2009, sec. 3.3.2].
+
+::: {.callout-warning}
+
+## 赤バス・青バス問題
+
+通勤手段として車と青いバスがあり, 選択確率がそれぞれ $1/2$ だとする. ここに, 色以外は青いバスと同一の赤いバスが導入されたとする. 現実には, バスを使う人が2つのバスに割れるだけで $P_{\text{car}} = 1/2$, $P_{\text{blue}} = P_{\text{red}} = 1/4$ となるはずである. しかしロジットでは, 同一のバス同士で $P_{\text{red}} / P_{\text{blue}} = 1$ である一方, IIA より車と青バスの比 $P_{\text{car}} / P_{\text{blue}} = 1$ も維持されなければならない. その結果, 予測は $P_{\text{car}} = P_{\text{blue}} = P_{\text{red}} = 1/3$ となり, バスの利用が過大に, 車の利用が過小に予測される.
+
+:::
+
+IIA の含意は「ある選択肢が改善すると, 他のすべての選択肢から**比例的に**シェアを奪う」という代替パターンです. 実際, $V_{nj} = \beta' x_{nj}$ のとき選択肢 $j$ の属性 $z_{nj}$ に対する $P_{ni}$ ($i \neq j$) の交差弾力性は
+
+$$
+E_{i, z_{nj}} = -\beta_z z_{nj} P_{nj}
+$$
+
+となり, $i$ に依存しません. 現実には近い代替関係にある選択肢ほど強くシェアを奪われるはずなので, 選択肢間の類似性が重要な応用ではロジットは不適切です. また, ランダムな選好の異質性 (係数が個人ごとに異なる場合) も iid の誤差では捉えられません [@train2009, sec. 3.3.1]. これらの制約を緩める拡張 (入れ子ロジット, プロビット, 混合ロジット) については @train2009 に譲ります. この章のマッチングモデルにとって重要なのは, ここまでのロジットの2つの道具, 選択確率 @eq-logit と対数和 @eq-logsum です.
+
+### 動的計画法との関係
+
+この道具立ては, 計量経済学の推定モデルとしてだけでなく, マクロ経済モデルの構成要素としても広く使われています. 就業・結婚・出産のような離散選択を含む動学モデルでは, 選択肢 $j$ ごとの価値関数 $v_j\left(x\right)$ (choice-specific value function) を定義し, 各期の選択に iid の第一種極値分布に従う選好ショック $\varepsilon_j$ を加えるのが定番の定式化です. ショックのスケールを $\sigma > 0$ とすると, @prp-logsum を $v_j / \sigma$ に適用して $\sigma$ 倍することで
+
+$$
+\mathbb{E}\left[\max_j \left(v_j\left(x\right) + \sigma \varepsilon_j\right)\right]
+= \sigma \ln \sum_{j} e^{v_j\left(x\right) / \sigma} + \sigma \gamma
+$$
+
+が得られ, 選択確率は @eq-logit の形になります. つまり期待価値関数と選択確率の両方が閉形式で書けるうえ, $\max$ 演算子が生む価値関数のキンクが対数和によって滑らかになります. これは動的計画法の数値計算 (第 -@sec-dynamic-programming 章) と推定の両方で大きな利点であり, $\sigma \to 0$ の極限でキンクのある $\max_j v_j\left(x\right)$ に戻ります. たとえば @adda2017 は, この構造で職業選択・出産・労働供給を組み合わせた動学モデルを推定し, 出産のキャリアコストを定量化しています (推定にはシミュレーションベースの手法, -@sec-md 節 で触れた SMM (simulated method of moments) が使われます).
+
+そして @choo2006 は, 男女それぞれが「誰と結婚するか (あるいはしないか)」を離散選択として選ぶモデルに第一種極値分布のショックを入れ, 結婚パターンのデータからマッチングの利得を識別しました. この構造は移転可能効用のマッチング理論と表裏一体であることが知られており [@galichon2022], それがこの章の主題です.
+
+## @choo2006
+
+### Motivation
+
+- @becker1973a の TU マッチング理論は, 長らくほとんど推定されてこなかった. 障害は2つある
+    1. 現代の結婚では均衡の移転 $\tau_{ij}$ (家計内の資源配分) がほぼ観察できない
+    1. 男性 $I$ タイプ・女性 $J$ タイプの選好パラメータは最大 $2 \times I \times J$ 個ある一方, 観察できるのは人口 $I + J$ 個とマッチ数 $I \times J$ 個しかない (過小識別)
+- TU がこれを解決する
+    - 結婚の産出がペアのタイプ $(i, j)$ のみに依存するなら, パラメータは $I \times J$ 個の産出 (+ 独身の価値) だけで足りる
+    - TU の均衡は総余剰を最大化するので (付録「マッチングと家計内配分」の双対性), 男女別々の選好を知る必要がない
+    - 市場均衡の誘導形に価格 (移転) は現れないので, 移転が観察できなくても推定できる
+- どんな結婚マッチング関数 (marriage matching function, MMF) も満たすべき会計制約:
+
+$$
+\sum_{i=1}^{I} \mu_{ij} + \mu_{0j} = f_j, \qquad
+\sum_{j=1}^{J} \mu_{ij} + \mu_{i0} = m_i, \qquad
+\mu_{ij}, \mu_{i0}, \mu_{0j} \geq 0.
+$$
+
+- $m_i, f_j$: タイプ $i$ の男性, タイプ $j$ の女性の人口. $\mu_{ij}$: $(i,j)$ のマッチ数. $\mu_{i0}, \mu_{0j}$: 独身者数
+
+### 設定
+
+タイプ $i$ の男性 $g$ がタイプ $j$ の女性と結婚するときの効用は
+
+$$
+V_{ijg} = \tilde{\alpha}_{ij} - \tau_{ij} + \varepsilon_{ijg}, \qquad
+V_{i0g} = \tilde{\alpha}_{i0} + \varepsilon_{i0g}.
+$$
+
+- $\tilde{\alpha}_{ij}$: システマティックな粗利得. $\tau_{ij}$: 妻に支払う移転. $\varepsilon_{ijg}$: i.i.d. 第一種極値分布のショック
+- 女性側は対称的で, 移転を**受け取る**: 粗利得 $\tilde{\gamma}_{ij}$ に $+\tau_{ij}$
+- 独身に対する相対利得を $\alpha_{ij} = \tilde{\alpha}_{ij} - \tilde{\alpha}_{i0}$, $\gamma_{ij} = \tilde{\gamma}_{ij} - \tilde{\gamma}_{0j}$ とおく
+- $(i, j)$ の組み合わせごとに1つ, 計 $I \times J$ 個のサブ結婚市場があり, それぞれで移転 $\tau_{ij}$ が価格として動く
+
+### 擬似需要・擬似供給と市場均衡
+
+ショックが第一種極値分布なので, 選択確率はロジット (@eq-logit) になる. 対数を取ると
+
+$$
+\ln \mu_{ij}^{d} = \ln \mu_{i0}^{d} + \alpha_{ij} - \tau_{ij}
+\qquad \text{(quasi-demand)},
+$$
+
+$$
+\ln \mu_{ij}^{s} = \ln \mu_{0j}^{s} + \gamma_{ij} + \tau_{ij}
+\qquad \text{(quasi-supply)}.
+$$
+
+- 男性側の需要は移転 $\tau_{ij}$ の減少関数, 女性側の供給は増加関数
+- 均衡では各サブ市場で $\mu_{ij}^{d} = \mu_{ij}^{s} = \mu_{ij}$ となるように $\tau_{ij}$ が調整される
+
+### Marriage Matching Function
+
+quasi-demand と quasi-supply を足すと, **移転 $\tau_{ij}$ が相殺されて消える**.
+
+$$
+\ln \mu_{ij} - \frac{\ln \mu_{i0} + \ln \mu_{0j}}{2} = \frac{\alpha_{ij} + \gamma_{ij}}{2} \equiv \pi_{ij}.
+$$
+
+これを書き直したものが Choo–Siow の結婚マッチング関数である.
+
+$$
+\mu_{ij} = \exp\left(\pi_{ij}\right) \sqrt{\mu_{i0}\, \mu_{0j}}.
+$${#eq-cs-mmf}
+
+- $\pi_{ij}$: ペア $(i,j)$ の**1人あたりの結婚の総システマティック利得** (独身対比)
+- マッチ数を独身者数の幾何平均でスケールすることで, 人口の規模と構成をコントロールしている
+- @eq-cs-mmf は人口とマッチ数について0次同次: 全人口を2倍にすればマッチも2倍 (規模効果なし)
+- あるタイプの人口 $m_r$ の変化は, 独身者数を通じて**他のすべてのサブ市場に波及する** (spillover effects). 人口だけの関数 $\mu_{ij} = g(m_i, f_j)$ という人口学の伝統的な MMF には無い性質
+
+**識別されるもの・されないもの**
+
+- $\hat{\pi}_{ij} = \ln \left(\mu_{ij} / \sqrt{\mu_{i0}\, \mu_{0j}}\right)$ は観察されたマッチング分布から**プラグインで**計算できる (just-identified で, どんなクロスセクションにも完全にフィットする)
+- 一方, 総利得の**配分** $(\alpha_{ij}, \gamma_{ij})$ と**移転** $\tau_{ij}$ は識別されない
+- ただし移転込みの純利得は男女別に識別される:
+
+$$
+\ln \frac{\mu_{ij}}{\mu_{i0}} = \alpha_{ij} - \tau_{ij}, \qquad
+\ln \frac{\mu_{ij}}{\mu_{0j}} = \gamma_{ij} + \tau_{ij}.
+$$
+
+- 「マッチングパターンからは総余剰しか識別できない」という付録「マッチングと家計内配分」の教訓が, 推定式のレベルでそのまま現れている. この識別の議論を一般のショック分布へ拡張したのが @galichon2022 である
+
+### 均衡の存在と一意性
+
+$\hat{\pi}_{ij}$ をプラグインで求めるだけなら, 均衡を「解く」必要はない. しかし反実仮想では話が逆になる. 人口 $(m, f)$ や利得 $\pi$ を変えたときのマッチングを予測するには, $(\pi, m, f)$ を所与として @eq-cs-mmf と会計制約を同時に満たす $\mu$ を解く必要があり, その解の存在と一意性がモデルの予測力そのものになる. @choo2006 自身が示したのは, 人口ベクトルの微小変化に対する**局所**一意性 (陰関数定理) までで, 存在は TU assignment の一般理論への参照にとどまり, 大域的な一意性は未解決問題として残されていた.
+
+これに決着をつけたのが @decker2013 である. 鍵は, 未知数を独身者数の平方根
+
+$$
+\beta_i := \sqrt{\mu_{i0}}, \qquad \beta_{I+j} := \sqrt{\mu_{0j}}
+$$
+
+に取り替えることだ. @eq-cs-mmf を会計制約に代入すると ($\mu_{ij} = e^{\pi_{ij}} \beta_i \beta_{I+j}$), 均衡の条件は $I + J$ 本の2次方程式系に潰れる.
+
+$$
+\beta_i^2 + \sum_{j=1}^{J} e^{\pi_{ij}} \beta_i \beta_{I+j} = m_i, \qquad
+\beta_{I+j}^2 + \sum_{i=1}^{I} e^{\pi_{ij}} \beta_i \beta_{I+j} = f_j.
+$$
+
+そしてこの方程式系は, 次の関数の一階条件に他ならない.
+
+$$
+E\left(\beta\right) = \frac{1}{2}\sum_{k=1}^{I+J} \beta_k^2
++ \sum_{i,j} e^{\pi_{ij}} \beta_i \beta_{I+j}
+- \sum_{i=1}^{I} m_i \log \beta_i - \sum_{j=1}^{J} f_j \log \beta_{I+j}.
+$$
+
+::: {.callout-note}
+
+## 均衡の存在と一意性 [@decker2013]
+
+利得 $\pi_{ij}$ と正の人口ベクトル $(m, f)$ を所与とすると, 正象限における $E\left(\beta\right)$ の臨界点, したがって Choo–Siow 均衡は, ちょうど1つ存在する.
+
+:::
+
+証明の要点は2つだけである. **存在**: $E$ は $\beta_k \to 0$ でも $\beta_k \to \infty$ でも発散するので ($\log$ の障壁と2次項), 正象限の内部に最小点を持つ. **一意性**: $b_k = \log \beta_k$ と変換し $\nu := \left(m_1, \ldots, m_I, f_1, \ldots, f_J\right)$ とおくと
+
+$$
+E = H\left(b\right) - \sum_{k} \nu_k b_k, \qquad
+H\left(b\right) = \frac{1}{2}\sum_{k} e^{2 b_k} + \sum_{i,j} e^{\pi_{ij}} e^{b_i + b_{I+j}}
+$$
+
+と書け, $H$ は指数関数の和なので**狭義凸**である. よって臨界点は1つしかない. 不動点定理に頼っていた従来の存在証明と違い, 非線形最適化の言葉だけで存在・一意性・閉形式表現 (解は $H$ の Legendre 変換の微分 $b = \nabla H^{*}\left(\nu\right)$) が一度に手に入る.
+
+この定式化のおまけも実用的である. 反実仮想の計算は「滑らかな狭義凸関数 $E$ の最小化」そのものなので, 数値的に安定かつ高速に解ける. 比較静学はヘッセ行列 $\nabla^2 H^{*}$ の正定値性と対称性から符号ごと導ける. たとえば「あるタイプの男性が増えると, 全タイプの男性の独身者が増え, 全タイプの女性の独身者は減る」が定理として出る. ショック分布を一般化した枠組みでの存在・一意性と双対性は @galichon2022 が扱っている.
+
+### 実証 1: 1970年代アメリカの結婚利得の低下
+
+- **データ**: 1970・1980年の米国 Census (結婚可能人口, 16–75歳) と 1971/72・1981/82年の vital statistics (新婚カップルの年齢分布). タイプは年齢
+- ベビーブーム世代の参入で結婚可能人口は男性 +46%, 女性 +39% と急増したのに, 結婚数は +6.5% しか増えていない. $\pi_{ij}$ 一定のモデルでは説明できず, **若年層の結婚利得の低下**が必要になる
+
+![Surface of observed $\mu_{ij}$: a, 1971/72; b, 1981/82. Fig. 1 of @choo2006.](/static/img/article/choo2006/fig1.svg){width=90% fig-align="center"}
+
+![Smoothed $\pi_{ij}$ for 1971/72. Fig. 4 of @choo2006.](/static/img/article/choo2006/fig4.svg){width=70% fig-align="center"}
+
+- 抽出された $\pi_{ij}$ は年齢について強い同類婚のパターン (対角線上で高い) を示す
+- 推定された純利得はすべて負 ($\mu_{ij} < \mu_{i0}$): 結婚はショック $\varepsilon$ の引きが良かったペアで起きている, と読む
+
+![Smoothed difference in aggregate $\pi$, i.e., $\pi_{ij}^{81/82} - \pi_{ij}^{71/72}$ among married couples. Fig. 5 of @choo2006.](/static/img/article/choo2006/fig5.svg){width=60% fig-align="center"}
+
+- 1971/72 から 1981/82 にかけて, 16–30歳の結婚利得が急落している
+
+### 実証 2: 中絶合法化と結婚利得 (DiD)
+
+- 1967–73年に一部の州 (reform states) が中絶を部分的に合法化し, 1973年の Roe v. Wade 判決で全国合法化された
+- タイプを年齢 $\times$ 州グループ (reform / nonreform) $\times$ 時点に拡張し, 利得の差の差を取る:
+
+$$
+\Delta^2 \pi_{ij} = \left(\pi_{ij, 71}^{R} - \pi_{ij, 81}^{R}\right) - \left(\pi_{ij, 71}^{N} - \pi_{ij, 81}^{N}\right).
+$$
+
+![a, Comparing the difference in differences in marriage rate. b, The difference in differences in marriage gains for same-age couples. Fig. 6 of @choo2006.](/static/img/article/choo2006/fig6.svg){#fig-choo2006-fig6 width=90% fig-align="center"}
+
+- 部分合法化は 19–26歳の同年齢ペアの結婚利得を大きく下げ, 27–40歳ではわずかに上げた (結婚の先送り)
+- 若年層の結婚利得低下のうち**最大で約20%**が部分合法化で説明できる
+- 方法論上のポイント: 片側だけの結婚率回帰で反実仮想を計算すると, 女性側の回帰では約 7 千組の減少, 男性側では約 20 万組の減少と, **27倍**も食い違う. 会計制約を満たす MMF ベースの推定では約 4.5 万組 (全体の 1.4%) となり, 男女で整合的な答えが得られる
+
+### まとめ
+
+- TU マッチング + 第一種極値ショックから, 移転が消去された推定可能なマッチング関数 @eq-cs-mmf が得られる
+- ペア別の総利得 $\pi_{ij}$ はプラグインで識別されるが, その配分と移転は識別されない
+- 会計制約と spillover を内蔵しているため, 片側の結婚率回帰と違って一般均衡的に整合的な反実仮想ができる
+
+## @ciscato2025
+
+### Motivation: 同類婚は「好み」か「分断」か
+
+同類婚 (人種・学歴の似た者同士の結婚) には, 観察上区別しにくい2つの説明がある.
+
+1. **補完性 (complementarities)**: 似た者同士のマッチは余剰 $\bar{S}_{ij}$ が高い (Becker 的な説明. 余剰の優加法性 → PAM)
+1. **分断 (segmentation)**: 居住地・学校・職場・友人ネットワークが同質的で, そもそも**似た者同士ばかりが出会う** (サーチ摩擦的な説明)
+
+- 政策的な含意は大きく異なる. 補完性なら同類婚は選好・技術の帰結だが, 分断なら出会いの構造を変える政策 (住宅・教育など) が結婚市場と格差を動かす
+- しかし, クロスセクションのマッチングデータでは両者は**観察等価**である. 出会いのコスト $\Lambda_{ij}$ を入れた Choo–Siow 型モデルのマッチング関数は
+
+$$
+MF_{ij} = \exp\left(\frac{\bar{S}_{ij} - \Lambda_{ij}}{2}\right) \sqrt{c_i^m\, c_j^f}
+$${#eq-ciscato-mmf}
+
+となり ($\bar{S}_{ij}$ は新規マッチの期待余剰, $c_i^m, c_j^f$ は独身者数), @eq-cs-mmf の $\pi_{ij}$ が $\left(\bar{S}_{ij} - \Lambda_{ij}\right)/2$ に置き換わっただけの形になる. マッチングデータから復元できるのは差 $\bar{S}_{ij} - \Lambda_{ij}$ だけで, 余剰と摩擦は分離できない
+
+### 識別のアイデア: 交際の持続時間
+
+- マッチの**成立率**は $\bar{S}_{ij} - \Lambda_{ij}$ を反映するが, 成立したカップルの**別離率**は余剰 $\bar{S}_{ij}$ だけを反映する (出会ってしまえば出会いのコストは無関係)
+- したがってパネルデータで交際の持続を追えば, 別離率から $\bar{S}$ が識別され, マッチング関数 @eq-ciscato-mmf の逆転から $\Lambda$ が割り出せる
+- 直感:
+    - 同学歴カップルが多くマッチし, **かつ別れにくい** → 高い余剰 (補完性)
+    - 同人種カップルが多くマッチするが, **別離率は混合カップルと同じ** → 出会いの偏り (分断)
+- 実装上の注意が2つある
+    - 同棲・結婚・子供などマッチ固有の資本が蓄積すると別離の意思決定が変わるので, 識別には関係の初期 (非同棲の交際段階) の観察が必要
+    - マッチの質に永続的な未観測成分があると動学的セレクションが生じる (質の低いマッチから先に消えていく) ため, 持続時間プロファイル全体を使って混合分布ごと識別する
+
+### モデル
+
+- 離散時間・定常な OLG. タイプ = (年齢, 人種, 学歴). 毎期の結婚市場が Choo–Siow / @galichon2022 型の assignment game で, そこに出会いのコスト $\Lambda_{ij}$ が乗る
+- 関係は非同棲の交際から始まり, サンクコスト $\kappa$ を払って同棲に移行できる. 毎期のロジスティック・ショック $z$ と永続的なマッチの質 $k$ に応じて継続・同棲・破局を選び, 破局すれば独身プールに戻って再マッチできる
+- 効用は TU で, 分配は Nash 交渉 (ウェイト $\theta_{ij}$ はマッチ時に市場で決まる). TU なので**継続・破局の決定は $\theta$ に依存せず**, 総余剰 $S + z > 0$ かどうかだけで決まる (付録「マッチングと家計内配分」で見た「総行動と分配の分離」がここでも効いている)
+- 選択集合は制限されない: 誰でも誰にでも「申し込める」が, タイプの組み合わせごとにコスト $\Lambda_{ij}$ がかかる. ランダムサーチの逐次的な受諾/拒絶ではなく, 全タイプを同時に比較する定式化
+- $\theta_{ij}$ は市場で決まり, 稀少なタイプほど有利になる: 人種内の性比の不均衡が交渉力に直結する
+
+### データ: HCMST
+
+- How Couples Meet and Stay Together (HCMST): 米国の代表性のあるパネル調査 (2009年ベースライン + 2014年まで追跡)
+- **非同棲の交際関係**とその開始時点・同棲への移行・破局, 相手の属性, 出会いの経緯まで観察できる希少なデータ
+- 新規カップルの 88.2% が同人種, 49.2% が同学歴
+- 生の別離ハザードを見ると: 同人種カップルと混合人種カップルは**ほぼ同じ**プロファイル, 同学歴カップルは異学歴カップルより**明確に別れにくい**. モデルを推定する前から結論の輪郭が見える
+
+![Separation by duration. Figure 1 of @ciscato2025.](/static/img/article/ciscato2025/fig1.jpeg){width=90% fig-align="center"}
+
+### 結果: 人種は分断, 学歴は補完性
+
+![Estimates of frictions and gains--baseline model. Table 3 of @ciscato2025.](/static/img/article/ciscato2025/table3.svg){width=90% fig-align="center"}
+
+*[Placeholder: @ciscato2025 Table 3 (構造パラメータの推定値) を挿入]*
+
+- 同人種であることは出会いのコストを $-3.75$ (s.e. 0.69) 下げるが, マッチの利得への効果は $0.05$ で統計的に有意でない
+- 同学歴であることは出会いのコストへの効果が $-0.46$ で有意でない一方, マッチの利得を $+0.11$ (s.e. 0.04) 上げる
+- 出会いの経緯データとの突き合わせで $\Lambda$ の解釈が具体化する: 同じ町・同じ高校での出会いは「安いが余剰も低い」, 大学・友人経由は「安くて余剰も高い」, オンラインデーティングやパーティは「コストは高いが余剰の高い相手を探せる」
+
+**分解 (新規マッチのシェア)**
+
+![Homogamy patterns among new couples--data versus counterfactuals. Table 7 of @ciscato2025.](/static/img/article/ciscato2025/table7.svg){width=90% fig-align="center"}
+
+*[Placeholder: @ciscato2025 Table 7 (同人種・同学歴シェアの分解: データ / ランダム / コスト除去 / 利得除去) を挿入]*
+
+- 同人種シェア 88.2%: 出会いのコストを除去すると 55.5% まで落ちる (ランダムマッチングなら 53.3%). **人種の同類婚はほぼすべて分断で説明される**
+- 同学歴シェア 49.2%: コスト除去で 40.8% (ランダムなら 33.5%). **学歴の同類婚はおよそ半分が分断, 残りが補完性**
+
+### 一般均衡の反実仮想
+
+- 人種間の出会いのコストを同人種と同水準まで下げ, 新しい定常均衡を計算すると, 同人種シェアは 82.8% から 59.8% に低下する
+- 全体として摩擦が減るためマッチの回転が速くなり (別離率 11.9% → 22.3%), パートナーのいる人の割合はむしろ低下する
+- 分配効果: 人種内の性比が不利な Black 女性と Hispanic 男性が相対的に得をする. 女性の有配偶率の White–Black 格差は 13.7% から 7.8% へ, **約4割縮小**する. 交渉力 $\theta$ も同じ方向に動く
+
+![Experiment I (a) Changes in % of partnered men, (b) changes in % of partnered women, (c) changes in men’s bargaining power ($\theta$), and (d) changes in women’s bargaining power ($1-\theta$). Figure 3 of @ciscato2025.](/static/img/article/ciscato2025/fig3.jpeg){#fig-ciscato2025-fig3 width=90% fig-align="center"}
+
+### まとめ
+
+- 摩擦のない結婚市場モデルに出会いのコストを足すと, クロスセクションでは余剰と摩擦が観察等価になる. **持続時間データ**がこの識別問題を解く
+- 人種の同類婚は出会いの分断, 学歴の同類婚は分断と補完性の両方, という非対称な結論
+- サーチモデル (前章) と摩擦のないマッチング (この章) の中間に位置する枠組みとして読める
+
+## @reynoso2024
+
+### Background
+
+**協議離婚から単意離婚へ**
+
+アメリカでは1970年代から2010年代にかけて, 離婚の形態が協議離婚 (Mutual Consent Divorce, MCD) から単意離婚 (Unilateral Divorce, UD) に変化した.
+
+- **協議離婚 (MCD)**: 夫婦の合意が必要. 片方のみが希望する場合, DVや不貞を証明する必要
+- **単意離婚 (UD)**: 片方の希望のみで離婚可能
+
+離婚制度の変更は
+
+- 結婚相手の選択に影響を与えただろうか?
+- 結婚時の行動, 特に人的資本への投資に影響を与えただろうか?
+
+### Stylized Facts
+
+**事実 1: 単意離婚は契約できない婚姻内投資を減らす**
+
+先行研究から, 単意離婚制度は, 契約できない (non-contractible), つまり離婚後分与できない婚姻内投資を減少させると考えられる. 代表的な例は以下のようなもの.
+
+- 子供への教育投資
+- 配偶者のキャリアや人的資本への投資
+
+@stevenson2007a では, 単意離婚を導入した州では, 配偶者の人的資本への投資が減少したことが示されている.
+
+**事実 2: 単意離婚は同類婚を促進する**
+
+単意離婚の導入による同類婚の変化を示すために, 以下の回帰式^[ 論文の表記と異なるが, 新婚夫婦の新婚時点のデータを用いているので, $t(m)$, $g(m)$ という表記を用いている. (ある $m$ に対して, 異なる $t$, $g$ のデータがあるわけではない.) また, 定数項は $\delta_g$ に含まれているとみなしても問題はない. $g \times \text{Ed}_{mtg}^h$ という表現の $g$ はおそらくダミー変数なので, $\delta_g$ の表記の方が適切のように思われる. ]を考える.
+
+$$
+\text{Ed}_{m}^{w} = \sum_{k} \left[\beta_1^{k} \text{UD}_{t(m)g(m)}^k + \beta_2^k\left(\text{Ed}_{m}^h \times \text{UD}_{t(m)g(m)}^k\right)\right]
++ \delta_{t(m)} + \delta_{g(m)} + \delta_{g(m)} \times \text{Ed}_m^h + \epsilon_{m}
+$$
+
+- $\text{Ed}_{m}^w, \text{Ed}_{m}^h$: 新婚カップル $m$ の Wife, Husband の教育年数
+- $t(m)$: 新婚カップル $m$ の結婚年 (2年以内)
+- $g(m)$: 新婚カップル $m$ の居住州
+- $UD_{tg}^k$: $t + \tilde{k}$ 年に単意離婚 (UD) が導入されたことを示すダミー変数
+- $\tilde{k} \in k \in \{\{\dots, -10\}, \{-9, -8\}, \dots, \{-2, -1\}, 0, \{1, 2\}, \dots, \{10, \dots\}\}$
+- PSIDの1968-1992に結婚した初婚かつ新婚のカップルのデータを用いて推定
+
+![](/static/img/article/reynoso2024/fig1.svg){#fig-reynoso2024-fig1 width=80% fig-align="center"}
+
+単意離婚の導入後:
+
+- 夫の教育年数に対する妻の教育年数の傾き $\beta_{2}^k$ が統計的に有意に増加している
+- 同類婚の傾向が強まったと解釈できる
+
+### ベッカー・コースの定理と Imperfectly Transferable Utility (ITU)
+
+::: {.callout-note}
+
+## Becker-Coase Theorem (BCT) の必要条件 [@chiappori2015a]
+
+「MCDかUDかは離婚率に影響を与えない」 というBCTには以下の条件が必要である.
+
+1. 効用関数が結婚時に移転可能 (TU) である
+1. 効用の移転が離婚後も可能である
+1. 結婚時と離婚後の効用の移転率が同一である (効用の基数性が同一)
+
+:::
+
+- BCTは定理と名が付くが, @becker1991 で提示された概念的な洞察 (付録の「マッチングと家計内配分」も参照)
+- @chiappori2015a は, BCTを定式化し, 反例となるモデルを示した
+- Stylized facts で示した単意離婚の導入後の変化は, BCTを反証する
+
+### モデル
+
+![](/static/img/article/reynoso2024/fig2.svg){#fig-reynoso2024-fig2 width=80% fig-align="center"}
+
+- 女性 $f \in \mathcal{X}$ と男性 $m \in \mathcal{Y}$ が存在 ($\mathcal{X}, \mathcal{Y}$ は連続体)
+- 各個人 $i \in \{f, m\}$ は教育レベル $s_i \in \mathcal{S} = \{\text{hs}, \text{sc}, \text{c+}\}$ を外生的に持つ. 各ジェンダーの教育レベルの密度は $\mu_{s_{i}}$ と表記する
+- 各個人は $t = 0$ で結婚し, $T$ 期間の間結婚生活を続けるが, 途中に離婚することもある
+- $t= 0$ で離婚制度 $\mathcal{D} \in \{\text{MCD}, \text{UD}\}$ に直面し, 変わらないと仮定する
+
+### 効用関数
+
+**有配偶者**
+
+$$
+\begin{aligned}
+u_f^M(c_{ft}, q_t, k_t) &= \log \left(q_t(c_{ft} + \alpha^{s_f, s_m}k_t)\right) + \theta_{fm, t} \\
+u_m^M(c_{mt}, q_t, k_t) &= \log \left(q_t(c_{mt})\right) + \theta_{mf, t}
+\end{aligned}
+$$
+
+- $c_{it}$: 個人 $i$ の個人消費 (private consumption)
+- $q_t$: 公共財消費 (public consumption)
+- $k_t$: 専業主婦ダミー. $k_t = 0$ ならば労働市場で働く
+- $\alpha^{s_f, s_m}$: 専業主婦を選択した際の妻の効用. 夫婦それぞれの教育レベルに依存する
+- $\theta_{fm, t}$: 夫婦別の match quality. 以下のようにランダムウォークする
+
+$$
+\theta_{fm, t} = \theta_{fm, t-1} + \epsilon_{fm, t}, \quad \epsilon_{fm, t} \sim \mathcal{N}\left(0, {\sigma_{\theta}^{s_f, s_m}}^2\right).
+$$
+
+**離婚者**
+
+$$
+\begin{aligned}
+u_f^D(c_{ft}, q_t) &= \log \left(c_{ft}q_t\right) \\
+u_m^D(c_{mt}, q_t) &= \log \left(c_{mt}q_t^{\gamma}\right)
+\end{aligned}
+$$
+
+- 離婚後は, 元夫は親権を持たないと仮定するため, $\gamma < 1$ の割り引かれた公共財効用を持つ
+
+**単身者**
+
+$$
+u_i^{\emptyset} = \log \left(c_{it}\right)
+$$
+
+- 単身者は公共財消費を持たない (子どもを持つには結婚が必要)
+
+### 賃金 $w_{it}$
+
+$$
+\log w_{it} = \log W_{i}(s_i) + a_{1}^{\mathcal{G}_i}(s_i) \text{exper}_{it}
++ \alpha_{2}^{\mathcal{G}_i}(s_i) \text{exper}_{it}^2
++ a_{3}(s_i)K_t \mathbb{1}\{\mathcal{G}_i = \mathcal{Y}\} + \varepsilon_{it}.
+$$
+
+- $W_{i}(s_i)$: 教育の市場価値
+- $\text{exper}_{it}$: 労働市場での経験年数
+- $K_t = \sum_{r=1}^{t-1}k_{ir}$: 専業主婦期間
+- $\varepsilon_{it} = \varepsilon_{it-1} + \xi_{it}, \quad \xi_{it} \sim \mathcal{N}\left(0, {\sigma_{\xi}^{\mathcal{G}_i}}^2\right)$
+
+重要なポイントは
+
+- $a_3$ は有配偶の男性のみに適用される. 妻が専業主婦の場合, 夫の賃金は上昇する
+- 専業主婦期間は $\text{exper}$ に加算されないので, (離婚後も続く) 賃金のペナルティを受ける
+
+### 結婚市場
+
+**配偶者の選択**
+
+独身でいることまたは配偶者の学歴を選ぶことが可能である. したがって選択集合 $S_0$ は
+
+$$
+\mathcal{S}_0 = \emptyset \cup \mathcal{S} = \{\emptyset, \text{hs}, \text{sc}, \text{c+}\}.
+$$
+
+学歴 $s_f$ の女性が配偶者 $s \in \mathcal{S}_0$ を選ぶ時の効用は以下で与えられる.
+
+$$
+U_f^{s_f, s} = \overline{U}_{\mathcal{X}}^{s_f, s} + \beta_f^{s_f, s}.
+$$
+
+ここで $\overline{U}_{\mathcal{X}}^{s_f, s}$ は $(s_f, s)$ の結婚から得られる期待効用である. 同様に, $s_m$ の男性が配偶者 $s \in \mathcal{S}_0$ を選ぶ時の効用は以下で与えられる.
+
+$$
+U_m^{s, s_m} = \overline{U}_{\mathcal{Y}}^{s, s_m} + \beta_m^{s, s_m}.
+$$
+
+結婚市場では, $s_i$ の相手と結婚した時の期待効用はすでに与えられていると考える. その意味で, 結婚市場は _競争的_ で参加者は (効用の意味で) _price takers_ である.
+
+**独身者の期待効用**
+
+個人 $i$ の独身者としての期待効用 $\overline{U}^{\emptyset} \in \{\overline{U}_{\mathcal{X}}^{s, \emptyset}, \overline{U}_{\mathcal{Y}}^{\emptyset, s}\}$ は以下のように表される.
+
+$$
+\overline{U}^{\emptyset} = \mathbb{E}_{0} \sum_{t-1}^T \delta^{t-1} u_{i}^{\emptyset} \left(\rho w_{it}(\varepsilon_{it})\right) + \overline{\theta}^{s_i}
+$$
+
+- $\delta$: 割引因子
+- $\overline{\theta}^{s_i}$: ジェンダー $i$, 教育レベル $s_i$ の独身時の non-economic な生涯効用
+
+**結婚経験者の期待効用**
+
+結婚経験者 (有配偶者または離婚者) の意思決定は, 以下の状態変数に依存する
+
+$$
+\boldsymbol{\omega}_{t} = \left\{\lambda_{t}^{s_f, s_m}, K_t, \varepsilon_{ft}, \varepsilon_{mt}, \theta_{fm, t}\right\} \in \Omega_t
+$$
+
+- $\lambda_{t}^{s_f, s_m}$: 妻側の交渉時における効用ウェイト
+
+結婚経験者は $\boldsymbol{\omega}_t$ に基づいて配分 $a_t(\boldsymbol{\omega}_t)$ を決定する.
+
+$$
+a_t(\boldsymbol{\omega}_t) = \{c_{ft}(\boldsymbol{\omega}_t), c_{mt}(\boldsymbol{\omega}_t), q_t(\boldsymbol{\omega}_t), k_t(\boldsymbol{\omega}_t), D_t(\boldsymbol{\omega}_t), \tau_{t}(\boldsymbol{\omega}_t)\} \in \mathcal{A}_t.
+$$
+
+- $D_t(\boldsymbol{\omega}_t)$: 離婚ダミー. $D_t = 1$ ならば離婚状態
+- $\tau_{t}(\boldsymbol{\omega}_t)$: 離婚後の夫から妻への送金
+- シュタッケルベルグゲーム. 夫が $\tau_{t}$ を決定し, 妻が $\tau_{t}$ を所与として配分を決定
+
+タイプ $s_m$ の男性がタイプ $s_f$ の女性と結婚した時の期待効用は以下で与えられる.
+
+$$
+\overline{U}_{\mathcal{Y}}^{s_f, s_m} = \max_{\mathbf{a} \in \{\mathcal{A}_t\}_{t=1}^{T}}
+\mathbb{E}_0 \sum_{t=1}^T \delta^{t-1} \left((1-D_t)u_{m}^M(a_t(\boldsymbol{\omega})) + D_t u_m^D(a_t(\boldsymbol{\omega}))\right)
+$${#eq-objective-function}
+
+subject to
+
+$$
+\mathbb{E}_0 \sum_{t=1}^T \delta^{t-1} \left((1-D_t)u_{f}^M(a_t(\boldsymbol{\omega})) + D_t u_f^D(a_t(\boldsymbol{\omega}))\right) \ge \overline{U}_{\mathcal{X}}^{s_f, s_m}
+$${#eq-participation-constraint}
+
+女性側の参加制約 (@eq-participation-constraint) のラグランジュ乗数を $\lambda_0^{s_f, s_m}$ とする.
+
+**予算制約**
+
+$$
+\begin{aligned}
+&c_{ft} + c_{mt} + q_t = w_{ft}(\boldsymbol{\omega})(1-k_t) + w_{mt}(\boldsymbol{\omega}) & \text{if } D_t = 0 \\
+&x_{ft} + q_t = w_{ft}(\boldsymbol{\omega}) + \tau_t; x_{mt} = w_{mt}(\boldsymbol{\omega}) - \tau_{t} & \text{if } D_t = 1
+\end{aligned}
+$${#eq-budget-constraint}
+
+### 離婚制度
+
+**協議離婚 (MCD)**
+
+$$
+D_t = \begin{cases}
+1 & \mathbb{E}_0 \sum_{r=0}^{T-t} \delta^{r} u_g^M(a_{t+r}(\boldsymbol{\omega})) \le \mathbb{E}_0 \sum_{r=0}^{T-t} \delta^{r} u_g^D(a_{t+r}(\boldsymbol{\omega})), \quad\exists \{a_{t+r}\}_{r=0}^{T-t}, \forall g \in \{f, m\}, t > 1\\
+0 & \text{ otherwise}
+\end{cases}
+$${#eq-mcd}
+
+- 両者が離婚によって better off する配分 ${a_{t+r}(\boldsymbol{\omega})}$ が存在する場合, $D_t = 1$ となる
+
+**離婚調停** (divorce settlement) の仮定
+
+$$
+\max_{a_{t^D}} \lambda_t^{D} \left(u_{f, t}(a_{t^D}) + \delta \mathbb{E}[v_{f, t^{D}+1}]\right) + (1 - \lambda_t^{D}) \left(u_{m, t}(a_{t^D}) + \delta \mathbb{E}[v_{m, t^{D}+1}^A]\right)
+$$
+
+- 離婚が決定した時点 $t^D$ で, 両者の配分はパレート効率的に決定される
+- $v_{g, t^{D}+1}^A$: 離婚後の期 $t^{D}+1$ 以降の非協力的な状態 (autarky) の価値関数
+- 単意離婚 (UD) の場合は離婚調停はなく, すぐに非協力な状態 $v_{g, t^{D}}$ に移行する
+
+**単意離婚 (UD)**
+
+$$
+D_t = \begin{cases}
+0 & \mathbb{E}_0 \sum_{r=0}^{T-t} \delta^{r} u_g^M(a_{t+r}(\boldsymbol{\omega})) \ge \mathbb{E}_0 \sum_{r=0}^{T-t} \delta^{r} u_g^D(a_{t+r}(\boldsymbol{\omega})), \quad\exists\{a_{t+r}\}_{r=0}^{T-t}, \forall g \in \{f, m\}, t > 1\\
+1 & \text{ otherwise}
+\end{cases}
+$${#eq-ud}
+
+**再交渉** (renegotiation) の仮定
+
+- 一方が離婚によって better off する場合, $\lambda_t^{s_f, s_m}$ を修正し, 離婚を防ぐことができる
+- 両者が結婚によって better off する配分 ${a_{t+r}(\boldsymbol{\omega})}$ と $\lambda_{t}^{s_f, s_m}$ が存在しない場合, $D_t = 1$
+- 協議離婚 (MCD) の場合は, 両者が離婚によって better off するので, 再交渉はしない
+
+### 結婚市場均衡
+
+::: {.callout-note}
+
+## 結婚市場均衡
+
+1. 男性と女性の効用価格の行列を定義する. $\Upsilon := \left\{\left(\overline{U}_{\mathcal{X}}^{s_f, s_m}, \overline{U}_{\mathcal{Y}}^{s_f, s_m}\right)\right\}_{(s_f, s_m) \in \mathcal{S}^2}$
+1. 女性のタイプから男性のタイプへの割り当て $\mu: \mathcal{S} \to \mathcal{S}$ が以下を満たす.
+
+$$
+\begin{aligned}
+&\mu_{s_f \to s_m}(\Upsilon) = \mu_{s_f \leftarrow s_m}(\Upsilon) & \forall (s_f, s_m) \in \mathcal{S}^2 \\
+&\mu_{s_f} = \mu_{s_f \to \emptyset} + \sum_{s_m \in \mathcal{S}} \mu_{s_f \to s_m}(\Upsilon) & \forall s_f \in \mathcal{S} \\
+&\mu_{s_m} = \mu_{s_m \to \emptyset} + \sum_{s_f \in \mathcal{S}} \mu_{s_f \leftarrow s_m}(\Upsilon) & \forall s_m \in \mathcal{S}
+\end{aligned}
+$$
+
+:::
+
+- ここでは, 配偶者の最低効用 $\Upsilon$ が価格として振る舞い, 内生的に決定する
+- 均衡の存在と一意性は @reynoso2024 の Appendix B で示されている
+
+### Calibration
+
+**Constrained SMM**
+
+$$
+(\hat{\Pi}, \hat{\Lambda}) = \arg \min_{\Pi, \Lambda} (\mathcal{M}(\Pi, \Lambda) - \text{Data})'\mathcal{V}(\mathcal{M}(\Pi, \Lambda) - \text{Data})
+$$
+
+subject to
+
+$$
+\forall (s_f, s_m): \mu_{s_f \rightarrow s_m}(\Pi, \Lambda) = \mu_{s_f \leftarrow s_m}(\Pi, \Lambda).
+$$
+
+- $\Upsilon$ はパレートウェイト $\Lambda := \left\{\lambda_0^{s_f, s_m}\right\}_{(s_f, s_m) \in \mathcal{S}^2}$ から求められる
+    - 導出は @reynoso2024 の Online Appendix B を参照
+- モデル内の54のパラメータ $\Pi$ と $\Lambda$ を求めるために, 252のモーメントを用いる
+- @su2012 のアプローチ (制約付き最適化として定式化する MPEC, -@sec-mpec 節) によって高速化する
+- **協議離婚 (MCD)** の場合のデータを用いてカリブレーションする. 結果は @reynoso2024 の Table 1 を参照のこと
+
+### 均衡制約のある推定: MPEC {#sec-mpec}
+
+-@sec-gmm-micro 節 の家計モデルは, パラメータを与えれば配分が閉じた形で解けました. しかし @reynoso2024 のような一般均衡モデルの推定では, パラメータ $\Pi$ を与えるたびに**均衡を解く内側のループ**が必要になります. ここでは結婚市場を清算する Pareto ウェイト (と期待価値の行列) が, Aiyagari モデルなら資産市場を清算する金利が, パラメータごとの不動点計算として挟まるわけです. この入れ子構造 (nested fixed point) は計算コストの大部分を占めがちで, 最適化の1ステップごとに高精度で均衡を解き直すのは大きな無駄になります.
+
+@su2012 が提案した **MPEC** (mathematical programming with equilibrium constraints) は, この入れ子を解消します. アイデアは単純で, 均衡条件を「パラメータごとに解いてから目的関数を評価する」のではなく, **内生変数を最適化の変数に昇格させ, 均衡条件を制約として最適化ソルバに渡す**ことです. 上の constrained SMM がまさにこの形で, 均衡価格にあたる $\Lambda$ が最適化の変数に昇格し, 結婚市場の清算条件 $\mu_{s_f \rightarrow s_m} = \mu_{s_f \leftarrow s_m}$ が制約として課されています.
+
+最適化の**途中では均衡が満たされていなくてよく**, 収束時に満たされていればよい, というのが要点です. 制約付き最適化は -@sec-constrained-opt 節 で学んだ手法 (内点法など) がそのまま使えます. 代表的な解き方のひとつが拡張ラグランジュ法です.
+
+::: {.callout-note}
+
+## 拡張ラグランジュ法 (Augmented Lagrangian method)
+
+制約付き最適化問題
+
+$$
+\min_{\mathbf{x}} f\left(\mathbf{x}\right) \quad \text{s.t.} \quad c_i\left(\mathbf{x}\right) = 0 \quad \forall i
+$$
+
+に対して, 乗数項とペナルティ項を加えた無制約問題
+
+$$
+\min_{\mathbf{x}}\ f\left(\mathbf{x}\right) + \sum_{i} \nu_i c_i\left(\mathbf{x}\right) + \frac{\rho}{2} \sum_{i} c_i\left(\mathbf{x}\right)^2
+$$
+
+を, 乗数 $\nu_i$ とペナルティの重み $\rho$ を更新しながら繰り返し解く.
+
+:::
+
+$\mathbf{x} = \left(\Pi, \Lambda\right)$, $f$ を SMM の目的関数, $c_i$ を各市場の均衡条件とすれば, 実用上は**ターゲットが制約条件の数だけ増えた SMM** とみなすことができます. @gayle2019 も, 結婚市場均衡を制約とするこの形の constrained SMM でモデルを推定しています.
+
+### Assortative Mating (協議離婚, MCD)
+
+![](/static/img/article/reynoso2024/table2.svg){width=80% fig-align="center"}
+
+- ここでは $\lambda = \frac{\lambda_0}{\lambda_0 + 1} \in (0, 1)$ に変換されている
+- 学歴が高いほど高いパレートウェイト (交渉力)
+
+### 単意離婚 (UD) の影響
+
+**同類婚 (Assortative Mating)**
+
+![](/static/img/article/reynoso2024/table3.svg){width=80% fig-align="center"}
+
+- 単意離婚 (UD) の導入により, 同類婚の傾向が強まる (South Central 以外)
+
+**同類婚のメカニズム**
+
+![](/static/img/article/reynoso2024/table4.svg){width=80% fig-align="center"}
+
+- 離婚調停 (divorce settlement) がある, 再交渉 (renegotiation) がないと同類婚が弱まる
+- 離婚は人的資本を積み上げられない専業主婦 (夫) にとって不利
+    - 学歴差婚は, 学歴の低い配偶者が専業主婦 (夫) になる可能性が高い
+    - 離婚調停は離婚後の生活を向上させ, 再交渉は専業主婦の交渉力を弱める
+
+**専業主婦率**
+
+![](/static/img/article/reynoso2024/fig5.svg){width=80% fig-align="center"}
+
+- 単意離婚 (UD) は基本的には専業主婦率を減少させる (離婚のリスクが高い)
+- ただし, 均衡効果もあるため, 専業主婦が増加する場合 (地域, 学歴による) もある
+
+**離婚率**
+
+![](/static/img/article/reynoso2024/fig6.svg){width=80% fig-align="center"}
+
+- 単意離婚 (UD) の導入により, 離婚率は増加する
+
+**結婚の利益 (Gains from Marriage, GM)**
+
+![](/static/img/article/reynoso2024/fig7.svg){width=80% fig-align="center"}
+
+- 単意離婚 (UD) が結婚の利益を増加させるかは曖昧
+    - 離婚の自由度が高まることによる結婚の利益の増加
+    - 離婚後の保証が減ることによる結婚の利益の減少
+
+### まとめ
+
+**協議離婚 (MCD)** から **単意離婚 (UD)** へ
+
+- 単意離婚 (UD) の導入により, 同類婚 (Assortative Mating) が強まった
+- 学歴差婚は, 学歴が低い配偶者の離婚のリスクを高めるため, 忌避される
+- Becker-Coase theorem (離婚制度は婚姻に影響を与えない) を実証的に反証した
+
+**Frictionless Marriage Market under Limited Commitment**
+
+- Imperfectly Transferable Utility (ITU) かつ Limited Commitment モデルを構築
+- 実証的な事実と整合的な結果 (同類婚の強化) を得た
+- 単意離婚 (UD) の導入の影響が学歴ごとに異なることを示唆する結果
