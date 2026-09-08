@@ -4,7 +4,6 @@ project:
   resources:
     # 課題は問題PDFだけをサイトに配信する (解答PDFは含めない).
     - assignment/**/*-exercise.pdf
-    - assignment/choo-siow/choo-siow.pdf
 
 book:
   title: Family Macroeconomics
