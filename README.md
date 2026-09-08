@@ -4,8 +4,22 @@
 結婚, 離婚, 出生, 家計内の資源配分といった家族の意思決定を, マクロ経済学の
 定量的な手法 (動的計画法, 構造推定, 均衡モデル) で分析します.
 
-- 講義ノート: `gh-pages` ブランチにビルド済みのサイトが置かれる (現在は一般公開していない)
-- 課題 (問題): `assignment/` 以下の PDF
+- **講義サイト**: <https://kazuyanagimoto.com/course-kobe-macro4-2026/>
+- **講義ノート (PDF)**: <https://kazuyanagimoto.com/course-kobe-macro4-2026/Family-Macroeconomics.pdf>
+
+> [!NOTE]
+> サイトは準備中です. ビルド済みのものは `gh-pages` ブランチにあります.
+
+## 課題
+
+提出期限は変更されることがあります. 出題前の課題はこの表に現れません.
+
+<!-- assignments:start -->
+| 課題 | 提出期限 | 問題 |
+| --- | --- | --- |
+| Exercise 0 | 2026年10月6日 | [00-exercise.pdf](assignment/00-exercise/00-exercise.pdf) |
+| Exercise 1 | 2026年10月18日 | [01-exercise.pdf](assignment/01-exercise/01-exercise.pdf) |
+<!-- assignments:end -->
 
 ## このレポジトリについて
 
