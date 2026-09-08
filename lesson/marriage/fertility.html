@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Marriage and Fertility – Family Macroeconomics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../../lesson/appendix/proof.html" rel="next">
+<link href="../../lesson/marriage/frictionless-marriage.html" rel="prev">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c87ae1f151089946a6f14c3e0e4f3fcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/fertility.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Family Macroeconomics</a> 
+        <div class="sidebar-tools-main">
+    <a href="../../Family-Macroeconomics.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">はじめに</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">数値計算</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/numerical/nonlinear-opt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">非線形最適化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/numerical/function-approximation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">関数近似</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/numerical/dynamic-programming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/numerical/gmm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../lesson/marriage/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">結婚の経済学</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/search-matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/frictionless-marriage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/appendix/proof.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">証明</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/appendix/matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">マッチングと家計内配分</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/appendix/continuous-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quantity-quality-トレードオフ" id="toc-quantity-quality-トレードオフ" class="nav-link active" data-scroll-target="#quantity-quality-トレードオフ"><span class="header-section-number">7.1</span> Quantity-Quality トレードオフ</a>
+  <ul class="collapse">
+  <li><a href="#シンプルなモデル" id="toc-シンプルなモデル" class="nav-link" data-scroll-target="#シンプルなモデル"><span class="header-section-number">7.1.1</span> シンプルなモデル</a></li>
+  <li><a href="#女性の時間の機会費用" id="toc-女性の時間の機会費用" class="nav-link" data-scroll-target="#女性の時間の機会費用"><span class="header-section-number">7.1.2</span> 女性の時間の機会費用</a></li>
+  <li><a href="#影の価格と観察される所得弾力性" id="toc-影の価格と観察される所得弾力性" class="nav-link" data-scroll-target="#影の価格と観察される所得弾力性"><span class="header-section-number">7.1.3</span> 影の価格と観察される所得弾力性</a></li>
+  </ul></li>
+  <li><a href="#王朝モデル" id="toc-王朝モデル" class="nav-link" data-scroll-target="#王朝モデル"><span class="header-section-number">7.2</span> 王朝モデル</a>
+  <ul class="collapse">
+  <li><a href="#一階条件" id="toc-一階条件" class="nav-link" data-scroll-target="#一階条件"><span class="header-section-number">7.2.1</span> 一階条件</a></li>
+  <li><a href="#含意と応用" id="toc-含意と応用" class="nav-link" data-scroll-target="#含意と応用"><span class="header-section-number">7.2.2</span> 含意と応用</a></li>
+  </ul></li>
+  <li><a href="#greenwood2023" id="toc-greenwood2023" class="nav-link" data-scroll-target="#greenwood2023"><span class="header-section-number">7.3</span> <span class="citation" data-cites="greenwood2023">Greenwood et al. (2023)</span></a>
+  <ul class="collapse">
+  <li><a href="#モデル" id="toc-モデル" class="nav-link" data-scroll-target="#モデル"><span class="header-section-number">7.3.1</span> モデル</a></li>
+  <li><a href="#データから直接決まるパラメータ" id="toc-データから直接決まるパラメータ" class="nav-link" data-scroll-target="#データから直接決まるパラメータ"><span class="header-section-number">7.3.2</span> データから直接決まるパラメータ</a></li>
+  <li><a href="#smm-2つのループ" id="toc-smm-2つのループ" class="nav-link" data-scroll-target="#smm-2つのループ"><span class="header-section-number">7.3.3</span> SMM: 2つのループ</a></li>
+  <li><a href="#great-transition-の駆動力" id="toc-great-transition-の駆動力" class="nav-link" data-scroll-target="#great-transition-の駆動力"><span class="header-section-number">7.3.4</span> Great Transition の駆動力</a></li>
+  <li><a href="#transition" id="toc-transition" class="nav-link" data-scroll-target="#transition"><span class="header-section-number">7.3.5</span> Transition</a></li>
+  <li><a href="#まとめ" id="toc-まとめ" class="nav-link" data-scroll-target="#まとめ"><span class="header-section-number">7.3.6</span> まとめ</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/fertility.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>所得と出生率の関係は, 家族の経済学で最も古いパズルのひとつです. 子供が正常財なら, 所得が上がれば子供の数は増えるはずです. しかし国の間でも, 時系列でも, しばしば家計の間でも, 所得と子供の数には負の相関が観察されます (人口転換, demographic transition). この章では, このパズルに答える2つの古典的な理論を学びます. <span class="citation" data-cites="becker1973">Becker and Lewis (<a href="../../references.html#ref-becker1973" role="doc-biblioref">1973</a>)</span> に始まる quantity-quality モデルと, <span class="citation" data-cites="becker1988 barro1989">Becker and Barro (<a href="../../references.html#ref-becker1988" role="doc-biblioref">1988</a>; および <a href="../../references.html#ref-barro1989" role="doc-biblioref">Barro and Becker 1989</a>)</span> の王朝 (dynastic) モデルです. この章では, まず2つの理論の核を整理し, その上でこれらを140年の構造変化として定量化した <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span> を読みます.</p>
+<section id="quantity-quality-トレードオフ" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="quantity-quality-トレードオフ"><span class="header-section-number">7.1</span> Quantity-Quality トレードオフ</h2>
+<p>出発点は, 親は子供の<strong>数</strong> (quantity) だけでなく, 一人あたりにかける資源, すなわち<strong>質</strong> (quality) も選ぶ, という観察です. ここでの「質」は価値判断ではなく, 教育・健康など子供一人あたりへの投資を指します. 先進国では出生率の低下と子供の教育水準の上昇が同時に進行しており, 数と質の間のトレードオフはこの事実と整合的です.</p>
+<p>子の質を高める親のインセンティブのモデル化には, 2つの伝統があります.</p>
+<ul>
+<li><strong>Warm glow</strong>: 子供の数や人的資本そのものから親が直接効用を得る. <span class="citation" data-cites="becker1973">Becker and Lewis (<a href="../../references.html#ref-becker1973" role="doc-biblioref">1973</a>)</span> に始まる定式化で, この節で扱う</li>
+<li><strong>利他主義 (altruism)</strong>: 子供の生涯効用そのものが親の効用関数に入る. <span class="citation" data-cites="becker1988">Becker and Barro (<a href="../../references.html#ref-becker1988" role="doc-biblioref">1988</a>)</span> に始まる定式化で, 次節の王朝モデルが扱う</li>
+</ul>
+<section id="シンプルなモデル" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="シンプルなモデル"><span class="header-section-number">7.1.1</span> シンプルなモデル</h3>
+<p>まず, 閉形式で解ける warm glow 型のモデルでトレードオフの仕組みを見ます.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Warm glow 型の出生モデル
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>親は消費 <span class="math inline">\(c\)</span>, 子供の数 <span class="math inline">\(n\)</span>, 子供1人あたりの人的資本 <span class="math inline">\(h\)</span> から効用を得る.</p>
+<p><span class="math display">\[
+\max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)
+\quad \text{s.t.} \quad c + p e n \leq \left(1 - \phi n\right) w.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(e\)</span>: 子供1人あたりの教育時間. 価格 <span class="math inline">\(p\)</span> は教師の賃金</li>
+<li><span class="math inline">\(\phi\)</span>: 子供1人あたりの子育て時間. 親自身の時間を使うため, 機会費用は <span class="math inline">\(\phi w\)</span></li>
+<li><span class="math inline">\(\theta\)</span>: 子供の生来の人的資本</li>
+<li>人的資本の生産関数は <span class="math inline">\(h = \left(\theta + e\right)^{\gamma}\)</span>, <span class="math inline">\(0 &lt; \gamma &lt; 1\)</span></li>
+</ul>
+</div>
+</div>
+<div id="prp-qq-simple" class="theorem proposition">
+<p><span class="theorem-title"><strong>命題 7.1 (閉形式解と賃金の効果)</strong></span> 内点解 (<span class="math inline">\(\gamma \phi w &gt; p \theta\)</span>) において, 最適な子供の数と教育時間は</p>
+<p><span class="math display">\[
+n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta},
+\qquad
+e = \frac{\gamma \phi w - p\theta}{p \left(1-\gamma\right)}.
+\]</span></p>
+<p>したがって賃金 <span class="math inline">\(w\)</span> の上昇は, 子供の数 <span class="math inline">\(n\)</span> を減らし, 1人あたりの教育時間 <span class="math inline">\(e\)</span> を増やす.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><span class="math inline">\(h = \left(\theta + e\right)^{\gamma}\)</span> を代入すると, 目的関数は <span class="math inline">\(\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)\)</span> となる. 予算制約より <span class="math inline">\(c = w - n\left(\phi w + p e\right)\)</span>.</p>
+<p><span class="math inline">\(n\)</span> と <span class="math inline">\(e\)</span> の一階条件はそれぞれ</p>
+<p><span class="math display">\[
+\frac{\phi w + p e}{c} = \frac{\delta}{n}, \qquad
+\frac{n p}{c} = \frac{\delta \gamma}{\theta + e}.
+\]</span></p>
+<p>2本の比を取ると <span class="math inline">\(\gamma \left(\phi w + p e\right) = p \left(\theta + e\right)\)</span> となり, これを解いて <span class="math inline">\(e\)</span> の式を得る. <span class="math inline">\(n\)</span> の一階条件 <span class="math inline">\(n \left(\phi w + p e\right) = \delta c\)</span> を予算制約に代入すると <span class="math inline">\(c = w - \delta c\)</span>, すなわち <span class="math inline">\(c = w / \left(1 + \delta\right)\)</span>. また <span class="math inline">\(e\)</span> の式より <span class="math inline">\(\phi w + p e = \left(\phi w - p \theta\right) / \left(1 - \gamma\right)\)</span> なので,</p>
+<p><span class="math display">\[
+n = \frac{\delta c}{\phi w + p e}
+= \frac{\delta}{1 + \delta} \cdot \frac{w \left(1 - \gamma\right)}{\phi w - p \theta}
+= \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}.
+\]</span></p>
+<p>比較静学は式から直ちに従う. <span class="math inline">\(w\)</span> が上がると分母の <span class="math inline">\(\phi - p\theta/w\)</span> が大きくなるので <span class="math inline">\(n\)</span> は減少し, <span class="math inline">\(\gamma \phi w - p \theta\)</span> が大きくなるので <span class="math inline">\(e\)</span> は増加する.</p>
+</div>
+<p>直感はこうです. 子供の「数」の費用の中心は親の子育て時間 <span class="math inline">\(\phi\)</span> であり, その機会費用 <span class="math inline">\(\phi w\)</span> は<strong>親の賃金に比例して</strong>上がります. 一方, 「質」の費用 <span class="math inline">\(p\)</span> は市場で決まる外生的な価格です. 賃金が上がると, 数は高くなり質は相対的に安くなるので, 親は数から質へ投資を振り替えます. 先進国の少子化と教育水準の上昇という組み合わせが, 賃金の上昇ひとつから出てくるわけです.</p>
+</section>
+<section id="女性の時間の機会費用" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="女性の時間の機会費用"><span class="header-section-number">7.1.2</span> 女性の時間の機会費用</h3>
+<p>20世紀を通じて, 高所得国では女性の賃金と労働参加率が大きく上昇しました. 子育て時間の多くを女性が担っている限り, これは<strong>子育ての機会費用の上昇</strong>を意味します. モデルを夫婦に拡張して確かめます. 夫婦の賃金を <span class="math inline">\(w_m, w_f\)</span> とし, 子育て時間はすべて妻が担うとします (子育てが夫婦間で完全に代替可能で <span class="math inline">\(w_m &gt; w_f\)</span> なら, これは最適な分業です).</p>
+<p><span class="math display">\[
+\max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)
+\quad \text{s.t.} \quad c + p e n = w_m + \left(1 - \phi n\right) w_f.
+\]</span></p>
+<p><a href="#prp-qq-simple" class="quarto-xref">命題&nbsp;<span>7.1</span></a> とまったく同じ計算で,</p>
+<p><span class="math display">\[
+n = \frac{\delta}{1+\delta} \cdot \frac{\left(w_m + w_f\right)\left(1-\gamma\right)}{\phi w_f - p\theta},
+\qquad
+e = \frac{\gamma \phi w_f - p\theta}{p\left(1-\gamma\right)}
+\]</span></p>
+<p>が得られます. 対数を取って女性の賃金 <span class="math inline">\(w_f\)</span> で微分すると,</p>
+<p><span class="math display">\[
+\frac{\partial \log n}{\partial w_f}
+= \frac{1}{w_m + w_f} - \frac{\phi}{\phi w_f - p\theta}
+= \frac{-p\theta - \phi w_m}{\left(w_m + w_f\right)\left(\phi w_f - p\theta\right)} &lt; 0.
+\]</span></p>
+<p>第1項は所得効果 (家計のフルインカムが増える), 第2項は価格効果 (子育ての機会費用が上がる) です. 子育て時間の費用が<strong>女性の賃金だけ</strong>に比例するため, 価格効果が必ず所得効果に勝ち, 女性の賃金上昇は出生を減らします. 一方で教育時間 <span class="math inline">\(e\)</span> は <span class="math inline">\(w_f\)</span> とともに増えるので, ここでも数から質への振り替えが起きています. 男性の賃金 <span class="math inline">\(w_m\)</span> の上昇は, 対照的に所得効果しか持たないので出生を<strong>増やし</strong>ます. 「誰の賃金が上がるか」が出生の予測を分ける, というのがこのモデルの核心です.</p>
+</section>
+<section id="影の価格と観察される所得弾力性" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="影の価格と観察される所得弾力性"><span class="header-section-number">7.1.3</span> 影の価格と観察される所得弾力性</h3>
+<p>上のモデルは対数効用と特定の関数形に頼っていました. <span class="citation" data-cites="becker1973">Becker and Lewis (<a href="../../references.html#ref-becker1973" role="doc-biblioref">1973</a>)</span> のもともとの分析は, 関数形の仮定を置かず, <strong>予算制約の非線形性</strong>だけからどこまで言えるかを突き詰めたものです.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Becker-Lewis の quantity-quality モデル
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>親は子供の数 <span class="math inline">\(n\)</span>, 子供の質 <span class="math inline">\(q\)</span> (全員に共通), その他の消費 <span class="math inline">\(y\)</span> から効用 <span class="math inline">\(U\left(n, q, y\right)\)</span> を得る. 予算制約は</p>
+<p><span id="eq-qq-budget"><span class="math display">\[
+I = n \pi_n + n q \pi + q \pi_q + y \pi_y.
+\tag{7.1}\]</span></span></p>
+<p><span class="math inline">\(\pi\)</span> は「質 <span class="math inline">\(\times\)</span> 数」1単位あたりの価格, <span class="math inline">\(\pi_n\)</span> は数だけにかかる費用, <span class="math inline">\(\pi_q\)</span> は質だけにかかる費用である.</p>
+</div>
+</div>
+<p>内点解の一階条件は <span class="math inline">\(MU_n = \lambda p_n\)</span>, <span class="math inline">\(MU_q = \lambda p_q\)</span>, <span class="math inline">\(MU_y = \lambda p_y\)</span> で, 影の価格 (限界費用) は</p>
+<p><span id="eq-qq-shadow"><span class="math display">\[
+p_n = \pi_n + q \pi, \qquad p_q = \pi_q + n \pi, \qquad p_y = \pi_y
+\tag{7.2}\]</span></span></p>
+<p>となります. <strong>数の影の価格は質とともに上がり, 質の影の価格は数とともに上がる</strong>. 質の高い子供が多いほど, もう1人増やすのは高くつき, 子供が多いほど, 全員の質を上げるのは高くつくからです. この相互依存が, 所得効果の見え方を根本的に変えます.</p>
+<div id="prp-qq" class="theorem proposition">
+<p><span class="theorem-title"><strong>命題 7.2 (観察される所得弾力性の下方バイアス)</strong></span> 影の価格を一定とした「真の」所得弾力性を <span class="math inline">\(\eta_n, \eta_q\)</span>, 市場価格 <span class="math inline">\(\left(\pi_n, \pi, \pi_q, \pi_y\right)\)</span> を一定として所得 <span class="math inline">\(I\)</span> を動かしたときの「観察される」弾力性を <span class="math inline">\(\bar{\eta}_n, \bar{\eta}_q\)</span> とする. このとき観察される弾力性は平均的に真の弾力性より小さい. さらに <span class="math inline">\(\eta_q\)</span> が <span class="math inline">\(\eta_n\)</span> より十分大きければ, <strong>真の弾力性 <span class="math inline">\(\eta_n \geq 0\)</span> (子供は正常財) であっても <span class="math inline">\(\bar{\eta}_n &lt; 0\)</span> になりうる</strong>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>バイアスの源泉を, <span class="math inline">\(\eta_n = 0\)</span> の場合の比較静学で示す. 所得 <span class="math inline">\(I\)</span> が増えると (市場価格一定), まず <span class="math inline">\(q\)</span> と <span class="math inline">\(y\)</span> が増え, <span class="math inline">\(n\)</span> は真の所得効果を持たないので直接には変わらない. しかし <a href="#eq-qq-shadow" class="quarto-xref">式&nbsp;<span>7.2</span></a> より, <span class="math inline">\(q\)</span> の上昇は数の影の価格 <span class="math inline">\(p_n = \pi_n + q\pi\)</span> を押し上げる一方, <span class="math inline">\(p_q\)</span> と <span class="math inline">\(p_y\)</span> は (<span class="math inline">\(n\)</span> が変わらない限り) 変わらない. 相対価格が <span class="math inline">\(n\)</span> に不利に変化したので, 代替効果によって <span class="math inline">\(n\)</span> は<strong>減少</strong>する. すなわち観察上は <span class="math inline">\(\bar{\eta}_n &lt; 0 = \eta_n\)</span> となる. 一般の場合も, 所得の増加が <span class="math inline">\(q\)</span> を通じて <span class="math inline">\(p_n\)</span> を上げるため, <span class="math inline">\(\bar{\eta}_n\)</span> は <span class="math inline">\(\eta_n\)</span> に正, <span class="math inline">\(\eta_q\)</span> に負に依存する形になり, <span class="math inline">\(\eta_q\)</span> が大きいほど <span class="math inline">\(\bar{\eta}_n\)</span> は押し下げられる.</p>
+</div>
+<p>つまり, データで観察される「豊かな家計ほど子供が少ない」という関係は, 子供が劣等財であることを意味しません. 所得とともに親は子供の質への支出を増やし, それが<strong>子供の数の影の価格を引き上げる</strong>ため, 数が抑えられるのです. 価格効果にも同じ増幅の仕掛けが働きます. 避妊技術の改善などで数の費用 <span class="math inline">\(\pi_n\)</span> が上がると, <span class="math inline">\(n\)</span> の減少が <span class="math inline">\(p_q = \pi_q + n\pi\)</span> を下げて質への代替を誘発し, 数の減少と質の上昇が特別な代替の仮定なしにセットで生じます. 親の教育などで質の費用 <span class="math inline">\(\pi_q\)</span> が下がる場合も, <span class="math inline">\(q\)</span> の上昇が <span class="math inline">\(p_n\)</span> を押し上げて <span class="math inline">\(n\)</span> を大きく減らします. 数と質の予算上の相互作用が, 小さな所得・価格の変化を数の大きな変化に<strong>増幅する</strong>. これが quantity-quality モデルの核であり, 人口転換 (出生率の急落と子供1人あたり教育投資の急増の同時進行) を選好の変化なしに説明する枠組みになっています.</p>
+</section>
+</section>
+<section id="王朝モデル" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="王朝モデル"><span class="header-section-number">7.2</span> 王朝モデル</h2>
+<p>quantity-quality モデルは静学でした. 出生の意思決定を成長理論に接続するには, 世代を超えた動学が必要です. <span class="citation" data-cites="becker1988">Becker and Barro (<a href="../../references.html#ref-becker1988" role="doc-biblioref">1988</a>)</span> は, 親が子供の<strong>効用そのもの</strong>を気にかける利他性から出発して, 出生を組み込んだ動学的な家計理論を作りました.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>王朝的効用関数
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>世代 <span class="math inline">\(0\)</span> の親の効用は, 自分の消費 <span class="math inline">\(c_0\)</span> と子供の数 <span class="math inline">\(n_0\)</span> からの効用に, 子供1人あたりの効用 <span class="math inline">\(U_1\)</span> を利他性のウェイト <span class="math inline">\(a\left(n_0\right)\)</span> で加えたものである.</p>
+<p><span class="math display">\[
+U_0 = v\left(c_0, n_0\right) + a\left(n_0\right)\, n_0\, U_1.
+\]</span></p>
+<p>これを再帰的に代入すると, 王朝 (dynasty) 全体の効用が得られる.</p>
+<p><span class="math display">\[
+U_0 = \sum_{i=0}^{\infty} A_i N_i\, v\left(c_i, n_i\right),
+\qquad A_i = \prod_{j=0}^{i-1} a\left(n_j\right),
+\qquad N_i = \prod_{j=0}^{i-1} n_j.
+\]</span></p>
+<p>ここで <span class="math inline">\(N_i\)</span> は世代 <span class="math inline">\(i\)</span> の子孫の数. 定弾力性の利他性 <span class="math inline">\(a\left(n\right) = \alpha n^{-\varepsilon}\)</span> (<span class="math inline">\(0 &lt; \alpha &lt; 1\)</span>, <span class="math inline">\(0 &lt; \varepsilon &lt; 1\)</span>) を仮定することが多い.</p>
+</div>
+</div>
+<p><span class="math inline">\(a\left(n\right)\)</span> が <span class="math inline">\(n\)</span> の減少関数であることは, 子供が多いほど1人あたりへの利他性が薄まることを意味します (<span class="math inline">\(\varepsilon\)</span> がその強さ). また <span class="math inline">\(\alpha &lt; 1\)</span> は「自分は子供より少しだけ大事」という仮定で, 王朝効用が発散しないために必要です.</p>
+<p>予算制約は世代ごとに書けます. 各成人は賃金 <span class="math inline">\(w_i\)</span> を稼ぎ, 相続 <span class="math inline">\(k_i\)</span> を受け取り, 子供1人につき養育費 <span class="math inline">\(\beta_i\)</span> と遺産 <span class="math inline">\(k_{i+1}\)</span> を渡します.</p>
+<p><span class="math display">\[
+w_i + \left(1 + r_i\right) k_i = c_i + n_i \left(\beta_i + k_{i+1}\right).
+\]</span></p>
+<p>王朝の初代 (dynasty head) がこの制約のもとで王朝効用を最大化する, と考えます. 利他性が世代間で整合的なので, 子孫は初代の計画をそのまま実行します.</p>
+<section id="一階条件" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="一階条件"><span class="header-section-number">7.2.1</span> 一階条件</h3>
+<p><span class="math inline">\(v_n = 0\)</span> (子供の数自体からの直接効用はない) と <span class="math inline">\(v\left(c\right)\)</span> の弾力性 <span class="math inline">\(\sigma\left(c\right) = v'\left(c\right) c / v\left(c\right)\)</span> を使うと, 内点解は次の2本で特徴づけられます <span class="citation" data-cites="becker1988">(<a href="../../references.html#ref-becker1988" role="doc-biblioref">Becker and Barro 1988, sec. 2</a>)</span>.</p>
+<p><strong>世代間のオイラー方程式</strong>:</p>
+<p><span id="eq-dyn-euler"><span class="math display">\[
+\frac{v'\left(c_i\right)}{v'\left(c_{i+1}\right)} = a\left(n_i\right) \left(1 + r_{i+1}\right).
+\tag{7.3}\]</span></span></p>
+<p>通常の割引因子の位置に利他性 <span class="math inline">\(a\left(n_i\right)\)</span> が入っており, しかも<strong>内生</strong>です. 子供を多く持つほど1人あたりの利他性が下がるので, 実質的な割引が強くなります.</p>
+<p><strong>出生の一階条件</strong>:</p>
+<p><span id="eq-dyn-fertility"><span class="math display">\[
+v\left(c_i\right) \left[1 - \varepsilon - \sigma\left(c_i\right)\right]
+= v'\left(c_i\right) \left[\beta_{i-1}\left(1 + r_i\right) - w_i\right].
+\tag{7.4}\]</span></span></p>
+<p>右辺の角括弧は<strong>子孫1人の純費用</strong>です: 養育費を成人時点まで利子付けしたものから, その子孫自身の生涯所得を引いたもの. 左辺 (子孫1人の限界便益) が正なので, 均衡では子供は親にとって金銭的には純負担でなければなりません. <a href="#eq-dyn-fertility" class="quarto-xref">式&nbsp;<span>7.4</span></a> を整理すると, 1人あたり消費は純費用の増加関数になります. 子孫を「作る」のが高くつくほど, 1人あたりに持たせる資源を増やすのが最適になるからです. これは quantity-quality モデルの「数が減ると質が上がる」という関係の, 王朝モデルでの再現です <span class="citation" data-cites="barro1989">(<a href="../../references.html#ref-barro1989" role="doc-biblioref">Barro and Becker 1989</a>)</span>.</p>
+<p><a href="#eq-dyn-euler" class="quarto-xref">式&nbsp;<span>7.3</span></a> を出生率について解くと</p>
+<p><span class="math display">\[
+n_i = \left[\alpha \left(1 + r_{i+1}\right) \frac{v'\left(c_{i+1}\right)}{v'\left(c_i\right)}\right]^{1/\varepsilon}
+\]</span></p>
+<p>となり, 定常状態 (一般均衡版, 技術進歩率 <span class="math inline">\(g\)</span>, <span class="math inline">\(v\left(c\right) = c^{\sigma}/\sigma\)</span>) では</p>
+<p><span id="eq-dyn-ss"><span class="math display">\[
+n^{\varepsilon} = \frac{\alpha \left(1 + r\right)}{\left(1 + g\right)^{1 - \sigma}}
+\tag{7.5}\]</span></span></p>
+<p>が成り立ちます <span class="citation" data-cites="barro1989">(<a href="../../references.html#ref-barro1989" role="doc-biblioref">Barro and Becker 1989</a>)</span>. 定常状態の出生率は<strong>利子率と利他性 <span class="math inline">\(\alpha\)</span> で増加し, 技術進歩率 <span class="math inline">\(g\)</span> で減少</strong>します. 成長が速い経済ほど将来世代は豊かになるので, 1人あたり消費の成長経路を支えるには実効的な割引を弱める, すなわち子供の数を減らす必要がある, というのが <span class="math inline">\(g\)</span> の効果の直感です.</p>
+</section>
+<section id="含意と応用" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="含意と応用"><span class="header-section-number">7.2.2</span> 含意と応用</h3>
+<p>王朝モデルの比較静学は, 人口動態の大きな事実をいくつも整合的に説明します <span class="citation" data-cites="becker1988">(<a href="../../references.html#ref-becker1988" role="doc-biblioref">Becker and Barro 1988, secs. 3–5</a>)</span>.</p>
+<ul>
+<li><strong>一時的なショックと出生の回復</strong>: 子供の純費用の一時的な上昇 (大恐慌での将来賃金の低下, 戦争での女性賃金の上昇) は出生を一時的に下げるが, 王朝は失われた出生を後の世代で埋め合わせる. 戦後のベビーブームはこの「取り返し」として読める</li>
+<li><strong>死亡率の低下と人口転換</strong>: 子供の死亡率の低下は「生存する子孫1人あたり」の費用を下げるので, 出生率は当初むしろ上がりうるが, 最終的には生存率の改善に比例して低下する. 出生率の低下が死亡率の低下に遅れるという人口転換の時間パターンと整合的である</li>
+<li><strong>社会保障と出生</strong>: 賦課方式の社会保障の拡大は, 子供1人あたりの純租税負担を通じて子供の実効費用を上げ, <strong>子供が老親を直接扶養しない場合でも</strong>出生率を下げる. また出生が内生だとリカードの等価性は成立しない</li>
+</ul>
+<p>限界も明確です. 結婚・出産のタイミング・不確実性は捨象されており, 親から子への移転が実際に行われている (operative transfers) ことが枠組みの前提です. また, シンプルなモデルで見たとおり, 子育ての費用の中心は財ではなく<strong>親の時間</strong>であり, 特に女性の時間です. この経路はジェンダー賃金格差と出生・成長の関係 <span class="citation" data-cites="galor1996">(<a href="../../references.html#ref-galor1996" role="doc-biblioref">Galor and Weil 1996</a>)</span>, 所得階層間の出生率格差と経済成長 <span class="citation" data-cites="delacroix2003">(<a href="../../references.html#ref-delacroix2003" role="doc-biblioref"><span class="nocase">de la Croix and Doepke</span> 2003</a>)</span>, 無子 (childlessness) の経済分析 <span class="citation" data-cites="baudin2015">(<a href="../../references.html#ref-baudin2015" role="doc-biblioref">Baudin et al. 2015</a>)</span> など, 現代の文献の出発点になっています. 出生の意思決定を夫婦の交渉として捉える視点は <span class="citation" data-cites="doepke2019">Doepke and Kindermann (<a href="../../references.html#ref-doepke2019" role="doc-biblioref">2019</a>)</span> が開いており, 分野全体の現状は <span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> が包括的に整理しています.</p>
+<p>以上の2つのモデルは補完的です. Quantity-quality トレードオフは数と質の静学的な配分を, 王朝モデルは世代を超えた資源配分を担います. これらに時間配分・家庭内生産・結婚市場を組み合わせて, 過去140年のアメリカの構造変化をまとめて定量化したのが, 次に読む <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span> です.</p>
+</section>
+</section>
+<section id="greenwood2023" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="greenwood2023"><span class="header-section-number">7.3</span> <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span></h2>
+<p><span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span> は, 過去140年ほどの間にアメリカの家族に起こった大きな変化を, 家族経済学者にとっての「Kuznets facts」として次の6つにまとめています.</p>
+<ol type="1">
+<li>家事労働時間の減少</li>
+<li>出生率の減少</li>
+<li>結婚の減少</li>
+<li>世帯サイズの縮小</li>
+<li>高学歴者の増加</li>
+<li>ブルーカラーからホワイトカラーへの転換</li>
+</ol>
+<p>この論文の目的は, これら6つの変化を<strong>1つのモデルと少数の駆動力</strong>で説明することです. 近年の少子化を念頭においた理論というよりは, 古典的な出生理論 (この章の前半で学んだ quantity-quality トレードオフ) を洗練させ, 長期の構造変化に正面から当てはめたものと位置づけられます.</p>
+<section id="モデル" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="モデル"><span class="header-section-number">7.3.1</span> モデル</h3>
+<p>モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 <span class="math inline">\(h\)</span> (household labor), 余暇 <span class="math inline">\(l\)</span> (leisure), 市場労働 <span class="math inline">\(t\)</span> (toiling in the market) に配分します (<span class="math inline">\(h + l + t = 1\)</span>). 有配偶者は2人分の2単位の時間を持ち, これに加えて <span class="math inline">\(k\)</span> 人の子どもに対する基礎的な子育て <span class="math inline">\(b\)</span> (basic childcare) と教育 <span class="math inline">\(e\)</span> (education) の時間を使います (<span class="math inline">\(h + l + t + bk + ek = 2\)</span>).</p>
+<p><strong>賃金.</strong> スキルには合計が1になる <em>brain</em> と <em>brawn</em> の2種類があり, 賃金はそのポートフォリオで決まります.</p>
+<p><span class="math display">\[
+w = s v + \left(1 - s\right) u.
+\]</span></p>
+<p><span class="math inline">\(s \in \left[0, 1\right]\)</span> は brain スキルの割合, <span class="math inline">\(v\)</span> と <span class="math inline">\(u\)</span> はそれぞれ brain と brawn のリターンで, <span class="math inline">\(v &gt; u\)</span> を仮定します. 比率 <span class="math inline">\(q = v/u\)</span> が大卒プレミアムに対応します.</p>
+<p><strong>家庭内生産.</strong> 家事の成果 <span class="math inline">\(n\)</span> は, 家庭内生産用の耐久財 <span class="math inline">\(d\)</span> (価格 <span class="math inline">\(p\)</span>) と家事労働 <span class="math inline">\(\texttt{h}\)</span> の CES 集計で作られます.</p>
+<p><span class="math display">\[
+n = \left(\theta d^\sigma + \left(1 - \theta\right) \texttt{h}^\sigma\right)^{1/\sigma}.
+\]</span></p>
+<p>ここで家事労働の投入 <span class="math inline">\(\texttt{h}\)</span> には子どもも寄与します. 独身者では <span class="math inline">\(\texttt{h} = h\)</span> ですが, 有配偶者では子ども1人あたり生産性 <span class="math inline">\(\chi\)</span> で家事を手伝い, <span class="math inline">\(\texttt{h} = h + \chi k\)</span> となります. かつての子どもは農場や家庭内で立派な労働力でした. 児童労働の消滅は, この <span class="math inline">\(\chi\)</span> の低下として表現されます.</p>
+<p><strong>子どもの教育.</strong> 親は子どもの brain スキル割合 <span class="math inline">\(s\)</span> を選べますが, そのためには子ども1人あたり <span class="math inline">\(e = \gamma s\)</span> の教育時間がかかります. 子どもを「高スキルに育てる」ことが親の時間を食う, という形で quantity-quality トレードオフが入っています.</p>
+<p><strong>効用関数.</strong> 独身者は消費 <span class="math inline">\(c\)</span>, 家事の成果 <span class="math inline">\(n\)</span>, 余暇 <span class="math inline">\(l\)</span> から効用を得ます.</p>
+<p><span class="math display">\[
+u^S\left(c, n, l\right) = \alpha \frac{c^{1-\rho} - 1}{1-\rho} + \beta \frac{n^{1-\nu} - 1}{1 - \nu} +
+\left(1 - \alpha - \beta\right) \frac{l^{1-\lambda} - 1}{1 - \lambda}.
+\]</span></p>
+<p>有配偶者はこれに加えて, 子どもの数 <span class="math inline">\(k\)</span> と子どものスキル水準 <span class="math inline">\(sv + \left(1-s\right)u\)</span> からも効用を得ます.</p>
+<p><span class="math display">\[
+\begin{aligned}
+u^M\left(c, n, l, k, s\right) &amp;= \alpha \frac{\left(\varepsilon c\right)^{1-\rho} - 1}{1-\rho} + \beta \frac{\left(\varepsilon n\right)^{1-\nu} - 1}{1 - \nu} + \delta \frac{l^{1-\lambda} - 1}{1 - \lambda} \\
+&amp;+ \psi \frac{k^{1-\kappa} - 1}{1 - \kappa} + \xi \frac{\left(sv + \left(1-s\right)u\right)^{1-\zeta}-1}{1-\zeta}.
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\varepsilon \in \left[0.5, 1.0\right]\)</span> は世帯の等価尺度 (equivalence scale) で, 2人で暮らすことの規模の経済を表します. 子どものスキルからの効用は, この章の前半の言葉で言えば warm glow 型 (子の効用ではなく属性から直接効用を得る) の質への選好です.</p>
+<p><strong>家計の問題.</strong> 独身者と有配偶者の価値はそれぞれ</p>
+<p><span class="math display">\[
+\begin{aligned}
+S &amp;= \max_{d, h, l} u^S\left(c, n\left(d, h\right), l\right) &amp;\text{ s.t. } c + pd = w\left(1 - h - l\right), \\
+M &amp;= \max_{d, h, l, k, s} u^M\left(c, n\left(d, h\right), l, k, s\right) &amp;\text{ s.t. } c + pd = w\left(2 - h - l - bk - ek\right)
+\end{aligned}
+\]</span></p>
+<p>で与えられます.</p>
+<p><strong>結婚の決定.</strong> 独身者は人生の初めに他の独身者とマッチし, 結婚生活の joy shock <span class="math inline">\(j\)</span> を引きます. 結婚するのは <span class="math inline">\(M + j \geq S\)</span> のときです. <span class="math inline">\(j\)</span> は位置 <span class="math inline">\(\texttt{a}\)</span>, スケール <span class="math inline">\(\texttt{d}\)</span> のガンベル分布</p>
+<p><span class="math display">\[
+G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\right)
+\]</span></p>
+<p>に従うとします (frictionless marriage の章で学んだ第一種極値分布です). 婚姻率を <span class="math inline">\(\texttt{m}\)</span> とすると, 独身者の割合は</p>
+<p><span class="math display">\[
+1 - \texttt{m} = \Pr\left(M + j &lt; S\right) = G\left(S - M\right)
+\]</span></p>
+<p>と閉じた形で書けます.</p>
+</section>
+<section id="データから直接決まるパラメータ" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="データから直接決まるパラメータ"><span class="header-section-number">7.3.2</span> データから直接決まるパラメータ</h3>
+<p>カリブレーションの第一歩は, モデルの外から測れるものを測ってしまうことです.</p>
+<ul>
+<li><strong>価格</strong>: <span class="math inline">\(w_{1880} = 1\)</span> に基準化. 賃金は年率1.7%で上昇したと推定され <span class="math inline">\(w_{2020} = 11.3\)</span> (1880–1988年は <span class="citation" data-cites="williamson1995">Williamson (<a href="../../references.html#ref-williamson1995" role="doc-biblioref">1995</a>)</span>, 1989年以降は FRED の実質報酬を総労働時間で割って推定). 耐久財価格は <span class="math inline">\(p_{1880} = 100\)</span> に基準化し, 年率約5%の下落 <span class="citation" data-cites="greenwood2016">(<a href="../../references.html#ref-greenwood2016" role="doc-biblioref">Greenwood et al. 2016</a>)</span> から <span class="math inline">\(p_{2020} = 0.108\)</span>. 大卒プレミアム <span class="math inline">\(q_{2020} = 1.81\)</span> は Current Population Survey (2018年) より</li>
+<li><strong>家庭内生産</strong>: <span class="math inline">\(\theta = 0.206\)</span>, <span class="math inline">\(\sigma = 0.282\)</span> は <span class="citation" data-cites="mcgrattan1997">McGrattan et al. (<a href="../../references.html#ref-mcgrattan1997" role="doc-biblioref">1997</a>)</span> より. <span class="math inline">\(0 &lt; \sigma &lt; 1\)</span> なので耐久財と家事労働は代替的で, 「安くなった耐久財が家事時間を置き換える」経路が開いている</li>
+<li><strong>相対的リスク回避度</strong>: <span class="math inline">\(\rho = 1.25\)</span> (文献の標準的な値)</li>
+<li><strong>等価尺度</strong>: OECD modified scale (<span class="math inline">\(1 + 0.5\)</span>) より <span class="math inline">\(\varepsilon = 1 / 1.5 \simeq 0.667\)</span></li>
+<li><strong>子育て時間</strong>: American Time Use Survey (ATUS) と <span class="citation" data-cites="gershuny2016">Gershuny and Harms (<a href="../../references.html#ref-gershuny2016" role="doc-biblioref">2016</a>)</span> から, 基礎的な子育て時間の平均 (1920, 1965, 2019) として <span class="math inline">\(b = 0.030\)</span></li>
+<li><strong>教育時間</strong>: <span class="math inline">\(\gamma = e / s\)</span> の関係を使い, ホワイトカラーの割合 <span class="math inline">\(s_t\)</span> と家庭での教育時間 <span class="math inline">\(e_t\)</span> から推定 (ATUS, American Heritage Time Use Study, <span class="citation" data-cites="gershuny2016">Gershuny and Harms (<a href="../../references.html#ref-gershuny2016" role="doc-biblioref">2016</a>)</span>). 平均して <span class="math inline">\(\gamma = 0.026\)</span></li>
+<li><strong>子どもの家事労働 <span class="math inline">\(\chi\)</span></strong>: 児童の労働時間と生産性の積として推定. 生産性は <span class="citation" data-cites="lebergott1964">Lebergott (<a href="../../references.html#ref-lebergott1964" role="doc-biblioref">1964</a>)</span> に基づき, 1880年の児童の労働時間は途上国のデータ <span class="citation" data-cites="webbink2012">(<a href="../../references.html#ref-webbink2012" role="doc-biblioref">Webbink et al. 2012</a>)</span>, 2020年は <span class="citation" data-cites="hofferth2001">Hofferth and Sandberg (<a href="../../references.html#ref-hofferth2001" role="doc-biblioref">2001</a>)</span> を用いる</li>
+</ul>
+</section>
+<section id="smm-2つのループ" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="smm-2つのループ"><span class="header-section-number">7.3.3</span> SMM: 2つのループ</h3>
+<p>残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を<strong>外側と内側の2つのループ</strong>に分けるのです.</p>
+<ul>
+<li><strong>外側のループ</strong>: <span class="math inline">\(\left(\alpha, q_{1880}\right)\)</span> だけを数値的に探索する</li>
+<li><strong>内側のループ</strong>: 残りの選好パラメータ <span class="math inline">\(\Lambda\left(\alpha, q_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)\)</span> は, <span class="math inline">\(\left(\alpha, q_{1880}\right)\)</span> を所与とすると<strong>一階条件から解析的に</strong>決まる</li>
+<li>ガンベル分布のパラメータ <span class="math inline">\(\left(\texttt{a}, \texttt{d}\right)\)</span> は, 他のすべてが決まった後に婚姻率から決まる</li>
+</ul>
+<p>数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの<strong>2時点比</strong>から, ウェイトパラメータは<strong>水準</strong>から」という形で逐次的に解けることです. 順番に見ていきます.</p>
+<p><strong>Step 1–2 (<span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\delta\)</span>): 余暇.</strong> 余暇 <span class="math inline">\(l\)</span> の一階条件は</p>
+<p><span id="eq-greenwood2023-foc-l"><span class="math display">\[
+\delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w.
+\tag{7.6}\]</span></span></p>
+<p>2020年と1880年でこの式の比を取ると <span class="math inline">\(\delta\)</span> が消え,</p>
+<p><span class="math display">\[
+\left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} =
+\left(\frac{w_{2020}\left(2 - b k_{2020} - \gamma s_{2020} k_{2020} - h_{2020} - l_{2020}\right) - p_{2020}d_{2020}}{w_{1880}\left(2 - b k_{1880} - \gamma s_{1880} k_{1880} - h_{1880} - l_{1880}\right) - p_{1880}d_{1880}}\right)^{-\rho}\frac{w_{2020}}{w_{1880}}
+\]</span></p>
+<p>から <span class="math inline">\(\lambda\)</span> が求まります. <span class="math inline">\(\lambda\)</span> が分かれば, <a href="#eq-greenwood2023-foc-l" class="quarto-xref">式&nbsp;<span>7.6</span></a> を2020年の水準で評価して <span class="math inline">\(\delta\)</span> が求まります.</p>
+<p><strong>Step 3–4 (<span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\psi\)</span>): 子どもの数.</strong> 子どもの数 <span class="math inline">\(k\)</span> の一階条件は</p>
+<p><span id="eq-greenwood2023-foc-k"><span class="math display">\[
+\psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right).
+\tag{7.7}\]</span></span></p>
+<p>右辺の括弧は子ども1人の<strong>純時間費用</strong> (子育て + 教育 <span class="math inline">\(-\)</span> 家事の手伝い) です. やはり2時点の比</p>
+<p><span class="math display">\[
+\left(\frac{k_{2020}}{k_{1880}}\right)^{-\kappa} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{b + \gamma s_{2020} - \chi_{2020}}{b + \gamma s_{1880} - \chi_{1880}}
+\]</span></p>
+<p>から <span class="math inline">\(\kappa\)</span> が, 水準から <span class="math inline">\(\psi\)</span> が求まります.</p>
+<p><strong>Step 5–6 (<span class="math inline">\(\zeta\)</span>, <span class="math inline">\(\xi\)</span>): 子どもの質.</strong> 子どものスキル <span class="math inline">\(s\)</span> の一階条件は</p>
+<p><span id="eq-greenwood2023-foc-s"><span class="math display">\[
+\xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k.
+\tag{7.8}\]</span></span></p>
+<p>左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比</p>
+<p><span class="math display">\[
+\left(\frac{s_{2020} v_{2020} + \left(1 - s_{2020}\right) u_{2020}}{s_{1880} v_{1880} + \left(1 - s_{1880}\right) u_{1880}}\right)^{-\zeta} \frac{v_{2020} - u_{2020}}{v_{1880} - u_{1880}} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{k_{2020}}{k_{1880}}
+\]</span></p>
+<p>から <span class="math inline">\(\zeta\)</span> が, 水準から <span class="math inline">\(\xi\)</span> が求まります.</p>
+<p><strong>Step 7–8 (<span class="math inline">\(\nu\)</span>, <span class="math inline">\(\beta\)</span>): 家事.</strong> 家事労働 <span class="math inline">\(h\)</span> の一階条件は</p>
+<p><span id="eq-greenwood2023-foc-h"><span class="math display">\[
+\beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}.
+\tag{7.9}\]</span></span></p>
+<p>2時点の比</p>
+<p><span class="math display">\[
+\left(\frac{\theta d_{2020}^\sigma + \left(1 - \theta\right)\left(h_{2020} + \chi_{2020} k_{2020}\right)^{\sigma}}{\theta d_{1880}^{\sigma} + \left(1 - \theta\right)\left(h_{1880} + \chi_{1880} k_{1880}\right)^{\sigma}}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(\frac{h_{2020} + \chi_{2020} k_{2020}}{h_{1880} + \chi_{1880} k_{1880}}\right)^{\sigma - 1} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda}
+\]</span></p>
+<p>から <span class="math inline">\(\nu\)</span> が, 1880年の水準から <span class="math inline">\(\beta\)</span> が求まります.</p>
+<p><strong>外側のループ.</strong> 残った <span class="math inline">\(\left(\alpha, q_{1880}\right)\)</span> は, 独身者の市場労働時間と家事労働時間 (1880, 2020) をターゲットに</p>
+<p><span class="math display">\[
+\min_{\alpha, q_{1880}} \sum_{i} \left(\frac{\mathcal{D}_i - \mathcal{M}_{i}\left(\alpha, q_{1880}\right)}{\mathcal{D}_i}\right)
+\]</span></p>
+<p>を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/table5_3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../../static/img/article/greenwood2023/table5_3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a></p>
+</figure>
+</div>
+<p><strong>結婚のパラメータ.</strong> すべての選好パラメータが決まると <span class="math inline">\(S\)</span> と <span class="math inline">\(M\)</span> が計算できます. 独身者の割合 <span class="math inline">\(\texttt{s} = 1 - \texttt{m}\)</span> はガンベル分布から</p>
+<p><span id="eq-greenwood2023-gumbel"><span class="math display">\[
+\log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d}
+\tag{7.10}\]</span></span></p>
+<p>を満たすので, 2時点の比</p>
+<p><span class="math display">\[
+\frac{\log \left(-\log \texttt{s}_{2020}\right)}{\log \left(-\log \texttt{s}_{1880}\right)} = \frac{S_{2020} - M_{2020} - \texttt{a}}{S_{1880} - M_{1880} - \texttt{a}}
+\]</span></p>
+<p>から <span class="math inline">\(\texttt{a}\)</span> が, <a href="#eq-greenwood2023-gumbel" class="quarto-xref">式&nbsp;<span>7.10</span></a> の水準から <span class="math inline">\(\texttt{d}\)</span> が求まります. 推定されたパラメータは以下のとおりです.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/table5_2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../../static/img/article/greenwood2023/table5_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></a></p>
+</figure>
+</div>
+</section>
+<section id="great-transition-の駆動力" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="great-transition-の駆動力"><span class="header-section-number">7.3.4</span> Great Transition の駆動力</h3>
+<p>1880年から2020年への変化を駆動する力として, 論文は3つに注目します.</p>
+<ol type="1">
+<li>全体的な技術革新 (neutral technological progress, <span class="math inline">\(\mathbf{z}\)</span>)</li>
+<li>スキル偏向的な技術革新 (skill-biased technological progress, <span class="math inline">\(\mathbf{x}\)</span>)</li>
+<li>家庭内生産用耐久財の価格低下 (<span class="math inline">\(p\)</span>)</li>
+</ol>
+<p>技術革新をモデル化するため, brawn 労働 <span class="math inline">\(\mathbf{u}\)</span> と brain 労働 <span class="math inline">\(\mathbf{v}\)</span> を CES で束ねる代表的企業を導入します.</p>
+<p><span class="math display">\[
+\max_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}}
+- u\mathbf{u} - v\mathbf{v}.
+\]</span></p>
+<p>一階条件から, 大卒プレミアム <span class="math inline">\(q\)</span> は</p>
+<p><span id="eq-college-premium"><span class="math display">\[
+q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1}
+\tag{7.11}\]</span></span></p>
+<p>と書けます (最後の等式は, 総労働時間を <span class="math inline">\(\mathbf{t}\)</span> として <span class="math inline">\(\mathbf{u} = \left(1 - s\right)\mathbf{t}\)</span>, <span class="math inline">\(\mathbf{v} = s\mathbf{t}\)</span> を代入したものです). CES のパラメータ <span class="math inline">\(\left(\omega, \iota\right)\)</span> は <span class="citation" data-cites="acemoglu2011a">Acemoglu and Autor (<a href="../../references.html#ref-acemoglu2011a" role="doc-biblioref">2011</a>)</span> の値を使い, <a href="#eq-college-premium" class="quarto-xref">式&nbsp;<span>7.11</span></a> から各時点の <span class="math inline">\(\mathbf{x}\)</span> が, brawn 労働の一階条件から <span class="math inline">\(\mathbf{z}\)</span> が逆算できます.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/table6_1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../../static/img/article/greenwood2023/table6_1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a></p>
+</figure>
+</div>
+</section>
+<section id="transition" class="level3" data-number="7.3.5">
+<h3 data-number="7.3.5" class="anchored" data-anchor-id="transition"><span class="header-section-number">7.3.5</span> Transition</h3>
+<p>3つの駆動力を <span class="math inline">\(\mathbf{z}_t = \mathbf{z}_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}\)</span>, <span class="math inline">\(\mathbf{x}_t = \mathbf{x}_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}\)</span>, <span class="math inline">\(p_t = p_{1880} e^{\Delta p\left(t-1880\right)}\)</span> と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/fig6_1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../../static/img/article/greenwood2023/fig6_1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a></p>
+</figure>
+</div>
+<p>2時点 (1880, 2020) しかターゲットにしていないにもかかわらず, 途中の経路もよく再現できています. 特に注目すべきは, 婚姻率が20世紀半ばに向けて上昇してから低下するという <strong><span class="math inline">\(\cap\)</span> 字型</strong>を再現している点です.</p>
+<p>では, どの駆動力がどの事実を担っているのでしょうか. 反実仮想で1つずつ止めてみます.</p>
+<p><strong>スキル偏向的な技術革新 <span class="math inline">\(\mathbf{x}\)</span> を止めると.</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/fig6_2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="../../static/img/article/greenwood2023/fig6_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a></p>
+</figure>
+</div>
+<p>大卒プレミアムが上昇しない世界では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 (<span class="math inline">\(\mathbf{x}\)</span>) から出ていることが分かります.</p>
+<p><strong>耐久財価格 <span class="math inline">\(p\)</span> の低下を止めると.</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/fig6_3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="../../static/img/article/greenwood2023/fig6_3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></a></p>
+</figure>
+</div>
+<p>洗濯機や冷蔵庫が安くならない世界では, 家事労働時間は減らず, 代わりに市場労働時間が減ります. そしてもうひとつ, 意外な変化が起きます. 婚姻率が上昇し続けるのです.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../static/img/article/greenwood2023/fig6_4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="../../static/img/article/greenwood2023/fig6_4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a></p>
+</figure>
+</div>
+<p>婚姻率の <span class="math inline">\(\cap\)</span> 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.</p>
+</section>
+<section id="まとめ" class="level3" data-number="7.3.6">
+<h3 data-number="7.3.6" class="anchored" data-anchor-id="まとめ"><span class="header-section-number">7.3.6</span> まとめ</h3>
+<p>6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.</p>
+<p><strong>スキル偏向的な技術革新</strong> (<span class="math inline">\(\mathbf{x}\)</span>: 大卒プレミアムの上昇)</p>
+<ul>
+<li>高学歴者の増加 (⑤) とホワイトカラーへの転換 (⑥) を直接駆動する</li>
+<li>quantity-quality トレードオフを通じて, 出生率の低下 (②) と世帯サイズの縮小 (④) を駆動する</li>
+</ul>
+<p><strong>家庭内生産用耐久財の価格低下</strong> (<span class="math inline">\(p\)</span>)</p>
+<ul>
+<li>家事の機械化により家事労働時間の減少 (①) を駆動する</li>
+<li>家事の規模の経済という結婚のメリットを縮小させ, 結婚の減少 (③) を駆動する</li>
+</ul>
+<p>この章の前半で学んだ quantity-quality の静学的なメカニズムが, 時間配分・家庭内生産・結婚市場と組み合わさって140年の構造変化を説明する, という構成になっています. 一方で, この枠組みはあくまで「古い事実」のための理論です. 21世紀に入ってからの先進国では所得や女性の労働参加と出生率の関係が逆転しつつあり <span class="citation" data-cites="doepke2023">(<a href="../../references.html#ref-doepke2023" role="doc-biblioref">Doepke et al. 2023</a>)</span>, それを説明するには子育てのアウトソーシングや政策・規範といった新しい要素が必要になります.</p>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-acemoglu2011a" class="csl-entry" role="listitem">
+Acemoglu, Daron, and David Autor. 2011. <span>“Skills, Tasks and Technologies: Implications for Employment and Earnings.”</span> In <em>Handbook of Labor Economics</em>, vol. 4. Elsevier. <a href="https://doi.org/10.1016/S0169-7218(11)02410-5">https://doi.org/10.1016/S0169-7218(11)02410-5</a>.
+</div>
+<div id="ref-barro1989" class="csl-entry" role="listitem">
+Barro, Robert J., and Gary S. Becker. 1989. <span>“Fertility Choice in a Model of Economic Growth.”</span> <em>Econometrica</em> 57 (2): 481–502. <a href="https://doi.org/10.2307/1912563">https://doi.org/10.2307/1912563</a>.
+</div>
+<div id="ref-baudin2015" class="csl-entry" role="listitem">
+Baudin, Thomas, David De La Croix, and Paula E. Gobbi. 2015. <span>“Fertility and Childlessness in the <span>United States</span>.”</span> <em>American Economic Review</em> 105 (6): 1852–82. <a href="https://doi.org/10.1257/aer.20120926">https://doi.org/10.1257/aer.20120926</a>.
+</div>
+<div id="ref-becker1988" class="csl-entry" role="listitem">
+Becker, Gary S., and Robert J. Barro. 1988. <span>“A Reformulation of the Economic Theory of Fertility.”</span> <em>The Quarterly Journal of Economics</em> 103 (1): 1–26. <a href="https://doi.org/10.2307/1882640">https://doi.org/10.2307/1882640</a>.
+</div>
+<div id="ref-becker1973" class="csl-entry" role="listitem">
+Becker, Gary S., and H. Gregg Lewis. 1973. <span>“On the Interaction Between the Quantity and Quality of Children.”</span> <em>Journal of Political Economy</em> 81 (2, Part 2): S279–88. <a href="https://doi.org/10.1086/260166">https://doi.org/10.1086/260166</a>.
+</div>
+<div id="ref-delacroix2003" class="csl-entry" role="listitem">
+<span class="nocase">de la Croix, David, and Matthias Doepke</span>. 2003. <span>“Inequality and Growth: Why Differential Fertility Matters.”</span> <em>American Economic Review</em> 93 (4): 1091–113. <a href="https://doi.org/10.1257/000282803769206214">https://doi.org/10.1257/000282803769206214</a>.
+</div>
+<div id="ref-doepke2023" class="csl-entry" role="listitem">
+Doepke, Matthias, Anne Hannusch, Fabian Kindermann, and Michèle Tertilt. 2023. <span>“The Economics of Fertility: A New Era.”</span> In <em>Handbook of the Economics of the Family</em>, vol. 1. Elsevier. <a href="https://doi.org/10.1016/bs.hefam.2023.01.003">https://doi.org/10.1016/bs.hefam.2023.01.003</a>.
+</div>
+<div id="ref-doepke2019" class="csl-entry" role="listitem">
+Doepke, Matthias, and Fabian Kindermann. 2019. <span>“Bargaining over Babies: Theory, Evidence, and Policy Implications.”</span> <em>American Economic Review</em> 109 (9): 3264–306. <a href="https://doi.org/10.1257/aer.20160328">https://doi.org/10.1257/aer.20160328</a>.
+</div>
+<div id="ref-galor1996" class="csl-entry" role="listitem">
+Galor, Oded, and David N. Weil. 1996. <span>“The Gender Gap, Fertility, and Growth.”</span> <em>American Economic Review</em> 86 (3): 374–87. <a href="https://www.jstor.org/stable/2118202">https://www.jstor.org/stable/2118202</a>.
+</div>
+<div id="ref-gershuny2016" class="csl-entry" role="listitem">
+Gershuny, Jonathan, and Teresa Atttracta Harms. 2016. <span>“Housework Now Takes Much Less Time: 85 Years of <span>US</span> Rural Women’s Time Use.”</span> <em>Social Forces</em> 95 (2): 503–24. <a href="https://doi.org/10.1093/sf/sow073">https://doi.org/10.1093/sf/sow073</a>.
+</div>
+<div id="ref-greenwood2016" class="csl-entry" role="listitem">
+Greenwood, Jeremy, Nezih Guner, Georgi Kocharkov, and Cezar Santos. 2016. <span>“Technology and the Changing Family: A Unified Model of Marriage, Divorce, Educational Attainment, and Married Female Labor-Force Participation.”</span> <em>American Economic Journal: Macroeconomics</em> 8 (1): 1–41. <a href="https://doi.org/10.1257/mac.20130156">https://doi.org/10.1257/mac.20130156</a>.
+</div>
+<div id="ref-greenwood2023" class="csl-entry" role="listitem">
+Greenwood, Jeremy, Nezih Guner, and Ricardo Marto. 2023. <span>“The Great Transition: Kuznets Facts for Family-Economists.”</span> In <em>Handbook of the Economics of the Family</em>, edited by Shelly Lundberg and Alessandra Voena, vol. 1. Handbook of the <span>Economics</span> of the <span>Family</span>, <span>Volume</span> 1. North-Holland. <a href="https://doi.org/10.1016/bs.hefam.2023.01.006">https://doi.org/10.1016/bs.hefam.2023.01.006</a>.
+</div>
+<div id="ref-hofferth2001" class="csl-entry" role="listitem">
+Hofferth, Sandra L., and John F. Sandberg. 2001. <span>“How American Children Spend Their Time.”</span> <em>Journal Of Marriage And The Family</em> 63 (2): 295–308. <a href="https://doi.org/10.1111/j.1741-3737.2001.00295.x">https://doi.org/10.1111/j.1741-3737.2001.00295.x</a>.
+</div>
+<div id="ref-lebergott1964" class="csl-entry" role="listitem">
+Lebergott, Stanley. 1964. <em>Manpower in Economic Growth; the <span>American</span> Record Since 1800</em>. New York, McGraw-Hill.
+</div>
+<div id="ref-mcgrattan1997" class="csl-entry" role="listitem">
+McGrattan, Ellen R., Richard Rogerson, and Randall Wright. 1997. <span>“An Equilibrium Model of the Business Cycle with Household Production and Fiscal Policy.”</span> <em>International Economic Review</em> 38 (2): 267–90. <a href="https://doi.org/10.2307/2527375">https://doi.org/10.2307/2527375</a>.
+</div>
+<div id="ref-webbink2012" class="csl-entry" role="listitem">
+Webbink, Ellen, Jeroen Smits, and Eelke De Jong. 2012. <span>“Hidden Child Labor: Determinants of Housework and Family Business Work of Children in 16 Developing Countries.”</span> <em>World Development</em> 40 (3): 631–42. <a href="https://doi.org/10.1016/j.worlddev.2011.07.005">https://doi.org/10.1016/j.worlddev.2011.07.005</a>.
+</div>
+<div id="ref-williamson1995" class="csl-entry" role="listitem">
+Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Since 1830: Background Evidence and Hypotheses.”</span> <em>Explorations in Economic History</em> 32 (2): 141–96. <a href="https://doi.org/10.1006/exeh.1995.1006">https://doi.org/10.1006/exeh.1995.1006</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lesson/marriage/frictionless-marriage.html" class="pagination-link" aria-label="Frictionless Marriage Market">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lesson/appendix/proof.html" class="pagination-link" aria-label="証明">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">証明</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Marriage and Fertility</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>所得と出生率の関係は, 家族の経済学で最も古いパズルのひとつです. 子供が正常財なら, 所得が上がれば子供の数は増えるはずです. しかし国の間でも, 時系列でも, しばしば家計の間でも, 所得と子供の数には負の相関が観察されます (人口転換, demographic transition). この章では, このパズルに答える2つの古典的な理論を学びます. @becker1973 に始まる quantity-quality モデルと, @becker1988 <span class="co">[</span><span class="ot">および @barro1989</span><span class="co">]</span> の王朝 (dynastic) モデルです. この章では, まず2つの理論の核を整理し, その上でこれらを140年の構造変化として定量化した @greenwood2023 を読みます.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quantity-Quality トレードオフ</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>出発点は, 親は子供の**数** (quantity) だけでなく, 一人あたりにかける資源, すなわち**質** (quality) も選ぶ, という観察です. ここでの「質」は価値判断ではなく, 教育・健康など子供一人あたりへの投資を指します. 先進国では出生率の低下と子供の教育水準の上昇が同時に進行しており, 数と質の間のトレードオフはこの事実と整合的です.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>子の質を高める親のインセンティブのモデル化には, 2つの伝統があります.</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Warm glow**: 子供の数や人的資本そのものから親が直接効用を得る. @becker1973 に始まる定式化で, この節で扱う</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**利他主義 (altruism)**: 子供の生涯効用そのものが親の効用関数に入る. @becker1988 に始まる定式化で, 次節の王朝モデルが扱う</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### シンプルなモデル</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>まず, 閉形式で解ける warm glow 型のモデルでトレードオフの仕組みを見ます.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Warm glow 型の出生モデル</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>親は消費 $c$, 子供の数 $n$, 子供1人あたりの人的資本 $h$ から効用を得る.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>\max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t.} \quad c + p e n \leq \left(1 - \phi n\right) w.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$e$: 子供1人あたりの教育時間. 価格 $p$ は教師の賃金</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\phi$: 子供1人あたりの子育て時間. 親自身の時間を使うため, 機会費用は $\phi w$</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\theta$: 子供の生来の人的資本</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>人的資本の生産関数は $h = \left(\theta + e\right)^{\gamma}$, $0 &lt; \gamma &lt; 1$</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>::: {#prp-qq-simple}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## 閉形式解と賃金の効果</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>内点解 ($\gamma \phi w &gt; p \theta$) において, 最適な子供の数と教育時間は</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta},</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>e = \frac{\gamma \phi w - p\theta}{p \left(1-\gamma\right)}.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>したがって賃金 $w$ の上昇は, 子供の数 $n$ を減らし, 1人あたりの教育時間 $e$ を増やす.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>::: {.proof}</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>$h = \left(\theta + e\right)^{\gamma}$ を代入すると, 目的関数は $\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)$ となる. 予算制約より $c = w - n\left(\phi w + p e\right)$.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>$n$ と $e$ の一階条件はそれぞれ</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>\frac{\phi w + p e}{c} = \frac{\delta}{n}, \qquad</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>\frac{n p}{c} = \frac{\delta \gamma}{\theta + e}.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>2本の比を取ると $\gamma \left(\phi w + p e\right) = p \left(\theta + e\right)$ となり, これを解いて $e$ の式を得る. $n$ の一階条件 $n \left(\phi w + p e\right) = \delta c$ を予算制約に代入すると $c = w - \delta c$, すなわち $c = w / \left(1 + \delta\right)$. また $e$ の式より $\phi w + p e = \left(\phi w - p \theta\right) / \left(1 - \gamma\right)$ なので,</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>n = \frac{\delta c}{\phi w + p e}</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>= \frac{\delta}{1 + \delta} \cdot \frac{w \left(1 - \gamma\right)}{\phi w - p \theta}</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>= \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>比較静学は式から直ちに従う. $w$ が上がると分母の $\phi - p\theta/w$ が大きくなるので $n$ は減少し, $\gamma \phi w - p \theta$ が大きくなるので $e$ は増加する.</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>直感はこうです. 子供の「数」の費用の中心は親の子育て時間 $\phi$ であり, その機会費用 $\phi w$ は**親の賃金に比例して**上がります. 一方, 「質」の費用 $p$ は市場で決まる外生的な価格です. 賃金が上がると, 数は高くなり質は相対的に安くなるので, 親は数から質へ投資を振り替えます. 先進国の少子化と教育水準の上昇という組み合わせが, 賃金の上昇ひとつから出てくるわけです.</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### 女性の時間の機会費用</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>20世紀を通じて, 高所得国では女性の賃金と労働参加率が大きく上昇しました. 子育て時間の多くを女性が担っている限り, これは**子育ての機会費用の上昇**を意味します. モデルを夫婦に拡張して確かめます. 夫婦の賃金を $w_m, w_f$ とし, 子育て時間はすべて妻が担うとします (子育てが夫婦間で完全に代替可能で $w_m &gt; w_f$ なら, これは最適な分業です).</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>\max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t.} \quad c + p e n = w_m + \left(1 - \phi n\right) w_f.</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>@prp-qq-simple とまったく同じ計算で,</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>n = \frac{\delta}{1+\delta} \cdot \frac{\left(w_m + w_f\right)\left(1-\gamma\right)}{\phi w_f - p\theta},</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>e = \frac{\gamma \phi w_f - p\theta}{p\left(1-\gamma\right)}</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>が得られます. 対数を取って女性の賃金 $w_f$ で微分すると,</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>\frac{\partial \log n}{\partial w_f}</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>= \frac{1}{w_m + w_f} - \frac{\phi}{\phi w_f - p\theta}</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>= \frac{-p\theta - \phi w_m}{\left(w_m + w_f\right)\left(\phi w_f - p\theta\right)} &lt; 0.</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>第1項は所得効果 (家計のフルインカムが増える), 第2項は価格効果 (子育ての機会費用が上がる) です. 子育て時間の費用が**女性の賃金だけ**に比例するため, 価格効果が必ず所得効果に勝ち, 女性の賃金上昇は出生を減らします. 一方で教育時間 $e$ は $w_f$ とともに増えるので, ここでも数から質への振り替えが起きています. 男性の賃金 $w_m$ の上昇は, 対照的に所得効果しか持たないので出生を**増やし**ます. 「誰の賃金が上がるか」が出生の予測を分ける, というのがこのモデルの核心です.</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### 影の価格と観察される所得弾力性</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>上のモデルは対数効用と特定の関数形に頼っていました. @becker1973 のもともとの分析は, 関数形の仮定を置かず, **予算制約の非線形性**だけからどこまで言えるかを突き詰めたものです.</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## Becker-Lewis の quantity-quality モデル</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>親は子供の数 $n$, 子供の質 $q$ (全員に共通), その他の消費 $y$ から効用 $U\left(n, q, y\right)$ を得る. 予算制約は</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>I = n \pi_n + n q \pi + q \pi_q + y \pi_y.</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>$${#eq-qq-budget}</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>$\pi$ は「質 $\times$ 数」1単位あたりの価格, $\pi_n$ は数だけにかかる費用, $\pi_q$ は質だけにかかる費用である.</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>内点解の一階条件は $MU_n = \lambda p_n$, $MU_q = \lambda p_q$, $MU_y = \lambda p_y$ で, 影の価格 (限界費用) は</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>p_n = \pi_n + q \pi, \qquad p_q = \pi_q + n \pi, \qquad p_y = \pi_y</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>$${#eq-qq-shadow}</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>となります. **数の影の価格は質とともに上がり, 質の影の価格は数とともに上がる**. 質の高い子供が多いほど, もう1人増やすのは高くつき, 子供が多いほど, 全員の質を上げるのは高くつくからです. この相互依存が, 所得効果の見え方を根本的に変えます.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>::: {#prp-qq}</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## 観察される所得弾力性の下方バイアス</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>影の価格を一定とした「真の」所得弾力性を $\eta_n, \eta_q$, 市場価格 $\left(\pi_n, \pi, \pi_q, \pi_y\right)$ を一定として所得 $I$ を動かしたときの「観察される」弾力性を $\bar{\eta}_n, \bar{\eta}_q$ とする. このとき観察される弾力性は平均的に真の弾力性より小さい. さらに $\eta_q$ が $\eta_n$ より十分大きければ, **真の弾力性 $\eta_n \geq 0$ (子供は正常財) であっても $\bar{\eta}_n &lt; 0$ になりうる**.</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>::: {.proof}</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>バイアスの源泉を, $\eta_n = 0$ の場合の比較静学で示す. 所得 $I$ が増えると (市場価格一定), まず $q$ と $y$ が増え, $n$ は真の所得効果を持たないので直接には変わらない. しかし @eq-qq-shadow より, $q$ の上昇は数の影の価格 $p_n = \pi_n + q\pi$ を押し上げる一方, $p_q$ と $p_y$ は ($n$ が変わらない限り) 変わらない. 相対価格が $n$ に不利に変化したので, 代替効果によって $n$ は**減少**する. すなわち観察上は $\bar{\eta}_n &lt; 0 = \eta_n$ となる. 一般の場合も, 所得の増加が $q$ を通じて $p_n$ を上げるため, $\bar{\eta}_n$ は $\eta_n$ に正, $\eta_q$ に負に依存する形になり, $\eta_q$ が大きいほど $\bar{\eta}_n$ は押し下げられる.</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>つまり, データで観察される「豊かな家計ほど子供が少ない」という関係は, 子供が劣等財であることを意味しません. 所得とともに親は子供の質への支出を増やし, それが**子供の数の影の価格を引き上げる**ため, 数が抑えられるのです. 価格効果にも同じ増幅の仕掛けが働きます. 避妊技術の改善などで数の費用 $\pi_n$ が上がると, $n$ の減少が $p_q = \pi_q + n\pi$ を下げて質への代替を誘発し, 数の減少と質の上昇が特別な代替の仮定なしにセットで生じます. 親の教育などで質の費用 $\pi_q$ が下がる場合も, $q$ の上昇が $p_n$ を押し上げて $n$ を大きく減らします. 数と質の予算上の相互作用が, 小さな所得・価格の変化を数の大きな変化に**増幅する**. これが quantity-quality モデルの核であり, 人口転換 (出生率の急落と子供1人あたり教育投資の急増の同時進行) を選好の変化なしに説明する枠組みになっています.</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## 王朝モデル</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>quantity-quality モデルは静学でした. 出生の意思決定を成長理論に接続するには, 世代を超えた動学が必要です. @becker1988 は, 親が子供の**効用そのもの**を気にかける利他性から出発して, 出生を組み込んだ動学的な家計理論を作りました.</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## 王朝的効用関数</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>世代 $0$ の親の効用は, 自分の消費 $c_0$ と子供の数 $n_0$ からの効用に, 子供1人あたりの効用 $U_1$ を利他性のウェイト $a\left(n_0\right)$ で加えたものである.</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>U_0 = v\left(c_0, n_0\right) + a\left(n_0\right)\, n_0\, U_1.</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>これを再帰的に代入すると, 王朝 (dynasty) 全体の効用が得られる.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>U_0 = \sum_{i=0}^{\infty} A_i N_i\, v\left(c_i, n_i\right),</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>\qquad A_i = \prod_{j=0}^{i-1} a\left(n_j\right),</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>\qquad N_i = \prod_{j=0}^{i-1} n_j.</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>ここで $N_i$ は世代 $i$ の子孫の数. 定弾力性の利他性 $a\left(n\right) = \alpha n^{-\varepsilon}$ ($0 &lt; \alpha &lt; 1$, $0 &lt; \varepsilon &lt; 1$) を仮定することが多い.</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>$a\left(n\right)$ が $n$ の減少関数であることは, 子供が多いほど1人あたりへの利他性が薄まることを意味します ($\varepsilon$ がその強さ). また $\alpha &lt; 1$ は「自分は子供より少しだけ大事」という仮定で, 王朝効用が発散しないために必要です.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>予算制約は世代ごとに書けます. 各成人は賃金 $w_i$ を稼ぎ, 相続 $k_i$ を受け取り, 子供1人につき養育費 $\beta_i$ と遺産 $k_{i+1}$ を渡します.</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>w_i + \left(1 + r_i\right) k_i = c_i + n_i \left(\beta_i + k_{i+1}\right).</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>王朝の初代 (dynasty head) がこの制約のもとで王朝効用を最大化する, と考えます. 利他性が世代間で整合的なので, 子孫は初代の計画をそのまま実行します.</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### 一階条件</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>$v_n = 0$ (子供の数自体からの直接効用はない) と $v\left(c\right)$ の弾力性 $\sigma\left(c\right) = v'\left(c\right) c / v\left(c\right)$ を使うと, 内点解は次の2本で特徴づけられます <span class="co">[</span><span class="ot">@becker1988, sec. 2</span><span class="co">]</span>.</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>**世代間のオイラー方程式**:</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>\frac{v'\left(c_i\right)}{v'\left(c_{i+1}\right)} = a\left(n_i\right) \left(1 + r_{i+1}\right).</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>$${#eq-dyn-euler}</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>通常の割引因子の位置に利他性 $a\left(n_i\right)$ が入っており, しかも**内生**です. 子供を多く持つほど1人あたりの利他性が下がるので, 実質的な割引が強くなります.</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>**出生の一階条件**:</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>v\left(c_i\right) \left<span class="co">[</span><span class="ot">1 - \varepsilon - \sigma\left(c_i\right)\right</span><span class="co">]</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>= v'\left(c_i\right) \left<span class="co">[</span><span class="ot">\beta_{i-1}\left(1 + r_i\right) - w_i\right</span><span class="co">]</span>.</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>$${#eq-dyn-fertility}</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>右辺の角括弧は**子孫1人の純費用**です: 養育費を成人時点まで利子付けしたものから, その子孫自身の生涯所得を引いたもの. 左辺 (子孫1人の限界便益) が正なので, 均衡では子供は親にとって金銭的には純負担でなければなりません. @eq-dyn-fertility を整理すると, 1人あたり消費は純費用の増加関数になります. 子孫を「作る」のが高くつくほど, 1人あたりに持たせる資源を増やすのが最適になるからです. これは quantity-quality モデルの「数が減ると質が上がる」という関係の, 王朝モデルでの再現です <span class="co">[</span><span class="ot">@barro1989</span><span class="co">]</span>.</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>@eq-dyn-euler を出生率について解くと</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>n_i = \left<span class="co">[</span><span class="ot">\alpha \left(1 + r_{i+1}\right) \frac{v'\left(c_{i+1}\right)}{v'\left(c_i\right)}\right</span><span class="co">]</span>^{1/\varepsilon}</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>となり, 定常状態 (一般均衡版, 技術進歩率 $g$, $v\left(c\right) = c^{\sigma}/\sigma$) では</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>n^{\varepsilon} = \frac{\alpha \left(1 + r\right)}{\left(1 + g\right)^{1 - \sigma}}</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>$${#eq-dyn-ss}</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>が成り立ちます <span class="co">[</span><span class="ot">@barro1989</span><span class="co">]</span>. 定常状態の出生率は**利子率と利他性 $\alpha$ で増加し, 技術進歩率 $g$ で減少**します. 成長が速い経済ほど将来世代は豊かになるので, 1人あたり消費の成長経路を支えるには実効的な割引を弱める, すなわち子供の数を減らす必要がある, というのが $g$ の効果の直感です.</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### 含意と応用</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>王朝モデルの比較静学は, 人口動態の大きな事実をいくつも整合的に説明します <span class="co">[</span><span class="ot">@becker1988, sec. 3--5</span><span class="co">]</span>.</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**一時的なショックと出生の回復**: 子供の純費用の一時的な上昇 (大恐慌での将来賃金の低下, 戦争での女性賃金の上昇) は出生を一時的に下げるが, 王朝は失われた出生を後の世代で埋め合わせる. 戦後のベビーブームはこの「取り返し」として読める</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**死亡率の低下と人口転換**: 子供の死亡率の低下は「生存する子孫1人あたり」の費用を下げるので, 出生率は当初むしろ上がりうるが, 最終的には生存率の改善に比例して低下する. 出生率の低下が死亡率の低下に遅れるという人口転換の時間パターンと整合的である</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**社会保障と出生**: 賦課方式の社会保障の拡大は, 子供1人あたりの純租税負担を通じて子供の実効費用を上げ, **子供が老親を直接扶養しない場合でも**出生率を下げる. また出生が内生だとリカードの等価性は成立しない</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>限界も明確です. 結婚・出産のタイミング・不確実性は捨象されており, 親から子への移転が実際に行われている (operative transfers) ことが枠組みの前提です. また, シンプルなモデルで見たとおり, 子育ての費用の中心は財ではなく**親の時間**であり, 特に女性の時間です. この経路はジェンダー賃金格差と出生・成長の関係 <span class="co">[</span><span class="ot">@galor1996</span><span class="co">]</span>, 所得階層間の出生率格差と経済成長 <span class="co">[</span><span class="ot">@delacroix2003</span><span class="co">]</span>, 無子 (childlessness) の経済分析 <span class="co">[</span><span class="ot">@baudin2015</span><span class="co">]</span> など, 現代の文献の出発点になっています. 出生の意思決定を夫婦の交渉として捉える視点は @doepke2019 が開いており, 分野全体の現状は @doepke2023 が包括的に整理しています.</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>以上の2つのモデルは補完的です. Quantity-quality トレードオフは数と質の静学的な配分を, 王朝モデルは世代を超えた資源配分を担います. これらに時間配分・家庭内生産・結婚市場を組み合わせて, 過去140年のアメリカの構造変化をまとめて定量化したのが, 次に読む @greenwood2023 です.</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## @greenwood2023</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>@greenwood2023 は, 過去140年ほどの間にアメリカの家族に起こった大きな変化を, 家族経済学者にとっての「Kuznets facts」として次の6つにまとめています.</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>家事労働時間の減少</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>出生率の減少</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>結婚の減少</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>世帯サイズの縮小</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>高学歴者の増加</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>ブルーカラーからホワイトカラーへの転換</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>この論文の目的は, これら6つの変化を**1つのモデルと少数の駆動力**で説明することです. 近年の少子化を念頭においた理論というよりは, 古典的な出生理論 (この章の前半で学んだ quantity-quality トレードオフ) を洗練させ, 長期の構造変化に正面から当てはめたものと位置づけられます.</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="fu">### モデル</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 $h$ (household labor), 余暇 $l$ (leisure), 市場労働 $t$ (toiling in the market) に配分します ($h + l + t = 1$). 有配偶者は2人分の2単位の時間を持ち, これに加えて $k$ 人の子どもに対する基礎的な子育て $b$ (basic childcare) と教育 $e$ (education) の時間を使います ($h + l + t + bk + ek = 2$).</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>**賃金.** スキルには合計が1になる _brain_ と _brawn_ の2種類があり, 賃金はそのポートフォリオで決まります.</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>w = s v + \left(1 - s\right) u.</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$s \in \left<span class="co">[</span><span class="ot">0, 1\right</span><span class="co">]</span>$ は brain スキルの割合, $v$ と $u$ はそれぞれ brain と brawn のリターンで, $v &gt; u$ を仮定します. 比率 $q = v/u$ が大卒プレミアムに対応します.</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>**家庭内生産.** 家事の成果 $n$ は, 家庭内生産用の耐久財 $d$ (価格 $p$) と家事労働 $\texttt{h}$ の CES 集計で作られます.</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>n = \left(\theta d^\sigma + \left(1 - \theta\right) \texttt{h}^\sigma\right)^{1/\sigma}.</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>ここで家事労働の投入 $\texttt{h}$ には子どもも寄与します. 独身者では $\texttt{h} = h$ ですが, 有配偶者では子ども1人あたり生産性 $\chi$ で家事を手伝い, $\texttt{h} = h + \chi k$ となります. かつての子どもは農場や家庭内で立派な労働力でした. 児童労働の消滅は, この $\chi$ の低下として表現されます.</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>**子どもの教育.** 親は子どもの brain スキル割合 $s$ を選べますが, そのためには子ども1人あたり $e = \gamma s$ の教育時間がかかります. 子どもを「高スキルに育てる」ことが親の時間を食う, という形で quantity-quality トレードオフが入っています.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>**効用関数.** 独身者は消費 $c$, 家事の成果 $n$, 余暇 $l$ から効用を得ます.</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>u^S\left(c, n, l\right) = \alpha \frac{c^{1-\rho} - 1}{1-\rho} + \beta \frac{n^{1-\nu} - 1}{1 - \nu} +</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>\left(1 - \alpha - \beta\right) \frac{l^{1-\lambda} - 1}{1 - \lambda}.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>有配偶者はこれに加えて, 子どもの数 $k$ と子どものスキル水準 $sv + \left(1-s\right)u$ からも効用を得ます.</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>u^M\left(c, n, l, k, s\right) &amp;= \alpha \frac{\left(\varepsilon c\right)^{1-\rho} - 1}{1-\rho} + \beta \frac{\left(\varepsilon n\right)^{1-\nu} - 1}{1 - \nu} + \delta \frac{l^{1-\lambda} - 1}{1 - \lambda} <span class="sc">\\</span></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>&amp;+ \psi \frac{k^{1-\kappa} - 1}{1 - \kappa} + \xi \frac{\left(sv + \left(1-s\right)u\right)^{1-\zeta}-1}{1-\zeta}.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>$\varepsilon \in \left<span class="co">[</span><span class="ot">0.5, 1.0\right</span><span class="co">]</span>$ は世帯の等価尺度 (equivalence scale) で, 2人で暮らすことの規模の経済を表します. 子どものスキルからの効用は, この章の前半の言葉で言えば warm glow 型 (子の効用ではなく属性から直接効用を得る) の質への選好です.</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>**家計の問題.** 独身者と有配偶者の価値はそれぞれ</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>S &amp;= \max_{d, h, l} u^S\left(c, n\left(d, h\right), l\right) &amp;\text{ s.t. } c + pd = w\left(1 - h - l\right), <span class="sc">\\</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>M &amp;= \max_{d, h, l, k, s} u^M\left(c, n\left(d, h\right), l, k, s\right) &amp;\text{ s.t. } c + pd = w\left(2 - h - l - bk - ek\right)</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>で与えられます.</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>**結婚の決定.** 独身者は人生の初めに他の独身者とマッチし, 結婚生活の joy shock $j$ を引きます. 結婚するのは $M + j \geq S$ のときです. $j$ は位置 $\texttt{a}$, スケール $\texttt{d}$ のガンベル分布</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\right)</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>に従うとします (frictionless marriage の章で学んだ第一種極値分布です). 婚姻率を $\texttt{m}$ とすると, 独身者の割合は</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>1 - \texttt{m} = \Pr\left(M + j &lt; S\right) = G\left(S - M\right)</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>と閉じた形で書けます.</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### データから直接決まるパラメータ</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>カリブレーションの第一歩は, モデルの外から測れるものを測ってしまうことです.</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**価格**: $w_{1880} = 1$ に基準化. 賃金は年率1.7%で上昇したと推定され $w_{2020} = 11.3$ (1880--1988年は @williamson1995, 1989年以降は FRED の実質報酬を総労働時間で割って推定). 耐久財価格は $p_{1880} = 100$ に基準化し, 年率約5%の下落 [@greenwood2016] から $p_{2020} = 0.108$. 大卒プレミアム $q_{2020} = 1.81$ は Current Population Survey (2018年) より</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**家庭内生産**: $\theta = 0.206$, $\sigma = 0.282$ は @mcgrattan1997 より. $0 &lt; \sigma &lt; 1$ なので耐久財と家事労働は代替的で, 「安くなった耐久財が家事時間を置き換える」経路が開いている</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**相対的リスク回避度**: $\rho = 1.25$ (文献の標準的な値)</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**等価尺度**: OECD modified scale ($1 + 0.5$) より $\varepsilon = 1 / 1.5 \simeq 0.667$</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子育て時間**: American Time Use Survey (ATUS) と @gershuny2016 から, 基礎的な子育て時間の平均 (1920, 1965, 2019) として $b = 0.030$</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**教育時間**: $\gamma = e / s$ の関係を使い, ホワイトカラーの割合 $s_t$ と家庭での教育時間 $e_t$ から推定 (ATUS, American Heritage Time Use Study, @gershuny2016). 平均して $\gamma = 0.026$</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子どもの家事労働 $\chi$**: 児童の労働時間と生産性の積として推定. 生産性は @lebergott1964 に基づき, 1880年の児童の労働時間は途上国のデータ <span class="co">[</span><span class="ot">@webbink2012</span><span class="co">]</span>, 2020年は @hofferth2001 を用いる</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a><span class="fu">### SMM: 2つのループ</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を**外側と内側の2つのループ**に分けるのです.</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**外側のループ**: $\left(\alpha, q_{1880}\right)$ だけを数値的に探索する</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**内側のループ**: 残りの選好パラメータ $\Lambda\left(\alpha, q_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)$ は, $\left(\alpha, q_{1880}\right)$ を所与とすると**一階条件から解析的に**決まる</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ガンベル分布のパラメータ $\left(\texttt{a}, \texttt{d}\right)$ は, 他のすべてが決まった後に婚姻率から決まる</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの**2時点比**から, ウェイトパラメータは**水準**から」という形で逐次的に解けることです. 順番に見ていきます.</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>**Step 1--2 ($\lambda$, $\delta$): 余暇.** 余暇 $l$ の一階条件は</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>\delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w.</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-l}</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>2020年と1880年でこの式の比を取ると $\delta$ が消え,</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>\left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} =</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>\left(\frac{w_{2020}\left(2 - b k_{2020} - \gamma s_{2020} k_{2020} - h_{2020} - l_{2020}\right) - p_{2020}d_{2020}}{w_{1880}\left(2 - b k_{1880} - \gamma s_{1880} k_{1880} - h_{1880} - l_{1880}\right) - p_{1880}d_{1880}}\right)^{-\rho}\frac{w_{2020}}{w_{1880}}</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>から $\lambda$ が求まります. $\lambda$ が分かれば, @eq-greenwood2023-foc-l を2020年の水準で評価して $\delta$ が求まります.</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>**Step 3--4 ($\kappa$, $\psi$): 子どもの数.** 子どもの数 $k$ の一階条件は</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right).</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-k}</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>右辺の括弧は子ども1人の**純時間費用** (子育て + 教育 $-$ 家事の手伝い) です. やはり2時点の比</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>\left(\frac{k_{2020}}{k_{1880}}\right)^{-\kappa} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{b + \gamma s_{2020} - \chi_{2020}}{b + \gamma s_{1880} - \chi_{1880}}</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>から $\kappa$ が, 水準から $\psi$ が求まります.</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>**Step 5--6 ($\zeta$, $\xi$): 子どもの質.** 子どものスキル $s$ の一階条件は</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>\xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k.</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-s}</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>\left(\frac{s_{2020} v_{2020} + \left(1 - s_{2020}\right) u_{2020}}{s_{1880} v_{1880} + \left(1 - s_{1880}\right) u_{1880}}\right)^{-\zeta} \frac{v_{2020} - u_{2020}}{v_{1880} - u_{1880}} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{k_{2020}}{k_{1880}}</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>から $\zeta$ が, 水準から $\xi$ が求まります.</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>**Step 7--8 ($\nu$, $\beta$): 家事.** 家事労働 $h$ の一階条件は</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>\beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}.</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-h}</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>2時点の比</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta d_{2020}^\sigma + \left(1 - \theta\right)\left(h_{2020} + \chi_{2020} k_{2020}\right)^{\sigma}}{\theta d_{1880}^{\sigma} + \left(1 - \theta\right)\left(h_{1880} + \chi_{1880} k_{1880}\right)^{\sigma}}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(\frac{h_{2020} + \chi_{2020} k_{2020}}{h_{1880} + \chi_{1880} k_{1880}}\right)^{\sigma - 1} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda}</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>から $\nu$ が, 1880年の水準から $\beta$ が求まります.</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>**外側のループ.** 残った $\left(\alpha, q_{1880}\right)$ は, 独身者の市場労働時間と家事労働時間 (1880, 2020) をターゲットに</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>\min_{\alpha, q_{1880}} \sum_{i} \left(\frac{\mathcal{D}_i - \mathcal{M}_{i}\left(\alpha, q_{1880}\right)}{\mathcal{D}_i}\right)</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します.</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_3.svg)</span>{fig-align="center" width=70%}</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>**結婚のパラメータ.** すべての選好パラメータが決まると $S$ と $M$ が計算できます. 独身者の割合 $\texttt{s} = 1 - \texttt{m}$ はガンベル分布から</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>\log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d}</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-gumbel}</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>を満たすので, 2時点の比</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>\frac{\log \left(-\log \texttt{s}_{2020}\right)}{\log \left(-\log \texttt{s}_{1880}\right)} = \frac{S_{2020} - M_{2020} - \texttt{a}}{S_{1880} - M_{1880} - \texttt{a}}</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>から $\texttt{a}$ が, @eq-greenwood2023-gumbel の水準から $\texttt{d}$ が求まります. 推定されたパラメータは以下のとおりです.</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_2.svg)</span>{fig-align="center" width=55%}</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="fu">### Great Transition の駆動力</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>1880年から2020年への変化を駆動する力として, 論文は3つに注目します.</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>全体的な技術革新 (neutral technological progress, $\mathbf{z}$)</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>スキル偏向的な技術革新 (skill-biased technological progress, $\mathbf{x}$)</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>家庭内生産用耐久財の価格低下 ($p$)</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>技術革新をモデル化するため, brawn 労働 $\mathbf{u}$ と brain 労働 $\mathbf{v}$ を CES で束ねる代表的企業を導入します.</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>\max_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}}</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>u\mathbf{u} - v\mathbf{v}.</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>一階条件から, 大卒プレミアム $q$ は</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1}</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>$${#eq-college-premium}</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>と書けます (最後の等式は, 総労働時間を $\mathbf{t}$ として $\mathbf{u} = \left(1 - s\right)\mathbf{t}$, $\mathbf{v} = s\mathbf{t}$ を代入したものです). CES のパラメータ $\left(\omega, \iota\right)$ は @acemoglu2011a の値を使い, @eq-college-premium から各時点の $\mathbf{x}$ が, brawn 労働の一階条件から $\mathbf{z}$ が逆算できます.</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table6_1.svg)</span>{fig-align="center" width=70%}</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>3つの駆動力を $\mathbf{z}_t = \mathbf{z}_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}$, $\mathbf{x}_t = \mathbf{x}_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}$, $p_t = p_{1880} e^{\Delta p\left(t-1880\right)}$ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.</span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/fig6_1.svg)</span>{fig-align="center" width=85%}</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>2時点 (1880, 2020) しかターゲットにしていないにもかかわらず, 途中の経路もよく再現できています. 特に注目すべきは, 婚姻率が20世紀半ばに向けて上昇してから低下するという **$\cap$ 字型**を再現している点です.</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>では, どの駆動力がどの事実を担っているのでしょうか. 反実仮想で1つずつ止めてみます.</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新 $\mathbf{x}$ を止めると.**</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/fig6_2.svg)</span>{fig-align="center" width=70%}</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>大卒プレミアムが上昇しない世界では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 ($\mathbf{x}$) から出ていることが分かります.</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>**耐久財価格 $p$ の低下を止めると.**</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/fig6_3.svg)</span>{fig-align="center" width=90%}</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>洗濯機や冷蔵庫が安くならない世界では, 家事労働時間は減らず, 代わりに市場労働時間が減ります. そしてもうひとつ, 意外な変化が起きます. 婚姻率が上昇し続けるのです.</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/fig6_4.svg)</span>{fig-align="center" width=60%}</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>婚姻率の $\cap$ 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a><span class="fu">### まとめ</span></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新** ($\mathbf{x}$: 大卒プレミアムの上昇)</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>高学歴者の増加 (⑤) とホワイトカラーへの転換 (⑥) を直接駆動する</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>quantity-quality トレードオフを通じて, 出生率の低下 (②) と世帯サイズの縮小 (④) を駆動する</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>**家庭内生産用耐久財の価格低下** ($p$)</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の機械化により家事労働時間の減少 (①) を駆動する</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の規模の経済という結婚のメリットを縮小させ, 結婚の減少 (③) を駆動する</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>この章の前半で学んだ quantity-quality の静学的なメカニズムが, 時間配分・家庭内生産・結婚市場と組み合わさって140年の構造変化を説明する, という構成になっています. 一方で, この枠組みはあくまで「古い事実」のための理論です. 21世紀に入ってからの先進国では所得や女性の労働参加と出生率の関係が逆転しつつあり <span class="co">[</span><span class="ot">@doepke2023</span><span class="co">]</span>, それを説明するには子育てのアウトソーシングや政策・規範といった新しい要素が必要になります.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
