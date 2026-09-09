@@ -12,13 +12,17 @@
 
 ## 課題
 
-提出期限は変更されることがあります. 出題前の課題はこの表に現れません.
+提出期限は変更されることがあります. 出題前の課題は「未公開」と表示され,
+出題した回に問題の PDF が公開されます.
 
 <!-- assignments:start -->
 | 課題 | 提出期限 | 問題 |
 | --- | --- | --- |
-| Exercise 0 | 2026年10月6日 | [00-exercise.pdf](assignment/00-exercise/00-exercise.pdf) |
-| Exercise 1 | 2026年10月18日 | [01-exercise.pdf](assignment/01-exercise/01-exercise.pdf) |
+| Exercise 0 |  | [00-exercise.pdf](assignment/00-exercise/00-exercise.pdf) |
+| Exercise 1 | 2026年10月27日 | [01-exercise.pdf](assignment/01-exercise/01-exercise.pdf) |
+| Exercise 2 | 2026年12月1日 | 未公開 |
+| Exercise 3 | 2027年1月12日 | 未公開 |
+| Exercise 4 | 2027年1月26日 | 未公開 |
 <!-- assignments:end -->
 
 ## このレポジトリについて
