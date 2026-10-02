@@ -1,10 +1,10 @@
-# 5  Search & Matching
+# 6  Search & Matching
 
 Code
 
 現実の労働市場や結婚市場では, 相手を見つけるには時間がかかり, 出会った相手は選び直せるとは限りません. サーチ理論は, この「出会いに時間がかかる」摩擦を最適停止問題として定式化します. 原型は McCall の職探しモデル ([McCall 1970](#ref-mccall1970)) であり, この章の後半で扱う Greenwood and Guner ([2009](#ref-greenwood2009)), Greenwood et al. ([2016](#ref-greenwood2016)), Goussé et al. ([2017](#ref-gousse2017)) の結婚サーチモデルは, その直接の応用です.
 
-## 5.1 McCall モデル
+## 6.1 McCall モデル
 
 サーチ理論の出発点は, McCall ([1970](#ref-mccall1970)) が定式化した職探しモデルです. 失業者が, 次々に届く賃金オファーを受諾するか, より良いオファーを待って探し続けるか, という最適停止問題として組み立てます.
 
@@ -14,7 +14,7 @@ Code
 >
 > 割引率 \\\beta\\ のオファー \\w\\ を手にした失業者の価値関数は
 >
-> \\ V\left(w\right) = \max\left\\ \frac{w}{1 - \beta},\\ b + \beta \int V\left(w'\right)\\ dF\left(w'\right) \right\\. \tag{5.1}\\
+> \\ V\left(w\right) = \max\left\\ \frac{w}{1 - \beta},\\ b + \beta \int V\left(w'\right)\\ dF\left(w'\right) \right\\. \tag{6.1}\\
 
 [式 eq-mccall](#eq-mccall) の構造を見ます. 第1項はオファーを受ける時の価値 (以後 \\w\\ が続くので割引現在価値は \\w / \left(1 - \beta\right)\\), 第2項はオファーを拒否して待つ時の価値です. 重要なのは, オファーが i.i.d. なので継続価値がいまのオファー \\w\\ に依存しない定数 (\\C\\ とおく) になることです.
 
@@ -22,68 +22,40 @@ Code
 
 受諾の価値は \\w\\ について増加, 継続の価値は一定なので, 最適な戦略は閾値ルールになります.
 
-**命題 5.1 (留保賃金, reservation wage)** [式 eq-mccall](#eq-mccall) の解 \\V\\ は一意に存在し, 最適政策は留保賃金 \\w^\*\\ を用いた閾値ルール「\\w \geq w^\*\\ なら受諾」である. \\w^\*\\ は次の留保賃金方程式を満たす唯一の値である.
+**命題 6.1 (留保賃金, reservation wage)** [式 eq-mccall](#eq-mccall) の解 \\V\\ は一意に存在し, 最適政策は留保賃金 \\w^\*\\ を用いた閾値ルール「\\w \geq w^\*\\ なら受諾」である. \\w^\*\\ は次の留保賃金方程式を満たす唯一の値である.
 
-\\ w^\* = b + \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \tag{5.2}\\
+\\ w^\* = b + \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \tag{6.2}\\
 
-*Proof*. Step1 (存在と一意性): [式 eq-mccall](#eq-mccall) の右辺は付録 ([sec-apdx-contraction](#sec-apdx-contraction) 節) で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 \\V\\ が一意に存在する.
-
-Step2 (閾値ルール): 受諾の価値 \\w / (1 - \beta)\\ は \\w\\ に対して狭義単調増加であり, 継続価値は定数なので,
-
-\\ w^\* = (1 - \beta) C, \\ に対して, 閾値ルール「\\w \geq w^\*\\ なら受諾」が最適である.
-
-Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入する.
-
-\\ \begin{aligned} \frac{w^\*}{1 - \beta} &= C \\ &= b + \frac{\beta}{1 - \beta} \int V\left(w'\right) dF\left(w'\right) \\ &= b + \frac{\beta}{1 - \beta} \left(w^\* + \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right) \right)\\ w^\* &= b + \frac{\beta}{1-\beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \end{aligned} \\
-
-これは, 左辺が \\w^\*\\ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
+証明は[付録](../../lesson/appendix/proof.llms.md#prf-reservation)にあります.
 
 [式 eq-reservation](#eq-reservation) の第二項は, 「もう1期待てば, いまの基準 \\w^\*\\ を上回るオファーを引けるかもしれない」という待つことのオプション価値です. 留保賃金は失業給付 \\b\\ にこのオプション価値を上乗せした水準になります. オファーの上限が \\w^\*\\ より大きい限り, 失業者は \\b\\ を上回るオファーでも拒否します.
 
-**命題 5.2 (留保賃金の比較静学)**  
+**命題 6.2 (留保賃金の比較静学)**  
 
 1.  失業給付 \\b\\ の増加は留保賃金 \\w^\*\\ を上げる.
 2.  オファー分布の平均保存的な広がりは, \\w^\*\\ を上昇させる.
 
-*Proof*.
+証明は[付録](../../lesson/appendix/proof.llms.md#prf-mccall-cs)にあります.
 
-1.  [式 eq-reservation](#eq-reservation) の右辺をすべて左辺に集めた式を定義する.
-
-\\ \Phi\left(w^\*, b\right) := w^\* - b - \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right) = 0. \\
-
-オプション価値項の微分は [補題 lem-option-value](#lem-option-value) より,
-
-\\ \frac{\partial}{\partial w^\*} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right) = -\left(1 - F\left(w^\*\right)\right). \\
-
-よって,
-
-\\ \frac{\partial \Phi}{\partial w^\*} = 1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^\*\right)\right) \> 0, \qquad \frac{\partial \Phi}{\partial b} = -1 \\
-
-であり, 陰関数定理から
-
-\\ \frac{d w^\*}{d b} = -\frac{\partial \Phi / \partial b}{\partial \Phi / \partial w^\*} = \frac{1}{1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^\*\right)\right)} \> 0. \\
-
-2.  右辺の積分は \\\int \max\left\\ w - w^\*, 0 \right\\ dF\left(w\right)\\ と書け, \\\max\left\\ w - w^\*, 0 \right\\\\ は \\w\\ の凸関数である. Rothschild and Stiglitz ([1970](#ref-rothschild1970)) の定理 ([thm-mps](#thm-mps)) より, 平均保存的な広がりは凸関数の期待値を下げない. したがって右辺は上方 (少なくとも同水準) にシフトし, [式 eq-reservation](#eq-reservation) の解 \\w^\*\\ は上がる.
-
-## 5.2 Greenwood and Guner ([2009](#ref-greenwood2009))
+## 6.2 Greenwood and Guner ([2009](#ref-greenwood2009))
 
 最初の応用は, 結婚と離婚の長期トレンドをサーチモデルで説明した Greenwood and Guner ([2009](#ref-greenwood2009)) です. アメリカでは戦後, 結婚率が一貫して低下し, 離婚率は1980年ごろまで急上昇しました ([図 fig-gg2009-trends](#fig-gg2009-trends)). 同じ時期に, 既婚女性の労働参加率は 20% 台から 70% 近くまで上昇しています ([図 fig-gg2009-hours](#fig-gg2009-hours)). この論文は, これらのトレンドを個人の嗜好の変化ではなく, **家事の機械化** (家電の普及による家事財の価格 \\p\\ の下落) と**賃金 \\w\\ の上昇**という2つの技術的な力で説明できるか, を定量的に問うたものです.
 
-[![](../../static/img/article/greenwood2009/figure2.svg)](../../static/img/article/greenwood2009/figure2.svg "図 5.1: US marriage and divorce rates, 1950-2000 (Fig. 2)")
+[![](../../static/img/article/greenwood2009/figure2.svg)](../../static/img/article/greenwood2009/figure2.svg "図 6.1: US marriage and divorce rates, 1950-2000 (Fig. 2)")
 
-図 5.1: US marriage and divorce rates, 1950-2000 (Fig. 2)
+図 6.1: US marriage and divorce rates, 1950-2000 (Fig. 2)
 
-[![](../../static/img/article/greenwood2009/figure3.svg)](../../static/img/article/greenwood2009/figure3.svg "図 5.2: Hours worked and female participation (Fig. 3)")
+[![](../../static/img/article/greenwood2009/figure3.svg)](../../static/img/article/greenwood2009/figure3.svg "図 6.2: Hours worked and female participation (Fig. 3)")
 
-図 5.2: Hours worked and female participation (Fig. 3)
+図 6.2: Hours worked and female participation (Fig. 3)
 
-### 5.2.1 モデル
+### 6.2.1 モデル
 
 1期を1年とする無限期間モデルで, 各期に確率 \\\delta\\ で退出し, 同数の独身者が新しく生まれます. エージェントは性別を持たない「中性」の個人で, 独身か有配偶かのどちらかです. 独身者は毎期ランダムに他の独身者と出会い, マッチの質 \\b\\ を観察して結婚するかを決めます. 有配偶者のマッチの質は毎期変動し, その値に応じて離婚するかを決めます. つまり本章前半で見たとおり, 結婚と離婚が同じ最適停止問題の表と裏として定式化されています ([図 fig-gg2009-flows](#fig-gg2009-flows)).
 
-[![](../../static/cetz/marriage_flows.svg)](../../static/cetz/marriage_flows.svg "図 5.3: Flows between singlehood and marriage")
+[![](../../static/cetz/marriage_flows.svg)](../../static/cetz/marriage_flows.svg "図 6.3: Flows between singlehood and marriage")
 
-図 5.3: Flows between singlehood and marriage
+図 6.3: Flows between singlehood and marriage
 
 **選好.** 1期あたりの効用は, 市場消費 \\c\\ と家庭内生産 \\n\\ から得られます.
 
@@ -123,11 +95,11 @@ subject to \\c = w(2 - h) - wpd\\.
 
 物品市場は単純化されており, 生産関数は \\Y = wL\\ (ゼロ利潤条件から \\w\\ が価格), 資源制約は \\C + wpD = Y\\ です. 賃金 \\w\\ の上昇と家事財価格 \\p\\ の下落は, データに合わせて外生的に与えられます.
 
-### 5.2.2 定性的な含意
+### 6.2.2 定性的な含意
 
 結婚と離婚の意思決定を除いた家計の意思決定は貯蓄がないため, 静的な問題として考えることができます.
 
-**命題 5.3 (家庭内労働時間の比較静学)** 家庭内労働時間 \\h\\ は
+**命題 6.3 (家庭内労働時間の比較静学)** 家庭内労働時間 \\h\\ は
 
 - \\p\\ の下落に対して, 減少する (\\0 \< \kappa \< 1\\ かつ \\\zeta \< \kappa\\)
 - \\w\\ の上昇に対して, 増加する (\\0 \< \overline{c}\\)
@@ -138,14 +110,14 @@ subject to \\c = w(2 - h) - wpd\\.
 
 から消え, 家庭内労働時間は \\w\\ に対して不変になります.
 
-**命題 5.4 (結婚のメリット)** 有配偶者と独身者の効用の差 \\u^m - u^s\\ は,
+**命題 6.4 (結婚のメリット)** 有配偶者と独身者の効用の差 \\u^m - u^s\\ は,
 
 - \\p\\ の下落に対して, 減少する (\\\zeta \< 0\\)
 - \\w\\ の上昇に対して, 減少する (\\0 \< \overline{c}\\)
 
 こちらが結婚の衰退の核心です. このモデルで結婚のメリットは規模の経済だけなので, 有配偶者は実質的に「所得の高い家計」です. 最低消費 \\\overline{c}\\ の負担は低所得者 (独身者) に大きくかかるため, \\w\\ が上昇すると独身者の方が大きく楽になり, 効用差が縮みます. また家庭内生産の効用は消費よりも凹 (\\\zeta \< 0\\) なので, \\p\\ の下落も水準の低い独身者に大きく効きます. つまり, 賃金上昇と家事の機械化はどちらも「独身でやっていく」ことを相対的に容易にし, 結婚のメリットを減らす, というのがこの論文の主張です.
 
-### 5.2.3 推定
+### 6.2.3 推定
 
 一部のパラメータはモデルの外から与えます.
 
@@ -161,65 +133,65 @@ subject to \\c = w(2 - h) - wpd\\.
 
 は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします ([図 fig-gg2009-estimates](#fig-gg2009-estimates)).
 
-[![](../../static/img/article/greenwood2009/table2.svg)](../../static/img/article/greenwood2009/table2.svg "図 5.4: SMM estimates (Table 2)")
+[![](../../static/img/article/greenwood2009/table2.svg)](../../static/img/article/greenwood2009/table2.svg "図 6.4: SMM estimates (Table 2)")
 
-図 5.4: SMM estimates (Table 2)
+図 6.4: SMM estimates (Table 2)
 
 推定されたマッチの質の分布は, それ自体が読み物として面白い結果です. まず \\\mu_s = -4.252\\ と, 出会いの平均的な質は大きく負です. それでも結婚が起きるのは分布の右裾を引いたときだけで, 「良い相手を待つ」(waiting for the right person) という McCall 型のオプション価値の構造がデータから浮かび上がります. また \\\sigma_s^2 = 8.063 \gg \sigma_m^2 = 0.680\\ で, 出会いの当たり外れは結婚生活の変動よりはるかに大きく, \\\mu_m = 0.521 \> 0\\, \\\rho = 0.896\\ と, いったん成立した結婚のマッチの質は平均的に正で持続的です. 「入口の選別が厳しく, 入ったあとは安定している」市場というのがこのモデルの描く結婚市場です.
 
-### 5.2.4 結果
+### 6.2.4 結果
 
-[![](../../static/img/article/greenwood2009/figure6.svg)](../../static/img/article/greenwood2009/figure6.svg "図 5.5: Decline in marriage: data and model (Fig. 6)")
+[![](../../static/img/article/greenwood2009/figure6.svg)](../../static/img/article/greenwood2009/figure6.svg "図 6.5: Decline in marriage: data and model (Fig. 6)")
 
-図 5.5: Decline in marriage: data and model (Fig. 6)
+図 6.5: Decline in marriage: data and model (Fig. 6)
 
-[![](../../static/img/article/greenwood2009/figure7.svg)](../../static/img/article/greenwood2009/figure7.svg "図 5.6: Marriage and divorce rates: data and model (Fig. 7)")
+[![](../../static/img/article/greenwood2009/figure7.svg)](../../static/img/article/greenwood2009/figure7.svg "図 6.6: Marriage and divorce rates: data and model (Fig. 7)")
 
-図 5.6: Marriage and divorce rates: data and model (Fig. 7)
+図 6.6: Marriage and divorce rates: data and model (Fig. 7)
 
 技術進歩の経路だけを入れたモデルが, 既婚人口比率の低下 ([図 fig-gg2009-fit-marriage](#fig-gg2009-fit-marriage)) と, 結婚率の低下・離婚率の上昇 ([図 fig-gg2009-fit-rates](#fig-gg2009-fit-rates)) をかなりの程度再現します. 駆動力は命題 [prp-greenwood2009-prp2](#prp-greenwood2009-prp2) のとおり, 有配偶と独身の効用差 \\u^m - u^s\\ の縮小です ([図 fig-gg2009-fit-marriage](#fig-gg2009-fit-marriage) 右パネル). 賃金の上昇は最低消費の重荷の差を縮め, 家事の機械化は独身生活のコストを下げる. どちらも「結婚しないと生活が成り立たない」という経済的な結婚の動機を弱めた, というのがこの論文の答えです.
 
 このモデルの限界もはっきりしています. エージェントは中性で同質なので, 「誰と誰が結婚するか」は問えません. Greenwood et al. ([2016](#ref-greenwood2016)) は, ジェンダー・教育・能力の異質性を導入して, まさにその問いに挑みます.
 
-## 5.3 Greenwood et al. ([2016](#ref-greenwood2016))
+## 6.3 Greenwood et al. ([2016](#ref-greenwood2016))
 
-### 5.3.1 事実: 同類婚と格差
+### 6.3.1 事実: 同類婚と格差
 
 Greenwood et al. ([2016](#ref-greenwood2016)) が説明したい事実は3つあります.
 
 第1に, 結婚・離婚のトレンドは学歴によって大きく異なります ([図 fig-gg2016-facts](#fig-gg2016-facts)). 離婚率は大卒者の方が一貫して低く, 有配偶率は1960年時点では大卒者の方が低かったのに, 非大卒者の結婚が大きく減った結果, 2005年には似たような水準になっています.
 
-[![](../../static/img/article/greenwood2016/fig1.svg)](../../static/img/article/greenwood2016/fig1.svg "図 5.7: Marriage and divorce by education (Fig. 1)")
+[![](../../static/img/article/greenwood2016/fig1.svg)](../../static/img/article/greenwood2016/fig1.svg "図 6.7: Marriage and divorce by education (Fig. 1)")
 
-図 5.7: Marriage and divorce by education (Fig. 1)
+図 6.7: Marriage and divorce by education (Fig. 1)
 
 第2に, 同類婚 (assortative mating) の傾向が強まっています ([図 fig-gg2016-sorting](#fig-gg2016-sorting)). 経済学で同類婚とは, 教育などの属性が似た者同士の結婚を指します (assortative matching, educational homogamy とも). 夫婦の学歴のクロス表に \\\chi^2\\ 検定をかけるとランダムマッチングは棄却され, 相関係数や対角要素のランダムマッチ比といった指標で見ると, 同類婚の程度は1960年から2005年にかけて上昇しています.[^1]
 
-[![](../../static/img/article/greenwood2016/table1.svg)](../../static/img/article/greenwood2016/table1.svg "図 5.8: Assortative mating by education (Table 1)")
+[![](../../static/img/article/greenwood2016/table1.svg)](../../static/img/article/greenwood2016/table1.svg "図 6.8: Assortative mating by education (Table 1)")
 
-図 5.8: Assortative mating by education (Table 1)
+図 6.8: Assortative mating by education (Table 1)
 
 第3に, 女性の大学進学率と既婚女性の労働参加が急上昇し ([図 fig-gg2016-flp](#fig-gg2016-flp)), その背後で大卒プレミアムの上昇とジェンダー賃金格差の縮小が進みました ([図 fig-gg2016-premium](#fig-gg2016-premium)). そして世帯所得のジニ係数は 0.31 (1960) から 0.43 (2005) へと大きく上昇しています ([図 fig-gg2016-gini](#fig-gg2016-gini)). 同類婚は「高所得同士・低所得同士の世帯」を作るので, 世帯間格差の拡大と直結する現象です.
 
-[![](../../static/img/article/greenwood2016/fig3.svg)](../../static/img/article/greenwood2016/fig3.svg "図 5.9: Married female participation (Fig. 3)")
+[![](../../static/img/article/greenwood2016/fig3.svg)](../../static/img/article/greenwood2016/fig3.svg "図 6.9: Married female participation (Fig. 3)")
 
-図 5.9: Married female participation (Fig. 3)
+図 6.9: Married female participation (Fig. 3)
 
-[![](../../static/img/article/greenwood2016/fig4.svg)](../../static/img/article/greenwood2016/fig4.svg "図 5.10: College premium and gender gap (Fig. 4)")
+[![](../../static/img/article/greenwood2016/fig4.svg)](../../static/img/article/greenwood2016/fig4.svg "図 6.10: College premium and gender gap (Fig. 4)")
 
-図 5.10: College premium and gender gap (Fig. 4)
+図 6.10: College premium and gender gap (Fig. 4)
 
-[![](../../static/img/article/greenwood2016/fig5.svg)](../../static/img/article/greenwood2016/fig5.svg "図 5.11: Household income inequality (Fig. 5)")
+[![](../../static/img/article/greenwood2016/fig5.svg)](../../static/img/article/greenwood2016/fig5.svg "図 6.11: Household income inequality (Fig. 5)")
 
-図 5.11: Household income inequality (Fig. 5)
+図 6.11: Household income inequality (Fig. 5)
 
-### 5.3.2 モデル
+### 6.3.2 モデル
 
 骨格は Greenwood and Guner ([2009](#ref-greenwood2009)) と同じ「出会い + マッチの質 + 停止ルール」ですが, エージェントに**ジェンダー** \\g \in \\m, f\\\\ と**タイプ** (能力 \\a \sim A\\, 教育 \\e \in \\0, 1\\\\) が入ります. 1期1年の無限期間モデルで毎期の退出確率は \\\delta\\, 各期の意思決定のタイミングは [図 fig-gg2016-timing](#fig-gg2016-timing) のとおりです. 独身者は毎期ランダムに異性の独身者と出会い, 相手の能力 \\a^\*\\・教育 \\e^\*\\・マッチの質 \\b\\・女性の労働参加コスト \\q\\ を見て結婚を決めます. 時間は単位 \\1\\ で, 労働は \\h \in \\0, \overline{h}\\\\ のフルタイムか非労働かの二択です. 結婚後は男性は必ずフルタイムで働き, 女性はフルタイム労働と家事専念を選べます.
 
-[![](../../static/img/article/greenwood2016/fig6.svg)](../../static/img/article/greenwood2016/fig6.svg "図 5.12: Timing of decisions (Fig. 6)")
+[![](../../static/img/article/greenwood2016/fig6.svg)](../../static/img/article/greenwood2016/fig6.svg "図 6.12: Timing of decisions (Fig. 6)")
 
-図 5.12: Timing of decisions (Fig. 6)
+図 6.12: Timing of decisions (Fig. 6)
 
 **教育と時給.** 時給は能力・教育・ジェンダーで決まります. 教育レベル \\e\\ の男性の時給は \\w_e a\\ (\\w_1 \> w_0\\), 女性の時給は \\\phi w_e a\\ で, \\\phi \in \[0, 1\]\\ がジェンダー賃金格差を表します. 教育には一度きりのコスト \\\kappa\\ がかかり,
 
@@ -283,23 +255,23 @@ and \\n = \left(\theta d^\lambda + (1-\theta)\left(2 - \overline{h} - \overline{
 
 からランダムに引かれます. 状態変数の次元は増えましたが, 構造は「停止ルール + 定常分布」のままです.
 
-### 5.3.3 推定
+### 6.3.3 推定
 
 モデルの外から与えるパラメータは, \\1/\delta = 30\\ (25-54歳の30年), \\\overline{h} = 0.36\\ (週40時間 / 可処分 \\16 \times 7\\ 時間) などです ([図 fig-gg2016-apriori](#fig-gg2016-apriori)).
 
-[![](../../static/img/article/greenwood2016/table2.svg)](../../static/img/article/greenwood2016/table2.svg "図 5.13: A priori parameters (Table 2)")
+[![](../../static/img/article/greenwood2016/table2.svg)](../../static/img/article/greenwood2016/table2.svg "図 6.13: A priori parameters (Table 2)")
 
-図 5.13: A priori parameters (Table 2)
+図 6.13: A priori parameters (Table 2)
 
 残る22個のパラメータは, **1960年**のデータによる24個のターゲット (学歴別の結婚・離婚・妻の労働参加, 賃金分布など) を用いた最小距離推定で決めます ([図 fig-gg2016-targets](#fig-gg2016-targets)).
 
-[![](../../static/img/article/greenwood2016/table4.svg)](../../static/img/article/greenwood2016/table4.svg "図 5.14: Targets, 1960 (Table 4)")
+[![](../../static/img/article/greenwood2016/table4.svg)](../../static/img/article/greenwood2016/table4.svg "図 6.14: Targets, 1960 (Table 4)")
 
-図 5.14: Targets, 1960 (Table 4)
+図 6.14: Targets, 1960 (Table 4)
 
-[![](../../static/img/article/greenwood2016/table3.svg)](../../static/img/article/greenwood2016/table3.svg "図 5.15: Estimated parameters (Table 3)")
+[![](../../static/img/article/greenwood2016/table3.svg)](../../static/img/article/greenwood2016/table3.svg "図 6.15: Estimated parameters (Table 3)")
 
-図 5.15: Estimated parameters (Table 3)
+図 6.15: Estimated parameters (Table 3)
 
 推定値 ([図 fig-gg2016-estimates](#fig-gg2016-estimates)) の読み方は Greenwood and Guner ([2009](#ref-greenwood2009)) とよく似ています. \\\overline{b}\_s = -1.497 \< 0\\: 出会いの平均的な質は負で, 良い相手を待つ構造. \\\overline{b}\_s \< \overline{b}\_m\\ かつ \\\sigma\_{b, s} \> \sigma\_{b, m}\\: 選別を通過した結婚のマッチの質は, ランダムな出会いより良く, 安定している. \\\rho\_{b, m} = 0.959\\: 結婚生活のマッチの質はきわめて持続的です. 興味深いのは女性の労働参加コスト \\q\\ です. 夫が非大卒だと共働きに正のコスト (\\q_l^0, q_h^0 \> 0\\), 夫が大卒だと共働きはむしろプラス (\\q_l^1, q_h^1 \< 0\\) と推定されます. 論文は解釈を明示していませんが, 性別役割分担の価値観や職種による働きやすさの違いなど, 複合的な要因を吸収した係数と考えられます.
 
@@ -312,41 +284,41 @@ and \\n = \left(\theta d^\lambda + (1-\theta)\left(2 - \overline{h} - \overline{
 | \\\eta_f\\ | 66.45 |   134.97 | Share of college, females | 0.332 |    0.072 |
 | \\\eta_m\\ | 55.75 |    69.86 | Share of college, males   | 0.318 |    0.125 |
 
-表 5.1: 2005年の再推定パラメータと対応するターゲット
+表 6.1: 2005年の再推定パラメータと対応するターゲット
 
 さらに, 同類婚の当てはまりを改善するために教育マッチ効果 \\M\left(e, e^\*\right)\\ のパラメータも \\\mu\_{0, 2005} = 0.214\\, \\\mu\_{1, 2005} = 0.375\\ と動かしています. 1960年と比べて「階級意識」(class consciousness) が弱まった, という解釈です.
 
-### 5.3.4 反実仮想
+### 6.3.4 反実仮想
 
 カリブレーションされたモデルで, 技術の各要素を1960年の水準に固定する実験をします.
 
-[![](../../static/img/lecture/greenwood2016_single.svg)](../../static/img/lecture/greenwood2016_single.svg "図 5.16: Share of singles")
+[![](../../static/img/lecture/greenwood2016_single.svg)](../../static/img/lecture/greenwood2016_single.svg "図 6.16: Share of singles")
 
-図 5.16: Share of singles
+図 6.16: Share of singles
 
-[![](../../static/img/lecture/greenwood2016_particip.svg)](../../static/img/lecture/greenwood2016_particip.svg "図 5.17: Married women’s participation")
+[![](../../static/img/lecture/greenwood2016_particip.svg)](../../static/img/lecture/greenwood2016_particip.svg "図 6.17: Married women’s participation")
 
-図 5.17: Married women’s participation
+図 6.17: Married women’s participation
 
 結婚の減少には \\p\\ の下落と \\w\\ の上昇の両方が効いています ([図 fig-gg2016-cf-single](#fig-gg2016-cf-single)). 家事財の技術が進歩しなければ家庭内の協業が魅力を保ち, 賃金が上がらなければ独身の生活が成り立ちにくいままだからです. 一方, 既婚女性の労働参加を押し上げたのは主に家事財の技術進歩です ([図 fig-gg2016-cf-flp](#fig-gg2016-cf-flp)). 女性の賃金が男性より低いという構造が変わらない限り, 家事負担は女性に寄ったままなので, 家事時間を解放する技術が参加の条件になります.
 
-[![](../../static/img/lecture/greenwood2016_corr.svg)](../../static/img/lecture/greenwood2016_corr.svg "図 5.18: Correlation of spousal education")
+[![](../../static/img/lecture/greenwood2016_corr.svg)](../../static/img/lecture/greenwood2016_corr.svg "図 6.18: Correlation of spousal education")
 
-図 5.18: Correlation of spousal education
+図 6.18: Correlation of spousal education
 
-[![](../../static/img/lecture/greenwood2016_gini.svg)](../../static/img/lecture/greenwood2016_gini.svg "図 5.19: Gini of household income")
+[![](../../static/img/lecture/greenwood2016_gini.svg)](../../static/img/lecture/greenwood2016_gini.svg "図 6.19: Gini of household income")
 
-図 5.19: Gini of household income
+図 6.19: Gini of household income
 
 同類婚の増加と世帯所得格差の拡大を駆動するのは賃金, とりわけ大卒プレミアムの上昇です ([図 fig-gg2016-cf-corr](#fig-gg2016-cf-corr), [図 fig-gg2016-cf-gini](#fig-gg2016-cf-gini)). 大卒の価値が上がると, 教育への投資が増えると同時に「大卒の相手」の結婚市場での価値も上がり, 同類婚傾向が強まり, それが世帯所得の格差を広げます.
 
-### 5.3.5 まとめ
+### 6.3.5 まとめ
 
 Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイントは2つです. 第1に, ジェンダーと教育・能力の異質性を入れたことで, 学歴別の結婚行動や同類婚という「誰と誰が」の問いを扱えるようになりました. モデルの本質は変わらず, 定常分布 \\\mathcal{S}\\ や \\\mathcal{M}\\ の次元が増えただけです. 第2に, 教育選択を内生化したことで, 賃金構造の変化が教育・結婚市場・世帯格差へ波及する経路を一つのモデルで定量化できます. ただし, 家計内の資源配分は「共通の効用へのスケーリング + 妻の労働の二択」という簡便な形に留まっています. 家計の中の交渉と時間配分を本格的に開くのが, Goussé et al. ([2017](#ref-gousse2017)) です.
 
-## 5.4 Goussé et al. ([2017](#ref-gousse2017))
+## 6.4 Goussé et al. ([2017](#ref-gousse2017))
 
-### 5.4.1 Motivation
+### 6.4.1 Motivation
 
 1990年代以降の先進国では, それまでのマクロなトレンドが落ち着き, 別の変化が進みます. 既婚女性の労働供給の伸びは頭打ちになる一方で, 男女間・既婚未婚間の時間配分の差は根強く残り, 結婚の賃金プレミアムは (特に男性で) 上昇し, ジェンダー賃金格差はゆっくり縮小し, 社会の意識は伝統的家族観から離れていきました. Greenwood et al. ([2016](#ref-greenwood2016)) のような集計技術の変化だけでは, この時期の変化は説明しにくくなっています. そこでこの論文は, 賃金・学歴に加えて家族観 (family values) という第3の異質性を明示的に入れ, 次の問いを立てます.
 
@@ -355,13 +327,13 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 1つ目の問いに答えるための材料が, 家族観を測る Family Values Index (FVI) です. BHPS の, 子ども・結婚・同棲・離婚についての意識を問う質問への回答を主成分分析して作った指標で, 値が高いほど社会的に保守的であることを意味します. [図 fig-gousse2017-table1b](#fig-gousse2017-table1b) は, 男女別・配偶関係別の FVI の平均の推移です. 男性は女性より, 有配偶者は独身者より保守的で, 4つのグループすべてが1991年から2008年にかけて緩やかにリベラル化しています (18年で0.5未満). 有配偶者と独身者の差は, 家族観が結婚市場の選別に効いていることを示唆します.
 
-[![](../../static/img/article/gousse2017/table1b.svg)](../../static/img/article/gousse2017/table1b.svg "図 5.20: Family Values Index (Table I, Bottom Panel)")
+[![](../../static/img/article/gousse2017/table1b.svg)](../../static/img/article/gousse2017/table1b.svg "図 6.20: Family Values Index (Table I, Bottom Panel)")
 
-図 5.20: Family Values Index (Table I, Bottom Panel)
+図 6.20: Family Values Index (Table I, Bottom Panel)
 
 2つ目の問いが, この講義の文脈では特に重要です. Collective モデル ([sec-gmm-micro](#sec-gmm-micro) 節で GMM 推定した Pareto ウェイト \\\mu\\) では, 交渉力は外生か, 分配要因の誘導形の関数として与えられていました. サーチ・マッチングの均衡でこれを内生化すると, 「結婚市場で誰に出会えるか」という outside options が交渉力の源泉として定式化できます.
 
-### 5.4.2 モデル
+### 6.4.2 モデル
 
 このモデルは, ここまでの2本と違って連続時間で表現されています. Greenwood and Guner ([2009](#ref-greenwood2009)) と Greenwood et al. ([2016](#ref-greenwood2016)) が1期1年の離散時間だったのに対し, ここでは出会い・マッチの質の変動といったイベントがポアソン過程として到着します. 割引率は \\r\\ で表され, 価値関数は Hamilton-Jacobi-Bellman (HJB) 方程式の形で価値関数が書かれます. 連続時間モデルに関しては, [sec-apdx-ct](#sec-apdx-ct) にまとめてあります.
 
@@ -373,15 +345,15 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 サーチをするのは独身者だけです. 出会いは CRS のマッチング関数で生まれ, 1人あたりの出会い率は \\\lambda = \xi \left(N_m N_f\right)^{-1/2}\\ です. 出会った男女はマッチの質 \\z \sim \log \mathcal{N}(0, \sigma)\\ (CDF を \\G(z)\\ とおく) を引き, 双方が合意すれば結婚します. 合意するかどうかはタイプの組と \\z\\ の実現で決まるので, 観察される \\i, j\\ から結婚に至る確率は [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) で表されます.
 
-\\ \alpha\_{ij} = \int \mathbb{1}\_{ij}\left(z\right) dG\left(z\right). \tag{5.3}\\ ここで, \\\mathbb{1}\_{ij}(z)\\ は, タイプの組 \\\left(i, j\right)\\ がマッチの質 \\z\\ で結婚するかどうかを示すインディケータです.
+\\ \alpha\_{ij} = \int \mathbb{1}\_{ij}\left(z\right) dG\left(z\right). \tag{6.3}\\ ここで, \\\mathbb{1}\_{ij}(z)\\ は, タイプの組 \\\left(i, j\right)\\ がマッチの質 \\z\\ で結婚するかどうかを示すインディケータです.
 
 結婚後は, 率 \\\delta\\ でマッチの質が引き直されます. 新しい \\z'\\ は同じ \\G\\ から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび \\\alpha\_{ij}\\ です. したがって離婚ハザードは \\\delta \left(1 - \alpha\_{ij}\right)\\ になります. 結婚と離婚を同じ \\\alpha\_{ij}\\ が決めていると言う構造が重要です. \\\alpha\_{ij}\\ が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い \\z\\ の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.
 
 [図 fig-gousse2017-flowchart](#fig-gousse2017-flowchart) にここまでの構造をまとめました. 独身の男女がそれぞれのプールで相手を探し, 率 \\\lambda\\ で出会って \\z\\ を引き, 合意すれば夫婦のプールへ移ります. 結婚後は率 \\\delta\\ で \\z\\ が引き直され, 合意が続けばそのまま, 途切れれば両者が独身のプールに戻ります. 図の下に書いた流出入のバランスが, 後で定常状態を定める条件になります.
 
-[![](../../static/cetz/marriage_search_match.svg)](../../static/cetz/marriage_search_match.svg "図 5.21: Search and matching with types, bargaining, and renegotiation")
+[![](../../static/cetz/marriage_search_match.svg)](../../static/cetz/marriage_search_match.svg "図 6.21: Search and matching with types, bargaining, and renegotiation")
 
-図 5.21: Search and matching with types, bargaining, and renegotiation
+図 6.21: Search and matching with types, bargaining, and renegotiation
 
 #### 選好と家庭内生産
 
@@ -410,7 +382,7 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 の形で特定化されます.
 
-\\ \psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad A_i = a\_{0i} + a\_{1i} w_i + \frac{1}{2} a\_{2} w_i^2, \qquad \ln B_i = b_i \ln w_i \tag{5.4}\\
+\\ \psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad A_i = a\_{0i} + a\_{1i} w_i + \frac{1}{2} a\_{2} w_i^2, \qquad \ln B_i = b_i \ln w_i \tag{6.4}\\
 
 \\A_i\\ は「効用が正になるのに最低限必要な私的支出」, \\B_i\\ は本人の賃金 (余暇の価格) に応じた個人別の価格指数で, 分子 \\q\left(R - A_i\right)\\ は名目の効用水準と読めます. 公共財 \\q\\ と私的支出が掛け算で入るのがポイントで, これが後で移転可能効用を生みます. パラメータ \\a\_{0i}, a\_{1i}, b_i\\ は本人の特性 (学歴・家族観) の線形関数, \\a_2\\ は性別ごとの定数です.
 
@@ -434,13 +406,13 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 独身の男性 (タイプ \\i\\) の価値 \\V_m^0\left(i\right)\\ は次を満たします.
 
-\\ r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left\[V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{+} n_f\left(j\right) dG\left(z\right) dj \tag{5.5}\\
+\\ r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left\[V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{+} n_f\left(j\right) dG\left(z\right) dj \tag{6.5}\\
 
 \\u_m^0\left(i\right)\\ は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 \\\max\_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)\\), \\V_m^1\left(i, j, z\right)\\ はタイプ \\i\\ の男性がタイプ \\j\\ の相手とマッチの質 \\z\\ で結婚したときの価値です. 率 \\\lambda\\ で相手に出会い, 相手のタイプは独身女性の分布 \\n_f\\ から, \\z\\ は \\G\\ から引かれます. 正の部分 \\\left\[\cdot\right\]^{+}\\ が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.
 
 結婚している男性の価値は, 自分のタイプ \\i\\ だけでなく相手のタイプ \\j\\ とマッチの質 \\z\\ にも依存します. 結婚契約の価値を \\W_m\left(i, j, z\right)\\ と書くと, 契約で決まったフロー効用 \\u_m\left(i, j, z\right)\\ と, 次に \\z\\ が引き直されたときの選択の価値からなります.
 
-\\ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left\[\max\left\\V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\\ - W_m\left(i, j, z\right)\right\] dG\left(z'\right) \tag{5.6}\\
+\\ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left\[\max\left\\V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\\ - W_m\left(i, j, z\right)\right\] dG\left(z'\right) \tag{6.6}\\
 
 第2項が離婚のオプション価値です. 率 \\\delta\\ で新しい \\z'\\ が引かれ, 継続の価値 \\V_m^1\left(i, j, z'\right)\\ が独身の価値 \\V_m^0\left(i\right)\\ を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは \\z\\ だけで, タイプの組 \\\left(i, j\right)\\ は結婚している限り変わらないことに注意してください. 離婚してはじめて \\i\\ は独身プールに戻り, 相手を選び直します.
 
@@ -463,7 +435,7 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり [式 eq-gousse-married](#eq-gousse-married) の契約の価値 \\W_m\\ は継続価値 \\V_m^1\left(z\right)\\ そのものでなければならず, これを代入して整理すると ([sec-apdx-nocommit](#sec-apdx-nocommit)), 次の式を得ます.
 
-\\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{5.7}\\
+\\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{6.7}\\
 
 左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. \\u_m - r V_m^0\\ が「今期, 結婚しているおかげで独身より多く得ている分」, \\\delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right)\\ が「次に \\z'\\ が引き直されたときのオプション価値」 になります.
 
@@ -471,15 +443,15 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を \\S\_{ij}\left(z\right) := B_i\left\[V_m^1\left(z\right) - V_m^0\right\] + B_j\left\[V_f^1\left(z\right) - V_f^0\right\]\\ と定義すると, [sec-apdx-gousse-surplus](#sec-apdx-gousse-surplus) より, 次の式が成り立ちます.
 
-\\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{5.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
+\\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{6.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
 
 この時, 合意条件 \\\mathbb{1}\_{ij}\left(z\right) = \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\\\ を閉じた形でかけます. [式 eq-gousse-surplus](#eq-gousse-surplus) の右辺は \\zF\_{ij}X\_{ij}\\ のみが \\z\\ に依存し, 自明に増加かんすうであるので, 余剰 \\S\_{ij}\left(z\right)\\ も \\z\\ について増加関数になります. したがって, ある閾値 \\\underline{z}\_{ij}\\ が存在して, 「\\z\\ が \\\underline{z}\_{ij}\\ 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) のインディケータは次の形で書くことができます.
 
-\\ \alpha\_{ij} = \int \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\ dG\left(z\right) = 1 - G\left(\underline{z}\_{ij}\right) \tag{5.9}\\
+\\ \alpha\_{ij} = \int \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\ dG\left(z\right) = 1 - G\left(\underline{z}\_{ij}\right) \tag{6.9}\\
 
 独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は [sec-apdx-gousse-single](#sec-apdx-gousse-single)).
 
-\\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{5.10}\\
+\\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{6.10}\\
 
 この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.
 
@@ -489,17 +461,17 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 \\ \beta\_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\\ r V_m^0 - \beta B_j\\ r V_f^0}{z F\_{ij} X\_{ij}} \\
 
-となります (導出は付録の [sec-apdx-gousse-share](#sec-apdx-gousse-share) 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
+となります (導出は付録の [sec-apdx-gousse-share](#sec-apdx-gousse-share) 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
 
 #### 定常状態
 
 タイプの組 \\\left(i, j\right)\\ ごとに, 結婚による流入と離婚による流出がバランスします.
 
-\\ \delta\left(1-\alpha\_{ij}\right)\\ m\left(i, j\right) = \lambda\\ n_m\left(i\right)\\ n_f\left(j\right)\\ \alpha\_{ij} \tag{5.11}\\
+\\ \delta\left(1-\alpha\_{ij}\right)\\ m\left(i, j\right) = \lambda\\ n_m\left(i\right)\\ n_f\left(j\right)\\ \alpha\_{ij} \tag{6.11}\\
 
 ここで, \\m\\ は夫婦の分布, \\n_m, n_f\\ は独身者の分布です. 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.
 
-### 5.4.3 推定
+### 6.4.3 推定
 
 データはイギリスの家計パネル BHPS の1991-2008年 (22-50歳) です. 賃金, 市場労働時間, 家事時間 (BHPS の設問の制約で育児は含みません) を使います. 家族観指数 (Family Values Index) は, 「未就学児がいるのに母親が働くと子どもが苦しむ」「夫が稼ぎ妻は家庭を守るべき」といった13の意識項目の第1主成分です. この指数は賃金・学歴とほぼ直交しており (\\R^2\\ は数%), 賃金や教育とは独立の異質性として機能します.
 
@@ -520,7 +492,7 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 出会い関数 \\\lambda = \xi \left(N_m N_f\right)^{-\frac{1}{2}}\\ を代入すると, 次の式を得ます.
 
-\\ \frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1. \tag{5.12}\\
+\\ \frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1. \tag{6.12}\\
 
 フローはサンプルが小さいので, \\MR(i, j), DR(i, j)\\ は学歴 (男女それぞれ3カテゴリ) のセルごとに集計し, 4つの期間 (94-96, 97-99, 00-02, 03-05) をプールして推定します[^3]. 推定は1を被説明変数, \\\left(N_m N_f\right)^{1/2} MR(i, j)\\ と \\DR(i, j)\\ を説明変数とする切片なしの回帰です[^4]. これにより \\\hat{\xi} = 0.151\\, \\\hat{\delta} = 0.0378\\ を得ます. これは, 出会いの間隔は中央値で4年半ほど, 引き直し率は18年に1回ほどという意味です. また, \\\alpha\_{ij}\\ は [式 eq-gousse-steady](#eq-gousse-steady) を変形して,
 
@@ -528,9 +500,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 ここで注意すべきなのは, この復元がセルごとに流入と流出が一致する \\MF(i, j) = DF(i, j)\\ を課していることです. この仮定はグラフで確認できます. タイプの組・期間ごとの結婚フロー \\MF(i, j)\\ を横軸, 離婚フロー \\DF(i, j)\\ を縦軸にとったのが [図 fig-gousse2017-flows](#fig-gousse2017-flows) で, 定常状態が成り立っていれば点は45度線に乗るはずです[^5]. 回帰直線の傾きは 0.86 (\\R^2 = 64\\\\) と45度線からやや外れますが, 系統的なズレは見られません.
 
-[![](../../static/img/article/gousse2017/fig6.svg)](../../static/img/article/gousse2017/fig6.svg "図 5.22: Marriage and divorce flows by type and period (Fig. 6)")
+[![](../../static/img/article/gousse2017/fig6.svg)](../../static/img/article/gousse2017/fig6.svg "図 6.22: Marriage and divorce flows by type and period (Fig. 6)")
 
-図 5.22: Marriage and divorce flows by type and period (Fig. 6)
+図 6.22: Marriage and divorce flows by type and period (Fig. 6)
 
 **2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと \\\left(\beta, \sigma\right)\\ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. \\\beta\\ は夫婦の余暇の水準から, \\\sigma\\ はその分散から識別されます (付録 [sec-apdx-gousse-est2](#sec-apdx-gousse-est2) 節)
 
@@ -540,11 +512,11 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 主要な推定値は, 出会い率 \\\xi = 0.151\\ (出会いの間隔は中央値で4年半ほど), 引き直し率 \\\delta = 0.038\\ (18年に1回ほど), Nash ウェイト \\\hat\beta = 0.45\\, マッチの質のばらつき \\\hat\sigma = 0.268\\ です. 選好と家庭内生産のパラメータは [図 fig-gousse2017-estimates](#fig-gousse2017-estimates) にまとめられています. 家族観が効くのは家庭内生産の最低投入時間で, 夫婦の \\D^1_j\left\[FVI\right\]\\ は女性で \\+0.0159\\, 男性で \\-0.0073\\ と符号が逆です. 保守的な妻は家事時間を増やし, 保守的な夫は減らす, という比較優位がここで作られています. 一方, 学歴は選好側 (消費のウェイト \\a\_{0j}\\, \\a\_{1j}\\) と生活費 \\C\\ に効きます.
 
-[![](../../static/img/article/gousse2017/table3.svg)](../../static/img/article/gousse2017/table3.svg "図 5.23: Estimated preference and home production parameters (Table III)")
+[![](../../static/img/article/gousse2017/table3.svg)](../../static/img/article/gousse2017/table3.svg "図 6.23: Estimated preference and home production parameters (Table III)")
 
-図 5.23: Estimated preference and home production parameters (Table III)
+図 6.23: Estimated preference and home production parameters (Table III)
 
-### 5.4.4 結果
+### 6.4.4 結果
 
 #### 同類婚の3つの側面
 
@@ -554,9 +526,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 - **家族観**: **非対称**な homophily. 保守的な人は保守的な相手を強く選ぶが, リベラルな人は相手の家族観にほぼ無差別
 - **賃金**: homophily は**ほぼない**. 女性の賃金はマッチングにほとんど影響せず, 観察されるのは「低賃金の男性が結婚しにくい」という一方向の選別だけ
 
-[![](../../static/img/article/gousse2017/table2.svg)](../../static/img/article/gousse2017/table2.svg "図 5.24: Matching probabilities by type (Table II)")
+[![](../../static/img/article/gousse2017/table2.svg)](../../static/img/article/gousse2017/table2.svg "図 6.24: Matching probabilities by type (Table II)")
 
-図 5.24: Matching probabilities by type (Table II)
+図 6.24: Matching probabilities by type (Table II)
 
 家族観の非対称性は [図 fig-gousse2017-table2](#fig-gousse2017-table2) (b) にはっきり出ています. FVI の四分位で, Q4 が最も保守的, Q1 が最もリベラルです. リベラルな男性 (Q1 の行) のマッチング確率は相手の家族観によらずほぼ一定 (1991-93年で 0.37-0.38) なのに対し, 保守的な男性 (Q4 の行) は相手が保守的なら 0.51, リベラルなら 0.30 と大きく下がります. 列で見ても同じで, 保守的な人だけが相手を選んでいます.
 
@@ -564,17 +536,17 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 ただし, 妻の賃金シェアが高いということは, 裏返せば夫の賃金が低いということでもあります. どちらが効いているのかを分解しているのが [図 fig-gousse2017-table2](#fig-gousse2017-table2) (c) です. 高賃金の男性 (Q4) は低賃金の男性 (Q1) のおよそ2倍の頻度で結婚する一方, 女性の賃金はマッチングにほとんど効いていません. つまり [図 fig-gousse2017-wageratio](#fig-gousse2017-wageratio) の下落は, 妻の賃金シェアが \\1/2\\ を超えたことに反応しているのではなく, そこに低賃金の夫が集まっていることの反映だ, というのがこのモデルの解釈です.
 
-[![](../../static/img/article/gousse2017/fig7.svg)](../../static/img/article/gousse2017/fig7.svg "図 5.25: Matching probability by the wife’s wage share (Fig. 7)")
+[![](../../static/img/article/gousse2017/fig7.svg)](../../static/img/article/gousse2017/fig7.svg "図 6.25: Matching probability by the wife’s wage share (Fig. 7)")
 
-図 5.25: Matching probability by the wife’s wage share (Fig. 7)
+図 6.25: Matching probability by the wife’s wage share (Fig. 7)
 
 > **NOTE:**
 >
 > Bertrand et al. ([2015](#ref-bertrand2015)) は妻の家計に占める所得の割合が50%を境に大きく下落することを示しました.
 >
-> [![](../../static/img/article/bertrand2015/fig1.svg)](../../static/img/article/bertrand2015/fig1.svg "図 5.26: Distribution of Relative Income, Figure 1 of @bertrand2015")
+> [![](../../static/img/article/bertrand2015/fig1.svg)](../../static/img/article/bertrand2015/fig1.svg "図 6.26: Distribution of Relative Income, Figure 1 of @bertrand2015")
 >
-> 図 5.26: Distribution of Relative Income, Figure 1 of Bertrand et al. ([2015](#ref-bertrand2015))
+> 図 6.26: Distribution of Relative Income, Figure 1 of Bertrand et al. ([2015](#ref-bertrand2015))
 >
 > 彼女らはこの現象を「妻が夫より稼ぐことへの社会的規範」だと解釈しました (Breadwinner norm). しかし, 結婚市場の結果である可能性が Goussé et al. ([2017](#ref-gousse2017)) で示唆されただけでなく, Binder and Lam ([2022](#ref-binder2022)) が社会規範なしのモデルで同様の分布を再現しています.
 
@@ -586,9 +558,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 面白いのは, そこへ交差項を1つずつ戻したときです. 学歴の交差項 \\Ed_m \times Ed_f\\ だけが 0.71 まで回復させ, 残り8通りはどれも 0.54-0.62 にとどまります. 家族観の交差項 \\FVI_m \times FVI_f\\ に至っては 0.54 のままで, 何も足していません.
 
-[![](../../static/img/article/gousse2017/table4.svg)](../../static/img/article/gousse2017/table4.svg "図 5.27: Fit of matching probabilities (Table IV)")
+[![](../../static/img/article/gousse2017/table4.svg)](../../static/img/article/gousse2017/table4.svg "図 6.27: Fit of matching probabilities (Table IV)")
 
-図 5.27: Fit of matching probabilities (Table IV)
+図 6.27: Fit of matching probabilities (Table IV)
 
 つまり, 公共財の質に入る補完性 (「似た相手といること自体が良い」という選好的なチャネル) で説明できるのは学歴の同類婚だけです. 家族観の非対称な homophily は, ここではなく家庭内生産の側から来ています. 保守的な妻は家事時間を増やし, 保守的な夫は減らす (\\D^1_j\left\[FVI\right\]\\ の符号が男女で逆, [図 fig-gousse2017-estimates](#fig-gousse2017-estimates)) ので, 保守的な相手は分業の相手として価値を持ちます. 学歴は選好を通じて, 家族観は家庭内生産の比較優位を通じて同類婚を生む, というのがこの論文の整理です.
 
@@ -596,15 +568,15 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 構造パラメータは全期間で共通なので, 期間ごとに動かしているのは賃金・学歴・家族観の分布だけです. それでも, 男女別・配偶関係別の賃金・家族観・学歴構成・市場労働時間・家事時間のトレンドは概ね再現されます ([図 fig-gousse2017-fit-trends](#fig-gousse2017-fit-trends)). 女性の市場労働時間の変化をやや過大に予測する点を除けば, 水準も傾きも合っています.
 
-[![](../../static/img/article/gousse2017/fig8.svg)](../../static/img/article/gousse2017/fig8.svg "図 5.28: Model fit: trends by gender and marital status (Fig. 8)")
+[![](../../static/img/article/gousse2017/fig8.svg)](../../static/img/article/gousse2017/fig8.svg "図 6.28: Model fit: trends by gender and marital status (Fig. 8)")
 
-図 5.28: Model fit: trends by gender and marital status (Fig. 8)
+図 6.28: Model fit: trends by gender and marital status (Fig. 8)
 
 より厳しいテストが, 夫婦の中での賃金シェアと稼得シェアの分布です ([図 fig-gousse2017-fit-shares](#fig-gousse2017-fit-shares)). 全夫婦に加えて, 夫婦とも保守的な組とリベラルな組に分けて描いても, 分布の形の違い (保守的な夫婦では妻の稼得シェアが低い側に大きく偏り, リベラルな夫婦ではより対称に近い) がモデルで再現されます. 家族観が家庭内生産の比較優位を通じて分業を決める, という構造が効いている証拠です.
 
-[![](../../static/img/article/gousse2017/fig9.svg)](../../static/img/article/gousse2017/fig9.svg "図 5.29: Model fit: wage and earnings shares within couples (Fig. 9)")
+[![](../../static/img/article/gousse2017/fig9.svg)](../../static/img/article/gousse2017/fig9.svg "図 6.29: Model fit: wage and earnings shares within couples (Fig. 9)")
 
-図 5.29: Model fit: wage and earnings shares within couples (Fig. 9)
+図 6.29: Model fit: wage and earnings shares within couples (Fig. 9)
 
 #### Sharing rule: 夫はなぜ55%を取るのか
 
@@ -612,9 +584,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 タイプ別に見ると ([図 fig-gousse2017-sharing](#fig-gousse2017-sharing)), 学歴には補償的な移転が働いています. 夫の学歴が低いほど夫の取り分は大きく, 妻の学歴が高いほど夫の取り分は大きくなります. 妻の取り分が夫を上回る唯一のケースは, 非大卒の妻が大卒の夫と結婚した場合です. 家族観による差はほとんどありません (分業には強く効くのに, 私的支出の分配には効かない). 目を引くのは最下段の賃金比によるパネルで, 賃金の高い側ほど取り分が大きく, しかもその差が時間とともに開いています. 伝統的な家族像から離れていく文化的変化の副産物として, 夫婦間の再分配がむしろ細っている, という読み方ができます.
 
-[![](../../static/img/article/gousse2017/fig10.svg)](../../static/img/article/gousse2017/fig10.svg "図 5.30: Mean sharing rule by type (Fig. 10)")
+[![](../../static/img/article/gousse2017/fig10.svg)](../../static/img/article/gousse2017/fig10.svg "図 6.30: Mean sharing rule by type (Fig. 10)")
 
-図 5.30: Mean sharing rule by type (Fig. 10)
+図 6.30: Mean sharing rule by type (Fig. 10)
 
 #### 反実仮想: 女性の労働供給は何で決まっているか
 
@@ -627,9 +599,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 3と4の効果がほぼ同じ大きさであることが, この論文の結論を要約しています. 「全員をリベラルにする」ことは「女性の家庭内生産の比較優位を取り除く」ことと定量的にほぼ同値であり, 家族観は比較優位を通じて分業を規定している, ということです. 残る男女の市場労働の差 (2時間程度) は, ジェンダー賃金格差でほぼ説明できます.
 
-[![](../../static/img/article/gousse2017/table6.svg)](../../static/img/article/gousse2017/table6.svg "図 5.31: Counterfactual simulations (Table VI)")
+[![](../../static/img/article/gousse2017/table6.svg)](../../static/img/article/gousse2017/table6.svg "図 6.31: Counterfactual simulations (Table VI)")
 
-図 5.31: Counterfactual simulations (Table VI)
+図 6.31: Counterfactual simulations (Table VI)
 
 Achdou, Yves, Jiequn Han, Jean-Michel Lasry, Pierre-Louis Lions, and Benjamin Moll. 2022. “Income and Wealth Distribution in Macroeconomics: A Continuous-Time Approach.” *Review of Economic Studies* 89 (1): 45–86. <https://doi.org/10.1093/restud/rdab002>.
 
@@ -648,8 +620,6 @@ Greenwood, Jeremy, Nezih Guner, Georgi Kocharkov, and Cezar Santos. 2016. “Tec
 McCall, J. J. 1970. “Economics of Information and Job Search.” *The Quarterly Journal of Economics* 84 (1): 113–26. <https://doi.org/10.2307/1879403>.
 
 McGrattan, Ellen R., Richard Rogerson, and Randall Wright. 1997. “An Equilibrium Model of the Business Cycle with Household Production and Fiscal Policy.” *International Economic Review* 38 (2): 267–90. <https://doi.org/10.2307/2527375>.
-
-Rothschild, Michael, and Joseph E Stiglitz. 1970. “Increasing Risk: I. A Definition.” *Journal of Economic Theory* 2 (3): 225–43. <https://doi.org/10.1016/0022-0531(70)90038-4>.
 
 Yanagimoto, Kazuharu. 2026. *Marriage and Divorce in Continuous Time*. arXiv:2602.19798. arXiv. <https://doi.org/10.48550/arXiv.2602.19798>.
 

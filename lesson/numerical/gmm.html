@@ -232,14 +232,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/allocation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">家計内配分</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/search.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
   </div>
 </li>
       </ul>
@@ -9974,7 +9980,7 @@ g(w_i, \psi_i) := U\left(h^*_i; w_i, \psi_i\right) - U\left(\bar{H}; w_i, \psi_i
 <li>労働時間 <span class="math inline">\(h_i\)</span> と対数月収 <span class="math inline">\(y_i\)</span> の相関, <span class="math inline">\(\operatorname{Cov}\left(h_i, y_i\right) / \left(s_h s_y\right)\)</span></li>
 <li>40時間で働く人のダミー <span class="math inline">\(d_i\)</span> の平均, <span class="math inline">\(\mathbb{E}[d_i]\)</span></li>
 </ol>
-<p>このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. <a href="../appendix/proof.html#sec-apdx-influence" class="quarto-xref"><span>Section A.6</span></a> の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として <span class="math inline">\(\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i\)</span> と書けます. この <span class="math inline">\(\xi_i\)</span> を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.</p>
+<p>このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. <a href="../appendix/proof.html#sec-apdx-influence" class="quarto-xref"><span>Section A.8</span></a> の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として <span class="math inline">\(\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i\)</span> と書けます. この <span class="math inline">\(\xi_i\)</span> を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.</p>
 <p><span id="eq-ls-influence"><span class="math display">\[
 \begin{aligned}
 \xi_{1i} &amp;= h_i - \mathbb{E}\left[h\right], \qquad
