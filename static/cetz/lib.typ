@@ -96,3 +96,27 @@
   import cetz.draw: *
   circle((ctx.pt)(x, y), radius: radius, fill: color, stroke: edge)
 }
+
+// ---- numerics ---------------------------------------------------------------
+// Clamp v into [lo, hi].
+#let clamp(v, lo, hi) = calc.max(lo, calc.min(hi, v))
+
+// Bisection root finder. `f` must be continuous on [lo, hi] and take opposite
+// signs at the two ends. Used to place points on implicitly defined curves so
+// that a figure's geometry stays exact when its parameters are edited.
+#let bisect(f, lo, hi, iters: 80) = {
+  let a = lo
+  let b = hi
+  let fa = f(a)
+  for _ in range(iters) {
+    let m = (a + b) / 2
+    let fm = f(m)
+    if (fm < 0) == (fa < 0) {
+      a = m
+      fa = fm
+    } else {
+      b = m
+    }
+  }
+  (a + b) / 2
+}

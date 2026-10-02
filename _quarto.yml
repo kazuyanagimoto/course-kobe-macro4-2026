@@ -20,18 +20,16 @@ book:
     - index.qmd
     - part: 数値計算
       chapters:
-        - lesson/numerical/nonlinear-opt.qmd
-        - lesson/numerical/function-approximation.qmd
-        - lesson/numerical/dynamic-programming.qmd
+        - lesson/numerical/nlopt.qmd
+        - lesson/numerical/approx.qmd
+        - lesson/numerical/dp.qmd
         - lesson/numerical/gmm.qmd
     - part: lesson/marriage/index.qmd
       chapters:
-        - lesson/marriage/search-matching.qmd
-        - lesson/marriage/frictionless-marriage.qmd
+        - lesson/marriage/search.qmd
         - lesson/marriage/fertility.qmd
   appendices:
     - lesson/appendix/proof.qmd
-    - lesson/appendix/matching.qmd
     - lesson/appendix/continuous-time.qmd
     - references.qmd
 

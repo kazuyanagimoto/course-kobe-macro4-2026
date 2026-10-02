@@ -2,147 +2,27 @@
 
 本書は, 神戸大学大学院の講義 Family Macroeconomics の講義ノートです. 結婚, 離婚, 出生, 家計内の資源配分といった家族の意思決定を, マクロ経済学の定量的な手法 (動的計画法, 構造推定, 均衡モデル) で分析します.
 
-## なぜ家族のマクロ経済学か
+## 講義の概要
 
-@greenwood2023 は @kuznets1957 に着想を得て, 過去百数十年の間に先進国で起きた家族にまつわる大きな変化を, 家族経済学者のための「クズネッツ的事実」として6つにまとめています.
-
-1. (家事) 労働時間の減少
-1. 出生率の減少
-1. 結婚の減少
-1. 世帯サイズの縮小
-1. 高学歴者の増加
-1. ブルーカラーからホワイトカラーへの転換
-
-論文はアメリカを念頭に置いていますが, 日本を含む多くの先進国で同様の傾向が観察されます. 本書で学ぶモデルたちは, すべてこの6つの事実を背景にしています. 駆け足で見ておきましょう.
-
-### 1. (家事) 労働時間の減少
-
-![](/static/img/article/greenwood2023/fig2_2.svg){width=60% fig-align="center"}
-
-20世紀は, 家事労働時間が減少し続けた時代でした. 洗濯機・冷蔵庫・電子レンジといった家電の普及がその背景にあります.
-
-![](/static/img/article/greenwood2023/fig2_1.svg){width=80% fig-align="center"}
-
-市場労働の時間も第二次世界大戦までは減少傾向にありました. 一方で女性の労働参加率は大きく上昇しており, 家事負担の減少がその一因と考えられます.
-
-### 2. 出生率の減少
-
-![](/static/img/article/greenwood2023/fig2_6.svg){width=70% fig-align="center"}
-
-ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります. 出生率の指標には2つの定義があるので, ここで整理しておきます.
-
-::: {.callout-note}
-
-## 2つの出生率
-
-**Total Fertility Rate** (TFR, 合計特殊出生率):
-
-$$
-TFR = \sum_{x=15}^{49} \frac{\text{\# of births to women aged } x}{\text{\# of women aged } x}.
-$$
-
-年齢別の出生行動が変わらないと仮定したとき, 女性が一生に産む子供の数を表す. 晩産化のような年齢別の出生行動の変化が起きると, 一時的に大きく動くことに注意.
-
-**Complete Cohort Fertility** (CCF, 完結コーホート出生率):
-
-$$
-CCF = \frac{\text{\# of children to women born at year } b}{\text{\# of women born at year } b}.
-$$
-
-ある年に生まれた女性が実際に一生に産んだ子供の数を表す. 通常は50歳になるまで確定しない (Human Fertility Database は「少なくとも44歳」の定義を採用).
-
-:::
-
-![](/static/img/article/greenwood2023/fig2_7.svg){width=90% fig-align="center"}
-
-国ごとのパネルデータを見ると, GDP per capita と TFR の間には負の相関があります. 「経済が成長すると出生率が下がる」というこの関係こそ, 出生の経済理論 (結婚と出生の部) が説明すべき中心的なパズルです.
-
-日本の推移も見ておきます.
-
-:::: {layout-ncol=2}
-
-::: {.column}
-
-**Total Fertility Rate** (TFR)
-
-![](/static/img/lecture/tfr.svg)
-
-:::
-
-::: {.column}
-
-**Complete Cohort Fertility** (CCF)
-
-![](/static/img/lecture/ccf.svg)
-
-:::
-
-::::
-
-1966年の TFR の急落は[丙午](https://ja.wikipedia.org/wiki/%E4%B8%99%E5%8D%88)によるもので, 出産を回避する行動が実際に観察されました (次の丙午年は2026年です). CCF は TFR より滑らかに動いており, 2つの指標の違いがよく現れています.
-
-### 3. 結婚の減少
-
-![](/static/img/article/greenwood2023/fig2_8.svg){width=80% fig-align="center"}
-
-1960年以降, 未婚化と晩婚化が進行しています. 法律婚によらない関係 (同居, cohabitation) を考慮しても, 減少傾向は変わりません.
-
-![](/static/img/article/greenwood2023/fig2_10.svg){width=80% fig-align="center"}
-
-未婚化・晩婚化は所得と正の相関を持ちます. 家事労働の減少や女性の労働参加によって「独身でいることの価値」が上昇した, という解釈が本書で学ぶモデルの見方です.
-
-:::: {layout-ncol=2}
-
-::: {.column}
-
-**Share of Never-married** at Age 45--54
-
-![](/static/img/lecture/share_nmarried.svg){width=70% fig-align="center"}
-
-:::
-
-::: {.column}
-
-**Age at First Marriage**
-
-![](/static/img/lecture/age_firstmarriage.svg){width=70% fig-align="center"}
-
-:::
-
-::::
-
-未婚化・晩婚化は日本でも進行しています. ただし日本は婚外子の割合が欧米諸国と比べて極めて低い (2020年で2.4%) ため, 結婚の減少が出生の減少に直結しやすいという特徴があります.
-
-### 4. 世帯サイズの縮小
-
-![](/static/img/article/greenwood2023/fig2_11.svg){width=100% fig-align="center"}
-
-世帯サイズは縮小傾向にあり, 所得と負の相関を持ちます. 少子化の影響に加えて, 3世代同居の減少も所得と負の相関を持っています.
-
-### 5. 高学歴者の増加
-
-![](/static/img/article/greenwood2023/fig2_12.svg){width=80% fig-align="center"}
-
-![](/static/img/article/greenwood2023/fig2_13.svg){width=70% fig-align="center"}
-
-高学歴化は所得と正の相関を持ちます. 供給側の要因は親の教育投資の増加であり, 子供の数と質のトレードオフ (quantity-quality trade-off) として結婚と出生の部で理論化します. 需要側の要因は高学歴者への賃金プレミアムの上昇で, 次の事実6と表裏一体です.
-
-### 6. ブルーカラーからホワイトカラーへの転換
-
-![](/static/img/article/greenwood2023/fig2_14.svg){width=80% fig-align="center"}
-
-![](/static/img/article/greenwood2023/fig2_15.svg){width=80% fig-align="center"}
-
-ホワイトカラーの割合は所得の上昇と正の相関を持ちます. 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です [@acemoglu2011a]. これら6つの事実を1つのモデルで説明する @greenwood2023 の定量分析は, 結婚と出生の部の最後に読みます.
-
-## 本書の構成
-
-本書は2つの部と付録からなります.
+この講義は次の2つの部分から構成されます.
 
 **数値計算**では, 家族のマクロモデルを解き, 推定するための道具を Julia で実装しながら学びます. 求根法と非線形最適化, 関数近似 (補間・数値微分・数値積分・離散化) という基礎の上に, 動的計画法を3段階 (決定論的 → 確率的 → 異質エージェント) で積み上げ, 最後に構造推定のための GMM (識別, 標準誤差, 最小距離推定) を扱います.
 
-**結婚と出生**が本書の本体です. サーチモデル [@greenwood2009; @greenwood2016], 摩擦のない結婚市場 [@choo2006; @ciscato2025; @reynoso2024], そして出生の古典理論と現代の定量分析 [@greenwood2023] を読みます. 各章の冒頭では, その章の論文を読むために必要な理論 (最適停止と留保値, 確率効用モデルとロジット) を証明付きで準備します.
-
-**付録**には, 本文から参照される証明 (黄金分割法, スプライン補間, 縮小写像と動的計画法) に加えて, マッチングと家計内配分の理論 (TU マッチングの双対性, collective model と Nash 交渉), そして発展的な話題として連続時間の異質エージェントモデル (HACT) の理論と計算 [@achdou2022] を収めています.
+**結婚と出生**が本書の本体です. サーチモデル [@greenwood2009; @greenwood2016], 摩擦のない結婚市場 [@galichon2019; @ciscato2025; @reynoso2024], そして出生の古典理論とその変化 [@doepke2023], 140年の構造変化の定量分析 [@greenwood2023] を読みます. 各章の冒頭では, その章の論文を読むために必要な理論 (最適停止と留保値, 確率効用モデルとロジット) を証明付きで準備します.
 
 数値計算はすべて Julia で書かれており, リポジトリの `Project.toml` から実行環境を再現できます. 前提知識としては, 大学院初年級のミクロ経済学・マクロ経済学と, 基礎的な確率論を想定しています.
+
+## 成績評価と課題
+
+この講義は, 60% の課題と 40% の期末レポートで評価されます. 課題の提出は全て, [Quarto](https://quarto.org) と Julia を用いたレポートとします. Julia と Quarto の使い方は TA セッションにて解説予定です.
+
+内容は, 講義で扱った内容の手計算の部分と数値計算の部分の両方を含みます.
+
+### GitHub による提出
+
+課題は GitHub を通じて提出します. TAセッションで解説がありますが, 次の手順に従ってください.
+
+0. 教員 (柳本) と学生 (個人) 専用のプライベートレポジトリを作成する. 講義を通じて一つのレポジトリを使う
+1. 課題の提出期限までに, レポジトリに解答の qmd ファイルを push する
+2. GitHub Actions が起動し, 自動的に解答の qmd ファイルのコードを実行して PDF を生成する
+3. 成績評価はPDFの内容をもとに行われる
