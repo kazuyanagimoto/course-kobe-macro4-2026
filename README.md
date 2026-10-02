@@ -19,10 +19,10 @@
 | 課題 | 提出期限 | 問題 |
 | --- | --- | --- |
 | Exercise 0 |  | [00-exercise.pdf](assignment/00-exercise/00-exercise.pdf) |
-| Exercise 1 | 2026年10月27日 | [01-exercise.pdf](assignment/01-exercise/01-exercise.pdf) |
-| Exercise 2 | 2026年12月1日 | 未公開 |
-| Exercise 3 | 2027年1月12日 | 未公開 |
-| Exercise 4 | 2027年1月26日 | 未公開 |
+| Exercise 1 | 2026年11月3日 | [01-exercise.pdf](assignment/01-exercise/01-exercise.pdf) |
+| Exercise 2 | 2026年12月8日 | 未公開 |
+| Exercise 3 | 2027年1月5日 | 未公開 |
+| Exercise 4 | 2027年1月19日 | 未公開 |
 <!-- assignments:end -->
 
 ## このレポジトリについて
