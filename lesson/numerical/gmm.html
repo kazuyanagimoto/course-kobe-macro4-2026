@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <link href="../../lesson/marriage/index.html" rel="next">
-<link href="../../lesson/numerical/dynamic-programming.html" rel="prev">
+<link href="../../lesson/numerical/dp.html" rel="prev">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c87ae1f151089946a6f14c3e0e4f3fcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-88ed28d7bef94e017bd01e7de746676c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -159,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/numerical/nonlinear-opt.html">数値計算</a></li><li class="breadcrumb-item"><a href="../../lesson/numerical/gmm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/numerical/nlopt.html">数値計算</a></li><li class="breadcrumb-item"><a href="../../lesson/numerical/gmm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,19 +196,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/nonlinear-opt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/nlopt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">非線形最適化</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/function-approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/approx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">関数近似</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/dynamic-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/dp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span></a>
   </div>
 </li>
@@ -231,20 +231,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/search-matching.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/marriage/search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/frictionless-marriage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,14 +260,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/appendix/matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">マッチングと家計内配分</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/appendix/continuous-time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -314,7 +302,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/numerical/nonlinear-opt.html">数値計算</a></li><li class="breadcrumb-item"><a href="../../lesson/numerical/gmm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/numerical/nlopt.html">数値計算</a></li><li class="breadcrumb-item"><a href="../../lesson/numerical/gmm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span id="sec-gmm" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GMM</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 <p class="subtitle lead">Generalized Method of Moments</p>
@@ -8696,7 +8684,7 @@ w_{ji} = w_{ji}^* e^{\varepsilon_{ji}^w}, \quad
 </section>
 <section id="sec-gmm-estimation" class="level3" data-number="4.1.3">
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="sec-gmm-estimation"><span class="header-section-number">4.1.3</span> 推定</h3>
-<p><a href="#eq-moments" class="quarto-xref">式&nbsp;<span>4.7</span></a> の7本のモーメントでパラメータ5個を推定します. 過剰識別 (<span class="math inline">\(p = 7 &gt; k = 5\)</span>) なので, <a href="#sec-gmm-theory" class="quarto-xref"><span>4.1.1</span></a> 節 の手順どおり2段階で最小化します. 最適化は <code>Optimization.jl</code> の共通インターフェース (第 <a href="nonlinear-opt.html" class="quarto-xref"><span>1</span></a> 章) で行い, 微分を使わない Nelder–Mead (NLopt の <code>LN_NELDERMEAD</code>) を呼びます. パラメータの制約 <span class="math inline">\(\phi_j &lt; 1\)</span>, <span class="math inline">\(\alpha_j, \mu \in \left(0, 1\right)\)</span> は, 変数変換ではなく箱制約 <code>lb</code> / <code>ub</code> としてソルバーに渡します.</p>
+<p><a href="#eq-moments" class="quarto-xref">式&nbsp;<span>4.7</span></a> の7本のモーメントでパラメータ5個を推定します. 過剰識別 (<span class="math inline">\(p = 7 &gt; k = 5\)</span>) なので, <a href="#sec-gmm-theory" class="quarto-xref"><span>4.1.1</span></a> 節 の手順どおり2段階で最小化します. 最適化は <code>Optimization.jl</code> の共通インターフェース (第 <a href="nlopt.html" class="quarto-xref"><span>1</span></a> 章) で行い, 微分を使わない Nelder–Mead (NLopt の <code>LN_NELDERMEAD</code>) を呼びます. パラメータの制約 <span class="math inline">\(\phi_j &lt; 1\)</span>, <span class="math inline">\(\alpha_j, \mu \in \left(0, 1\right)\)</span> は, 変数変換ではなく箱制約 <code>lb</code> / <code>ub</code> としてソルバーに渡します.</p>
 <div id="gmm-household" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ZW <span class="op">=</span> <span class="fu">hcat</span>(<span class="fu">ones</span>(N), <span class="fu">log</span>.(wH))               <span class="co"># wife's equation: the husband's wage</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ZH <span class="op">=</span> <span class="fu">hcat</span>(<span class="fu">ones</span>(N), <span class="fu">log</span>.(wW))               <span class="co"># husband's equation: the wife's wage</span></span>
@@ -8731,7 +8719,7 @@ w_{ji} = w_{ji}^* e^{\varepsilon_{ji}^w}, \quad
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>pn <span class="op">=</span> [<span class="st">raw"$\phi_W$"</span>, <span class="st">raw"$\phi_H$"</span>, <span class="st">raw"$\alpha_W$"</span>, <span class="st">raw"$\alpha_H$"</span>, <span class="st">raw"$\mu$"</span>]</span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>θ_true <span class="op">=</span> [φW0, φH0, αW0, αH0, μ<span class="fl">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>点推定が出たら, 次はその精度です. 2段階目の重み行列に <span class="math inline">\(W = \hat{S}^{-1}\)</span> を使ったので, これは <a href="#prp-gmm-avar" class="quarto-xref">命題&nbsp;<span>4.1</span></a> の効率的なケースに当たり, 分散は <span class="math inline">\(\left(G^\top V^{-1} G\right)^{-1} / N\)</span> に簡約されます. 材料は2つです. ヤコビアン <span class="math inline">\(\hat{G}\)</span> は数値微分 (<a href="function-approximation.html#sec-differentiation" class="quarto-xref"><span>2.2</span></a> 節) で計算し, <span class="math inline">\(\hat{S}\)</span> はモーメントの標本第2モーメント <span class="math inline">\(\frac{1}{N}\sum_i g\left(x_i, \hat\theta\right) g\left(x_i, \hat\theta\right)^\top\)</span> を推定値 <span class="math inline">\(\hat\theta\)</span> で評価し直したものを使います.</p>
+<p>点推定が出たら, 次はその精度です. 2段階目の重み行列に <span class="math inline">\(W = \hat{S}^{-1}\)</span> を使ったので, これは <a href="#prp-gmm-avar" class="quarto-xref">命題&nbsp;<span>4.1</span></a> の効率的なケースに当たり, 分散は <span class="math inline">\(\left(G^\top V^{-1} G\right)^{-1} / N\)</span> に簡約されます. 材料は2つです. ヤコビアン <span class="math inline">\(\hat{G}\)</span> は数値微分 (<a href="approx.html#sec-differentiation" class="quarto-xref"><span>2.2</span></a> 節) で計算し, <span class="math inline">\(\hat{S}\)</span> はモーメントの標本第2モーメント <span class="math inline">\(\frac{1}{N}\sum_i g\left(x_i, \hat\theta\right) g\left(x_i, \hat\theta\right)^\top\)</span> を推定値 <span class="math inline">\(\hat\theta\)</span> で評価し直したものを使います.</p>
 <div id="gmm-se" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">jacobian</span>(f, θ; h<span class="op">=</span><span class="fl">1e-4</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">length</span>(<span class="fu">f</span>(θ)), <span class="fu">length</span>(θ))</span>
@@ -9321,7 +9309,7 @@ G = U \Sigma V^\top, \qquad
 </div>
 <p>左は同心円で, 底が1点に定まっています. 右は平行な溝で, 谷底に沿ってどこまで動いても目的関数の値は変わりません. そして中央は, 目で見るかぎり右と区別がつきません. 実際には <span class="math inline">\(v_2\)</span> 方向にも <span class="math inline">\(\left(3.2 \times 10^{-4}\right)^2\)</span> の傾きがあり, 谷は <span class="math inline">\(\left|\theta - \theta_0\right| \sim 3000\)</span> のはるか遠方で閉じているのですが, この縮尺では平らな溝と同じものです. 弱識別が厄介なのは, この「ほとんど平ら」が, 数値的にはランク落ちと変わらない振る舞いをするからです.</p>
 <p>最適化アルゴリズムは谷底のどこかで問題なく「収束」します. どこに止まるかを決めているのは初期値と丸め誤差です. <a href="#sec-gmm-estimation" class="quarto-xref"><span>4.1.3</span></a> 節 で見た標準誤差の大きさは, この平らさの裏返しです.</p>
-<p>大域識別を確かめる一般的な方法はなく, 目的関数を複数の初期値から最小化して同じ解に収束するかを見る, といった間接的な確認に頼ることになります. 一方, 局所識別のランク条件はヤコビアンを数値微分 (<a href="function-approximation.html#sec-differentiation" class="quarto-xref"><span>2.2</span></a> 節) で計算すれば機械的に確認できます. しかも識別の分析はデータの実現値をほとんど必要とせず, 候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.</p>
+<p>大域識別を確かめる一般的な方法はなく, 目的関数を複数の初期値から最小化して同じ解に収束するかを見る, といった間接的な確認に頼ることになります. 一方, 局所識別のランク条件はヤコビアンを数値微分 (<a href="approx.html#sec-differentiation" class="quarto-xref"><span>2.2</span></a> 節) で計算すれば機械的に確認できます. しかも識別の分析はデータの実現値をほとんど必要とせず, 候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.</p>
 </section>
 <section id="設計を点検する" class="level4">
 <h4 class="anchored" data-anchor-id="設計を点検する">設計を点検する</h4>
@@ -9985,7 +9973,7 @@ g(w_i, \psi_i) := U\left(h^*_i; w_i, \psi_i\right) - U\left(\bar{H}; w_i, \psi_i
 <li>労働時間 <span class="math inline">\(h_i\)</span> と対数月収 <span class="math inline">\(y_i\)</span> の相関, <span class="math inline">\(\operatorname{Cov}\left(h_i, y_i\right) / \left(s_h s_y\right)\)</span></li>
 <li>40時間で働く人のダミー <span class="math inline">\(d_i\)</span> の平均, <span class="math inline">\(\mathbb{E}[d_i]\)</span></li>
 </ol>
-<p>このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. <a href="../appendix/proof.html#sec-apdx-influence" class="quarto-xref"><span>Section A.7</span></a> の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として <span class="math inline">\(\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i\)</span> と書けます. この <span class="math inline">\(\xi_i\)</span> を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.</p>
+<p>このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. <a href="../appendix/proof.html#sec-apdx-influence" class="quarto-xref"><span>Section A.6</span></a> の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として <span class="math inline">\(\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i\)</span> と書けます. この <span class="math inline">\(\xi_i\)</span> を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.</p>
 <p><span id="eq-ls-influence"><span class="math display">\[
 \begin{aligned}
 \xi_{1i} &amp;= h_i - \mathbb{E}\left[h\right], \qquad
@@ -10157,7 +10145,7 @@ g(w_i, \psi_i) := U\left(h^*_i; w_i, \psi_i\right) - U\left(\bar{H}; w_i, \psi_i
 </section>
 <section id="sec-md-quad" class="level4">
 <h4 class="anchored" data-anchor-id="sec-md-quad">モーメント条件</h4>
-<p><a href="#eq-ls-mean" class="quarto-xref">式&nbsp;<span>4.14</span></a> の積分は2次元です. 賃金も選好も対数正規なので, どちらも <span class="math inline">\(\exp\left(\mu + \sqrt{2}\,s\, z\right)\)</span> と変換すればガウス・エルミート求積 (<a href="function-approximation.html#sec-integral" class="quarto-xref"><span>Section 2.3</span></a>) がそのまま使えます. 2つの積分は独立なので, 節点の直積を取るだけです. 各節点では希望時間 <span class="math inline">\(h^*\)</span> と利得 <span class="math inline">\(g\)</span> を計算し, <a href="#eq-ls-deviate" class="quarto-xref">式&nbsp;<span>4.13</span></a> の確率で「希望時間で働く」と「40時間で働く」の2つの枝に重みを分けます. 被積分関数は滑らかなので, 各次元10点で足ります.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p><a href="#eq-ls-mean" class="quarto-xref">式&nbsp;<span>4.14</span></a> の積分は2次元です. 賃金も選好も対数正規なので, どちらも <span class="math inline">\(\exp\left(\mu + \sqrt{2}\,s\, z\right)\)</span> と変換すればガウス・エルミート求積 (<a href="approx.html#sec-integral" class="quarto-xref"><span>Section 2.3</span></a>) がそのまま使えます. 2つの積分は独立なので, 節点の直積を取るだけです. 各節点では希望時間 <span class="math inline">\(h^*\)</span> と利得 <span class="math inline">\(g\)</span> を計算し, <a href="#eq-ls-deviate" class="quarto-xref">式&nbsp;<span>4.13</span></a> の確率で「希望時間で働く」と「40時間で働く」の2つの枝に重みを分けます. 被積分関数は滑らかなので, 各次元10点で足ります.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <div id="ls-model-moments" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>μw_ls <span class="op">=</span> <span class="fl">0.0</span>                                          <span class="co"># the wage unit, normalised</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -11824,7 +11812,7 @@ Yanagimoto, Kazuharu. 2026. <em>Barriers to Gender Convergence: The Interactive 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../lesson/numerical/dynamic-programming.html" class="pagination-link" aria-label="動的計画法">
+      <a href="../../lesson/numerical/dp.html" class="pagination-link" aria-label="動的計画法">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span>
       </a>          
   </div>

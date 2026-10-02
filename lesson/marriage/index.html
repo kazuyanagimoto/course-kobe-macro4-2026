@@ -85,7 +85,7 @@ div.csl-indent {
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../../lesson/marriage/search-matching.html" rel="next">
+<link href="../../lesson/marriage/search.html" rel="next">
 <link href="../../lesson/numerical/gmm.html" rel="prev">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c87ae1f151089946a6f14c3e0e4f3fcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-88ed28d7bef94e017bd01e7de746676c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -193,19 +193,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/nonlinear-opt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/nlopt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">非線形最適化</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/function-approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/approx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">関数近似</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/dynamic-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/dp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span></a>
   </div>
 </li>
@@ -228,20 +228,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/search-matching.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/marriage/search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/frictionless-marriage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,14 +257,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/appendix/matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">マッチングと家計内配分</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/appendix/continuous-time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -390,10 +378,10 @@ window.Quarto = {
 </ul>
 <p><strong>2. 摩擦のない結婚市場モデル (Frictionless Marriage Market)</strong></p>
 <ul>
-<li><span class="citation" data-cites="choo2006">Choo and Siow (<a href="../../references.html#ref-choo2006" role="doc-biblioref">2006</a>)</span> などの初期時点で全ての人が結婚相手を見つけるモデル</li>
+<li><span class="citation" data-cites="choo2006">Choo and Siow (<a href="../../references.html#ref-choo2006" role="doc-biblioref">2006</a>)</span> に始まる, 初期時点で全ての人が結婚相手を見つけるモデル</li>
 <li>より詳細な家庭の意思決定 (家庭内配分など) をモデル化しやすい</li>
-<li>講義では <span class="citation" data-cites="choo2006">Choo and Siow (<a href="../../references.html#ref-choo2006" role="doc-biblioref">2006</a>)</span>, <span class="citation" data-cites="reynoso2024">Reynoso (<a href="../../references.html#ref-reynoso2024" role="doc-biblioref">2024</a>)</span> を紹介</li>
-<li>動学的なモデルは <span class="citation" data-cites="ciscato2025">Ciscato (<a href="../../references.html#ref-ciscato2025" role="doc-biblioref">2025</a>)</span> で紹介</li>
+<li>講義では一般枠組みとして <span class="citation" data-cites="galichon2019">Galichon et al. (<a href="../../references.html#ref-galichon2019" role="doc-biblioref">2019</a>)</span> を扱い, その特殊ケースとして <span class="citation" data-cites="choo2006">Choo and Siow (<a href="../../references.html#ref-choo2006" role="doc-biblioref">2006</a>)</span> を導く</li>
+<li>応用として <span class="citation" data-cites="ciscato2025">Ciscato (<a href="../../references.html#ref-ciscato2025" role="doc-biblioref">2025</a>)</span>, <span class="citation" data-cites="reynoso2024">Reynoso (<a href="../../references.html#ref-reynoso2024" role="doc-biblioref">2024</a>)</span> を紹介</li>
 </ul>
 <p>この講義では順番にそれぞれのモデルを紹介していきます.</p>
 
@@ -406,6 +394,9 @@ Choo, Eugene, and Aloysius Siow. 2006. <span>“Who Marries Whom and Why.”</sp
 </div>
 <div id="ref-ciscato2025" class="csl-entry" role="listitem">
 Ciscato, Edoardo. 2025. <span>“Assessing Racial and Educational Segmentation in Large Marriage&nbsp;Markets.”</span> <em>Review of Economic Studies</em> 92 (6): 3788–839. <a href="https://doi.org/10.1093/restud/rdae115">https://doi.org/10.1093/restud/rdae115</a>.
+</div>
+<div id="ref-galichon2019" class="csl-entry" role="listitem">
+Galichon, Alfred, Scott Duke Kominers, and Simon Weber. 2019. <span>“Costly Concessions: An Empirical Framework for Matching with Imperfectly Transferable Utility.”</span> <em>Journal of Political Economy</em> 127 (6): 2875–925. <a href="https://doi.org/10.1086/702020">https://doi.org/10.1086/702020</a>.
 </div>
 <div id="ref-greenwood2009" class="csl-entry" role="listitem">
 Greenwood, Jeremy, and Nezih Guner. 2009. <span>“Marriage and Divorce Since World War <span>II</span>: Analyzing the Role of Technological Progress on the Formation of Households.”</span> In <em><span>NBER</span> Macroeconomics Annual 2008, Volume 23</em>. University of Chicago Press.
@@ -881,7 +872,7 @@ Shimer, Robert, and Lones Smith. 2000. <span>“Assortative Matching and Search.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lesson/marriage/search-matching.html" class="pagination-link" aria-label="Search &amp; Matching">
+      <a href="../../lesson/marriage/search.html" class="pagination-link" aria-label="Search &amp; Matching">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -952,10 +943,10 @@ Shimer, Robert, and Lones Smith. 2000. <span>“Assortative Matching and Search.
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>**2. 摩擦のない結婚市場モデル (Frictionless Marriage Market)**</span>
 <span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@choo2006 などの初期時点で全ての人が結婚相手を見つけるモデル</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@choo2006 に始まる, 初期時点で全ての人が結婚相手を見つけるモデル</span>
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>より詳細な家庭の意思決定 (家庭内配分など) をモデル化しやすい</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では @choo2006, @reynoso2024 を紹介</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>動学的なモデルは @ciscato2025 で紹介</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では一般枠組みとして @galichon2019 を扱い, その特殊ケースとして @choo2006 を導く</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>応用として @ciscato2025, @reynoso2024 を紹介</span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>この講義では順番にそれぞれのモデルを紹介していきます.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>

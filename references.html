@@ -96,7 +96,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c87ae1f151089946a6f14c3e0e4f3fcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-88ed28d7bef94e017bd01e7de746676c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -163,19 +163,19 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/numerical/nonlinear-opt.html" class="sidebar-item-text sidebar-link">
+  <a href="./lesson/numerical/nlopt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">非線形最適化</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/numerical/function-approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="./lesson/numerical/approx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">関数近似</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/numerical/dynamic-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="./lesson/numerical/dp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span></a>
   </div>
 </li>
@@ -198,20 +198,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/marriage/search-matching.html" class="sidebar-item-text sidebar-link">
+  <a href="./lesson/marriage/search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/marriage/frictionless-marriage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,14 +227,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lesson/appendix/matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">マッチングと家計内配分</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./lesson/appendix/continuous-time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,6 +286,12 @@ Adda, Jérôme, Christian Dustmann, and Katrien Stevens. 2017. <span>“The
 Career Costs of Children.”</span> <em>Journal of Political Economy</em>
 125 (2): 293–337. <a href="https://doi.org/10.1086/690952">https://doi.org/10.1086/690952</a>.
 </div>
+<div id="ref-ahn2002" class="csl-entry" role="listitem">
+Ahn, Namkee, and Pedro Mira. 2002. <span>“A Note on the Changing
+Relationship Between Fertility and Female Employment Rates in Developed
+Countries.”</span> <em>Journal of Population Economics</em> 15 (4):
+667–82. <a href="https://doi.org/10.1007/s001480100078">https://doi.org/10.1007/s001480100078</a>.
+</div>
 <div id="ref-aiyagari1994" class="csl-entry" role="listitem">
 Aiyagari, S. Rao. 1994. <span>“Uninsured Idiosyncratic Risk and
 Aggregate Saving.”</span> <em>The Quarterly Journal of Economics</em>
@@ -315,25 +309,10 @@ Andrews, Isaiah, Matthew Gentzkow, and Jesse M. Shapiro. 2017.
 Moments*.”</span> <em>The Quarterly Journal of Economics</em> 132 (4):
 1553–92. <a href="https://doi.org/10.1093/qje/qjx023">https://doi.org/10.1093/qje/qjx023</a>.
 </div>
-<div id="ref-barro1989" class="csl-entry" role="listitem">
-Barro, Robert J., and Gary S. Becker. 1989. <span>“Fertility Choice in a
-Model of Economic Growth.”</span> <em>Econometrica</em> 57 (2): 481–502.
-<a href="https://doi.org/10.2307/1912563">https://doi.org/10.2307/1912563</a>.
-</div>
-<div id="ref-baudin2015" class="csl-entry" role="listitem">
-Baudin, Thomas, David De La Croix, and Paula E. Gobbi. 2015.
-<span>“Fertility and Childlessness in the <span>United
-States</span>.”</span> <em>American Economic Review</em> 105 (6):
-1852–82. <a href="https://doi.org/10.1257/aer.20120926">https://doi.org/10.1257/aer.20120926</a>.
-</div>
-<div id="ref-becker1973a" class="csl-entry" role="listitem">
-Becker, Gary S. 1973. <span>“A Theory of Marriage: Part
-<span>I</span>.”</span> <em>Journal of Political Economy</em> 81 (4):
-813–46. <a href="https://doi.org/10.1086/260084">https://doi.org/10.1086/260084</a>.
-</div>
-<div id="ref-becker1991" class="csl-entry" role="listitem">
-Becker, Gary S. 1991. <em>A Treatise on the Family</em>. Enl. Harvard
-University Press.
+<div id="ref-becker1960" class="csl-entry" role="listitem">
+Becker, Gary S. 1960. <span>“An Economic Analysis of Fertility.”</span>
+In <em>Demographic and Economic Change in Developed Countries</em>.
+Columbia University Press.
 </div>
 <div id="ref-becker1988" class="csl-entry" role="listitem">
 Becker, Gary S., and Robert J. Barro. 1988. <span>“A Reformulation of
@@ -356,7 +335,8 @@ and Wages.”</span> <em>The Quarterly Journal of Economics</em> 137 (3):
 1901–62. <a href="https://doi.org/10.1093/qje/qjac005">https://doi.org/10.1093/qje/qjac005</a>.
 </div>
 <div id="ref-binder2022" class="csl-entry" role="listitem">
-Binder, Ariel J., and David Lam. 2022. <span>“Is There a <span class="nocase">Male-breadwinner</span> Norm? <span>The</span> Hazards of
+Binder, Ariel J., and David Lam. 2022. <span>“Is There a
+<span>Male</span>-Breadwinner Norm? <span>The</span> Hazards of
 Inferring Preferences from Marriage Market Outcomes.”</span> <em>Journal
 of Human Resources</em> 57 (6): 1885–914. <a href="https://doi.org/10.3368/jhr.58.2.0320-10803R1">https://doi.org/10.3368/jhr.58.2.0320-10803R1</a>.
 </div>
@@ -376,45 +356,11 @@ Micro and Macro Labor Supply Elasticities Consistent? <span>A</span>
 Review of Evidence on the Intensive and Extensive Margins.”</span>
 <em>American Economic Review</em> 101 (3): 471–75. <a href="https://doi.org/10.1257/aer.101.3.471">https://doi.org/10.1257/aer.101.3.471</a>.
 </div>
-<div id="ref-chiappori2012a" class="csl-entry" role="listitem">
-Chiappori, P.-A., O. Donni, and I. Komunjer. 2012. <span>“Learning from
-a Piece of Pie.”</span> <em>Review of Economic Studies</em> 79 (1):
-162–95. <a href="https://doi.org/10.1093/restud/rdr020">https://doi.org/10.1093/restud/rdr020</a>.
-</div>
-<div id="ref-chiappori1988" class="csl-entry" role="listitem">
-Chiappori, Pierre-André. 1988. <span>“Rational Household Labor
-Supply.”</span> <em>Econometrica</em> 56 (1): 63–90. <a href="https://doi.org/10.2307/1911842">https://doi.org/10.2307/1911842</a>.
-</div>
-<div id="ref-chiappori1992" class="csl-entry" role="listitem">
-Chiappori, Pierre-André. 1992. <span>“Collective Labor Supply and
-Welfare.”</span> <em>Journal of Political Economy</em> 100 (3): 437–67.
-<a href="https://doi.org/10.1086/261825">https://doi.org/10.1086/261825</a>.
-</div>
-<div id="ref-chiappori2017b" class="csl-entry" role="listitem">
-Chiappori, Pierre-André. 2017. <em>Matching with Transfers: The
-Economics of Love and Marriage</em>. The <span>Gorman Lectures</span> in
-<span>Economics</span>. Princeton University Press.
-</div>
 <div id="ref-chiappori2025" class="csl-entry" role="listitem">
 Chiappori, Pierre-André, Monica Costa Dias, Costas Meghir, and Hanzhe
 Zhang. 2025. <span>“Changes in Marital Sorting: Theory and Evidence from
 the United States.”</span> <em>Journal of Political Economy</em> 133
 (10): 3045–77. <a href="https://doi.org/10.1086/736764">https://doi.org/10.1086/736764</a>.
-</div>
-<div id="ref-chiappori2015a" class="csl-entry" role="listitem">
-Chiappori, Pierre-Andre, Murat Iyigun, and Yoram Weiss. 2015. <span>“The
-Becker–Coase Theorem Reconsidered.”</span> <em>Journal of Demographic
-Economics</em> 81 (2): 157–77. <a href="https://doi.org/10.1017/dem.2015.3">https://doi.org/10.1017/dem.2015.3</a>.
-</div>
-<div id="ref-chiappori2024a" class="csl-entry" role="listitem">
-Chiappori, Pierre-André, and Corinne Low. 2024. <span>“Frictionless
-One-to-One Matching with Transfers: Theory.”</span> In <em>Handbook of
-the Economics of Matching</em>, vol. 1. Elsevier. <a href="https://doi.org/10.1016/bs.hesmat.2024.10.003">https://doi.org/10.1016/bs.hesmat.2024.10.003</a>.
-</div>
-<div id="ref-chiappori2016" class="csl-entry" role="listitem">
-Chiappori, Pierre-André, and Bernard Salanié. 2016. <span>“The
-Econometrics of Matching Models.”</span> <em>Journal of Economic
-Literature</em> 54 (3): 832–61. <a href="https://doi.org/10.1257/jel.20140917">https://doi.org/10.1257/jel.20140917</a>.
 </div>
 <div id="ref-choo2006" class="csl-entry" role="listitem">
 Choo, Eugene, and Aloysius Siow. 2006. <span>“Who Marries Whom and
@@ -435,12 +381,6 @@ Studies</em>, October, rdae099. <a href="https://doi.org/10.1093/restud/rdae099"
 2003. <span>“Inequality and Growth: Why Differential Fertility
 Matters.”</span> <em>American Economic Review</em> 93 (4): 1091–113. <a href="https://doi.org/10.1257/000282803769206214">https://doi.org/10.1257/000282803769206214</a>.
 </div>
-<div id="ref-decker2013" class="csl-entry" role="listitem">
-Decker, Colin, Elliott H. Lieb, Robert J. McCann, and Benjamin K.
-Stephens. 2013. <span>“Unique Equilibria and Substitution Effects in a
-Stochastic Model of the Marriage Market.”</span> <em>Journal of Economic
-Theory</em> 148 (2): 778–92. <a href="https://doi.org/10.1016/j.jet.2012.12.005">https://doi.org/10.1016/j.jet.2012.12.005</a>.
-</div>
 <div id="ref-doepke2023" class="csl-entry" role="listitem">
 Doepke, Matthias, Anne Hannusch, Fabian Kindermann, and Michèle Tertilt.
 2023. <span>“The Economics of Fertility: A New Era.”</span> In
@@ -451,29 +391,15 @@ Doepke, Matthias, and Fabian Kindermann. 2019. <span>“Bargaining over
 Babies: Theory, Evidence, and Policy Implications.”</span> <em>American
 Economic Review</em> 109 (9): 3264–306. <a href="https://doi.org/10.1257/aer.20160328">https://doi.org/10.1257/aer.20160328</a>.
 </div>
-<div id="ref-gale1962" class="csl-entry" role="listitem">
-Gale, D., and L. S. Shapley. 1962. <span>“College Admissions and the
-Stability of Marriage.”</span> <em>American Mathematical Monthly</em> 69
-(1): 9–15. <a href="https://doi.org/10.2307/2312726">https://doi.org/10.2307/2312726</a>.
-</div>
-<div id="ref-galichon2022" class="csl-entry" role="listitem">
-Galichon, Alfred, and Bernard Salanié. 2022. <span>“Cupid’s Invisible
-Hand: Social Surplus and Identification in Matching Models.”</span>
-<em>Review of Economic Studies</em> 89 (5): 2600–2629. <a href="https://doi.org/10.1093/restud/rdab090">https://doi.org/10.1093/restud/rdab090</a>.
-</div>
-<div id="ref-galichon2024" class="csl-entry" role="listitem">
-Galichon, Alfred, and Simon Weber. 2024. <span>“Matching Under
-Imperfectly Transferable Utility.”</span> In <em>Handbook of the
-Economics of Matching</em>, vol. 1. Elsevier. <a href="https://doi.org/10.1016/bs.hesmat.2024.10.002">https://doi.org/10.1016/bs.hesmat.2024.10.002</a>.
+<div id="ref-galichon2019" class="csl-entry" role="listitem">
+Galichon, Alfred, Scott Duke Kominers, and Simon Weber. 2019.
+<span>“Costly Concessions: An Empirical Framework for Matching with
+Imperfectly Transferable Utility.”</span> <em>Journal of Political
+Economy</em> 127 (6): 2875–925. <a href="https://doi.org/10.1086/702020">https://doi.org/10.1086/702020</a>.
 </div>
 <div id="ref-galor1996" class="csl-entry" role="listitem">
 Galor, Oded, and David N. Weil. 1996. <span>“The Gender Gap, Fertility,
 and Growth.”</span> <em>American Economic Review</em> 86 (3): 374–87. <a href="https://www.jstor.org/stable/2118202">https://www.jstor.org/stable/2118202</a>.
-</div>
-<div id="ref-gayle2019" class="csl-entry" role="listitem">
-Gayle, George-Levi, and Andrew Shephard. 2019. <span>“Optimal Taxation,
-Marriage, Home Production, and Family Labor Supply.”</span>
-<em>Econometrica</em> 87 (1): 291–326. <a href="https://doi.org/10.3982/ECTA14528">https://doi.org/10.3982/ECTA14528</a>.
 </div>
 <div id="ref-gershuny2016" class="csl-entry" role="listitem">
 Gershuny, Jonathan, and Teresa Atttracta Harms. 2016. <span>“Housework
@@ -517,11 +443,10 @@ Hofferth, Sandra L., and John F. Sandberg. 2001. <span>“How American
 Children Spend Their Time.”</span> <em>Journal Of Marriage And The
 Family</em> 63 (2): 295–308. <a href="https://doi.org/10.1111/j.1741-3737.2001.00295.x">https://doi.org/10.1111/j.1741-3737.2001.00295.x</a>.
 </div>
-<div id="ref-knowles2013" class="csl-entry" role="listitem">
-Knowles, John A. 2013. <span>“Why Are Married Men Working so Much?
-<span>An</span> Aggregate Analysis of Intra-Household Bargaining and
-Labour Supply.”</span> <em>Review of Economic Studies</em> 80 (3):
-1055–85. <a href="https://doi.org/10.1093/restud/rds043">https://doi.org/10.1093/restud/rds043</a>.
+<div id="ref-kim2024" class="csl-entry" role="listitem">
+Kim, Seongeun, Michèle Tertilt, and Minchul Yum. 2024. <span>“Status
+Externalities in Education and Low Birth Rates in Korea.”</span>
+<em>American Economic Review</em> 114 (6): 1576–611. <a href="https://doi.org/10.1257/aer.20220583">https://doi.org/10.1257/aer.20220583</a>.
 </div>
 <div id="ref-kopecky2010" class="csl-entry" role="listitem">
 Kopecky, Karen A., and Richard M. H. Suen. 2010. <span>“Finite State
@@ -543,19 +468,13 @@ Lise, Jeremy, and Ken Yamada. 2019. <span>“Household Sharing and
 Commitment: Evidence from Panel Data on Individual Expenditures and Time
 Use.”</span> <em>Review of Economic Studies</em> 86 (5): 2184–219. <a href="https://doi.org/10.1093/restud/rdy066">https://doi.org/10.1093/restud/rdy066</a>.
 </div>
-<div id="ref-lundberg1993" class="csl-entry" role="listitem">
-Lundberg, Shelly, and Robert A. Pollak. 1993. <span>“Separate Spheres
-Bargaining and the Marriage Market.”</span> <em>Journal of Political
-Economy</em> 101 (6): 988–1010. <a href="https://doi.org/10.1086/261912">https://doi.org/10.1086/261912</a>.
+<div id="ref-liu2015" class="csl-entry" role="listitem">
+Liu, Haoming. 2015. <span>“The Quantity–Quality Fertility–Education
+Trade-Off.”</span> <em>IZA World of Labor</em>, 1–10. <a href="https://doi.org/10.15185/izawol.143">https://doi.org/10.15185/izawol.143</a>.
 </div>
 <div id="ref-ma2024" class="csl-entry" role="listitem">
 Ma, Eunseong. 2024. <em>The 40-Hour Work Week</em>. {{SSRN Scholarly
 Paper}} No. 4697593. Social Science Research Network. <a href="https://doi.org/10.2139/ssrn.4697593">https://doi.org/10.2139/ssrn.4697593</a>.
-</div>
-<div id="ref-manser1980" class="csl-entry" role="listitem">
-Manser, Marilyn, and Murray Brown. 1980. <span>“Marriage and Household
-Decision-Making: A Bargaining Analysis.”</span> <em>International
-Economic Review</em> 21 (1): 31–44. <a href="https://doi.org/10.2307/2526238">https://doi.org/10.2307/2526238</a>.
 </div>
 <div id="ref-mazzocco2007" class="csl-entry" role="listitem">
 Mazzocco, Maurizio. 2007. <span>“Household Intertemporal Behaviour: A
@@ -567,21 +486,11 @@ McCall, J. J. 1970. <span>“Economics of Information and Job
 Search.”</span> <em>The Quarterly Journal of Economics</em> 84 (1):
 113–26. <a href="https://doi.org/10.2307/1879403">https://doi.org/10.2307/1879403</a>.
 </div>
-<div id="ref-mcelroy1981" class="csl-entry" role="listitem">
-McElroy, Marjorie B., and Mary Jean Horney. 1981. <span>“Nash-Bargained
-Household Decisions: Toward a Generalization of the Theory of
-Demand.”</span> <em>International Economic Review</em> 22 (2): 333–49.
-<a href="https://doi.org/10.2307/2526280">https://doi.org/10.2307/2526280</a>.
-</div>
 <div id="ref-mcgrattan1997" class="csl-entry" role="listitem">
 McGrattan, Ellen R., Richard Rogerson, and Randall Wright. 1997.
 <span>“An Equilibrium Model of the Business Cycle with Household
 Production and Fiscal Policy.”</span> <em>International Economic
 Review</em> 38 (2): 267–90. <a href="https://doi.org/10.2307/2527375">https://doi.org/10.2307/2527375</a>.
-</div>
-<div id="ref-nash1950" class="csl-entry" role="listitem">
-Nash, John F. 1950. <span>“The Bargaining Problem.”</span>
-<em>Econometrica</em> 18 (2): 155–62. <a href="https://doi.org/10.2307/1907266">https://doi.org/10.2307/1907266</a>.
 </div>
 <div id="ref-newey1994" class="csl-entry" role="listitem">
 Newey, Whitney K., and Daniel McFadden. 1994. <span>“Chapter 36 Large
@@ -604,44 +513,14 @@ Equilibrium Business Cycle Models.”</span> In <em>Frontiers of Business
 Cycle Research</em>, edited by Thomas F. Cooley. Princeton University
 Press. <a href="https://doi.org/10.2307/j.ctv14163jx.16">https://doi.org/10.2307/j.ctv14163jx.16</a>.
 </div>
-<div id="ref-salanie2024" class="csl-entry" role="listitem">
-Salanié, Bernard. 2024. <span>“Matching with Transfers:
-Applications.”</span> In <em>Handbook of the Economics of Matching</em>,
-vol. 1. Elsevier. <a href="https://doi.org/10.1016/bs.hesmat.2024.10.001">https://doi.org/10.1016/bs.hesmat.2024.10.001</a>.
-</div>
-<div id="ref-shapley1971" class="csl-entry" role="listitem">
-Shapley, L. S., and M. Shubik. 1971. <span>“The Assignment Game
-<span>I</span>: The Core.”</span> <em>International Journal of Game
-Theory</em> 1 (1): 111–30. <a href="https://doi.org/10.1007/BF01753437">https://doi.org/10.1007/BF01753437</a>.
-</div>
 <div id="ref-shimer2000" class="csl-entry" role="listitem">
 Shimer, Robert, and Lones Smith. 2000. <span>“Assortative Matching and
 Search.”</span> <em>Econometrica</em> 68 (2): 343–69. <a href="https://doi.org/10.1111/1468-0262.00112">https://doi.org/10.1111/1468-0262.00112</a>.
-</div>
-<div id="ref-stevenson2007a" class="csl-entry" role="listitem">
-Stevenson, Betsey. 2007. <span>“The Impact of Divorce Laws on
-Marriage-Specific Capital.”</span> <em>Journal of Labor Economics</em>
-25 (1): 75–94. <a href="https://doi.org/10.1086/508732">https://doi.org/10.1086/508732</a>.
 </div>
 <div id="ref-strassen1965" class="csl-entry" role="listitem">
 Strassen, V. 1965. <span>“The Existence of Probability Measures with
 Given Marginals.”</span> <em>Annals of Mathematical Statistics</em> 36
 (2): 423–39. <a href="https://doi.org/10.1214/aoms/1177700153">https://doi.org/10.1214/aoms/1177700153</a>.
-</div>
-<div id="ref-su2012" class="csl-entry" role="listitem">
-Su, Che-Lin, and Kenneth L. Judd. 2012. <span>“Constrained Optimization
-Approaches to Estimation of Structural Models.”</span>
-<em>Econometrica</em> 80 (5): 2213–30. <a href="https://doi.org/10.3982/ECTA7925">https://doi.org/10.3982/ECTA7925</a>.
-</div>
-<div id="ref-theloudis2025" class="csl-entry" role="listitem">
-Theloudis, Alexandros, Jorge Velilla, Pierre-André Chiappori, José
-Ignacio Giménez-Nadal, and José Alberto Molina. 2025. <span>“Commitment
-and the Dynamics of Household Labour Supply.”</span> <em>The Economic
-Journal</em> 135 (665): 354–86. <a href="https://doi.org/10.1093/ej/ueae065">https://doi.org/10.1093/ej/ueae065</a>.
-</div>
-<div id="ref-train2009" class="csl-entry" role="listitem">
-Train, Kenneth E. 2009. <em>Discrete Choice Methods with
-Simulation</em>. 2nd ed. Cambridge university press.
 </div>
 <div id="ref-webbink2012" class="csl-entry" role="listitem">
 Webbink, Ellen, Jeroen Smits, and Eelke De Jong. 2012. <span>“Hidden
@@ -1130,7 +1009,7 @@ Non-Stochastic Simulations.”</span> <em>Journal of Economic Dynamics
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./lesson/appendix/continuous-time.html" class="pagination-link" aria-label="連続時間モデル">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

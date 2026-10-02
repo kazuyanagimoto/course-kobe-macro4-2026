@@ -85,7 +85,7 @@ div.csl-indent {
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../../lesson/marriage/frictionless-marriage.html" rel="next">
+<link href="../../lesson/marriage/fertility.html" rel="next">
 <link href="../../lesson/marriage/index.html" rel="prev">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -97,7 +97,7 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-eec68b17241c1efd3eae2de50d816e3e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c87ae1f151089946a6f14c3e0e4f3fcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-88ed28d7bef94e017bd01e7de746676c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -159,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search-matching.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,19 +196,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/nonlinear-opt.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/nlopt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">非線形最適化</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/function-approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/approx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">関数近似</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/numerical/dynamic-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../lesson/numerical/dp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">動的計画法</span></span></a>
   </div>
 </li>
@@ -231,20 +231,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/search-matching.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../lesson/marriage/search.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/marriage/frictionless-marriage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,14 +260,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../lesson/appendix/matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">マッチングと家計内配分</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../lesson/appendix/continuous-time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">連続時間モデル</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -323,7 +311,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search-matching.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span id="sec-search-matching" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
@@ -923,7 +911,7 @@ E_{a}^{g}(\kappa) = \begin{cases}
 </section>
 <section id="モデル-2" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="モデル-2"><span class="header-section-number">5.4.2</span> モデル</h3>
-<p>このモデルは, ここまでの2本と違って連続時間で表現されています. <span class="citation" data-cites="greenwood2009">Greenwood and Guner (<a href="../../references.html#ref-greenwood2009" role="doc-biblioref">2009</a>)</span> と <span class="citation" data-cites="greenwood2016">Greenwood et al. (<a href="../../references.html#ref-greenwood2016" role="doc-biblioref">2016</a>)</span> が1期1年の離散時間だったのに対し, ここでは出会い・マッチの質の変動といったイベントがポアソン過程として到着します. 割引率は <span class="math inline">\(r\)</span> で表され, 価値関数は Hamilton-Jacobi-Bellman (HJB) 方程式の形で価値関数が書かれます. 連続時間モデルに関しては, <a href="../appendix/continuous-time.html" class="quarto-xref"><span>Appendix C</span></a> にまとめてあります.</p>
+<p>このモデルは, ここまでの2本と違って連続時間で表現されています. <span class="citation" data-cites="greenwood2009">Greenwood and Guner (<a href="../../references.html#ref-greenwood2009" role="doc-biblioref">2009</a>)</span> と <span class="citation" data-cites="greenwood2016">Greenwood et al. (<a href="../../references.html#ref-greenwood2016" role="doc-biblioref">2016</a>)</span> が1期1年の離散時間だったのに対し, ここでは出会い・マッチの質の変動といったイベントがポアソン過程として到着します. 割引率は <span class="math inline">\(r\)</span> で表され, 価値関数は Hamilton-Jacobi-Bellman (HJB) 方程式の形で価値関数が書かれます. 連続時間モデルに関しては, <a href="../appendix/continuous-time.html" class="quarto-xref"><span>Appendix B</span></a> にまとめてあります.</p>
 <p>なお, 連続時間モデルにおいて資産のような連続的に動く状態変数がある場合, 数値計算としては有限差分法 (finite difference method) を使う必要があります. この手法によるマクロモデルの解法とその有用性は <span class="citation" data-cites="achdou2022">Achdou et al. (<a href="../../references.html#ref-achdou2022" role="doc-biblioref">2022</a>)</span> が示しました. しかし, <span class="citation" data-cites="gousse2017">Goussé et al. (<a href="../../references.html#ref-gousse2017" role="doc-biblioref">2017</a>)</span> のモデルは状態変数をポアソン到着する離散的なイベントに限定しているので, 連続時間の HJB 方程式を解く必要がありません. 逆にいうと <span class="citation" data-cites="greenwood2009">Greenwood and Guner (<a href="../../references.html#ref-greenwood2009" role="doc-biblioref">2009</a>)</span> のように match quality が前の期に依存するような確率過程 (Ornstein-Uhlenbeck など) を入れていないのはそのためと考えられます. <span class="citation" data-cites="yanagimoto2026a">Yanagimoto (<a href="../../references.html#ref-yanagimoto2026a" role="doc-biblioref">2026</a>)</span> は, <span class="citation" data-cites="greenwood2009">Greenwood and Guner (<a href="../../references.html#ref-greenwood2009" role="doc-biblioref">2009</a>)</span> のモデルを連続時間化して数値計算する方法を示しました.</p>
 <section id="タイプと出会い" class="level4">
 <h4 class="anchored" data-anchor-id="タイプと出会い">タイプと出会い</h4>
@@ -932,7 +920,7 @@ E_{a}^{g}(\kappa) = \begin{cases}
 <p><span id="eq-gousse2017-alpha"><span class="math display">\[
 \alpha_{ij} = \int \mathbb{1}_{ij}\left(z\right) dG\left(z\right).
 \tag{5.3}\]</span></span> ここで, <span class="math inline">\(\mathbb{1}_{ij}(z)\)</span> は, タイプの組 <span class="math inline">\(\left(i, j\right)\)</span> がマッチの質 <span class="math inline">\(z\)</span> で結婚するかどうかを示すインディケータです.</p>
-<p>結婚後は, 率 <span class="math inline">\(\delta\)</span> でマッチの質が引き直されます. 新しい <span class="math inline">\(z'\)</span> は同じ <span class="math inline">\(G\)</span> から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび <span class="math inline">\(\alpha_{ij}\)</span> です. したがって離婚ハザードは <span class="math inline">\(\delta \left(1 - \alpha_{ij}\right)\)</span> になります. 結婚と離婚を同じ <span class="math inline">\(\alpha_{ij}\)</span> が決めていると言う構造がこのモデルの要です. <span class="math inline">\(\alpha_{ij}\)</span> が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い <span class="math inline">\(z\)</span> の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.</p>
+<p>結婚後は, 率 <span class="math inline">\(\delta\)</span> でマッチの質が引き直されます. 新しい <span class="math inline">\(z'\)</span> は同じ <span class="math inline">\(G\)</span> から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび <span class="math inline">\(\alpha_{ij}\)</span> です. したがって離婚ハザードは <span class="math inline">\(\delta \left(1 - \alpha_{ij}\right)\)</span> になります. 結婚と離婚を同じ <span class="math inline">\(\alpha_{ij}\)</span> が決めていると言う構造が重要です. <span class="math inline">\(\alpha_{ij}\)</span> が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い <span class="math inline">\(z\)</span> の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.</p>
 <p><a href="#fig-gousse2017-flowchart" class="quarto-xref">図&nbsp;<span>5.21</span></a> にここまでの構造をまとめました. 独身の男女がそれぞれのプールで相手を探し, 率 <span class="math inline">\(\lambda\)</span> で出会って <span class="math inline">\(z\)</span> を引き, 合意すれば夫婦のプールへ移ります. 結婚後は率 <span class="math inline">\(\delta\)</span> で <span class="math inline">\(z\)</span> が引き直され, 合意が続けばそのまま, 途切れれば両者が独身のプールに戻ります. 図の下に書いた流出入のバランスが, 後で定常状態を定める条件になります.</p>
 <div id="fig-gousse2017-flowchart" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -948,20 +936,22 @@ E_{a}^{g}(\kappa) = \begin{cases}
 <section id="選好と家庭内生産" class="level4">
 <h4 class="anchored" data-anchor-id="選好と家庭内生産">選好と家庭内生産</h4>
 <p>各個人は, 私的消費 <span class="math inline">\(c\)</span>, 私的余暇 <span class="math inline">\(e\)</span>, そして家計の公共財 <span class="math inline">\(q\)</span> (食事, 住環境, 子育てなど) から効用 <span class="math inline">\(U_i\left(c, e, q\right)\)</span> を得ます. 各人の使える時間の総量は1に基準化し, それを市場労働 <span class="math inline">\(h\)</span>, 私的余暇 <span class="math inline">\(e\)</span>, 家事時間 <span class="math inline">\(d\)</span> の3つに配分します (<span class="math inline">\(h = 1 - e - d\)</span>). 公共財を作る唯一の投入がこの家事時間 <span class="math inline">\(d\)</span> で, その公共財が, 結婚を独身より魅力的にしうる唯一のチャネルです.</p>
-<p>公共財の作り方は独身と夫婦で違います. 独身者は自分の家事時間だけで <span class="math inline">\(q = F_i^0\left(d\right)\)</span> を作り, 夫婦は2人の家事時間から</p>
+<p>公共財の生産関数は独身と夫婦でそれぞれ Stone-Geary 型で書かれます.</p>
 <p><span class="math display">\[
-q = z\, F_{ij}\left(d_m, d_f\right)
+\begin{aligned}
+q &amp;= F_{g}^0(d) = \left(d - D_{g}^0\right)^{K_{g}^0} &amp; \text{(Single)} \\
+q &amp;= F_{ij}\left(d_m, d_f\right) = Z_{ij} \left(d_m - D_m^1\right)^{K_m^1}\left(d_f - D_f^1\right)^{K_f^1} &amp; \text{(Married)}
+\end{aligned}
 \]</span></p>
-<p>を作ります. マッチの質 <span class="math inline">\(z\)</span> が家庭内生産の TFP として乗る, という定式化です. 関数形は Stone-Geary 型で,</p>
-<p><span class="math display">\[
-F_{ij}\left(d_m, d_f\right) = Z_{ij}\, \left(d_m - D_m\right)^{K_m}\left(d_f - D_f\right)^{K_f}
-\]</span></p>
-<p>です. ここに2種類の異質性が分けて入っています. 係数 <span class="math inline">\(Z_{ij}\)</span> (公共財の質) は「タイプ <span class="math inline">\(i\)</span> と <span class="math inline">\(j\)</span> の組み合わせの良さ」をすべて吸収するパラメータで, 学歴の補完性はここに現れます. 最低投入時間 <span class="math inline">\(D\)</span> は分業の形を決めるパラメータで, 家族観はここに効きます (保守的な女性ほど <span class="math inline">\(D_f\)</span> が大きい). つまり, 家族観は家庭内生産の比較優位を作る変数としてモデル化されています.</p>
-<p>一方で, 結婚には費用もかかります. 予算制約は, 独身が</p>
+<p>ここで, <span class="math inline">\(D\)</span> は最低投入量, <span class="math inline">\(Z_{ij}\)</span> はマッチの質です. 夫婦の生産関数は二つの要素からなります.</p>
+<ol type="1">
+<li><strong>マッチの質</strong> <span class="math inline">\(Z_{ij}\)</span>: 学歴の補完性が高いほど <span class="math inline">\(Z_{ij}\)</span> が大きくなり, 家事時間の投入量が増えます</li>
+<li><strong>家族観</strong> <span class="math inline">\(D_{g}\)</span>: 家族観が保守的なほど, <span class="math inline">\(D_g\)</span> が大きくなり, 家事時間の投入量が増えます</li>
+</ol>
+<p>予算制約は独身が</p>
 <p><span class="math display">\[
 c + w_i e = w_i \left(1 - d\right) =: R,
-\]</span></p>
-<p>夫婦が以下になります.</p>
+\]</span> 夫婦が以下になります.</p>
 <p><span class="math display">\[
 \begin{aligned}
 c_m + w_i e_m = w_i \left(1 - d_m\right) - t_m &amp;=: R_m,\\
@@ -969,20 +959,44 @@ c_f + w_j e_f = w_j \left(1 - d_f\right) - t_f &amp;=: R_f
 \end{aligned}
 \]</span></p>
 <p><span class="math inline">\(\left(t_m, t_f\right)\)</span> は配偶者間の移転で, 世帯の生活費 <span class="math inline">\(C_{ij}\)</span> を賄う制約 <span class="math inline">\(t_m + t_f = C_{ij}\)</span> を満たします. <span class="math inline">\(C_{ij}\)</span> は家庭内生産の技術を動かすための固定費用, あるいは共同で消費する分の費用と解釈され, タイプの組に依存する一方で賃金には依存しません. 独身にはこの費用がかかりません.</p>
-<p>ここで, 規模の経済がどこにあるかを整理します. 夫婦の <span class="math inline">\(q\)</span> は2人の家事時間から一度だけ作られ, それを2人が同時に享受します. 公共財が世帯内で非競合であること自体が規模の経済で, さらに <span class="math inline">\(Z_{ij}\)</span> と <span class="math inline">\(z\)</span> が組み合わせ次第でその生産性を押し上げます. 一方, 私的消費 <span class="math inline">\(c\)</span> と私的余暇 <span class="math inline">\(e\)</span> の側には「2人なら1人あたり割安」という等価尺度は一切入っていません. 結局, 結婚の得失は公共財から得られるこの利益と, 生活費 <span class="math inline">\(C_{ij}\)</span> との綱引きで決まります.</p>
+<p>効用関数は, 直接効用 <span class="math inline">\(U_i\)</span> ではなく, 私的支出 <span class="math inline">\(R\)</span> と公共財 <span class="math inline">\(q\)</span> を所与として <span class="math inline">\(c, e\)</span> を最適に選んだあとの (条件付き) 間接効用</p>
+<p><span class="math display">\[
+\psi_i\left(R, q\right) = \max_{c, e}\ U_i\left(c, e, q\right) \quad \text{s.t.} \quad c + w_i e \leq R
+\]</span></p>
+<p>の形で特定化されます.</p>
+<p><span id="eq-gousse-utility"><span class="math display">\[
+\psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad
+A_i = a_{0i} + a_{1i} w_i + \frac{1}{2} a_{2} w_i^2, \qquad
+\ln B_i = b_i \ln w_i
+\tag{5.4}\]</span></span></p>
+<p><span class="math inline">\(A_i\)</span> は「効用が正になるのに最低限必要な私的支出」, <span class="math inline">\(B_i\)</span> は本人の賃金 (余暇の価格) に応じた個人別の価格指数で, 分子 <span class="math inline">\(q\left(R - A_i\right)\)</span> は名目の効用水準と読めます. 公共財 <span class="math inline">\(q\)</span> と私的支出が掛け算で入るのがポイントで, これが後で移転可能効用を生みます. パラメータ <span class="math inline">\(a_{0i}, a_{1i}, b_i\)</span> は本人の特性 (学歴・家族観) の線形関数, <span class="math inline">\(a_2\)</span> は性別ごとの定数です.</p>
+<p>余暇の価格は賃金 <span class="math inline">\(w_i\)</span> なので, 余暇の需要は Roy の恒等式</p>
+<p><span class="math display">\[
+e = -\frac{\partial \psi_i / \partial w_i}{\partial \psi_i / \partial R}
+\]</span></p>
+<p>から求まります. <a href="#eq-gousse-utility" class="quarto-xref">式&nbsp;<span>5.4</span></a> を微分すると <span class="math inline">\(\partial \psi_i / \partial R = q / B_i\)</span>, <span class="math inline">\(\partial \psi_i / \partial w_i = -q\left[A_i' B_i + \left(R - A_i\right) B_i'\right] / B_i^2\)</span> なので,</p>
+<p><span class="math display">\[
+e = A_i' + \frac{B_i'}{B_i}\left(R - A_i\right)
+\]</span></p>
+<p>です. <span class="math inline">\(A_i' = a_{1i} + a_2 w_i\)</span>, <span class="math inline">\(B_i' / B_i = b_i / w_i\)</span> を代入して <span class="math inline">\(w_i\)</span> を掛ければ, 余暇支出と消費は</p>
+<p><span class="math display">\[
+w_i e = a_{1i} w_i + a_2 w_i^2 + b_i\left(R - A_i\right), \qquad c = R - w_i e
+\]</span></p>
+<p>となります. <span class="math inline">\(q\)</span> は分子と分母で打ち消し合うので, 余暇の需要は公共財の水準に依存しません. 推定では, この余暇支出が家事時間とともにデータに当てられます. なお, <span class="math inline">\(\psi_i\)</span> が <span class="math inline">\(d\)</span> に依存しないのは, <span class="math inline">\(e \leq 1 - d\)</span> の制約が効かない (内点解の) 範囲を仮定しているからです <span class="citation" data-cites="gousse2017">(<a href="../../references.html#ref-gousse2017" role="doc-biblioref">Goussé et al. 2017</a>, eqs. 5.1, 6.1-6.3)</span>.</p>
+<p>ここで, 規模の経済がどこにあるかを整理します. 夫婦の <span class="math inline">\(q\)</span> は2人の家事時間から一度だけ作られ, それを2人が同時に享受します. 公共財が世帯内で非競合であること自体が規模の経済で, さらに <span class="math inline">\(Z_{ij}\)</span> が組み合わせ次第でその生産性を押し上げます. 一方, 私的消費 <span class="math inline">\(c\)</span> と私的余暇 <span class="math inline">\(e\)</span> の側には「2人なら1人あたり割安」という等価尺度は一切入っていません. 結局, 結婚の得失は公共財から得られるこの利益と, 生活費 <span class="math inline">\(C_{ij}\)</span> とのトレードオフで決まります.</p>
 </section>
 <section id="hjb-方程式" class="level4">
 <h4 class="anchored" data-anchor-id="hjb-方程式">HJB 方程式</h4>
 <p>独身の男性 (タイプ <span class="math inline">\(i\)</span>) の価値 <span class="math inline">\(V_m^0\left(i\right)\)</span> は次を満たします.</p>
 <p><span id="eq-gousse-single"><span class="math display">\[
 r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left[V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right]^{+} n_f\left(j\right) dG\left(z\right) dj
-\tag{5.4}\]</span></span></p>
+\tag{5.5}\]</span></span></p>
 <p><span class="math inline">\(u_m^0\left(i\right)\)</span> は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 <span class="math inline">\(\max_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)\)</span>), <span class="math inline">\(V_m^1\left(i, j, z\right)\)</span> はタイプ <span class="math inline">\(i\)</span> の男性がタイプ <span class="math inline">\(j\)</span> の相手とマッチの質 <span class="math inline">\(z\)</span> で結婚したときの価値です. 率 <span class="math inline">\(\lambda\)</span> で相手に出会い, 相手のタイプは独身女性の分布 <span class="math inline">\(n_f\)</span> から, <span class="math inline">\(z\)</span> は <span class="math inline">\(G\)</span> から引かれます. 正の部分 <span class="math inline">\(\left[\cdot\right]^{+}\)</span> が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.</p>
 <p>結婚している男性の価値は, 自分のタイプ <span class="math inline">\(i\)</span> だけでなく相手のタイプ <span class="math inline">\(j\)</span> とマッチの質 <span class="math inline">\(z\)</span> にも依存します. 結婚契約の価値を <span class="math inline">\(W_m\left(i, j, z\right)\)</span> と書くと, 契約で決まったフロー効用 <span class="math inline">\(u_m\left(i, j, z\right)\)</span> と, 次に <span class="math inline">\(z\)</span> が引き直されたときの選択の価値からなります.</p>
 <p><span id="eq-gousse-married"><span class="math display">\[
 r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\left\{V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\} - W_m\left(i, j, z\right)\right] dG\left(z'\right)
-\tag{5.5}\]</span></span></p>
-<p>第2項が離婚のオプション価値です. 率 <span class="math inline">\(\delta\)</span> で新しい <span class="math inline">\(z'\)</span> が引かれ, 継続の価値 <span class="math inline">\(V_m^1\left(i, j, z'\right)\)</span> が独身の価値 <span class="math inline">\(V_m^0\left(i\right)\)</span> を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは <span class="math inline">\(z\)</span> だけで, タイプの組 <span class="math inline">\(\left(i, j\right)\)</span> は結婚している限り変わらないことに注意してください. 離婚してはじめて <span class="math inline">\(i\)</span> は独身プールに戻り, 相手を選び直します. McCall モデルの <span class="math inline">\(\max\left\{W, V\left(b'\right)\right\}\)</span> とまったく同じ形で, 違いは相手も同時に同じ判断をしていることです.</p>
+\tag{5.6}\]</span></span></p>
+<p>第2項が離婚のオプション価値です. 率 <span class="math inline">\(\delta\)</span> で新しい <span class="math inline">\(z'\)</span> が引かれ, 継続の価値 <span class="math inline">\(V_m^1\left(i, j, z'\right)\)</span> が独身の価値 <span class="math inline">\(V_m^0\left(i\right)\)</span> を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは <span class="math inline">\(z\)</span> だけで, タイプの組 <span class="math inline">\(\left(i, j\right)\)</span> は結婚している限り変わらないことに注意してください. 離婚してはじめて <span class="math inline">\(i\)</span> は独身プールに戻り, 相手を選び直します.</p>
 <p>以下では, 混乱の恐れがないところではタイプの引数を省いて <span class="math inline">\(V_m^0\)</span>, <span class="math inline">\(V_m^1\left(z\right)\)</span>, <span class="math inline">\(W_m\)</span> のように書きます.</p>
 </section>
 <section id="nash-bargaining" class="level4">
@@ -993,34 +1007,33 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 \left[W_f\left(i, j, z\right) - V_f^0\left(j\right)\right]^{1-\beta}
 \]</span></p>
 <p>ここではコミットメントができず, どちらもいつでも交渉から降りられる (離婚できる) と仮定します. そのため, <span class="math inline">\(z\)</span> が引き直されるたびに配分は再交渉されます.</p>
-<p>交渉力の源泉が2つに分離されているのがポイントです. 第1が Nash ウェイト <span class="math inline">\(\beta\)</span> で, 論文はこれを行動面の (behavioral) 源泉と呼びます. 市場とは関係なく当事者の側にある性質のことで, 論文が挙げる例は忍耐強さです. 交互提案交渉では Nash ウェイトが相対的な忍耐強さに対応するので, <span class="math inline">\(\beta\)</span> は「どちらがより待てるか」「交渉が上手か」といったものをまとめて吸収した誘導形のパラメータだと考えてください. 第2が交渉決裂点 <span class="math inline">\(V_m^0, V_f^0\)</span> で, こちらは経済的な (economic) 源泉です. 「結婚市場で誰に出会えるか」が <a href="#eq-gousse-single" class="quarto-xref">式&nbsp;<span>5.4</span></a> を通じてこれを決めるので, 家計の外の均衡が家計内の力関係に持ち込まれます.</p>
+<p>この時, 交渉力の源泉は次の2つからなります.</p>
+<ol type="1">
+<li><strong>Behavioral</strong> <span class="math inline">\(\beta\)</span>: Nash ウェイトで, 交互提案交渉の相対的な忍耐強さに対応します. どちらがより待てるか, 交渉が上手かといったものをまとめて吸収した誘導形のパラメータです.</li>
+<li><strong>Economic</strong> <span class="math inline">\(V_m^0, V_f^0\)</span>: 交渉決裂点で, 離婚して結婚市場に参入した場合の価値によって決定されます. 家計の外の均衡が家計内の力関係に持ち込まれます.</li>
+</ol>
 <p>推定では <span class="math inline">\(\beta\)</span> は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 <span class="math inline">\(z\)</span> の側にある, という構造になっています.</p>
-<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>5.5</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると</p>
+<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>5.6</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると (<a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>Section A.7.1</span></a>), 次の式を得ます.</p>
 <p><span id="eq-gousse-nocommit"><span class="math display">\[
-\left(r + \delta\right)\left[V_m^1\left(z\right) - V_m^0\right] = u_m + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right) - r V_m^0
-\tag{5.6}\]</span></span></p>
-<p>を得ます (女性側も対称. 導出は付録の <a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>A.8.1</span></a> 節). 各項の意味を確かめておきます. 左辺は「結婚していることの純価値」を, 時間選好 <span class="math inline">\(r\)</span> と契約が引き直される率 <span class="math inline">\(\delta\)</span> を合わせた実効的な割引率 <span class="math inline">\(r + \delta\)</span> で年金化したもの, つまり純価値のフロー換算です. 右辺の第1項 <span class="math inline">\(u_m\)</span> は結婚内で受け取るフロー効用, 第3項 <span class="math inline">\(r V_m^0\)</span> は独身でいれば毎期得られたはずのフロー (独身の価値の年金価値) で, 差 <span class="math inline">\(u_m - r V_m^0\)</span> が「今期, 結婚しているおかげで独身より多く得ている分」です. 第2項は次に <span class="math inline">\(z'\)</span> が引き直されたときのオプション価値で, 引き直し後も結婚を続ける価値がある (<span class="math inline">\(V_m^1\left(z'\right) &gt; V_m^0\)</span>) 場合の超過分だけが数えられ, 離婚する場合は <span class="math inline">\(V_m^0\)</span> に戻れるのでゼロで打ち止めになります. McCall モデルの留保賃金の式 <a href="#eq-reservation" class="quarto-xref">式&nbsp;<span>5.2</span></a> と同じ構造で, 違いは「辞める」先が独身の価値 <span class="math inline">\(V_m^0\)</span> であり, その <span class="math inline">\(V_m^0\)</span> 自身が <a href="#eq-gousse-single" class="quarto-xref">式&nbsp;<span>5.4</span></a> を通じて結婚市場の状態に依存することです.</p>
-<p>間接効用が <span class="math inline">\(\psi_i\left(R, q\right) = q \left(R - A_i\right) / B_i\)</span> (<span class="math inline">\(R\)</span> は私的支出, <span class="math inline">\(A_i\)</span> は最低私的支出, <span class="math inline">\(B_i\)</span> は個人の価格指数) という形になるよう選好を特定化すると, 2つの便利な性質が出ます. 第1に<strong>再帰性</strong>: 家事時間は移転や継続価値と独立に, 静学的な効率性条件</p>
-<p><span class="math display">\[
-\frac{1}{w_i}\frac{\partial \ln F_{ij}}{\partial d_m} = \frac{1}{w_j}\frac{\partial \ln F_{ij}}{\partial d_f}
-\]</span></p>
-<p>だけで決まります (<span class="math inline">\(z\)</span> は掛け算で入るので分業に影響しません. 導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-housework" class="quarto-xref"><span>A.8.3</span></a> 節). 賃金の高い側が家事時間を減らし, 家族観の保守的な妻は (<span class="math inline">\(D_f\)</span> を通じて) 家事時間を増やし, その分だけ夫の家事時間が減る, という比較優位の分業がここから出ます. 第2に<strong>移転可能効用</strong>: マッチの余剰 <span class="math inline">\(S_{ij}\left(z\right)\)</span> が定義でき, 結婚の成立が <span class="math inline">\(S_{ij}\left(z\right) \geq 0\)</span> と同値になります.</p>
+\left(r + \delta\right)\left[V_m^1\left(z\right) - V_m^0\right] = u_m - r V_m^0 + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right)
+\tag{5.7}\]</span></span></p>
+<p>左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. <span class="math inline">\(u_m - r V_m^0\)</span> が「今期, 結婚しているおかげで独身より多く得ている分」, <span class="math inline">\(\delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right)\)</span> が「次に <span class="math inline">\(z'\)</span> が引き直されたときのオプション価値」 になります.</p>
 </section>
 <section id="余剰とマッチング集合" class="level4">
 <h4 class="anchored" data-anchor-id="余剰とマッチング集合">余剰とマッチング集合</h4>
-<p>移転可能効用のもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, 男女の <a href="#eq-gousse-nocommit" class="quarto-xref">式&nbsp;<span>5.6</span></a> を価格指数で重みづけて足し合わせることで</p>
-<p><span class="math display">\[
+<p>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>Section A.7.2</span></a> より, 次の式が成り立ちます.</p>
+<p><span id="eq-gousse-surplus"><span class="math display">\[
 \left(r+\delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+}\, dG\left(z'\right)
-\]</span></p>
-<p>が成り立ちます (<span class="math inline">\(X_{ij}\)</span> は家計の純私的支出, <span class="math inline">\(r\)</span> は割引率. 導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>A.8.2</span></a> 節). これで先送りにしていた合意条件が定まりました. インディケータは <span class="math inline">\(\mathbb{1}_{ij}\left(z\right) = \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\}\)</span>, つまり余剰が非負なら結婚する, です. 余剰は <span class="math inline">\(z\)</span> について増加するので, これは「<span class="math inline">\(z\)</span> が閾値 <span class="math inline">\(\underline{z}_{ij}\)</span> 以上なら結婚」という留保値ルールになり, <a href="#eq-gousse2017-alpha" class="quarto-xref">式&nbsp;<span>5.3</span></a> が閉じた形で書けます.</p>
-<p><span class="math display">\[
+\tag{5.8}\]</span></span> ここで, 家計の純私的支出 <span class="math inline">\(X_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j\)</span> です.</p>
+<p>この時, 合意条件 <span class="math inline">\(\mathbb{1}_{ij}\left(z\right) = \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\}\)</span> を閉じた形でかけます. <a href="#eq-gousse-surplus" class="quarto-xref">式&nbsp;<span>5.8</span></a> の右辺は <span class="math inline">\(zF_{ij}X_{ij}\)</span> のみが <span class="math inline">\(z\)</span> に依存し, 自明に増加かんすうであるので, 余剰 <span class="math inline">\(S_{ij}\left(z\right)\)</span> も <span class="math inline">\(z\)</span> について増加関数になります. したがって, ある閾値 <span class="math inline">\(\underline{z}_{ij}\)</span> が存在して, 「<span class="math inline">\(z\)</span> が <span class="math inline">\(\underline{z}_{ij}\)</span> 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, <a href="#eq-gousse2017-alpha" class="quarto-xref">式&nbsp;<span>5.3</span></a> のインディケータは次の形で書くことができます.</p>
+<p><span id="eq-gousse-alpha-threshold"><span class="math display">\[
 \alpha_{ij} = \int \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\} dG\left(z\right) = 1 - G\left(\underline{z}_{ij}\right)
-\]</span></p>
-<p>McCall 型の停止ルールが, タイプの組ごとに1つずつ並んでいる構造です. 独身の価値は, 出会える相手の分布に対する期待余剰で決まります.</p>
-<p><span class="math display">\[
+\tag{5.9}\]</span></span></p>
+<p>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>Section A.7.4</span></a>).</p>
+<p><span id="eq-gousse-single-value"><span class="math display">\[
 B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj
-\]</span></p>
-<p>(<span class="math inline">\(\bar{S}_{ij}\)</span> は正の部分の期待余剰, <span class="math inline">\(n_f\left(j\right)\)</span> は独身女性のタイプ分布. 女性側は <span class="math inline">\(1 - \beta\)</span> で対称. 導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>A.8.4</span></a> 節.) この線形の積分方程式が「外部機会」を定めます. 良い相手に出会いやすいタイプほど威嚇点が高く, 家計内で強い, という均衡の連鎖です.</p>
+\tag{5.10}\]</span></span></p>
+<p>この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.</p>
 </section>
 <section id="sharing-rule" class="level4">
 <h4 class="anchored" data-anchor-id="sharing-rule">Sharing rule</h4>
@@ -1028,61 +1041,62 @@ B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\
 <p><span class="math display">\[
 \beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}
 \]</span></p>
-<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.8.5</span></a> 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
+<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.7.5</span></a> 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
 </section>
 <section id="定常状態" class="level4">
 <h4 class="anchored" data-anchor-id="定常状態">定常状態</h4>
 <p>タイプの組 <span class="math inline">\(\left(i, j\right)\)</span> ごとに, 結婚による流入と離婚による流出がバランスします.</p>
-<p><span class="math display">\[
+<p><span id="eq-gousse-steady"><span class="math display">\[
 \delta\left(1-\alpha_{ij}\right)\, m\left(i, j\right) = \lambda\, n_m\left(i\right)\, n_f\left(j\right)\, \alpha_{ij}
-\]</span></p>
-<p>(<span class="math inline">\(m\)</span> は夫婦の分布, <span class="math inline">\(n_m, n_f\)</span> は独身者の分布.) 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.</p>
+\tag{5.11}\]</span></span></p>
+<p>ここで, <span class="math inline">\(m\)</span> は夫婦の分布, <span class="math inline">\(n_m, n_f\)</span> は独身者の分布です. 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.</p>
 </section>
 </section>
 <section id="推定-2" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="推定-2"><span class="header-section-number">5.4.3</span> 推定</h3>
-<p>データはイギリスの家計パネル BHPS の1991-2008年 (22-50歳) です. 賃金, 市場労働時間, 家事時間 (BHPS の設問の制約で育児は含みません) を使います. <strong>家族観指数</strong> (Family Values Index) は, 「未就学児がいるのに母親が働くと子どもが苦しむ」「夫が稼ぎ妻は家庭を守るべき」といった13の意識項目の第1主成分です. この指数は賃金・学歴とほぼ直交しており (<span class="math inline">\(R^2\)</span> は数%), 賃金や教育とは独立の異質性として機能します.</p>
-<p>推定は3段階です.</p>
-<ol type="1">
-<li><strong>結婚・離婚フロー</strong>: タイプの組ごとの結婚フローは <span class="math inline">\(MF\left(i, j\right) = \lambda n_m\left(i\right) n_f\left(j\right) \alpha_{ij}\)</span>, 離婚フローは <span class="math inline">\(DF\left(i, j\right) = \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right)\)</span> です. 共通因子 <span class="math inline">\(z\)</span> が結婚と離婚の<strong>両方</strong>を決めるので <span class="math inline">\(\alpha_{ij}\)</span> を消去でき, <span class="math inline">\(\left(\xi, \delta\right)\)</span> が線形回帰で出ます (下の囲み)</li>
-<li><strong>時間配分の非線形最小二乗</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を<strong>解き直す</strong>, 完全な構造推定です. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます</li>
-<li><strong>マッチング確率の反転</strong>: 第1段階で得た <span class="math inline">\(\alpha_{ij}\)</span> を理論式に代入して, 公共財の質 <span class="math inline">\(Z_{ij}\)</span> を柔軟な多項式として復元します</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>連続時間モデルをどう推定するか
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>連続時間と聞くと, HJB 偏微分方程式を有限差分法で解く (付録の連続時間モデルの章や <span class="citation" data-cites="achdou2022">Achdou et al. (<a href="../../references.html#ref-achdou2022" role="doc-biblioref">2022</a>)</span> でやること) 話を思い浮かべるかもしれません. このモデルではその道具は要りません. 理由は2つあります.</p>
-<p>第1に, <strong>連続的に動く状態変数がない</strong>からです. 有限差分法が要るのは資産のような状態が拡散するときで, そこではじめて <span class="math inline">\(\partial V / \partial a\)</span> を含む偏微分方程式が出てきます. ここで動く状態はマッチの質 <span class="math inline">\(z\)</span> だけで, それも率 <span class="math inline">\(\delta\)</span> でジャンプして <span class="math inline">\(G\)</span> から引き直されるだけです. 微分すべき方向がないので, <a href="#eq-gousse-single" class="quarto-xref">式&nbsp;<span>5.4</span></a> や <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>5.5</span></a> は微分方程式ではなく, ただの積分をふくむ代数方程式です.</p>
-<p>第2に, 移転可能効用の仮定のもとで<strong>余剰が <span class="math inline">\(z\)</span> についてアフィン</strong>になるからです. <span class="math inline">\(\overline{S}_{ij} := \int S_{ij}\left(z'\right)^{+} dG\left(z'\right)\)</span> はスカラーなので, 余剰の式は <span class="math inline">\(\left(r + \delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i r V_m^0 - B_j r V_f^0 + \delta \overline{S}_{ij}\)</span> という <span class="math inline">\(z\)</span> の1次式です. 留保値 <span class="math inline">\(\underline{z}_{ij}\)</span> が閉じた形で書け, マッチング確率も</p>
+<p>データはイギリスの家計パネル BHPS の1991-2008年 (22-50歳) です. 賃金, 市場労働時間, 家事時間 (BHPS の設問の制約で育児は含みません) を使います. 家族観指数 (Family Values Index) は, 「未就学児がいるのに母親が働くと子どもが苦しむ」「夫が稼ぎ妻は家庭を守るべき」といった13の意識項目の第1主成分です. この指数は賃金・学歴とほぼ直交しており (<span class="math inline">\(R^2\)</span> は数%), 賃金や教育とは独立の異質性として機能します.</p>
+<p>推定は3段階に分かれます. 推定の前にデータから, 各 <span class="math inline">\(i, j\)</span> (賃金・学歴・家族観の組) の次のものを計算しておきます.</p>
+<ul>
+<li>賃金 <span class="math inline">\(w_i, w_j\)</span></li>
+<li>独身の分布 <span class="math inline">\(n_m(i), n_f(j)\)</span> と総数 <span class="math inline">\(N_m, N_f\)</span></li>
+<li>夫婦の分布 <span class="math inline">\(m(i, j)\)</span></li>
+<li>結婚・離婚のフロー <span class="math inline">\(MF(i, j), DF(i, j)\)</span></li>
+</ul>
+<p><strong>1. 結婚・離婚フロー</strong>: タイプの組ごとの結婚・離婚フローは次のようになります.</p>
 <p><span class="math display">\[
-\alpha_{ij} = 1 - G\left(\frac{B_i r V_m^0 + B_j r V_f^0 - \delta \overline{S}_{ij}}{F_{ij} X_{ij}}\right)
+\begin{aligned}
+MF\left(i, j\right) &amp;= \lambda n_m\left(i\right) n_f\left(j\right) \alpha_{ij}, \\
+DF\left(i, j\right) &amp;= \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right).
+\end{aligned}
 \]</span></p>
-<p>と1本の式になります. 結局, 均衡は <span class="math inline">\(\left\{\overline{S}_{ij}\right\}\)</span>, <span class="math inline">\(\left\{B_i r V_m^0\right\}\)</span>, <span class="math inline">\(\left\{B_j r V_f^0\right\}\)</span>, <span class="math inline">\(\left\{n_m, n_f\right\}\)</span> という有限個の未知数の不動点に落ちます. タイプ空間を学歴3カテゴリ <span class="math inline">\(\times\)</span> 賃金の Chebyshev 節点16 <span class="math inline">\(\times\)</span> 家族観の節点8で離散化し, 積分を数値積分に置き換えて反復するだけです.</p>
-<p>年次パネルとの接続も素直です. 標本を3年ごとの6期間に切り, 各期を別々の定常状態からの標本とみなします. フローは連年の遷移を数えて作り (1994年に独身で1995年に既婚なら1994年の結婚フロー), 3年分を合計します. あとは上の2式から <span class="math inline">\(\alpha_{ij}\)</span> を消去すると, <span class="math inline">\(MR := MF / \left(n_m n_f\right)\)</span>, <span class="math inline">\(DR := DF / m\)</span> について</p>
+<p>ここで, 結婚率 <span class="math inline">\(MR(i, j) := \frac{MF(i, j)}{n_m(i) n_f(j)}\)</span>, 離婚率 <span class="math inline">\(DR(i, j) := \frac{DF(i, j)}{m(i, j)}\)</span> と書くと, <span class="math inline">\(\alpha_{ij}\)</span> を消去して, 次のように書けます.</p>
 <p><span class="math display">\[
-\frac{MR\left(i, j\right)}{\lambda} + \frac{DR\left(i, j\right)}{\delta} = 1
+\frac{MR(i, j)}{\lambda} + \frac{DR(i, j)}{\delta} = 1.
 \]</span></p>
-<p>という関係が残ります. 定数1を2つの率に回帰する OLS で <span class="math inline">\(1 / \xi\)</span> と <span class="math inline">\(1 / \delta\)</span> が推定でき, 待ち時間として直接読めます. <span class="math inline">\(\alpha_{ij}\)</span> の方は定常状態の流出入均衡から <span class="math inline">\(\alpha_{ij} = \delta m\left(i, j\right) / \left[\delta m\left(i, j\right) + \lambda n_m\left(i\right) n_f\left(j\right)\right]\)</span> と復元されます.</p>
-</div>
-</div>
-<p>第1段階の制約がデータで支持されることは, 直接見て取れます. 学歴 (3) × 家族観 (2) × 期間 (4) のセルごとに結婚フローと離婚フローを取ると, 両者はほぼ比例します (<a href="#fig-gousse2017-flows" class="quarto-xref">図&nbsp;<span>5.22</span></a>, 傾き 0.86, <span class="math inline">\(R^2 = 64\%\)</span>). 結婚が多いタイプの組は離婚も多い, という関係は, 同じ <span class="math inline">\(z\)</span> が両方を決めているというモデルの含意そのものです.</p>
+<p>出会い関数 <span class="math inline">\(\lambda = \xi \left(N_m N_f\right)^{-\frac{1}{2}}\)</span> を代入すると, 次の式を得ます.</p>
+<p><span id="eq-gousse-est1"><span class="math display">\[
+\frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1.
+\tag{5.12}\]</span></span></p>
+<p>フローはサンプルが小さいので, <span class="math inline">\(MR(i, j), DR(i, j)\)</span> は学歴 (男女それぞれ3カテゴリ) のセルごとに集計し, 4つの期間 (94-96, 97-99, 00-02, 03-05) をプールして推定します<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. 推定は1を被説明変数, <span class="math inline">\(\left(N_m N_f\right)^{1/2} MR(i, j)\)</span> と <span class="math inline">\(DR(i, j)\)</span> を説明変数とする切片なしの回帰です<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. これにより <span class="math inline">\(\hat{\xi} = 0.151\)</span>, <span class="math inline">\(\hat{\delta} = 0.0378\)</span> を得ます. これは, 出会いの間隔は中央値で4年半ほど, 引き直し率は18年に1回ほどという意味です. また, <span class="math inline">\(\alpha_{ij}\)</span> は <a href="#eq-gousse-steady" class="quarto-xref">式&nbsp;<span>5.11</span></a> を変形して,</p>
+<p><span class="math display">\[
+\alpha_{ij} = \frac{\delta m(i, j)}{\lambda n_m(i) n_f(j) + \delta m(i, j)},
+\]</span> から復元されます.</p>
+<p>ここで注意すべきなのは, この復元がセルごとに流入と流出が一致する <span class="math inline">\(MF(i, j) = DF(i, j)\)</span> を課していることです. この仮定はグラフで確認できます. タイプの組・期間ごとの結婚フロー <span class="math inline">\(MF(i, j)\)</span> を横軸, 離婚フロー <span class="math inline">\(DF(i, j)\)</span> を縦軸にとったのが <a href="#fig-gousse2017-flows" class="quarto-xref">図&nbsp;<span>5.22</span></a> で, 定常状態が成り立っていれば点は45度線に乗るはずです<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. 回帰直線の傾きは 0.86 (<span class="math inline">\(R^2 = 64\%\)</span>) と45度線からやや外れますが, 系統的なズレは見られません.</p>
 <div id="fig-gousse2017-flows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gousse2017-flows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../../static/img/article/gousse2017/fig6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="図&nbsp;5.22: Marriage and divorce flows by type and period (Fig. 6)"><img src="../../static/img/article/gousse2017/fig6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a>
+<a href="../../static/img/article/gousse2017/fig6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="図&nbsp;5.22: Marriage and divorce flows by type and period (Fig. 6)"><img src="../../static/img/article/gousse2017/fig6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gousse2017-flows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 図&nbsp;5.22: Marriage and divorce flows by type and period (Fig. 6)
 </figcaption>
 </figure>
 </div>
+<p><strong>2. 家事時間と余暇支出の回帰</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます (付録 <a href="../appendix/proof.html#sec-apdx-gousse-est2" class="quarto-xref"><span>A.7.6.3</span></a> 節)</p>
+<p><strong>3. 公共財の質</strong> 均衡における家庭内生産は次の式で表されます.</p>
+<p><span class="math display">\[
+F_{ij} = Z_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X_{ij}^{K_m^1 + K_f^1}.
+\]</span> ここから, <span class="math inline">\(Z_{ij}\)</span> が復元できます.</p>
 <p>主要な推定値は, 出会い率 <span class="math inline">\(\xi = 0.151\)</span> (出会いの間隔は中央値で4年半ほど), 引き直し率 <span class="math inline">\(\delta = 0.038\)</span> (18年に1回ほど), Nash ウェイト <span class="math inline">\(\hat\beta = 0.45\)</span>, マッチの質のばらつき <span class="math inline">\(\hat\sigma = 0.268\)</span> です. 選好と家庭内生産のパラメータは <a href="#fig-gousse2017-estimates" class="quarto-xref">図&nbsp;<span>5.23</span></a> にまとめられています. 家族観が効くのは家庭内生産の最低投入時間で, 夫婦の <span class="math inline">\(D^1_j\left[FVI\right]\)</span> は女性で <span class="math inline">\(+0.0159\)</span>, 男性で <span class="math inline">\(-0.0073\)</span> と符号が逆です. 保守的な妻は家事時間を増やし, 保守的な夫は減らす, という比較優位がここで作られています. 一方, 学歴は選好側 (消費のウェイト <span class="math inline">\(a_{0j}\)</span>, <span class="math inline">\(a_{1j}\)</span>) と生活費 <span class="math inline">\(C\)</span> に効きます.</p>
 <div id="fig-gousse2017-estimates" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1129,7 +1143,7 @@ B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1138,7 +1152,7 @@ B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="citation" data-cites="bertrand2015">Bertrand et al. (<a href="../../references.html#ref-bertrand2015" role="doc-biblioref">2015</a>)</span> は妻の家計に占める所得の割合が50%を境に大きく下落することを示しました.</p>
 <div id="fig-bertrand2015-fig1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1245,7 +1259,7 @@ Achdou, Yves, Jiequn Han, Jean-Michel Lasry, Pierre-Louis Lions, and Benjamin Mo
 Bertrand, Marianne, Emir Kamenica, and Jessica Pan. 2015. <span>“Gender Identity and Relative Income Within Households.”</span> <em>The Quarterly Journal of Economics</em> 130 (2): 571–614. <a href="https://doi.org/10.1093/qje/qjv001">https://doi.org/10.1093/qje/qjv001</a>.
 </div>
 <div id="ref-binder2022" class="csl-entry" role="listitem">
-Binder, Ariel J., and David Lam. 2022. <span>“Is There a <span class="nocase">Male-breadwinner</span> Norm? <span>The</span> Hazards of Inferring Preferences from Marriage Market Outcomes.”</span> <em>Journal of Human Resources</em> 57 (6): 1885–914. <a href="https://doi.org/10.3368/jhr.58.2.0320-10803R1">https://doi.org/10.3368/jhr.58.2.0320-10803R1</a>.
+Binder, Ariel J., and David Lam. 2022. <span>“Is There a <span>Male</span>-Breadwinner Norm? <span>The</span> Hazards of Inferring Preferences from Marriage Market Outcomes.”</span> <em>Journal of Human Resources</em> 57 (6): 1885–914. <a href="https://doi.org/10.3368/jhr.58.2.0320-10803R1">https://doi.org/10.3368/jhr.58.2.0320-10803R1</a>.
 </div>
 <div id="ref-chiappori2025" class="csl-entry" role="listitem">
 Chiappori, Pierre-André, Monica Costa Dias, Costas Meghir, and Hanzhe Zhang. 2025. <span>“Changes in Marital Sorting: Theory and Evidence from the United States.”</span> <em>Journal of Political Economy</em> 133 (10): 3045–77. <a href="https://doi.org/10.1086/736764">https://doi.org/10.1086/736764</a>.
@@ -1280,6 +1294,9 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
 <ol>
 <li id="fn1"><p>同類婚の計測方法にはそれ自体に論点があります. 詳しくは <span class="citation" data-cites="chiappori2025">Chiappori et al. (<a href="../../references.html#ref-chiappori2025" role="doc-biblioref">2025</a>)</span> を参照のこと.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>この部分のターゲットは論文の記述からは正確には特定できませんが, おおよそ次の表のような対応と読めます.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> 両端の期間 (91-93, 06-08) は, 1991年の離婚フローと2008年の結婚フローが計算できないため除かれています.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p> 丁度識別のモーメント条件なので, GMM と OLS は一致します. 論文はこれを OLS と呼んでいます.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p> この図のセルは学歴 (3) × 家族観 (2) を男女それぞれにとり, 4年幅の4期間 (92-95, 96-99, 00-03, 04-07) と組み合わせた <span class="math inline">\(3 \times 3 \times 2 \times 2 \times 4 = 144\)</span> 点です.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1742,8 +1759,8 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lesson/marriage/frictionless-marriage.html" class="pagination-link" aria-label="Frictionless Marriage Market">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Frictionless Marriage Market</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lesson/marriage/fertility.html" class="pagination-link" aria-label="Marriage and Fertility">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -2242,7 +2259,7 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
 <span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse2017-alpha}</span>
 <span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>ここで, $\mathbb{1}_{ij}(z)$ は, タイプの組 $\left(i, j\right)$ がマッチの質 $z$ で結婚するかどうかを示すインディケータです.</span>
 <span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>結婚後は, 率 $\delta$ でマッチの質が引き直されます. 新しい $z'$ は同じ $G$ から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび $\alpha_{ij}$ です. したがって離婚ハザードは $\delta \left(1 - \alpha_{ij}\right)$ になります. 結婚と離婚を同じ $\alpha_{ij}$ が決めていると言う構造がこのモデルの要です. $\alpha_{ij}$ が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い $z$ の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>結婚後は, 率 $\delta$ でマッチの質が引き直されます. 新しい $z'$ は同じ $G$ から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび $\alpha_{ij}$ です. したがって離婚ハザードは $\delta \left(1 - \alpha_{ij}\right)$ になります. 結婚と離婚を同じ $\alpha_{ij}$ が決めていると言う構造が重要です. $\alpha_{ij}$ が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い $z$ の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.</span>
 <span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>@fig-gousse2017-flowchart にここまでの構造をまとめました. 独身の男女がそれぞれのプールで相手を探し, 率 $\lambda$ で出会って $z$ を引き, 合意すれば夫婦のプールへ移ります. 結婚後は率 $\delta$ で $z$ が引き直され, 合意が続けばそのまま, 途切れれば両者が独身のプールに戻ります. 図の下に書いた流出入のバランスが, 後で定常状態を定める条件になります.</span>
 <span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
@@ -2252,252 +2269,304 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
 <span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>各個人は, 私的消費 $c$, 私的余暇 $e$, そして家計の公共財 $q$ (食事, 住環境, 子育てなど) から効用 $U_i\left(c, e, q\right)$ を得ます. 各人の使える時間の総量は1に基準化し, それを市場労働 $h$, 私的余暇 $e$, 家事時間 $d$ の3つに配分します ($h = 1 - e - d$). 公共財を作る唯一の投入がこの家事時間 $d$ で, その公共財が, 結婚を独身より魅力的にしうる唯一のチャネルです.</span>
 <span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>公共財の作り方は独身と夫婦で違います. 独身者は自分の家事時間だけで $q = F_i^0\left(d\right)$ を作り, 夫婦は2人の家事時間から</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>公共財の生産関数は独身と夫婦でそれぞれ Stone-Geary 型で書かれます.</span>
 <span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>q = z\, F_{ij}\left(d_m, d_f\right)</span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>を作ります. マッチの質 $z$ が家庭内生産の TFP として乗る, という定式化です. 関数形は Stone-Geary 型で,</span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>F_{ij}\left(d_m, d_f\right) = Z_{ij}\, \left(d_m - D_m\right)^{K_m}\left(d_f - D_f\right)^{K_f}</span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>です. ここに2種類の異質性が分けて入っています. 係数 $Z_{ij}$ (公共財の質) は「タイプ $i$ と $j$ の組み合わせの良さ」をすべて吸収するパラメータで, 学歴の補完性はここに現れます. 最低投入時間 $D$ は分業の形を決めるパラメータで, 家族観はここに効きます (保守的な女性ほど $D_f$ が大きい). つまり, 家族観は家庭内生産の比較優位を作る変数としてモデル化されています.</span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>q &amp;= F_{g}^0(d) = \left(d - D_{g}^0\right)^{K_{g}^0} &amp; \text{(Single)} <span class="sc">\\</span></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>q &amp;= F_{ij}\left(d_m, d_f\right) = Z_{ij} \left(d_m - D_m^1\right)^{K_m^1}\left(d_f - D_f^1\right)^{K_f^1} &amp; \text{(Married)}</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>ここで, $D$ は最低投入量, $Z_{ij}$ はマッチの質です. 夫婦の生産関数は二つの要素からなります.</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**マッチの質** $Z_{ij}$: 学歴の補完性が高いほど $Z_{ij}$ が大きくなり, 家事時間の投入量が増えます</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**家族観** $D_{g}$: 家族観が保守的なほど, $D_g$ が大きくなり, 家事時間の投入量が増えます</span>
 <span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>一方で, 結婚には費用もかかります. 予算制約は, 独身が</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>予算制約は独身が</span>
 <span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>c + w_i e = w_i \left(1 - d\right) =: R,</span>
 <span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>夫婦が以下になります.</span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>c_m + w_i e_m = w_i \left(1 - d_m\right) - t_m &amp;=: R_m,<span class="sc">\\</span></span>
-<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>c_f + w_j e_f = w_j \left(1 - d_f\right) - t_f &amp;=: R_f</span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>$\left(t_m, t_f\right)$ は配偶者間の移転で, 世帯の生活費 $C_{ij}$ を賄う制約 $t_m + t_f = C_{ij}$ を満たします. $C_{ij}$ は家庭内生産の技術を動かすための固定費用, あるいは共同で消費する分の費用と解釈され, タイプの組に依存する一方で賃金には依存しません. 独身にはこの費用がかかりません.</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>ここで, 規模の経済がどこにあるかを整理します. 夫婦の $q$ は2人の家事時間から一度だけ作られ, それを2人が同時に享受します. 公共財が世帯内で非競合であること自体が規模の経済で, さらに $Z_{ij}$ と $z$ が組み合わせ次第でその生産性を押し上げます. 一方, 私的消費 $c$ と私的余暇 $e$ の側には「2人なら1人あたり割安」という等価尺度は一切入っていません. 結局, 結婚の得失は公共財から得られるこの利益と, 生活費 $C_{ij}$ との綱引きで決まります.</span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a><span class="fu">#### HJB 方程式</span></span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>独身の男性 (タイプ $i$) の価値 $V_m^0\left(i\right)$ は次を満たします.</span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left<span class="co">[</span><span class="ot">V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right</span><span class="co">]</span>^{+} n_f\left(j\right) dG\left(z\right) dj</span>
-<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-single}</span>
-<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>$u_m^0\left(i\right)$ は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 $\max_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)$), $V_m^1\left(i, j, z\right)$ はタイプ $i$ の男性がタイプ $j$ の相手とマッチの質 $z$ で結婚したときの価値です. 率 $\lambda$ で相手に出会い, 相手のタイプは独身女性の分布 $n_f$ から, $z$ は $G$ から引かれます. 正の部分 $\left<span class="co">[</span><span class="ot">\cdot\right</span><span class="co">]</span>^{+}$ が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.</span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>結婚している男性の価値は, 自分のタイプ $i$ だけでなく相手のタイプ $j$ とマッチの質 $z$ にも依存します. 結婚契約の価値を $W_m\left(i, j, z\right)$ と書くと, 契約で決まったフロー効用 $u_m\left(i, j, z\right)$ と, 次に $z$ が引き直されたときの選択の価値からなります.</span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left<span class="co">[</span><span class="ot">\max\left\{V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\} - W_m\left(i, j, z\right)\right</span><span class="co">]</span> dG\left(z'\right)</span>
-<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-married}</span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a>第2項が離婚のオプション価値です. 率 $\delta$ で新しい $z'$ が引かれ, 継続の価値 $V_m^1\left(i, j, z'\right)$ が独身の価値 $V_m^0\left(i\right)$ を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは $z$ だけで, タイプの組 $\left(i, j\right)$ は結婚している限り変わらないことに注意してください. 離婚してはじめて $i$ は独身プールに戻り, 相手を選び直します. McCall モデルの $\max\left<span class="sc">\{</span>W, V\left(b'\right)\right<span class="sc">\}</span>$ とまったく同じ形で, 違いは相手も同時に同じ判断をしていることです.</span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>以下では, 混乱の恐れがないところではタイプの引数を省いて $V_m^0$, $V_m^1\left(z\right)$, $W_m$ のように書きます.</span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Nash Bargaining</span></span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>夫婦は, 家事時間 $\left(d_m, d_f\right)$ と私的支出への移転 $\left(t_m, t_f\right)$ を, 独身の価値 (outside options) を交渉決裂点とする, Nash bargaining で決めます.</span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>\max\ \left<span class="co">[</span><span class="ot">W_m\left(i, j, z\right) - V_m^0\left(i\right)\right</span><span class="co">]</span>^{\beta}</span>
-<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>\left<span class="co">[</span><span class="ot">W_f\left(i, j, z\right) - V_f^0\left(j\right)\right</span><span class="co">]</span>^{1-\beta}</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>夫婦が以下になります.</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>c_m + w_i e_m = w_i \left(1 - d_m\right) - t_m &amp;=: R_m,<span class="sc">\\</span></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>c_f + w_j e_f = w_j \left(1 - d_f\right) - t_f &amp;=: R_f</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>$\left(t_m, t_f\right)$ は配偶者間の移転で, 世帯の生活費 $C_{ij}$ を賄う制約 $t_m + t_f = C_{ij}$ を満たします. $C_{ij}$ は家庭内生産の技術を動かすための固定費用, あるいは共同で消費する分の費用と解釈され, タイプの組に依存する一方で賃金には依存しません. 独身にはこの費用がかかりません.</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>効用関数は, 直接効用 $U_i$ ではなく, 私的支出 $R$ と公共財 $q$ を所与として $c, e$ を最適に選んだあとの (条件付き) 間接効用</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>\psi_i\left(R, q\right) = \max_{c, e}\ U_i\left(c, e, q\right) \quad \text{s.t.} \quad c + w_i e \leq R</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>の形で特定化されます.</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a>\psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>A_i = a_{0i} + a_{1i} w_i + \frac{1}{2} a_{2} w_i^2, \qquad</span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>\ln B_i = b_i \ln w_i</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-utility}</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>$A_i$ は「効用が正になるのに最低限必要な私的支出」, $B_i$ は本人の賃金 (余暇の価格) に応じた個人別の価格指数で, 分子 $q\left(R - A_i\right)$ は名目の効用水準と読めます. 公共財 $q$ と私的支出が掛け算で入るのがポイントで, これが後で移転可能効用を生みます. パラメータ $a_{0i}, a_{1i}, b_i$ は本人の特性 (学歴・家族観) の線形関数, $a_2$ は性別ごとの定数です.</span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>余暇の価格は賃金 $w_i$ なので, 余暇の需要は Roy の恒等式</span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a>e = -\frac{\partial \psi_i / \partial w_i}{\partial \psi_i / \partial R}</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>から求まります. @eq-gousse-utility を微分すると $\partial \psi_i / \partial R = q / B_i$, $\partial \psi_i / \partial w_i = -q\left<span class="co">[</span><span class="ot">A_i' B_i + \left(R - A_i\right) B_i'\right</span><span class="co">]</span> / B_i^2$ なので,</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>e = A_i' + \frac{B_i'}{B_i}\left(R - A_i\right)</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>です. $A_i' = a_{1i} + a_2 w_i$, $B_i' / B_i = b_i / w_i$ を代入して $w_i$ を掛ければ, 余暇支出と消費は</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>ここではコミットメントができず, どちらもいつでも交渉から降りられる (離婚できる) と仮定します. そのため, $z$ が引き直されるたびに配分は再交渉されます.</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>w_i e = a_{1i} w_i + a_2 w_i^2 + b_i\left(R - A_i\right), \qquad c = R - w_i e</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>交渉力の源泉が2つに分離されているのがポイントです. 第1が Nash ウェイト $\beta$ で, 論文はこれを行動面の (behavioral) 源泉と呼びます. 市場とは関係なく当事者の側にある性質のことで, 論文が挙げる例は忍耐強さです. 交互提案交渉では Nash ウェイトが相対的な忍耐強さに対応するので, $\beta$ は「どちらがより待てるか」「交渉が上手か」といったものをまとめて吸収した誘導形のパラメータだと考えてください. 第2が交渉決裂点 $V_m^0, V_f^0$ で, こちらは経済的な (economic) 源泉です. 「結婚市場で誰に出会えるか」が @eq-gousse-single を通じてこれを決めるので, 家計の外の均衡が家計内の力関係に持ち込まれます.</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>となります. $q$ は分子と分母で打ち消し合うので, 余暇の需要は公共財の水準に依存しません. 推定では, この余暇支出が家事時間とともにデータに当てられます. なお, $\psi_i$ が $d$ に依存しないのは, $e \leq 1 - d$ の制約が効かない (内点解の) 範囲を仮定しているからです <span class="co">[</span><span class="ot">@gousse2017, eqs. 5.1, 6.1-6.3</span><span class="co">]</span>.</span>
 <span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>推定では $\beta$ は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 $z$ の側にある, という構造になっています.</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>ここで, 規模の経済がどこにあるかを整理します. 夫婦の $q$ は2人の家事時間から一度だけ作られ, それを2人が同時に享受します. 公共財が世帯内で非競合であること自体が規模の経済で, さらに $Z_{ij}$ が組み合わせ次第でその生産性を押し上げます. 一方, 私的消費 $c$ と私的余暇 $e$ の側には「2人なら1人あたり割安」という等価尺度は一切入っていません. 結局, 結婚の得失は公共財から得られるこの利益と, 生活費 $C_{ij}$ とのトレードオフで決まります.</span>
 <span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり @eq-gousse-married の契約の価値 $W_m$ は継続価値 $V_m^1\left(z\right)$ そのものでなければならず, これを代入して整理すると</span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a><span class="fu">#### HJB 方程式</span></span>
 <span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>\left(r + \delta\right)\left<span class="co">[</span><span class="ot">V_m^1\left(z\right) - V_m^0\right</span><span class="co">]</span> = u_m + \delta \int \left<span class="co">[</span><span class="ot">V_m^1\left(z'\right) - V_m^0\right</span><span class="co">]</span>^{+} dG\left(z'\right) - r V_m^0</span>
-<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-nocommit}</span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>を得ます (女性側も対称. 導出は付録の -@sec-apdx-nocommit 節). 各項の意味を確かめておきます. 左辺は「結婚していることの純価値」を, 時間選好 $r$ と契約が引き直される率 $\delta$ を合わせた実効的な割引率 $r + \delta$ で年金化したもの, つまり純価値のフロー換算です. 右辺の第1項 $u_m$ は結婚内で受け取るフロー効用, 第3項 $r V_m^0$ は独身でいれば毎期得られたはずのフロー (独身の価値の年金価値) で, 差 $u_m - r V_m^0$ が「今期, 結婚しているおかげで独身より多く得ている分」です. 第2項は次に $z'$ が引き直されたときのオプション価値で, 引き直し後も結婚を続ける価値がある ($V_m^1\left(z'\right) &gt; V_m^0$) 場合の超過分だけが数えられ, 離婚する場合は $V_m^0$ に戻れるのでゼロで打ち止めになります. McCall モデルの留保賃金の式 @eq-reservation と同じ構造で, 違いは「辞める」先が独身の価値 $V_m^0$ であり, その $V_m^0$ 自身が @eq-gousse-single を通じて結婚市場の状態に依存することです.</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a>独身の男性 (タイプ $i$) の価値 $V_m^0\left(i\right)$ は次を満たします.</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left<span class="co">[</span><span class="ot">V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right</span><span class="co">]</span>^{+} n_f\left(j\right) dG\left(z\right) dj</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-single}</span>
 <span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>間接効用が $\psi_i\left(R, q\right) = q \left(R - A_i\right) / B_i$ ($R$ は私的支出, $A_i$ は最低私的支出, $B_i$ は個人の価格指数) という形になるよう選好を特定化すると, 2つの便利な性質が出ます. 第1に**再帰性**: 家事時間は移転や継続価値と独立に, 静学的な効率性条件</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>$u_m^0\left(i\right)$ は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 $\max_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)$), $V_m^1\left(i, j, z\right)$ はタイプ $i$ の男性がタイプ $j$ の相手とマッチの質 $z$ で結婚したときの価値です. 率 $\lambda$ で相手に出会い, 相手のタイプは独身女性の分布 $n_f$ から, $z$ は $G$ から引かれます. 正の部分 $\left<span class="co">[</span><span class="ot">\cdot\right</span><span class="co">]</span>^{+}$ が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.</span>
 <span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>\frac{1}{w_i}\frac{\partial \ln F_{ij}}{\partial d_m} = \frac{1}{w_j}\frac{\partial \ln F_{ij}}{\partial d_f}</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a>結婚している男性の価値は, 自分のタイプ $i$ だけでなく相手のタイプ $j$ とマッチの質 $z$ にも依存します. 結婚契約の価値を $W_m\left(i, j, z\right)$ と書くと, 契約で決まったフロー効用 $u_m\left(i, j, z\right)$ と, 次に $z$ が引き直されたときの選択の価値からなります.</span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>だけで決まります ($z$ は掛け算で入るので分業に影響しません. 導出は付録の -@sec-apdx-gousse-housework 節). 賃金の高い側が家事時間を減らし, 家族観の保守的な妻は ($D_f$ を通じて) 家事時間を増やし, その分だけ夫の家事時間が減る, という比較優位の分業がここから出ます. 第2に**移転可能効用**: マッチの余剰 $S_{ij}\left(z\right)$ が定義でき, 結婚の成立が $S_{ij}\left(z\right) \geq 0$ と同値になります.</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left<span class="co">[</span><span class="ot">\max\left\{V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\} - W_m\left(i, j, z\right)\right</span><span class="co">]</span> dG\left(z'\right)</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-married}</span>
 <span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 余剰とマッチング集合</span></span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>第2項が離婚のオプション価値です. 率 $\delta$ で新しい $z'$ が引かれ, 継続の価値 $V_m^1\left(i, j, z'\right)$ が独身の価値 $V_m^0\left(i\right)$ を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは $z$ だけで, タイプの組 $\left(i, j\right)$ は結婚している限り変わらないことに注意してください. 離婚してはじめて $i$ は独身プールに戻り, 相手を選び直します.</span>
 <span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>移転可能効用のもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を $S_{ij}\left(z\right) := B_i\left<span class="co">[</span><span class="ot">V_m^1\left(z\right) - V_m^0\right</span><span class="co">]</span> + B_j\left<span class="co">[</span><span class="ot">V_f^1\left(z\right) - V_f^0\right</span><span class="co">]</span>$ と定義すると, 男女の @eq-gousse-nocommit を価格指数で重みづけて足し合わせることで</span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>以下では, 混乱の恐れがないところではタイプの引数を省いて $V_m^0$, $V_m^1\left(z\right)$, $W_m$ のように書きます.</span>
 <span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>\left(r+\delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+}\, dG\left(z'\right)</span>
-<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Nash Bargaining</span></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a>夫婦は, 家事時間 $\left(d_m, d_f\right)$ と私的支出への移転 $\left(t_m, t_f\right)$ を, 独身の価値 (outside options) を交渉決裂点とする, Nash bargaining で決めます.</span>
 <span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>が成り立ちます ($X_{ij}$ は家計の純私的支出, $r$ は割引率. 導出は付録の -@sec-apdx-gousse-surplus 節). これで先送りにしていた合意条件が定まりました. インディケータは $\mathbb{1}_{ij}\left(z\right) = \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\}$, つまり余剰が非負なら結婚する, です. 余剰は $z$ について増加するので, これは「$z$ が閾値 $\underline{z}_{ij}$ 以上なら結婚」という留保値ルールになり, @eq-gousse2017-alpha が閉じた形で書けます.</span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>\alpha_{ij} = \int \mathbb{1}\left<span class="sc">\{</span>S_{ij}\left(z\right) \geq 0\right<span class="sc">\}</span> dG\left(z\right) = 1 - G\left(\underline{z}_{ij}\right)</span>
-<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a>McCall 型の停止ルールが, タイプの組ごとに1つずつ並んでいる構造です. 独身の価値は, 出会える相手の分布に対する期待余剰で決まります.</span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj</span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>\max\ \left<span class="co">[</span><span class="ot">W_m\left(i, j, z\right) - V_m^0\left(i\right)\right</span><span class="co">]</span>^{\beta}</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>\left<span class="co">[</span><span class="ot">W_f\left(i, j, z\right) - V_f^0\left(j\right)\right</span><span class="co">]</span>^{1-\beta}</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>ここではコミットメントができず, どちらもいつでも交渉から降りられる (離婚できる) と仮定します. そのため, $z$ が引き直されるたびに配分は再交渉されます.</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>この時, 交渉力の源泉は次の2つからなります.</span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Behavioral** $\beta$: Nash ウェイトで, 交互提案交渉の相対的な忍耐強さに対応します. どちらがより待てるか, 交渉が上手かといったものをまとめて吸収した誘導形のパラメータです.</span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Economic** $V_m^0, V_f^0$: 交渉決裂点で, 離婚して結婚市場に参入した場合の価値によって決定されます. 家計の外の均衡が家計内の力関係に持ち込まれます.</span>
 <span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>($\bar{S}_{ij}$ は正の部分の期待余剰, $n_f\left(j\right)$ は独身女性のタイプ分布. 女性側は $1 - \beta$ で対称. 導出は付録の -@sec-apdx-gousse-single 節.) この線形の積分方程式が「外部機会」を定めます. 良い相手に出会いやすいタイプほど威嚇点が高く, 家計内で強い, という均衡の連鎖です.</span>
-<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sharing rule</span></span>
-<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>Nash 交渉の解として, 夫が受け取る純私的支出のシェアは</span>
-<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>\beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}</span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>となります (導出は付録の -@sec-apdx-gousse-share 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト $\beta$ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 $z$ が入るので, 同じタイプの夫婦でも $z$ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 定常状態</span></span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>タイプの組 $\left(i, j\right)$ ごとに, 結婚による流入と離婚による流出がバランスします.</span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>\delta\left(1-\alpha_{ij}\right)\, m\left(i, j\right) = \lambda\, n_m\left(i\right)\, n_f\left(j\right)\, \alpha_{ij}</span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>推定では $\beta$ は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 $z$ の側にある, という構造になっています.</span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり @eq-gousse-married の契約の価値 $W_m$ は継続価値 $V_m^1\left(z\right)$ そのものでなければならず, これを代入して整理すると (@sec-apdx-nocommit), 次の式を得ます.</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>\left(r + \delta\right)\left<span class="co">[</span><span class="ot">V_m^1\left(z\right) - V_m^0\right</span><span class="co">]</span> = u_m - r V_m^0 + \delta \int \left<span class="co">[</span><span class="ot">V_m^1\left(z'\right) - V_m^0\right</span><span class="co">]</span>^{+} dG\left(z'\right)</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-nocommit}</span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. $u_m - r V_m^0$ が「今期, 結婚しているおかげで独身より多く得ている分」, $\delta \int \left<span class="co">[</span><span class="ot">V_m^1\left(z'\right) - V_m^0\right</span><span class="co">]</span>^{+} dG\left(z'\right)$ が「次に $z'$ が引き直されたときのオプション価値」 になります.</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 余剰とマッチング集合</span></span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を $S_{ij}\left(z\right) := B_i\left<span class="co">[</span><span class="ot">V_m^1\left(z\right) - V_m^0\right</span><span class="co">]</span> + B_j\left<span class="co">[</span><span class="ot">V_f^1\left(z\right) - V_f^0\right</span><span class="co">]</span>$ と定義すると, @sec-apdx-gousse-surplus より, 次の式が成り立ちます.</span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>\left(r+\delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+}\, dG\left(z'\right)</span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>$${#eq-gousse-surplus}</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>ここで, 家計の純私的支出 $X_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j$ です.</span>
 <span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>($m$ は夫婦の分布, $n_m, n_f$ は独身者の分布.) 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>この時, 合意条件 $\mathbb{1}_{ij}\left(z\right) = \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\}$ を閉じた形でかけます. @eq-gousse-surplus の右辺は $zF_{ij}X_{ij}$ のみが $z$ に依存し, 自明に増加かんすうであるので, 余剰 $S_{ij}\left(z\right)$ も $z$ について増加関数になります. したがって, ある閾値 $\underline{z}_{ij}$ が存在して, 「$z$ が $\underline{z}_{ij}$ 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, @eq-gousse2017-alpha のインディケータは次の形で書くことができます.</span>
 <span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="fu">### 推定</span></span>
-<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>データはイギリスの家計パネル BHPS の1991-2008年 (22-50歳) です. 賃金, 市場労働時間, 家事時間 (BHPS の設問の制約で育児は含みません) を使います. **家族観指数** (Family Values Index) は, 「未就学児がいるのに母親が働くと子どもが苦しむ」「夫が稼ぎ妻は家庭を守るべき」といった13の意識項目の第1主成分です. この指数は賃金・学歴とほぼ直交しており ($R^2$ は数%), 賃金や教育とは独立の異質性として機能します.</span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>\alpha_{ij} = \int \mathbb{1}\left<span class="sc">\{</span>S_{ij}\left(z\right) \geq 0\right<span class="sc">\}</span> dG\left(z\right) = 1 - G\left(\underline{z}_{ij}\right)</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-alpha-threshold}</span>
 <span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>推定は3段階です.</span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は @sec-apdx-gousse-single).</span>
 <span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**結婚・離婚フロー**: タイプの組ごとの結婚フローは $MF\left(i, j\right) = \lambda n_m\left(i\right) n_f\left(j\right) \alpha_{ij}$, 離婚フローは $DF\left(i, j\right) = \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right)$ です. 共通因子 $z$ が結婚と離婚の**両方**を決めるので $\alpha_{ij}$ を消去でき, $\left(\xi, \delta\right)$ が線形回帰で出ます (下の囲み)</span>
-<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**時間配分の非線形最小二乗**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと $\left(\beta, \sigma\right)$ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を**解き直す**, 完全な構造推定です. $\beta$ は夫婦の余暇の水準から, $\sigma$ はその分散から識別されます</span>
-<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**マッチング確率の反転**: 第1段階で得た $\alpha_{ij}$ を理論式に代入して, 公共財の質 $Z_{ij}$ を柔軟な多項式として復元します</span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj</span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-single-value}</span>
 <span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a>この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.</span>
 <span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="fu">## 連続時間モデルをどう推定するか</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sharing rule</span></span>
 <span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a>連続時間と聞くと, HJB 偏微分方程式を有限差分法で解く (付録の連続時間モデルの章や @achdou2022 でやること) 話を思い浮かべるかもしれません. このモデルではその道具は要りません. 理由は2つあります.</span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a>Nash 交渉の解として, 夫が受け取る純私的支出のシェアは</span>
 <span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a>第1に, **連続的に動く状態変数がない**からです. 有限差分法が要るのは資産のような状態が拡散するときで, そこではじめて $\partial V / \partial a$ を含む偏微分方程式が出てきます. ここで動く状態はマッチの質 $z$ だけで, それも率 $\delta$ でジャンプして $G$ から引き直されるだけです. 微分すべき方向がないので, @eq-gousse-single や @eq-gousse-married は微分方程式ではなく, ただの積分をふくむ代数方程式です.</span>
-<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a>第2に, 移転可能効用の仮定のもとで**余剰が $z$ についてアフィン**になるからです. $\overline{S}_{ij} := \int S_{ij}\left(z'\right)^{+} dG\left(z'\right)$ はスカラーなので, 余剰の式は $\left(r + \delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i r V_m^0 - B_j r V_f^0 + \delta \overline{S}_{ij}$ という $z$ の1次式です. 留保値 $\underline{z}_{ij}$ が閉じた形で書け, マッチング確率も</span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a>\beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}</span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a>\alpha_{ij} = 1 - G\left(\frac{B_i r V_m^0 + B_j r V_f^0 - \delta \overline{S}_{ij}}{F_{ij} X_{ij}}\right)</span>
-<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a>となります (導出は付録の -@sec-apdx-gousse-share 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト $\beta$ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 $z$ が入るので, 同じタイプの夫婦でも $z$ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 定常状態</span></span>
 <span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a>と1本の式になります. 結局, 均衡は $\left<span class="sc">\{</span>\overline{S}_{ij}\right<span class="sc">\}</span>$, $\left<span class="sc">\{</span>B_i r V_m^0\right<span class="sc">\}</span>$, $\left<span class="sc">\{</span>B_j r V_f^0\right<span class="sc">\}</span>$, $\left<span class="sc">\{</span>n_m, n_f\right<span class="sc">\}</span>$ という有限個の未知数の不動点に落ちます. タイプ空間を学歴3カテゴリ $\times$ 賃金の Chebyshev 節点16 $\times$ 家族観の節点8で離散化し, 積分を数値積分に置き換えて反復するだけです.</span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a>タイプの組 $\left(i, j\right)$ ごとに, 結婚による流入と離婚による流出がバランスします.</span>
 <span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a>年次パネルとの接続も素直です. 標本を3年ごとの6期間に切り, 各期を別々の定常状態からの標本とみなします. フローは連年の遷移を数えて作り (1994年に独身で1995年に既婚なら1994年の結婚フロー), 3年分を合計します. あとは上の2式から $\alpha_{ij}$ を消去すると, $MR := MF / \left(n_m n_f\right)$, $DR := DF / m$ について</span>
-<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a>\frac{MR\left(i, j\right)}{\lambda} + \frac{DR\left(i, j\right)}{\delta} = 1</span>
-<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a>\delta\left(1-\alpha_{ij}\right)\, m\left(i, j\right) = \lambda\, n_m\left(i\right)\, n_f\left(j\right)\, \alpha_{ij}</span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a>$$ {#eq-gousse-steady}</span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a>ここで, $m$ は夫婦の分布, $n_m, n_f$ は独身者の分布です. 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.</span>
 <span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a>という関係が残ります. 定数1を2つの率に回帰する OLS で $1 / \xi$ と $1 / \delta$ が推定でき, 待ち時間として直接読めます. $\alpha_{ij}$ の方は定常状態の流出入均衡から $\alpha_{ij} = \delta m\left(i, j\right) / \left<span class="co">[</span><span class="ot">\delta m\left(i, j\right) + \lambda n_m\left(i\right) n_f\left(j\right)\right</span><span class="co">]</span>$ と復元されます.</span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="fu">### 推定</span></span>
 <span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>データはイギリスの家計パネル BHPS の1991-2008年 (22-50歳) です. 賃金, 市場労働時間, 家事時間 (BHPS の設問の制約で育児は含みません) を使います. 家族観指数 (Family Values Index) は, 「未就学児がいるのに母親が働くと子どもが苦しむ」「夫が稼ぎ妻は家庭を守るべき」といった13の意識項目の第1主成分です. この指数は賃金・学歴とほぼ直交しており ($R^2$ は数%), 賃金や教育とは独立の異質性として機能します.</span>
 <span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a>第1段階の制約がデータで支持されることは, 直接見て取れます. 学歴 (3) × 家族観 (2) × 期間 (4) のセルごとに結婚フローと離婚フローを取ると, 両者はほぼ比例します (@fig-gousse2017-flows, 傾き 0.86, $R^2 = 64\%$). 結婚が多いタイプの組は離婚も多い, という関係は, 同じ $z$ が両方を決めているというモデルの含意そのものです.</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a>推定は3段階に分かれます. 推定の前にデータから, 各 $i, j$ (賃金・学歴・家族観の組) の次のものを計算しておきます.</span>
 <span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="al">![Marriage and divorce flows by type and period (Fig. 6)](/static/img/article/gousse2017/fig6.svg)</span>{#fig-gousse2017-flows width=75% fig-align="center"}</span>
-<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a>主要な推定値は, 出会い率 $\xi = 0.151$ (出会いの間隔は中央値で4年半ほど), 引き直し率 $\delta = 0.038$ (18年に1回ほど), Nash ウェイト $\hat\beta = 0.45$, マッチの質のばらつき $\hat\sigma = 0.268$ です. 選好と家庭内生産のパラメータは @fig-gousse2017-estimates にまとめられています. 家族観が効くのは家庭内生産の最低投入時間で, 夫婦の $D^1_j\left<span class="co">[</span><span class="ot">FVI\right</span><span class="co">]</span>$ は女性で $+0.0159$, 男性で $-0.0073$ と符号が逆です. 保守的な妻は家事時間を増やし, 保守的な夫は減らす, という比較優位がここで作られています. 一方, 学歴は選好側 (消費のウェイト $a_{0j}$, $a_{1j}$) と生活費 $C$ に効きます.</span>
-<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a><span class="al">![Estimated preference and home production parameters (Table III)](/static/img/article/gousse2017/table3.svg)</span>{#fig-gousse2017-estimates width=90% fig-align="center"}</span>
-<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a><span class="fu">### 結果</span></span>
-<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 同類婚の3つの側面</span></span>
-<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a>@fig-gousse2017-table2 は, 第1段階で推定したマッチング確率 $\alpha_{ij}$ を, 学歴・家族観・賃金の3つの次元それぞれで集計したものです. 同類婚のパターンは次元ごとにまったく違う顔を持ちます.</span>
-<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**学歴**: 対称な homophily. 対角線上の確率が高く, 行と列を入れ替えてもほぼ同じ形になる</span>
-<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**家族観**: **非対称**な homophily. 保守的な人は保守的な相手を強く選ぶが, リベラルな人は相手の家族観にほぼ無差別</span>
-<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**賃金**: homophily は**ほぼない**. 女性の賃金はマッチングにほとんど影響せず, 観察されるのは「低賃金の男性が結婚しにくい」という一方向の選別だけ</span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>賃金 $w_i, w_j$</span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>独身の分布 $n_m(i), n_f(j)$ と総数 $N_m, N_f$</span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>夫婦の分布 $m(i, j)$</span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>結婚・離婚のフロー $MF(i, j), DF(i, j)$</span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a>**1. 結婚・離婚フロー**: タイプの組ごとの結婚・離婚フローは次のようになります.</span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a>MF\left(i, j\right) &amp;= \lambda n_m\left(i\right) n_f\left(j\right) \alpha_{ij}, <span class="sc">\\</span></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a>DF\left(i, j\right) &amp;= \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right).</span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a>ここで, 結婚率 $MR(i, j) := \frac{MF(i, j)}{n_m(i) n_f(j)}$, 離婚率 $DR(i, j) := \frac{DF(i, j)}{m(i, j)}$ と書くと, $\alpha_{ij}$ を消去して, 次のように書けます.</span>
 <span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="al">![Matching probabilities by type (Table II)](/static/img/article/gousse2017/table2.svg)</span>{#fig-gousse2017-table2 width=90% fig-align="center"}</span>
-<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a>家族観の非対称性は @fig-gousse2017-table2 (b) にはっきり出ています. FVI の四分位で, Q4 が最も保守的, Q1 が最もリベラルです. リベラルな男性 (Q1 の行) のマッチング確率は相手の家族観によらずほぼ一定 (1991-93年で 0.37-0.38) なのに対し, 保守的な男性 (Q4 の行) は相手が保守的なら 0.51, リベラルなら 0.30 と大きく下がります. 列で見ても同じで, 保守的な人だけが相手を選んでいます.</span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a>\frac{MR(i, j)}{\lambda} + \frac{DR(i, j)}{\delta} = 1.</span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a>3つ目の結果は, 「妻が夫より稼ぐ夫婦が極端に少ない」という有名な事実 <span class="co">[</span><span class="ot">@bertrand2015</span><span class="co">]</span> に別の解釈を与えます. これは夫婦の賃金比の分布の形についての事実ですが, これはどの組み合わせが結婚に至るかに大きく影響を受けます. そこでマッチング確率を妻の賃金シェア $\frac{w_f}{w_f + w_m}$ の関数として描いたのが @fig-gousse2017-wageratio です. シェアが $1/2$ 以下の範囲ではほぼ平らで, $1/2$ を超えると急に落ちます. 見た目は「妻に追い抜かれる結婚は避けられる」という規範の話と整合的です.</span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a>出会い関数 $\lambda = \xi \left(N_m N_f\right)^{-\frac{1}{2}}$ を代入すると, 次の式を得ます.</span>
 <span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a>ただし, 妻の賃金シェアが高いということは, 裏返せば夫の賃金が低いということでもあります. どちらが効いているのかを分解しているのが @fig-gousse2017-table2 (c) です. 高賃金の男性 (Q4) は低賃金の男性 (Q1) のおよそ2倍の頻度で結婚する一方, 女性の賃金はマッチングにほとんど効いていません. つまり @fig-gousse2017-wageratio の下落は, 妻の賃金シェアが $1/2$ を超えたことに反応しているのではなく, そこに低賃金の夫が集まっていることの反映だ, というのがこのモデルの解釈です.</span>
-<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a><span class="al">![Matching probability by the wife's wage share (Fig. 7)](/static/img/article/gousse2017/fig7.svg)</span>{#fig-gousse2017-wageratio width=75% fig-align="center"}</span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a>\frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1.</span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a>$${#eq-gousse-est1}</span>
 <span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
-<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="fu">## @bertrand2015 のジェンダー規範</span></span>
-<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a>@bertrand2015 は妻の家計に占める所得の割合が50%を境に大きく下落することを示しました.</span>
-<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a><span class="al">![Distribution of Relative Income, Figure 1 of @bertrand2015](/static/img/article/bertrand2015/fig1.svg)</span>{#fig-bertrand2015-fig1 width=80% fig-align="center"}</span>
-<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a>彼女らはこの現象を「妻が夫より稼ぐことへの社会的規範」だと解釈しました (Breadwinner norm). しかし, 結婚市場の結果である可能性が @gousse2017 で示唆されただけでなく, @binder2022 が社会規範なしのモデルで同様の分布を再現しています.</span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a>フローはサンプルが小さいので, $MR(i, j), DR(i, j)$ は学歴 (男女それぞれ3カテゴリ) のセルごとに集計し, 4つの期間 (94-96, 97-99, 00-02, 03-05) をプールして推定します^[</span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>    両端の期間 (91-93, 06-08) は, 1991年の離婚フローと2008年の結婚フローが計算できないため除かれています.</span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a>]. 推定は1を被説明変数, $\left(N_m N_f\right)^{1/2} MR(i, j)$ と $DR(i, j)$ を説明変数とする切片なしの回帰です^[</span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a>    丁度識別のモーメント条件なので, GMM と OLS は一致します. 論文はこれを OLS と呼んでいます.</span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a>]. これにより $\hat{\xi} = 0.151$, $\hat{\delta} = 0.0378$ を得ます. これは, 出会いの間隔は中央値で4年半ほど, 引き直し率は18年に1回ほどという意味です. また, $\alpha_{ij}$ は @eq-gousse-steady を変形して,</span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>\alpha_{ij} = \frac{\delta m(i, j)}{\lambda n_m(i) n_f(j) + \delta m(i, j)},</span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a>から復元されます.</span>
 <span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 同類婚はどこから来るのか</span></span>
-<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a>ここまでは観察されたパターンの記述です. 構造モデルを使うと, そのパターンがモデルのどの部分から生まれているのかを切り分けられます. 手がかりは, 公共財の質 $Z_{ij}$ をどこまで単純化するとマッチング確率の当てはまりが崩れるか, という実験です (@fig-gousse2017-fit-matching).</span>
-<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a>まず, 時点不変の構造パラメータでマッチング確率を予測すると, どの期間でも $R^2$ は 0.8 前後です. $\ln Z_{ij}$ を二次関数で近似しても 0.75 までしか落ちないので, 高次の項は捨ててかまいません. ところが交差項 (男性のタイプ × 女性のタイプ) をすべて落とすと 0.54 まで崩れます. 補完性が同類婚を作っている, ということです.</span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a>ここで注意すべきなのは, この復元がセルごとに流入と流出が一致する $MF(i, j) = DF(i, j)$ を課していることです. この仮定はグラフで確認できます. タイプの組・期間ごとの結婚フロー $MF(i, j)$ を横軸, 離婚フロー $DF(i, j)$ を縦軸にとったのが @fig-gousse2017-flows で, 定常状態が成り立っていれば点は45度線に乗るはずです^[</span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a>    この図のセルは学歴 (3) × 家族観 (2) を男女それぞれにとり, 4年幅の4期間 (92-95, 96-99, 00-03, 04-07) と組み合わせた $3 \times 3 \times 2 \times 2 \times 4 = 144$ 点です.</span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a>]. 回帰直線の傾きは 0.86 ($R^2 = 64\%$) と45度線からやや外れますが, 系統的なズレは見られません.</span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="al">![Marriage and divorce flows by type and period (Fig. 6)](/static/img/article/gousse2017/fig6.svg)</span>{#fig-gousse2017-flows width=80% fig-align="center"}</span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a>**2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと $\left(\beta, \sigma\right)$ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. $\beta$ は夫婦の余暇の水準から, $\sigma$ はその分散から識別されます (付録 -@sec-apdx-gousse-est2 節)</span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a>面白いのは, そこへ交差項を1つずつ戻したときです. 学歴の交差項 $Ed_m \times Ed_f$ だけが 0.71 まで回復させ, 残り8通りはどれも 0.54-0.62 にとどまります. 家族観の交差項 $FVI_m \times FVI_f$ に至っては 0.54 のままで, 何も足していません.</span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a>**3. 公共財の質** 均衡における家庭内生産は次の式で表されます.</span>
 <span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a><span class="al">![Fit of matching probabilities (Table IV)](/static/img/article/gousse2017/table4.svg)</span>{#fig-gousse2017-fit-matching width=90% fig-align="center"}</span>
-<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a>つまり, 公共財の質に入る補完性 (「似た相手といること自体が良い」という選好的なチャネル) で説明できるのは学歴の同類婚だけです. 家族観の非対称な homophily は, ここではなく家庭内生産の側から来ています. 保守的な妻は家事時間を増やし, 保守的な夫は減らす ($D^1_j\left<span class="co">[</span><span class="ot">FVI\right</span><span class="co">]</span>$ の符号が男女で逆, @fig-gousse2017-estimates) ので, 保守的な相手は分業の相手として価値を持ちます. 学歴は選好を通じて, 家族観は家庭内生産の比較優位を通じて同類婚を生む, というのがこの論文の整理です.</span>
-<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a><span class="fu">#### モデルのフィット</span></span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a>F_{ij} = Z_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X_{ij}^{K_m^1 + K_f^1}.</span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a>ここから, $Z_{ij}$ が復元できます.</span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a>構造パラメータは全期間で共通なので, 期間ごとに動かしているのは賃金・学歴・家族観の分布だけです. それでも, 男女別・配偶関係別の賃金・家族観・学歴構成・市場労働時間・家事時間のトレンドは概ね再現されます (@fig-gousse2017-fit-trends). 女性の市場労働時間の変化をやや過大に予測する点を除けば, 水準も傾きも合っています.</span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a>主要な推定値は, 出会い率 $\xi = 0.151$ (出会いの間隔は中央値で4年半ほど), 引き直し率 $\delta = 0.038$ (18年に1回ほど), Nash ウェイト $\hat\beta = 0.45$, マッチの質のばらつき $\hat\sigma = 0.268$ です. 選好と家庭内生産のパラメータは @fig-gousse2017-estimates にまとめられています. 家族観が効くのは家庭内生産の最低投入時間で, 夫婦の $D^1_j\left<span class="co">[</span><span class="ot">FVI\right</span><span class="co">]</span>$ は女性で $+0.0159$, 男性で $-0.0073$ と符号が逆です. 保守的な妻は家事時間を増やし, 保守的な夫は減らす, という比較優位がここで作られています. 一方, 学歴は選好側 (消費のウェイト $a_{0j}$, $a_{1j}$) と生活費 $C$ に効きます.</span>
 <span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a><span class="al">![Model fit: trends by gender and marital status (Fig. 8)](/static/img/article/gousse2017/fig8.svg)</span>{#fig-gousse2017-fit-trends width=90% fig-align="center"}</span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a><span class="al">![Estimated preference and home production parameters (Table III)](/static/img/article/gousse2017/table3.svg)</span>{#fig-gousse2017-estimates width=90% fig-align="center"}</span>
 <span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a>より厳しいテストが, 夫婦の中での賃金シェアと稼得シェアの分布です (@fig-gousse2017-fit-shares). 全夫婦に加えて, 夫婦とも保守的な組とリベラルな組に分けて描いても, 分布の形の違い (保守的な夫婦では妻の稼得シェアが低い側に大きく偏り, リベラルな夫婦ではより対称に近い) がモデルで再現されます. 家族観が家庭内生産の比較優位を通じて分業を決める, という構造が効いている証拠です.</span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a><span class="fu">### 結果</span></span>
 <span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a><span class="al">![Model fit: wage and earnings shares within couples (Fig. 9)](/static/img/article/gousse2017/fig9.svg)</span>{#fig-gousse2017-fit-shares width=80% fig-align="center"}</span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 同類婚の3つの側面</span></span>
 <span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sharing rule: 夫はなぜ55%を取るのか</span></span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a>@fig-gousse2017-table2 は, 第1段階で推定したマッチング確率 $\alpha_{ij}$ を, 学歴・家族観・賃金の3つの次元それぞれで集計したものです. 同類婚のパターンは次元ごとにまったく違う顔を持ちます.</span>
 <span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a>推定されたモデルで家計内の配分を計算すると, 夫は家計の純私的支出の平均 **55%** を受け取ります. 内訳は, Nash ウェイト $\beta = 0.45$ (この部分だけなら妻の方がわずかに強い) に, 男性の**外部機会の良さ**が約 10% ポイント上乗せされる, というものです. 結婚市場の均衡が男性に有利に働いている分が, 交渉力の差として家計内に持ち込まれています. このシェアは1991-2008年を通じてほぼ一定 (0.54-0.56) です.</span>
-<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a>タイプ別に見ると (@fig-gousse2017-sharing), 学歴には補償的な移転が働いています. 夫の学歴が低いほど夫の取り分は大きく, 妻の学歴が高いほど夫の取り分は大きくなります. 妻の取り分が夫を上回る唯一のケースは, 非大卒の妻が大卒の夫と結婚した場合です. 家族観による差はほとんどありません (分業には強く効くのに, 私的支出の分配には効かない). 目を引くのは最下段の賃金比によるパネルで, 賃金の高い側ほど取り分が大きく, しかもその差が時間とともに開いています. 伝統的な家族像から離れていく文化的変化の副産物として, 夫婦間の再分配がむしろ細っている, という読み方ができます.</span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**学歴**: 対称な homophily. 対角線上の確率が高く, 行と列を入れ替えてもほぼ同じ形になる</span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**家族観**: **非対称**な homophily. 保守的な人は保守的な相手を強く選ぶが, リベラルな人は相手の家族観にほぼ無差別</span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**賃金**: homophily は**ほぼない**. 女性の賃金はマッチングにほとんど影響せず, 観察されるのは「低賃金の男性が結婚しにくい」という一方向の選別だけ</span>
 <span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a><span class="al">![Mean sharing rule by type (Fig. 10)](/static/img/article/gousse2017/fig10.svg)</span>{#fig-gousse2017-sharing width=90% fig-align="center"}</span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a><span class="al">![Matching probabilities by type (Table II)](/static/img/article/gousse2017/table2.svg)</span>{#fig-gousse2017-table2 width=90% fig-align="center"}</span>
 <span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 反実仮想: 女性の労働供給は何で決まっているか</span></span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a>家族観の非対称性は @fig-gousse2017-table2 (b) にはっきり出ています. FVI の四分位で, Q4 が最も保守的, Q1 が最もリベラルです. リベラルな男性 (Q1 の行) のマッチング確率は相手の家族観によらずほぼ一定 (1991-93年で 0.37-0.38) なのに対し, 保守的な男性 (Q4 の行) は相手が保守的なら 0.51, リベラルなら 0.30 と大きく下がります. 列で見ても同じで, 保守的な人だけが相手を選んでいます.</span>
 <span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a>推定されたモデルの労働供給の賃金弾力性は, 既婚女性で約 0.4 と男性の2倍以上あり, ミクロ実証の相場と整合的です. そのうえで, 男女差の源泉を分解する4つの反実仮想が行われます (@fig-gousse2017-table6).</span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a>3つ目の結果は, 「妻が夫より稼ぐ夫婦が極端に少ない」という有名な事実 <span class="co">[</span><span class="ot">@bertrand2015</span><span class="co">]</span> に別の解釈を与えます. これは夫婦の賃金比の分布の形についての事実ですが, これはどの組み合わせが結婚に至るかに大きく影響を受けます. そこでマッチング確率を妻の賃金シェア $\frac{w_f}{w_f + w_m}$ の関数として描いたのが @fig-gousse2017-wageratio です. シェアが $1/2$ 以下の範囲ではほぼ平らで, $1/2$ を超えると急に落ちます. 見た目は「妻に追い抜かれる結婚は避けられる」という規範の話と整合的です.</span>
 <span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**ジェンダー賃金格差をなくす** (学歴・家族観を条件とした男女の賃金差を消す): 既婚女性の市場労働は +10% 程度. 結婚市場への影響はごく小さい (賃金は女性のマッチングにほぼ無関係のため)</span>
-<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**女性に男性の選好を与える**: 市場労働 +8% 程度だが, 独身者が大きく減るなど結婚市場への影響が最大</span>
-<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**女性の家庭内生産の比較優位をなくす** (家庭内生産パラメータを男性と同じに): 既婚女性の市場労働 **+34%**, 家事時間 **−61%** と, 最大の効果</span>
-<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**全員をリベラルな家族観にする**: 既婚女性の市場労働 **+30%**, 家事時間 −26%, 夫の家事時間 +18%</span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a>ただし, 妻の賃金シェアが高いということは, 裏返せば夫の賃金が低いということでもあります. どちらが効いているのかを分解しているのが @fig-gousse2017-table2 (c) です. 高賃金の男性 (Q4) は低賃金の男性 (Q1) のおよそ2倍の頻度で結婚する一方, 女性の賃金はマッチングにほとんど効いていません. つまり @fig-gousse2017-wageratio の下落は, 妻の賃金シェアが $1/2$ を超えたことに反応しているのではなく, そこに低賃金の夫が集まっていることの反映だ, というのがこのモデルの解釈です.</span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="al">![Matching probability by the wife's wage share (Fig. 7)](/static/img/article/gousse2017/fig7.svg)</span>{#fig-gousse2017-wageratio width=75% fig-align="center"}</span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a>3と4の効果がほぼ同じ大きさであることが, この論文の結論を要約しています. 「全員をリベラルにする」ことは「女性の家庭内生産の比較優位を取り除く」ことと定量的にほぼ同値であり, 家族観は比較優位を通じて分業を規定している, ということです. 残る男女の市場労働の差 (2時間程度) は, ジェンダー賃金格差でほぼ説明できます.</span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
 <span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a><span class="al">![Counterfactual simulations (Table VI)](/static/img/article/gousse2017/table6.svg)</span>{#fig-gousse2017-table6 width=90% fig-align="center"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a><span class="fu">## @bertrand2015 のジェンダー規範</span></span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a>@bertrand2015 は妻の家計に占める所得の割合が50%を境に大きく下落することを示しました.</span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a><span class="al">![Distribution of Relative Income, Figure 1 of @bertrand2015](/static/img/article/bertrand2015/fig1.svg)</span>{#fig-bertrand2015-fig1 width=80% fig-align="center"}</span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a>彼女らはこの現象を「妻が夫より稼ぐことへの社会的規範」だと解釈しました (Breadwinner norm). しかし, 結婚市場の結果である可能性が @gousse2017 で示唆されただけでなく, @binder2022 が社会規範なしのモデルで同様の分布を再現しています.</span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 同類婚はどこから来るのか</span></span>
+<span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a>ここまでは観察されたパターンの記述です. 構造モデルを使うと, そのパターンがモデルのどの部分から生まれているのかを切り分けられます. 手がかりは, 公共財の質 $Z_{ij}$ をどこまで単純化するとマッチング確率の当てはまりが崩れるか, という実験です (@fig-gousse2017-fit-matching).</span>
+<span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a>まず, 時点不変の構造パラメータでマッチング確率を予測すると, どの期間でも $R^2$ は 0.8 前後です. $\ln Z_{ij}$ を二次関数で近似しても 0.75 までしか落ちないので, 高次の項は捨ててかまいません. ところが交差項 (男性のタイプ × 女性のタイプ) をすべて落とすと 0.54 まで崩れます. 補完性が同類婚を作っている, ということです.</span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a>面白いのは, そこへ交差項を1つずつ戻したときです. 学歴の交差項 $Ed_m \times Ed_f$ だけが 0.71 まで回復させ, 残り8通りはどれも 0.54-0.62 にとどまります. 家族観の交差項 $FVI_m \times FVI_f$ に至っては 0.54 のままで, 何も足していません.</span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a><span class="al">![Fit of matching probabilities (Table IV)](/static/img/article/gousse2017/table4.svg)</span>{#fig-gousse2017-fit-matching width=90% fig-align="center"}</span>
+<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-772"><a href="#cb1-772" aria-hidden="true" tabindex="-1"></a>つまり, 公共財の質に入る補完性 (「似た相手といること自体が良い」という選好的なチャネル) で説明できるのは学歴の同類婚だけです. 家族観の非対称な homophily は, ここではなく家庭内生産の側から来ています. 保守的な妻は家事時間を増やし, 保守的な夫は減らす ($D^1_j\left<span class="co">[</span><span class="ot">FVI\right</span><span class="co">]</span>$ の符号が男女で逆, @fig-gousse2017-estimates) ので, 保守的な相手は分業の相手として価値を持ちます. 学歴は選好を通じて, 家族観は家庭内生産の比較優位を通じて同類婚を生む, というのがこの論文の整理です.</span>
+<span id="cb1-773"><a href="#cb1-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-774"><a href="#cb1-774" aria-hidden="true" tabindex="-1"></a><span class="fu">#### モデルのフィット</span></span>
+<span id="cb1-775"><a href="#cb1-775" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-776"><a href="#cb1-776" aria-hidden="true" tabindex="-1"></a>構造パラメータは全期間で共通なので, 期間ごとに動かしているのは賃金・学歴・家族観の分布だけです. それでも, 男女別・配偶関係別の賃金・家族観・学歴構成・市場労働時間・家事時間のトレンドは概ね再現されます (@fig-gousse2017-fit-trends). 女性の市場労働時間の変化をやや過大に予測する点を除けば, 水準も傾きも合っています.</span>
+<span id="cb1-777"><a href="#cb1-777" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-778"><a href="#cb1-778" aria-hidden="true" tabindex="-1"></a><span class="al">![Model fit: trends by gender and marital status (Fig. 8)](/static/img/article/gousse2017/fig8.svg)</span>{#fig-gousse2017-fit-trends width=90% fig-align="center"}</span>
+<span id="cb1-779"><a href="#cb1-779" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-780"><a href="#cb1-780" aria-hidden="true" tabindex="-1"></a>より厳しいテストが, 夫婦の中での賃金シェアと稼得シェアの分布です (@fig-gousse2017-fit-shares). 全夫婦に加えて, 夫婦とも保守的な組とリベラルな組に分けて描いても, 分布の形の違い (保守的な夫婦では妻の稼得シェアが低い側に大きく偏り, リベラルな夫婦ではより対称に近い) がモデルで再現されます. 家族観が家庭内生産の比較優位を通じて分業を決める, という構造が効いている証拠です.</span>
+<span id="cb1-781"><a href="#cb1-781" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-782"><a href="#cb1-782" aria-hidden="true" tabindex="-1"></a><span class="al">![Model fit: wage and earnings shares within couples (Fig. 9)](/static/img/article/gousse2017/fig9.svg)</span>{#fig-gousse2017-fit-shares width=80% fig-align="center"}</span>
+<span id="cb1-783"><a href="#cb1-783" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-784"><a href="#cb1-784" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sharing rule: 夫はなぜ55%を取るのか</span></span>
+<span id="cb1-785"><a href="#cb1-785" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-786"><a href="#cb1-786" aria-hidden="true" tabindex="-1"></a>推定されたモデルで家計内の配分を計算すると, 夫は家計の純私的支出の平均 **55%** を受け取ります. 内訳は, Nash ウェイト $\beta = 0.45$ (この部分だけなら妻の方がわずかに強い) に, 男性の**外部機会の良さ**が約 10% ポイント上乗せされる, というものです. 結婚市場の均衡が男性に有利に働いている分が, 交渉力の差として家計内に持ち込まれています. このシェアは1991-2008年を通じてほぼ一定 (0.54-0.56) です.</span>
+<span id="cb1-787"><a href="#cb1-787" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-788"><a href="#cb1-788" aria-hidden="true" tabindex="-1"></a>タイプ別に見ると (@fig-gousse2017-sharing), 学歴には補償的な移転が働いています. 夫の学歴が低いほど夫の取り分は大きく, 妻の学歴が高いほど夫の取り分は大きくなります. 妻の取り分が夫を上回る唯一のケースは, 非大卒の妻が大卒の夫と結婚した場合です. 家族観による差はほとんどありません (分業には強く効くのに, 私的支出の分配には効かない). 目を引くのは最下段の賃金比によるパネルで, 賃金の高い側ほど取り分が大きく, しかもその差が時間とともに開いています. 伝統的な家族像から離れていく文化的変化の副産物として, 夫婦間の再分配がむしろ細っている, という読み方ができます.</span>
+<span id="cb1-789"><a href="#cb1-789" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-790"><a href="#cb1-790" aria-hidden="true" tabindex="-1"></a><span class="al">![Mean sharing rule by type (Fig. 10)](/static/img/article/gousse2017/fig10.svg)</span>{#fig-gousse2017-sharing width=90% fig-align="center"}</span>
+<span id="cb1-791"><a href="#cb1-791" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-792"><a href="#cb1-792" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 反実仮想: 女性の労働供給は何で決まっているか</span></span>
+<span id="cb1-793"><a href="#cb1-793" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-794"><a href="#cb1-794" aria-hidden="true" tabindex="-1"></a>推定されたモデルの労働供給の賃金弾力性は, 既婚女性で約 0.4 と男性の2倍以上あり, ミクロ実証の相場と整合的です. そのうえで, 男女差の源泉を分解する4つの反実仮想が行われます (@fig-gousse2017-table6).</span>
+<span id="cb1-795"><a href="#cb1-795" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-796"><a href="#cb1-796" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**ジェンダー賃金格差をなくす** (学歴・家族観を条件とした男女の賃金差を消す): 既婚女性の市場労働は +10% 程度. 結婚市場への影響はごく小さい (賃金は女性のマッチングにほぼ無関係のため)</span>
+<span id="cb1-797"><a href="#cb1-797" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**女性に男性の選好を与える**: 市場労働 +8% 程度だが, 独身者が大きく減るなど結婚市場への影響が最大</span>
+<span id="cb1-798"><a href="#cb1-798" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**女性の家庭内生産の比較優位をなくす** (家庭内生産パラメータを男性と同じに): 既婚女性の市場労働 **+34%**, 家事時間 **−61%** と, 最大の効果</span>
+<span id="cb1-799"><a href="#cb1-799" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**全員をリベラルな家族観にする**: 既婚女性の市場労働 **+30%**, 家事時間 −26%, 夫の家事時間 +18%</span>
+<span id="cb1-800"><a href="#cb1-800" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-801"><a href="#cb1-801" aria-hidden="true" tabindex="-1"></a>3と4の効果がほぼ同じ大きさであることが, この論文の結論を要約しています. 「全員をリベラルにする」ことは「女性の家庭内生産の比較優位を取り除く」ことと定量的にほぼ同値であり, 家族観は比較優位を通じて分業を規定している, ということです. 残る男女の市場労働の差 (2時間程度) は, ジェンダー賃金格差でほぼ説明できます.</span>
+<span id="cb1-802"><a href="#cb1-802" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-803"><a href="#cb1-803" aria-hidden="true" tabindex="-1"></a><span class="al">![Counterfactual simulations (Table VI)](/static/img/article/gousse2017/table6.svg)</span>{#fig-gousse2017-table6 width=90% fig-align="center"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
