@@ -16,6 +16,8 @@ book:
       - name: Kobe University
   date: 2026-10-01
   downloads: [pdf]
+  site-url: https://kazuyanagimoto.com/course-kobe-macro4-2026
+  repo-url: https://github.com/kazuyanagimoto/course-kobe-macro4-2026
   chapters:
     - index.qmd
     - part: 数値計算
@@ -32,6 +34,9 @@ book:
     - lesson/appendix/proof.qmd
     - lesson/appendix/continuous-time.qmd
     - references.qmd
+
+website:
+  llms-txt: true
 
 bibliography: references.bib
 

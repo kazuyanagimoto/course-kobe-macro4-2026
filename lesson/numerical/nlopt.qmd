@@ -11,18 +11,23 @@ engine: julia
 using Roots
 using NonlinearSolve
 using Optim
-using Optimization        # unified interface: OptimizationProblem + solve
-import OptimizationNLopt  # NLopt backend; import (not using) avoids clash
-import NLopt              # to name algorithms, e.g. NLopt.GN_DIRECT_L()
+using Optimization
+import OptimizationNLopt
+import NLopt
 using JuMP
 using Ipopt
 using Plots
 using LaTeXStrings
+```
 
+```{julia}
+#| label: palette
+#| include: false
 mypalette = ["#d5968c", "#c2676d", "#5c363a", "#995041", "#45939c", "#0f6a81"]
 default(size=(500, 308), titlefontsize=10, fmt=:svg, grid=false,
     foreground_color_legend=nothing, palette=mypalette[[6, 2, 4, 3, 1, 5]])
 ```
+
 
 経済モデルを数値的に解く作業は, 多くの場合「非線形方程式 $f(\mathbf{x}) = \mathbf{0}$ を解く」か「非線形関数を最大化・最小化する」のどちらかに帰着します. 両者は表裏一体です. 最大化問題は一階条件を導出すれば方程式として解けますし, 最適化アルゴリズムの多くは方程式の解法の analogy として理解できます. 本章では, 前半で非線形方程式の解法である**求根法** (root finding) を, 後半で目的関数を直接扱う**非線形最適化** (nonlinear optimization) を解説します.
 
