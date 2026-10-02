@@ -1,0 +1,16 @@
+# Family Macroeconomics
+
+## Pages
+
+- [Family Macroeconomics](https://kazuyanagimoto.com/course-kobe-macro4-2026/index.llms.md)
+- [[[1]{.chapter-number}  [非線形最適化]{.chapter-title}]{#sec-nonlinear-opt .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/numerical/nlopt.llms.md)
+- [[[2]{.chapter-number}  [関数近似]{.chapter-title}]{#sec-function-approximation .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/numerical/approx.llms.md)
+- [[[3]{.chapter-number}  [動的計画法]{.chapter-title}]{#sec-dynamic-programming .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/numerical/dp.llms.md)
+- [[[4]{.chapter-number}  [GMM]{.chapter-title}]{#sec-gmm .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/numerical/gmm.llms.md)
+- [結婚の経済学](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/marriage/index.llms.md)
+- [[[5]{.chapter-number}  [Search & Matching]{.chapter-title}]{#sec-search-matching .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/marriage/search.llms.md)
+- [[6]{.chapter-number}  [Marriage and Fertility]{.chapter-title}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/marriage/fertility.llms.md)
+- [[Appendix A — 証明]{#sec-apdx-proof .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/appendix/proof.llms.md)
+- [[Appendix B — 連続時間モデル]{#sec-apdx-ct .quarto-section-identifier}](https://kazuyanagimoto.com/course-kobe-macro4-2026/lesson/appendix/continuous-time.llms.md)
+- [References](https://kazuyanagimoto.com/course-kobe-macro4-2026/references.llms.md)
+- [Family Macroeconomics](https://kazuyanagimoto.com/course-kobe-macro4-2026/Family-Macroeconomics.pdf)

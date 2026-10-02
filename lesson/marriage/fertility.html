@@ -173,6 +173,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">Family Macroeconomics</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/kazuyanagimoto/course-kobe-macro4-2026" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="../../Family-Macroeconomics.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -284,22 +285,17 @@ window.Quarto = {
   <ul>
   <li><a href="#doepke2023" id="toc-doepke2023" class="nav-link active" data-scroll-target="#doepke2023"><span class="header-section-number">6.1</span> <span class="citation" data-cites="doepke2023">Doepke et al. (2023)</span></a>
   <ul class="collapse">
-  <li><a href="#所得と出生の負の相関" id="toc-所得と出生の負の相関" class="nav-link" data-scroll-target="#所得と出生の負の相関"><span class="header-section-number">6.1.1</span> 所得と出生の負の相関</a></li>
+  <li><a href="#sec-old-facts" id="toc-sec-old-facts" class="nav-link" data-scroll-target="#sec-old-facts"><span class="header-section-number">6.1.1</span> Old Facts</a></li>
   <li><a href="#quantity-quality-tradeoff" id="toc-quantity-quality-tradeoff" class="nav-link" data-scroll-target="#quantity-quality-tradeoff"><span class="header-section-number">6.1.2</span> Quantity-Quality Tradeoff</a></li>
   <li><a href="#女性の機会費用" id="toc-女性の機会費用" class="nav-link" data-scroll-target="#女性の機会費用"><span class="header-section-number">6.1.3</span> 女性の機会費用</a></li>
-  <li><a href="#関係の逆転" id="toc-関係の逆転" class="nav-link" data-scroll-target="#関係の逆転"><span class="header-section-number">6.1.4</span> 関係の逆転</a></li>
-  <li><a href="#古い関係はなぜ弱まったか" id="toc-古い関係はなぜ弱まったか" class="nav-link" data-scroll-target="#古い関係はなぜ弱まったか"><span class="header-section-number">6.1.5</span> 古い関係はなぜ弱まったか</a></li>
-  <li><a href="#新しい-big-idea-キャリアと家族の両立" id="toc-新しい-big-idea-キャリアと家族の両立" class="nav-link" data-scroll-target="#新しい-big-idea-キャリアと家族の両立"><span class="header-section-number">6.1.6</span> 新しい big idea: キャリアと家族の両立</a></li>
+  <li><a href="#関係の逆転-と原因" id="toc-関係の逆転-と原因" class="nav-link" data-scroll-target="#関係の逆転-と原因"><span class="header-section-number">6.1.4</span> 関係の逆転 と原因</a></li>
   </ul></li>
   <li><a href="#greenwood2023" id="toc-greenwood2023" class="nav-link" data-scroll-target="#greenwood2023"><span class="header-section-number">6.2</span> <span class="citation" data-cites="greenwood2023">Greenwood et al. (2023)</span></a>
   <ul class="collapse">
   <li><a href="#つの-kuznets-facts" id="toc-つの-kuznets-facts" class="nav-link" data-scroll-target="#つの-kuznets-facts"><span class="header-section-number">6.2.1</span> 6つの Kuznets facts</a></li>
-  <li><a href="#モデル" id="toc-モデル" class="nav-link" data-scroll-target="#モデル"><span class="header-section-number">6.2.2</span> モデル</a></li>
-  <li><a href="#データから直接決まるパラメータ" id="toc-データから直接決まるパラメータ" class="nav-link" data-scroll-target="#データから直接決まるパラメータ"><span class="header-section-number">6.2.3</span> データから直接決まるパラメータ</a></li>
-  <li><a href="#smm-2つのループ" id="toc-smm-2つのループ" class="nav-link" data-scroll-target="#smm-2つのループ"><span class="header-section-number">6.2.4</span> SMM: 2つのループ</a></li>
-  <li><a href="#great-transition-の駆動力" id="toc-great-transition-の駆動力" class="nav-link" data-scroll-target="#great-transition-の駆動力"><span class="header-section-number">6.2.5</span> Great Transition の駆動力</a></li>
-  <li><a href="#transition" id="toc-transition" class="nav-link" data-scroll-target="#transition"><span class="header-section-number">6.2.6</span> Transition</a></li>
-  <li><a href="#まとめ" id="toc-まとめ" class="nav-link" data-scroll-target="#まとめ"><span class="header-section-number">6.2.7</span> まとめ</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="header-section-number">6.2.2</span> Model</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration"><span class="header-section-number">6.2.3</span> Calibration</a></li>
+  <li><a href="#great-transition" id="toc-great-transition" class="nav-link" data-scroll-target="#great-transition"><span class="header-section-number">6.2.4</span> Great Transition</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -330,8 +326,8 @@ window.Quarto = {
 <section id="doepke2023" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="doepke2023"><span class="header-section-number">6.1</span> <span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span></h2>
 <p>出生行動を経済学的に説明しようという試みは <span class="citation" data-cites="becker1960">Becker (<a href="../../references.html#ref-becker1960" role="doc-biblioref">1960</a>)</span> に始まり, その後の数十年で大きく発展しました. まずはその成果を <span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> の整理を通してみてみましょう.</p>
-<section id="所得と出生の負の相関" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="所得と出生の負の相関"><span class="header-section-number">6.1.1</span> 所得と出生の負の相関</h3>
+<section id="sec-old-facts" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-old-facts"><span class="header-section-number">6.1.1</span> Old Facts</h3>
 <div id="fig-doepke2023-fig1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-doepke2023-fig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -498,8 +494,8 @@ n = \frac{\delta}{1+\delta} \cdot \frac{1}{\phi} \left(1 + \frac{w_m}{w_f}\right
 <li><strong>女性の時間の機会費用</strong>: 女性の賃金が高いと子育ての機会費用が高く, 子どもの数が減る</li>
 </ul>
 </section>
-<section id="関係の逆転" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="関係の逆転"><span class="header-section-number">6.1.4</span> 関係の逆転</h3>
+<section id="関係の逆転-と原因" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="関係の逆転-と原因"><span class="header-section-number">6.1.4</span> 関係の逆転 と原因</h3>
 <p><span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> の基本的な主張は, 出生の経済学が新しい時代に入ったということです. そのきっかけは理論の進歩ではなく, 出生行動そのものの変化です. 人口転換から20世紀後半まで出生を特徴づけていた基本的な関係は, 高所得国の最近のデータでは成り立たなくなっています.</p>
 <div id="fig-doepke2023-fig8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -524,10 +520,6 @@ n = \frac{\delta}{1+\delta} \cdot \frac{1}{\phi} \left(1 + \frac{w_m}{w_f}\right
 </div>
 <p><strong>女性の労働参加と出生.</strong> 女性の労働参加率が高い国ほど出生率が低い, という関係も高所得国では逆転しました. 1980年の負の関係は, 2000年には正の関係になっています (<a href="#fig-doepke2023-fig12" class="quarto-xref">図&nbsp;<span>6.7</span></a>). 女性の労働参加率と出生率の国の間の相関係数は, 1980年の <span class="math inline">\(-0.5\)</span> から10年ほどで約 <span class="math inline">\(0.75\)</span> まで上昇し, 1990年以降はやや下がったものの正のまま推移しています <span class="citation" data-cites="ahn2002">(<a href="../../references.html#ref-ahn2002" role="doc-biblioref">Ahn and Mira 2002</a>)</span>.</p>
 <p><strong>女性の学歴と出生.</strong> アメリカの女性の学歴別の出生率を見ると, 1980年代には学歴の全域で負だった関係が, 1990年には上端で平らになり (大学院卒と大卒の出生率がほぼ同じ), 直近の2時点では最上位の学歴で出生が上昇しています. この上端での上昇は白人女性ではっきりしている一方, 黒人女性では今も学歴とともに単調に下がります. ヨーロッパでもフランスやドイツでは最上位の学歴で出生が上昇しており, イタリアやスペインでは上昇は見られないものの, 高卒以上では関係がほぼ平らです.</p>
-<p><strong>出生をめぐる夫婦の不一致.</strong> 新しい事実はもう1つあります. 高所得国の夫婦にもう1人子どもが欲しいかを尋ねると, 特にすでに子どもがいる夫婦で, 一方だけが望むケースが多く見られます. そして両者が合意しない限り, その後に子どもが生まれる確率は低くなります. さらに, 父親の子育ての分担が小さい国ほど, もう1人に反対するのは女性の側である傾向が強く, 出生率も低くなっています <span class="citation" data-cites="doepke2019">(<a href="../../references.html#ref-doepke2019" role="doc-biblioref">Doepke and Kindermann 2019</a>)</span>. 子どもの費用と便益が夫婦の間でどう分かれるかが出生を左右する, という視点は, 家計全体を1人の意思決定者として扱う第1世代のモデルにはなかったものです.</p>
-</section>
-<section id="古い関係はなぜ弱まったか" class="level3" data-number="6.1.5">
-<h3 data-number="6.1.5" class="anchored" data-anchor-id="古い関係はなぜ弱まったか"><span class="header-section-number">6.1.5</span> 古い関係はなぜ弱まったか</h3>
 <p><span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> の見方では, quantity-quality トレードオフや女性の時間の機会費用という考え方自体は今も有効ですが, 高所得国の経済環境の変化がそれらの力を弱めました. 論文は4つの要因を挙げています. 公教育と児童労働法, 子育ての市場化, キャリアと出産のタイミング, 避妊と不妊治療です. ここでは最初の2つを見ます.</p>
 <section id="公教育と児童労働法" class="level4">
 <h4 class="anchored" data-anchor-id="公教育と児童労働法">公教育と児童労働法</h4>
@@ -598,11 +590,6 @@ s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).
 <p>子育ての市場化は, 家庭内労働時間の減少と家庭内生産の市場化という, より一般的な流れの一部です. 20世紀の家電の普及は料理・掃除・洗濯にかかる時間を減らし, 女性の労働参加と余暇の増加を後押ししました. サービス経済の拡大も, 食事・ケア・掃除を市場で買えるようにしました. この家庭内の技術進歩を, 出生・女性の就業・教育・結婚の長期的な変化と1つのモデルで結びつけたのが, 後半で読む <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span> です.</p>
 </section>
 </section>
-<section id="新しい-big-idea-キャリアと家族の両立" class="level3" data-number="6.1.6">
-<h3 data-number="6.1.6" class="anchored" data-anchor-id="新しい-big-idea-キャリアと家族の両立"><span class="header-section-number">6.1.6</span> 新しい big idea: キャリアと家族の両立</h3>
-<p>市場化や公教育の拡大は, 古い関係が平らになったことは説明できても, 女性の労働参加と出生の関係が逆転したことまでは説明しきれません. そこで最近の研究は, 第1世代のモデルを越える方向に進んでいます. <span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> がまとめる新しい big idea は, <strong>キャリアと家族の両立のしやすさ</strong>が高所得国の出生を決める, というものです. 両立しやすい国では多くの女性がキャリアと複数の子どもを両方持ち, 出生率と女性の労働参加率がともに高くなります. 両立が難しい国では, 働く女性も生まれる子どもも少なくなります.</p>
-<p>論文は両立を助ける要因として, 公的な保育などの家族政策, 父親の子育てへの貢献, 働く母親を支持する社会規範, 柔軟な労働市場の4つを挙げています. 父親の貢献は夫婦の交渉の問題として <span class="citation" data-cites="doepke2019">Doepke and Kindermann (<a href="../../references.html#ref-doepke2019" role="doc-biblioref">2019</a>)</span> が分析しています. 子どもを持つことのキャリアコストはライフサイクルモデルで <span class="citation" data-cites="adda2017">Adda et al. (<a href="../../references.html#ref-adda2017" role="doc-biblioref">2017</a>)</span> が, 教育投資をめぐる地位の外部性と超少子化の関係は <span class="citation" data-cites="kim2024">Kim et al. (<a href="../../references.html#ref-kim2024" role="doc-biblioref">2024</a>)</span> が定量化しています.</p>
-</section>
 </section>
 <section id="greenwood2023" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="greenwood2023"><span class="header-section-number">6.2</span> <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span></h2>
@@ -656,7 +643,7 @@ s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).
 </figcaption>
 </figure>
 </div>
-<p>ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります (<a href="#fig-greenwood2023-fig2-6" class="quarto-xref">図&nbsp;<span>6.11</span></a>). TFR と CCF の定義と日本の推移は, 前半の「古い事実」の節で見ました.</p>
+<p>ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります (<a href="#fig-greenwood2023-fig2-6" class="quarto-xref">図&nbsp;<span>6.11</span></a>). TFR と CCF の定義と日本の推移は, <a href="#sec-old-facts" class="quarto-xref"><span>Section 6.1.1</span></a> で見ました.</p>
 <div id="fig-greenwood2023-fig2-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-greenwood2023-fig2-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -667,7 +654,7 @@ s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).
 </figcaption>
 </figure>
 </div>
-<p>国ごとのパネルデータ (<a href="#fig-greenwood2023-fig2-7" class="quarto-xref">図&nbsp;<span>6.12</span></a>) を見ると, GDP per capita と TFR の間には負の相関があります. 前半で見たとおり, これこそ第1世代の出生モデルが説明しようとした古い事実です.</p>
+<p>国ごとのパネルデータ (<a href="#fig-greenwood2023-fig2-7" class="quarto-xref">図&nbsp;<span>6.12</span></a>) を見ると, GDP per capita と TFR の間には負の相関があります. <span class="citation" data-cites="doepke2023">Doepke et al. (<a href="../../references.html#ref-doepke2023" role="doc-biblioref">2023</a>)</span> でみたように, これこそ第1世代の出生モデルが説明しようとした古い事実です.</p>
 </section>
 <section id="結婚の減少" class="level4">
 <h4 class="anchored" data-anchor-id="結婚の減少">③ 結婚の減少</h4>
@@ -777,8 +764,8 @@ s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).
 <p>ホワイトカラーの割合は上昇しており (<a href="#fig-greenwood2023-fig2-14" class="quarto-xref">図&nbsp;<span>6.19</span></a>), 所得とも正の相関を持ちます (<a href="#fig-greenwood2023-fig2-15" class="quarto-xref">図&nbsp;<span>6.20</span></a>). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です <span class="citation" data-cites="acemoglu2011a">(<a href="../../references.html#ref-acemoglu2011a" role="doc-biblioref">Acemoglu and Autor 2011</a>)</span>. 以下では, これら6つの事実を1つのモデルで説明する <span class="citation" data-cites="greenwood2023">Greenwood et al. (<a href="../../references.html#ref-greenwood2023" role="doc-biblioref">2023</a>)</span> の定量分析を読みます.</p>
 </section>
 </section>
-<section id="モデル" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="モデル"><span class="header-section-number">6.2.2</span> モデル</h3>
+<section id="model" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="model"><span class="header-section-number">6.2.2</span> Model</h3>
 <p>モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 <span class="math inline">\(h\)</span> (household labor), 余暇 <span class="math inline">\(l\)</span> (leisure), 市場労働 <span class="math inline">\(t\)</span> (toiling in the market) に配分します (<span class="math inline">\(h + l + t = 1\)</span>). 有配偶者は2人分の2単位の時間を持ち, これに加えて <span class="math inline">\(k\)</span> 人の子どもに対する基礎的な子育て <span class="math inline">\(b\)</span> (basic childcare) と教育 <span class="math inline">\(e\)</span> (education) の時間を使います (<span class="math inline">\(h + l + t + bk + ek = 2\)</span>).</p>
 <p><strong>賃金.</strong> スキルには合計が1になる <em>brain</em> と <em>brawn</em> の2種類があり, 賃金はそのポートフォリオで決まります.</p>
 <p><span class="math display">\[
@@ -822,8 +809,10 @@ G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\r
 \]</span></p>
 <p>と閉じた形で書けます.</p>
 </section>
-<section id="データから直接決まるパラメータ" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="データから直接決まるパラメータ"><span class="header-section-number">6.2.3</span> データから直接決まるパラメータ</h3>
+<section id="calibration" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="calibration"><span class="header-section-number">6.2.3</span> Calibration</h3>
+<section id="データに基づくパラメータ" class="level4">
+<h4 class="anchored" data-anchor-id="データに基づくパラメータ">データに基づくパラメータ</h4>
 <p>カリブレーションの第一歩は, モデルの外から測れるものを測ってしまうことです.</p>
 <ul>
 <li><strong>価格</strong>: <span class="math inline">\(w_{1880} = 1\)</span> に基準化. 賃金は年率1.7%で上昇したと推定され <span class="math inline">\(w_{2020} = 11.3\)</span> (1880–1988年は <span class="citation" data-cites="williamson1995">Williamson (<a href="../../references.html#ref-williamson1995" role="doc-biblioref">1995</a>)</span>, 1989年以降は FRED の実質報酬を総労働時間で割って推定). 耐久財価格は <span class="math inline">\(p_{1880} = 100\)</span> に基準化し, 年率約5%の下落 <span class="citation" data-cites="greenwood2016">(<a href="../../references.html#ref-greenwood2016" role="doc-biblioref">Greenwood et al. 2016</a>)</span> から <span class="math inline">\(p_{2020} = 0.108\)</span>. 大卒プレミアム <span class="math inline">\(q_{2020} = 1.81\)</span> は Current Population Survey (2018年) より</li>
@@ -835,8 +824,8 @@ G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\r
 <li><strong>子どもの家事労働 <span class="math inline">\(\chi\)</span></strong>: 児童の労働時間と生産性の積として推定. 生産性は <span class="citation" data-cites="lebergott1964">Lebergott (<a href="../../references.html#ref-lebergott1964" role="doc-biblioref">1964</a>)</span> に基づき, 1880年の児童の労働時間は途上国のデータ <span class="citation" data-cites="webbink2012">(<a href="../../references.html#ref-webbink2012" role="doc-biblioref">Webbink et al. 2012</a>)</span>, 2020年は <span class="citation" data-cites="hofferth2001">Hofferth and Sandberg (<a href="../../references.html#ref-hofferth2001" role="doc-biblioref">2001</a>)</span> を用いる</li>
 </ul>
 </section>
-<section id="smm-2つのループ" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="smm-2つのループ"><span class="header-section-number">6.2.4</span> SMM: 2つのループ</h3>
+<section id="smm-2つのループ" class="level4">
+<h4 class="anchored" data-anchor-id="smm-2つのループ">SMM: 2つのループ</h4>
 <p>残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を外側と内側の2つのループに分けるのです.</p>
 <ul>
 <li><strong>外側のループ</strong>: <span class="math inline">\(\left(\alpha, q_{1880}\right)\)</span> だけを数値的に探索する</li>
@@ -916,8 +905,9 @@ G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\r
 </figure>
 </div>
 </section>
-<section id="great-transition-の駆動力" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="great-transition-の駆動力"><span class="header-section-number">6.2.5</span> Great Transition の駆動力</h3>
+</section>
+<section id="great-transition" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="great-transition"><span class="header-section-number">6.2.4</span> Great Transition</h3>
 <p>1880年から2020年への変化を駆動する力として, 論文は3つに注目します.</p>
 <ol type="1">
 <li>全体的な技術革新 (neutral technological progress, <span class="math inline">\(\mathbf{z}\)</span>)</li>
@@ -944,9 +934,6 @@ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\ma
 </div>
 </figure>
 </div>
-</section>
-<section id="transition" class="level3" data-number="6.2.6">
-<h3 data-number="6.2.6" class="anchored" data-anchor-id="transition"><span class="header-section-number">6.2.6</span> Transition</h3>
 <p>3つの駆動力を <span class="math inline">\(\mathbf{z}_t = \mathbf{z}_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}\)</span>, <span class="math inline">\(\mathbf{x}_t = \mathbf{x}_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}\)</span>, <span class="math inline">\(p_t = p_{1880} e^{\Delta p\left(t-1880\right)}\)</span> と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.</p>
 <div id="fig-greenwood2023-fig6-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -995,9 +982,8 @@ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\ma
 </figure>
 </div>
 <p>婚姻率の <span class="math inline">\(\cap\)</span> 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.</p>
-</section>
-<section id="まとめ" class="level3" data-number="6.2.7">
-<h3 data-number="6.2.7" class="anchored" data-anchor-id="まとめ"><span class="header-section-number">6.2.7</span> まとめ</h3>
+<section id="まとめ" class="level4">
+<h4 class="anchored" data-anchor-id="まとめ">まとめ</h4>
 <p>6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.</p>
 <p><strong>スキル偏向的な技術革新</strong> (<span class="math inline">\(\mathbf{x}\)</span>: 大卒プレミアムの上昇)</p>
 <ul>
@@ -1018,9 +1004,6 @@ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\ma
 <div id="ref-acemoglu2011a" class="csl-entry" role="listitem">
 Acemoglu, Daron, and David Autor. 2011. <span>“Skills, Tasks and Technologies: Implications for Employment and Earnings.”</span> In <em>Handbook of Labor Economics</em>, vol. 4. Elsevier. <a href="https://doi.org/10.1016/S0169-7218(11)02410-5">https://doi.org/10.1016/S0169-7218(11)02410-5</a>.
 </div>
-<div id="ref-adda2017" class="csl-entry" role="listitem">
-Adda, Jérôme, Christian Dustmann, and Katrien Stevens. 2017. <span>“The Career Costs of Children.”</span> <em>Journal of Political Economy</em> 125 (2): 293–337. <a href="https://doi.org/10.1086/690952">https://doi.org/10.1086/690952</a>.
-</div>
 <div id="ref-ahn2002" class="csl-entry" role="listitem">
 Ahn, Namkee, and Pedro Mira. 2002. <span>“A Note on the Changing Relationship Between Fertility and Female Employment Rates in Developed Countries.”</span> <em>Journal of Population Economics</em> 15 (4): 667–82. <a href="https://doi.org/10.1007/s001480100078">https://doi.org/10.1007/s001480100078</a>.
 </div>
@@ -1039,9 +1022,6 @@ Becker, Gary S., and H. Gregg Lewis. 1973. <span>“On the Interaction Between t
 <div id="ref-doepke2023" class="csl-entry" role="listitem">
 Doepke, Matthias, Anne Hannusch, Fabian Kindermann, and Michèle Tertilt. 2023. <span>“The Economics of Fertility: A New Era.”</span> In <em>Handbook of the Economics of the Family</em>, vol. 1. Elsevier. <a href="https://doi.org/10.1016/bs.hefam.2023.01.003">https://doi.org/10.1016/bs.hefam.2023.01.003</a>.
 </div>
-<div id="ref-doepke2019" class="csl-entry" role="listitem">
-Doepke, Matthias, and Fabian Kindermann. 2019. <span>“Bargaining over Babies: Theory, Evidence, and Policy Implications.”</span> <em>American Economic Review</em> 109 (9): 3264–306. <a href="https://doi.org/10.1257/aer.20160328">https://doi.org/10.1257/aer.20160328</a>.
-</div>
 <div id="ref-galor1996" class="csl-entry" role="listitem">
 Galor, Oded, and David N. Weil. 1996. <span>“The Gender Gap, Fertility, and Growth.”</span> <em>American Economic Review</em> 86 (3): 374–87. <a href="https://www.jstor.org/stable/2118202">https://www.jstor.org/stable/2118202</a>.
 </div>
@@ -1056,9 +1036,6 @@ Greenwood, Jeremy, Nezih Guner, and Ricardo Marto. 2023. <span>“The Great Tran
 </div>
 <div id="ref-hofferth2001" class="csl-entry" role="listitem">
 Hofferth, Sandra L., and John F. Sandberg. 2001. <span>“How American Children Spend Their Time.”</span> <em>Journal Of Marriage And The Family</em> 63 (2): 295–308. <a href="https://doi.org/10.1111/j.1741-3737.2001.00295.x">https://doi.org/10.1111/j.1741-3737.2001.00295.x</a>.
-</div>
-<div id="ref-kim2024" class="csl-entry" role="listitem">
-Kim, Seongeun, Michèle Tertilt, and Minchul Yum. 2024. <span>“Status Externalities in Education and Low Birth Rates in Korea.”</span> <em>American Economic Review</em> 114 (6): 1576–611. <a href="https://doi.org/10.1257/aer.20220583">https://doi.org/10.1257/aer.20220583</a>.
 </div>
 <div id="ref-kuznets1957" class="csl-entry" role="listitem">
 Kuznets, Simon. 1957. <span>“Quantitative Aspects of the Economic Growth of Nations: <span>II</span>. <span>Industrial</span> Distribution of National Product and Labor Force.”</span> <em>Economic Development and Cultural Change</em> 5 (S4): 1–111. <a href="https://doi.org/10.1086/449740">https://doi.org/10.1086/449740</a>.
@@ -1079,6 +1056,7 @@ Webbink, Ellen, Jeroen Smits, and Eelke De Jong. 2012. <span>“Hidden Child Lab
 Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Since 1830: Background Evidence and Hypotheses.”</span> <em>Explorations in Economic History</em> 32 (2): 141–96. <a href="https://doi.org/10.1006/exeh.1995.1006">https://doi.org/10.1006/exeh.1995.1006</a>.
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -1207,7 +1185,7 @@ Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Sinc
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/kazuyanagimoto\.com\/course-kobe-macro4-2026");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1556,7 +1534,7 @@ Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Sinc
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>出生行動を経済学的に説明しようという試みは @becker1960 に始まり, その後の数十年で大きく発展しました. まずはその成果を @doepke2023 の整理を通してみてみましょう.</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### 所得と出生の負の相関</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### Old Facts {#sec-old-facts}</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="al">![Total Fertility Rates since 1850. Figure 1 of @doepke2023](/static/img/article/doepke2023/fig1.svg)</span>{width=80% fig-align="center" #fig-doepke2023-fig1}</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
@@ -1725,7 +1703,7 @@ Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Sinc
 <span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantity-quality トレードオフ**: 賃金や教育のリターンが高いと, 親は子どもの質に投資し, 数を減らす</span>
 <span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**女性の時間の機会費用**: 女性の賃金が高いと子育ての機会費用が高く, 子どもの数が減る</span>
 <span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### 関係の逆転</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### 関係の逆転 と原因</span></span>
 <span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>@doepke2023 の基本的な主張は, 出生の経済学が新しい時代に入ったということです. そのきっかけは理論の進歩ではなく, 出生行動そのものの変化です. 人口転換から20世紀後半まで出生を特徴づけていた基本的な関係は, 高所得国の最近のデータでは成り立たなくなっています.</span>
 <span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
@@ -1739,438 +1717,428 @@ Williamson, Jeffrey G. 1995. <span>“The Evolution of Global Labor Markets Sinc
 <span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>**女性の学歴と出生.** アメリカの女性の学歴別の出生率を見ると, 1980年代には学歴の全域で負だった関係が, 1990年には上端で平らになり (大学院卒と大卒の出生率がほぼ同じ), 直近の2時点では最上位の学歴で出生が上昇しています. この上端での上昇は白人女性ではっきりしている一方, 黒人女性では今も学歴とともに単調に下がります. ヨーロッパでもフランスやドイツでは最上位の学歴で出生が上昇しており, イタリアやスペインでは上昇は見られないものの, 高卒以上では関係がほぼ平らです.</span>
 <span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>**出生をめぐる夫婦の不一致.** 新しい事実はもう1つあります. 高所得国の夫婦にもう1人子どもが欲しいかを尋ねると, 特にすでに子どもがいる夫婦で, 一方だけが望むケースが多く見られます. そして両者が合意しない限り, その後に子どもが生まれる確率は低くなります. さらに, 父親の子育ての分担が小さい国ほど, もう1人に反対するのは女性の側である傾向が強く, 出生率も低くなっています <span class="co">[</span><span class="ot">@doepke2019</span><span class="co">]</span>. 子どもの費用と便益が夫婦の間でどう分かれるかが出生を左右する, という視点は, 家計全体を1人の意思決定者として扱う第1世代のモデルにはなかったものです.</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>@doepke2023 の見方では, quantity-quality トレードオフや女性の時間の機会費用という考え方自体は今も有効ですが, 高所得国の経済環境の変化がそれらの力を弱めました. 論文は4つの要因を挙げています. 公教育と児童労働法, 子育ての市場化, キャリアと出産のタイミング, 避妊と不妊治療です. ここでは最初の2つを見ます.</span>
 <span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### 古い関係はなぜ弱まったか</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 公教育と児童労働法</span></span>
 <span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>@doepke2023 の見方では, quantity-quality トレードオフや女性の時間の機会費用という考え方自体は今も有効ですが, 高所得国の経済環境の変化がそれらの力を弱めました. 論文は4つの要因を挙げています. 公教育と児童労働法, 子育ての市場化, キャリアと出産のタイミング, 避妊と不妊治療です. ここでは最初の2つを見ます.</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>人口転換の時期には, 教育の拡大が親に強い金銭的なトレードオフを課していました. 学校が有料なら教育の1年ごとに支出がかかり, さらに重要なことに, 学費が無料でも学校に通う子どもは働けません. 児童労働の所得を失うことが教育の大きな機会費用になり, 強い quantity-quality トレードオフを生んでいました. 狭い意味での児童労働 (14歳までの労働) が消えた後も, 15歳や16歳で学校を離れて働き, 家計に所得の一部を入れる子どもは高所得国でも少し前まで珍しくありませんでした.</span>
 <span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 公教育と児童労働法</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>高所得国では, このトレードオフの多くが力を失っています. 公教育は子ども時代のほぼ全体をカバーするようになり, 多くの子どもが少なくとも12年間学校にとどまって18歳以上で卒業します. 大学や大学院に進むかといった教育の意思決定は子どもが成人した後に来るので, その費用 (放棄所得や学生ローン) を負うのは親よりも子ども自身です. 親が大学の費用を支えることは今もありますが, 程度の問題として, 教育と出生の意思決定の相互作用は弱まり, quantity-quality トレードオフの力も弱まりました.</span>
 <span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>人口転換の時期には, 教育の拡大が親に強い金銭的なトレードオフを課していました. 学校が有料なら教育の1年ごとに支出がかかり, さらに重要なことに, 学費が無料でも学校に通う子どもは働けません. 児童労働の所得を失うことが教育の大きな機会費用になり, 強い quantity-quality トレードオフを生んでいました. 狭い意味での児童労働 (14歳までの労働) が消えた後も, 15歳や16歳で学校を離れて働き, 家計に所得の一部を入れる子どもは高所得国でも少し前まで珍しくありませんでした.</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>実証研究もこの解釈と整合的です. 双子の出生を出生数の外生的な増加として使う研究は, インドや中国では子どもの教育の低下を見出す一方, 質の高い公教育があるノルウェーやイスラエルでは, 出生順位を制御すると教育への影響はほとんど見られません. @liu2015 のサーベイも, quantity-quality トレードオフが今では主に低所得国で見られることを示しています.</span>
 <span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>高所得国では, このトレードオフの多くが力を失っています. 公教育は子ども時代のほぼ全体をカバーするようになり, 多くの子どもが少なくとも12年間学校にとどまって18歳以上で卒業します. 大学や大学院に進むかといった教育の意思決定は子どもが成人した後に来るので, その費用 (放棄所得や学生ローン) を負うのは親よりも子ども自身です. 親が大学の費用を支えることは今もありますが, 程度の問題として, 教育と出生の意思決定の相互作用は弱まり, quantity-quality トレードオフの力も弱まりました.</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 子育ての市場化</span></span>
 <span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>実証研究もこの解釈と整合的です. 双子の出生を出生数の外生的な増加として使う研究は, インドや中国では子どもの教育の低下を見出す一方, 質の高い公教育があるノルウェーやイスラエルでは, 出生順位を制御すると教育への影響はほとんど見られません. @liu2015 のサーベイも, quantity-quality トレードオフが今では主に低所得国で見られることを示しています.</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>第2の big idea は, 子どもを増やすには女性が市場労働を減らさなければならない, という前提に立っていました. しかし子育てのサービスを市場で買えるなら, このトレードオフは弱まります. 子育てを外部化すると, 子どもの時間費用が金銭的な費用に変わるので, 女性の時間の機会費用の重要性が下がるからです. 2つ目の big idea のモデルを拡張して確かめます.</span>
 <span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 子育ての市場化</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
 <span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>第2の big idea は, 子どもを増やすには女性が市場労働を減らさなければならない, という前提に立っていました. しかし子育てのサービスを市場で買えるなら, このトレードオフは弱まります. 子育てを外部化すると, 子どもの時間費用が金銭的な費用に変わるので, 女性の時間の機会費用の重要性が下がるからです. 2つ目の big idea のモデルを拡張して確かめます.</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="fu">## 子育ての市場化を含む出生モデル</span></span>
 <span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>夫婦は消費 $c$ と子どもの数 $n$ を選ぶ (子どもの質は捨象する). 子ども1人あたり, 時間費用 $\phi$ に加えて, 食費や衣服などの金銭的な費用 $\psi$ がかかる. 子育て時間のうち割合 $s \in \left<span class="co">[</span><span class="ot">0, \bar{s}\right</span><span class="co">]</span>$ を市場から価格 $p_s$ で買うことができ, 残りの $\left(1 - s\right)$ は妻が担う. $\bar{s}$ は外部化できる子育ての上限である.</span>
 <span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="fu">## 子育ての市場化を含む出生モデル</span></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>夫婦は消費 $c$ と子どもの数 $n$ を選ぶ (子どもの質は捨象する). 子ども1人あたり, 時間費用 $\phi$ に加えて, 食費や衣服などの金銭的な費用 $\psi$ がかかる. 子育て時間のうち割合 $s \in \left<span class="co">[</span><span class="ot">0, \bar{s}\right</span><span class="co">]</span>$ を市場から価格 $p_s$ で買うことができ, 残りの $\left(1 - s\right)$ は妻が担う. $\bar{s}$ は外部化できる子育ての上限である.</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\max_{c, n, s}\ \log c + \delta \log n</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t.} \quad</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>c + \psi n + s p_s n \phi = w_m + w_f \left(1 - \left(1 - s\right) n \phi\right).</span>
 <span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>\max_{c, n, s}\ \log c + \delta \log n</span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t.} \quad</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>c + \psi n + s p_s n \phi = w_m + w_f \left(1 - \left(1 - s\right) n \phi\right).</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>予算制約を整理すると $c + \pi\left(s\right) n = w_m + w_f$ となります. ここで</span>
 <span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>予算制約を整理すると $c + \pi\left(s\right) n = w_m + w_f$ となります. ここで</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\pi\left(s\right) = \psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>\pi\left(s\right) = \psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>は子ども1人の完全価格 (full price) で, 金銭的費用と, 子育て時間を市場で買う分と妻が担う分の費用を合わせたものです. $s$ を所与とすると, 対数効用なので支出の割合は一定 ($c = \left(w_m + w_f\right) / \left(1 + \delta\right)$) で,</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>は子ども1人の完全価格 (full price) で, 金銭的費用と, 子育て時間を市場で買う分と妻が担う分の費用を合わせたものです. $s$ を所与とすると, 対数効用なので支出の割合は一定 ($c = \left(w_m + w_f\right) / \left(1 + \delta\right)$) で,</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>n = \frac{\delta}{1 + \delta} \cdot \frac{w_m + w_f}{\psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi}</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>$${#eq-outsource-n}</span>
 <span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>n = \frac{\delta}{1 + \delta} \cdot \frac{w_m + w_f}{\psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi}</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>$${#eq-outsource-n}</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>となります. これを目的関数に代入すると, 効用は $\pi\left(s\right)$ の減少関数です. $\pi\left(s\right)$ は $s$ について傾き $\phi \left(p_s - w_f\right)$ の線形関数なので, 最適な $s$ は端点になります. 妻の賃金が子育ての市場価格より低い ($w_f &lt; p_s$) 夫婦は自分たちで子育てをし ($s = 0$), 高い ($w_f &gt; p_s$) 夫婦は買えるだけ買います ($s = \bar{s}$). 高賃金の女性は働き続け, 低賃金の女性は子育てに時間を使って労働供給を減らします.</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>::: {#prp-outsource}</span>
 <span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>となります. これを目的関数に代入すると, 効用は $\pi\left(s\right)$ の減少関数です. $\pi\left(s\right)$ は $s$ について傾き $\phi \left(p_s - w_f\right)$ の線形関数なので, 最適な $s$ は端点になります. 妻の賃金が子育ての市場価格より低い ($w_f &lt; p_s$) 夫婦は自分たちで子育てをし ($s = 0$), 高い ($w_f &gt; p_s$) 夫婦は買えるだけ買います ($s = \bar{s}$). 高賃金の女性は働き続け, 低賃金の女性は子育てに時間を使って労働供給を減らします.</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## 女性の賃金と出生</span></span>
 <span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>::: {#prp-outsource}</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$s$ を所与とすると, </span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## 女性の賃金と出生</span></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>$s$ を所与とすると, </span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>\frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi}{\pi\left(s\right)^2}.</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi}{\pi\left(s\right)^2}.</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>子どもの金銭的費用が時間費用に比べて小さい ($\psi &lt; w_m \phi$) とき, これは $s &lt; s^*$ なら負, $s = s^*$ ならゼロ, $s &gt; s^*$ なら正である. ただし</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>子どもの金銭的費用が時間費用に比べて小さい ($\psi &lt; w_m \phi$) とき, これは $s &lt; s^*$ なら負, $s = s^*$ ならゼロ, $s &gt; s^*$ なら正である. ただし</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-outsource)</span>に示す.</span>
 <span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>子育てを外部化する割合が大きいほど, 妻の賃金の上昇は子どもの限界費用をあまり押し上げず, 所得効果だけが残ります. 最適な $s$ と組み合わせると, 市場化の上限 $\bar{s}$ が女性の賃金と出生の関係をどう変えるかが分かります.</span>
 <span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-outsource)</span>に示す.</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>子育てを外部化する割合が大きいほど, 妻の賃金の上昇は子どもの限界費用をあまり押し上げず, 所得効果だけが残ります. 最適な $s$ と組み合わせると, 市場化の上限 $\bar{s}$ が女性の賃金と出生の関係をどう変えるかが分かります.</span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>市場化ができない ($\bar{s} = 0$) なら, すべての女性が $s = 0$ を選び, 出生は女性の賃金の減少関数になる (古いモデル)</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$w_f &lt; p_s$ の女性は $s = 0$ を選ぶので, $\bar{s}$ に関係なく出生は $w_f$ の減少関数である</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{s}$ が上がると, $w_f \geq p_s$ の女性での出生と賃金の関係は平らになっていき, $\bar{s} = s^*$ でちょうど平らになる</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{s} = 1$ (完全な市場化) なら, 出生は女性の賃金について U 字型になる. 賃金分布の下側では賃金の上昇が子育ての機会費用を上げて出生を下げ, 上側では子どもの限界費用は変わらず, 所得効果だけが出生を上げる</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>市場化ができない ($\bar{s} = 0$) なら, すべての女性が $s = 0$ を選び, 出生は女性の賃金の減少関数になる (古いモデル)</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$w_f &lt; p_s$ の女性は $s = 0$ を選ぶので, $\bar{s}$ に関係なく出生は $w_f$ の減少関数である</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{s}$ が上がると, $w_f \geq p_s$ の女性での出生と賃金の関係は平らになっていき, $\bar{s} = s^*$ でちょうど平らになる</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\bar{s} = 1$ (完全な市場化) なら, 出生は女性の賃金について U 字型になる. 賃金分布の下側では賃金の上昇が子育ての機会費用を上げて出生を下げ, 上側では子どもの限界費用は変わらず, 所得効果だけが出生を上げる</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>$w_f = p_s$ では $\pi\left(s\right)$ が $s$ に依存しないので, 出生は $w_f$ について連続で, $w_f = p_s$ で屈折します. @fig-outsource はその数値例です (パラメータは図の注). この数値例では, 妻の子育て時間 $\left(1 - s\right) n \phi$ はどの $w_f$ でも妻の時間 (1) を下回ります.</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="al">![子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).](/static/img/lecture/fertility_outsource.svg)</span>{width=80% fig-align="center" #fig-outsource}</span>
 <span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$w_f = p_s$ では $\pi\left(s\right)$ が $s$ に依存しないので, 出生は $w_f$ について連続で, $w_f = p_s$ で屈折します. @fig-outsource はその数値例です (パラメータは図の注). この数値例では, 妻の子育て時間 $\left(1 - s\right) n \phi$ はどの $w_f$ でも妻の時間 (1) を下回ります.</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>現実には市場化には限界があり, 高賃金の親も子育てに相当の時間を使っています. それでも市場化は, 女性の労働供給と出生の歴史的な関係を弱めた一因と考えられます. 子育ての費用を機会費用から金銭的な費用に変えることで, 市場化は所得と出生の関係も弱めます. 豊かな夫婦ほど子育てを買う資源を持つからです. 子育ての市場化の役割は @ahn2002 などが強調しており, 因果的な証拠もあります. アメリカでは低技能の移民の流入が家事や子育てのサービスの価格を下げました. 低技能の移民の流入が大きい都市では, 子育てを外部化しやすい高学歴の女性で仕事と子どものトレードオフが弱まり, 出生率が上がっています.</span>
 <span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="al">![子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).](/static/img/lecture/fertility_outsource.svg)</span>{width=80% fig-align="center" #fig-outsource}</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>子育ての市場化は, 家庭内労働時間の減少と家庭内生産の市場化という, より一般的な流れの一部です. 20世紀の家電の普及は料理・掃除・洗濯にかかる時間を減らし, 女性の労働参加と余暇の増加を後押ししました. サービス経済の拡大も, 食事・ケア・掃除を市場で買えるようにしました. この家庭内の技術進歩を, 出生・女性の就業・教育・結婚の長期的な変化と1つのモデルで結びつけたのが, 後半で読む @greenwood2023 です.</span>
 <span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>現実には市場化には限界があり, 高賃金の親も子育てに相当の時間を使っています. それでも市場化は, 女性の労働供給と出生の歴史的な関係を弱めた一因と考えられます. 子育ての費用を機会費用から金銭的な費用に変えることで, 市場化は所得と出生の関係も弱めます. 豊かな夫婦ほど子育てを買う資源を持つからです. 子育ての市場化の役割は @ahn2002 などが強調しており, 因果的な証拠もあります. アメリカでは低技能の移民の流入が家事や子育てのサービスの価格を下げました. 低技能の移民の流入が大きい都市では, 子育てを外部化しやすい高学歴の女性で仕事と子どものトレードオフが弱まり, 出生率が上がっています.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## @greenwood2023</span></span>
 <span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>子育ての市場化は, 家庭内労働時間の減少と家庭内生産の市場化という, より一般的な流れの一部です. 20世紀の家電の普及は料理・掃除・洗濯にかかる時間を減らし, 女性の労働参加と余暇の増加を後押ししました. サービス経済の拡大も, 食事・ケア・掃除を市場で買えるようにしました. この家庭内の技術進歩を, 出生・女性の就業・教育・結婚の長期的な変化と1つのモデルで結びつけたのが, 後半で読む @greenwood2023 です.</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>@greenwood2023 は @kuznets1957 に着想を得て, 過去140年ほどの間にアメリカの家族に起こった大きな変化を, 家族経済学者にとっての「Kuznets facts」として次の6つにまとめています.</span>
 <span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### 新しい big idea: キャリアと家族の両立</span></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>市場化や公教育の拡大は, 古い関係が平らになったことは説明できても, 女性の労働参加と出生の関係が逆転したことまでは説明しきれません. そこで最近の研究は, 第1世代のモデルを越える方向に進んでいます. @doepke2023 がまとめる新しい big idea は, **キャリアと家族の両立のしやすさ**が高所得国の出生を決める, というものです. 両立しやすい国では多くの女性がキャリアと複数の子どもを両方持ち, 出生率と女性の労働参加率がともに高くなります. 両立が難しい国では, 働く女性も生まれる子どもも少なくなります.</span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>論文は両立を助ける要因として, 公的な保育などの家族政策, 父親の子育てへの貢献, 働く母親を支持する社会規範, 柔軟な労働市場の4つを挙げています. 父親の貢献は夫婦の交渉の問題として @doepke2019 が分析しています. 子どもを持つことのキャリアコストはライフサイクルモデルで @adda2017 が, 教育投資をめぐる地位の外部性と超少子化の関係は @kim2024 が定量化しています.</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="fu">## @greenwood2023</span></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>@greenwood2023 は @kuznets1957 に着想を得て, 過去140年ほどの間にアメリカの家族に起こった大きな変化を, 家族経済学者にとっての「Kuznets facts」として次の6つにまとめています.</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>(家事) 労働時間の減少</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>出生率の減少</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>結婚の減少</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>世帯サイズの縮小</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>高学歴者の増加</span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>ブルーカラーからホワイトカラーへの転換</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>(家事) 労働時間の減少</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>出生率の減少</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>結婚の減少</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>世帯サイズの縮小</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>高学歴者の増加</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>ブルーカラーからホワイトカラーへの転換</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>この論文の目的は, これら6つの変化を1つのモデルと少数の駆動力で説明することです. 近年の少子化を念頭においた理論というよりは, 古典的な出生理論 (この章の前半で学んだ quantity-quality トレードオフ) を洗練させ, 長期の構造変化に正面から当てはめたものと位置づけられます.</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6つの Kuznets facts</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>論文はアメリカを念頭に置いていますが, 日本を含む多くの先進国で同様の傾向が観察されます. モデルに入る前に, 6つの事実を駆け足で見ておきましょう.</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ① (家事) 労働時間の減少</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="al">![Housework in the United States. Figure 2.2 of @greenwood2023](/static/img/article/greenwood2023/fig2_2.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-2}</span>
 <span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>この論文の目的は, これら6つの変化を1つのモデルと少数の駆動力で説明することです. 近年の少子化を念頭においた理論というよりは, 古典的な出生理論 (この章の前半で学んだ quantity-quality トレードオフ) を洗練させ, 長期の構造変化に正面から当てはめたものと位置づけられます.</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>@fig-greenwood2023-fig2-2 のように, 20世紀は家事労働時間が減少し続けた時代でした. 洗濯機・冷蔵庫・電子レンジといった家電の普及がその背景にあります.</span>
 <span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6つの Kuznets facts</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="al">![Average weekly hours and labor-force participation in the United States. Figure 2.1 of @greenwood2023](/static/img/article/greenwood2023/fig2_1.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-1}</span>
 <span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>論文はアメリカを念頭に置いていますが, 日本を含む多くの先進国で同様の傾向が観察されます. モデルに入る前に, 6つの事実を駆け足で見ておきましょう.</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>市場労働の時間も第二次世界大戦までは減少傾向にありました (@fig-greenwood2023-fig2-1). 一方で女性の労働参加率は大きく上昇しており, 家事負担の減少がその一因と考えられます.</span>
 <span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ① (家事) 労働時間の減少</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ② 出生率の減少</span></span>
 <span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="al">![Housework in the United States. Figure 2.2 of @greenwood2023](/static/img/article/greenwood2023/fig2_2.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-2}</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="al">![Fertility in the United States. Figure 2.6 of @greenwood2023](/static/img/article/greenwood2023/fig2_6.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-6}</span>
 <span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>@fig-greenwood2023-fig2-2 のように, 20世紀は家事労働時間が減少し続けた時代でした. 洗濯機・冷蔵庫・電子レンジといった家電の普及がその背景にあります.</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります (@fig-greenwood2023-fig2-6). TFR と CCF の定義と日本の推移は, @sec-old-facts で見ました.</span>
 <span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="al">![Average weekly hours and labor-force participation in the United States. Figure 2.1 of @greenwood2023](/static/img/article/greenwood2023/fig2_1.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-1}</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country decline in fertility. Figure 2.7 of @greenwood2023](/static/img/article/greenwood2023/fig2_7.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-7}</span>
 <span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>市場労働の時間も第二次世界大戦までは減少傾向にありました (@fig-greenwood2023-fig2-1). 一方で女性の労働参加率は大きく上昇しており, 家事負担の減少がその一因と考えられます.</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>国ごとのパネルデータ (@fig-greenwood2023-fig2-7) を見ると, GDP per capita と TFR の間には負の相関があります. @doepke2023 でみたように, これこそ第1世代の出生モデルが説明しようとした古い事実です.</span>
 <span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ② 出生率の減少</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ③ 結婚の減少</span></span>
 <span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="al">![Fertility in the United States. Figure 2.6 of @greenwood2023](/static/img/article/greenwood2023/fig2_6.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-6}</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="al">![Marriage in the United States. Figure 2.8 of @greenwood2023](/static/img/article/greenwood2023/fig2_8.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-8}</span>
 <span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります (@fig-greenwood2023-fig2-6). TFR と CCF の定義と日本の推移は, 前半の「古い事実」の節で見ました.</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>1960年以降, 未婚化と晩婚化が進行しています (@fig-greenwood2023-fig2-8). 法律婚によらない関係 (同居, cohabitation) を考慮しても, 減少傾向は変わりません.</span>
 <span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country decline in fertility. Figure 2.7 of @greenwood2023](/static/img/article/greenwood2023/fig2_7.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-7}</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of @greenwood2023](/static/img/article/greenwood2023/fig2_10.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-10}</span>
 <span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>国ごとのパネルデータ (@fig-greenwood2023-fig2-7) を見ると, GDP per capita と TFR の間には負の相関があります. 前半で見たとおり, これこそ第1世代の出生モデルが説明しようとした古い事実です.</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>未婚化・晩婚化は所得と正の相関を持ちます (@fig-greenwood2023-fig2-10). 家事労働の減少や女性の労働参加によって「独身でいることの価値」が上昇した, というのが以下のモデルの見方です.</span>
 <span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ③ 結婚の減少</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol=2 #fig-japan-marriage fig-cap="日本の45-54歳の未婚率と初婚年齢の推移."}</span>
 <span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="al">![Marriage in the United States. Figure 2.8 of @greenwood2023](/static/img/article/greenwood2023/fig2_8.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-8}</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>::: {.column}</span>
 <span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>1960年以降, 未婚化と晩婚化が進行しています (@fig-greenwood2023-fig2-8). 法律婚によらない関係 (同居, cohabitation) を考慮しても, 減少傾向は変わりません.</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>**Share of Never-married** at Age 45-54</span>
 <span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of @greenwood2023](/static/img/article/greenwood2023/fig2_10.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-10}</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/lecture/share_nmarried.svg)</span></span>
 <span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>未婚化・晩婚化は所得と正の相関を持ちます (@fig-greenwood2023-fig2-10). 家事労働の減少や女性の労働参加によって「独身でいることの価値」が上昇した, というのが以下のモデルの見方です.</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol=2 #fig-japan-marriage fig-cap="日本の45-54歳の未婚率と初婚年齢の推移."}</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>::: {.column}</span>
 <span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>::: {.column}</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>**Age at First Marriage**</span>
 <span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>**Share of Never-married** at Age 45-54</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/lecture/age_firstmarriage.svg)</span></span>
 <span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/lecture/share_nmarried.svg)</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>::: {.column}</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>@fig-japan-marriage のように, 未婚化・晩婚化は日本でも進行しています. ただし日本は婚外子の割合が欧米諸国と比べて極めて低い (2020年で2.4%) ため, 結婚の減少が出生の減少に直結しやすいという特徴があります.</span>
 <span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>**Age at First Marriage**</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ④ 世帯サイズの縮小</span></span>
 <span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/lecture/age_firstmarriage.svg)</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a><span class="al">![Household size in the United States and across countries. Figure 2.11 of @greenwood2023](/static/img/article/greenwood2023/fig2_11.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-11}</span>
 <span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>世帯サイズは縮小傾向にあり, 所得と負の相関を持ちます (@fig-greenwood2023-fig2-11). 少子化の影響に加えて, 3世代同居の減少も所得と負の相関を持っています.</span>
 <span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ⑤ 高学歴者の増加</span></span>
 <span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>@fig-japan-marriage のように, 未婚化・晩婚化は日本でも進行しています. ただし日本は婚外子の割合が欧米諸国と比べて極めて低い (2020年で2.4%) ため, 結婚の減少が出生の減少に直結しやすいという特徴があります.</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="al">![Educational attainment in the United States. Figure 2.12 of @greenwood2023](/static/img/article/greenwood2023/fig2_12.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-12}</span>
 <span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ④ 世帯サイズの縮小</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of @greenwood2023](/static/img/article/greenwood2023/fig2_13.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-13}</span>
 <span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a><span class="al">![Household size in the United States and across countries. Figure 2.11 of @greenwood2023](/static/img/article/greenwood2023/fig2_11.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-11}</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>高学歴化は進行しており (@fig-greenwood2023-fig2-12), 所得と正の相関を持ちます (@fig-greenwood2023-fig2-13). 供給側の要因は親の教育投資の増加であり, この章の前半で学んだ子どもの数と質のトレードオフ (quantity-quality trade-off) がその理論です. 需要側の要因は高学歴者への賃金プレミアムの上昇で, 次の事実⑥と表裏一体です.</span>
 <span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>世帯サイズは縮小傾向にあり, 所得と負の相関を持ちます (@fig-greenwood2023-fig2-11). 少子化の影響に加えて, 3世代同居の減少も所得と負の相関を持っています.</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ⑥ ブルーカラーからホワイトカラーへの転換</span></span>
 <span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ⑤ 高学歴者の増加</span></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="al">![Occupations in the United States for men and women. Figure 2.14 of @greenwood2023](/static/img/article/greenwood2023/fig2_14.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-14}</span>
 <span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="al">![Educational attainment in the United States. Figure 2.12 of @greenwood2023](/static/img/article/greenwood2023/fig2_12.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-12}</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of @greenwood2023](/static/img/article/greenwood2023/fig2_15.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-15}</span>
 <span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of @greenwood2023](/static/img/article/greenwood2023/fig2_13.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-13}</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>ホワイトカラーの割合は上昇しており (@fig-greenwood2023-fig2-14), 所得とも正の相関を持ちます (@fig-greenwood2023-fig2-15). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です <span class="co">[</span><span class="ot">@acemoglu2011a</span><span class="co">]</span>. 以下では, これら6つの事実を1つのモデルで説明する @greenwood2023 の定量分析を読みます.</span>
 <span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>高学歴化は進行しており (@fig-greenwood2023-fig2-12), 所得と正の相関を持ちます (@fig-greenwood2023-fig2-13). 供給側の要因は親の教育投資の増加であり, この章の前半で学んだ子どもの数と質のトレードオフ (quantity-quality trade-off) がその理論です. 需要側の要因は高学歴者への賃金プレミアムの上昇で, 次の事実⑥と表裏一体です.</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model</span></span>
 <span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="fu">#### ⑥ ブルーカラーからホワイトカラーへの転換</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 $h$ (household labor), 余暇 $l$ (leisure), 市場労働 $t$ (toiling in the market) に配分します ($h + l + t = 1$). 有配偶者は2人分の2単位の時間を持ち, これに加えて $k$ 人の子どもに対する基礎的な子育て $b$ (basic childcare) と教育 $e$ (education) の時間を使います ($h + l + t + bk + ek = 2$).</span>
 <span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="al">![Occupations in the United States for men and women. Figure 2.14 of @greenwood2023](/static/img/article/greenwood2023/fig2_14.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-14}</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>**賃金.** スキルには合計が1になる _brain_ と _brawn_ の2種類があり, 賃金はそのポートフォリオで決まります.</span>
 <span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="al">![The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of @greenwood2023](/static/img/article/greenwood2023/fig2_15.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig2-15}</span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>ホワイトカラーの割合は上昇しており (@fig-greenwood2023-fig2-14), 所得とも正の相関を持ちます (@fig-greenwood2023-fig2-15). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です <span class="co">[</span><span class="ot">@acemoglu2011a</span><span class="co">]</span>. 以下では, これら6つの事実を1つのモデルで説明する @greenwood2023 の定量分析を読みます.</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>w = s v + \left(1 - s\right) u.</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="fu">### モデル</span></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>$s \in \left<span class="co">[</span><span class="ot">0, 1\right</span><span class="co">]</span>$ は brain スキルの割合, $v$ と $u$ はそれぞれ brain と brawn のリターンで, $v &gt; u$ を仮定します. 比率 $q = v/u$ が大卒プレミアムに対応します.</span>
 <span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 $h$ (household labor), 余暇 $l$ (leisure), 市場労働 $t$ (toiling in the market) に配分します ($h + l + t = 1$). 有配偶者は2人分の2単位の時間を持ち, これに加えて $k$ 人の子どもに対する基礎的な子育て $b$ (basic childcare) と教育 $e$ (education) の時間を使います ($h + l + t + bk + ek = 2$).</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>**家庭内生産.** 家事の成果 $n$ は, 家庭内生産用の耐久財 $d$ (価格 $p$) と家事労働 $\texttt{h}$ の CES 集計で作られます.</span>
 <span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>**賃金.** スキルには合計が1になる _brain_ と _brawn_ の2種類があり, 賃金はそのポートフォリオで決まります.</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>n = \left(\theta d^\sigma + \left(1 - \theta\right) \texttt{h}^\sigma\right)^{1/\sigma}.</span>
 <span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>w = s v + \left(1 - s\right) u.</span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>ここで家事労働の投入 $\texttt{h}$ には子どもも寄与します. 独身者では $\texttt{h} = h$ ですが, 有配偶者では子ども1人あたり生産性 $\chi$ で家事を手伝い, $\texttt{h} = h + \chi k$ となります. かつての子どもは農場や家庭内で立派な労働力でした. 児童労働の消滅は, この $\chi$ の低下として表現されます.</span>
 <span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>$s \in \left<span class="co">[</span><span class="ot">0, 1\right</span><span class="co">]</span>$ は brain スキルの割合, $v$ と $u$ はそれぞれ brain と brawn のリターンで, $v &gt; u$ を仮定します. 比率 $q = v/u$ が大卒プレミアムに対応します.</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>**子どもの教育.** 親は子どもの brain スキル割合 $s$ を選べますが, そのためには子ども1人あたり $e = \gamma s$ の教育時間がかかります. 子どもを「高スキルに育てる」ことが親の時間を食う, という形で quantity-quality トレードオフが入っています.</span>
 <span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>**家庭内生産.** 家事の成果 $n$ は, 家庭内生産用の耐久財 $d$ (価格 $p$) と家事労働 $\texttt{h}$ の CES 集計で作られます.</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>**効用関数.** 独身者は消費 $c$, 家事の成果 $n$, 余暇 $l$ から効用を得ます.</span>
 <span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>n = \left(\theta d^\sigma + \left(1 - \theta\right) \texttt{h}^\sigma\right)^{1/\sigma}.</span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>ここで家事労働の投入 $\texttt{h}$ には子どもも寄与します. 独身者では $\texttt{h} = h$ ですが, 有配偶者では子ども1人あたり生産性 $\chi$ で家事を手伝い, $\texttt{h} = h + \chi k$ となります. かつての子どもは農場や家庭内で立派な労働力でした. 児童労働の消滅は, この $\chi$ の低下として表現されます.</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>**子どもの教育.** 親は子どもの brain スキル割合 $s$ を選べますが, そのためには子ども1人あたり $e = \gamma s$ の教育時間がかかります. 子どもを「高スキルに育てる」ことが親の時間を食う, という形で quantity-quality トレードオフが入っています.</span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>**効用関数.** 独身者は消費 $c$, 家事の成果 $n$, 余暇 $l$ から効用を得ます.</span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>u^S\left(c, n, l\right) = \alpha \frac{c^{1-\rho} - 1}{1-\rho} + \beta \frac{n^{1-\nu} - 1}{1 - \nu} +</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>\left(1 - \alpha - \beta\right) \frac{l^{1-\lambda} - 1}{1 - \lambda}.</span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>有配偶者はこれに加えて, 子どもの数 $k$ と子どものスキル水準 $sv + \left(1-s\right)u$ からも効用を得ます.</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>u^M\left(c, n, l, k, s\right) &amp;= \alpha \frac{\left(\varepsilon c\right)^{1-\rho} - 1}{1-\rho} + \beta \frac{\left(\varepsilon n\right)^{1-\nu} - 1}{1 - \nu} + \delta \frac{l^{1-\lambda} - 1}{1 - \lambda} <span class="sc">\\</span></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>&amp;+ \psi \frac{k^{1-\kappa} - 1}{1 - \kappa} + \xi \frac{\left(sv + \left(1-s\right)u\right)^{1-\zeta}-1}{1-\zeta}.</span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$\varepsilon \in \left<span class="co">[</span><span class="ot">0.5, 1.0\right</span><span class="co">]</span>$ は世帯の等価尺度 (equivalence scale) で, 2人で暮らすことの規模の経済を表します. 子どものスキルからの効用は, この章の前半の言葉で言えば warm glow 型 (子の効用ではなく属性から直接効用を得る) の質への選好です.</span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>**家計の問題.** 独身者と有配偶者の価値はそれぞれ</span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>S &amp;= \max_{d, h, l} u^S\left(c, n\left(d, h\right), l\right) &amp;\text{ s.t. } c + pd = w\left(1 - h - l\right), <span class="sc">\\</span></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>M &amp;= \max_{d, h, l, k, s} u^M\left(c, n\left(d, h\right), l, k, s\right) &amp;\text{ s.t. } c + pd = w\left(2 - h - l - bk - ek\right)</span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>u^S\left(c, n, l\right) = \alpha \frac{c^{1-\rho} - 1}{1-\rho} + \beta \frac{n^{1-\nu} - 1}{1 - \nu} +</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\left(1 - \alpha - \beta\right) \frac{l^{1-\lambda} - 1}{1 - \lambda}.</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>有配偶者はこれに加えて, 子どもの数 $k$ と子どものスキル水準 $sv + \left(1-s\right)u$ からも効用を得ます.</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>u^M\left(c, n, l, k, s\right) &amp;= \alpha \frac{\left(\varepsilon c\right)^{1-\rho} - 1}{1-\rho} + \beta \frac{\left(\varepsilon n\right)^{1-\nu} - 1}{1 - \nu} + \delta \frac{l^{1-\lambda} - 1}{1 - \lambda} <span class="sc">\\</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>&amp;+ \psi \frac{k^{1-\kappa} - 1}{1 - \kappa} + \xi \frac{\left(sv + \left(1-s\right)u\right)^{1-\zeta}-1}{1-\zeta}.</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>$\varepsilon \in \left<span class="co">[</span><span class="ot">0.5, 1.0\right</span><span class="co">]</span>$ は世帯の等価尺度 (equivalence scale) で, 2人で暮らすことの規模の経済を表します. 子どものスキルからの効用は, この章の前半の言葉で言えば warm glow 型 (子の効用ではなく属性から直接効用を得る) の質への選好です.</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>**家計の問題.** 独身者と有配偶者の価値はそれぞれ</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>S &amp;= \max_{d, h, l} u^S\left(c, n\left(d, h\right), l\right) &amp;\text{ s.t. } c + pd = w\left(1 - h - l\right), <span class="sc">\\</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>M &amp;= \max_{d, h, l, k, s} u^M\left(c, n\left(d, h\right), l, k, s\right) &amp;\text{ s.t. } c + pd = w\left(2 - h - l - bk - ek\right)</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>で与えられます.</span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>**結婚の決定.** 独身者は人生の初めに他の独身者とマッチし, 結婚生活の joy shock $j$ を引きます. 結婚するのは $M + j \geq S$ のときです. $j$ は位置 $\texttt{a}$, スケール $\texttt{d}$ のガンベル分布</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\right)</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>に従うとします (frictionless marriage の章で学んだ第一種極値分布です). 婚姻率を $\texttt{m}$ とすると, 独身者の割合は</span>
 <span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>で与えられます.</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>**結婚の決定.** 独身者は人生の初めに他の独身者とマッチし, 結婚生活の joy shock $j$ を引きます. 結婚するのは $M + j \geq S$ のときです. $j$ は位置 $\texttt{a}$, スケール $\texttt{d}$ のガンベル分布</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>1 - \texttt{m} = \Pr\left(M + j &lt; S\right) = G\left(S - M\right)</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\right)</span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>と閉じた形で書けます.</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a><span class="fu">### Calibration</span></span>
 <span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>に従うとします (frictionless marriage の章で学んだ第一種極値分布です). 婚姻率を $\texttt{m}$ とすると, 独身者の割合は</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="fu">#### データに基づくパラメータ</span></span>
 <span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>1 - \texttt{m} = \Pr\left(M + j &lt; S\right) = G\left(S - M\right)</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>と閉じた形で書けます.</span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="fu">### データから直接決まるパラメータ</span></span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>カリブレーションの第一歩は, モデルの外から測れるものを測ってしまうことです.</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>カリブレーションの第一歩は, モデルの外から測れるものを測ってしまうことです.</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**価格**: $w_{1880} = 1$ に基準化. 賃金は年率1.7%で上昇したと推定され $w_{2020} = 11.3$ (1880--1988年は @williamson1995, 1989年以降は FRED の実質報酬を総労働時間で割って推定). 耐久財価格は $p_{1880} = 100$ に基準化し, 年率約5%の下落 [@greenwood2016] から $p_{2020} = 0.108$. 大卒プレミアム $q_{2020} = 1.81$ は Current Population Survey (2018年) より</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**家庭内生産**: $\theta = 0.206$, $\sigma = 0.282$ は @mcgrattan1997 より. $0 &lt; \sigma &lt; 1$ なので耐久財と家事労働は代替的で, 「安くなった耐久財が家事時間を置き換える」経路が開いている</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**相対的リスク回避度**: $\rho = 1.25$ (文献の標準的な値)</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**等価尺度**: OECD modified scale ($1 + 0.5$) より $\varepsilon = 1 / 1.5 \simeq 0.667$</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子育て時間**: American Time Use Survey (ATUS) と @gershuny2016 から, 基礎的な子育て時間の平均 (1920, 1965, 2019) として $b = 0.030$</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**教育時間**: $\gamma = e / s$ の関係を使い, ホワイトカラーの割合 $s_t$ と家庭での教育時間 $e_t$ から推定 (ATUS, American Heritage Time Use Study, @gershuny2016). 平均して $\gamma = 0.026$</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子どもの家事労働 $\chi$**: 児童の労働時間と生産性の積として推定. 生産性は @lebergott1964 に基づき, 1880年の児童の労働時間は途上国のデータ <span class="co">[</span><span class="ot">@webbink2012</span><span class="co">]</span>, 2020年は @hofferth2001 を用いる</span>
 <span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**価格**: $w_{1880} = 1$ に基準化. 賃金は年率1.7%で上昇したと推定され $w_{2020} = 11.3$ (1880--1988年は @williamson1995, 1989年以降は FRED の実質報酬を総労働時間で割って推定). 耐久財価格は $p_{1880} = 100$ に基準化し, 年率約5%の下落 [@greenwood2016] から $p_{2020} = 0.108$. 大卒プレミアム $q_{2020} = 1.81$ は Current Population Survey (2018年) より</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**家庭内生産**: $\theta = 0.206$, $\sigma = 0.282$ は @mcgrattan1997 より. $0 &lt; \sigma &lt; 1$ なので耐久財と家事労働は代替的で, 「安くなった耐久財が家事時間を置き換える」経路が開いている</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**相対的リスク回避度**: $\rho = 1.25$ (文献の標準的な値)</span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**等価尺度**: OECD modified scale ($1 + 0.5$) より $\varepsilon = 1 / 1.5 \simeq 0.667$</span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子育て時間**: American Time Use Survey (ATUS) と @gershuny2016 から, 基礎的な子育て時間の平均 (1920, 1965, 2019) として $b = 0.030$</span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**教育時間**: $\gamma = e / s$ の関係を使い, ホワイトカラーの割合 $s_t$ と家庭での教育時間 $e_t$ から推定 (ATUS, American Heritage Time Use Study, @gershuny2016). 平均して $\gamma = 0.026$</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**子どもの家事労働 $\chi$**: 児童の労働時間と生産性の積として推定. 生産性は @lebergott1964 に基づき, 1880年の児童の労働時間は途上国のデータ <span class="co">[</span><span class="ot">@webbink2012</span><span class="co">]</span>, 2020年は @hofferth2001 を用いる</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="fu">#### SMM: 2つのループ</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を外側と内側の2つのループに分けるのです.</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**外側のループ**: $\left(\alpha, q_{1880}\right)$ だけを数値的に探索する</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**内側のループ**: 残りの選好パラメータ $\Lambda\left(\alpha, q_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)$ は, $\left(\alpha, q_{1880}\right)$ を所与とすると一階条件から解析的に決まる</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ガンベル分布のパラメータ $\left(\texttt{a}, \texttt{d}\right)$ は, 他のすべてが決まった後に婚姻率から決まる</span>
 <span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="fu">### SMM: 2つのループ</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの2時点比から, ウェイトパラメータは水準から」という形で逐次的に解けることです. 順番に見ていきます.</span>
 <span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を外側と内側の2つのループに分けるのです.</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>**Step 1--2 ($\lambda$, $\delta$): 余暇.** 余暇 $l$ の一階条件は</span>
 <span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**外側のループ**: $\left(\alpha, q_{1880}\right)$ だけを数値的に探索する</span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**内側のループ**: 残りの選好パラメータ $\Lambda\left(\alpha, q_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)$ は, $\left(\alpha, q_{1880}\right)$ を所与とすると一階条件から解析的に決まる</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ガンベル分布のパラメータ $\left(\texttt{a}, \texttt{d}\right)$ は, 他のすべてが決まった後に婚姻率から決まる</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>\delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w.</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-l}</span>
 <span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの2時点比から, ウェイトパラメータは水準から」という形で逐次的に解けることです. 順番に見ていきます.</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>2020年と1880年でこの式の比を取ると $\delta$ が消え,</span>
 <span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>**Step 1--2 ($\lambda$, $\delta$): 余暇.** 余暇 $l$ の一階条件は</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>\delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w.</span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-l}</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>2020年と1880年でこの式の比を取ると $\delta$ が消え,</span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>\left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} =</span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>\left(\frac{w_{2020}\left(2 - b k_{2020} - \gamma s_{2020} k_{2020} - h_{2020} - l_{2020}\right) - p_{2020}d_{2020}}{w_{1880}\left(2 - b k_{1880} - \gamma s_{1880} k_{1880} - h_{1880} - l_{1880}\right) - p_{1880}d_{1880}}\right)^{-\rho}\frac{w_{2020}}{w_{1880}}</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>\left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} =</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>\left(\frac{w_{2020}\left(2 - b k_{2020} - \gamma s_{2020} k_{2020} - h_{2020} - l_{2020}\right) - p_{2020}d_{2020}}{w_{1880}\left(2 - b k_{1880} - \gamma s_{1880} k_{1880} - h_{1880} - l_{1880}\right) - p_{1880}d_{1880}}\right)^{-\rho}\frac{w_{2020}}{w_{1880}}</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>から $\lambda$ が求まります. $\lambda$ が分かれば, @eq-greenwood2023-foc-l を2020年の水準で評価して $\delta$ が求まります.</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>**Step 3--4 ($\kappa$, $\psi$): 子どもの数.** 子どもの数 $k$ の一階条件は</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>\psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right).</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-k}</span>
 <span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>から $\lambda$ が求まります. $\lambda$ が分かれば, @eq-greenwood2023-foc-l を2020年の水準で評価して $\delta$ が求まります.</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>右辺の括弧は子ども1人の純時間費用 (子育て + 教育 $-$ 家事の手伝い) です. やはり2時点の比</span>
 <span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>**Step 3--4 ($\kappa$, $\psi$): 子どもの数.** 子どもの数 $k$ の一階条件は</span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>\left(\frac{k_{2020}}{k_{1880}}\right)^{-\kappa} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{b + \gamma s_{2020} - \chi_{2020}}{b + \gamma s_{1880} - \chi_{1880}}</span>
 <span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>\psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right).</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-k}</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>から $\kappa$ が, 水準から $\psi$ が求まります.</span>
 <span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>右辺の括弧は子ども1人の純時間費用 (子育て + 教育 $-$ 家事の手伝い) です. やはり2時点の比</span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>**Step 5--6 ($\zeta$, $\xi$): 子どもの質.** 子どものスキル $s$ の一階条件は</span>
 <span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>\left(\frac{k_{2020}}{k_{1880}}\right)^{-\kappa} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{b + \gamma s_{2020} - \chi_{2020}}{b + \gamma s_{1880} - \chi_{1880}}</span>
-<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>\xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k.</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-s}</span>
 <span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>から $\kappa$ が, 水準から $\psi$ が求まります.</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比</span>
 <span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>**Step 5--6 ($\zeta$, $\xi$): 子どもの質.** 子どものスキル $s$ の一階条件は</span>
-<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>\left(\frac{s_{2020} v_{2020} + \left(1 - s_{2020}\right) u_{2020}}{s_{1880} v_{1880} + \left(1 - s_{1880}\right) u_{1880}}\right)^{-\zeta} \frac{v_{2020} - u_{2020}}{v_{1880} - u_{1880}} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{k_{2020}}{k_{1880}}</span>
 <span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>\xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k.</span>
-<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-s}</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>から $\zeta$ が, 水準から $\xi$ が求まります.</span>
 <span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>**Step 7--8 ($\nu$, $\beta$): 家事.** 家事労働 $h$ の一階条件は</span>
 <span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>\left(\frac{s_{2020} v_{2020} + \left(1 - s_{2020}\right) u_{2020}}{s_{1880} v_{1880} + \left(1 - s_{1880}\right) u_{1880}}\right)^{-\zeta} \frac{v_{2020} - u_{2020}}{v_{1880} - u_{1880}} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{k_{2020}}{k_{1880}}</span>
-<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>\beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}.</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-h}</span>
 <span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>から $\zeta$ が, 水準から $\xi$ が求まります.</span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>2時点の比</span>
 <span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>**Step 7--8 ($\nu$, $\beta$): 家事.** 家事労働 $h$ の一階条件は</span>
-<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta d_{2020}^\sigma + \left(1 - \theta\right)\left(h_{2020} + \chi_{2020} k_{2020}\right)^{\sigma}}{\theta d_{1880}^{\sigma} + \left(1 - \theta\right)\left(h_{1880} + \chi_{1880} k_{1880}\right)^{\sigma}}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(\frac{h_{2020} + \chi_{2020} k_{2020}}{h_{1880} + \chi_{1880} k_{1880}}\right)^{\sigma - 1} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda}</span>
 <span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>\beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}.</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-foc-h}</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>から $\nu$ が, 1880年の水準から $\beta$ が求まります.</span>
 <span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>2時点の比</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>**外側のループ.** 残った $\left(\alpha, q_{1880}\right)$ は, 独身者の市場労働時間と家事労働時間 (1880, 2020) をターゲットに</span>
 <span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>\left(\frac{\theta d_{2020}^\sigma + \left(1 - \theta\right)\left(h_{2020} + \chi_{2020} k_{2020}\right)^{\sigma}}{\theta d_{1880}^{\sigma} + \left(1 - \theta\right)\left(h_{1880} + \chi_{1880} k_{1880}\right)^{\sigma}}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(\frac{h_{2020} + \chi_{2020} k_{2020}}{h_{1880} + \chi_{1880} k_{1880}}\right)^{\sigma - 1} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda}</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>\min_{\alpha, q_{1880}} \sum_{i} \left(\frac{\mathcal{D}_i - \mathcal{M}_{i}\left(\alpha, q_{1880}\right)}{\mathcal{D}_i}\right)</span>
 <span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>から $\nu$ が, 1880年の水準から $\beta$ が求まります.</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します (@tbl-greenwood2023-table5-3).</span>
 <span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>**外側のループ.** 残った $\left(\alpha, q_{1880}\right)$ は, 独身者の市場労働時間と家事労働時間 (1880, 2020) をターゲットに</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table5-3}</span>
 <span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>\min_{\alpha, q_{1880}} \sum_{i} \left(\frac{\mathcal{D}_i - \mathcal{M}_{i}\left(\alpha, q_{1880}\right)}{\mathcal{D}_i}\right)</span>
-<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_3.svg)</span>{width=80% fig-align="center"}</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>Results, data and model. Table 5.3 of @greenwood2023</span>
 <span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します (@tbl-greenwood2023-table5-3).</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table5-3}</span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>**結婚のパラメータ.** すべての選好パラメータが決まると $S$ と $M$ が計算できます. 独身者の割合 $\texttt{s} = 1 - \texttt{m}$ はガンベル分布から</span>
 <span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_3.svg)</span>{width=80% fig-align="center"}</span>
-<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>Results, data and model. Table 5.3 of @greenwood2023</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>\log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d}</span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-gumbel}</span>
 <span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>を満たすので, 2時点の比</span>
 <span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>**結婚のパラメータ.** すべての選好パラメータが決まると $S$ と $M$ が計算できます. 独身者の割合 $\texttt{s} = 1 - \texttt{m}$ はガンベル分布から</span>
-<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>\frac{\log \left(-\log \texttt{s}_{2020}\right)}{\log \left(-\log \texttt{s}_{1880}\right)} = \frac{S_{2020} - M_{2020} - \texttt{a}}{S_{1880} - M_{1880} - \texttt{a}}</span>
 <span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>\log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d}</span>
-<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>$${#eq-greenwood2023-gumbel}</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>から $\texttt{a}$ が, @eq-greenwood2023-gumbel の水準から $\texttt{d}$ が求まります. 推定されたパラメータは @tbl-greenwood2023-table5-2 のとおりです.</span>
 <span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>を満たすので, 2時点の比</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table5-2}</span>
 <span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>\frac{\log \left(-\log \texttt{s}_{2020}\right)}{\log \left(-\log \texttt{s}_{1880}\right)} = \frac{S_{2020} - M_{2020} - \texttt{a}}{S_{1880} - M_{1880} - \texttt{a}}</span>
-<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_2.svg)</span>{width=80% fig-align="center"}</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>Parameter values. Table 5.2 of @greenwood2023</span>
 <span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>から $\texttt{a}$ が, @eq-greenwood2023-gumbel の水準から $\texttt{d}$ が求まります. 推定されたパラメータは @tbl-greenwood2023-table5-2 のとおりです.</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table5-2}</span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a><span class="fu">### Great Transition</span></span>
 <span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table5_2.svg)</span>{width=80% fig-align="center"}</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>1880年から2020年への変化を駆動する力として, 論文は3つに注目します.</span>
 <span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>Parameter values. Table 5.2 of @greenwood2023</span>
-<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>全体的な技術革新 (neutral technological progress, $\mathbf{z}$)</span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>スキル偏向的な技術革新 (skill-biased technological progress, $\mathbf{x}$)</span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>家庭内生産用耐久財の価格低下 ($p$)</span>
 <span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="fu">### Great Transition の駆動力</span></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>技術革新をモデル化するため, brawn 労働 $\mathbf{u}$ と brain 労働 $\mathbf{v}$ を CES で束ねる代表的企業を導入します.</span>
 <span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>1880年から2020年への変化を駆動する力として, 論文は3つに注目します.</span>
-<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>全体的な技術革新 (neutral technological progress, $\mathbf{z}$)</span>
-<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>スキル偏向的な技術革新 (skill-biased technological progress, $\mathbf{x}$)</span>
-<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>家庭内生産用耐久財の価格低下 ($p$)</span>
-<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>技術革新をモデル化するため, brawn 労働 $\mathbf{u}$ と brain 労働 $\mathbf{v}$ を CES で束ねる代表的企業を導入します.</span>
-<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>\max_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}}</span>
-<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>u\mathbf{u} - v\mathbf{v}.</span>
-<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a>\max_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}}</span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>u\mathbf{u} - v\mathbf{v}.</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>一階条件から, 大卒プレミアム $q$ は</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1}</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>$${#eq-college-premium}</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>と書けます (最後の等式は, 総労働時間を $\mathbf{t}$ として $\mathbf{u} = \left(1 - s\right)\mathbf{t}$, $\mathbf{v} = s\mathbf{t}$ を代入したものです). CES のパラメータ $\left(\omega, \iota\right)$ は @acemoglu2011a の値を使い, @eq-college-premium から各時点の $\mathbf{x}$ が, brawn 労働の一階条件から $\mathbf{z}$ が逆算できます (@tbl-greenwood2023-table6-1).</span>
 <span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>一階条件から, 大卒プレミアム $q$ は</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table6-1}</span>
 <span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1}</span>
-<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>$${#eq-college-premium}</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table6_1.svg)</span>{width=80% fig-align="center"}</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>Technology parameter values. Table 6.1 of @greenwood2023</span>
 <span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>と書けます (最後の等式は, 総労働時間を $\mathbf{t}$ として $\mathbf{u} = \left(1 - s\right)\mathbf{t}$, $\mathbf{v} = s\mathbf{t}$ を代入したものです). CES のパラメータ $\left(\omega, \iota\right)$ は @acemoglu2011a の値を使い, @eq-college-premium から各時点の $\mathbf{x}$ が, brawn 労働の一階条件から $\mathbf{z}$ が逆算できます (@tbl-greenwood2023-table6-1).</span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>::: {#tbl-greenwood2023-table6-1}</span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a>3つの駆動力を $\mathbf{z}_t = \mathbf{z}_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}$, $\mathbf{x}_t = \mathbf{x}_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}$, $p_t = p_{1880} e^{\Delta p\left(t-1880\right)}$ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.</span>
 <span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="al">![](/static/img/article/greenwood2023/table6_1.svg)</span>{width=80% fig-align="center"}</span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a><span class="al">![Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of @greenwood2023](/static/img/article/greenwood2023/fig6_1.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-1}</span>
 <span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>Technology parameter values. Table 6.1 of @greenwood2023</span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>@fig-greenwood2023-fig6-1 のように, 2時点 (1880, 2020) しかターゲットにしていないにもかかわらず, 途中の経路もよく再現できています. 特に注目すべきは, 婚姻率が20世紀半ばに向けて上昇してから低下するという $\cap$ 字型を再現している点です.</span>
 <span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>では, どの駆動力がどの事実を担っているのでしょうか. 反実仮想で1つずつ止めてみます.</span>
 <span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transition</span></span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新 $\mathbf{x}$ を止めると.**</span>
 <span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>3つの駆動力を $\mathbf{z}_t = \mathbf{z}_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}$, $\mathbf{x}_t = \mathbf{x}_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}$, $p_t = p_{1880} e^{\Delta p\left(t-1880\right)}$ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.</span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: fertility and schooling. Figure 6.2 of @greenwood2023](/static/img/article/greenwood2023/fig6_2.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-2}</span>
 <span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a><span class="al">![Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of @greenwood2023](/static/img/article/greenwood2023/fig6_1.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-1}</span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>大卒プレミアムが上昇しない世界 (@fig-greenwood2023-fig6-2) では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 ($\mathbf{x}$) から出ていることが分かります.</span>
 <span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>@fig-greenwood2023-fig6-1 のように, 2時点 (1880, 2020) しかターゲットにしていないにもかかわらず, 途中の経路もよく再現できています. 特に注目すべきは, 婚姻率が20世紀半ばに向けて上昇してから低下するという $\cap$ 字型を再現している点です.</span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>**耐久財価格 $p$ の低下を止めると.**</span>
 <span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>では, どの駆動力がどの事実を担っているのでしょうか. 反実仮想で1つずつ止めてみます.</span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: housework, market work, and leisure. Figure 6.3 of @greenwood2023](/static/img/article/greenwood2023/fig6_3.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-3}</span>
 <span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新 $\mathbf{x}$ を止めると.**</span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>洗濯機や冷蔵庫が安くならない世界 (@fig-greenwood2023-fig6-3) では, 家事労働時間は減らず, 代わりに市場労働時間が減ります. そしてもうひとつ, 意外な変化が起きます. 婚姻率が上昇し続けるのです (@fig-greenwood2023-fig6-4).</span>
 <span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: fertility and schooling. Figure 6.2 of @greenwood2023](/static/img/article/greenwood2023/fig6_2.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-2}</span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: marriage. Figure 6.4 of @greenwood2023](/static/img/article/greenwood2023/fig6_4.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-4}</span>
 <span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>大卒プレミアムが上昇しない世界 (@fig-greenwood2023-fig6-2) では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 ($\mathbf{x}$) から出ていることが分かります.</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>婚姻率の $\cap$ 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.</span>
 <span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a>**耐久財価格 $p$ の低下を止めると.**</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a><span class="fu">#### まとめ</span></span>
 <span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: housework, market work, and leisure. Figure 6.3 of @greenwood2023](/static/img/article/greenwood2023/fig6_3.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-3}</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.</span>
 <span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>洗濯機や冷蔵庫が安くならない世界 (@fig-greenwood2023-fig6-3) では, 家事労働時間は減らず, 代わりに市場労働時間が減ります. そしてもうひとつ, 意外な変化が起きます. 婚姻率が上昇し続けるのです (@fig-greenwood2023-fig6-4).</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新** ($\mathbf{x}$: 大卒プレミアムの上昇)</span>
 <span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="al">![Comparative dynamics: marriage. Figure 6.4 of @greenwood2023](/static/img/article/greenwood2023/fig6_4.svg)</span>{width=80% fig-align="center" #fig-greenwood2023-fig6-4}</span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>婚姻率の $\cap$ 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.</span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a><span class="fu">### まとめ</span></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>高学歴者の増加 (⑤) とホワイトカラーへの転換 (⑥) を直接駆動する</span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>quantity-quality トレードオフを通じて, 出生率の低下 (②) と世帯サイズの縮小 (④) を駆動する</span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>**家庭内生産用耐久財の価格低下** ($p$)</span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の機械化により家事労働時間の減少 (①) を駆動する</span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の規模の経済という結婚のメリットを縮小させ, 結婚の減少 (③) を駆動する</span>
 <span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>**スキル偏向的な技術革新** ($\mathbf{x}$: 大卒プレミアムの上昇)</span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>高学歴者の増加 (⑤) とホワイトカラーへの転換 (⑥) を直接駆動する</span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>quantity-quality トレードオフを通じて, 出生率の低下 (②) と世帯サイズの縮小 (④) を駆動する</span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a>**家庭内生産用耐久財の価格低下** ($p$)</span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の機械化により家事労働時間の減少 (①) を駆動する</span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>家事の規模の経済という結婚のメリットを縮小させ, 結婚の減少 (③) を駆動する</span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>この章の前半で学んだ quantity-quality の静学的なメカニズムが, 時間配分・家庭内生産・結婚市場と組み合わさって140年の構造変化を説明する, という構成になっています. 一方で, 前半で見たように, この枠組みはあくまで「古い事実」のための理論です. 21世紀の高所得国で起きた, 所得や女性の労働参加と出生率の関係の逆転を説明するには, 子育ての市場化やキャリアと家族の両立のしやすさといった新しい要素が必要になります <span class="co">[</span><span class="ot">@doepke2023</span><span class="co">]</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>この章の前半で学んだ quantity-quality の静学的なメカニズムが, 時間配分・家庭内生産・結婚市場と組み合わさって140年の構造変化を説明する, という構成になっています. 一方で, 前半で見たように, この枠組みはあくまで「古い事実」のための理論です. 21世紀の高所得国で起きた, 所得や女性の労働参加と出生率の関係の逆転を説明するには, 子育ての市場化やキャリアと家族の両立のしやすさといった新しい要素が必要になります <span class="co">[</span><span class="ot">@doepke2023</span><span class="co">]</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
