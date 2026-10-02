@@ -330,6 +330,162 @@ $$
 
 縮小写像の枠組みは, サーチ理論の章での留保値の存在の議論にもそのまま使われています.
 
+## 家計内配分の証明 {#sec-apdx-allocation-proofs}
+
+### 効率性と加重和最大化の双対性 {#prf-collective}
+
+::: {.proof}
+
+($\Leftarrow$) $\mu \in \left(0, 1\right)$ とする. もし $\left(u_W^*, u_H^*\right)$ を Pareto 支配する配分が $\mathcal{U}$ にあれば, その配分は加重和 @eq-collective を厳密に大きくするので, 最大性に矛盾する. ($\mu$ が $0$ または $1$ の端点の場合は, 最大化解のうち Pareto 効率的なものを選べばよい.)
+
+($\Rightarrow$) $\left(u_W^*, u_H^*\right)$ が Pareto 効率的とする. 集合 $A = \left\{ u \in \mathbb{R}^2 : u_W > u_W^*,\ u_H > u_H^* \right\}$ は凸で, 効率性より $\mathcal{U}$ と交わらない. 分離超平面定理より, ゼロでないベクトル $\left(\mu, 1 - \mu\right)$ (正規化済み) が存在して, $\mathcal{U}$ 上の任意の点で $\mu u_W + \left(1 - \mu\right) u_H \leq \mu u_W^* + \left(1 - \mu\right) u_H^*$ となる. $A$ の形状より $\mu \geq 0$ かつ $1 - \mu \geq 0$ であり, $\left(u_W^*, u_H^*\right)$ は @eq-collective の解である.
+
+:::
+
+### Slutsky 行列の SR1 条件 {#prf-sr1}
+
+::: {.proof}
+
+@eq-collective-demand を $\pi_l$ と $Y$ で微分し, @eq-slutsky に代入する.
+
+$$
+S_{kl}
+= \underbrace{\frac{\partial \tilde{q}_k}{\partial \pi_l} + q_l\, \frac{\partial \tilde{q}_k}{\partial Y}}_{\Sigma_{kl}}
++ \frac{\partial \tilde{q}_k}{\partial \mu}
+\left(\frac{\partial \mu}{\partial \pi_l} + q_l\, \frac{\partial \mu}{\partial Y}\right).
+$$
+
+第1項は, $\mu$ を固定した標準的な需要関数 $\tilde{q}\left(\cdot, \cdot, \mu\right)$ の Slutsky 行列なので対称かつ負値半定符号である. 第2項は $a_k b_l$ の形, すなわち2つのベクトルの外積なので, 行列としてのランクは高々 $1$ である.
+
+:::
+
+### Nash 交渉と collective model の双対性 {#prf-nash-collective}
+
+::: {.proof}
+
+(1) フロンティア上で $u_H = \Psi\left(u_W\right)$ を代入すると, Nash 交渉問題は $\left(u_W - T_W\right)^{\beta}\left(\Psi\left(u_W\right) - T_H\right)^{1-\beta}$ の最大化になる. 対数を取って微分した一階条件は
+
+$$
+\frac{\beta}{u_W^* - T_W} + \frac{\left(1 - \beta\right)\Psi'\left(u_W^*\right)}{\Psi\left(u_W^*\right) - T_H} = 0
+\quad \Longleftrightarrow \quad
+-\Psi'\left(u_W^*\right) = \frac{\beta}{1 - \beta} \cdot \frac{u_H^* - T_H}{u_W^* - T_W}.
+$$
+
+一方, collective model の目的関数 $\mu u_W + \left(1 - \mu\right) \Psi\left(u_W\right)$ の一階条件は $-\Psi'\left(u_W\right) = \mu / \left(1 - \mu\right)$ である. $\Psi$ の凹性からどちらの一階条件も十分条件なので, @eq-nash-weight のもとで両者の解は一致する.
+
+(2) 効率的な内点 $\left(u_W^\circ, u_H^\circ\right)$ における接線の傾きを $-\lambda = \Psi'\left(u_W^\circ\right) < 0$ とする. 任意の $a > 0$ に対して脅威点を $T_W = u_W^\circ - a$, $T_H = u_H^\circ - \lambda a \left(1 - \beta\right) / \beta$ と選べば, $\left(u_W^\circ, u_H^\circ\right)$ は (1) の一階条件を満たし, 凹性よりこの脅威点に対する Nash 交渉解になる.
+
+:::
+
+### 限定コミットメントのもとでの Pareto ウェイトの動き {#prf-lc-weight}
+
+@eq-lc-weight を導きます. 導出は @theloudis2025 に従います.
+
+::: {.proof}
+
+結婚時のウェイト $\mu_{j0} = \mu_j\left(\Omega_0\right)$ のもとで, 家計は生涯効用の加重和
+
+$$
+\sum_{j} \mu_{j0}\, \mathbb{E}_0 \sum_{t=0}^{\bar{t}} \beta^t u_{jt}
+$$
+
+を, 予算制約と, 各期 $t \geq 1$・各人 $j$ の参加制約 @eq-participation のもとで最大化する. ここで $u_{jt} = u_j\left(q_t, h_{jt}\right)$ と略記する. 期 $t$ の参加制約の Lagrange 乗数を $\beta^t \nu_{jt}$ と基準化する. $\nu_{jt} \geq 0$ は期 $t$ までの情報で決まる確率変数で, 制約が等号で成り立たない状態ではゼロである (相補スラック条件). Lagrangian のうち参加制約の部分は
+
+$$
+\sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt} \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)
+$$
+
+である. $\nu_{jt}$ は期 $t$ に分かっているので, 繰り返し期待値の法則から
+
+$$
+\mathbb{E}_0 \left[\beta^t \nu_{jt}\, \mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau}\right]
+= \mathbb{E}_0 \sum_{\tau = t}^{\bar{t}} \beta^{\tau} \nu_{jt}\, u_{j\tau}
+$$
+
+となる. さらに和の順序を入れ替えると
+
+$$
+\sum_{t=1}^{\bar{t}} \sum_{\tau = t}^{\bar{t}} \beta^{\tau} \nu_{jt}\, u_{j\tau}
+= \sum_{\tau = 1}^{\bar{t}} \beta^{\tau} u_{j\tau} \sum_{t=1}^{\tau} \nu_{jt}
+$$
+
+なので, Lagrangian は
+
+$$
+\mathbb{E}_0 \sum_{\tau = 0}^{\bar{t}} \beta^{\tau} \sum_j \mu_{j\tau}\, u_{j\tau}
+- \sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt}\, \tilde{V}_{jt},
+\qquad
+\mu_{j\tau} := \mu_{j0} + \sum_{t=1}^{\tau} \nu_{jt}
+$$
+
+と書ける. 期 $\tau$ の効用にかかる重みは $\mu_{j\tau}$ であり, 定義から $\mu_{j\tau} = \mu_{j, \tau - 1} + \nu_{j\tau}$ が成り立つ. これが @eq-lc-weight である. 外部オプションの価値 $\tilde{V}_{jt}$ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが [@theloudis2025], 効用にかかる重みの動きは変わらない.
+
+:::
+
+
+## サーチモデルの証明 {#sec-apdx-search}
+
+### 留保賃金, reservation wage {#prf-reservation}
+
+::: {.proof}
+
+Step1 (存在と一意性): @eq-mccall の右辺は -@sec-apdx-contraction 節で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 $V$ が一意に存在する.
+
+Step2 (閾値ルール): 受諾の価値 $w / (1 - \beta)$ は $w$ に対して狭義単調増加であり, 継続価値は定数なので,
+
+$$
+w^* = (1 - \beta) C,
+$$
+に対して, 閾値ルール「$w \geq w^*$ なら受諾」が最適である.
+
+Step3 (留保賃金と一意性): $V$ の表現を $C$ の定義に代入する.
+
+$$
+\begin{aligned}
+\frac{w^*}{1 - \beta} &= C \\
+&= b + \frac{\beta}{1 - \beta} \int V\left(w'\right) dF\left(w'\right) \\
+&= b + \frac{\beta}{1 - \beta} \left(w^* + \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) \right)\\
+w^* &= b + \frac{\beta}{1-\beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right).
+\end{aligned}
+$$
+
+これは, 左辺が $w^*$ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
+
+:::
+
+### 留保賃金の比較静学 {#prf-mccall-cs}
+
+::: {.proof}
+
+(1) @eq-reservation の右辺をすべて左辺に集めた式を定義する.
+
+$$
+\Phi\left(w^*, b\right) := w^* - b - \frac{\beta}{1 - \beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = 0.
+$$
+
+オプション価値項の微分は @lem-option-value より,
+
+$$
+\frac{\partial}{\partial w^*} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = -\left(1 - F\left(w^*\right)\right).
+$$
+
+よって, 
+
+$$
+\frac{\partial \Phi}{\partial w^*} = 1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right) > 0,
+\qquad
+\frac{\partial \Phi}{\partial b} = -1
+$$
+
+であり, 陰関数定理から
+
+$$
+\frac{d w^*}{d b} = -\frac{\partial \Phi / \partial b}{\partial \Phi / \partial w^*} = \frac{1}{1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right)} > 0.
+$$
+
+(2) 右辺の積分は $\int \max\left\{ w - w^*, 0 \right\} dF\left(w\right)$ と書け, $\max\left\{ w - w^*, 0 \right\}$ は $w$ の凸関数である. @rothschild1970 の定理 (-@thm-mps) より, 平均保存的な広がりは凸関数の期待値を下げない. したがって右辺は上方 (少なくとも同水準) にシフトし, @eq-reservation の解 $w^*$ は上がる.
+
+:::
 
 ## 留保賃金方程式のオプション価値項 {#sec-apdx-leibniz}
 
@@ -804,7 +960,7 @@ $$
 
 です (女性も同様) [@gousse2017, Appendix C].
 
-**夫婦の条件付き期待値.** 家事時間は付録 -@sec-apdx-gousse-housework 節のとおり $d_m = D_m + K_m X_{ij} / w_i$, $d_f = D_f + K_f X_{ij} / w_j$ で, $X_{ij}$ は @eq-apdx-gousse-X です. $z$ に依存しないので, そのまま残差が作れます. 余暇は私的支出の分け方に依存します. sharing rule の定義から $R_m - A_i = \beta_{ij}\left(z\right) X_{ij}$, $R_f - A_j = \left(1 - \beta_{ij}\left(z\right)\right) X_{ij}$ なので
+**夫婦の条件付き期待値.** 家事時間は付録 -@sec-apdx-gousse-housework 節のとおり $d_m = D_m + K_m X_{ij} / w_i$, $d_f = D_f + K_f X_{ij} / w_j$ で, $X_{ij}$ は @eq-apdx-gousse-X です. $z$ に依存しないので, そのまま残差が作れます. 余暇は私的支出の分け方に依存します. Sharing rule の定義から $R_m - A_i = \beta_{ij}\left(z\right) X_{ij}$, $R_f - A_j = \left(1 - \beta_{ij}\left(z\right)\right) X_{ij}$ なので
 
 $$
 w_i e_m = a_{1i} w_i + a_2 w_i^2 + b_i\, \beta_{ij}\left(z\right) X_{ij}, \qquad

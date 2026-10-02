@@ -28,6 +28,7 @@ book:
         - lesson/numerical/gmm.qmd
     - part: lesson/marriage/index.qmd
       chapters:
+        - lesson/marriage/allocation.qmd
         - lesson/marriage/search.qmd
         - lesson/marriage/fertility.qmd
   appendices:

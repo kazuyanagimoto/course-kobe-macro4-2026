@@ -483,7 +483,7 @@ $${#eq-upwind}
 
 ![Upwind scheme: the difference follows the drift](/static/cetz/upwind_scheme.svg){#fig-upwind width=75%}
 
-有限差分スキームが真の解 (粘性解) に収束するための Barles--Souganidis の十分条件は単調性・整合性・安定性の3つで, このうち非自明なのが単調性です. upwind は, まさに単調性を保証するための差分の選び方になっています [@achdou2022, sec. 5.3].
+有限差分スキームが真の解 (粘性解) に収束するための Barles--Souganidis の十分条件は単調性・整合性・安定性の3つで, このうち非自明なのが単調性です. Upwind は, まさに単調性を保証するための差分の選び方になっています [@achdou2022, sec. 5.3].
 
 実装上は, まず前方差分で仮の貯蓄 $s_{i,F} = w e^{x} + r a_i - \left(u'\right)^{-1}\left(\partial_a v_{i,F}\right)$ を, 後方差分で $s_{i,B}$ を計算し,
 

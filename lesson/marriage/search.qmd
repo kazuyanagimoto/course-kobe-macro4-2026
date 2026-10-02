@@ -42,31 +42,7 @@ $${#eq-reservation}
 
 :::
 
-::: {.proof}
-
-Step1 (存在と一意性): @eq-mccall の右辺は付録 (-@sec-apdx-contraction 節) で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 $V$ が一意に存在する.
-
-Step2 (閾値ルール): 受諾の価値 $w / (1 - \beta)$ は $w$ に対して狭義単調増加であり, 継続価値は定数なので,
-
-$$
-w^* = (1 - \beta) C,
-$$
-に対して, 閾値ルール「$w \geq w^*$ なら受諾」が最適である.
-
-Step3 (留保賃金と一意性): $V$ の表現を $C$ の定義に代入する.
-
-$$
-\begin{aligned}
-\frac{w^*}{1 - \beta} &= C \\
-&= b + \frac{\beta}{1 - \beta} \int V\left(w'\right) dF\left(w'\right) \\
-&= b + \frac{\beta}{1 - \beta} \left(w^* + \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) \right)\\
-w^* &= b + \frac{\beta}{1-\beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right).
-\end{aligned}
-$$
-
-これは, 左辺が $w^*$ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
-
-:::
+証明は[付録](../appendix/proof.qmd#prf-reservation)にあります.
 
 @eq-reservation の第二項は, 「もう1期待てば, いまの基準 $w^*$ を上回るオファーを引けるかもしれない」という待つことのオプション価値です. 留保賃金は失業給付 $b$ にこのオプション価値を上乗せした水準になります. オファーの上限が $w^*$ より大きい限り, 失業者は $b$ を上回るオファーでも拒否します.
 
@@ -79,37 +55,7 @@ $$
 
 :::
 
-::: {.proof}
-
-(1) @eq-reservation の右辺をすべて左辺に集めた式を定義する.
-
-$$
-\Phi\left(w^*, b\right) := w^* - b - \frac{\beta}{1 - \beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = 0.
-$$
-
-オプション価値項の微分は @lem-option-value より,
-
-$$
-\frac{\partial}{\partial w^*} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = -\left(1 - F\left(w^*\right)\right).
-$$
-
-よって, 
-
-$$
-\frac{\partial \Phi}{\partial w^*} = 1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right) > 0,
-\qquad
-\frac{\partial \Phi}{\partial b} = -1
-$$
-
-であり, 陰関数定理から
-
-$$
-\frac{d w^*}{d b} = -\frac{\partial \Phi / \partial b}{\partial \Phi / \partial w^*} = \frac{1}{1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right)} > 0.
-$$
-
-(2) 右辺の積分は $\int \max\left\{ w - w^*, 0 \right\} dF\left(w\right)$ と書け, $\max\left\{ w - w^*, 0 \right\}$ は $w$ の凸関数である. @rothschild1970 の定理 (-@thm-mps) より, 平均保存的な広がりは凸関数の期待値を下げない. したがって右辺は上方 (少なくとも同水準) にシフトし, @eq-reservation の解 $w^*$ は上がる.
-
-:::
+証明は[付録](../appendix/proof.qmd#prf-mccall-cs)にあります.
 
 
 
@@ -650,7 +596,7 @@ $$
 \beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}
 $$
 
-となります (導出は付録の -@sec-apdx-gousse-share 節). collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト $\beta$ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 $z$ が入るので, 同じタイプの夫婦でも $z$ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
+となります (導出は付録の -@sec-apdx-gousse-share 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト $\beta$ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 $z$ が入るので, 同じタイプの夫婦でも $z$ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
 
 #### 定常状態
 
