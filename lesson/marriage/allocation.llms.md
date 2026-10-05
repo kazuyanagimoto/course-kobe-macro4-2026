@@ -18,7 +18,7 @@ Chiappori and Mazzocco ([2017](#ref-chiappori2017c)) を参照しながら, 家�
 
 \\ p \cdot \left(q_W + q_H\right) + P\\ Q \leq y_W + y_H =: Y \\
 
-のもとで最大化する主体になります. これを **unitary model** と呼びます ([Becker 1991](#ref-becker1991)). 家計が複数の個人からなることを意識していても, 合意された家族の効用関数 (Samuelson の社会厚生関数) か, 全員の選好を考慮して決める家長 (Becker の利他的な dictator) を仮定すれば, 結果として家計は1人のように振る舞います. 観察できるのは家計の需要, すなわち価格 \\\pi = \left(p, P\right)\\ と所得 \\Y\\ の関数としての総需要 \\q\left(\pi, Y\right) = \left(q_W + q_H, Q\right)\\ です. Unitary model はこの需要関数に2つの強い制約を課します.
+のもとで最大化する主体になります. これを **unitary model** と呼びます ([Becker 1991](#ref-becker1991)). 家計が複数の個人からなることを意識していても, 合意された家族の効用関数 (Samuelson ([1956](#ref-samuelson1956)) の社会厚生関数) か, 全員の選好を考慮して決める家長 (Becker の利他的な dictator) を仮定すれば, 結果として家計は1人のように振る舞います. 観察できるのは家計の需要, すなわち価格 \\\pi = \left(p, P\right)\\ と所得 \\Y\\ の関数としての総需要 \\q\left(\pi, Y\right) = \left(q_W + q_H, Q\right)\\ です. Unitary model はこの需要関数に2つの強い制約を課します.
 
 1.  **Income pooling.** 所得は合計 \\Y\\ だけが意思決定に影響し, 誰が稼いだか (\\y_W\\ と \\y_H\\ の内訳) は影響しない. 選好にも予算集合にも入らない変数 (結婚市場の性比, 離婚法制, 給付の帰属先) は需要に影響しない. こうした変数を後で distribution factor と呼ぶ.
 2.  **Slutsky 対称性.** 財 \\l\\ の価格 \\\pi_l\\ が上がったときの財 \\k\\ の需要の変化は, 代替効果と所得効果に分解できる (Slutsky 分解). \\ \frac{\partial q_k}{\partial \pi_l} = \underbrace{\frac{\partial q^{c}\_k}{\partial \pi_l}}\_{\text{substitution effect}} \underbrace{- \\ q_l\\ \frac{\partial q_k}{\partial Y}}\_{\text{income effect}} \\ ここで \\q^{c}\_k\left(\pi, u\right)\\ は, 効用を \\u\\ に保つように所得を補償したときの需要 (補償需要, Hicksian demand. 上付きの \\c\\ は compensated の意味) で, 実際の効用水準 \\u = v\left(\pi, Y\right)\\ で評価する. 価格 \\\pi_l\\ が上がると, 買っている量 \\q_l\\ に比例して実質所得が目減りするので, 所得効果は \\-q_l\\ \partial q_k / \partial Y\\ になる. 代替効果を並べた行列 \\ S\_{kl}\left(\pi, Y\right) = \frac{\partial q^{c}\_k}{\partial \pi_l} = \frac{\partial q_k}{\partial \pi_l} + q_l\\ \frac{\partial q_k}{\partial Y} \tag{5.1}\\ を Slutsky 行列と呼ぶ. 2つ目の等号は Slutsky 分解を移項したもので, 観察できる需要 \\q\\ だけから \\S\\ を計算できることを表す. この Slutsky 行列 \\S\\ は対称かつ負値半定符号である.
@@ -233,5 +233,7 @@ Mazzocco, Maurizio. 2007. “Household Intertemporal Behaviour: A Collective Cha
 McElroy, Marjorie B., and Mary Jean Horney. 1981. “Nash-Bargained Household Decisions: Toward a Generalization of the Theory of Demand.” *International Economic Review* 22 (2): 333–49. <https://doi.org/10.2307/2526280>.
 
 Nash, John F. 1950. “The Bargaining Problem.” *Econometrica* 18 (2): 155–62. <https://doi.org/10.2307/1907266>.
+
+Samuelson, Paul A. 1956. “Social Indifference Curves.” *The Quarterly Journal of Economics* 70 (1): 1. <https://doi.org/10.2307/1884510>.
 
 Theloudis, Alexandros, Jorge Velilla, Pierre-André Chiappori, José Ignacio Giménez-Nadal, and José Alberto Molina. 2025. “Commitment and the Dynamics of Household Labour Supply.” *The Economic Journal* 135 (665): 354–86. <https://doi.org/10.1093/ej/ueae065>.

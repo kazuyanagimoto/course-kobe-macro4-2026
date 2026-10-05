@@ -1,18 +1,18 @@
-# 7  Marriage and Fertility
+# 8  結婚と出生
 
 Code
 
 所得と出生率の関係は, 家族の経済学で最も古いパズルのひとつです. 子どもが正常財なら, 所得が上がれば子どもの数は増えるはずです. しかし人口転換 (demographic transition) 以降, 国の間でも, 時系列でも, 家計の間でも, 所得と子どもの数には負の相関が観察されてきました. この章の前半では, 出生の経済学のサーベイである Doepke et al. ([2023](#ref-doepke2023)) に沿って, このパズルに答えた2つの古典的なアイディアを学び, さらに21世紀の高所得国では, それらが説明してきた関係そのものが弱まり, 逆転したことを見ます. 後半では, 古典的な出生理論を時間配分・家庭内生産・結婚市場と組み合わせて, 過去140年のアメリカの構造変化として定量化した Greenwood et al. ([2023](#ref-greenwood2023)) を読みます.
 
-## 7.1 Doepke et al. ([2023](#ref-doepke2023))
+## 8.1 Doepke et al. ([2023](#ref-doepke2023))
 
 出生行動を経済学的に説明しようという試みは Becker ([1960](#ref-becker1960)) に始まり, その後の数十年で大きく発展しました. まずはその成果を Doepke et al. ([2023](#ref-doepke2023)) の整理を通してみてみましょう.
 
-### 7.1.1 Old Facts
+### 8.1.1 Old Facts
 
-[![](../../static/img/article/doepke2023/fig1.svg)](../../static/img/article/doepke2023/fig1.svg "図 7.1: Total Fertility Rates since 1850. Figure 1 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig1.svg)](../../static/img/article/doepke2023/fig1.svg "図 8.1: Total Fertility Rates since 1850. Figure 1 of @doepke2023")
 
-図 7.1: Total Fertility Rates since 1850. Figure 1 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.1: Total Fertility Rates since 1850. Figure 1 of Doepke et al. ([2023](#ref-doepke2023))
 
 [図 fig-doepke2023-fig1](#fig-doepke2023-fig1) の国々の合計特殊出生率は, 19世紀のほとんどの期間を通じて女性1人あたり4人から5人の間にありました. 20世紀に入る頃から急速に低下し, 第一次世界大戦の前にはほとんどの国で4人を大きく下回ります. 戦後のベビーブームで一時的に回復したのち再び低下し, 20世紀後半からは1.4から2.1の間で落ち着いています.
 
@@ -34,33 +34,33 @@ Code
 
 **Total Fertility Rate** (TFR)
 
-[![](../../static/img/lecture/tfr.svg)](../../static/img/lecture/tfr.svg "図 7.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.")
+[![](../../static/img/lecture/tfr.svg)](../../static/img/lecture/tfr.svg "図 8.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.")
 
 **Complete Cohort Fertility** (CCF)
 
-[![](../../static/img/lecture/ccf.svg)](../../static/img/lecture/ccf.svg "図 7.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.")
+[![](../../static/img/lecture/ccf.svg)](../../static/img/lecture/ccf.svg "図 8.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.")
 
-図 7.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.
+図 8.2: 日本の合計特殊出生率 (TFR) と完結コーホート出生率 (CCF) の推移.
 
 [図 fig-japan-tfr-ccf](#fig-japan-tfr-ccf) では, 日本の TFR と CCF の推移を示しています. 1966年の TFR の急落は[丙午](https://ja.wikipedia.org/wiki/%E4%B8%99%E5%8D%88)によるもので, 出産を回避する行動が実際に観察されました (今年, 2026年は丙午年です). CCF は TFR より滑らかに動いており, 2つの指標の違いがよく現れています.
 
-[![](../../static/img/article/doepke2023/fig3.svg)](../../static/img/article/doepke2023/fig3.svg "図 7.3: Fertility and Income Across Countries. Figure 3 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig3.svg)](../../static/img/article/doepke2023/fig3.svg "図 8.3: Fertility and Income Across Countries. Figure 3 of @doepke2023")
 
-図 7.3: Fertility and Income Across Countries. Figure 3 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.3: Fertility and Income Across Countries. Figure 3 of Doepke et al. ([2023](#ref-doepke2023))
 
 人口転換の結果, 所得と出生率の関係は, 国の中の時系列でも, 発展段階の異なる国の間でもはっきりと負になりました. 1970年の国別データ ([図 fig-doepke2023-fig3](#fig-doepke2023-fig3)) では, 発展段階の全域にわたって強い負の相関が見られます. 1人あたりGDPが1,000ドル (2010年価格) 未満の最貧国のほとんどは女性1人あたり5人を超える出生率を持ち, 20,000ドルを超える国の多くは3人を下回っていました. 同じ負の関係は1つの国の家計の間にもあり, 豊かで教育水準の高い家計ほど子どもが少ない傾向がありました.
 
 注意したいのは, この負の相関が「所得そのものの増加が出生を減らす」ことを意味しない点です. 因果効果を推定する実証研究では, 妻の賃金や子育ての費用などを一定にして男性の所得だけが外生的に増えると, 出生はむしろ増える傾向が見られます. 純粋な所得効果が正であることと, 無条件の相関が負であることは矛盾しません. この2つを両立させるのが, 以下の2つのアイディアです.
 
-### 7.1.2 Quantity-Quality Tradeoff
+### 8.1.2 Quantity-Quality Tradeoff
 
 「豊かになると子どもが減る」という事実は, 一見すると経済学的な説明と矛盾するように思えます. 豊かになれば, 人は普通あらゆるものを多く消費するからです. 出生の低下は, 経済学の外にある文化や規範の変化で子どもへの「好み」が薄れたことを反映しているだけかもしれません. これに対する Gary Becker の答えが, 出生の経済学の第1の big idea である quantity-quality トレードオフです.
 
 出発点は, 親は子どもの**数** (quantity) だけでなく, 一人あたりにかける資源, すなわち**質** (quality) も選ぶ, という観察です. ここでの「質」は価値判断ではなく, 教育・健康など子ども一人あたりへの投資を指します. Becker and Lewis ([1973](#ref-becker1973)) が定式化したように, 質への支出が所得とともに増えるなら, 豊かな親にとって子どもは高くつきます. したがって質の需要が所得に対して十分に弾力的なら, 子どもの数は所得とともに減りえます.
 
-[![](../../static/img/article/doepke2023/fig4.svg)](../../static/img/article/doepke2023/fig4.svg "図 7.4: Average years of schooling since 1870. Figure 4 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig4.svg)](../../static/img/article/doepke2023/fig4.svg "図 8.4: Average years of schooling since 1870. Figure 4 of @doepke2023")
 
-図 7.4: Average years of schooling since 1870. Figure 4 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.4: Average years of schooling since 1870. Figure 4 of Doepke et al. ([2023](#ref-doepke2023))
 
 質のなかで最も注目されてきたのは教育です. 子どもへの支出の大きな部分を占めるうえ, 学費が無料でも, 学校に通う子どもは働けないという大きな機会費用があるからです. 大衆教育が広がる以前は, 子どもの労働が多くの家計の所得の相当部分を担っていました. [図 fig-doepke2023-fig4](#fig-doepke2023-fig4) のように, 1人あたり所得が急成長した19世紀後半から20世紀にかけて教育水準も急上昇しており, 出生率の低下と同時に進んだこの動きは quantity-quality トレードオフと整合的です.
 
@@ -80,7 +80,7 @@ Code
 - \\\theta\\: 子どもの生来の人的資本
 - 人的資本の生産関数は \\h = \left(\theta + e\right)^{\gamma}\\, \\0 \< \gamma \< 1\\
 
-**命題 7.1 (閉形式解と賃金の効果)** 内点解 (\\\gamma \phi w \> p \theta\\) において, 最適な子どもの数と教育時間は
+**命題 8.1 (閉形式解と賃金の効果)** 内点解 (\\\gamma \phi w \> p \theta\\) において, 最適な子どもの数と教育時間は
 
 \\ n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}, \qquad e = \frac{\gamma \phi w - p\theta}{p \left(1-\gamma\right)}. \\
 
@@ -98,11 +98,11 @@ Code
 
 となり, 賃金水準は出生にも教育にも影響しません. 集計レベルで負の相関を生むのは, 教育のリターン \\\gamma\\ です. \\n\\ は \\\gamma\\ の減少関数, \\e\\ は増加関数なので, 経済成長が人的資本のリターンの上昇によって駆動されているなら, 1人あたり所得の上昇と出生の低下が同時に起こります. 人的資本のリターンの上昇が成長を生む, という性質は成長理論の多くのベンチマークモデルが持っています.
 
-### 7.1.3 女性の機会費用
+### 8.1.3 女性の機会費用
 
-[![](../../static/img/article/doepke2023/fig5.svg)](../../static/img/article/doepke2023/fig5.svg "図 7.5: Female labor market opportunities, United States. Figure 5 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig5.svg)](../../static/img/article/doepke2023/fig5.svg "図 8.5: Female labor market opportunities, United States. Figure 5 of @doepke2023")
 
-図 7.5: Female labor market opportunities, United States. Figure 5 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.5: Female labor market opportunities, United States. Figure 5 of Doepke et al. ([2023](#ref-doepke2023))
 
 Quantity-quality の文献は家計全体の意思決定を考え, 父親と母親を区別しません. しかし実際には, 子育てで両親が担う役割は異なります. 工業化以前は家族が農場や工房で一緒に働いており, 両親とも子育てにある程度関わっていました. 工業化は職場と家庭を分け, 父親は工場や事務所で働き, 母親は家で家事と子育てを担うようになります. その結果, 子育ての時間費用は主に母親の時間費用になりました. 女性の労働参加が上昇し始めると, 子育てと仕事は女性の時間をめぐって競合するようになります.
 
@@ -136,19 +136,19 @@ Doepke et al. ([2023](#ref-doepke2023)) は男女の賃金格差の役割に焦�
 - **Quantity-quality トレードオフ**: 賃金や教育のリターンが高いと, 親は子どもの質に投資し, 数を減らす
 - **女性の時間の機会費用**: 女性の賃金が高いと子育ての機会費用が高く, 子どもの数が減る
 
-### 7.1.4 関係の逆転 と原因
+### 8.1.4 関係の逆転 と原因
 
 Doepke et al. ([2023](#ref-doepke2023)) の基本的な主張は, 出生の経済学が新しい時代に入ったということです. そのきっかけは理論の進歩ではなく, 出生行動そのものの変化です. 人口転換から20世紀後半まで出生を特徴づけていた基本的な関係は, 高所得国の最近のデータでは成り立たなくなっています.
 
-[![](../../static/img/article/doepke2023/fig8.svg)](../../static/img/article/doepke2023/fig8.svg "図 7.6: Fertility and GDP per capita across OECD economies. Figure 8 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig8.svg)](../../static/img/article/doepke2023/fig8.svg "図 8.6: Fertility and GDP per capita across OECD economies. Figure 8 of @doepke2023")
 
-図 7.6: Fertility and GDP per capita across OECD economies. Figure 8 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.6: Fertility and GDP per capita across OECD economies. Figure 8 of Doepke et al. ([2023](#ref-doepke2023))
 
 **所得と出生.** 世界の最も豊かな国と最も貧しい国を比べれば, 所得と出生の負の関係は今も残っています. サハラ以南のアフリカなど所得の最も低い国々は人口転換の途中にあり, 出生率は高いままです. しかし高所得国の中では, この関係はほぼ消えました. 高所得国の出生率の低下は1980年代半ばまでにほぼ終わり, その後は1人あたり所得が伸び続けても, 出生率は横ばいかわずかに上昇しています. OECD 諸国のクロスセクション ([図 fig-doepke2023-fig8](#fig-doepke2023-fig8)) を見ると, 1980年にはまだはっきりと負の関係があり, 所得の最も低いポルトガルやスペインで出生率が最も高くなっていました. 2000年にはこの関係が逆転し, 豊かな国の方がわずかに出生率が高くなっています. 国の間の相関係数は1970年代から1980年代前半まで負で, 1987年に正に転じ, その後も正のままです. 所得と出生の関係が U 字型で, 高所得国の多くがその右側の上昇部分に入った, と読むこともできます. いずれにせよ, これを説明するには所得と出生が単調に負の関係にならないモデルが必要です.
 
-[![](../../static/img/article/doepke2023/fig12.svg)](../../static/img/article/doepke2023/fig12.svg "図 7.7: Fertility and female labor force participation across OECD economies. Figure 12 of @doepke2023")
+[![](../../static/img/article/doepke2023/fig12.svg)](../../static/img/article/doepke2023/fig12.svg "図 8.7: Fertility and female labor force participation across OECD economies. Figure 12 of @doepke2023")
 
-図 7.7: Fertility and female labor force participation across OECD economies. Figure 12 of Doepke et al. ([2023](#ref-doepke2023))
+図 8.7: Fertility and female labor force participation across OECD economies. Figure 12 of Doepke et al. ([2023](#ref-doepke2023))
 
 **女性の労働参加と出生.** 女性の労働参加率が高い国ほど出生率が低い, という関係も高所得国では逆転しました. 1980年の負の関係は, 2000年には正の関係になっています ([図 fig-doepke2023-fig12](#fig-doepke2023-fig12)). 女性の労働参加率と出生率の国の間の相関係数は, 1980年の \\-0.5\\ から10年ほどで約 \\0.75\\ まで上昇し, 1990年以降はやや下がったものの正のまま推移しています ([Ahn and Mira 2002](#ref-ahn2002)).
 
@@ -180,11 +180,11 @@ Doepke et al. ([2023](#ref-doepke2023)) の見方では, quantity-quality トレ
 
 は子ども1人の完全価格 (full price) で, 金銭的費用と, 子育て時間を市場で買う分と妻が担う分の費用を合わせたものです. \\s\\ を所与とすると, 対数効用なので支出の割合は一定 (\\c = \left(w_m + w_f\right) / \left(1 + \delta\right)\\) で,
 
-\\ n = \frac{\delta}{1 + \delta} \cdot \frac{w_m + w_f}{\psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi} \tag{7.1}\\
+\\ n = \frac{\delta}{1 + \delta} \cdot \frac{w_m + w_f}{\psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi} \tag{8.1}\\
 
 となります. これを目的関数に代入すると, 効用は \\\pi\left(s\right)\\ の減少関数です. \\\pi\left(s\right)\\ は \\s\\ について傾き \\\phi \left(p_s - w_f\right)\\ の線形関数なので, 最適な \\s\\ は端点になります. 妻の賃金が子育ての市場価格より低い (\\w_f \< p_s\\) 夫婦は自分たちで子育てをし (\\s = 0\\), 高い (\\w_f \> p_s\\) 夫婦は買えるだけ買います (\\s = \bar{s}\\). 高賃金の女性は働き続け, 低賃金の女性は子育てに時間を使って労働供給を減らします.
 
-**命題 7.2 (女性の賃金と出生)** \\s\\ を所与とすると,
+**命題 8.2 (女性の賃金と出生)** \\s\\ を所与とすると,
 
 \\ \frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi}{\pi\left(s\right)^2}. \\
 
@@ -203,15 +203,15 @@ Doepke et al. ([2023](#ref-doepke2023)) の見方では, quantity-quality トレ
 
 \\w_f = p_s\\ では \\\pi\left(s\right)\\ が \\s\\ に依存しないので, 出生は \\w_f\\ について連続で, \\w_f = p_s\\ で屈折します. [図 fig-outsource](#fig-outsource) はその数値例です (パラメータは図の注). この数値例では, 妻の子育て時間 \\\left(1 - s\right) n \phi\\ はどの \\w_f\\ でも妻の時間 (1) を下回ります.
 
-[![](../../static/img/lecture/fertility_outsource.svg)](../../static/img/lecture/fertility_outsource.svg "図 7.8: 子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).")
+[![](../../static/img/lecture/fertility_outsource.svg)](../../static/img/lecture/fertility_outsource.svg "図 8.8: 子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).")
 
-図 7.8: 子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).
+図 8.8: 子育ての市場化と女性の賃金・出生の関係 (モデルの数値例).
 
 現実には市場化には限界があり, 高賃金の親も子育てに相当の時間を使っています. それでも市場化は, 女性の労働供給と出生の歴史的な関係を弱めた一因と考えられます. 子育ての費用を機会費用から金銭的な費用に変えることで, 市場化は所得と出生の関係も弱めます. 豊かな夫婦ほど子育てを買う資源を持つからです. 子育ての市場化の役割は Ahn and Mira ([2002](#ref-ahn2002)) などが強調しており, 因果的な証拠もあります. アメリカでは低技能の移民の流入が家事や子育てのサービスの価格を下げました. 低技能の移民の流入が大きい都市では, 子育てを外部化しやすい高学歴の女性で仕事と子どものトレードオフが弱まり, 出生率が上がっています.
 
 子育ての市場化は, 家庭内労働時間の減少と家庭内生産の市場化という, より一般的な流れの一部です. 20世紀の家電の普及は料理・掃除・洗濯にかかる時間を減らし, 女性の労働参加と余暇の増加を後押ししました. サービス経済の拡大も, 食事・ケア・掃除を市場で買えるようにしました. この家庭内の技術進歩を, 出生・女性の就業・教育・結婚の長期的な変化と1つのモデルで結びつけたのが, 後半で読む Greenwood et al. ([2023](#ref-greenwood2023)) です.
 
-## 7.2 Greenwood et al. ([2023](#ref-greenwood2023))
+## 8.2 Greenwood et al. ([2023](#ref-greenwood2023))
 
 Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets1957)) に着想を得て, 過去140年ほどの間にアメリカの家族に起こった大きな変化を, 家族経済学者にとっての「Kuznets facts」として次の6つにまとめています.
 
@@ -224,97 +224,97 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 この論文の目的は, これら6つの変化を1つのモデルと少数の駆動力で説明することです. 近年の少子化を念頭においた理論というよりは, 古典的な出生理論 (この章の前半で学んだ quantity-quality トレードオフ) を洗練させ, 長期の構造変化に正面から当てはめたものと位置づけられます.
 
-### 7.2.1 6つの Kuznets facts
+### 8.2.1 6つの Kuznets facts
 
 論文はアメリカを念頭に置いていますが, 日本を含む多くの先進国で同様の傾向が観察されます. モデルに入る前に, 6つの事実を駆け足で見ておきましょう.
 
 #### ① (家事) 労働時間の減少
 
-[![](../../static/img/article/greenwood2023/fig2_2.svg)](../../static/img/article/greenwood2023/fig2_2.svg "図 7.9: Housework in the United States. Figure 2.2 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_2.svg)](../../static/img/article/greenwood2023/fig2_2.svg "図 8.9: Housework in the United States. Figure 2.2 of @greenwood2023")
 
-図 7.9: Housework in the United States. Figure 2.2 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.9: Housework in the United States. Figure 2.2 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 [図 fig-greenwood2023-fig2-2](#fig-greenwood2023-fig2-2) のように, 20世紀は家事労働時間が減少し続けた時代でした. 洗濯機・冷蔵庫・電子レンジといった家電の普及がその背景にあります.
 
-[![](../../static/img/article/greenwood2023/fig2_1.svg)](../../static/img/article/greenwood2023/fig2_1.svg "図 7.10: Average weekly hours and labor-force participation in the United States. Figure 2.1 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_1.svg)](../../static/img/article/greenwood2023/fig2_1.svg "図 8.10: Average weekly hours and labor-force participation in the United States. Figure 2.1 of @greenwood2023")
 
-図 7.10: Average weekly hours and labor-force participation in the United States. Figure 2.1 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.10: Average weekly hours and labor-force participation in the United States. Figure 2.1 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 市場労働の時間も第二次世界大戦までは減少傾向にありました ([図 fig-greenwood2023-fig2-1](#fig-greenwood2023-fig2-1)). 一方で女性の労働参加率は大きく上昇しており, 家事負担の減少がその一因と考えられます.
 
 #### ② 出生率の減少
 
-[![](../../static/img/article/greenwood2023/fig2_6.svg)](../../static/img/article/greenwood2023/fig2_6.svg "図 7.11: Fertility in the United States. Figure 2.6 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_6.svg)](../../static/img/article/greenwood2023/fig2_6.svg "図 8.11: Fertility in the United States. Figure 2.6 of @greenwood2023")
 
-図 7.11: Fertility in the United States. Figure 2.6 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.11: Fertility in the United States. Figure 2.6 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 ベビーブームという例外を挟みつつ, 出生率は長期的に減少傾向にあります ([図 fig-greenwood2023-fig2-6](#fig-greenwood2023-fig2-6)). TFR と CCF の定義と日本の推移は, [sec-old-facts](#sec-old-facts) で見ました.
 
-[![](../../static/img/article/greenwood2023/fig2_7.svg)](../../static/img/article/greenwood2023/fig2_7.svg "図 7.12: The cross-country decline in fertility. Figure 2.7 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_7.svg)](../../static/img/article/greenwood2023/fig2_7.svg "図 8.12: The cross-country decline in fertility. Figure 2.7 of @greenwood2023")
 
-図 7.12: The cross-country decline in fertility. Figure 2.7 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.12: The cross-country decline in fertility. Figure 2.7 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 国ごとのパネルデータ ([図 fig-greenwood2023-fig2-7](#fig-greenwood2023-fig2-7)) を見ると, GDP per capita と TFR の間には負の相関があります. Doepke et al. ([2023](#ref-doepke2023)) でみたように, これこそ第1世代の出生モデルが説明しようとした古い事実です.
 
 #### ③ 結婚の減少
 
-[![](../../static/img/article/greenwood2023/fig2_8.svg)](../../static/img/article/greenwood2023/fig2_8.svg "図 7.13: Marriage in the United States. Figure 2.8 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_8.svg)](../../static/img/article/greenwood2023/fig2_8.svg "図 8.13: Marriage in the United States. Figure 2.8 of @greenwood2023")
 
-図 7.13: Marriage in the United States. Figure 2.8 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.13: Marriage in the United States. Figure 2.8 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 1960年以降, 未婚化と晩婚化が進行しています ([図 fig-greenwood2023-fig2-8](#fig-greenwood2023-fig2-8)). 法律婚によらない関係 (同居, cohabitation) を考慮しても, 減少傾向は変わりません.
 
-[![](../../static/img/article/greenwood2023/fig2_10.svg)](../../static/img/article/greenwood2023/fig2_10.svg "図 7.14: The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_10.svg)](../../static/img/article/greenwood2023/fig2_10.svg "図 8.14: The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of @greenwood2023")
 
-図 7.14: The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.14: The cross-country relationship between per-capita GDP and marriage. Figure 2.10 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 未婚化・晩婚化は所得と正の相関を持ちます ([図 fig-greenwood2023-fig2-10](#fig-greenwood2023-fig2-10)). 家事労働の減少や女性の労働参加によって「独身でいることの価値」が上昇した, というのが以下のモデルの見方です.
 
 **Share of Never-married** at Age 45-54
 
-[![](../../static/img/lecture/share_nmarried.svg)](../../static/img/lecture/share_nmarried.svg "図 7.15: 日本の45-54歳の未婚率と初婚年齢の推移.")
+[![](../../static/img/lecture/share_nmarried.svg)](../../static/img/lecture/share_nmarried.svg "図 8.15: 日本の45-54歳の未婚率と初婚年齢の推移.")
 
 **Age at First Marriage**
 
-[![](../../static/img/lecture/age_firstmarriage.svg)](../../static/img/lecture/age_firstmarriage.svg "図 7.15: 日本の45-54歳の未婚率と初婚年齢の推移.")
+[![](../../static/img/lecture/age_firstmarriage.svg)](../../static/img/lecture/age_firstmarriage.svg "図 8.15: 日本の45-54歳の未婚率と初婚年齢の推移.")
 
-図 7.15: 日本の45-54歳の未婚率と初婚年齢の推移.
+図 8.15: 日本の45-54歳の未婚率と初婚年齢の推移.
 
 [図 fig-japan-marriage](#fig-japan-marriage) のように, 未婚化・晩婚化は日本でも進行しています. ただし日本は婚外子の割合が欧米諸国と比べて極めて低い (2020年で2.4%) ため, 結婚の減少が出生の減少に直結しやすいという特徴があります.
 
 #### ④ 世帯サイズの縮小
 
-[![](../../static/img/article/greenwood2023/fig2_11.svg)](../../static/img/article/greenwood2023/fig2_11.svg "図 7.16: Household size in the United States and across countries. Figure 2.11 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_11.svg)](../../static/img/article/greenwood2023/fig2_11.svg "図 8.16: Household size in the United States and across countries. Figure 2.11 of @greenwood2023")
 
-図 7.16: Household size in the United States and across countries. Figure 2.11 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.16: Household size in the United States and across countries. Figure 2.11 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 世帯サイズは縮小傾向にあり, 所得と負の相関を持ちます ([図 fig-greenwood2023-fig2-11](#fig-greenwood2023-fig2-11)). 少子化の影響に加えて, 3世代同居の減少も所得と負の相関を持っています.
 
 #### ⑤ 高学歴者の増加
 
-[![](../../static/img/article/greenwood2023/fig2_12.svg)](../../static/img/article/greenwood2023/fig2_12.svg "図 7.17: Educational attainment in the United States. Figure 2.12 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_12.svg)](../../static/img/article/greenwood2023/fig2_12.svg "図 8.17: Educational attainment in the United States. Figure 2.12 of @greenwood2023")
 
-図 7.17: Educational attainment in the United States. Figure 2.12 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.17: Educational attainment in the United States. Figure 2.12 of Greenwood et al. ([2023](#ref-greenwood2023))
 
-[![](../../static/img/article/greenwood2023/fig2_13.svg)](../../static/img/article/greenwood2023/fig2_13.svg "図 7.18: The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_13.svg)](../../static/img/article/greenwood2023/fig2_13.svg "図 8.18: The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of @greenwood2023")
 
-図 7.18: The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.18: The cross-country relationship between per-capita GDP and educational attainment. Figure 2.13 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 高学歴化は進行しており ([図 fig-greenwood2023-fig2-12](#fig-greenwood2023-fig2-12)), 所得と正の相関を持ちます ([図 fig-greenwood2023-fig2-13](#fig-greenwood2023-fig2-13)). 供給側の要因は親の教育投資の増加であり, この章の前半で学んだ子どもの数と質のトレードオフ (quantity-quality trade-off) がその理論です. 需要側の要因は高学歴者への賃金プレミアムの上昇で, 次の事実⑥と表裏一体です.
 
 #### ⑥ ブルーカラーからホワイトカラーへの転換
 
-[![](../../static/img/article/greenwood2023/fig2_14.svg)](../../static/img/article/greenwood2023/fig2_14.svg "図 7.19: Occupations in the United States for men and women. Figure 2.14 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_14.svg)](../../static/img/article/greenwood2023/fig2_14.svg "図 8.19: Occupations in the United States for men and women. Figure 2.14 of @greenwood2023")
 
-図 7.19: Occupations in the United States for men and women. Figure 2.14 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.19: Occupations in the United States for men and women. Figure 2.14 of Greenwood et al. ([2023](#ref-greenwood2023))
 
-[![](../../static/img/article/greenwood2023/fig2_15.svg)](../../static/img/article/greenwood2023/fig2_15.svg "図 7.20: The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig2_15.svg)](../../static/img/article/greenwood2023/fig2_15.svg "図 8.20: The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of @greenwood2023")
 
-図 7.20: The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.20: The cross-country relationship between per-capita GDP and white-collar jobs. Figure 2.15 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 ホワイトカラーの割合は上昇しており ([図 fig-greenwood2023-fig2-14](#fig-greenwood2023-fig2-14)), 所得とも正の相関を持ちます ([図 fig-greenwood2023-fig2-15](#fig-greenwood2023-fig2-15)). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です ([Acemoglu and Autor 2011](#ref-acemoglu2011a)). 以下では, これら6つの事実を1つのモデルで説明する Greenwood et al. ([2023](#ref-greenwood2023)) の定量分析を読みます.
 
-### 7.2.2 Model
+### 8.2.2 Model
 
 モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 \\h\\ (household labor), 余暇 \\l\\ (leisure), 市場労働 \\t\\ (toiling in the market) に配分します (\\h + l + t = 1\\). 有配偶者は2人分の2単位の時間を持ち, これに加えて \\k\\ 人の子どもに対する基礎的な子育て \\b\\ (basic childcare) と教育 \\e\\ (education) の時間を使います (\\h + l + t + bk + ek = 2\\).
 
@@ -358,7 +358,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 と閉じた形で書けます.
 
-### 7.2.3 Calibration
+### 8.2.3 Calibration
 
 #### データに基づくパラメータ
 
@@ -384,7 +384,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 **Step 1–2 (\\\lambda\\, \\\delta\\): 余暇.** 余暇 \\l\\ の一階条件は
 
-\\ \delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w. \tag{7.2}\\
+\\ \delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w. \tag{8.2}\\
 
 2020年と1880年でこの式の比を取ると \\\delta\\ が消え,
 
@@ -394,7 +394,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 **Step 3–4 (\\\kappa\\, \\\psi\\): 子どもの数.** 子どもの数 \\k\\ の一階条件は
 
-\\ \psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right). \tag{7.3}\\
+\\ \psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right). \tag{8.3}\\
 
 右辺の括弧は子ども1人の純時間費用 (子育て + 教育 \\-\\ 家事の手伝い) です. やはり2時点の比
 
@@ -404,7 +404,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 **Step 5–6 (\\\zeta\\, \\\xi\\): 子どもの質.** 子どものスキル \\s\\ の一階条件は
 
-\\ \xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k. \tag{7.4}\\
+\\ \xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k. \tag{8.4}\\
 
 左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比
 
@@ -414,7 +414,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 **Step 7–8 (\\\nu\\, \\\beta\\): 家事.** 家事労働 \\h\\ の一階条件は
 
-\\ \beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}. \tag{7.5}\\
+\\ \beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}. \tag{8.5}\\
 
 2時点の比
 
@@ -428,13 +428,13 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します ([表 tbl-greenwood2023-table5-3](#tbl-greenwood2023-table5-3)).
 
-[![](../../static/img/article/greenwood2023/table5_3.svg)](../../static/img/article/greenwood2023/table5_3.svg "表 7.1: Results, data and model. Table 5.3 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/table5_3.svg)](../../static/img/article/greenwood2023/table5_3.svg "表 8.1: Results, data and model. Table 5.3 of @greenwood2023")
 
-表 7.1: Results, data and model. Table 5.3 of Greenwood et al. ([2023](#ref-greenwood2023))
+表 8.1: Results, data and model. Table 5.3 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 **結婚のパラメータ.** すべての選好パラメータが決まると \\S\\ と \\M\\ が計算できます. 独身者の割合 \\\texttt{s} = 1 - \texttt{m}\\ はガンベル分布から
 
-\\ \log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d} \tag{7.6}\\
+\\ \log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d} \tag{8.6}\\
 
 を満たすので, 2時点の比
 
@@ -442,11 +442,11 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 から \\\texttt{a}\\ が, [式 eq-greenwood2023-gumbel](#eq-greenwood2023-gumbel) の水準から \\\texttt{d}\\ が求まります. 推定されたパラメータは [表 tbl-greenwood2023-table5-2](#tbl-greenwood2023-table5-2) のとおりです.
 
-[![](../../static/img/article/greenwood2023/table5_2.svg)](../../static/img/article/greenwood2023/table5_2.svg "表 7.2: Parameter values. Table 5.2 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/table5_2.svg)](../../static/img/article/greenwood2023/table5_2.svg "表 8.2: Parameter values. Table 5.2 of @greenwood2023")
 
-表 7.2: Parameter values. Table 5.2 of Greenwood et al. ([2023](#ref-greenwood2023))
+表 8.2: Parameter values. Table 5.2 of Greenwood et al. ([2023](#ref-greenwood2023))
 
-### 7.2.4 Great Transition
+### 8.2.4 Great Transition
 
 1880年から2020年への変化を駆動する力として, 論文は3つに注目します.
 
@@ -460,19 +460,19 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 一階条件から, 大卒プレミアム \\q\\ は
 
-\\ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{7.7}\\
+\\ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{8.7}\\
 
 と書けます (最後の等式は, 総労働時間を \\\mathbf{t}\\ として \\\mathbf{u} = \left(1 - s\right)\mathbf{t}\\, \\\mathbf{v} = s\mathbf{t}\\ を代入したものです). CES のパラメータ \\\left(\omega, \iota\right)\\ は Acemoglu and Autor ([2011](#ref-acemoglu2011a)) の値を使い, [式 eq-college-premium](#eq-college-premium) から各時点の \\\mathbf{x}\\ が, brawn 労働の一階条件から \\\mathbf{z}\\ が逆算できます ([表 tbl-greenwood2023-table6-1](#tbl-greenwood2023-table6-1)).
 
-[![](../../static/img/article/greenwood2023/table6_1.svg)](../../static/img/article/greenwood2023/table6_1.svg "表 7.3: Technology parameter values. Table 6.1 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/table6_1.svg)](../../static/img/article/greenwood2023/table6_1.svg "表 8.3: Technology parameter values. Table 6.1 of @greenwood2023")
 
-表 7.3: Technology parameter values. Table 6.1 of Greenwood et al. ([2023](#ref-greenwood2023))
+表 8.3: Technology parameter values. Table 6.1 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 3つの駆動力を \\\mathbf{z}\_t = \mathbf{z}\_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}\\, \\\mathbf{x}\_t = \mathbf{x}\_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}\\, \\p_t = p\_{1880} e^{\Delta p\left(t-1880\right)}\\ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.
 
-[![](../../static/img/article/greenwood2023/fig6_1.svg)](../../static/img/article/greenwood2023/fig6_1.svg "図 7.21: Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig6_1.svg)](../../static/img/article/greenwood2023/fig6_1.svg "図 8.21: Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of @greenwood2023")
 
-図 7.21: Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.21: Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 [図 fig-greenwood2023-fig6-1](#fig-greenwood2023-fig6-1) のように, 2時点 (1880, 2020) しかターゲットにしていないにもかかわらず, 途中の経路もよく再現できています. 特に注目すべきは, 婚姻率が20世紀半ばに向けて上昇してから低下するという \\\cap\\ 字型を再現している点です.
 
@@ -480,23 +480,23 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 **スキル偏向的な技術革新 \\\mathbf{x}\\ を止めると.**
 
-[![](../../static/img/article/greenwood2023/fig6_2.svg)](../../static/img/article/greenwood2023/fig6_2.svg "図 7.22: Comparative dynamics: fertility and schooling. Figure 6.2 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig6_2.svg)](../../static/img/article/greenwood2023/fig6_2.svg "図 8.22: Comparative dynamics: fertility and schooling. Figure 6.2 of @greenwood2023")
 
-図 7.22: Comparative dynamics: fertility and schooling. Figure 6.2 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.22: Comparative dynamics: fertility and schooling. Figure 6.2 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 大卒プレミアムが上昇しない世界 ([図 fig-greenwood2023-fig6-2](#fig-greenwood2023-fig6-2)) では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 (\\\mathbf{x}\\) から出ていることが分かります.
 
 **耐久財価格 \\p\\ の低下を止めると.**
 
-[![](../../static/img/article/greenwood2023/fig6_3.svg)](../../static/img/article/greenwood2023/fig6_3.svg "図 7.23: Comparative dynamics: housework, market work, and leisure. Figure 6.3 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig6_3.svg)](../../static/img/article/greenwood2023/fig6_3.svg "図 8.23: Comparative dynamics: housework, market work, and leisure. Figure 6.3 of @greenwood2023")
 
-図 7.23: Comparative dynamics: housework, market work, and leisure. Figure 6.3 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.23: Comparative dynamics: housework, market work, and leisure. Figure 6.3 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 洗濯機や冷蔵庫が安くならない世界 ([図 fig-greenwood2023-fig6-3](#fig-greenwood2023-fig6-3)) では, 家事労働時間は減らず, 代わりに市場労働時間が減ります. そしてもうひとつ, 意外な変化が起きます. 婚姻率が上昇し続けるのです ([図 fig-greenwood2023-fig6-4](#fig-greenwood2023-fig6-4)).
 
-[![](../../static/img/article/greenwood2023/fig6_4.svg)](../../static/img/article/greenwood2023/fig6_4.svg "図 7.24: Comparative dynamics: marriage. Figure 6.4 of @greenwood2023")
+[![](../../static/img/article/greenwood2023/fig6_4.svg)](../../static/img/article/greenwood2023/fig6_4.svg "図 8.24: Comparative dynamics: marriage. Figure 6.4 of @greenwood2023")
 
-図 7.24: Comparative dynamics: marriage. Figure 6.4 of Greenwood et al. ([2023](#ref-greenwood2023))
+図 8.24: Comparative dynamics: marriage. Figure 6.4 of Greenwood et al. ([2023](#ref-greenwood2023))
 
 婚姻率の \\\cap\\ 字型は, 2つの力の綱引きで生まれていました. 前半は大卒プレミアムの上昇が子ども (とその教育) の価値を高め, 結婚を魅力的にします. 後半は耐久財の価格低下が家事の規模の経済という結婚の古典的なメリットを侵食し, 独身の生活コストを下げます. 1960年頃を境に後者が優勢になった, というのがこのモデルの読み方です.
 

@@ -78,7 +78,7 @@ Code
 
 ## A.3 縮小写像と動的計画法
 
-数値計算パートの動的計画法 (第 [sec-dynamic-programming](#sec-dynamic-programming) 章) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては Stokey, Lucas and Prescott (1989) があります.
+数値計算パートの動的計画法 (第 [sec-dynamic-programming](#sec-dynamic-programming) 章) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては Stokey et al. ([1989](#ref-stokey1989)) があります.
 
 ### A.3.1 縮小写像
 
@@ -127,7 +127,7 @@ Step3 (一意性): \\v, w\\ がともに不動点なら \\d\left(v, w\right) = d
 
 Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\right) \leq \beta^n d\left(v_0, v^\*\right)\\.
 
-ある写像が縮小写像かどうかを定義から直接確かめるのは面倒ですが, 経済学に現れる作用素には次の便利な十分条件があります.
+ある写像が縮小写像かどうかを定義から直接確かめるのは面倒ですが, 経済学に現れる作用素には次の便利な十分条件があります ([Blackwell 1965](#ref-blackwell1965)).
 
 **命題 A.2 (Blackwell の十分条件)** \\T \colon B\left(X\right) \to B\left(X\right)\\ が次の2条件を満たすなら, \\T\\ は sup ノルムに関して係数 \\\beta\\ の縮小写像である.
 
@@ -194,15 +194,89 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 縮小写像の枠組みは, サーチ理論の章での留保値の存在の議論にもそのまま使われています.
 
-## A.4 家計内配分の証明
+## A.4 マッチング理論の証明
 
-### A.4.1 効率性と加重和最大化の双対性
+### A.4.1 距離関数の性質
+
+*Proof*. まず \\D\_{xy}\\ が well-defined であることを確かめる. \\Z\left(u, v\right) = \left\\z \in \mathbb{R} : \left(u - z, v - z\right) \in \mathcal{F}\_{xy}\right\\\\ とおく. \\\mathcal{F}\_{xy}\\ は空でないので点 \\\left(a, b\right) \in \mathcal{F}\_{xy}\\ がとれ, \\z \geq \max\left\\u - a, v - b\right\\\\ なら \\\left(u - z, v - z\right) \leq \left(a, b\right)\\ なので, 下方に包括的であることから \\z \in Z\left(u, v\right)\\ である. \\\mathcal{F}\_{xy}\\ は閉なので \\Z\left(u, v\right)\\ も閉であり, \\z \to -\infty\\ では両方の座標が \\+\infty\\ に発散するので, 上に有界であることから \\Z\left(u, v\right)\\ は下に有界である. よって最小値 \\D\_{xy}\left(u, v\right)\\ が存在する.
+
+1.  \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ なら \\0 \in Z\left(u, v\right)\\ なので \\D\_{xy}\left(u, v\right) \leq 0\\ である. 逆に \\D\_{xy}\left(u, v\right) = z \leq 0\\ なら \\\left(u, v\right) \leq \left(u - z, v - z\right) \in \mathcal{F}\_{xy}\\ なので, 下方に包括的であることから \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ である. また \\D\_{xy}\left(u, v\right) = 0\\ は, \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ かつ任意の \\\varepsilon \> 0\\ について \\\left(u + \varepsilon, v + \varepsilon\right) \notin \mathcal{F}\_{xy}\\ であること, すなわち \\\left(u, v\right)\\ がフロンティア上にあることと同値である.
+
+2.  \\u \leq u'\\, \\v \leq v'\\ とする. \\z \in Z\left(u', v'\right)\\ なら \\\left(u - z, v - z\right) \leq \left(u' - z, v' - z\right) \in \mathcal{F}\_{xy}\\ なので \\z \in Z\left(u, v\right)\\ である. よって \\Z\left(u', v'\right) \subseteq Z\left(u, v\right)\\ であり, \\D\_{xy}\left(u, v\right) \leq D\_{xy}\left(u', v'\right)\\ が成り立つ. 狭義の部分は (3) を使う. \\u \< u'\\, \\v \< v'\\ なら \\\delta = \min\left\\u' - u, v' - v\right\\ \> 0\\ について \\\left(u + \delta, v + \delta\right) \leq \left(u', v'\right)\\ なので, \\D\_{xy}\left(u, v\right) + \delta = D\_{xy}\left(u + \delta, v + \delta\right) \leq D\_{xy}\left(u', v'\right)\\ となる.
+
+3.  \\z = z' + a\\ と置き換えると
+
+\\ D\_{xy}\left(a + u, a + v\right) = \min\left\\z : \left(u - \left(z - a\right), v - \left(z - a\right)\right) \in \mathcal{F}\_{xy}\right\\ = a + \min\left\\z' : \left(u - z', v - z'\right) \in \mathcal{F}\_{xy}\right\\ = a + D\_{xy}\left(u, v\right). \\
+
+4.  \\\underline{\delta} = \min\left\\u' - u, v' - v\right\\\\, \\\bar{\delta} = \max\left\\u' - u, v' - v\right\\\\ とおくと, \\\left(u + \underline{\delta}, v + \underline{\delta}\right) \leq \left(u', v'\right) \leq \left(u + \bar{\delta}, v + \bar{\delta}\right)\\ である. (2) と (3) から
+
+\\ D\_{xy}\left(u, v\right) + \underline{\delta} \leq D\_{xy}\left(u', v'\right) \leq D\_{xy}\left(u, v\right) + \bar{\delta} \\
+
+が成り立つ. \\\left(u', v'\right) \to \left(u, v\right)\\ のとき \\\underline{\delta}, \bar{\delta} \to 0\\ なので, \\D\_{xy}\\ は連続である.
+
+### A.4.2 取り分はタイプの組で決まる
+
+Galichon et al. ([2019](#ref-galichon2019)) の付録に従います.
+
+*Proof*.
+
+1.  各男性 \\i\\ について, \\u_i\\ を与える最大化の解を \\y\\ とし, その \\y\\ ごとに男性を分ける. タイプ \\x\\ の男性のうち解が \\y\\ である人の集合 \\I\_{xy}\\ の質量は \\\partial G\left(U\right) / \partial U\_{xy}\\ である. 同様に, タイプ \\y\\ の女性のうち解が \\x\\ である人の集合 \\J\_{xy}\\ の質量は \\\partial H\left(V\right) / \partial V\_{xy}\\ である. 市場清算 \\\mu = \nabla G\left(U\right) = \nabla H\left(V\right)\\ より両者の質量は等しいので, \\I\_{xy}\\ の男性と \\J\_{xy}\\ の女性を任意に組み合わせて \\\mu\_{ij}\\ を作る. 解が独身の人は独身のままにする.
+
+このマッチングが個人均衡の3条件を満たすことを確かめる. 定義から, 任意の男性 \\i\\ (タイプ \\x\\) と女性 \\j\\ (タイプ \\y\\) について \\u_i - \varepsilon\_{iy} \geq U\_{xy}\\, \\v_j - \eta\_{xj} \geq V\_{xy}\\ である. 距離関数の単調性 ([補題 lem-dist-props](#lem-dist-props)) と実行可能性より
+
+\\ D\_{xy}\left(u_i - \varepsilon\_{iy},\\ v_j - \eta\_{xj}\right) \geq D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0 \\
+
+であり, ブロッキングペアは存在しない. マッチした \\i \in I\_{xy}\\, \\j \in J\_{xy}\\ では \\u_i - \varepsilon\_{iy} = U\_{xy}\\, \\v_j - \eta\_{xj} = V\_{xy}\\ なので等号が成り立つ. 独身者は最大化の解が独身なので \\u_i = \varepsilon\_{i0}\\, \\v_j = \eta\_{0j}\\ であり, 個人合理性も成り立つ.
+
+2.  個人均衡の安定性から, すべての \\i, j\\ について \\D\_{x_i y_j}\left(u_i - \varepsilon\_{i y_j},\\ v_j - \eta\_{x_i j}\right) \geq 0\\ である. \\D\_{xy}\\ の連続性と単調性から, タイプ \\x\\ の男性とタイプ \\y\\ の女性について下限をとっても \\D\_{xy}\left(U\_{xy}, V\_{xy}\right) \geq 0\\ が成り立つ.
+
+\\U\_{xy}\\ の定義から, タイプ \\x\\ の男性 \\i\\ はすべての \\y\\ について \\u_i \geq U\_{xy} + \varepsilon\_{iy}\\ を満たし, 個人合理性から \\u_i \geq \varepsilon\_{i0}\\ である. よって \\u_i \geq \max\_{y \in \mathcal{Y}\_0}\left\\U\_{xy} + \varepsilon\_{iy}\right\\\\ である. この不等号が狭義だとすると, すべての \\y\\ について \\u_i - \varepsilon\_{iy} \> U\_{xy}\\ である. \\D\_{xy}\\ は狭義増加なので, タイプ \\y\\ の任意の女性 \\j\\ について
+
+\\ D\_{xy}\left(u_i - \varepsilon\_{iy},\\ v_j - \eta\_{xj}\right) \> D\_{xy}\left(U\_{xy},\\ v_j - \eta\_{xj}\right) \geq D\_{xy}\left(U\_{xy}, V\_{xy}\right) \geq 0 \\
+
+となり, \\i\\ は誰ともマッチできない (マッチしたペアでは等号が必要). すると \\i\\ は独身なので \\u_i = \varepsilon\_{i0}\\ でなければならないが, これは \\u_i \> \varepsilon\_{i0}\\ に矛盾する. したがって \\u_i = \max\_{y \in \mathcal{Y}\_0}\left\\U\_{xy} + \varepsilon\_{iy}\right\\\\ であり, 女性についても同様である.
+
+各人は自分の最大化の解のタイプと組むので, タイプ \\\left(x, y\right)\\ の組の質量は男性側から見て \\\partial G\left(U\right) / \partial U\_{xy}\\, 女性側から見て \\\partial H\left(V\right) / \partial V\_{xy}\\ であり, 両者は一致する. ショックの分布の密度が消えないので, すべての \\\left(x, y\right)\\ でこの質量は正であり, マッチした組では \\u_i - \varepsilon\_{iy} = U\_{xy}\\, \\v_j - \eta\_{xj} = V\_{xy}\\ かつ \\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\ が成り立つ. よって \\\left(U, V\right)\\ は集計均衡を与える.
+
+### A.4.3 安定性と余剰最大化の双対性
+
+*Proof*. 主問題では \\\mu'\_{ij} \in \left\[0, 1\right\]\\ を \\i\\ と \\j\\ がマッチする確率と読み, 残りの確率は独身とする (制約行列が全ユニモジュラなので, 端点解は \\\left\\0, 1\right\\\\ に値をとる).
+
+Step1 (弱双対性): 主問題の任意の実行可能解 \\\mu'\\ と双対問題の任意の実行可能解 \\\left(u, v\right)\\ に対して,
+
+\\ \sum\_{i, j} \mu'\_{ij} \Phi\_{ij} \leq \sum\_{i, j} \mu'\_{ij} \left(u_i + v_j\right) \leq \sum_i u_i + \sum_j v_j. \\
+
+第1の不等式は双対制約 \\u_i + v_j \geq \Phi\_{ij}\\, 第2の不等式は実行可能性と \\u, v \geq 0\\ による.
+
+Step2 (安定 \\\Rightarrow\\ 最適): \\\left(\mu, u, v\right)\\ が安定なら, [式 eq-tu-stability](#eq-tu-stability) より \\\left(u, v\right)\\ は双対問題の実行可能解である. マッチした組では \\u_i + v_j = \Phi\_{ij}\\, 独身者の利得は \\0\\ なので, Step1 の2つの不等式がともに等号で成り立ち,
+
+\\ \sum\_{i, j} \mu\_{ij} \Phi\_{ij} = \sum_i u_i + \sum_j v_j. \\
+
+弱双対性より, 左辺の値はどの実行可能な \\\mu'\\ でも超えられず, 右辺の値はどの実行可能な \\\left(u', v'\right)\\ でも下回れない. よって \\\mu\\ は主問題の解, \\\left(u, v\right)\\ は双対問題の解である.
+
+Step3 (最適 \\\Rightarrow\\ 安定): \\\mu\\ を主問題の解とする. 線形計画の双対定理より, 双対問題の解 \\\left(u, v\right)\\ が存在して両問題の値が一致する. 値の一致を書き直すと
+
+\\ \sum\_{i, j} \mu\_{ij} \left(u_i + v_j - \Phi\_{ij}\right) + \sum_i \left(1 - \sum_j \mu\_{ij}\right) u_i + \sum_j \left(1 - \sum_i \mu\_{ij}\right) v_j = 0 \\
+
+となり, 各項は双対制約と実行可能性より非負である. よってすべての項がゼロ, すなわちマッチした組では \\u_i + v_j = \Phi\_{ij}\\, 独身者の利得はゼロであり, \\\left(\mu, u, v\right)\\ は実行可能かつ [式 eq-tu-stability](#eq-tu-stability) を満たす安定マッチングである. 主問題は有界な線形計画なので解を持ち, 安定マッチングの存在も従う.
+
+### A.4.4 Becker の同類婚定理
+
+*Proof*. [命題 prp-tu-duality](#prp-tu-duality) より, 安定マッチングは総余剰を最大化する. \\x \< x'\\ がそれぞれ \\y'\\, \\y\\ (\\y \< y'\\) とマッチしていたとすると, 相手を交換すれば優モジュラ性より総余剰が厳密に増加し, 最大性に矛盾する. よって安定マッチングは PAM であり, タイプの順位同士を組み合わせる配置として一意に定まる. 劣モジュラ性の場合も同様である.
+
+### A.4.5 連続分布のもとでの分配
+
+*Proof*. [式 eq-tu-max](#eq-tu-max) より \\u\left(x\right) = \max_z \left\\ \Phi\left(x, z\right) - v\left(z\right) \right\\\\ であり, 最大は実際の相手 \\z = \varphi\left(x\right)\\ で達成される. 包絡線定理より, 最大値関数の微分は目的関数の \\x\\ に関する偏微分を最適解で評価したものに等しく, [式 eq-envelope](#eq-envelope) を得る. 積分すれば \\u\\ が定数 \\K\\ を除いて定まり, \\v\\ はマッチした組の実行可能性 \\u + v = \Phi\\ から定まる. \\u\\ の定数を \\+K\\ 動かすことは \\v\\ の定数を \\-K\\ 動かすことと表裏である.
+
+## A.5 家計内配分の証明
+
+### A.5.1 効率性と加重和最大化の双対性
 
 *Proof*. (\\\Leftarrow\\) \\\mu \in \left(0, 1\right)\\ とする. もし \\\left(u_W^\*, u_H^\*\right)\\ を Pareto 支配する配分が \\\mathcal{U}\\ にあれば, その配分は加重和 [式 eq-collective](#eq-collective) を厳密に大きくするので, 最大性に矛盾する. (\\\mu\\ が \\0\\ または \\1\\ の端点の場合は, 最大化解のうち Pareto 効率的なものを選べばよい.)
 
 (\\\Rightarrow\\) \\\left(u_W^\*, u_H^\*\right)\\ が Pareto 効率的とする. 集合 \\A = \left\\ u \in \mathbb{R}^2 : u_W \> u_W^\*,\\ u_H \> u_H^\* \right\\\\ は凸で, 効率性より \\\mathcal{U}\\ と交わらない. 分離超平面定理より, ゼロでないベクトル \\\left(\mu, 1 - \mu\right)\\ (正規化済み) が存在して, \\\mathcal{U}\\ 上の任意の点で \\\mu u_W + \left(1 - \mu\right) u_H \leq \mu u_W^\* + \left(1 - \mu\right) u_H^\*\\ となる. \\A\\ の形状より \\\mu \geq 0\\ かつ \\1 - \mu \geq 0\\ であり, \\\left(u_W^\*, u_H^\*\right)\\ は [式 eq-collective](#eq-collective) の解である.
 
-### A.4.2 Slutsky 行列の SR1 条件
+### A.5.2 Slutsky 行列の SR1 条件
 
 *Proof*. [式 eq-collective-demand](#eq-collective-demand) を \\\pi_l\\ と \\Y\\ で微分し, [式 eq-slutsky](#eq-slutsky) に代入する.
 
@@ -210,7 +284,7 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 第1項は, \\\mu\\ を固定した標準的な需要関数 \\\tilde{q}\left(\cdot, \cdot, \mu\right)\\ の Slutsky 行列なので対称かつ負値半定符号である. 第2項は \\a_k b_l\\ の形, すなわち2つのベクトルの外積なので, 行列としてのランクは高々 \\1\\ である.
 
-### A.4.3 Nash 交渉と collective model の双対性
+### A.5.3 Nash 交渉と collective model の双対性
 
 *Proof*.
 
@@ -222,7 +296,7 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 2.  効率的な内点 \\\left(u_W^\circ, u_H^\circ\right)\\ における接線の傾きを \\-\lambda = \Psi'\left(u_W^\circ\right) \< 0\\ とする. 任意の \\a \> 0\\ に対して脅威点を \\T_W = u_W^\circ - a\\, \\T_H = u_H^\circ - \lambda a \left(1 - \beta\right) / \beta\\ と選べば, \\\left(u_W^\circ, u_H^\circ\right)\\ は (1) の一階条件を満たし, 凹性よりこの脅威点に対する Nash 交渉解になる.
 
-### A.4.4 限定コミットメントのもとでの Pareto ウェイトの動き
+### A.5.4 限定コミットメントのもとでの Pareto ウェイトの動き
 
 [式 eq-lc-weight](#eq-lc-weight) を導きます. 導出は Theloudis et al. ([2025](#ref-theloudis2025)) に従います.
 
@@ -248,9 +322,9 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 と書ける. 期 \\\tau\\ の効用にかかる重みは \\\mu\_{j\tau}\\ であり, 定義から \\\mu\_{j\tau} = \mu\_{j, \tau - 1} + \nu\_{j\tau}\\ が成り立つ. これが [式 eq-lc-weight](#eq-lc-weight) である. 外部オプションの価値 \\\tilde{V}\_{jt}\\ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが ([Theloudis et al. 2025](#ref-theloudis2025)), 効用にかかる重みの動きは変わらない.
 
-## A.5 サーチモデルの証明
+## A.6 サーチモデルの証明
 
-### A.5.1 留保賃金, reservation wage
+### A.6.1 留保賃金, reservation wage
 
 *Proof*. Step1 (存在と一意性): [式 eq-mccall](#eq-mccall) の右辺は [sec-apdx-contraction](#sec-apdx-contraction) 節で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 \\V\\ が一意に存在する.
 
@@ -264,7 +338,7 @@ Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入す
 
 これは, 左辺が \\w^\*\\ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
 
-### A.5.2 留保賃金の比較静学
+### A.6.2 留保賃金の比較静学
 
 *Proof*.
 
@@ -286,7 +360,7 @@ Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入す
 
 2.  右辺の積分は \\\int \max\left\\ w - w^\*, 0 \right\\ dF\left(w\right)\\ と書け, \\\max\left\\ w - w^\*, 0 \right\\\\ は \\w\\ の凸関数である. Rothschild and Stiglitz ([1970](#ref-rothschild1970)) の定理 ([thm-mps](#thm-mps)) より, 平均保存的な広がりは凸関数の期待値を下げない. したがって右辺は上方 (少なくとも同水準) にシフトし, [式 eq-reservation](#eq-reservation) の解 \\w^\*\\ は上がる.
 
-## A.6 留保賃金方程式のオプション価値項
+## A.7 留保賃金方程式のオプション価値項
 
 サーチ理論の章の [命題 prp-mccall-cs](#prp-mccall-cs) (留保賃金の比較静学) では, 留保賃金方程式のオプション価値項
 
@@ -336,7 +410,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\H\\ が \\x\\ について非増加であることは \\H'\left(x\right) \leq 0\\ から, 凸であることは \\H'\left(x\right) = -\left(1 - F\left(x\right)\right)\\ が \\x\\ について非減少であることから分かります. なお [命題 prp-mccall-cs](#prp-mccall-cs) の (2) で使うのは, 同じ被積分関数 \\\max\left\\w - x, 0\right\\\\ が \\w\\ について凸であるという別の性質で, そちらは平均保存的な広がりのもとでの期待値の単調性から従います.
 
-## A.7 平均保存的な広がりと凸順序
+## A.8 平均保存的な広がりと凸順序
 
 [命題 prp-mccall-cs](#prp-mccall-cs) の (2) は, 「オファー分布の平均が同じでも分散が大きければ留保賃金は上がる」という主張でした. 証明では, 待つことのオプション価値 \\\mathbb{E}\left\[\max\left\\w - w^\*, 0\right\\\right\]\\ が被積分関数の凸性ゆえに広がりとともに増える, という事実を使っていました.
 
@@ -354,7 +428,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 残りの向きは非自明である. 2 \\\Rightarrow\\ 1 は, 与えられた凸順序を実現する結合の存在を主張するもので, Strassen の定理による ([Strassen 1965](#ref-strassen1965)). 2 \\\Leftrightarrow\\ 3 は部分積分による書き換えで, Rothschild and Stiglitz ([1970](#ref-rothschild1970)) にある.
 
-## A.8 標本統計量の影響関数
+## A.9 標本統計量の影響関数
 
 [sec-md](#sec-md) 節 のターゲットは, 労働時間の平均 \\\bar{h}\\ と標準偏差 \\s_h\\, 対数月収の標準偏差 \\s_y\\, 両者の相関 \\r\_{hy}\\, 40時間ちょうどの割合 \\\bar{d}\\ の5本でした. 標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. その分散共分散行列をデルタ法で導きます. 出発点は, 個人 \\i\\ から作れる6つの量です.
 
@@ -396,11 +470,11 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 実装では母数を標本の値に置き換えて \\\hat\xi_i\\ を作り, その標本分散共分散を \\N\\ で割ります ([式 eq-ls-vhat](#eq-ls-vhat)).
 
-## A.9 Goussé, Jacquemet, Robin (2017) の式の導出
+## A.10 Goussé, Jacquemet, Robin (2017) の式の導出
 
 [sec-search-matching](#sec-search-matching) 章 の Goussé et al. ([2017](#ref-gousse2017)) のモデルについて, 本文で結果だけを示した式を導きます. 記号は本文のとおりで, 男性のタイプを \\i\\, 女性のタイプを \\j\\, マッチの質を \\z\\ とし, 混乱の恐れがないところではタイプの引数を省きます.
 
-### A.9.1 コミットメントのない結婚の価値
+### A.10.1 コミットメントのない結婚の価値
 
 まず, コミットメントのない結婚の純価値を与える [式 eq-gousse-nocommit](#eq-gousse-nocommit) を, 既婚者の価値の HJB 方程式 [式 eq-gousse-married](#eq-gousse-married) から導きます. コミットメントがないので, 契約の価値 \\W_m\left(i, j, z\right)\\ は継続価値 \\V_m^1\left(i, j, z\right)\\ に等しくなければなりません. 以下ではタイプの引数 \\\left(i, j\right)\\ を省き, \\u_m = u_m\left(i, j, z\right)\\ と書きます. [式 eq-gousse-married](#eq-gousse-married) に \\W_m = V_m^1\left(z\right)\\ を代入した
 
@@ -416,7 +490,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) - r V_m^0. \\
 
-### A.9.2 余剰の方程式
+### A.10.2 余剰の方程式
 
 本文の間接効用の特定化 \\\psi_i\left(R, q\right) = q\left(R - A_i\right)/B_i\\ のもとで, 夫婦のフロー効用は \\u_m = z F\_{ij}\left(R_m - A_i\right)/B_i\\, \\u_f = z F\_{ij}\left(R_f - A_j\right)/B_j\\ です. 価格指数で重みづけて足すと
 
@@ -432,7 +506,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\ \left(r + \delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+} dG\left(z'\right) \\
 
-### A.9.3 家事時間の効率性条件
+### A.10.3 家事時間の効率性条件
 
 夫婦は Nash 交渉で家事時間 \\\left(d_m, d_f\right)\\ と移転 \\\left(t_m, t_f\right)\\ を選びます. TU のもとでは Nash 交渉の解は「まず余剰 \\S\_{ij}\left(z\right)\\ を最大化し, 次にそれを [式 eq-apdx-nash-split](#eq-apdx-nash-split) の比で分ける」と2段階に分かれます. 余剰の方程式で \\\left(d_m, d_f\right)\\ に依存するのは今期のフロー \\z F\_{ij}\left(d_m, d_f\right) X\_{ij}\left(d_m, d_f\right)\\ だけです. 独身の価値 \\V_m^0, V_f^0\\ は結婚市場の状態で決まる所与の量であり, 継続価値の項は引き直された \\z'\\ のもとで改めて選ばれる配分の価値なので, 今期の家事時間には依存しません. 移転は \\X\_{ij}\\ に入らないので, 家事時間の問題は
 
@@ -460,7 +534,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 と閉じた形で決まります (女性も同様).
 
-### A.9.4 独身の価値
+### A.10.4 独身の価値
 
 独身男性の HJB 方程式 [式 eq-gousse-single](#eq-gousse-single) の両辺を \\B_i\\ 倍し, 正の部分に [式 eq-apdx-nash-split](#eq-apdx-nash-split) を使うと
 
@@ -468,7 +542,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 となります. ここで \\\bar{S}\_{ij} := \int S\_{ij}\left(z\right)^{+} dG\left(z\right)\\ は正の部分の期待余剰です. 女性側は \\\beta\\ を \\1 - \beta\\ に, \\n_f\\ を \\n_m\\ に替えれば同じ形です. 余剰の方程式と合わせると, \\\left(S\_{ij}, V_m^0, V_f^0\right)\\ はタイプの組ごとに連立する線形の積分方程式系になります.
 
-### A.9.5 Sharing rule
+### A.10.5 Sharing rule
 
 夫が受け取る純私的支出のシェアを \\\beta\_{ij}\left(z\right) := B_i u_m = \left(R_m - A_i\right) / X\_{ij}\\ と定義します. フロー効用の式から \\B_i u_m = z F\_{ij}\left(R_m - A_i\right)\\ なので, \\\beta\_{ij}\left(z\right) = B_i u_m / \left(z F\_{ij} X\_{ij}\right)\\ です. \\B_i u_m\\ は2通りに書けます. 男性の [式 eq-gousse-nocommit](#eq-gousse-nocommit) に [式 eq-apdx-nash-split](#eq-apdx-nash-split) を入れると
 
@@ -488,7 +562,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 です. 第1項が Nash ウェイト, 第2項が外部機会の差で, 分母に \\z\\ が入るので同じタイプの夫婦でも \\z\\ が高いほどシェアは \\\beta\\ に近づきます. 外部機会の差はフローの水準として一定なのに, 分けるべきパイ \\z F\_{ij} X\_{ij}\\ が大きくなるからです.
 
-### A.9.6 推定の手順
+### A.10.6 推定の手順
 
 本文で3段階にまとめた推定手順を, 式のレベルで説明します. 論文の本文 6.3 節, 付録 B (識別), 付録 C (推定), 付録 D (数値計算) に基づきます ([Goussé et al. 2017](#ref-gousse2017)). 以下では夫婦の家庭内生産のパラメータを本文どおり \\\left(D_m, D_f, K_m, K_f\right)\\, 独身のものを \\\left(D_m^0, D_f^0, K_m^0, K_f^0\right)\\ と書きます. \\F\_{ij}\\ はマッチの質 \\z\\ を掛ける前の夫婦の生産 (均衡での値) を表します. 割引率 \\r\\ は推定の対象ではなく, 所与として扱います.
 
@@ -664,9 +738,9 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 **まとめ.** 3段階の役割を整理すると, 第1段階はモデルの価値関数を使わずにフローとストックだけから \\\left(\xi, \delta, \alpha\_{ij}\right)\\ を出し, 第2段階は時間配分から選好・生産・交渉のパラメータを出し, 第3段階は「観察されたマッチング確率を再現する公共財の質」として \\Z\_{ij}\\ を出します. 3つを結ぶのが, \\\alpha\_{ij}\\ を与えれば独身の価値が線形方程式 [式 eq-gousse-fredholm](#eq-gousse-fredholm) で解ける, という移転可能効用モデルの性質です.
 
-## A.10 出生モデルの証明
+## A.11 出生モデルの証明
 
-### A.10.1 閉形式解と賃金の効果
+### A.11.1 閉形式解と賃金の効果
 
 *Proof*. \\h = \left(\theta + e\right)^{\gamma}\\ を代入すると, 目的関数は \\\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)\\ となる. 予算制約より \\c = w - n\left(\phi w + p e\right)\\.
 
@@ -680,7 +754,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 比較静学は式から直ちに従う. \\w\\ が上がると分母の \\\phi - p\theta/w\\ が大きくなるので \\n\\ は減少し, \\\gamma \phi w - p \theta\\ が大きくなるので \\e\\ は増加する.
 
-### A.10.2 女性の賃金と出生
+### A.11.2 女性の賃金と出生
 
 *Proof*. [式 eq-outsource-n](#eq-outsource-n) を \\w_f\\ で微分すると, \\\partial \pi / \partial w_f = \left(1 - s\right) \phi\\ より
 
@@ -688,9 +762,15 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 分子は \\\psi + s p_s \phi + \left(1 - s\right) w_f \phi - \left(1 - s\right) w_m \phi - \left(1 - s\right) w_f \phi = \psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi\\ である. これは \\s\\ の増加関数で, \\s \left(p_s + w_m\right) \phi = w_m \phi - \psi\\ のときゼロになる. \\\psi \< w_m \phi\\ なら \\s^\* \> 0\\, また \\w_m \phi - \psi \< \left(p_s + w_m\right) \phi\\ なので \\s^\* \< 1\\ である.
 
+Blackwell, David. 1965. “Discounted Dynamic Programming.” *Annals of Mathematical Statistics* 36 (1): 226–35. <https://doi.org/10.1214/aoms/1177700285>.
+
+Galichon, Alfred, Scott Duke Kominers, and Simon Weber. 2019. “Costly Concessions: An Empirical Framework for Matching with Imperfectly Transferable Utility.” *Journal of Political Economy* 127 (6): 2875–925. <https://doi.org/10.1086/702020>.
+
 Goussé, Marion, Nicolas Jacquemet, and Jean-Marc Robin. 2017. “Marriage, Labor Supply, and Home Production.” *Econometrica* 85 (6): 1873–919. <https://doi.org/10.3982/ECTA11221>.
 
 Rothschild, Michael, and Joseph E Stiglitz. 1970. “Increasing Risk: I. A Definition.” *Journal of Economic Theory* 2 (3): 225–43. <https://doi.org/10.1016/0022-0531(70)90038-4>.
+
+Stokey, Nancy L., Robert E. Lucas, and Edward C. Prescott. 1989. *Recursive Methods in Economic Dynamics*. Harvard University Press.
 
 Strassen, V. 1965. “The Existence of Probability Measures with Given Marginals.” *Annals of Mathematical Statistics* 36 (2): 423–39. <https://doi.org/10.1214/aoms/1177700153>.
 

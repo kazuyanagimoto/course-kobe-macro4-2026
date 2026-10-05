@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Search &amp; Matching – Family Macroeconomics</title>
+<title>6&nbsp; サーチモデル – Family Macroeconomics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -85,7 +85,7 @@ div.csl-indent {
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../../lesson/marriage/fertility.html" rel="next">
+<link href="../../lesson/marriage/matching.html" rel="next">
 <link href="../../lesson/marriage/allocation.html" rel="prev">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -159,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">サーチモデル</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -239,13 +239,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/search.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">サーチモデル</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">マッチング理論</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
   </div>
 </li>
       </ul>
@@ -318,9 +324,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lesson/marriage/index.html">結婚の経済学</a></li><li class="breadcrumb-item"><a href="../../lesson/marriage/search.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">サーチモデル</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="sec-search-matching" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Search &amp; Matching</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-search-matching" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">サーチモデル</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -728,7 +734,7 @@ E_{a}^{g}(\kappa) = \begin{cases}
 </figure>
 </div>
 <p>推定値 (<a href="#fig-gg2016-estimates" class="quarto-xref">図&nbsp;<span>6.15</span></a>) の読み方は <span class="citation" data-cites="greenwood2009">Greenwood and Guner (<a href="../../references.html#ref-greenwood2009" role="doc-biblioref">2009</a>)</span> とよく似ています. <span class="math inline">\(\overline{b}_s = -1.497 &lt; 0\)</span>: 出会いの平均的な質は負で, 良い相手を待つ構造. <span class="math inline">\(\overline{b}_s &lt; \overline{b}_m\)</span> かつ <span class="math inline">\(\sigma_{b, s} &gt; \sigma_{b, m}\)</span>: 選別を通過した結婚のマッチの質は, ランダムな出会いより良く, 安定している. <span class="math inline">\(\rho_{b, m} = 0.959\)</span>: 結婚生活のマッチの質はきわめて持続的です. 興味深いのは女性の労働参加コスト <span class="math inline">\(q\)</span> です. 夫が非大卒だと共働きに正のコスト (<span class="math inline">\(q_l^0, q_h^0 &gt; 0\)</span>), 夫が大卒だと共働きはむしろプラス (<span class="math inline">\(q_l^1, q_h^1 &lt; 0\)</span>) と推定されます. 論文は解釈を明示していませんが, 性別役割分担の価値観や職種による働きやすさの違いなど, 複合的な要因を吸収した係数と考えられます.</p>
-<p><strong>2005年への移動.</strong> 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 <span class="math inline">\(w_{0, 2005} = 1.17\)</span> (17% 上昇) はデータから直接, 家事財の価格は Gordon (1990) や NIPA を根拠に毎年 5% の下落 (<span class="math inline">\(p_{2005} = p_{1960}e^{-0.05(2005-1960)}\)</span>) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><strong>2005年への移動.</strong> 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 <span class="math inline">\(w_{0, 2005} = 1.17\)</span> (17% 上昇) はデータから直接, 家事財の価格は <span class="citation" data-cites="gordon1990">Gordon (<a href="../../references.html#ref-gordon1990" role="doc-biblioref">1990</a>)</span> や NIPA を根拠に毎年 5% の下落 (<span class="math inline">\(p_{2005} = p_{1960}e^{-0.05(2005-1960)}\)</span>) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div id="tbl-gg2016-2005" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[0.1, 0.1, 0.1, 0.4, 0.1, 0.1]">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gg2016-2005-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -979,7 +985,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 <li><strong>Economic</strong> <span class="math inline">\(V_m^0, V_f^0\)</span>: 交渉決裂点で, 離婚して結婚市場に参入した場合の価値によって決定されます. 家計の外の均衡が家計内の力関係に持ち込まれます.</li>
 </ol>
 <p>推定では <span class="math inline">\(\beta\)</span> は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 <span class="math inline">\(z\)</span> の側にある, という構造になっています.</p>
-<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>6.6</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると (<a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>Section A.9.1</span></a>), 次の式を得ます.</p>
+<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>6.6</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると (<a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>Section A.10.1</span></a>), 次の式を得ます.</p>
 <p><span id="eq-gousse-nocommit"><span class="math display">\[
 \left(r + \delta\right)\left[V_m^1\left(z\right) - V_m^0\right] = u_m - r V_m^0 + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right)
 \tag{6.7}\]</span></span></p>
@@ -987,7 +993,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 </section>
 <section id="余剰とマッチング集合" class="level4">
 <h4 class="anchored" data-anchor-id="余剰とマッチング集合">余剰とマッチング集合</h4>
-<p>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>Section A.9.2</span></a> より, 次の式が成り立ちます.</p>
+<p>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>Section A.10.2</span></a> より, 次の式が成り立ちます.</p>
 <p><span id="eq-gousse-surplus"><span class="math display">\[
 \left(r+\delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+}\, dG\left(z'\right)
 \tag{6.8}\]</span></span> ここで, 家計の純私的支出 <span class="math inline">\(X_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j\)</span> です.</p>
@@ -995,7 +1001,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 <p><span id="eq-gousse-alpha-threshold"><span class="math display">\[
 \alpha_{ij} = \int \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\} dG\left(z\right) = 1 - G\left(\underline{z}_{ij}\right)
 \tag{6.9}\]</span></span></p>
-<p>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>Section A.9.4</span></a>).</p>
+<p>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>Section A.10.4</span></a>).</p>
 <p><span id="eq-gousse-single-value"><span class="math display">\[
 B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj
 \tag{6.10}\]</span></span></p>
@@ -1007,7 +1013,7 @@ B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\
 <p><span class="math display">\[
 \beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}
 \]</span></p>
-<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.9.5</span></a> 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
+<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.10.5</span></a> 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
 </section>
 <section id="定常状態" class="level4">
 <h4 class="anchored" data-anchor-id="定常状態">定常状態</h4>
@@ -1058,7 +1064,7 @@ DF\left(i, j\right) &amp;= \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right
 </figcaption>
 </figure>
 </div>
-<p><strong>2. 家事時間と余暇支出の回帰</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます (付録 <a href="../appendix/proof.html#sec-apdx-gousse-est2" class="quarto-xref"><span>A.9.6.3</span></a> 節)</p>
+<p><strong>2. 家事時間と余暇支出の回帰</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます (付録 <a href="../appendix/proof.html#sec-apdx-gousse-est2" class="quarto-xref"><span>A.10.6.3</span></a> 節)</p>
 <p><strong>3. 公共財の質</strong> 均衡における家庭内生産は次の式で表されます.</p>
 <p><span class="math display">\[
 F_{ij} = Z_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X_{ij}^{K_m^1 + K_f^1}.
@@ -1229,6 +1235,9 @@ Binder, Ariel J., and David Lam. 2022. <span>“Is There a <span>Male</span>-Bre
 </div>
 <div id="ref-chiappori2025" class="csl-entry" role="listitem">
 Chiappori, Pierre-André, Monica Costa Dias, Costas Meghir, and Hanzhe Zhang. 2025. <span>“Changes in Marital Sorting: Theory and Evidence from the United States.”</span> <em>Journal of Political Economy</em> 133 (10): 3045–77. <a href="https://doi.org/10.1086/736764">https://doi.org/10.1086/736764</a>.
+</div>
+<div id="ref-gordon1990" class="csl-entry" role="listitem">
+Gordon, Robert J. 1990. <em>The Measurement of Durable Goods Prices</em>. University of Chicago Press. <a href="https://doi.org/10.7208/chicago/9780226304601.001.0001">https://doi.org/10.7208/chicago/9780226304601.001.0001</a>.
 </div>
 <div id="ref-gousse2017" class="csl-entry" role="listitem">
 Goussé, Marion, Nicolas Jacquemet, and Jean-Marc Robin. 2017. <span>“Marriage, Labor Supply, and Home Production.”</span> <em>Econometrica</em> 85 (6): 1873–919. <a href="https://doi.org/10.3982/ECTA11221">https://doi.org/10.3982/ECTA11221</a>.
@@ -1722,12 +1731,12 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lesson/marriage/fertility.html" class="pagination-link" aria-label="Marriage and Fertility">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Marriage and Fertility</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lesson/marriage/matching.html" class="pagination-link" aria-label="マッチング理論">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">マッチング理論</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Search &amp; Matching {#sec-search-matching}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># サーチモデル {#sec-search-matching}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>現実の労働市場や結婚市場では, 相手を見つけるには時間がかかり, 出会った相手は選び直せるとは限りません. サーチ理論は, この「出会いに時間がかかる」摩擦を最適停止問題として定式化します. 原型は McCall の職探しモデル <span class="co">[</span><span class="ot">@mccall1970</span><span class="co">]</span> であり, この章の後半で扱う @greenwood2009, @greenwood2016, @gousse2017 の結婚サーチモデルは, その直接の応用です.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -2092,7 +2101,7 @@ Yanagimoto, Kazuharu. 2026. <em>Marriage and Divorce in Continuous Time</em>. ar
 <span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>推定値 (@fig-gg2016-estimates) の読み方は @greenwood2009 とよく似ています. $\overline{b}_s = -1.497 &lt; 0$: 出会いの平均的な質は負で, 良い相手を待つ構造. $\overline{b}_s &lt; \overline{b}_m$ かつ $\sigma_{b, s} &gt; \sigma_{b, m}$: 選別を通過した結婚のマッチの質は, ランダムな出会いより良く, 安定している. $\rho_{b, m} = 0.959$: 結婚生活のマッチの質はきわめて持続的です. 興味深いのは女性の労働参加コスト $q$ です. 夫が非大卒だと共働きに正のコスト ($q_l^0, q_h^0 &gt; 0$), 夫が大卒だと共働きはむしろプラス ($q_l^1, q_h^1 &lt; 0$) と推定されます. 論文は解釈を明示していませんが, 性別役割分担の価値観や職種による働きやすさの違いなど, 複合的な要因を吸収した係数と考えられます.</span>
 <span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>**2005年への移動.** 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 $w_{0, 2005} = 1.17$ (17% 上昇) はデータから直接, 家事財の価格は Gordon (1990) や NIPA を根拠に毎年 5% の下落 ($p_{2005} = p_{1960}e^{-0.05(2005-1960)}$) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.^<span class="co">[</span><span class="ot">この部分のターゲットは論文の記述からは正確には特定できませんが, おおよそ次の表のような対応と読めます.</span><span class="co">]</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>**2005年への移動.** 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 $w_{0, 2005} = 1.17$ (17% 上昇) はデータから直接, 家事財の価格は @gordon1990 や NIPA を根拠に毎年 5% の下落 ($p_{2005} = p_{1960}e^{-0.05(2005-1960)}$) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.^<span class="co">[</span><span class="ot">この部分のターゲットは論文の記述からは正確には特定できませんが, おおよそ次の表のような対応と読めます.</span><span class="co">]</span></span>
 <span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>::: {#tbl-gg2016-2005 tbl-colwidths="<span class="co">[</span><span class="ot">0.1, 0.1, 0.1, 0.4, 0.1, 0.1</span><span class="co">]</span>"}</span>
 <span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>

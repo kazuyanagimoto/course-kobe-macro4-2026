@@ -41,30 +41,44 @@ Code
 >
 > 近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.
 
-## 結婚モデルの2つの流派
+## 結婚モデルの二つの層
 
-結婚をモデル化するときには, 次の二つの流派があります.
+結婚をモデル化するときには次の二つの層があります.
+
+1.  **マッチング**: 誰と誰が結婚するか
+2.  **家庭内配分**: 結婚した後の家事労働や消費の分担など
+
+この2つは歴史的には別々の理論として発展しました. 前者は Becker ([1973](#ref-becker1973a)) に始まるマッチング理論 (集大成として Becker ([1991](#ref-becker1991))), 後者は Chiappori ([1988](#ref-chiappori1988)) に始まる collective model や Nash 交渉 など家計内配分の理論です. しかし, 結婚する際に家庭内配分を見据えてマッチングが行われることをふまえると, 両者は同じ問題の表と裏であることが分かります. この授業では, まず[家計内配分の章](../../lesson/marriage/allocation.llms.md)で家庭内配分の理論を扱います.
+
+マッチングの一般的な理論は[マッチング理論の章](../../lesson/marriage/matching.llms.md)で扱います.
+
+さらに, マッチング理論には大きく分けて二つの流派があります.
 
 **1. サーチモデル (Search and Matching Model)**
 
 - Shimer and Smith ([2000](#ref-shimer2000)) を起源とした毎期ランダムに相手を探す動学的モデル
 - 結婚のタイミング (晩婚化) や再婚などを扱いやすい
-- 講義では Greenwood and Guner ([2009](#ref-greenwood2009)), Greenwood et al. ([2016](#ref-greenwood2016)) を紹介
+- 講義では Greenwood and Guner ([2009](#ref-greenwood2009)), Greenwood et al. ([2016](#ref-greenwood2016)), Goussé et al. ([2017](#ref-gousse2017)) を紹介
 
 **2. 摩擦のない結婚市場モデル (Frictionless Marriage Market)**
 
 - Choo and Siow ([2006](#ref-choo2006)) に始まる, 初期時点で全ての人が結婚相手を見つけるモデル
 - より詳細な家庭の意思決定 (家庭内配分など) をモデル化しやすい
-- 講義では一般枠組みとして Galichon et al. ([2019](#ref-galichon2019)) を扱い, その特殊ケースとして Choo and Siow ([2006](#ref-choo2006)) を導く
-- 応用として Ciscato ([2025](#ref-ciscato2025)), Reynoso ([2024](#ref-reynoso2024)) を紹介
+- 講義では一般枠組みとして Galichon et al. ([2019](#ref-galichon2019)) を扱い, 応用として Ciscato ([2025](#ref-ciscato2025)), Reynoso ([2024](#ref-reynoso2024)) を紹介
 
-この講義では順番にそれぞれのモデルを紹介していきます.
+Becker, Gary S. 1973. “A Theory of Marriage: Part I.” *Journal of Political Economy* 81 (4): 813–46. <https://doi.org/10.1086/260084>.
+
+Becker, Gary S. 1991. *A Treatise on the Family*. Enl. Harvard University Press.
+
+Chiappori, Pierre-André. 1988. “Rational Household Labor Supply.” *Econometrica* 56 (1): 63–90. <https://doi.org/10.2307/1911842>.
 
 Choo, Eugene, and Aloysius Siow. 2006. “Who Marries Whom and Why.” *Journal of Political Economy* 114 (1): 175–201. <https://doi.org/10.1086/498585>.
 
 Ciscato, Edoardo. 2025. “Assessing Racial and Educational Segmentation in Large Marriage Markets.” *Review of Economic Studies* 92 (6): 3788–839. <https://doi.org/10.1093/restud/rdae115>.
 
 Galichon, Alfred, Scott Duke Kominers, and Simon Weber. 2019. “Costly Concessions: An Empirical Framework for Matching with Imperfectly Transferable Utility.” *Journal of Political Economy* 127 (6): 2875–925. <https://doi.org/10.1086/702020>.
+
+Goussé, Marion, Nicolas Jacquemet, and Jean-Marc Robin. 2017. “Marriage, Labor Supply, and Home Production.” *Econometrica* 85 (6): 1873–919. <https://doi.org/10.3982/ECTA11221>.
 
 Greenwood, Jeremy, and Nezih Guner. 2009. “Marriage and Divorce Since World War II: Analyzing the Role of Technological Progress on the Formation of Households.” In *NBER Macroeconomics Annual 2008, Volume 23*. University of Chicago Press.
 

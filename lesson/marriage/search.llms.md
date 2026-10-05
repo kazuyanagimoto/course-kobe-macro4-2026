@@ -1,4 +1,4 @@
-# 6  Search & Matching
+# 6  サーチモデル
 
 Code
 
@@ -275,7 +275,7 @@ and \\n = \left(\theta d^\lambda + (1-\theta)\left(2 - \overline{h} - \overline{
 
 推定値 ([図 fig-gg2016-estimates](#fig-gg2016-estimates)) の読み方は Greenwood and Guner ([2009](#ref-greenwood2009)) とよく似ています. \\\overline{b}\_s = -1.497 \< 0\\: 出会いの平均的な質は負で, 良い相手を待つ構造. \\\overline{b}\_s \< \overline{b}\_m\\ かつ \\\sigma\_{b, s} \> \sigma\_{b, m}\\: 選別を通過した結婚のマッチの質は, ランダムな出会いより良く, 安定している. \\\rho\_{b, m} = 0.959\\: 結婚生活のマッチの質はきわめて持続的です. 興味深いのは女性の労働参加コスト \\q\\ です. 夫が非大卒だと共働きに正のコスト (\\q_l^0, q_h^0 \> 0\\), 夫が大卒だと共働きはむしろプラス (\\q_l^1, q_h^1 \< 0\\) と推定されます. 論文は解釈を明示していませんが, 性別役割分担の価値観や職種による働きやすさの違いなど, 複合的な要因を吸収した係数と考えられます.
 
-**2005年への移動.** 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 \\w\_{0, 2005} = 1.17\\ (17% 上昇) はデータから直接, 家事財の価格は Gordon (1990) や NIPA を根拠に毎年 5% の下落 (\\p\_{2005} = p\_{1960}e^{-0.05(2005-1960)}\\) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.[^2]
+**2005年への移動.** 1960年に合わせたモデルを, 技術と教育のパラメータだけ動かして2005年に「移動」させます. 非大卒男性の賃金 \\w\_{0, 2005} = 1.17\\ (17% 上昇) はデータから直接, 家事財の価格は Gordon ([1990](#ref-gordon1990)) や NIPA を根拠に毎年 5% の下落 (\\p\_{2005} = p\_{1960}e^{-0.05(2005-1960)}\\) とし, 残りは2005年のターゲットに対する最小距離推定で求めます.[^2]
 
 |            |  2005 | \(1960\) | Target                    |  2005 | \(1960\) |
 |:-----------|------:|---------:|:--------------------------|------:|---------:|
@@ -610,6 +610,8 @@ Bertrand, Marianne, Emir Kamenica, and Jessica Pan. 2015. “Gender Identity and
 Binder, Ariel J., and David Lam. 2022. “Is There a Male-Breadwinner Norm? The Hazards of Inferring Preferences from Marriage Market Outcomes.” *Journal of Human Resources* 57 (6): 1885–914. <https://doi.org/10.3368/jhr.58.2.0320-10803R1>.
 
 Chiappori, Pierre-André, Monica Costa Dias, Costas Meghir, and Hanzhe Zhang. 2025. “Changes in Marital Sorting: Theory and Evidence from the United States.” *Journal of Political Economy* 133 (10): 3045–77. <https://doi.org/10.1086/736764>.
+
+Gordon, Robert J. 1990. *The Measurement of Durable Goods Prices*. University of Chicago Press. <https://doi.org/10.7208/chicago/9780226304601.001.0001>.
 
 Goussé, Marion, Nicolas Jacquemet, and Jean-Marc Robin. 2017. “Marriage, Labor Supply, and Home Production.” *Econometrica* 85 (6): 1873–919. <https://doi.org/10.3982/ECTA11221>.
 
