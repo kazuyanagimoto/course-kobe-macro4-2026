@@ -124,7 +124,7 @@ $$
 
 ## 縮小写像と動的計画法 {#sec-apdx-contraction}
 
-数値計算パートの動的計画法 (第 -@sec-dynamic-programming 章) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては Stokey, Lucas and Prescott (1989) があります.
+数値計算パートの動的計画法 (第 -@sec-dynamic-programming 章) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては @stokey1989 があります.
 
 ### 縮小写像
 
@@ -206,7 +206,7 @@ Step4 (収束の速さ): $d\left(v_n, v^*\right) = d\left(T^n v_0, T^n v^*\right
 
 :::
 
-ある写像が縮小写像かどうかを定義から直接確かめるのは面倒ですが, 経済学に現れる作用素には次の便利な十分条件があります.
+ある写像が縮小写像かどうかを定義から直接確かめるのは面倒ですが, 経済学に現れる作用素には次の便利な十分条件があります [@blackwell1965].
 
 ::: {#prp-blackwell}
 
@@ -329,6 +329,119 @@ $$
 数値計算パートで補間 (関数近似の章) が素直に機能したのは, 近似対象の $V^*$ がこうした形状の規則性を持つからです. 逆に, 離散選択が入って価値関数にキンクが生じる場合には, 結婚の部の frictionless marriage の章で見た対数和による平滑化が効いてきます.
 
 縮小写像の枠組みは, サーチ理論の章での留保値の存在の議論にもそのまま使われています.
+
+## マッチング理論の証明 {#sec-apdx-matching-proofs}
+
+### 距離関数の性質 {#prf-dist-props}
+
+::: {.proof}
+
+まず $D_{xy}$ が well-defined であることを確かめる. $Z\left(u, v\right) = \left\{z \in \mathbb{R} : \left(u - z, v - z\right) \in \mathcal{F}_{xy}\right\}$ とおく. $\mathcal{F}_{xy}$ は空でないので点 $\left(a, b\right) \in \mathcal{F}_{xy}$ がとれ, $z \geq \max\left\{u - a, v - b\right\}$ なら $\left(u - z, v - z\right) \leq \left(a, b\right)$ なので, 下方に包括的であることから $z \in Z\left(u, v\right)$ である. $\mathcal{F}_{xy}$ は閉なので $Z\left(u, v\right)$ も閉であり, $z \to -\infty$ では両方の座標が $+\infty$ に発散するので, 上に有界であることから $Z\left(u, v\right)$ は下に有界である. よって最小値 $D_{xy}\left(u, v\right)$ が存在する.
+
+(1) $\left(u, v\right) \in \mathcal{F}_{xy}$ なら $0 \in Z\left(u, v\right)$ なので $D_{xy}\left(u, v\right) \leq 0$ である. 逆に $D_{xy}\left(u, v\right) = z \leq 0$ なら $\left(u, v\right) \leq \left(u - z, v - z\right) \in \mathcal{F}_{xy}$ なので, 下方に包括的であることから $\left(u, v\right) \in \mathcal{F}_{xy}$ である. また $D_{xy}\left(u, v\right) = 0$ は, $\left(u, v\right) \in \mathcal{F}_{xy}$ かつ任意の $\varepsilon > 0$ について $\left(u + \varepsilon, v + \varepsilon\right) \notin \mathcal{F}_{xy}$ であること, すなわち $\left(u, v\right)$ がフロンティア上にあることと同値である.
+
+(2) $u \leq u'$, $v \leq v'$ とする. $z \in Z\left(u', v'\right)$ なら $\left(u - z, v - z\right) \leq \left(u' - z, v' - z\right) \in \mathcal{F}_{xy}$ なので $z \in Z\left(u, v\right)$ である. よって $Z\left(u', v'\right) \subseteq Z\left(u, v\right)$ であり, $D_{xy}\left(u, v\right) \leq D_{xy}\left(u', v'\right)$ が成り立つ. 狭義の部分は (3) を使う. $u < u'$, $v < v'$ なら $\delta = \min\left\{u' - u, v' - v\right\} > 0$ について $\left(u + \delta, v + \delta\right) \leq \left(u', v'\right)$ なので, $D_{xy}\left(u, v\right) + \delta = D_{xy}\left(u + \delta, v + \delta\right) \leq D_{xy}\left(u', v'\right)$ となる.
+
+(3) $z = z' + a$ と置き換えると
+
+$$
+D_{xy}\left(a + u, a + v\right)
+= \min\left\{z : \left(u - \left(z - a\right), v - \left(z - a\right)\right) \in \mathcal{F}_{xy}\right\}
+= a + \min\left\{z' : \left(u - z', v - z'\right) \in \mathcal{F}_{xy}\right\}
+= a + D_{xy}\left(u, v\right).
+$$
+
+(4) $\underline{\delta} = \min\left\{u' - u, v' - v\right\}$, $\bar{\delta} = \max\left\{u' - u, v' - v\right\}$ とおくと, $\left(u + \underline{\delta}, v + \underline{\delta}\right) \leq \left(u', v'\right) \leq \left(u + \bar{\delta}, v + \bar{\delta}\right)$ である. (2) と (3) から
+
+$$
+D_{xy}\left(u, v\right) + \underline{\delta} \leq D_{xy}\left(u', v'\right) \leq D_{xy}\left(u, v\right) + \bar{\delta}
+$$
+
+が成り立つ. $\left(u', v'\right) \to \left(u, v\right)$ のとき $\underline{\delta}, \bar{\delta} \to 0$ なので, $D_{xy}$ は連続である.
+
+:::
+
+### 取り分はタイプの組で決まる {#prf-type-payoffs}
+
+@galichon2019 の付録に従います.
+
+::: {.proof}
+
+(1) 各男性 $i$ について, $u_i$ を与える最大化の解を $y$ とし, その $y$ ごとに男性を分ける. タイプ $x$ の男性のうち解が $y$ である人の集合 $I_{xy}$ の質量は $\partial G\left(U\right) / \partial U_{xy}$ である. 同様に, タイプ $y$ の女性のうち解が $x$ である人の集合 $J_{xy}$ の質量は $\partial H\left(V\right) / \partial V_{xy}$ である. 市場清算 $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$ より両者の質量は等しいので, $I_{xy}$ の男性と $J_{xy}$ の女性を任意に組み合わせて $\mu_{ij}$ を作る. 解が独身の人は独身のままにする.
+
+このマッチングが個人均衡の3条件を満たすことを確かめる. 定義から, 任意の男性 $i$ (タイプ $x$) と女性 $j$ (タイプ $y$) について $u_i - \varepsilon_{iy} \geq U_{xy}$, $v_j - \eta_{xj} \geq V_{xy}$ である. 距離関数の単調性 (@lem-dist-props) と実行可能性より
+
+$$
+D_{xy}\left(u_i - \varepsilon_{iy},\ v_j - \eta_{xj}\right) \geq D_{xy}\left(U_{xy}, V_{xy}\right) = 0
+$$
+
+であり, ブロッキングペアは存在しない. マッチした $i \in I_{xy}$, $j \in J_{xy}$ では $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ なので等号が成り立つ. 独身者は最大化の解が独身なので $u_i = \varepsilon_{i0}$, $v_j = \eta_{0j}$ であり, 個人合理性も成り立つ.
+
+(2) 個人均衡の安定性から, すべての $i, j$ について $D_{x_i y_j}\left(u_i - \varepsilon_{i y_j},\ v_j - \eta_{x_i j}\right) \geq 0$ である. $D_{xy}$ の連続性と単調性から, タイプ $x$ の男性とタイプ $y$ の女性について下限をとっても $D_{xy}\left(U_{xy}, V_{xy}\right) \geq 0$ が成り立つ.
+
+$U_{xy}$ の定義から, タイプ $x$ の男性 $i$ はすべての $y$ について $u_i \geq U_{xy} + \varepsilon_{iy}$ を満たし, 個人合理性から $u_i \geq \varepsilon_{i0}$ である. よって $u_i \geq \max_{y \in \mathcal{Y}_0}\left\{U_{xy} + \varepsilon_{iy}\right\}$ である. この不等号が狭義だとすると, すべての $y$ について $u_i - \varepsilon_{iy} > U_{xy}$ である. $D_{xy}$ は狭義増加なので, タイプ $y$ の任意の女性 $j$ について
+
+$$
+D_{xy}\left(u_i - \varepsilon_{iy},\ v_j - \eta_{xj}\right) > D_{xy}\left(U_{xy},\ v_j - \eta_{xj}\right) \geq D_{xy}\left(U_{xy}, V_{xy}\right) \geq 0
+$$
+
+となり, $i$ は誰ともマッチできない (マッチしたペアでは等号が必要). すると $i$ は独身なので $u_i = \varepsilon_{i0}$ でなければならないが, これは $u_i > \varepsilon_{i0}$ に矛盾する. したがって $u_i = \max_{y \in \mathcal{Y}_0}\left\{U_{xy} + \varepsilon_{iy}\right\}$ であり, 女性についても同様である.
+
+各人は自分の最大化の解のタイプと組むので, タイプ $\left(x, y\right)$ の組の質量は男性側から見て $\partial G\left(U\right) / \partial U_{xy}$, 女性側から見て $\partial H\left(V\right) / \partial V_{xy}$ であり, 両者は一致する. ショックの分布の密度が消えないので, すべての $\left(x, y\right)$ でこの質量は正であり, マッチした組では $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ かつ $D_{xy}\left(U_{xy}, V_{xy}\right) = 0$ が成り立つ. よって $\left(U, V\right)$ は集計均衡を与える.
+
+:::
+
+### 安定性と余剰最大化の双対性 {#prf-tu-duality}
+
+::: {.proof}
+
+主問題では $\mu'_{ij} \in \left[0, 1\right]$ を $i$ と $j$ がマッチする確率と読み, 残りの確率は独身とする (制約行列が全ユニモジュラなので, 端点解は $\left\{0, 1\right\}$ に値をとる).
+
+Step1 (弱双対性): 主問題の任意の実行可能解 $\mu'$ と双対問題の任意の実行可能解 $\left(u, v\right)$ に対して,
+
+$$
+\sum_{i, j} \mu'_{ij} \Phi_{ij}
+\leq \sum_{i, j} \mu'_{ij} \left(u_i + v_j\right)
+\leq \sum_i u_i + \sum_j v_j.
+$$
+
+第1の不等式は双対制約 $u_i + v_j \geq \Phi_{ij}$, 第2の不等式は実行可能性と $u, v \geq 0$ による.
+
+Step2 (安定 $\Rightarrow$ 最適): $\left(\mu, u, v\right)$ が安定なら, @eq-tu-stability より $\left(u, v\right)$ は双対問題の実行可能解である. マッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得は $0$ なので, Step1 の2つの不等式がともに等号で成り立ち,
+
+$$
+\sum_{i, j} \mu_{ij} \Phi_{ij} = \sum_i u_i + \sum_j v_j.
+$$
+
+弱双対性より, 左辺の値はどの実行可能な $\mu'$ でも超えられず, 右辺の値はどの実行可能な $\left(u', v'\right)$ でも下回れない. よって $\mu$ は主問題の解, $\left(u, v\right)$ は双対問題の解である.
+
+Step3 (最適 $\Rightarrow$ 安定): $\mu$ を主問題の解とする. 線形計画の双対定理より, 双対問題の解 $\left(u, v\right)$ が存在して両問題の値が一致する. 値の一致を書き直すと
+
+$$
+\sum_{i, j} \mu_{ij} \left(u_i + v_j - \Phi_{ij}\right)
++ \sum_i \left(1 - \sum_j \mu_{ij}\right) u_i
++ \sum_j \left(1 - \sum_i \mu_{ij}\right) v_j = 0
+$$
+
+となり, 各項は双対制約と実行可能性より非負である. よってすべての項がゼロ, すなわちマッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得はゼロであり, $\left(\mu, u, v\right)$ は実行可能かつ @eq-tu-stability を満たす安定マッチングである. 主問題は有界な線形計画なので解を持ち, 安定マッチングの存在も従う.
+
+:::
+
+### Becker の同類婚定理 {#prf-pam}
+
+::: {.proof}
+
+@prp-tu-duality より, 安定マッチングは総余剰を最大化する. $x < x'$ がそれぞれ $y'$, $y$ ($y < y'$) とマッチしていたとすると, 相手を交換すれば優モジュラ性より総余剰が厳密に増加し, 最大性に矛盾する. よって安定マッチングは PAM であり, タイプの順位同士を組み合わせる配置として一意に定まる. 劣モジュラ性の場合も同様である.
+
+:::
+
+### 連続分布のもとでの分配 {#prf-share}
+
+::: {.proof}
+
+@eq-tu-max より $u\left(x\right) = \max_z \left\{ \Phi\left(x, z\right) - v\left(z\right) \right\}$ であり, 最大は実際の相手 $z = \varphi\left(x\right)$ で達成される. 包絡線定理より, 最大値関数の微分は目的関数の $x$ に関する偏微分を最適解で評価したものに等しく, @eq-envelope を得る. 積分すれば $u$ が定数 $K$ を除いて定まり, $v$ はマッチした組の実行可能性 $u + v = \Phi$ から定まる. $u$ の定数を $+K$ 動かすことは $v$ の定数を $-K$ 動かすことと表裏である.
+
+:::
 
 ## 家計内配分の証明 {#sec-apdx-allocation-proofs}
 

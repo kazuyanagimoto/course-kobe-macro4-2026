@@ -30,8 +30,6 @@
 
 #let uBottom = bisect(u => front(u) - ymin, xmin, calc.ln(bigB) - 0.0001)
 
-#let tag(body, fill: black) = box(fill: white, inset: 1.2pt, text(fill: fill, body))
-
 #cetz.canvas(length: 3cm, {
   import cetz.draw: *
 
@@ -41,29 +39,19 @@
     base: ymin, color: color-base.transparentize(80%))
   draw-axes(ctx, style: "school-book")
 
-  // the two slope-1 lines, each crossing the u axis at its own wedge
+  // the two slope-1 lines v = u - w, each crossing the u axis at its own wedge
   for (w, u0, v0) in ((wA, uA, vA), (wB, uB, vB)) {
     line((ctx.pt)(w - 0.35, -0.35), (ctx.pt)(u0 + 0.30, v0 + 0.30),
       stroke: (paint: color-accent, thickness: 0.7pt))
-    draw-vline(ctx, u0, ymin + 0.05, v0, stroke: stroke-dashed)
-    draw-hline(ctx, v0, xmin + 0.05, u0, stroke: stroke-dashed)
-    marker(ctx, w, 0, radius: 0.026, color: color-accent)
     marker(ctx, u0, v0, radius: 0.03, color: color-accent)
   }
 
   draw-curve(ctx, front, (xmin, uBottom), stroke: (paint: black, thickness: 1.1pt))
 
-  label(ctx, -1.15, -0.55, text(fill: rgb("#33556a"))[$cal(F)_(x y)$])
   label(ctx, 2.12, -0.16, [$u$])
   label(ctx, -0.16, 2.12, [$v$])
 
-  label(ctx, wA, 0.19, tag([$w$], fill: color-accent))
-  label(ctx, wB, 0.19, tag([$w'$], fill: color-accent))
-  label(ctx, uA, -0.24, tag([$cal(U)(w)$]))
-  label(ctx, uB, -0.24, tag([$cal(U)(w')$]))
-  label(ctx, xmin + 0.30, vA, tag([$cal(V)(w)$]))
-  label(ctx, xmin + 0.32, vB, tag([$cal(V)(w')$]))
-
-  label(ctx, 1.05, 1.72, tag([slope 1], fill: color-accent))
-  line((ctx.pt)(0.80, 1.68), (ctx.pt)(0.40, 1.42), stroke: stroke-guide)
+  // name each line by its wedge, next to where it crosses the u axis
+  label(ctx, wA - 0.22, 0.16, text(fill: color-accent)[$w$])
+  label(ctx, wB - 0.24, 0.16, text(fill: color-accent)[$w'$])
 })

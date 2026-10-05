@@ -3,8 +3,6 @@
 #set page(width: auto, height: auto, margin: .5cm)
 #set text(size: 8pt)
 
-#show math.equation: block.with(fill: white, inset: 1pt)
-
 // Distance-to-frontier function of a proper bargaining set.
 // The set is the ETU one, exp(u) + exp(v) <= B, so the frontier is
 // v = ln(B - exp(u)).  Out-of-domain values are pushed far below the
@@ -44,8 +42,7 @@
   draw-axes(ctx, style: "school-book")
   draw-curve(ctx, front, (xmin, uBottom), stroke: color-base)
 
-  label(ctx, 0.25, 0.45, text(fill: gray)[$cal(F)_(x y)$])
-  label(ctx, 1.72, 1.30, text(fill: color-base)[$D_(x y) (u, v) = 0$])
+  label(ctx, 1.72, 1.30, text(fill: color-base)[$D_(x y) = 0$])
   label(ctx, 2.22, -0.13, [$u$])
   label(ctx, -0.13, 2.02, [$v$])
 
@@ -53,17 +50,11 @@
   line((ctx.pt)(uOut, vOut), (ctx.pt)(uOut - zOut, vOut - zOut),
     stroke: (paint: color-accent, thickness: 1pt), mark: (end: ">", scale: 0.5))
   marker(ctx, uOut, vOut, radius: 0.028, color: color-accent)
-  label(ctx, uOut - 0.16, vOut + 0.17, [$(u', v')$])
-  label(ctx, uOut + 0.45, vOut + 0.10, text(fill: color-accent)[$D_(x y) > 0$])
+  label(ctx, uOut + 0.40, vOut + 0.06, text(fill: color-accent)[$D_(x y) > 0$])
 
   // inside the set: the walk moves up-right, so D < 0
   line((ctx.pt)(uIn, vIn), (ctx.pt)(uIn - zIn, vIn - zIn),
     stroke: (paint: color-accent, thickness: 1pt), mark: (end: ">", scale: 0.5))
   marker(ctx, uIn, vIn, radius: 0.028, color: color-accent)
-  label(ctx, uIn - 0.04, vIn - 0.17, [$(u, v)$])
-  label(ctx, uIn - 0.40, vIn + 0.47, text(fill: color-accent)[$D_(x y) < 0$])
-
-  // both walks follow this direction
-  line((ctx.pt)(-0.52, -0.52), (ctx.pt)(0.05, 0.05), stroke: stroke-dashed)
-  label(ctx, 0.42, -0.45, text(fill: gray)[slope 1])
+  label(ctx, uIn - 0.38, vIn + 0.02, text(fill: color-accent)[$D_(x y) < 0$])
 })
