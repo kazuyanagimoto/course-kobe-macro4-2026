@@ -4,6 +4,7 @@ project:
   resources:
     # 課題は問題PDFだけをサイトに配信する (解答PDFは含めない).
     - assignment/**/*-exercise.pdf
+    - static/img/social-card.png
 
 book:
   title: Family Macroeconomics
@@ -18,6 +19,16 @@ book:
   downloads: [pdf]
   site-url: https://kazuyanagimoto.com/course-kobe-macro4-2026
   repo-url: https://github.com/kazuyanagimoto/course-kobe-macro4-2026
+  favicon: static/img/logo.drawio.svg
+  open-graph:
+    image: static/img/social-card.png
+    description: 結婚・出生・家計内配分のマクロ経済学
+  twitter-card:
+    card-style: summary_large_image
+    image: static/img/social-card.png
+    description: 結婚・出生・家計内配分のマクロ経済学
+  sidebar:
+    logo: static/img/logo.drawio.svg
   chapters:
     - index.qmd
     - part: 数値計算
