@@ -85,7 +85,7 @@ div.csl-indent {
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../../lesson/marriage/fertility.html" rel="next">
+<link href="../../lesson/marriage/frictionless.html" rel="next">
 <link href="../../lesson/marriage/search.html" rel="prev">
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -250,8 +250,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/frictionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">摩擦のない市場</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
   </div>
 </li>
       </ul>
@@ -531,6 +537,7 @@ G\left(U\right) = \sum_{x} n_x\, \mathbb{E}\left[\max_{y \in \mathcal{Y}_0}\left
 H\left(V\right) = \sum_{y} m_y\, \mathbb{E}\left[\max_{x \in \mathcal{X}_0}\left\{V_{xy} + \eta_{xj}\right\}\right]
 \]</span></p>
 <p>と定義します. Daly–Zachary–Williams の定理 <span class="citation" data-cites="williams1977">(<a href="../../references.html#ref-williams1977" role="doc-biblioref">Williams 1977</a>)</span> により, タイプ <span class="math inline">\(y\)</span> の相手を望むタイプ <span class="math inline">\(x\)</span> の男性の質量は <span class="math inline">\(\partial G / \partial U_{xy}\)</span>, その逆は <span class="math inline">\(\partial H / \partial V_{xy}\)</span> です. ショックが第一種極値分布なら, <span class="math inline">\(G\)</span> は対数和 (log-sum) の形になり, それを <span class="math inline">\(U_{xy}\)</span> で微分するとロジットの選択確率が得られます.</p>
+<p>これは第 <a href="frictionless.html" class="quarto-xref"><span>8</span></a> 章で見る対数和 <a href="frictionless.html#eq-logsum" class="quarto-xref">式&nbsp;<span>8.3</span></a> と選択確率 <a href="frictionless.html#eq-logit" class="quarto-xref">式&nbsp;<span>8.2</span></a> の関係そのものです.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -684,6 +691,7 @@ u_i = \max\left\{0,\ \max_{j \in \mathcal{J}}\left\{\Phi_{ij} - v_j\right\}\righ
 <p>証明は<a href="../../lesson/appendix/proof.html#prf-pam">付録</a>にあります.</p>
 <p>PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を <span class="math inline">\(F\)</span>, 女性のそれを <span class="math inline">\(G\)</span> とすると, 結婚する人数が男女で等しいとき, タイプ <span class="math inline">\(x\)</span> の男性の相手 <span class="math inline">\(\varphi\left(x\right)\)</span> は <span class="math inline">\(1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)\)</span> で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, <span class="math inline">\(\Phi\)</span> が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります <span class="citation" data-cites="chiappori2016">(<a href="../../references.html#ref-chiappori2016" role="doc-biblioref">Chiappori and Salanié 2016</a>)</span>.</p>
 <p>補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 (<span class="math inline">\(Q = t_W t_H\)</span>) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (<span class="citation" data-cites="becker1991">Becker (<a href="../../references.html#ref-becker1991" role="doc-biblioref">1991</a>)</span> の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 (<span class="math inline">\(Q\)</span> が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第 <a href="search.html" class="quarto-xref"><span>6</span></a> 章で見た <span class="citation" data-cites="greenwood2016">Greenwood et al. (<a href="../../references.html#ref-greenwood2016" role="doc-biblioref">2016</a>)</span> の定量分析にもつながっています.</p>
+<p>第 <a href="frictionless.html" class="quarto-xref"><span>8</span></a> 章では, 同類婚の原因を余剰の補完性と出会いの分断に分解する <span class="citation" data-cites="ciscato2025">Ciscato (<a href="../../references.html#ref-ciscato2025" role="doc-biblioref">2025</a>)</span> を扱います.</p>
 </section>
 <section id="余剰の分配" class="level3" data-number="7.3.3">
 <h3 data-number="7.3.3" class="anchored" data-anchor-id="余剰の分配"><span class="header-section-number">7.3.3</span> 余剰の分配</h3>
@@ -760,6 +768,9 @@ Chiappori, Pierre-André, and Bernard Salanié. 2016. <span>“The Econometrics 
 </div>
 <div id="ref-choo2006" class="csl-entry" role="listitem">
 Choo, Eugene, and Aloysius Siow. 2006. <span>“Who Marries Whom and Why.”</span> <em>Journal of Political Economy</em> 114 (1): 175–201. <a href="https://doi.org/10.1086/498585">https://doi.org/10.1086/498585</a>.
+</div>
+<div id="ref-ciscato2025" class="csl-entry" role="listitem">
+Ciscato, Edoardo. 2025. <span>“Assessing Racial and Educational Segmentation in Large Marriage&nbsp;Markets.”</span> <em>Review of Economic Studies</em> 92 (6): 3788–839. <a href="https://doi.org/10.1093/restud/rdae115">https://doi.org/10.1093/restud/rdae115</a>.
 </div>
 <div id="ref-decker2013" class="csl-entry" role="listitem">
 Decker, Colin, Elliott H. Lieb, Robert J. McCann, and Benjamin K. Stephens. 2013. <span>“Unique Equilibria and Substitution Effects in a Stochastic Model of the Marriage Market.”</span> <em>Journal of Economic Theory</em> 148 (2): 778–92. <a href="https://doi.org/10.1016/j.jet.2012.12.005">https://doi.org/10.1016/j.jet.2012.12.005</a>.
@@ -1252,8 +1263,8 @@ Williams, H C W L. 1977. <span>“On the Formation of Travel Demand Models and E
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../lesson/marriage/fertility.html" class="pagination-link" aria-label="結婚と出生">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">結婚と出生</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../lesson/marriage/frictionless.html" class="pagination-link" aria-label="摩擦のない市場">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">摩擦のない市場</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -1453,277 +1464,279 @@ Williams, H C W L. 1977. <span>“On the Formation of Travel Demand Models and E
 <span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>と定義します. Daly–Zachary–Williams の定理 <span class="co">[</span><span class="ot">@williams1977</span><span class="co">]</span> により, タイプ $y$ の相手を望むタイプ $x$ の男性の質量は $\partial G / \partial U_{xy}$, その逆は $\partial H / \partial V_{xy}$ です. ショックが第一種極値分布なら, $G$ は対数和 (log-sum) の形になり, それを $U_{xy}$ で微分するとロジットの選択確率が得られます.</span>
 <span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## 集計均衡 (aggregate equilibrium) [@galichon2019]</span></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$\left(\mu_{xy}, U_{xy}, V_{xy}\right)$ が集計均衡であるとは,</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\mu$ が内点のマッチングである ($\mu_{xy} &gt; 0$, $\sum_y \mu_{xy} &lt; n_x$, $\sum_x \mu_{xy} &lt; m_y$)</span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**実行可能性**: すべての $x, y$ について $D_{xy}\left(U_{xy}, V_{xy}\right) = 0$</span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**市場清算**: $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$</span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>条件2がフロンティア上にいることを, 条件3が需給の一致を要求しています.</span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>集計均衡と個人均衡は次のように結びついています. ここでは $U_{x0} = V_{0y} = 0$ とします.</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>::: {#thm-type-payoffs}</span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## 取り分はタイプの組で決まる [@galichon2019]</span></span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>分離可能性を仮定する.</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\left(\mu, U, V\right)$ を集計均衡とし, 各人の効用を</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>   u_i = \max_{y \in \mathcal{Y}_0}\left\{U_{x_i y} + \varepsilon_{iy}\right<span class="sc">\}</span>,</span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>   v_j = \max_{x \in \mathcal{X}_0}\left\{V_{x y_j} + \eta_{xj}\right<span class="sc">\}</span></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>   と定める. このとき, $\left(\mu_{ij}, u_i, v_j\right)$ が個人均衡になるような個人の間のマッチング $\mu_{ij}$ が存在する.</span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>すべての $D_{xy}$ が両方の引数について狭義増加 (フロンティアが狭義に右下がり) であるとし, $\left(\mu_{ij}, u_i, v_j\right)$ を任意の個人均衡とする.</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>   U_{xy} = \min_{i : x_i = x}\left(u_i - \varepsilon_{iy}\right),</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>   V_{xy} = \min_{j : y_j = y}\left(v_j - \eta_{xj}\right)</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>   とおくと, 各人の効用は1の式で表され, $\left(U, V\right)$ とそれが定めるタイプの組ごとのマッチングは集計均衡になる. 特に, タイプ $x$ の男性 $i$ とタイプ $y$ の女性 $j$ がマッチしていれば $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ である.</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-type-payoffs)</span>にあります.</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>1は「取り分がタイプの組で決まる個人均衡は常にある」, 2は「フロンティアが狭義に右下がりなら, 個人均衡はそれしかない」という主張です. 2の条件は「自分の取り分を下げれば, そのぶん相手の取り分が上がる」ことで, 一物一価の理屈に必要です. NTU のようにフロンティアに水平・垂直な部分があると, 取り分を下げても相手は得をしないので, 取り分がそろうとは限りません. 一方で, フロンティアが直線 (TU) か曲線 (ITU) かは関係なく, この点で TU と ITU に違いはありません.</span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 価格は wedge である</span></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>条件2 ($D_{xy}\left(U_{xy}, V_{xy}\right) = 0$) はフロンティア上の1点を指定する条件なので, フロンティアを1次元でパラメトライズすればこの制約は自動的に満たせます. @galichon2019 はそのパラメータとして **wedge** $W_{xy} = U_{xy} - V_{xy}$, すなわち夫婦の効用の差を使います. 実際, $D_{xy}\left(u, v\right) = 0$ かつ $u - v = w$ を満たす $\left(u, v\right)$ は一意で,</span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>\mathcal{U}_{xy}\left(w\right) = -D_{xy}\left(0, -w\right),</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\qquad</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>\mathcal{V}_{xy}\left(w\right) = -D_{xy}\left(w, 0\right)</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>$${#eq-wedge-param}</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>と閉形式で書けます ($\mathcal{U}_{xy}$ は非減少, $\mathcal{V}_{xy}$ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge $w$ を動かすことはフロンティア上を滑ることに対応し, $w$ が大きいほど男性に有利な点が選ばれます.</span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">**wedge によるパラメトライズ.** 傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' &gt; w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.</span><span class="co">](/static/cetz/itu_wedge.svg)</span>{#fig-itu-wedge width=64% fig-align="center"}</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>ここでカップルのタイプ $xy$ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, $W_{xy}$ がその財の**価格**です. 供給は $\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U_{xy}$, 需要は $\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V_{xy}$ で, 超過需要関数は</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>Z\left(W\right) = \nabla H\left(\mathcal{V}\left(W\right)\right) - \nabla G\left(\mathcal{U}\left(W\right)\right)</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>$${#eq-excess-demand}</span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>です. $W_{xy}$ が上がるとフロンティア上を男性に有利な方向に動くので, 財 $xy$ の供給は増え需要は減ります. さらに次が成り立ちます.</span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>::: {#prp-gross-sub}</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="fu">## 総代替性 (gross substitutes) [@galichon2019]</span></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$W_{xy}$ だけを上げたとき,</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$Z_{xy}\left(W\right)$ は減少する</span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$Z_{x'y'}\left(W\right)$ は, $x = x'$ か $y = y'$ のいずれか一方だけが成り立つとき増加する</span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$x \neq x'$ かつ $y \neq y'$ なら $Z_{x'y'}\left(W\right)$ は変化しない</span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\sum_{x'y'} Z_{x'y'}\left(W\right)$ は減少する</span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>タイプ $y$ の女性にとって $xy$ の条件が悪化すれば他のタイプの男性 $x'$ が相対的に魅力的になり, $Z_{x'y}$ が増える, という直感です. 自分のタイプが関わらない財の価格には反応しません. これは @kelso1982 の総代替性そのもので, ここから存在と一意性が出ます.</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>::: {#thm-gkw-unique}</span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="fu">## 均衡の存在と一意性 [@galichon2019]</span></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>分離可能性と正則条件のもとで, $Z\left(W\right) = 0$ を満たす価格ベクトル $W$ が**一意に存在する**. 対応する集計均衡 $\left(\mu, U, V\right)$ も一意で, $U_{xy} = \mathcal{U}_{xy}\left(W_{xy}\right)$, $V_{xy} = \mathcal{V}_{xy}\left(W_{xy}\right)$, $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$ で与えられる.</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>証明の構造は2つに分かれます. **存在**は構成的で, 超過需要がすべて負になるほど高い初期価格から出発し, 各財の価格を「その財の超過需要をちょうど $0$ にする水準」まで1つずつ下げていく Jacobi 型の反復を回します. 総代替性が, 価格が単調に下がり続けかつ超過需要が負のままであることを保証し, 下に有界なので収束します. **一意性**は, 需要の可逆性に関する既知の結果を使って $Z$ が inverse isotone であること, すなわち $Z\left(W\right) \leq Z\left(\tilde W\right)$ ならば $W \geq \tilde W$ であることに帰着させます <span class="co">[</span><span class="ot">@galichon2019, sec. V.B.2</span><span class="co">]</span>. $Z\left(W\right) = Z\left(\tilde W\right) = 0$ なら両向きの不等式が同時に成り立つので $W = \tilde W$ です.</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>@decker2013 が Choo–Siow について凸最適化で示した存在・一意性は, この定理の TU の場合にあたります. ただし, 均衡を最適化問題の解として書けるのは TU に固有の性質です. 一般の ITU では均衡条件のヤコビ行列が対称にならないため, 均衡条件はどんな最適化問題の一階条件にもなりません <span class="co">[</span><span class="ot">@galichon2024</span><span class="co">]</span>. ITU で一意性を支えているのは, 凸性ではなく総代替性です.</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>これは第 -@sec-frictionless 章で見る対数和 @eq-logsum と選択確率 @eq-logit の関係そのものです.</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## 集計均衡 (aggregate equilibrium) [@galichon2019]</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$\left(\mu_{xy}, U_{xy}, V_{xy}\right)$ が集計均衡であるとは,</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\mu$ が内点のマッチングである ($\mu_{xy} &gt; 0$, $\sum_y \mu_{xy} &lt; n_x$, $\sum_x \mu_{xy} &lt; m_y$)</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**実行可能性**: すべての $x, y$ について $D_{xy}\left(U_{xy}, V_{xy}\right) = 0$</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**市場清算**: $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>条件2がフロンティア上にいることを, 条件3が需給の一致を要求しています.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>集計均衡と個人均衡は次のように結びついています. ここでは $U_{x0} = V_{0y} = 0$ とします.</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>::: {#thm-type-payoffs}</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## 取り分はタイプの組で決まる [@galichon2019]</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>分離可能性を仮定する.</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\left(\mu, U, V\right)$ を集計均衡とし, 各人の効用を</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>   u_i = \max_{y \in \mathcal{Y}_0}\left\{U_{x_i y} + \varepsilon_{iy}\right<span class="sc">\}</span>,</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>   v_j = \max_{x \in \mathcal{X}_0}\left\{V_{x y_j} + \eta_{xj}\right<span class="sc">\}</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>   と定める. このとき, $\left(\mu_{ij}, u_i, v_j\right)$ が個人均衡になるような個人の間のマッチング $\mu_{ij}$ が存在する.</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>すべての $D_{xy}$ が両方の引数について狭義増加 (フロンティアが狭義に右下がり) であるとし, $\left(\mu_{ij}, u_i, v_j\right)$ を任意の個人均衡とする.</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>   U_{xy} = \min_{i : x_i = x}\left(u_i - \varepsilon_{iy}\right),</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>   V_{xy} = \min_{j : y_j = y}\left(v_j - \eta_{xj}\right)</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>   とおくと, 各人の効用は1の式で表され, $\left(U, V\right)$ とそれが定めるタイプの組ごとのマッチングは集計均衡になる. 特に, タイプ $x$ の男性 $i$ とタイプ $y$ の女性 $j$ がマッチしていれば $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ である.</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-type-payoffs)</span>にあります.</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>1は「取り分がタイプの組で決まる個人均衡は常にある」, 2は「フロンティアが狭義に右下がりなら, 個人均衡はそれしかない」という主張です. 2の条件は「自分の取り分を下げれば, そのぶん相手の取り分が上がる」ことで, 一物一価の理屈に必要です. NTU のようにフロンティアに水平・垂直な部分があると, 取り分を下げても相手は得をしないので, 取り分がそろうとは限りません. 一方で, フロンティアが直線 (TU) か曲線 (ITU) かは関係なく, この点で TU と ITU に違いはありません.</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 価格は wedge である</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>条件2 ($D_{xy}\left(U_{xy}, V_{xy}\right) = 0$) はフロンティア上の1点を指定する条件なので, フロンティアを1次元でパラメトライズすればこの制約は自動的に満たせます. @galichon2019 はそのパラメータとして **wedge** $W_{xy} = U_{xy} - V_{xy}$, すなわち夫婦の効用の差を使います. 実際, $D_{xy}\left(u, v\right) = 0$ かつ $u - v = w$ を満たす $\left(u, v\right)$ は一意で,</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\mathcal{U}_{xy}\left(w\right) = -D_{xy}\left(0, -w\right),</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>\mathcal{V}_{xy}\left(w\right) = -D_{xy}\left(w, 0\right)</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>$${#eq-wedge-param}</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>と閉形式で書けます ($\mathcal{U}_{xy}$ は非減少, $\mathcal{V}_{xy}$ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge $w$ を動かすことはフロンティア上を滑ることに対応し, $w$ が大きいほど男性に有利な点が選ばれます.</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">**wedge によるパラメトライズ.** 傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' &gt; w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.</span><span class="co">](/static/cetz/itu_wedge.svg)</span>{#fig-itu-wedge width=64% fig-align="center"}</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>ここでカップルのタイプ $xy$ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, $W_{xy}$ がその財の**価格**です. 供給は $\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U_{xy}$, 需要は $\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V_{xy}$ で, 超過需要関数は</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>Z\left(W\right) = \nabla H\left(\mathcal{V}\left(W\right)\right) - \nabla G\left(\mathcal{U}\left(W\right)\right)</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>$${#eq-excess-demand}</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>です. $W_{xy}$ が上がるとフロンティア上を男性に有利な方向に動くので, 財 $xy$ の供給は増え需要は減ります. さらに次が成り立ちます.</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>::: {#prp-gross-sub}</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="fu">## 総代替性 (gross substitutes) [@galichon2019]</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>$W_{xy}$ だけを上げたとき,</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$Z_{xy}\left(W\right)$ は減少する</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$Z_{x'y'}\left(W\right)$ は, $x = x'$ か $y = y'$ のいずれか一方だけが成り立つとき増加する</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$x \neq x'$ かつ $y \neq y'$ なら $Z_{x'y'}\left(W\right)$ は変化しない</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\sum_{x'y'} Z_{x'y'}\left(W\right)$ は減少する</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>タイプ $y$ の女性にとって $xy$ の条件が悪化すれば他のタイプの男性 $x'$ が相対的に魅力的になり, $Z_{x'y}$ が増える, という直感です. 自分のタイプが関わらない財の価格には反応しません. これは @kelso1982 の総代替性そのもので, ここから存在と一意性が出ます.</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>::: {#thm-gkw-unique}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="fu">## 均衡の存在と一意性 [@galichon2019]</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>分離可能性と正則条件のもとで, $Z\left(W\right) = 0$ を満たす価格ベクトル $W$ が**一意に存在する**. 対応する集計均衡 $\left(\mu, U, V\right)$ も一意で, $U_{xy} = \mathcal{U}_{xy}\left(W_{xy}\right)$, $V_{xy} = \mathcal{V}_{xy}\left(W_{xy}\right)$, $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$ で与えられる.</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>証明の構造は2つに分かれます. **存在**は構成的で, 超過需要がすべて負になるほど高い初期価格から出発し, 各財の価格を「その財の超過需要をちょうど $0$ にする水準」まで1つずつ下げていく Jacobi 型の反復を回します. 総代替性が, 価格が単調に下がり続けかつ超過需要が負のままであることを保証し, 下に有界なので収束します. **一意性**は, 需要の可逆性に関する既知の結果を使って $Z$ が inverse isotone であること, すなわち $Z\left(W\right) \leq Z\left(\tilde W\right)$ ならば $W \geq \tilde W$ であることに帰着させます <span class="co">[</span><span class="ot">@galichon2019, sec. V.B.2</span><span class="co">]</span>. $Z\left(W\right) = Z\left(\tilde W\right) = 0$ なら両向きの不等式が同時に成り立つので $W = \tilde W$ です.</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>@decker2013 が Choo–Siow について凸最適化で示した存在・一意性は, この定理の TU の場合にあたります. ただし, 均衡を最適化問題の解として書けるのは TU に固有の性質です. 一般の ITU では均衡条件のヤコビ行列が対称にならないため, 均衡条件はどんな最適化問題の一階条件にもなりません <span class="co">[</span><span class="ot">@galichon2024</span><span class="co">]</span>. ITU で一意性を支えているのは, 凸性ではなく総代替性です.</span>
 <span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="fu">## TU の場合 {#sec-matching-tu}</span></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>ここまでは一般の ITU を扱ってきました. この節では, 最もよく使われる特殊ケースである TU を取り上げます. TU の距離関数は $D_{xy}\left(u, v\right) = \left(u + v - \Phi_{xy}\right)/2$ なので, 個人均衡の条件2 (ブロッキングペアの不在) は $u_i + v_j \geq \Phi_{x_i y_j}$ という線形の条件になります. 逆に言えば, ITU の安定性は, TU の線形の安定性条件を非線形に置き換えたものです. TU ではこの線形性のおかげで, 安定性が余剰最大化と等価になり, 同類婚と分配についても鋭い結果が得られます. この節は主に @chiappori2017a に基づきます. 同じ話題のより新しいサーベイとして @chiappori2024a があります.</span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="fu">### 安定性 = 余剰最大化</span></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>独身の効用を $0$ に基準化し, $\Phi_{ij} := \Phi_{x_i y_j}$ と略記して, TU の場合の個人均衡を改めて書き下します.</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="fu">## 安定マッチング (TU)</span></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>TU マッチングとは, マッチング $\mu_{ij}$ と利得 $u_i \geq 0$, $v_j \geq 0$ の組 $\left(\mu, u, v\right)$ であって, マッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得は $0$ であるものをいう. これが安定であるとは,</span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>u_i + v_j \geq \Phi_{ij} \qquad \forall \left(i, j\right) \in \mathcal{I} \times \mathcal{J}</span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-stability}</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>が成り立つことをいう.</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>@eq-tu-stability の意味は「ブロッキングペアの不在」です. もしある組で $u_i + v_j &lt; \Phi_{ij}$ なら, $i$ と $j$ は駆け落ちして余剰 $\Phi_{ij}$ を分け合い, 双方が現在の利得より多くを得られてしまいます. @eq-tu-stability は次のようにも書けます.</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>u_i = \max\left<span class="sc">\{</span>0,\ \max_{j \in \mathcal{J}}\left<span class="sc">\{</span>\Phi_{ij} - v_j\right<span class="sc">\}</span>\right<span class="sc">\}</span>.</span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-max}</span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>つまり $v_j$ は「女性 $j$ と結婚するための価格」であり, 各男性は価格表 $v$ を所与として最も得な相手を選びます (女性側も対称). マッチングモデルの背後にあるのは, 誰もがプライステイカーとして入札する完全競争市場です. 移転があるおかげで, どんな相手でも「十分高く入札すれば」獲得できます. 問題はその入札が割に合うかどうかであり, これが以下で見るように補完性の役割につながります.</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>TU マッチング理論の中心的な結果は, 分権的な均衡概念である安定性が, 集計的な最適化問題と正確に等価になることです.</span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>::: {#prp-tu-duality}</span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="fu">## 安定性と余剰最大化の双対性</span></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>TU マッチング $\left(\mu, u, v\right)$ が安定であることは, 次の2条件と同値である.</span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$ は総余剰の最大化問題 (主問題)</span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>\max_{\mu' \geq 0}\ \sum_{i, j} \mu'_{ij}\, \Phi_{ij}</span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t. } \sum_{j} \mu'_{ij} \leq 1,\ \sum_{i} \mu'_{ij} \leq 1</span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-primal}</span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>の解である.</span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\left(u, v\right)$ はその双対問題</span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>\min_{u, v \geq 0}\ \sum_{i} u_i + \sum_{j} v_j</span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t. } u_i + v_j \geq \Phi_{ij}</span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-dual}</span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>の解である.</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>特に, 安定マッチングは常に存在する.</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-tu-duality)</span>にあります.</span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>この定理は @koopmans1957, @shapley1971, @becker1973a に遡るもので, 「TU マッチング理論の最も強力な結果」と呼ばれます. 分権的なゲーム理論的概念 (安定性) と中央集権的な規範的問題 (総余剰の最大化) の等価性という意味で, 厚生経済学の2つの基本定理の類似物になっています. タイプの水準で書けば, 主問題は $\mathcal{M}$ 上で $\sum_{x, y} \mu_{xy}\Phi_{xy}$ を最大化する線形計画 (最適輸送問題) で, 双対変数はタイプごとの利得 $u_x$, $v_y$ です. 連続分布の場合も最適輸送の双対性により同じ結果が成り立ちます. また, 誰が誰とマッチするかは主問題の解として「一般に」一意に定まる一方, 有限人口では分配 $\left(u, v\right)$ は区間の幅でしか決まりません. 互いに完全な代替者がいないため, 交渉の余地が残るからです. 連続分布ではこの余地が消えることを後で見ます.</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="fu">### Becker の同類婚</span></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>余剰最大化との等価性から, 誰と誰が結婚するかについての予測が得られます. 特に関心があるのは, 第 -@sec-search-matching 章で見た同類婚 (assortative mating), すなわち属性の似た者同士が結婚する傾向です. ここではその理論的な基準として, @becker1973a の同類婚の条件を導きます. 以下ではタイプを1次元の実数とし, 余剰を $\Phi\left(x, y\right)$ と関数の形で書きます. 鍵になるのは余剰関数の補完性です.</span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="fu">## 優モジュラ性 (supermodularity)</span></span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>余剰関数 $\Phi$ が強い意味で優モジュラ (strictly supermodular) であるとは, 任意の $x &lt; x'$, $y &lt; y'$ に対して</span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>\Phi\left(x', y'\right) + \Phi\left(x, y\right) &gt; \Phi\left(x', y\right) + \Phi\left(x, y'\right)</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>が成り立つことをいう. $\Phi$ が $C^2$ なら, $\partial^2 \Phi / \partial x \partial y &gt; 0$ (Spence–Mirrlees 条件) が十分条件である. 不等号が逆のとき劣モジュラ (submodular) という.</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>優モジュラ性の経済的な意味は, 「より良い相手を得るために限界的に上乗せできる入札額が, 自分のタイプとともに増える」こと, すなわちタイプ同士が**補完的**であることです.</span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>::: {#prp-pam}</span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="fu">## Becker の同類婚定理</span></span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>$\Phi$ が強い意味で優モジュラなら, 安定マッチングは一意であり, 正の同類婚 (PAM) になる. すなわち, マッチした2組 $\left(x, y\right)$, $\left(x', y'\right)$ について $x &lt; x'$ ならば $y \leq y'$ である. 劣モジュラなら負の同類婚 (NAM) になる.</span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-pam)</span>にあります.</span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を $F$, 女性のそれを $G$ とすると, 結婚する人数が男女で等しいとき, タイプ $x$ の男性の相手 $\varphi\left(x\right)$ は $1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)$ で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, $\Phi$ が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります <span class="co">[</span><span class="ot">@chiappori2016</span><span class="co">]</span>.</span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 ($Q = t_W t_H$) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (@becker1991 の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 ($Q$ が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第 -@sec-search-matching 章で見た @greenwood2016 の定量分析にもつながっています.</span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="fu">## TU の場合 {#sec-matching-tu}</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>ここまでは一般の ITU を扱ってきました. この節では, 最もよく使われる特殊ケースである TU を取り上げます. TU の距離関数は $D_{xy}\left(u, v\right) = \left(u + v - \Phi_{xy}\right)/2$ なので, 個人均衡の条件2 (ブロッキングペアの不在) は $u_i + v_j \geq \Phi_{x_i y_j}$ という線形の条件になります. 逆に言えば, ITU の安定性は, TU の線形の安定性条件を非線形に置き換えたものです. TU ではこの線形性のおかげで, 安定性が余剰最大化と等価になり, 同類婚と分配についても鋭い結果が得られます. この節は主に @chiappori2017a に基づきます. 同じ話題のより新しいサーベイとして @chiappori2024a があります.</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="fu">### 安定性 = 余剰最大化</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>独身の効用を $0$ に基準化し, $\Phi_{ij} := \Phi_{x_i y_j}$ と略記して, TU の場合の個人均衡を改めて書き下します.</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## 安定マッチング (TU)</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>TU マッチングとは, マッチング $\mu_{ij}$ と利得 $u_i \geq 0$, $v_j \geq 0$ の組 $\left(\mu, u, v\right)$ であって, マッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得は $0$ であるものをいう. これが安定であるとは,</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>u_i + v_j \geq \Phi_{ij} \qquad \forall \left(i, j\right) \in \mathcal{I} \times \mathcal{J}</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-stability}</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>が成り立つことをいう.</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>@eq-tu-stability の意味は「ブロッキングペアの不在」です. もしある組で $u_i + v_j &lt; \Phi_{ij}$ なら, $i$ と $j$ は駆け落ちして余剰 $\Phi_{ij}$ を分け合い, 双方が現在の利得より多くを得られてしまいます. @eq-tu-stability は次のようにも書けます.</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>u_i = \max\left<span class="sc">\{</span>0,\ \max_{j \in \mathcal{J}}\left<span class="sc">\{</span>\Phi_{ij} - v_j\right<span class="sc">\}</span>\right<span class="sc">\}</span>.</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-max}</span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>つまり $v_j$ は「女性 $j$ と結婚するための価格」であり, 各男性は価格表 $v$ を所与として最も得な相手を選びます (女性側も対称). マッチングモデルの背後にあるのは, 誰もがプライステイカーとして入札する完全競争市場です. 移転があるおかげで, どんな相手でも「十分高く入札すれば」獲得できます. 問題はその入札が割に合うかどうかであり, これが以下で見るように補完性の役割につながります.</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>TU マッチング理論の中心的な結果は, 分権的な均衡概念である安定性が, 集計的な最適化問題と正確に等価になることです.</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>::: {#prp-tu-duality}</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## 安定性と余剰最大化の双対性</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>TU マッチング $\left(\mu, u, v\right)$ が安定であることは, 次の2条件と同値である.</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mu$ は総余剰の最大化問題 (主問題)</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>\max_{\mu' \geq 0}\ \sum_{i, j} \mu'_{ij}\, \Phi_{ij}</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t. } \sum_{j} \mu'_{ij} \leq 1,\ \sum_{i} \mu'_{ij} \leq 1</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-primal}</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>の解である.</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\left(u, v\right)$ はその双対問題</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>\min_{u, v \geq 0}\ \sum_{i} u_i + \sum_{j} v_j</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>\quad \text{s.t. } u_i + v_j \geq \Phi_{ij}</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>$${#eq-tu-dual}</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>の解である.</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>特に, 安定マッチングは常に存在する.</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-tu-duality)</span>にあります.</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>この定理は @koopmans1957, @shapley1971, @becker1973a に遡るもので, 「TU マッチング理論の最も強力な結果」と呼ばれます. 分権的なゲーム理論的概念 (安定性) と中央集権的な規範的問題 (総余剰の最大化) の等価性という意味で, 厚生経済学の2つの基本定理の類似物になっています. タイプの水準で書けば, 主問題は $\mathcal{M}$ 上で $\sum_{x, y} \mu_{xy}\Phi_{xy}$ を最大化する線形計画 (最適輸送問題) で, 双対変数はタイプごとの利得 $u_x$, $v_y$ です. 連続分布の場合も最適輸送の双対性により同じ結果が成り立ちます. また, 誰が誰とマッチするかは主問題の解として「一般に」一意に定まる一方, 有限人口では分配 $\left(u, v\right)$ は区間の幅でしか決まりません. 互いに完全な代替者がいないため, 交渉の余地が残るからです. 連続分布ではこの余地が消えることを後で見ます.</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="fu">### Becker の同類婚</span></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>余剰最大化との等価性から, 誰と誰が結婚するかについての予測が得られます. 特に関心があるのは, 第 -@sec-search-matching 章で見た同類婚 (assortative mating), すなわち属性の似た者同士が結婚する傾向です. ここではその理論的な基準として, @becker1973a の同類婚の条件を導きます. 以下ではタイプを1次元の実数とし, 余剰を $\Phi\left(x, y\right)$ と関数の形で書きます. 鍵になるのは余剰関数の補完性です.</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a><span class="fu">## 優モジュラ性 (supermodularity)</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>余剰関数 $\Phi$ が強い意味で優モジュラ (strictly supermodular) であるとは, 任意の $x &lt; x'$, $y &lt; y'$ に対して</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>\Phi\left(x', y'\right) + \Phi\left(x, y\right) &gt; \Phi\left(x', y\right) + \Phi\left(x, y'\right)</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>が成り立つことをいう. $\Phi$ が $C^2$ なら, $\partial^2 \Phi / \partial x \partial y &gt; 0$ (Spence–Mirrlees 条件) が十分条件である. 不等号が逆のとき劣モジュラ (submodular) という.</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>優モジュラ性の経済的な意味は, 「より良い相手を得るために限界的に上乗せできる入札額が, 自分のタイプとともに増える」こと, すなわちタイプ同士が**補完的**であることです.</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>::: {#prp-pam}</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="fu">## Becker の同類婚定理</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$\Phi$ が強い意味で優モジュラなら, 安定マッチングは一意であり, 正の同類婚 (PAM) になる. すなわち, マッチした2組 $\left(x, y\right)$, $\left(x', y'\right)$ について $x &lt; x'$ ならば $y \leq y'$ である. 劣モジュラなら負の同類婚 (NAM) になる.</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-pam)</span>にあります.</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を $F$, 女性のそれを $G$ とすると, 結婚する人数が男女で等しいとき, タイプ $x$ の男性の相手 $\varphi\left(x\right)$ は $1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)$ で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, $\Phi$ が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります <span class="co">[</span><span class="ot">@chiappori2016</span><span class="co">]</span>.</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 ($Q = t_W t_H$) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (@becker1991 の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 ($Q$ が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第 -@sec-search-matching 章で見た @greenwood2016 の定量分析にもつながっています.</span>
 <span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="fu">### 余剰の分配</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>第 -@sec-frictionless 章では, 同類婚の原因を余剰の補完性と出会いの分断に分解する @ciscato2025 を扱います.</span>
 <span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 (-@sec-allocation 節) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="fu">### 余剰の分配</span></span>
 <span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>::: {#prp-share}</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 (-@sec-allocation 節) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.</span>
 <span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="fu">## 連続分布のもとでの分配</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>::: {#prp-share}</span>
 <span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>タイプは1次元とし, 男女のタイプの分布は mass point を持たず, その support は区間であるとする. $\Phi$ は $C^1$ 級で強い意味で優モジュラとする. このとき @prp-pam より安定マッチングは PAM であり, 既婚男性のタイプ $x$ に相手のタイプ $\varphi\left(x\right)$ を対応させる増加関数で表せる. 既婚男性のタイプの最小値を $\underline{x}$ とすると, 安定な利得 $\left(u, v\right)$ について $u$ は微分可能で</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="fu">## 連続分布のもとでの分配</span></span>
 <span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right)</span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>$${#eq-envelope}</span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>を満たす. したがって $K = u\left(\underline{x}\right)$ として</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>タイプは1次元とし, 男女のタイプの分布は mass point を持たず, その support は区間であるとする. $\Phi$ は $C^1$ 級で強い意味で優モジュラとする. このとき @prp-pam より安定マッチングは PAM であり, 既婚男性のタイプ $x$ に相手のタイプ $\varphi\left(x\right)$ を対応させる増加関数で表せる. 既婚男性のタイプの最小値を $\underline{x}$ とすると, 安定な利得 $\left(u, v\right)$ について $u$ は微分可能で</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right)</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>$${#eq-envelope}</span>
 <span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>u\left(x\right) = K + \int_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\left(t, \varphi\left(t\right)\right) dt,</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>\qquad</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right)</span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>と書ける. すなわち既婚者の利得は, 定数 $K$ の自由度を除いて一意に定まる.</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>を満たす. したがって $K = u\left(\underline{x}\right)$ として</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>u\left(x\right) = K + \int_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\left(t, \varphi\left(t\right)\right) dt,</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right)</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>と書ける. すなわち既婚者の利得は, 定数 $K$ の自由度を除いて一意に定まる.</span>
 <span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-share)</span>にあります.</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>連続分布のもとでは, どの個人にも「ほぼ完全な代替者」が無数にいるため, 有限人口で残っていた交渉の余地が消え, 分配は定数1つを残して市場で決まってしまうわけです. 残った定数 $K$ も, 男女の人口が非対称なら決まります. たとえば女性側が過剰なら, 結婚できる最下位の女性 $\underline{y}$ のすぐ下に, 彼女とほぼ同じタイプの独身女性が存在します. その独身女性はわずかでも正の利得があれば $\underline{y}$ の夫を「安値で」奪えるので, 均衡では $v\left(\underline{y}\right) = 0$, すなわち限界的な夫婦では夫が余剰を総取りします. しかもこの効果は限界的な夫婦にとどまらず, 定数 $K$ を通じてすべての夫婦の分配を同じ方向にシフトさせます. 性比 (gender ratio) が家計内の交渉力を決める distribution factor になる, という実証研究の理論的基礎がここにあります.</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>証明は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-share)</span>にあります.</span>
 <span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 具体例</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>連続分布のもとでは, どの個人にも「ほぼ完全な代替者」が無数にいるため, 有限人口で残っていた交渉の余地が消え, 分配は定数1つを残して市場で決まってしまうわけです. 残った定数 $K$ も, 男女の人口が非対称なら決まります. たとえば女性側が過剰なら, 結婚できる最下位の女性 $\underline{y}$ のすぐ下に, 彼女とほぼ同じタイプの独身女性が存在します. その独身女性はわずかでも正の利得があれば $\underline{y}$ の夫を「安値で」奪えるので, 均衡では $v\left(\underline{y}\right) = 0$, すなわち限界的な夫婦では夫が余剰を総取りします. しかもこの効果は限界的な夫婦にとどまらず, 定数 $K$ を通じてすべての夫婦の分配を同じ方向にシフトさせます. 性比 (gender ratio) が家計内の交渉力を決める distribution factor になる, という実証研究の理論的基礎がここにあります.</span>
 <span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>各人の効用関数を $q_i Q$ ($q_i$ は私的財, $Q$ は公共財, 価格はともに $1$) とします. 所得 $x$ の男性と所得 $y$ の女性の夫婦は, 次のように2人の効用の和を最大化します.</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 具体例</span></span>
 <span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>\max_{q_W, q_H, Q \geq 0} q_W Q + q_H Q \quad \text{ s.t. } q_W + q_H + Q = x + y.</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>各人の効用関数を $q_i Q$ ($q_i$ は私的財, $Q$ は公共財, 価格はともに $1$) とします. 所得 $x$ の男性と所得 $y$ の女性の夫婦は, 次のように2人の効用の和を最大化します.</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>この問題を解くと, $Q = q_W + q_H = \frac{x+y}{2}$ で, 効用の和の最大値は $\frac{\left(x+y\right)^2}{4}$ です. また, 独身者の問題は次のようになります.</span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>\max_{q, Q \geq 0} qQ \quad \text{ s.t. } q + Q = x.</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>\max_{q_W, q_H, Q \geq 0} q_W Q + q_H Q \quad \text{ s.t. } q_W + q_H + Q = x + y.</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>この問題を解くと, $Q = q_W + q_H = \frac{x+y}{2}$ で, 効用の和の最大値は $\frac{\left(x+y\right)^2}{4}$ です. また, 独身者の問題は次のようになります.</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>この問題を解くと, $Q = q = \frac{x}{2}$ で, 独身の効用は $\frac{x^2}{4}$ です. したがって結婚の余剰は,</span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>\Phi\left(x, y\right) = \frac{\left(x+y\right)^2}{4} - \frac{x^2}{4} - \frac{y^2}{4} = \frac{xy}{2},</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>\max_{q, Q \geq 0} qQ \quad \text{ s.t. } q + Q = x.</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>この問題を解くと, $Q = q = \frac{x}{2}$ で, 独身の効用は $\frac{x^2}{4}$ です. したがって結婚の余剰は,</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>で, $\frac{\partial^2 \Phi}{\partial x \partial y} = \frac{1}{2} &gt; 0$ なので, 強い意味で優モジュラです. したがって @prp-pam より, 安定マッチングは PAM になります.</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>次に人口を決めます. 男性の所得は $\left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ 上に密度 $1$ で一様に, 女性の所得は $\left<span class="co">[</span><span class="ot">1 - \varepsilon, 2\right</span><span class="co">]</span>$ 上に密度 $1$ で一様に分布するとします. 男性の人口は $1$, 女性の人口は $1 + \varepsilon$ で, 女性が $\varepsilon &gt; 0$ だけ多い状況です. 以下の $u\left(x\right)$, $v\left(y\right)$ はこれまでどおり結婚の利得, すなわち余剰 $\Phi$ のうちの取り分で, 独身の効用はすでに差し引いてあります. 安定な分配は次の3段階で求まります.</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>\Phi\left(x, y\right) = \frac{\left(x+y\right)^2}{4} - \frac{x^2}{4} - \frac{y^2}{4} = \frac{xy}{2},</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>で, $\frac{\partial^2 \Phi}{\partial x \partial y} = \frac{1}{2} &gt; 0$ なので, 強い意味で優モジュラです. したがって @prp-pam より, 安定マッチングは PAM になります.</span>
 <span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>誰が誰と結婚するか. 余剰は常に正なので, 少ない側の男性は全員結婚します. @prp-pam より所得の順位で上から組むので, 結婚する女性は所得の高い方から決定するため, $\left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ の女性で, $\varphi\left(x\right) = x$ です. $\left[1 - \varepsilon, 1\right)$ の女性は独身にとどまります.</span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>包絡線の式を積分する. $\frac{\partial \Phi}{\partial x} = \frac{y}{2}$, $\varphi\left(x\right) = x$ なので, @eq-envelope より,</span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>   u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) = \frac{x}{2}.</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>次に人口を決めます. 男性の所得は $\left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ 上に密度 $1$ で一様に, 女性の所得は $\left<span class="co">[</span><span class="ot">1 - \varepsilon, 2\right</span><span class="co">]</span>$ 上に密度 $1$ で一様に分布するとします. 男性の人口は $1$, 女性の人口は $1 + \varepsilon$ で, 女性が $\varepsilon &gt; 0$ だけ多い状況です. 以下の $u\left(x\right)$, $v\left(y\right)$ はこれまでどおり結婚の利得, すなわち余剰 $\Phi$ のうちの取り分で, 独身の効用はすでに差し引いてあります. 安定な分配は次の3段階で求まります.</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>誰が誰と結婚するか. 余剰は常に正なので, 少ない側の男性は全員結婚します. @prp-pam より所得の順位で上から組むので, 結婚する女性は所得の高い方から決定するため, $\left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ の女性で, $\varphi\left(x\right) = x$ です. $\left[1 - \varepsilon, 1\right)$ の女性は独身にとどまります.</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>包絡線の式を積分する. $\frac{\partial \Phi}{\partial x} = \frac{y}{2}$, $\varphi\left(x\right) = x$ なので, @eq-envelope より,</span>
 <span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>   既婚男性の最低所得は $\underline{x} = 1$ なので, @prp-share の式は</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>   u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) = \frac{x}{2}.</span>
 <span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>   u\left(x\right) = K + \frac{x^2 - 1}{4},</span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>   v\left(x\right) = \Phi\left(x, x\right) - u\left(x\right) = \frac{x^2 + 1}{4} - K</span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>   となります. ここで $v\left(x\right)$ は所得 $x$ の妻の利得です. ただし, 包絡線の式は「安定マッチングなら利得はこの形になる」という必要条件なので, この利得のもとでブロッキングペアが本当にないかを確かめます. @eq-tu-stability の条件を代入すると</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>   既婚男性の最低所得は $\underline{x} = 1$ なので, @prp-share の式は</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>   u\left(x\right) = K + \frac{x^2 - 1}{4},</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>   \qquad</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>   v\left(x\right) = \Phi\left(x, x\right) - u\left(x\right) = \frac{x^2 + 1}{4} - K</span>
 <span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>   u\left(x\right) + v\left(y\right) - \Phi\left(x, y\right) = \frac{x^2 + y^2}{4} - \frac{xy}{2} = \frac{\left(x - y\right)^2}{4} \geq 0</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>   となります. ここで $v\left(x\right)$ は所得 $x$ の妻の利得です. ただし, 包絡線の式は「安定マッチングなら利得はこの形になる」という必要条件なので, この利得のもとでブロッキングペアが本当にないかを確かめます. @eq-tu-stability の条件を代入すると</span>
 <span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>   $$</span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>   なので, 確かに成り立ちます. なお, この条件には $K$ が現れないので, 既婚者どうしの条件は $K$ を決めません. $K$ を決めるのは, 次のステップの独身者との条件です.</span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$K$ を決める. 残るのは独身女性とのブロックです. 所得 $y' &lt; 1$ の独身女性の利得は $0$ なので, 男性 $1$ と彼女がブロッキングペアにならない条件は $u\left(1\right) \geq \Phi\left(1, y'\right) = y'/2$ です. $y'$ はいくらでも $1$ に近くとれるので $u\left(1\right) \geq 1/2$ が必要です. 一方, 夫婦 $\left(1, 1\right)$ では $u\left(1\right) + v\left(1\right) = \Phi\left(1, 1\right) = 1/2$ かつ $v\left(1\right) \geq 0$ です. よって $K = u\left(1\right) = 1/2$, $v\left(1\right) = 0$ で, 限界的な夫婦では夫が余剰を総取りします. このとき他の男性 $x$ についても $u\left(x\right) - \Phi\left(x, y'\right) \geq \left(x - 1\right)^2/4 \geq 0$ なので, 独身女性とのブロックは起きません.</span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>独身のときの効用を足した総効用 $\bar{u}\left(x\right) = u\left(x\right) + x^2/4$, $\bar{v}\left(y\right) = v\left(y\right) + y^2/4$ で書くと, 結果は</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>   u\left(x\right) + v\left(y\right) - \Phi\left(x, y\right) = \frac{x^2 + y^2}{4} - \frac{xy}{2} = \frac{\left(x - y\right)^2}{4} \geq 0</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>   なので, 確かに成り立ちます. なお, この条件には $K$ が現れないので, 既婚者どうしの条件は $K$ を決めません. $K$ を決めるのは, 次のステップの独身者との条件です.</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$K$ を決める. 残るのは独身女性とのブロックです. 所得 $y' &lt; 1$ の独身女性の利得は $0$ なので, 男性 $1$ と彼女がブロッキングペアにならない条件は $u\left(1\right) \geq \Phi\left(1, y'\right) = y'/2$ です. $y'$ はいくらでも $1$ に近くとれるので $u\left(1\right) \geq 1/2$ が必要です. 一方, 夫婦 $\left(1, 1\right)$ では $u\left(1\right) + v\left(1\right) = \Phi\left(1, 1\right) = 1/2$ かつ $v\left(1\right) \geq 0$ です. よって $K = u\left(1\right) = 1/2$, $v\left(1\right) = 0$ で, 限界的な夫婦では夫が余剰を総取りします. このとき他の男性 $x$ についても $u\left(x\right) - \Phi\left(x, y'\right) \geq \left(x - 1\right)^2/4 \geq 0$ なので, 独身女性とのブロックは起きません.</span>
 <span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>\bar{u}\left(x\right) = \frac{x^2}{2} + \frac{1}{4}, \qquad</span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>\bar{v}\left(y\right) = \frac{y^2}{2} - \frac{1}{4}</span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>です.</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>独身のときの効用を足した総効用 $\bar{u}\left(x\right) = u\left(x\right) + x^2/4$, $\bar{v}\left(y\right) = v\left(y\right) + y^2/4$ で書くと, 結果は</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>\bar{u}\left(x\right) = \frac{x^2}{2} + \frac{1}{4}, \qquad</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>\bar{v}\left(y\right) = \frac{y^2}{2} - \frac{1}{4}</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>比較のために, 男女が同数 ($\varepsilon = 0$) の場合を考えます. ステップ1と2はそのまま成り立ちますが, ステップ3の独身女性がいないので, $K$ への制約は $u\left(1\right) = K \geq 0$ と $v\left(1\right) = 1/2 - K \geq 0$ だけです. つまり $K \in \left<span class="co">[</span><span class="ot">0, 1/2\right</span><span class="co">]</span>$ のどれでも安定で, 総効用は $\bar{u}\left(x\right) = x^2/2 + \left(K - 1/4\right)$, $\bar{v}\left(y\right) = y^2/2 - \left(K - 1/4\right)$ です. 夫婦の所得は等しいので, $K = 1/4$ の等分 $\bar{u} = \bar{v} = x^2/2$ が自然な基準になります. 女性がわずかでも多いと $K$ はこの区間の上端 $1/2$ に決まり, 等分と比べてすべての夫が妻から $1/4$ の移転を受け取ります. この $1/4$ は $\varepsilon$ の大きさによりません. 女性側のごくわずかな超過が, すべての夫婦の分配を区間の端まで動かしたわけです.</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>です.</span>
 <span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>さらにこの例は, 社会規範との緊張も教えてくれます. かりに「妻は私的財の割合 $k$ を受け取る」という外生的な分配ルール (規範) を課すとします. 私的財の合計を $s = q_W + q_H$ とすると, 妻の効用は $k s Q$, 夫の効用は $\left(1 - k\right) s Q$ で, どちらも $sQ$ に比例します. したがって規範のもとでも公共財は $s = Q = \left(x + y\right)/2$ に選ばれ, 所得 $x$ どうしの夫婦では妻の総効用が $k x^2$, 夫の総効用が $\left(1 - k\right) x^2$ になります. 安定な分配は上で求めた1つしかないので, 規範どおりの分配が安定であるためには, すべての $y \in \left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ で $k y^2 = y^2/2 - 1/4$ が成り立つ必要があります. そのような $k$ はないので, どんな $k$ に対しても, 規範を破って分け方を交渉し直せば双方が得をするペア (ブロッキングペア) が存在します. 男女が同数なら $k = 1/2$ は安定な分配の1つなので, ここでも女性のわずかな超過が効いています. 市場で決まる分配と整合しない規範は, 夫婦双方の合意による「再交渉」の圧力に常にさらされるということです.</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>比較のために, 男女が同数 ($\varepsilon = 0$) の場合を考えます. ステップ1と2はそのまま成り立ちますが, ステップ3の独身女性がいないので, $K$ への制約は $u\left(1\right) = K \geq 0$ と $v\left(1\right) = 1/2 - K \geq 0$ だけです. つまり $K \in \left<span class="co">[</span><span class="ot">0, 1/2\right</span><span class="co">]</span>$ のどれでも安定で, 総効用は $\bar{u}\left(x\right) = x^2/2 + \left(K - 1/4\right)$, $\bar{v}\left(y\right) = y^2/2 - \left(K - 1/4\right)$ です. 夫婦の所得は等しいので, $K = 1/4$ の等分 $\bar{u} = \bar{v} = x^2/2$ が自然な基準になります. 女性がわずかでも多いと $K$ はこの区間の上端 $1/2$ に決まり, 等分と比べてすべての夫が妻から $1/4$ の移転を受け取ります. この $1/4$ は $\varepsilon$ の大きさによりません. 女性側のごくわずかな超過が, すべての夫婦の分配を区間の端まで動かしたわけです.</span>
 <span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>最後に理論の限界にも触れておきます. 決定論的な摩擦なしマッチングでは, 性比が1をまたぐ瞬間に分配が不連続にジャンプするなど, 予測が鋭すぎる面があります. 同じタイプの中に観察できない選好のばらつきを入れると, この不連続性は滑らかになり, モデルはそのまま推定可能な形になります. -@sec-matching-aggregate 節の集計均衡は, まさにこのばらつきを入れたものでした. ショックを第一種極値分布にとった特殊ケースが @choo2006 と, その識別を一般化した @galichon2022 の枠組みです.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>さらにこの例は, 社会規範との緊張も教えてくれます. かりに「妻は私的財の割合 $k$ を受け取る」という外生的な分配ルール (規範) を課すとします. 私的財の合計を $s = q_W + q_H$ とすると, 妻の効用は $k s Q$, 夫の効用は $\left(1 - k\right) s Q$ で, どちらも $sQ$ に比例します. したがって規範のもとでも公共財は $s = Q = \left(x + y\right)/2$ に選ばれ, 所得 $x$ どうしの夫婦では妻の総効用が $k x^2$, 夫の総効用が $\left(1 - k\right) x^2$ になります. 安定な分配は上で求めた1つしかないので, 規範どおりの分配が安定であるためには, すべての $y \in \left<span class="co">[</span><span class="ot">1, 2\right</span><span class="co">]</span>$ で $k y^2 = y^2/2 - 1/4$ が成り立つ必要があります. そのような $k$ はないので, どんな $k$ に対しても, 規範を破って分け方を交渉し直せば双方が得をするペア (ブロッキングペア) が存在します. 男女が同数なら $k = 1/2$ は安定な分配の1つなので, ここでも女性のわずかな超過が効いています. 市場で決まる分配と整合しない規範は, 夫婦双方の合意による「再交渉」の圧力に常にさらされるということです.</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>最後に理論の限界にも触れておきます. 決定論的な摩擦なしマッチングでは, 性比が1をまたぐ瞬間に分配が不連続にジャンプするなど, 予測が鋭すぎる面があります. 同じタイプの中に観察できない選好のばらつきを入れると, この不連続性は滑らかになり, モデルはそのまま推定可能な形になります. -@sec-matching-aggregate 節の集計均衡は, まさにこのばらつきを入れたものでした. ショックを第一種極値分布にとった特殊ケースが @choo2006 と, その識別を一般化した @galichon2022 の枠組みです.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});

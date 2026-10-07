@@ -322,9 +322,53 @@ Step3 (最適 \\\Rightarrow\\ 安定): \\\mu\\ を主問題の解とする. 線�
 
 と書ける. 期 \\\tau\\ の効用にかかる重みは \\\mu\_{j\tau}\\ であり, 定義から \\\mu\_{j\tau} = \mu\_{j, \tau - 1} + \nu\_{j\tau}\\ が成り立つ. これが [式 eq-lc-weight](#eq-lc-weight) である. 外部オプションの価値 \\\tilde{V}\_{jt}\\ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが ([Theloudis et al. 2025](#ref-theloudis2025)), 効用にかかる重みの動きは変わらない.
 
-## A.6 サーチモデルの証明
+## A.6 ロジットの選択確率と対数和
 
-### A.6.1 留保賃金, reservation wage
+結婚の部の frictionless marriage の章で述べた, ロジットの基本命題を証明します. いずれも第一種極値分布の分布関数 \\F\left(\varepsilon\right) = e^{-e^{-\varepsilon}}\\ を直接使う計算です.
+
+まず [命題 prp-logit](#prp-logit) (ロジットの選択確率) を示します.
+
+*Proof*. \\\varepsilon\_{ni} = s\\ で条件付けると, 選択肢 \\i\\ が選ばれるのは \\\varepsilon\_{nj} \< s + V\_{ni} - V\_{nj}\\ がすべての \\j \neq i\\ で成り立つときである. \\\varepsilon\_{nj}\\ は独立なので, 条件付き確率は分布関数の積になる.
+
+\\ \text{Prob}\left(\text{choose } i \mid \varepsilon\_{ni} = s\right) = \prod\_{j \neq i} e^{-e^{-\left(s + V\_{ni} - V\_{nj}\right)}}. \\
+
+これを \\\varepsilon\_{ni}\\ の密度で積分すると
+
+\\ P\_{ni} = \int\_{-\infty}^{\infty} \left(\prod\_{j \neq i} e^{-e^{-\left(s + V\_{ni} - V\_{nj}\right)}}\right) e^{-s} e^{-e^{-s}}\\ ds. \\
+
+\\V\_{ni} - V\_{ni} = 0\\ に注意すると, 最後の因子 \\e^{-e^{-s}}\\ は積の \\j = i\\ の項として取り込める. 指数をまとめると
+
+\\ P\_{ni} = \int\_{-\infty}^{\infty} \exp\left(-\sum\_{j} e^{-\left(s + V\_{ni} - V\_{nj}\right)}\right) e^{-s}\\ ds = \int\_{-\infty}^{\infty} \exp\left(-e^{-s} \sum\_{j} e^{-\left(V\_{ni} - V\_{nj}\right)}\right) e^{-s}\\ ds. \\
+
+\\t = e^{-s}\\ と置換する (\\dt = -e^{-s}\\ ds\\ で, \\s \colon -\infty \to \infty\\ のとき \\t \colon \infty \to 0\\).
+
+\\ P\_{ni} = \int\_{0}^{\infty} \exp\left(-t \sum\_{j} e^{-\left(V\_{ni} - V\_{nj}\right)}\right) dt = \left\[\frac{\exp\left(-t \sum\_{j} e^{-\left(V\_{ni} - V\_{nj}\right)}\right)}{-\sum\_{j} e^{-\left(V\_{ni} - V\_{nj}\right)}}\right\]\_{0}^{\infty} = \frac{1}{\sum\_{j} e^{-\left(V\_{ni} - V\_{nj}\right)}} = \frac{e^{V\_{ni}}}{\sum\_{j} e^{V\_{nj}}}. \\
+
+次に [命題 prp-gumbel-max](#prp-gumbel-max) (最大効用の分布) を示します.
+
+*Proof*. 独立性より, 最大値の分布関数は各分布関数の積である.
+
+\\ \text{Prob}\left(\max_j U_j \leq x\right) = \prod\_{j} \text{Prob}\left(\varepsilon_j \leq x - V_j\right) = \prod\_{j} e^{-e^{-\left(x - V_j\right)}} = \exp\left(-\sum_j e^{-\left(x - V_j\right)}\right). \\
+
+指数の中を整理すると
+
+\\ \sum_j e^{-\left(x - V_j\right)} = e^{-x} \sum_j e^{V_j} = e^{-\left(x - \ln \sum_j e^{V_j}\right)} \\
+
+となり, これは位置パラメータ \\\ln \sum_j e^{V_j}\\ の第一種極値分布の分布関数である.
+
+[命題 prp-logsum](#prp-logsum) (対数和公式) は, ここからほぼ直ちに従います.
+
+*Proof*. Step1: 標準的な第一種極値分布の平均が \\\gamma\\ であることを示す. \\\varepsilon\\ の密度 \\f\left(s\right) = e^{-s} e^{-e^{-s}}\\ に対して \\t = e^{-s}\\ と置換すると (\\s = -\ln t\\),
+
+\\ \mathbb{E}\left\[\varepsilon\right\] = \int\_{-\infty}^{\infty} s\\ e^{-s} e^{-e^{-s}}\\ ds = \int\_{0}^{\infty} \left(-\ln t\right) e^{-t}\\ dt = \gamma. \\
+
+最後の等号はガンマ関数の微分に関する既知の結果 \\\int_0^{\infty} e^{-t} \ln t\\ dt = \Gamma'\left(1\right) = -\gamma\\ による.
+
+Step2: [命題 prp-gumbel-max](#prp-gumbel-max) より, \\\max_j U_j\\ は「標準的な第一種極値分布に従う確率変数に定数 \\\ln \sum_j e^{V_j}\\ を足したもの」と同じ分布を持つ. よって期待値は \\\ln \sum_j e^{V_j} + \gamma\\ である.
+
+## A.7 サーチモデルの証明
+
+### A.7.1 留保賃金, reservation wage
 
 *Proof*. Step1 (存在と一意性): [式 eq-mccall](#eq-mccall) の右辺は [sec-apdx-contraction](#sec-apdx-contraction) 節で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 \\V\\ が一意に存在する.
 
@@ -338,7 +382,7 @@ Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入す
 
 これは, 左辺が \\w^\*\\ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
 
-### A.6.2 留保賃金の比較静学
+### A.7.2 留保賃金の比較静学
 
 *Proof*.
 
@@ -360,7 +404,7 @@ Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入す
 
 2.  右辺の積分は \\\int \max\left\\ w - w^\*, 0 \right\\ dF\left(w\right)\\ と書け, \\\max\left\\ w - w^\*, 0 \right\\\\ は \\w\\ の凸関数である. Rothschild and Stiglitz ([1970](#ref-rothschild1970)) の定理 ([thm-mps](#thm-mps)) より, 平均保存的な広がりは凸関数の期待値を下げない. したがって右辺は上方 (少なくとも同水準) にシフトし, [式 eq-reservation](#eq-reservation) の解 \\w^\*\\ は上がる.
 
-## A.7 留保賃金方程式のオプション価値項
+## A.8 留保賃金方程式のオプション価値項
 
 サーチ理論の章の [命題 prp-mccall-cs](#prp-mccall-cs) (留保賃金の比較静学) では, 留保賃金方程式のオプション価値項
 
@@ -410,7 +454,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\H\\ が \\x\\ について非増加であることは \\H'\left(x\right) \leq 0\\ から, 凸であることは \\H'\left(x\right) = -\left(1 - F\left(x\right)\right)\\ が \\x\\ について非減少であることから分かります. なお [命題 prp-mccall-cs](#prp-mccall-cs) の (2) で使うのは, 同じ被積分関数 \\\max\left\\w - x, 0\right\\\\ が \\w\\ について凸であるという別の性質で, そちらは平均保存的な広がりのもとでの期待値の単調性から従います.
 
-## A.8 平均保存的な広がりと凸順序
+## A.9 平均保存的な広がりと凸順序
 
 [命題 prp-mccall-cs](#prp-mccall-cs) の (2) は, 「オファー分布の平均が同じでも分散が大きければ留保賃金は上がる」という主張でした. 証明では, 待つことのオプション価値 \\\mathbb{E}\left\[\max\left\\w - w^\*, 0\right\\\right\]\\ が被積分関数の凸性ゆえに広がりとともに増える, という事実を使っていました.
 
@@ -428,7 +472,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 残りの向きは非自明である. 2 \\\Rightarrow\\ 1 は, 与えられた凸順序を実現する結合の存在を主張するもので, Strassen の定理による ([Strassen 1965](#ref-strassen1965)). 2 \\\Leftrightarrow\\ 3 は部分積分による書き換えで, Rothschild and Stiglitz ([1970](#ref-rothschild1970)) にある.
 
-## A.9 標本統計量の影響関数
+## A.10 標本統計量の影響関数
 
 [sec-md](#sec-md) 節 のターゲットは, 労働時間の平均 \\\bar{h}\\ と標準偏差 \\s_h\\, 対数月収の標準偏差 \\s_y\\, 両者の相関 \\r\_{hy}\\, 40時間ちょうどの割合 \\\bar{d}\\ の5本でした. 標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. その分散共分散行列をデルタ法で導きます. 出発点は, 個人 \\i\\ から作れる6つの量です.
 
@@ -470,11 +514,11 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 実装では母数を標本の値に置き換えて \\\hat\xi_i\\ を作り, その標本分散共分散を \\N\\ で割ります ([式 eq-ls-vhat](#eq-ls-vhat)).
 
-## A.10 Goussé, Jacquemet, Robin (2017) の式の導出
+## A.11 Goussé, Jacquemet, Robin (2017) の式の導出
 
 [sec-search-matching](#sec-search-matching) 章 の Goussé et al. ([2017](#ref-gousse2017)) のモデルについて, 本文で結果だけを示した式を導きます. 記号は本文のとおりで, 男性のタイプを \\i\\, 女性のタイプを \\j\\, マッチの質を \\z\\ とし, 混乱の恐れがないところではタイプの引数を省きます.
 
-### A.10.1 コミットメントのない結婚の価値
+### A.11.1 コミットメントのない結婚の価値
 
 まず, コミットメントのない結婚の純価値を与える [式 eq-gousse-nocommit](#eq-gousse-nocommit) を, 既婚者の価値の HJB 方程式 [式 eq-gousse-married](#eq-gousse-married) から導きます. コミットメントがないので, 契約の価値 \\W_m\left(i, j, z\right)\\ は継続価値 \\V_m^1\left(i, j, z\right)\\ に等しくなければなりません. 以下ではタイプの引数 \\\left(i, j\right)\\ を省き, \\u_m = u_m\left(i, j, z\right)\\ と書きます. [式 eq-gousse-married](#eq-gousse-married) に \\W_m = V_m^1\left(z\right)\\ を代入した
 
@@ -490,7 +534,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) - r V_m^0. \\
 
-### A.10.2 余剰の方程式
+### A.11.2 余剰の方程式
 
 本文の間接効用の特定化 \\\psi_i\left(R, q\right) = q\left(R - A_i\right)/B_i\\ のもとで, 夫婦のフロー効用は \\u_m = z F\_{ij}\left(R_m - A_i\right)/B_i\\, \\u_f = z F\_{ij}\left(R_f - A_j\right)/B_j\\ です. 価格指数で重みづけて足すと
 
@@ -506,7 +550,7 @@ Step4 (密度を仮定しない場合): \\F\\ が密度を持たなくても結�
 
 \\ \left(r + \delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+} dG\left(z'\right) \\
 
-### A.10.3 家事時間の効率性条件
+### A.11.3 家事時間の効率性条件
 
 夫婦は Nash 交渉で家事時間 \\\left(d_m, d_f\right)\\ と移転 \\\left(t_m, t_f\right)\\ を選びます. TU のもとでは Nash 交渉の解は「まず余剰 \\S\_{ij}\left(z\right)\\ を最大化し, 次にそれを [式 eq-apdx-nash-split](#eq-apdx-nash-split) の比で分ける」と2段階に分かれます. 余剰の方程式で \\\left(d_m, d_f\right)\\ に依存するのは今期のフロー \\z F\_{ij}\left(d_m, d_f\right) X\_{ij}\left(d_m, d_f\right)\\ だけです. 独身の価値 \\V_m^0, V_f^0\\ は結婚市場の状態で決まる所与の量であり, 継続価値の項は引き直された \\z'\\ のもとで改めて選ばれる配分の価値なので, 今期の家事時間には依存しません. 移転は \\X\_{ij}\\ に入らないので, 家事時間の問題は
 
@@ -534,7 +578,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 と閉じた形で決まります (女性も同様).
 
-### A.10.4 独身の価値
+### A.11.4 独身の価値
 
 独身男性の HJB 方程式 [式 eq-gousse-single](#eq-gousse-single) の両辺を \\B_i\\ 倍し, 正の部分に [式 eq-apdx-nash-split](#eq-apdx-nash-split) を使うと
 
@@ -542,7 +586,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 となります. ここで \\\bar{S}\_{ij} := \int S\_{ij}\left(z\right)^{+} dG\left(z\right)\\ は正の部分の期待余剰です. 女性側は \\\beta\\ を \\1 - \beta\\ に, \\n_f\\ を \\n_m\\ に替えれば同じ形です. 余剰の方程式と合わせると, \\\left(S\_{ij}, V_m^0, V_f^0\right)\\ はタイプの組ごとに連立する線形の積分方程式系になります.
 
-### A.10.5 Sharing rule
+### A.11.5 Sharing rule
 
 夫が受け取る純私的支出のシェアを \\\beta\_{ij}\left(z\right) := B_i u_m = \left(R_m - A_i\right) / X\_{ij}\\ と定義します. フロー効用の式から \\B_i u_m = z F\_{ij}\left(R_m - A_i\right)\\ なので, \\\beta\_{ij}\left(z\right) = B_i u_m / \left(z F\_{ij} X\_{ij}\right)\\ です. \\B_i u_m\\ は2通りに書けます. 男性の [式 eq-gousse-nocommit](#eq-gousse-nocommit) に [式 eq-apdx-nash-split](#eq-apdx-nash-split) を入れると
 
@@ -562,7 +606,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 です. 第1項が Nash ウェイト, 第2項が外部機会の差で, 分母に \\z\\ が入るので同じタイプの夫婦でも \\z\\ が高いほどシェアは \\\beta\\ に近づきます. 外部機会の差はフローの水準として一定なのに, 分けるべきパイ \\z F\_{ij} X\_{ij}\\ が大きくなるからです.
 
-### A.10.6 推定の手順
+### A.11.6 推定の手順
 
 本文で3段階にまとめた推定手順を, 式のレベルで説明します. 論文の本文 6.3 節, 付録 B (識別), 付録 C (推定), 付録 D (数値計算) に基づきます ([Goussé et al. 2017](#ref-gousse2017)). 以下では夫婦の家庭内生産のパラメータを本文どおり \\\left(D_m, D_f, K_m, K_f\right)\\, 独身のものを \\\left(D_m^0, D_f^0, K_m^0, K_f^0\right)\\ と書きます. \\F\_{ij}\\ はマッチの質 \\z\\ を掛ける前の夫婦の生産 (均衡での値) を表します. 割引率 \\r\\ は推定の対象ではなく, 所与として扱います.
 
@@ -738,9 +782,9 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 **まとめ.** 3段階の役割を整理すると, 第1段階はモデルの価値関数を使わずにフローとストックだけから \\\left(\xi, \delta, \alpha\_{ij}\right)\\ を出し, 第2段階は時間配分から選好・生産・交渉のパラメータを出し, 第3段階は「観察されたマッチング確率を再現する公共財の質」として \\Z\_{ij}\\ を出します. 3つを結ぶのが, \\\alpha\_{ij}\\ を与えれば独身の価値が線形方程式 [式 eq-gousse-fredholm](#eq-gousse-fredholm) で解ける, という移転可能効用モデルの性質です.
 
-## A.11 出生モデルの証明
+## A.12 出生モデルの証明
 
-### A.11.1 閉形式解と賃金の効果
+### A.12.1 閉形式解と賃金の効果
 
 *Proof*. \\h = \left(\theta + e\right)^{\gamma}\\ を代入すると, 目的関数は \\\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)\\ となる. 予算制約より \\c = w - n\left(\phi w + p e\right)\\.
 
@@ -754,7 +798,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 比較静学は式から直ちに従う. \\w\\ が上がると分母の \\\phi - p\theta/w\\ が大きくなるので \\n\\ は減少し, \\\gamma \phi w - p \theta\\ が大きくなるので \\e\\ は増加する.
 
-### A.11.2 女性の賃金と出生
+### A.12.2 女性の賃金と出生
 
 *Proof*. [式 eq-outsource-n](#eq-outsource-n) を \\w_f\\ で微分すると, \\\partial \pi / \partial w_f = \left(1 - s\right) \phi\\ より
 

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='360.00pt' height='288.00pt' viewBox='0 0 360.00 288.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHwzNjAuMDB8MC4wMHwyODguMDA='>
+    <rect x='0.00' y='0.00' width='360.00' height='288.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwzNjAuMDB8MC4wMHwyODguMDA=)'>
+<rect x='0.00' y='0.00' width='360.00' height='288.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpMzkuOTN8MzU0LjUyfDIyLjE2fDIyOS44OQ=='>
+    <rect x='39.93' y='22.16' width='314.59' height='207.73' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMzkuOTN8MzU0LjUyfDIyLjE2fDIyOS44OQ==)'>
+<polyline points='39.93,229.89 354.52,229.89 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='39.93,178.94 354.52,178.94 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='39.93,127.98 354.52,127.98 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='39.93,77.03 354.52,77.03 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='39.93,26.08 354.52,26.08 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
+<text x='61.62' y='33.21' text-anchor='middle' style='font-size: 8.54px;fill: #4D4D4D; font-family: "Arial";' textLength='36.53px' lengthAdjust='spacingAndGlyphs'>A = B = C</text>
+<text x='115.86' y='33.21' text-anchor='middle' style='font-size: 8.54px;fill: #4D4D4D; font-family: "Arial";' textLength='36.23px' lengthAdjust='spacingAndGlyphs'>A ≠ B = C</text>
+<text x='170.10' y='33.21' text-anchor='middle' style='font-size: 8.54px;fill: #4D4D4D; font-family: "Arial";' textLength='35.94px' lengthAdjust='spacingAndGlyphs'>A ≠ B ≠ C</text>
+<polyline points='61.62,51.55 115.86,51.55 170.10,51.55 224.34,51.55 278.58,51.55 332.82,51.55 ' style='stroke-width: 1.71; stroke: #7F7F7F; stroke-dasharray: 2.28,6.83; stroke-linecap: butt;' />
+<polyline points='61.62,51.55 115.86,100.55 170.10,136.91 224.34,158.38 278.58,169.37 332.82,174.60 ' style='stroke-width: 1.71; stroke: #107895; stroke-linecap: butt;' />
+<polyline points='61.62,51.55 115.86,100.55 170.10,119.40 224.34,125.43 278.58,127.23 332.82,127.76 ' style='stroke-width: 1.71; stroke: #9A2515; stroke-dasharray: 9.10,9.10; stroke-linecap: butt;' />
+<polygon points='58.92,54.25 64.32,54.25 64.32,48.85 58.92,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<polygon points='113.16,54.25 118.56,54.25 118.56,48.85 113.16,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<polygon points='167.40,54.25 172.80,54.25 172.80,48.85 167.40,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<polygon points='221.64,54.25 227.05,54.25 227.05,48.85 221.64,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<polygon points='275.88,54.25 281.29,54.25 281.29,48.85 275.88,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<polygon points='330.12,54.25 335.53,54.25 335.53,48.85 330.12,48.85 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<circle cx='61.62' cy='51.55' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<circle cx='115.86' cy='100.55' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<circle cx='170.10' cy='136.91' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<circle cx='224.34' cy='158.38' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<circle cx='278.58' cy='169.37' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<circle cx='332.82' cy='174.60' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<polygon points='61.62,47.35 65.26,53.65 57.98,53.65 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<polygon points='115.86,96.35 119.50,102.65 112.22,102.65 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<polygon points='170.10,115.20 173.74,121.50 166.46,121.50 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<polygon points='224.34,121.23 227.98,127.53 220.70,127.53 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<polygon points='278.58,123.03 282.22,129.33 274.95,129.33 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<polygon points='332.82,123.56 336.46,129.87 329.19,129.87 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+</g>
+<g clip-path='url(#cpMC4wMHwzNjAuMDB8MC4wMHwyODguMDA=)'>
+<text x='34.99' y='233.04' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='12.72px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='34.99' y='182.09' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>10%</text>
+<text x='34.99' y='131.13' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>20%</text>
+<text x='34.99' y='80.18' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>30%</text>
+<text x='34.99' y='29.23' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>40%</text>
+<text x='61.62' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='115.86' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='170.10' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='224.34' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='278.58' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text x='332.82' y='241.12' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>6</text>
+<text x='197.22' y='255.04' text-anchor='middle' style='font-size: 9.90px; font-family: "Arial";' textLength='96.98px' lengthAdjust='spacingAndGlyphs'>Years since the match</text>
+<text transform='translate(12.56,126.03) rotate(-90)' text-anchor='middle' style='font-size: 9.90px; font-family: "Arial";' textLength='184.25px' lengthAdjust='spacingAndGlyphs'>Separation rate among couples still dating</text>
+<rect x='60.27' y='156.95' width='85.14' height='62.80' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<line x1='67.48' y1='171.07' x2='81.31' y2='171.07' style='stroke-width: 1.71; stroke: #7F7F7F; stroke-dasharray: 2.28,6.83; stroke-linecap: butt;' />
+<polygon points='71.69,173.77 77.10,173.77 77.10,168.36 71.69,168.36 ' style='stroke-width: 0.71; stroke: none; fill: #7F7F7F;' />
+<line x1='67.48' y1='188.35' x2='81.31' y2='188.35' style='stroke-width: 1.71; stroke: #107895; stroke-linecap: butt;' />
+<circle cx='74.39' cy='188.35' r='2.70' style='stroke-width: 0.71; stroke: none; fill: #107895;' />
+<line x1='67.48' y1='205.63' x2='81.31' y2='205.63' style='stroke-width: 1.71; stroke: #9A2515; stroke-dasharray: 9.10,9.10; stroke-linecap: butt;' />
+<polygon points='74.39,201.42 78.03,207.73 70.76,207.73 ' style='stroke-width: 0.71; stroke: none; fill: #9A2515;' />
+<text x='88.51' y='174.41' style='font-size: 9.35px; font-family: "Arial";' textLength='47.30px' lengthAdjust='spacingAndGlyphs'>A: one type</text>
+<text x='88.51' y='191.69' style='font-size: 9.35px; font-family: "Arial";' textLength='50.91px' lengthAdjust='spacingAndGlyphs'>B: two types</text>
+<text x='88.51' y='208.97' style='font-size: 9.35px; font-family: "Arial";' textLength='51.42px' lengthAdjust='spacingAndGlyphs'>C: two types</text>
+<text x='5.48' y='14.14' style='font-size: 12.10px; font-weight: bold; font-family: "Arial";' textLength='263.38px' lengthAdjust='spacingAndGlyphs'>Model illustration: separation rate by duration</text>
+<text x='354.52' y='272.59' text-anchor='end' style='font-size: 7.70px;fill: #7F7F7F; font-family: "Arial";' textLength='272.47px' lengthAdjust='spacingAndGlyphs'>Numerical example, not data. Annual continuation probability (share of couples):</text>
+<text x='354.52' y='280.91' text-anchor='end' style='font-size: 7.70px;fill: #7F7F7F; font-family: "Arial";' textLength='236.55px' lengthAdjust='spacingAndGlyphs'>A: 0.65 for all; B: 0.90 (50%) / 0.40 (50%); C: 0.80 (74%) / 0.23 (26%)</text>
+</g>
+</g>
+</svg>

@@ -250,8 +250,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/frictionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">摩擦のない市場</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
   </div>
 </li>
       </ul>
@@ -985,7 +991,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 <li><strong>Economic</strong> <span class="math inline">\(V_m^0, V_f^0\)</span>: 交渉決裂点で, 離婚して結婚市場に参入した場合の価値によって決定されます. 家計の外の均衡が家計内の力関係に持ち込まれます.</li>
 </ol>
 <p>推定では <span class="math inline">\(\beta\)</span> は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 <span class="math inline">\(z\)</span> の側にある, という構造になっています.</p>
-<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>6.6</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると (<a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>Section A.10.1</span></a>), 次の式を得ます.</p>
+<p>コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり <a href="#eq-gousse-married" class="quarto-xref">式&nbsp;<span>6.6</span></a> の契約の価値 <span class="math inline">\(W_m\)</span> は継続価値 <span class="math inline">\(V_m^1\left(z\right)\)</span> そのものでなければならず, これを代入して整理すると (<a href="../appendix/proof.html#sec-apdx-nocommit" class="quarto-xref"><span>Section A.11.1</span></a>), 次の式を得ます.</p>
 <p><span id="eq-gousse-nocommit"><span class="math display">\[
 \left(r + \delta\right)\left[V_m^1\left(z\right) - V_m^0\right] = u_m - r V_m^0 + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right)
 \tag{6.7}\]</span></span></p>
@@ -993,7 +999,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 </section>
 <section id="余剰とマッチング集合" class="level4">
 <h4 class="anchored" data-anchor-id="余剰とマッチング集合">余剰とマッチング集合</h4>
-<p>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>Section A.10.2</span></a> より, 次の式が成り立ちます.</p>
+<p>TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を <span class="math inline">\(S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]\)</span> と定義すると, <a href="../appendix/proof.html#sec-apdx-gousse-surplus" class="quarto-xref"><span>Section A.11.2</span></a> より, 次の式が成り立ちます.</p>
 <p><span id="eq-gousse-surplus"><span class="math display">\[
 \left(r+\delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+}\, dG\left(z'\right)
 \tag{6.8}\]</span></span> ここで, 家計の純私的支出 <span class="math inline">\(X_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j\)</span> です.</p>
@@ -1001,7 +1007,7 @@ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left[\max\lef
 <p><span id="eq-gousse-alpha-threshold"><span class="math display">\[
 \alpha_{ij} = \int \mathbb{1}\left\{S_{ij}\left(z\right) \geq 0\right\} dG\left(z\right) = 1 - G\left(\underline{z}_{ij}\right)
 \tag{6.9}\]</span></span></p>
-<p>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>Section A.10.4</span></a>).</p>
+<p>独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は <a href="../appendix/proof.html#sec-apdx-gousse-single" class="quarto-xref"><span>Section A.11.4</span></a>).</p>
 <p><span id="eq-gousse-single-value"><span class="math display">\[
 B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj
 \tag{6.10}\]</span></span></p>
@@ -1013,7 +1019,7 @@ B_i\, r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\
 <p><span class="math display">\[
 \beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}
 \]</span></p>
-<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.10.5</span></a> 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
+<p>となります (導出は付録の <a href="../appendix/proof.html#sec-apdx-gousse-share" class="quarto-xref"><span>A.11.5</span></a> 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト <span class="math inline">\(\beta\)</span> + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 <span class="math inline">\(z\)</span> が入るので, 同じタイプの夫婦でも <span class="math inline">\(z\)</span> の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.</p>
 </section>
 <section id="定常状態" class="level4">
 <h4 class="anchored" data-anchor-id="定常状態">定常状態</h4>
@@ -1064,7 +1070,7 @@ DF\left(i, j\right) &amp;= \delta \left(1 - \alpha_{ij}\right) m\left(i, j\right
 </figcaption>
 </figure>
 </div>
-<p><strong>2. 家事時間と余暇支出の回帰</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます (付録 <a href="../appendix/proof.html#sec-apdx-gousse-est2" class="quarto-xref"><span>A.10.6.3</span></a> 節)</p>
+<p><strong>2. 家事時間と余暇支出の回帰</strong>: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと <span class="math inline">\(\left(\beta, \sigma\right)\)</span> を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. <span class="math inline">\(\beta\)</span> は夫婦の余暇の水準から, <span class="math inline">\(\sigma\)</span> はその分散から識別されます (付録 <a href="../appendix/proof.html#sec-apdx-gousse-est2" class="quarto-xref"><span>A.11.6.3</span></a> 節)</p>
 <p><strong>3. 公共財の質</strong> 均衡における家庭内生産は次の式で表されます.</p>
 <p><span class="math display">\[
 F_{ij} = Z_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X_{ij}^{K_m^1 + K_f^1}.

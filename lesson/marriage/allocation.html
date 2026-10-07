@@ -250,8 +250,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../lesson/marriage/frictionless.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">摩擦のない市場</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../lesson/marriage/fertility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">結婚と出生</span></span></a>
   </div>
 </li>
       </ul>
@@ -513,6 +519,7 @@ b = \nabla_{\pi}\, \mu + q\, \frac{\partial \mu}{\partial Y}
 <li>この人と結婚しない場合の効用は, 独身の場合や他の人と結婚した場合の効用である</li>
 <li>したがって, モテる人ほど脅威点が高くなり, それと対応する Pareto ウェイト <span class="math inline">\(\mu\)</span> も高くなる</li>
 </ul>
+<p>ここでマッチングと家庭内配分の問題が合流し, 第 <a href="matching.html" class="quarto-xref"><span>7</span></a> 章と第 <a href="frictionless.html" class="quarto-xref"><span>8</span></a> 章の話につながっていきます.</p>
 </section>
 </section>
 </section>
@@ -1337,69 +1344,70 @@ Theloudis, Alexandros, Jorge Velilla, Pierre-André Chiappori, José Ignacio Gim
 <span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>この人と結婚しない場合の効用は, 独身の場合や他の人と結婚した場合の効用である</span>
 <span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>したがって, モテる人ほど脅威点が高くなり, それと対応する Pareto ウェイト $\mu$ も高くなる</span>
 <span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>ここでマッチングと家庭内配分の問題が合流し, 第 -@sec-matching 章と第 -@sec-frictionless 章の話につながっていきます.</span>
 <span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## コミットメント {#sec-allocation-commitment}</span></span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>ここまでの家計内配分は静学的なモデルでした. ここに動学的な観点を入れると新しい問いが生まれます. 結婚したときに決めた配分のルール (Pareto ウェイト $\mu$) は, その後に賃金や outside option が変わっても守られるのか, という問いです. 守られるなら夫婦はリスクを完全に分かち合えますが, 守る手段がなければ配分はそのたびに組み直されます. @mazzocco2007 以来, 文献はこの「約束の強さ」を3つの型に分けて考えてきました. 以下では @theloudis2025 の整理に従います.</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3つのコミットメント</span></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>家計は $t = 0$ (結婚時) から $\bar{t}$ まで生き, 各期の賃金 $W_t$, 資産 $a_t$, 交渉力にだけ影響する distribution factor $Z_t$ (結婚市場の性比, 離婚法制, 個人に帰属する給付など) を観測します. 結婚時の情報を $\Omega_0$ と書きます. どの型でも, 家計の問題は Pareto ウェイト $\left(\mu_{1t}, \mu_{2t}\right)$ を付けた再帰的な形</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>V_t\left(\Omega_t\right) = \max_{C_t}\ \mu_{1t}\, u_1\left(q_t, h_{1t}\right) + \mu_{2t}\, u_2\left(q_t, h_{2t}\right) + \beta\, \mathbb{E}_t V_{t+1}\left(\Omega_{t+1}\right)</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>$$ {#eq-commit-recursive}</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>に書けます (予算制約のもとで. $C_t$ は消費・労働時間・貯蓄の選択). 3つの型の違いは, ウェイト $\mu_{jt}$ の動きに課される制約の違いとして表れます.</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>**完全コミットメント (full commitment).** 結婚時に, 将来のあらゆる状態に応じた配分計画に完全に約束できる. 計画は事前に (ex ante) 第一最善で効率的で, Pareto ウェイトは結婚時の情報だけで決まり, その後は一定です.</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_j\left(\Omega_0\right) \qquad \text{for all } t.</span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>賃金や distribution factor に事後的にどんなショックが来ても, 夫婦は余剰の分け方を変えずにリスクを完全に共有します. 結婚後に女性の交渉力を高めようとする政策 (女性に帰属する給付など) は, $\Omega_0$ を変えない限り配分に影響しません. 規範的には美しい仮定ですが, これを法的に強制する手段はほとんどなく, 現実性は疑問視されています.</span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>**限定コミットメント (limited commitment).** 配偶者は一方的に関係を離れられる (アメリカのような単意離婚) とします. すると, ある状態で一方の外部オプションが結婚内の価値を上回るような計画は実行できません. 夫婦は, 各期・各人の参加制約</span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>\underbrace{\mathbb{E}_t \sum_{\tau \geq t} \beta^{\tau - t} u_j\left(q_\tau, h_{j\tau}\right)}_{\text{inside value}}</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\ \geq\</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>\underbrace{\tilde{V}_{jt}\left(\Omega_{jt}\right)}_{\text{outside value}}</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>$$ {#eq-participation}</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>を満たす範囲で, 結婚時の計画に約束します. 配分は参加制約つきの第二最善で効率的です. 参加制約の Lagrange 乗数を $\nu_{jt}$ と書くと, Pareto ウェイトは</span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_{j,t-1} + \nu_{jt}, \qquad \mu_{j0} = \mu_j\left(\Omega_0\right)</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>$$ {#eq-lc-weight}</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>と動きます (導出は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-lc-weight)</span>にあります). 前期までの配分を続けると誰かの参加制約が破れるときだけ, その人のウェイトが「留まることと去ることが無差別になる最小の幅」だけ跳ね上がり, それ以外の期には動きません.</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>限定コミットメントの夫婦は, 結婚時に「どちらかが別れたくなる事態にならない限り, 決めた分け方を守る」と約束しています. 妻によい仕事の話が来て, 今の分け方のままだと別れて一人になった方が得になる時だけ, 妻が残ってもいいと思えるところまで妻の取り分を増やします. そして増やした取り分は, 妻の外の条件が元に戻っても減らしません. 減るのは, 今度は夫の側が出て行きそうになり, 夫の取り分を増やすときだけです. ウェイトが「必要なときに必要なだけ上がり, 上がったまま残る」のはこのためです.</span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>**コミットメントなし (no commitment).** 結婚時に将来の配分について何も約束しない. 各期の配分は, そのときの環境 (賃金, distribution factor, 資産) を所与とする交渉ゲームで決まり,</span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_j\left(\Omega_0, W_t, Z_t, a_t\right)</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>$$ {#eq-nc-weight}</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で <span class="co">[</span><span class="ot">@lundberg1993</span><span class="co">]</span>, 実証的な応用が結婚の部で読む @gousse2017 です. -@sec-allocation-nash 節 の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 $T_t$ が毎期の外部オプションで更新されれば, @eq-nash-weight の $\mu_t^*$ は現在の $T_t$ だけの関数になり, 履歴を持ちません.</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>3つの型は, ウェイトの状態変数の形で区別されます.</span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> Pareto ウェイト <span class="pp">|</span> 何が動かすか <span class="pp">|</span> 履歴 <span class="pp">|</span> 効率性 <span class="pp">|</span></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|------------------------|----------------------------|:-----:|-----------------------|</span></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 完全コミットメント <span class="pp">|</span> $\mu_j\left(\Omega_0\right)$ <span class="pp">|</span> 結婚時の情報のみ <span class="pp">|</span> なし <span class="pp">|</span> 事前に第一最善 <span class="pp">|</span></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 限定コミットメント <span class="pp">|</span> $\mu_{j,t-1} + \nu_{jt}$ <span class="pp">|</span> 参加制約が縛る $Z_t$, $W_t$ のショック <span class="pp">|</span> あり <span class="pp">|</span> 参加制約つきの第二最善 <span class="pp">|</span></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> コミットメントなし <span class="pp">|</span> $\mu_j\left(\Omega_0, W_t, Z_t, a_t\right)$ <span class="pp">|</span> 現在の $Z_t$, $W_t$, $a_t$ <span class="pp">|</span> なし <span class="pp">|</span> 事後のみ効率的 <span class="pp">|</span></span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### 実証</span></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>3つの型は, 家計の行動が**いつの**ショックに反応するかで区別できます. @theloudis2025 はこれを労働供給の検定にしました. Distribution factor へのショックが労働供給に及ぼす「交渉効果」(予算集合を通じる効果を除いた, Pareto ウェイト経由の効果) を考えると, 完全コミットメントでは現在のショックも過去のショックも効かず, コミットメントなしでは現在のショックだけが効き, 限定コミットメントでは現在と過去の両方が効きます. しかも効き方には符号の制約があります. 女性に帰属する給付が女性のウェイトを上げれば, 女性の余暇は増えて労働供給は減り, 男性は逆に働くようになる, という夫婦で非対称な反応です. 米国の PSID を使った推定では, 完全コミットメントとコミットメントなしは棄却され, 限定コミットメントが強く支持されました. ただし家計間の異質性は大きく, 約束の強さは家計によって違います.</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>@mazzocco2007 の先駆的な検定は「現在のニュースが消費の分け方を動かすか」を見るもので, 完全コミットメントを棄却しました. @lise2019 も同様です. しかしこの種の検定は, 限定コミットメントとコミットメントなしを区別できません. どちらも現在のショックに反応するからです. 両者を分けるのは過去のショックの役割で, それが @theloudis2025 の検定の要点です.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="fu">## コミットメント {#sec-allocation-commitment}</span></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>ここまでの家計内配分は静学的なモデルでした. ここに動学的な観点を入れると新しい問いが生まれます. 結婚したときに決めた配分のルール (Pareto ウェイト $\mu$) は, その後に賃金や outside option が変わっても守られるのか, という問いです. 守られるなら夫婦はリスクを完全に分かち合えますが, 守る手段がなければ配分はそのたびに組み直されます. @mazzocco2007 以来, 文献はこの「約束の強さ」を3つの型に分けて考えてきました. 以下では @theloudis2025 の整理に従います.</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3つのコミットメント</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>家計は $t = 0$ (結婚時) から $\bar{t}$ まで生き, 各期の賃金 $W_t$, 資産 $a_t$, 交渉力にだけ影響する distribution factor $Z_t$ (結婚市場の性比, 離婚法制, 個人に帰属する給付など) を観測します. 結婚時の情報を $\Omega_0$ と書きます. どの型でも, 家計の問題は Pareto ウェイト $\left(\mu_{1t}, \mu_{2t}\right)$ を付けた再帰的な形</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>V_t\left(\Omega_t\right) = \max_{C_t}\ \mu_{1t}\, u_1\left(q_t, h_{1t}\right) + \mu_{2t}\, u_2\left(q_t, h_{2t}\right) + \beta\, \mathbb{E}_t V_{t+1}\left(\Omega_{t+1}\right)</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>$$ {#eq-commit-recursive}</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>に書けます (予算制約のもとで. $C_t$ は消費・労働時間・貯蓄の選択). 3つの型の違いは, ウェイト $\mu_{jt}$ の動きに課される制約の違いとして表れます.</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>**完全コミットメント (full commitment).** 結婚時に, 将来のあらゆる状態に応じた配分計画に完全に約束できる. 計画は事前に (ex ante) 第一最善で効率的で, Pareto ウェイトは結婚時の情報だけで決まり, その後は一定です.</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_j\left(\Omega_0\right) \qquad \text{for all } t.</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>賃金や distribution factor に事後的にどんなショックが来ても, 夫婦は余剰の分け方を変えずにリスクを完全に共有します. 結婚後に女性の交渉力を高めようとする政策 (女性に帰属する給付など) は, $\Omega_0$ を変えない限り配分に影響しません. 規範的には美しい仮定ですが, これを法的に強制する手段はほとんどなく, 現実性は疑問視されています.</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>**限定コミットメント (limited commitment).** 配偶者は一方的に関係を離れられる (アメリカのような単意離婚) とします. すると, ある状態で一方の外部オプションが結婚内の価値を上回るような計画は実行できません. 夫婦は, 各期・各人の参加制約</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\underbrace{\mathbb{E}_t \sum_{\tau \geq t} \beta^{\tau - t} u_j\left(q_\tau, h_{j\tau}\right)}_{\text{inside value}}</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>\ \geq\</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>\underbrace{\tilde{V}_{jt}\left(\Omega_{jt}\right)}_{\text{outside value}}</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>$$ {#eq-participation}</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>を満たす範囲で, 結婚時の計画に約束します. 配分は参加制約つきの第二最善で効率的です. 参加制約の Lagrange 乗数を $\nu_{jt}$ と書くと, Pareto ウェイトは</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_{j,t-1} + \nu_{jt}, \qquad \mu_{j0} = \mu_j\left(\Omega_0\right)</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>$$ {#eq-lc-weight}</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>と動きます (導出は<span class="co">[</span><span class="ot">付録</span><span class="co">](../appendix/proof.qmd#prf-lc-weight)</span>にあります). 前期までの配分を続けると誰かの参加制約が破れるときだけ, その人のウェイトが「留まることと去ることが無差別になる最小の幅」だけ跳ね上がり, それ以外の期には動きません.</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>限定コミットメントの夫婦は, 結婚時に「どちらかが別れたくなる事態にならない限り, 決めた分け方を守る」と約束しています. 妻によい仕事の話が来て, 今の分け方のままだと別れて一人になった方が得になる時だけ, 妻が残ってもいいと思えるところまで妻の取り分を増やします. そして増やした取り分は, 妻の外の条件が元に戻っても減らしません. 減るのは, 今度は夫の側が出て行きそうになり, 夫の取り分を増やすときだけです. ウェイトが「必要なときに必要なだけ上がり, 上がったまま残る」のはこのためです.</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>**コミットメントなし (no commitment).** 結婚時に将来の配分について何も約束しない. 各期の配分は, そのときの環境 (賃金, distribution factor, 資産) を所与とする交渉ゲームで決まり,</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>\mu_{jt} = \mu_j\left(\Omega_0, W_t, Z_t, a_t\right)</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>$$ {#eq-nc-weight}</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で <span class="co">[</span><span class="ot">@lundberg1993</span><span class="co">]</span>, 実証的な応用が結婚の部で読む @gousse2017 です. -@sec-allocation-nash 節 の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 $T_t$ が毎期の外部オプションで更新されれば, @eq-nash-weight の $\mu_t^*$ は現在の $T_t$ だけの関数になり, 履歴を持ちません.</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>3つの型は, ウェイトの状態変数の形で区別されます.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> Pareto ウェイト <span class="pp">|</span> 何が動かすか <span class="pp">|</span> 履歴 <span class="pp">|</span> 効率性 <span class="pp">|</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|------------------------|----------------------------|:-----:|-----------------------|</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 完全コミットメント <span class="pp">|</span> $\mu_j\left(\Omega_0\right)$ <span class="pp">|</span> 結婚時の情報のみ <span class="pp">|</span> なし <span class="pp">|</span> 事前に第一最善 <span class="pp">|</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 限定コミットメント <span class="pp">|</span> $\mu_{j,t-1} + \nu_{jt}$ <span class="pp">|</span> 参加制約が縛る $Z_t$, $W_t$ のショック <span class="pp">|</span> あり <span class="pp">|</span> 参加制約つきの第二最善 <span class="pp">|</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> コミットメントなし <span class="pp">|</span> $\mu_j\left(\Omega_0, W_t, Z_t, a_t\right)$ <span class="pp">|</span> 現在の $Z_t$, $W_t$, $a_t$ <span class="pp">|</span> なし <span class="pp">|</span> 事後のみ効率的 <span class="pp">|</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="fu">### 実証</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>3つの型は, 家計の行動が**いつの**ショックに反応するかで区別できます. @theloudis2025 はこれを労働供給の検定にしました. Distribution factor へのショックが労働供給に及ぼす「交渉効果」(予算集合を通じる効果を除いた, Pareto ウェイト経由の効果) を考えると, 完全コミットメントでは現在のショックも過去のショックも効かず, コミットメントなしでは現在のショックだけが効き, 限定コミットメントでは現在と過去の両方が効きます. しかも効き方には符号の制約があります. 女性に帰属する給付が女性のウェイトを上げれば, 女性の余暇は増えて労働供給は減り, 男性は逆に働くようになる, という夫婦で非対称な反応です. 米国の PSID を使った推定では, 完全コミットメントとコミットメントなしは棄却され, 限定コミットメントが強く支持されました. ただし家計間の異質性は大きく, 約束の強さは家計によって違います.</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>@mazzocco2007 の先駆的な検定は「現在のニュースが消費の分け方を動かすか」を見るもので, 完全コミットメントを棄却しました. @lise2019 も同様です. しかしこの種の検定は, 限定コミットメントとコミットメントなしを区別できません. どちらも現在のショックに反応するからです. 両者を分けるのは過去のショックの役割で, それが @theloudis2025 の検定の要点です.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});

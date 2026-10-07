@@ -137,6 +137,8 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 と定義します. Daly–Zachary–Williams の定理 ([Williams 1977](#ref-williams1977)) により, タイプ \\y\\ の相手を望むタイプ \\x\\ の男性の質量は \\\partial G / \partial U\_{xy}\\, その逆は \\\partial H / \partial V\_{xy}\\ です. ショックが第一種極値分布なら, \\G\\ は対数和 (log-sum) の形になり, それを \\U\_{xy}\\ で微分するとロジットの選択確率が得られます.
 
+これは第 [sec-frictionless](#sec-frictionless) 章で見る対数和 [式 eq-logsum](#eq-logsum) と選択確率 [式 eq-logit](#eq-logit) の関係そのものです.
+
 > **NOTE:**
 >
 > \\\left(\mu\_{xy}, U\_{xy}, V\_{xy}\right)\\ が集計均衡であるとは,
@@ -248,6 +250,8 @@ PAM のもとでは, 結婚している人々はタイプの順位で組みま�
 
 補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 (\\Q = t_W t_H\\) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (Becker ([1991](#ref-becker1991)) の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 (\\Q\\ が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第 [sec-search-matching](#sec-search-matching) 章で見た Greenwood et al. ([2016](#ref-greenwood2016)) の定量分析にもつながっています.
 
+第 [sec-frictionless](#sec-frictionless) 章では, 同類婚の原因を余剰の補完性と出会いの分断に分解する Ciscato ([2025](#ref-ciscato2025)) を扱います.
+
 ### 7.3.3 余剰の分配
 
 TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 ([sec-allocation](#sec-allocation) 節) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.
@@ -305,6 +309,8 @@ Chiappori, Pierre-André, and Corinne Low. 2024. “Frictionless One-to-One Matc
 Chiappori, Pierre-André, and Bernard Salanié. 2016. “The Econometrics of Matching Models.” *Journal of Economic Literature* 54 (3): 832–61. <https://doi.org/10.1257/jel.20140917>.
 
 Choo, Eugene, and Aloysius Siow. 2006. “Who Marries Whom and Why.” *Journal of Political Economy* 114 (1): 175–201. <https://doi.org/10.1086/498585>.
+
+Ciscato, Edoardo. 2025. “Assessing Racial and Educational Segmentation in Large Marriage Markets.” *Review of Economic Studies* 92 (6): 3788–839. <https://doi.org/10.1093/restud/rdae115>.
 
 Decker, Colin, Elliott H. Lieb, Robert J. McCann, and Benjamin K. Stephens. 2013. “Unique Equilibria and Substitution Effects in a Stochastic Model of the Marriage Market.” *Journal of Economic Theory* 148 (2): 778–92. <https://doi.org/10.1016/j.jet.2012.12.005>.
 
