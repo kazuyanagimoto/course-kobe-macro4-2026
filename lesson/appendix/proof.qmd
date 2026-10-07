@@ -535,6 +535,88 @@ $$
 
 :::
 
+## ロジットの選択確率と対数和 {#sec-apdx-logit}
+
+結婚の部の frictionless marriage の章で述べた, ロジットの基本命題を証明します. いずれも第一種極値分布の分布関数 $F\left(\varepsilon\right) = e^{-e^{-\varepsilon}}$ を直接使う計算です.
+
+まず @prp-logit (ロジットの選択確率) を示します.
+
+::: {.proof}
+
+$\varepsilon_{ni} = s$ で条件付けると, 選択肢 $i$ が選ばれるのは $\varepsilon_{nj} < s + V_{ni} - V_{nj}$ がすべての $j \neq i$ で成り立つときである. $\varepsilon_{nj}$ は独立なので, 条件付き確率は分布関数の積になる.
+
+$$
+\text{Prob}\left(\text{choose } i \mid \varepsilon_{ni} = s\right)
+= \prod_{j \neq i} e^{-e^{-\left(s + V_{ni} - V_{nj}\right)}}.
+$$
+
+これを $\varepsilon_{ni}$ の密度で積分すると
+
+$$
+P_{ni} = \int_{-\infty}^{\infty} \left(\prod_{j \neq i} e^{-e^{-\left(s + V_{ni} - V_{nj}\right)}}\right) e^{-s} e^{-e^{-s}}\, ds.
+$$
+
+$V_{ni} - V_{ni} = 0$ に注意すると, 最後の因子 $e^{-e^{-s}}$ は積の $j = i$ の項として取り込める. 指数をまとめると
+
+$$
+P_{ni}
+= \int_{-\infty}^{\infty} \exp\left(-\sum_{j} e^{-\left(s + V_{ni} - V_{nj}\right)}\right) e^{-s}\, ds
+= \int_{-\infty}^{\infty} \exp\left(-e^{-s} \sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}\right) e^{-s}\, ds.
+$$
+
+$t = e^{-s}$ と置換する ($dt = -e^{-s}\, ds$ で, $s \colon -\infty \to \infty$ のとき $t \colon \infty \to 0$).
+
+$$
+P_{ni}
+= \int_{0}^{\infty} \exp\left(-t \sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}\right) dt
+= \left[\frac{\exp\left(-t \sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}\right)}{-\sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}}\right]_{0}^{\infty}
+= \frac{1}{\sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}}
+= \frac{e^{V_{ni}}}{\sum_{j} e^{V_{nj}}}.
+$$
+
+:::
+
+次に @prp-gumbel-max (最大効用の分布) を示します.
+
+::: {.proof}
+
+独立性より, 最大値の分布関数は各分布関数の積である.
+
+$$
+\text{Prob}\left(\max_j U_j \leq x\right)
+= \prod_{j} \text{Prob}\left(\varepsilon_j \leq x - V_j\right)
+= \prod_{j} e^{-e^{-\left(x - V_j\right)}}
+= \exp\left(-\sum_j e^{-\left(x - V_j\right)}\right).
+$$
+
+指数の中を整理すると
+
+$$
+\sum_j e^{-\left(x - V_j\right)} = e^{-x} \sum_j e^{V_j} = e^{-\left(x - \ln \sum_j e^{V_j}\right)}
+$$
+
+となり, これは位置パラメータ $\ln \sum_j e^{V_j}$ の第一種極値分布の分布関数である.
+
+:::
+
+@prp-logsum (対数和公式) は, ここからほぼ直ちに従います.
+
+::: {.proof}
+
+Step1: 標準的な第一種極値分布の平均が $\gamma$ であることを示す. $\varepsilon$ の密度 $f\left(s\right) = e^{-s} e^{-e^{-s}}$ に対して $t = e^{-s}$ と置換すると ($s = -\ln t$),
+
+$$
+\mathbb{E}\left[\varepsilon\right]
+= \int_{-\infty}^{\infty} s\, e^{-s} e^{-e^{-s}}\, ds
+= \int_{0}^{\infty} \left(-\ln t\right) e^{-t}\, dt
+= \gamma.
+$$
+
+最後の等号はガンマ関数の微分に関する既知の結果 $\int_0^{\infty} e^{-t} \ln t\, dt = \Gamma'\left(1\right) = -\gamma$ による.
+
+Step2: @prp-gumbel-max より, $\max_j U_j$ は「標準的な第一種極値分布に従う確率変数に定数 $\ln \sum_j e^{V_j}$ を足したもの」と同じ分布を持つ. よって期待値は $\ln \sum_j e^{V_j} + \gamma$ である.
+
+:::
 
 ## サーチモデルの証明 {#sec-apdx-search}
 
