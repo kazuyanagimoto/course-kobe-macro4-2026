@@ -1,5 +1,16 @@
 /* css styles */
 
+/* Sidebar logo: centre it and cap its size so the tall SVG stays compact */
+.sidebar-header-stacked {
+  text-align: center;
+}
+
+.sidebar-logo {
+  max-width: 120px;
+  max-height: 140px;
+  margin: 0.25rem auto 0.5rem;
+}
+
 /* Lightbox: scale up SVG figures.
    SVGs converted from PDFs (pdf2svg) and CeTZ output have small intrinsic
    sizes in pt, so GLightbox would otherwise display them at that tiny natural
