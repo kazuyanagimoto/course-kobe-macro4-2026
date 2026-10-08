@@ -356,19 +356,12 @@ window.Quarto = {
 <section id="規模の経済" class="level3">
 <h3 class="anchored" data-anchor-id="規模の経済">規模の経済</h3>
 <p>二人以上で住む場合は, 家賃や光熱費などの固定費を分担できたり, 食事をまとめて作ることでコストが下げられるなど, 消費の効率が上がることがあります. これを経済学では規模の経済 (economies of scale) と呼びます. 正確にモデル化すると複雑化してしまうので, ほとんどの研究では OECD の統計による簡便な尺度を用います.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>OECD Equivalence Scale
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども <span class="math inline">\(n\)</span> 人の世帯の消費は <span class="math inline">\(C(n) = 1 + 0.7 + 0.5n\)</span> と表される. 世帯所得を <span class="math inline">\(Y\)</span> とすると, 世帯の消費水準は <span class="math inline">\(Y/C(n)\)</span> で表される.</p>
+<!-- A part page has no chapter number, so a numbered definition here would
+     clash with the numbering of the chapter before it. The same classes give
+     it the look of a definition without the number. -->
+<div class="theorem definition">
+<p><span class="theorem-title"><strong>定義 (OECD Equivalence Scale)</strong></span> OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども <span class="math inline">\(n\)</span> 人の世帯の消費は <span class="math inline">\(C(n) = 1 + 0.7 + 0.5n\)</span> と表される. 世帯所得を <span class="math inline">\(Y\)</span> とすると, 世帯の消費水準は <span class="math inline">\(Y/C(n)\)</span> で表される.</p>
 <p>なお, 近年は再計算が行われて, 大人は 0.5, 子どもは 0.3 に調整されており, これを OECD-modified equivalence scale と呼ぶ.</p>
-</div>
 </div>
 <p>他の簡便な尺度として, 世帯員の人数の根号をとる <span class="math inline">\(C(n) = \sqrt{n}\)</span> とする方法もあります.</p>
 </section>
@@ -384,18 +377,8 @@ window.Quarto = {
 <section id="愛" class="level3">
 <h3 class="anchored" data-anchor-id="愛">愛</h3>
 <p>結婚に最も重要な要素は愛であると考える人は多いでしょう. それらは否定されることではありませんが, 観察されることでもありません. そのため, 経済学のモデルでは, 愛は確率的な要素として扱われることが多いです. 夢のない話のように思えるかもしれませんが, 上記のような経済学的な要因を差し引いても, 結婚が成立するのは, 愛があるからだと考えることもできます.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>結婚の定義
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.</p>
-</div>
+<div class="theorem definition">
+<p><span class="theorem-title"><strong>定義 (結婚)</strong></span> 近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.</p>
 </div>
 </section>
 </section>
@@ -944,66 +927,65 @@ Shimer, Robert, and Lones Smith. 2000. <span>“Assortative Matching and Search.
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>二人以上で住む場合は, 家賃や光熱費などの固定費を分担できたり, 食事をまとめて作ることでコストが下げられるなど, 消費の効率が上がることがあります. これを経済学では規模の経済 (economies of scale) と呼びます. 正確にモデル化すると複雑化してしまうので, ほとんどの研究では OECD の統計による簡便な尺度を用います.</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## OECD Equivalence Scale</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども $n$ 人の世帯の消費は $C(n) = 1 + 0.7 + 0.5n$ と表される. 世帯所得を $Y$ とすると, 世帯の消費水準は $Y/C(n)$ で表される.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>なお, 近年は再計算が行われて, 大人は 0.5, 子どもは 0.3 に調整されており, これを OECD-modified equivalence scale と呼ぶ.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>他の簡便な尺度として, 世帯員の人数の根号をとる $C(n) = \sqrt{n}$ とする方法もあります.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### 公共財の供給</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>結婚している場合, 独身の場合と比べて, 家事労働の分担や子どもの養育などの便益を得ることができます. これらは, 夫婦間で共有され, かつ消費の際に競合しないため, 公共財 (public goods) と呼ばれます.</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>公共財をモデル化する場合は, 様々な流儀があり, 子どもの人数 $n$ に応じて効用を $u(n)$ とする方法や, 家事労働の分担を考慮して効用を $u(h_1, h_2)$ とする方法などがあります.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- A part page has no chapter number, so a numbered definition here would</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">     clash with the numbering of the chapter before it. The same classes give</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">     it the look of a definition without the number. --&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>::: {.theorem .definition}</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**定義 (OECD Equivalence Scale)**</span><span class="co">]</span>{.theorem-title} OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども $n$ 人の世帯の消費は $C(n) = 1 + 0.7 + 0.5n$ と表される. 世帯所得を $Y$ とすると, 世帯の消費水準は $Y/C(n)$ で表される.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>なお, 近年は再計算が行われて, 大人は 0.5, 子どもは 0.3 に調整されており, これを OECD-modified equivalence scale と呼ぶ.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>他の簡便な尺度として, 世帯員の人数の根号をとる $C(n) = \sqrt{n}$ とする方法もあります.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### 公共財の供給</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>結婚している場合, 独身の場合と比べて, 家事労働の分担や子どもの養育などの便益を得ることができます. これらは, 夫婦間で共有され, かつ消費の際に競合しないため, 公共財 (public goods) と呼ばれます.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>公共財をモデル化する場合は, 様々な流儀があり, 子どもの人数 $n$ に応じて効用を $u(n)$ とする方法や, 家事労働の分担を考慮して効用を $u(h_1, h_2)$ とする方法などがあります.</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### リスクシェアリング</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>夫婦が共に働いている場合, 片方の所得が減少しても, もう片方の所得で生活を維持することができます. このように結婚は所得リスクを分散する効果があり, 経済学ではリスクシェアリング (risk sharing) と呼ばれます. ただし, リスクシェアリングは数ある経済学的な結婚の意義の中でも, それほど大きな効果はないと考えられています.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### 愛</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>結婚に最も重要な要素は愛であると考える人は多いでしょう. それらは否定されることではありませんが, 観察されることでもありません. そのため, 経済学のモデルでは, 愛は確率的な要素として扱われることが多いです. 夢のない話のように思えるかもしれませんが, 上記のような経済学的な要因を差し引いても, 結婚が成立するのは, 愛があるからだと考えることもできます.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### リスクシェアリング</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>夫婦が共に働いている場合, 片方の所得が減少しても, もう片方の所得で生活を維持することができます. このように結婚は所得リスクを分散する効果があり, 経済学ではリスクシェアリング (risk sharing) と呼ばれます. ただし, リスクシェアリングは数ある経済学的な結婚の意義の中でも, それほど大きな効果はないと考えられています.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### 愛</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>結婚に最も重要な要素は愛であると考える人は多いでしょう. それらは否定されることではありませんが, 観察されることでもありません. そのため, 経済学のモデルでは, 愛は確率的な要素として扱われることが多いです. 夢のない話のように思えるかもしれませんが, 上記のような経済学的な要因を差し引いても, 結婚が成立するのは, 愛があるからだと考えることもできます.</span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## 結婚の定義</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 結婚モデルの二つの層</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>結婚をモデル化するときには次の二つの層があります.</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**マッチング**: 誰と誰が結婚するか</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**家庭内配分**: 結婚した後の家事労働や消費の分担など</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>この2つは歴史的には別々の理論として発展しました. 前者は @becker1973a に始まるマッチング理論 (集大成として @becker1991), 後者は @chiappori1988 に始まる collective model や Nash 交渉 など家計内配分の理論です. しかし, 結婚する際に家庭内配分を見据えてマッチングが行われることをふまえると, 両者は同じ問題の表と裏であることが分かります. この授業では, まず<span class="co">[</span><span class="ot">家計内配分の章</span><span class="co">](allocation.qmd)</span>で家庭内配分の理論を扱います.</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>マッチングの一般的な理論は<span class="co">[</span><span class="ot">マッチング理論の章</span><span class="co">](matching.qmd)</span>で扱います.</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>さらに, マッチング理論には大きく分けて二つの流派があります.</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>**1. サーチモデル (Search and Matching Model)**</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@shimer2000 を起源とした毎期ランダムに相手を探す動学的モデル</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>結婚のタイミング (晩婚化) や再婚などを扱いやすい</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では @greenwood2009, @greenwood2016, @gousse2017 を紹介</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>**2. 摩擦のない結婚市場モデル (Frictionless Marriage Market)**</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@choo2006 に始まる, 初期時点で全ての人が結婚相手を見つけるモデル</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>より詳細な家庭の意思決定 (家庭内配分など) をモデル化しやすい</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では一般枠組みとして @galichon2019 を扱い, 応用として @ciscato2025, @reynoso2024 を紹介</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>::: {.theorem .definition}</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**定義 (結婚)**</span><span class="co">]</span>{.theorem-title} 近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## 結婚モデルの二つの層</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>結婚をモデル化するときには次の二つの層があります.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**マッチング**: 誰と誰が結婚するか</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**家庭内配分**: 結婚した後の家事労働や消費の分担など</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>この2つは歴史的には別々の理論として発展しました. 前者は @becker1973a に始まるマッチング理論 (集大成として @becker1991), 後者は @chiappori1988 に始まる collective model や Nash 交渉 など家計内配分の理論です. しかし, 結婚する際に家庭内配分を見据えてマッチングが行われることをふまえると, 両者は同じ問題の表と裏であることが分かります. この授業では, まず<span class="co">[</span><span class="ot">家計内配分の章</span><span class="co">](allocation.qmd)</span>で家庭内配分の理論を扱います.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>マッチングの一般的な理論は<span class="co">[</span><span class="ot">マッチング理論の章</span><span class="co">](matching.qmd)</span>で扱います.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>さらに, マッチング理論には大きく分けて二つの流派があります.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>**1. サーチモデル (Search and Matching Model)**</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@shimer2000 を起源とした毎期ランダムに相手を探す動学的モデル</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>結婚のタイミング (晩婚化) や再婚などを扱いやすい</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では @greenwood2009, @greenwood2016, @gousse2017 を紹介</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>**2. 摩擦のない結婚市場モデル (Frictionless Marriage Market)**</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>@choo2006 に始まる, 初期時点で全ての人が結婚相手を見つけるモデル</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>より詳細な家庭の意思決定 (家庭内配分など) をモデル化しやすい</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>講義では一般枠組みとして @galichon2019 を扱い, 応用として @ciscato2025, @reynoso2024 を紹介</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

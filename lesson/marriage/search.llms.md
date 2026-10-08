@@ -8,29 +8,19 @@ Code
 
 サーチ理論の出発点は, McCall ([1970](#ref-mccall1970)) が定式化した職探しモデルです. 失業者が, 次々に届く賃金オファーを受諾するか, より良いオファーを待って探し続けるか, という最適停止問題として組み立てます.
 
-> **NOTE:**
->
-> 失業者は毎期, 賃金オファー \\w\\ を分布 \\F\\ から i.i.d. で1つ受け取る. この時, \\F\\ の台 (support) は有界とする. オファーを受諾すれば以後毎期 \\w\\ を受け取り続け, 拒否すれば当期は失業給付 \\b\\ を受け取って翌期また新しいオファーを引く.
->
-> 割引率 \\\beta\\ のオファー \\w\\ を手にした失業者の価値関数は
->
-> \\ V\left(w\right) = \max\left\\ \frac{w}{1 - \beta},\\ b + \beta \int V\left(w'\right)\\ dF\left(w'\right) \right\\. \tag{6.1}\\
+**定義 6.1 (McCall の職探しモデル)** 失業者は毎期, 賃金オファー \\w\\ を分布 \\F\\ から i.i.d. で1つ受け取る. この時, \\F\\ の台 (support) は有界とする. オファーを受諾すれば以後毎期 \\w\\ を受け取り続け, 拒否すれば当期は失業給付 \\b\\ を受け取って翌期また新しいオファーを引く.
 
-[式 eq-mccall](#eq-mccall) の構造を見ます. 第1項はオファーを受ける時の価値 (以後 \\w\\ が続くので割引現在価値は \\w / \left(1 - \beta\right)\\), 第2項はオファーを拒否して待つ時の価値です. 重要なのは, オファーが i.i.d. なので継続価値がいまのオファー \\w\\ に依存しない定数 (\\C\\ とおく) になることです.
+割引率 \\\beta\\ のオファー \\w\\ を手にした失業者の価値関数は \\ V\left(w\right) = \max\left\\ \frac{w}{1 - \beta},\\ b + \beta \int V\left(w'\right)\\ dF\left(w'\right) \right\\. \tag{6.1}\\
 
-\\ C = b + \beta \int V\left(w'\right)\\ dF\left(w'\right). \\
+[式 eq-mccall](#eq-mccall) の構造を見ます. 第1項はオファーを受ける時の価値 (以後 \\w\\ が続くので割引現在価値は \\w / \left(1 - \beta\right)\\), 第2項はオファーを拒否して待つ時の価値です. 重要なのは, オファーが i.i.d. なので継続価値がいまのオファー \\w\\ に依存しない定数 (\\C\\ とおく) になることです. \\ C = b + \beta \int V\left(w'\right)\\ dF\left(w'\right). \\ 受諾の価値は \\w\\ について増加, 継続の価値は一定なので, 最適な戦略は閾値ルールになります.
 
-受諾の価値は \\w\\ について増加, 継続の価値は一定なので, 最適な戦略は閾値ルールになります.
-
-**命題 6.1 (留保賃金, reservation wage)** [式 eq-mccall](#eq-mccall) の解 \\V\\ は一意に存在し, 最適政策は留保賃金 \\w^\*\\ を用いた閾値ルール「\\w \geq w^\*\\ なら受諾」である. \\w^\*\\ は次の留保賃金方程式を満たす唯一の値である.
-
-\\ w^\* = b + \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \tag{6.2}\\
+**命題 6.1 (留保賃金, reservation wage)** [式 eq-mccall](#eq-mccall) の解 \\V\\ は一意に存在し, 最適政策は留保賃金 \\w^\*\\ を用いた閾値ルール「\\w \geq w^\*\\ なら受諾」である. \\w^\*\\ は次の留保賃金方程式を満たす唯一の値である. \\ w^\* = b + \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \tag{6.2}\\
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-reservation)にあります.
 
 [式 eq-reservation](#eq-reservation) の第二項は, 「もう1期待てば, いまの基準 \\w^\*\\ を上回るオファーを引けるかもしれない」という待つことのオプション価値です. 留保賃金は失業給付 \\b\\ にこのオプション価値を上乗せした水準になります. オファーの上限が \\w^\*\\ より大きい限り, 失業者は \\b\\ を上回るオファーでも拒否します.
 
-**命題 6.2 (留保賃金の比較静学)**  
+**命題 6.2 (留保賃金の比較静学)**
 
 1.  失業給付 \\b\\ の増加は留保賃金 \\w^\*\\ を上げる.
 2.  オファー分布の平均保存的な広がりは, \\w^\*\\ を上昇させる.
@@ -57,41 +47,19 @@ Code
 
 図 6.3: Flows between singlehood and marriage
 
-**選好.** 1期あたりの効用は, 市場消費 \\c\\ と家庭内生産 \\n\\ から得られます.
-
-\\ \begin{aligned} U^S(c, n) &= \alpha \log (c - \overline{c}) + (1-\alpha) n^\zeta / \zeta \\ U^M(c, n) + b &= \alpha \log \left((c - \overline{c}) / 2^\phi \right) + (1-\alpha) (n / 2^\phi)^\zeta / \zeta + b \end{aligned} \\
+**選好.** 1期あたりの効用は, 市場消費 \\c\\ と家庭内生産 \\n\\ から得られます. \\ \begin{aligned} U^S(c, n) &= \alpha \log (c - \overline{c}) + (1-\alpha) n^\zeta / \zeta \\ U^M(c, n) + b &= \alpha \log \left((c - \overline{c}) / 2^\phi \right) + (1-\alpha) (n / 2^\phi)^\zeta / \zeta + b \end{aligned} \\
 
 注目してほしい点が2つあります. 1つ目に最低消費 \\\overline{c} \> 0\\ を導入することで効用を非ホモセティックであるということです. 所得が低いほど \\\overline{c}\\ の負担が相対的に大きい, という性質です. 第2に, 有配偶者の消費は \\2^\phi\\ で割られています. \\\phi \< 1\\ なら「2人で暮らすと1人あたりの生活費は2倍未満で済む」という規模の経済 (economies of scale) を表します.
 
-**家庭内生産.** 家庭内生産 \\n\\ は, 市場で買う家事財 \\d\\ (価格 \\wp\\) と家事時間 \\h\\ の CES 関数です.
+**家庭内生産.** 家庭内生産 \\n\\ は, 市場で買う家事財 \\d\\ (価格 \\wp\\) と家事時間 \\h\\ の CES 関数です. \\ n = \left(\theta d^\kappa + (1-\theta)h^\kappa \right)^{1/\kappa} \\ \\0 \< \kappa \< 1\\ なら家事財と家事時間は代替的で, 家事財が安くなる (\\p\\ の下落) と時間 \\h\\ が財 \\d\\ に置き換えられます. 洗濯機が洗濯時間を置き換える, という機械化の仮説がここに入っています.
 
-\\ n = \left(\theta d^\kappa + (1-\theta)h^\kappa \right)^{1/\kappa} \\
+**マッチの質.** 独身者が出会いで引くマッチの質は \\b \sim \mathcal{N}(\mu_s, \sigma_s^2)\\ の i.i.d., 有配偶者のマッチの質は AR(1) 過程 \\ b' = (1 - \rho)\mu_m + \rho b + \sigma_m\sqrt{1-\rho^2}\xi, \qquad \xi \sim \mathcal{N}(0, 1) \\ に従います. 分布 \\F\left(b\right)\\ と \\G\left(b' \mid b\right)\\ のパラメータ \\(\mu_s, \sigma_s, \mu_m, \sigma_m, \rho)\\ は自由にカリブレーションできるので, 出会いの「当たり外れ」と結婚生活の「安定性」をデータから推定することになります.
 
-\\0 \< \kappa \< 1\\ なら家事財と家事時間は代替的で, 家事財が安くなる (\\p\\ の下落) と時間 \\h\\ が財 \\d\\ に置き換えられます. 洗濯機が洗濯時間を置き換える, という機械化の仮説がここに入っています.
-
-**マッチの質.** 独身者が出会いで引くマッチの質は \\b \sim \mathcal{N}(\mu_s, \sigma_s^2)\\ の i.i.d., 有配偶者のマッチの質は AR(1) 過程
-
-\\ b' = (1 - \rho)\mu_m + \rho b + \sigma_m\sqrt{1-\rho^2}\xi, \qquad \xi \sim \mathcal{N}(0, 1) \\
-
-に従います. 分布 \\F\left(b\right)\\ と \\G\left(b' \mid b\right)\\ のパラメータ \\(\mu_s, \sigma_s, \mu_m, \sigma_m, \rho)\\ は自由にカリブレーションできるので, 出会いの「当たり外れ」と結婚生活の「安定性」をデータから推定することになります.
-
-**価値関数.** 独身者の価値 \\W\\ と有配偶者の価値 \\V(b)\\ は次のベルマン方程式を満たします.
-
-\\ W = \max\_{c, d, h} U^S(c, n) + \beta \int\_{-\infty}^{\infty} \max\left\\W, V(b)\right\\\\ dF(b) \\
-
-subject to \\c = w(1 - h) - wpd\\.
-
-\\ V(b) = \max\_{c, d, h} U^M(c, n) + b + \beta \int\_{-\infty}^{\infty} \max\left\\W, V(b') \right\\\\ dG(b' \mid b) \\
-
-subject to \\c = w(2 - h) - wpd\\.
+**価値関数.** 独身者の価値 \\W\\ と有配偶者の価値 \\V(b)\\ は次のベルマン方程式を満たします. \\ W = \max\_{c, d, h} U^S(c, n) + \beta \int\_{-\infty}^{\infty} \max\left\\W, V(b)\right\\\\ dF(b) \\ subject to \\c = w(1 - h) - wpd\\. \\ V(b) = \max\_{c, d, h} U^M(c, n) + b + \beta \int\_{-\infty}^{\infty} \max\left\\W, V(b') \right\\\\ dG(b' \mid b) \\ subject to \\c = w(2 - h) - wpd\\.
 
 \\V\left(b\right)\\ は \\b\\ について増加するので, 「\\V\left(b\right) \geq W\\ なら結婚 (継続)」は McCall モデルと同じ留保値ルールです. マッチの質 \\b\\ は夫婦に共通なので, 両者の閾値は一致し, 合意の問題は生じません.
 
-**定常均衡.** 個人の停止ルールを所与とすると, 独身者の測度 \\s\\ と有配偶者の累積分布 \\M(b)\\ は流出入のバランスで決まります.
-
-\\ \begin{aligned} s & = \delta + (1-\delta) s\int\_{-\infty}^{\infty} \mathbb{1}\\V(b') \le W\\ \\dF(b') + (1 - \delta) \int\_{-\infty}^{\infty}\int\_{-\infty}^{\infty} \mathbb{1}\\V(b') \le W\\ \\dG(b' \mid b\_{-1})\\dM(b\_{-1}) \\ M(b) &= (1-\delta)s \int\_{-\infty}^{b} \mathbb{1}\\V(b') \> W\\ \\dF(b') + (1 - \delta) \int\_{-\infty}^{\infty}\int\_{-\infty}^{b} \mathbb{1}\\V(b') \> W\\ \\dG(b' \mid b\_{-1})\\dM(b\_{-1}) \end{aligned} \\
-
-第1式は「独身者 = 参入者 + 結婚しなかった独身者 + 離婚した有配偶者」, 第2式は「質 \\b\\ 以下の有配偶者 = 新規結婚 + 離婚しなかった継続結婚」という計算です. 定義から \\s = 1 - \int dM\left(b\right)\\ が成り立ちます.
+**定常均衡.** 個人の停止ルールを所与とすると, 独身者の測度 \\s\\ と有配偶者の累積分布 \\M(b)\\ は流出入のバランスで決まります. \\ \begin{aligned} s & = \delta + (1-\delta) s\int\_{-\infty}^{\infty} \mathbb{1}\\V(b') \le W\\ \\dF(b') + (1 - \delta) \int\_{-\infty}^{\infty}\int\_{-\infty}^{\infty} \mathbb{1}\\V(b') \le W\\ \\dG(b' \mid b\_{-1})\\dM(b\_{-1}) \\ M(b) &= (1-\delta)s \int\_{-\infty}^{b} \mathbb{1}\\V(b') \> W\\ \\dF(b') + (1 - \delta) \int\_{-\infty}^{\infty}\int\_{-\infty}^{b} \mathbb{1}\\V(b') \> W\\ \\dG(b' \mid b\_{-1})\\dM(b\_{-1}) \end{aligned} \\ 第1式は「独身者 = 参入者 + 結婚しなかった独身者 + 離婚した有配偶者」, 第2式は「質 \\b\\ 以下の有配偶者 = 新規結婚 + 離婚しなかった継続結婚」という計算です. 定義から \\s = 1 - \int dM\left(b\right)\\ が成り立ちます.
 
 物品市場は単純化されており, 生産関数は \\Y = wL\\ (ゼロ利潤条件から \\w\\ が価格), 資源制約は \\C + wpD = Y\\ です. 賃金 \\w\\ の上昇と家事財価格 \\p\\ の下落は, データに合わせて外生的に与えられます.
 
@@ -104,11 +72,7 @@ subject to \\c = w(2 - h) - wpd\\.
 - \\p\\ の下落に対して, 減少する (\\0 \< \kappa \< 1\\ かつ \\\zeta \< \kappa\\)
 - \\w\\ の上昇に対して, 増加する (\\0 \< \overline{c}\\)
 
-直感はこうです. \\p\\ の下落には2つの経路があります. 第1に, 家庭内生産関数が代替的 (\\0 \< \kappa \< 1\\) なので, 家庭内生産1単位あたりの家事時間が家事財に置き換わります. 第2に, 家庭内生産が安くなると需要そのものが増えるので, こちらは家事時間を増やす向きに働きます. \\\zeta \< \kappa\\ は前者が後者を上回るための条件で, 特に \\\zeta \< 0\\ なら市場消費と家庭内生産の代替の弾力性 \\1 / \left(1 - \zeta\right)\\ が1未満になり, 家庭内生産への総支出そのものが減るので, 2つの経路が同じ向きに働きます (推定値もこの範囲にあります). \\w\\ の上昇は, 最低消費 \\\overline{c}\\ を賄うのに必要な市場労働を相対的に減らし, その分が家庭内労働に回ります. 実際, \\\overline{c} = 0\\ なら \\w\\ は一階条件
-
-\\ \begin{aligned} \frac{\alpha p}{z - h - pd - \frac{\overline{c}}{w}} &=(1-\alpha) z^{-\phi \zeta}\left\[\theta d^\kappa+(1-\theta) h^\kappa\right\]^{\zeta / \kappa-1} \theta d^{\kappa-1} \\ \frac{\alpha}{z - h - pd - \frac{\overline{c}}{w}} &=(1-\alpha) z^{-\phi \zeta}\left\[\theta d^\kappa+(1-\theta) h^\kappa\right\]^{\zeta / \kappa-1}(1-\theta) h^{\kappa-1} \end{aligned} \\
-
-から消え, 家庭内労働時間は \\w\\ に対して不変になります.
+直感はこうです. \\p\\ の下落には2つの経路があります. 第1に, 家庭内生産関数が代替的 (\\0 \< \kappa \< 1\\) なので, 家庭内生産1単位あたりの家事時間が家事財に置き換わります. 第2に, 家庭内生産が安くなると需要そのものが増えるので, こちらは家事時間を増やす向きに働きます. \\\zeta \< \kappa\\ は前者が後者を上回るための条件で, 特に \\\zeta \< 0\\ なら市場消費と家庭内生産の代替の弾力性 \\1 / \left(1 - \zeta\right)\\ が1未満になり, 家庭内生産への総支出そのものが減るので, 2つの経路が同じ向きに働きます (推定値もこの範囲にあります). \\w\\ の上昇は, 最低消費 \\\overline{c}\\ を賄うのに必要な市場労働を相対的に減らし, その分が家庭内労働に回ります. 実際, \\\overline{c} = 0\\ なら \\w\\ は一階条件 \\ \begin{aligned} \frac{\alpha p}{z - h - pd - \frac{\overline{c}}{w}} &=(1-\alpha) z^{-\phi \zeta}\left\[\theta d^\kappa+(1-\theta) h^\kappa\right\]^{\zeta / \kappa-1} \theta d^{\kappa-1} \\ \frac{\alpha}{z - h - pd - \frac{\overline{c}}{w}} &=(1-\alpha) z^{-\phi \zeta}\left\[\theta d^\kappa+(1-\theta) h^\kappa\right\]^{\zeta / \kappa-1}(1-\theta) h^{\kappa-1} \end{aligned} \\ から消え, 家庭内労働時間は \\w\\ に対して不変になります.
 
 **命題 6.4 (結婚のメリット)** 有配偶者と独身者の効用の差 \\u^m - u^s\\ は,
 
@@ -127,11 +91,7 @@ subject to \\c = w(2 - h) - wpd\\.
 - \\\theta = 0.206, \kappa = 0.189\\: McGrattan et al. ([1997](#ref-mcgrattan1997))
 - \\w\_{1950} = 1.00\\ (基準化), \\w\_{t} = w\_{1950} \exp\left(0.022 (t - 1950)\right)\\: 1950-2000年の平均賃金上昇率
 
-残る10個のパラメータ
-
-\\ \lambda := \left(\overline{c}, p\_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right) \\
-
-は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします ([図 fig-gg2009-estimates](#fig-gg2009-estimates)).
+残る10個のパラメータ \\ \lambda := \left(\overline{c}, p\_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right) \\ は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします ([図 fig-gg2009-estimates](#fig-gg2009-estimates)).
 
 [![](../../static/img/article/greenwood2009/table2.svg)](../../static/img/article/greenwood2009/table2.svg "図 6.4: SMM estimates (Table 2)")
 
@@ -193,67 +153,23 @@ Greenwood et al. ([2016](#ref-greenwood2016)) が説明したい事実は3つあ
 
 図 6.12: Timing of decisions (Fig. 6)
 
-**教育と時給.** 時給は能力・教育・ジェンダーで決まります. 教育レベル \\e\\ の男性の時給は \\w_e a\\ (\\w_1 \> w_0\\), 女性の時給は \\\phi w_e a\\ で, \\\phi \in \[0, 1\]\\ がジェンダー賃金格差を表します. 教育には一度きりのコスト \\\kappa\\ がかかり,
+**教育と時給.** 時給は能力・教育・ジェンダーで決まります. 教育レベル \\e\\ の男性の時給は \\w_e a\\ (\\w_1 \> w_0\\), 女性の時給は \\\phi w_e a\\ で, \\\phi \in \[0, 1\]\\ がジェンダー賃金格差を表します. 教育には一度きりのコスト \\\kappa\\ がかかり, \\ \kappa \sim \mathcal{N}\left(\frac{\eta_g}{a}, \sigma\_{\kappa}^2\right) \\ と, 能力の高い人ほど平均的にコストが低くなっています. 大卒プレミアム \\w_1 / w_0\\ が上がれば進学が増える, という教育の内生的な選択がここに入ります.
 
-\\ \kappa \sim \mathcal{N}\left(\frac{\eta_g}{a}, \sigma\_{\kappa}^2\right) \\
+**選好と家庭内生産.** 効用は Greenwood and Guner ([2009](#ref-greenwood2009)) と同じ発想で, 最低消費と規模の経済を持ちます. \\ \begin{aligned} T\_{s}(c, n) &= \frac{1}{1-\zeta} \left(c - \overline{c}\right)^{1-\zeta} + \frac{\alpha}{1-\xi} n^{1-\xi} & \text{(single)}\\ T\_{m}(c, n) &= \frac{1}{1-\zeta} \left(\frac{c - \overline{c}}{1 + \chi}\right)^{1-\zeta} + \frac{\alpha}{1-\xi} \left(\frac{n}{1 + \chi}\right)^{1-\xi} & \text{(married)} \end{aligned} \\ 家庭内生産は家事財 \\d\\ と家事時間の CES で, \\ n = \left(\theta d^\lambda + (1-\theta)\left(z - h\_{T}\right)^\lambda \right)^{1/\lambda} \\ \\z \in \\1, 2\\\\ は世帯の総時間, \\h_T\\ は世帯の総労働時間, \\\lambda \in (0, 1)\\ なら家事財と家事時間は代替的です.
 
-と, 能力の高い人ほど平均的にコストが低くなっています. 大卒プレミアム \\w_1 / w_0\\ が上がれば進学が増える, という教育の内生的な選択がここに入ります.
+**期内の意思決定.** 独身者の期内効用は \\ U_S^g(a, e) := \max\_{c, d} T_S(c, n), \quad \text{s.t.} \quad c = \begin{cases} w_e \phi a \overline{h} - p d & (g = f) \\ w_e a \overline{h} - p d & (g = m) \end{cases} \\ で, \\n = \left(\theta d^\lambda + (1-\theta)\left(1 - \overline{h}\right)^\lambda \right)^{1/\lambda}\\ です. 有配偶者は妻の労働 \\h^f \in \\0, 1\\\\ も選びます. \\ U_M^g(a, e, a^\*, e^\*, b, q) := \max\_{c, d, h^f} T_M(c, n) - h^f q, \\ subject to \\ c = \begin{cases} w\_{e^\*} a^\* \overline{h} + w_e \phi a \overline{h}h^f - p d & (g = f) \\ w_e a \overline{h} + w\_{e^\*} \phi a^\* \overline{h}h^f - p d & (g = m) \end{cases} \\ and \\n = \left(\theta d^\lambda + (1-\theta)\left(2 - \overline{h} - \overline{h}h^f\right)^\lambda \right)^{1/\lambda}\\. \\q\\ は妻がフルタイムで働くことへの効用コストで, 夫婦共通に効きます.
 
-**選好と家庭内生産.** 効用は Greenwood and Guner ([2009](#ref-greenwood2009)) と同じ発想で, 最低消費と規模の経済を持ちます.
+**マッチの質と労働参加コスト.** 独身者は毎期, 異性の独身者と出会い, \\b \sim \mathcal{N}\left(\overline{b}\_s, \sigma\_{b, s}^2\right)\\ と \\q \in \mathcal{Q}^e = \left\\q_l^e, q_h^e\right\\\\ を引きます. \\q\\ の分布は**男性の教育** \\e\\ に依存し, \\q_l^e \< q_h^e\\ が各 \\\frac{1}{2}\\ の確率で実現します. 有配偶者のマッチの質は AR(1) \\ b' = (1-\rho\_{b, m})\overline{b}\_m + \rho\_{b, m} b + \sigma\_{b, m}\sqrt{1-\rho\_{b, m}^2}\varepsilon, \qquad \varepsilon \sim \mathcal{N}(0, 1) \\ で変動します.
 
-\\ \begin{aligned} T\_{s}(c, n) &= \frac{1}{1-\zeta} \left(c - \overline{c}\right)^{1-\zeta} + \frac{\alpha}{1-\xi} n^{1-\xi} & \text{(single)}\\ T\_{m}(c, n) &= \frac{1}{1-\zeta} \left(\frac{c - \overline{c}}{1 + \chi}\right)^{1-\zeta} + \frac{\alpha}{1-\xi} \left(\frac{n}{1 + \chi}\right)^{1-\xi} & \text{(married)} \end{aligned} \\
+**結婚の合意.** Greenwood and Guner ([2009](#ref-greenwood2009)) と違い, 結婚の便益はタイプの組み合わせに依存するので, 男女の利害は一致しません. 結婚は双方が独身に留まるより良いと判断したときにのみ成立します. \\ V_m^{g}(a, e, a^\*, e^\*, b, q) \ge V_s^{g}(a, e) \text{ and } V_m^{g^\*}(a^\*, e^\*, a, e, b, q) \ge V_s^{g^\*}(a^\*, e^\*). \\ この条件が満たされる, つまり結婚するという場合のインディケータを \\\mathbb{1}^g(a, e, a^\*, e^\*, b, q)\\ と書くことにします.
 
-家庭内生産は家事財 \\d\\ と家事時間の CES で,
+**価値関数.** 独身者は, 出会う相手のタイプ分布 \\\hat{S}^{g^\*}\\ を所与として期待を取ります. \\ \begin{aligned} V_s^{g}(a, e) = U_S^{g}(a, e) + \beta \int\_{\mathcal{B}}\int\_{\mathcal{T}}\int\_{\mathcal{Q}} &\mathbb{1}^g(a, e, a^\*, e^\*, b, q) V_m^g(a, e, a^\*, e^\*, b, q) \\ &+ (1 - \mathbb{1}^g(a, e, a^\*, e^\*, b, q)) V_s^g(a, e) \\dQ(q) \\d\hat{S}^{g^\*}(a^\*, e^\*)\\dF(b) \end{aligned} \\
 
-\\ n = \left(\theta d^\lambda + (1-\theta)\left(z - h\_{T}\right)^\lambda \right)^{1/\lambda} \\
+\\ \begin{aligned} V_m^{g}(a, e, a^\*, e^\*, b, q) = U_M^{g}&(a, e, a^\*, e^\*, b, q) + b + M(e, e^\*) \\ + \beta \int\_{\mathcal{B}} &\mathbb{1}^g(a, e, a^\*, e^\*, b', q) V_m^g(a, e, a^\*, e^\*, b', q) \\ &+ (1 - \mathbb{1}^g(a, e, a^\*, e^\*, b', q)) V_s^g(a, e) \\d G(b' \| b) \end{aligned} \\ 有配偶者の価値には, 教育の組み合わせに直接依存する項 \\M(e, e^\*)\\ が入っています. 「似た学歴の相手といること自体の効用」で, 同類婚の選好的な源泉を捉える項です.
 
-\\z \in \\1, 2\\\\ は世帯の総時間, \\h_T\\ は世帯の総労働時間, \\\lambda \in (0, 1)\\ なら家事財と家事時間は代替的です.
+**教育の選択.** 結婚市場に参入する前に, 各人はコスト \\\kappa\\ を見て教育を選びます. \\ \max\_{e\in\\0, 1\\} V_s^{g}(a, e) - e\kappa \quad \Longrightarrow \quad E\_{a}^{g}(\kappa) = \begin{cases} 1 & \kappa \le V_s^{g}(a, 1) - V_s^{g}(a, 0) \\ 0 & \text{otherwise} \end{cases} \\ 教育リターン \\V_s^{g}(a, 1) - V_s^{g}(a, 0)\\ には, 賃金の上昇だけでなく結婚市場でのマッチング相手の変化も含まれる点が重要です. 大卒女性が増えれば大卒男性にとって大卒の相手と出会いやすくなり, それがまた教育のリターンを変える, というフィードバックが働きます.
 
-**期内の意思決定.** 独身者の期内効用は
-
-\\ U_S^g(a, e) := \max\_{c, d} T_S(c, n), \quad \text{s.t.} \quad c = \begin{cases} w_e \phi a \overline{h} - p d & (g = f) \\ w_e a \overline{h} - p d & (g = m) \end{cases} \\
-
-で, \\n = \left(\theta d^\lambda + (1-\theta)\left(1 - \overline{h}\right)^\lambda \right)^{1/\lambda}\\ です. 有配偶者は妻の労働 \\h^f \in \\0, 1\\\\ も選びます.
-
-\\ U_M^g(a, e, a^\*, e^\*, b, q) := \max\_{c, d, h^f} T_M(c, n) - h^f q, \\
-
-subject to
-
-\\ c = \begin{cases} w\_{e^\*} a^\* \overline{h} + w_e \phi a \overline{h}h^f - p d & (g = f) \\ w_e a \overline{h} + w\_{e^\*} \phi a^\* \overline{h}h^f - p d & (g = m) \end{cases} \\
-
-and \\n = \left(\theta d^\lambda + (1-\theta)\left(2 - \overline{h} - \overline{h}h^f\right)^\lambda \right)^{1/\lambda}\\. \\q\\ は妻がフルタイムで働くことへの効用コストで, 夫婦共通に効きます.
-
-**マッチの質と労働参加コスト.** 独身者は毎期, 異性の独身者と出会い, \\b \sim \mathcal{N}\left(\overline{b}\_s, \sigma\_{b, s}^2\right)\\ と \\q \in \mathcal{Q}^e = \left\\q_l^e, q_h^e\right\\\\ を引きます. \\q\\ の分布は**男性の教育** \\e\\ に依存し, \\q_l^e \< q_h^e\\ が各 \\\frac{1}{2}\\ の確率で実現します. 有配偶者のマッチの質は AR(1)
-
-\\ b' = (1-\rho\_{b, m})\overline{b}\_m + \rho\_{b, m} b + \sigma\_{b, m}\sqrt{1-\rho\_{b, m}^2}\varepsilon, \qquad \varepsilon \sim \mathcal{N}(0, 1) \\
-
-で変動します.
-
-**結婚の合意.** Greenwood and Guner ([2009](#ref-greenwood2009)) と違い, 結婚の便益はタイプの組み合わせに依存するので, 男女の利害は一致しません. 結婚は双方が独身に留まるより良いと判断したときにのみ成立します.
-
-\\ V_m^{g}(a, e, a^\*, e^\*, b, q) \ge V_s^{g}(a, e) \text{ and } V_m^{g^\*}(a^\*, e^\*, a, e, b, q) \ge V_s^{g^\*}(a^\*, e^\*). \\
-
-この条件が満たされる, つまり結婚するという場合のインディケータを \\\mathbb{1}^g(a, e, a^\*, e^\*, b, q)\\ と書くことにします.
-
-**価値関数.** 独身者は, 出会う相手のタイプ分布 \\\hat{S}^{g^\*}\\ を所与として期待を取ります.
-
-\\ \begin{aligned} V_s^{g}(a, e) = U_S^{g}(a, e) + \beta \int\_{\mathcal{B}}\int\_{\mathcal{T}}\int\_{\mathcal{Q}} &\mathbb{1}^g(a, e, a^\*, e^\*, b, q) V_m^g(a, e, a^\*, e^\*, b, q) \\ &+ (1 - \mathbb{1}^g(a, e, a^\*, e^\*, b, q)) V_s^g(a, e) \\dQ(q) \\d\hat{S}^{g^\*}(a^\*, e^\*)\\dF(b) \end{aligned} \\
-
-\\ \begin{aligned} V_m^{g}(a, e, a^\*, e^\*, b, q) = U_M^{g}&(a, e, a^\*, e^\*, b, q) + b + M(e, e^\*) \\ + \beta \int\_{\mathcal{B}} &\mathbb{1}^g(a, e, a^\*, e^\*, b', q) V_m^g(a, e, a^\*, e^\*, b', q) \\ &+ (1 - \mathbb{1}^g(a, e, a^\*, e^\*, b', q)) V_s^g(a, e) \\d G(b' \| b) \end{aligned} \\
-
-有配偶者の価値には, 教育の組み合わせに直接依存する項 \\M(e, e^\*)\\ が入っています. 「似た学歴の相手といること自体の効用」で, 同類婚の選好的な源泉を捉える項です.
-
-**教育の選択.** 結婚市場に参入する前に, 各人はコスト \\\kappa\\ を見て教育を選びます.
-
-\\ \max\_{e\in\\0, 1\\} V_s^{g}(a, e) - e\kappa \quad \Longrightarrow \quad E\_{a}^{g}(\kappa) = \begin{cases} 1 & \kappa \le V_s^{g}(a, 1) - V_s^{g}(a, 0) \\ 0 & \text{otherwise} \end{cases} \\
-
-教育リターン \\V_s^{g}(a, 1) - V_s^{g}(a, 0)\\ には, 賃金の上昇だけでなく結婚市場でのマッチング相手の変化も含まれる点が重要です. 大卒女性が増えれば大卒男性にとって大卒の相手と出会いやすくなり, それがまた教育のリターンを変える, というフィードバックが働きます.
-
-**定常均衡.** 独身者の分布 \\S^g(a, e)\\ と有配偶者の分布 \\M^g(a, e, a^\*, e^\*, b\_{-1}, q)\\ は, Greenwood and Guner ([2009](#ref-greenwood2009)) と同じ発想の流出入バランスを満たす定常分布として定義されます (式は長くなるだけなので論文に譲ります). 出会いの相手は, 独身者の数で標準化された分布
-
-\\ \hat{S}^{g^\*}(a^\*, e^\*) := \frac{S^{g^\*}(a^\*, e^\*)}{\int\_{\mathcal{T}}\\dS^{g^\*}(a^\*, e^\*)} \\
-
-からランダムに引かれます. 状態変数の次元は増えましたが, 構造は「停止ルール + 定常分布」のままです.
+**定常均衡.** 独身者の分布 \\S^g(a, e)\\ と有配偶者の分布 \\M^g(a, e, a^\*, e^\*, b\_{-1}, q)\\ は, Greenwood and Guner ([2009](#ref-greenwood2009)) と同じ発想の流出入バランスを満たす定常分布として定義されます (式は長くなるだけなので論文に譲ります). 出会いの相手は, 独身者の数で標準化された分布 \\ \hat{S}^{g^\*}(a^\*, e^\*) := \frac{S^{g^\*}(a^\*, e^\*)}{\int\_{\mathcal{T}}\\dS^{g^\*}(a^\*, e^\*)} \\ からランダムに引かれます. 状態変数の次元は増えましたが, 構造は「停止ルール + 定常分布」のままです.
 
 ### 6.3.3 推定
 
@@ -331,11 +247,11 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 図 6.20: Family Values Index (Table I, Bottom Panel)
 
-2つ目の問いが, この講義の文脈では特に重要です. Collective モデル ([sec-gmm-micro](#sec-gmm-micro) 節で GMM 推定した Pareto ウェイト \\\mu\\) では, 交渉力は外生か, 分配要因の誘導形の関数として与えられていました. サーチ・マッチングの均衡でこれを内生化すると, 「結婚市場で誰に出会えるか」という outside options が交渉力の源泉として定式化できます.
+2つ目の問いが, この講義の文脈では特に重要です. Collective モデル ([sec-gmm-micro](#sec-gmm-micro)節で GMM 推定した Pareto ウェイト \\\mu\\) では, 交渉力は外生か, 分配要因の誘導形の関数として与えられていました. サーチ・マッチングの均衡でこれを内生化すると, 「結婚市場で誰に出会えるか」という outside options が交渉力の源泉として定式化できます.
 
 ### 6.4.2 モデル
 
-このモデルは, ここまでの2本と違って連続時間で表現されています. Greenwood and Guner ([2009](#ref-greenwood2009)) と Greenwood et al. ([2016](#ref-greenwood2016)) が1期1年の離散時間だったのに対し, ここでは出会い・マッチの質の変動といったイベントがポアソン過程として到着します. 割引率は \\r\\ で表され, 価値関数は Hamilton-Jacobi-Bellman (HJB) 方程式の形で価値関数が書かれます. 連続時間モデルに関しては, [sec-apdx-ct](#sec-apdx-ct) にまとめてあります.
+このモデルは, ここまでの2本と違って連続時間で表現されています. Greenwood and Guner ([2009](#ref-greenwood2009)) と Greenwood et al. ([2016](#ref-greenwood2016)) が1期1年の離散時間だったのに対し, ここでは出会い・マッチの質の変動といったイベントがポアソン過程として到着します. 割引率は \\r\\ で表され, 価値関数は Hamilton-Jacobi-Bellman (HJB) 方程式の形で価値関数が書かれます. 連続時間モデルに関しては, 付録[sec-apdx-ct](#sec-apdx-ct)にまとめてあります.
 
 なお, 連続時間モデルにおいて資産のような連続的に動く状態変数がある場合, 数値計算としては有限差分法 (finite difference method) を使う必要があります. この手法によるマクロモデルの解法とその有用性は Achdou et al. ([2022](#ref-achdou2022)) が示しました. しかし, Goussé et al. ([2017](#ref-gousse2017)) のモデルは状態変数をポアソン到着する離散的なイベントに限定しているので, 連続時間の HJB 方程式を解く必要がありません. 逆にいうと Greenwood and Guner ([2009](#ref-greenwood2009)) のように match quality が前の期に依存するような確率過程 (Ornstein-Uhlenbeck など) を入れていないのはそのためと考えられます. Yanagimoto ([2026](#ref-yanagimoto2026a)) は, Greenwood and Guner ([2009](#ref-greenwood2009)) のモデルを連続時間化して数値計算する方法を示しました.
 
@@ -343,9 +259,7 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 男性のタイプ \\i\\, 女性のタイプ \\j\\ は, それぞれ (賃金 \\w\\, 学歴, 家族観指数) の組です. タイプ \\i\\ の独身男性の分布を \\n_m\left(i\right)\\, タイプ \\j\\ の独身女性の分布を \\n_f\left(j\right)\\, タイプの組 \\\left(i, j\right)\\ の夫婦の分布を \\m\left(i, j\right)\\ と書き, 独身の総数を \\N_m = \int n_m\left(i\right) di\\, \\N_f = \int n_f\left(j\right) dj\\ とします. これらはいずれも内生変数です.
 
-サーチをするのは独身者だけです. 出会いは CRS のマッチング関数で生まれ, 1人あたりの出会い率は \\\lambda = \xi \left(N_m N_f\right)^{-1/2}\\ です. 出会った男女はマッチの質 \\z \sim \log \mathcal{N}(0, \sigma)\\ (CDF を \\G(z)\\ とおく) を引き, 双方が合意すれば結婚します. 合意するかどうかはタイプの組と \\z\\ の実現で決まるので, 観察される \\i, j\\ から結婚に至る確率は [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) で表されます.
-
-\\ \alpha\_{ij} = \int \mathbb{1}\_{ij}\left(z\right) dG\left(z\right). \tag{6.3}\\ ここで, \\\mathbb{1}\_{ij}(z)\\ は, タイプの組 \\\left(i, j\right)\\ がマッチの質 \\z\\ で結婚するかどうかを示すインディケータです.
+サーチをするのは独身者だけです. 出会いは CRS のマッチング関数で生まれ, 1人あたりの出会い率は \\\lambda = \xi \left(N_m N_f\right)^{-1/2}\\ です. 出会った男女はマッチの質 \\z \sim \log \mathcal{N}(0, \sigma)\\ (CDF を \\G(z)\\ とおく) を引き, 双方が合意すれば結婚します. 合意するかどうかはタイプの組と \\z\\ の実現で決まるので, 観察される \\i, j\\ から結婚に至る確率は [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) で表されます. \\ \alpha\_{ij} = \int \mathbb{1}\_{ij}\left(z\right) dG\left(z\right). \tag{6.3}\\ ここで, \\\mathbb{1}\_{ij}(z)\\ は, タイプの組 \\\left(i, j\right)\\ がマッチの質 \\z\\ で結婚するかどうかを示すインディケータです.
 
 結婚後は, 率 \\\delta\\ でマッチの質が引き直されます. 新しい \\z'\\ は同じ \\G\\ から独立に引かれるので, 引き直しを1回生き延びる確率はふたたび \\\alpha\_{ij}\\ です. したがって離婚ハザードは \\\delta \left(1 - \alpha\_{ij}\right)\\ になります. 結婚と離婚を同じ \\\alpha\_{ij}\\ が決めていると言う構造が重要です. \\\alpha\_{ij}\\ が高い組は, 「結婚しやすく壊れにくい」 と言う構造を作ります. 逆に, 一目惚れのような高い \\z\\ の実現で結婚した組は, 引き直しに弱く壊れやすい, という予測が出ます.
 
@@ -359,72 +273,30 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 各個人は, 私的消費 \\c\\, 私的余暇 \\e\\, そして家計の公共財 \\q\\ (食事, 住環境, 子育てなど) から効用 \\U_i\left(c, e, q\right)\\ を得ます. 各人の使える時間の総量は1に基準化し, それを市場労働 \\h\\, 私的余暇 \\e\\, 家事時間 \\d\\ の3つに配分します (\\h = 1 - e - d\\). 公共財を作る唯一の投入がこの家事時間 \\d\\ で, その公共財が, 結婚を独身より魅力的にしうる唯一のチャネルです.
 
-公共財の生産関数は独身と夫婦でそれぞれ Stone-Geary 型で書かれます.
-
-\\ \begin{aligned} q &= F\_{g}^0(d) = \left(d - D\_{g}^0\right)^{K\_{g}^0} & \text{(Single)} \\ q &= F\_{ij}\left(d_m, d_f\right) = Z\_{ij} \left(d_m - D_m^1\right)^{K_m^1}\left(d_f - D_f^1\right)^{K_f^1} & \text{(Married)} \end{aligned} \\
-
-ここで, \\D\\ は最低投入量, \\Z\_{ij}\\ はマッチの質です. 夫婦の生産関数は二つの要素からなります.
+公共財の生産関数は独身と夫婦でそれぞれ Stone-Geary 型で書かれます. \\ \begin{aligned} q &= F\_{g}^0(d) = \left(d - D\_{g}^0\right)^{K\_{g}^0} & \text{(Single)} \\ q &= F\_{ij}\left(d_m, d_f\right) = Z\_{ij} \left(d_m - D_m^1\right)^{K_m^1}\left(d_f - D_f^1\right)^{K_f^1} & \text{(Married)} \end{aligned} \\ ここで, \\D\\ は最低投入量, \\Z\_{ij}\\ はマッチの質です. 夫婦の生産関数は二つの要素からなります.
 
 1.  **マッチの質** \\Z\_{ij}\\: 学歴の補完性が高いほど \\Z\_{ij}\\ が大きくなり, 家事時間の投入量が増えます
 2.  **家族観** \\D\_{g}\\: 家族観が保守的なほど, \\D_g\\ が大きくなり, 家事時間の投入量が増えます
 
-予算制約は独身が
+予算制約は独身が \\ c + w_i e = w_i \left(1 - d\right) =: R, \\ 夫婦が以下になります. \\ \begin{aligned} c_m + w_i e_m = w_i \left(1 - d_m\right) - t_m &=: R_m,\\ c_f + w_j e_f = w_j \left(1 - d_f\right) - t_f &=: R_f \end{aligned} \\ \\\left(t_m, t_f\right)\\ は配偶者間の移転で, 世帯の生活費 \\C\_{ij}\\ を賄う制約 \\t_m + t_f = C\_{ij}\\ を満たします. \\C\_{ij}\\ は家庭内生産の技術を動かすための固定費用, あるいは共同で消費する分の費用と解釈され, タイプの組に依存する一方で賃金には依存しません. 独身にはこの費用がかかりません.
 
-\\ c + w_i e = w_i \left(1 - d\right) =: R, \\ 夫婦が以下になります.
+効用関数は, 直接効用 \\U_i\\ ではなく, 私的支出 \\R\\ と公共財 \\q\\ を所与として \\c, e\\ を最適に選んだあとの (条件付き) 間接効用 \\ \psi_i\left(R, q\right) = \max\_{c, e}\\ U_i\left(c, e, q\right) \quad \text{s.t.} \quad c + w_i e \leq R \\ の形で特定化されます. \\ \psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad A_i = a\_{0i} + a\_{1i} w_i + \frac{1}{2} a\_{2} w_i^2, \qquad \ln B_i = b_i \ln w_i \tag{6.4}\\ \\A_i\\ は「効用が正になるのに最低限必要な私的支出」, \\B_i\\ は本人の賃金 (余暇の価格) に応じた個人別の価格指数で, 分子 \\q\left(R - A_i\right)\\ は名目の効用水準と読めます. 公共財 \\q\\ と私的支出が掛け算で入るのがポイントで, これが後で移転可能効用を生みます. パラメータ \\a\_{0i}, a\_{1i}, b_i\\ は本人の特性 (学歴・家族観) の線形関数, \\a_2\\ は性別ごとの定数です.
 
-\\ \begin{aligned} c_m + w_i e_m = w_i \left(1 - d_m\right) - t_m &=: R_m,\\ c_f + w_j e_f = w_j \left(1 - d_f\right) - t_f &=: R_f \end{aligned} \\
-
-\\\left(t_m, t_f\right)\\ は配偶者間の移転で, 世帯の生活費 \\C\_{ij}\\ を賄う制約 \\t_m + t_f = C\_{ij}\\ を満たします. \\C\_{ij}\\ は家庭内生産の技術を動かすための固定費用, あるいは共同で消費する分の費用と解釈され, タイプの組に依存する一方で賃金には依存しません. 独身にはこの費用がかかりません.
-
-効用関数は, 直接効用 \\U_i\\ ではなく, 私的支出 \\R\\ と公共財 \\q\\ を所与として \\c, e\\ を最適に選んだあとの (条件付き) 間接効用
-
-\\ \psi_i\left(R, q\right) = \max\_{c, e}\\ U_i\left(c, e, q\right) \quad \text{s.t.} \quad c + w_i e \leq R \\
-
-の形で特定化されます.
-
-\\ \psi_i\left(R, q\right) = \frac{q\left(R - A_i\right)}{B_i}, \qquad A_i = a\_{0i} + a\_{1i} w_i + \frac{1}{2} a\_{2} w_i^2, \qquad \ln B_i = b_i \ln w_i \tag{6.4}\\
-
-\\A_i\\ は「効用が正になるのに最低限必要な私的支出」, \\B_i\\ は本人の賃金 (余暇の価格) に応じた個人別の価格指数で, 分子 \\q\left(R - A_i\right)\\ は名目の効用水準と読めます. 公共財 \\q\\ と私的支出が掛け算で入るのがポイントで, これが後で移転可能効用を生みます. パラメータ \\a\_{0i}, a\_{1i}, b_i\\ は本人の特性 (学歴・家族観) の線形関数, \\a_2\\ は性別ごとの定数です.
-
-余暇の価格は賃金 \\w_i\\ なので, 余暇の需要は Roy の恒等式
-
-\\ e = -\frac{\partial \psi_i / \partial w_i}{\partial \psi_i / \partial R} \\
-
-から求まります. [式 eq-gousse-utility](#eq-gousse-utility) を微分すると \\\partial \psi_i / \partial R = q / B_i\\, \\\partial \psi_i / \partial w_i = -q\left\[A_i' B_i + \left(R - A_i\right) B_i'\right\] / B_i^2\\ なので,
-
-\\ e = A_i' + \frac{B_i'}{B_i}\left(R - A_i\right) \\
-
-です. \\A_i' = a\_{1i} + a_2 w_i\\, \\B_i' / B_i = b_i / w_i\\ を代入して \\w_i\\ を掛ければ, 余暇支出と消費は
-
-\\ w_i e = a\_{1i} w_i + a_2 w_i^2 + b_i\left(R - A_i\right), \qquad c = R - w_i e \\
-
-となります. \\q\\ は分子と分母で打ち消し合うので, 余暇の需要は公共財の水準に依存しません. 推定では, この余暇支出が家事時間とともにデータに当てられます. なお, \\\psi_i\\ が \\d\\ に依存しないのは, \\e \leq 1 - d\\ の制約が効かない (内点解の) 範囲を仮定しているからです ([Goussé et al. 2017](#ref-gousse2017), eqs. 5.1, 6.1-6.3).
+余暇の価格は賃金 \\w_i\\ なので, 余暇の需要は Roy の恒等式 \\ e = -\frac{\partial \psi_i / \partial w_i}{\partial \psi_i / \partial R} \\ から求まります. [式 eq-gousse-utility](#eq-gousse-utility) を微分すると \\\partial \psi_i / \partial R = q / B_i\\, \\\partial \psi_i / \partial w_i = -q\left\[A_i' B_i + \left(R - A_i\right) B_i'\right\] / B_i^2\\ なので, \\ e = A_i' + \frac{B_i'}{B_i}\left(R - A_i\right) \\ です. \\A_i' = a\_{1i} + a_2 w_i\\, \\B_i' / B_i = b_i / w_i\\ を代入して \\w_i\\ を掛ければ, 余暇支出と消費は \\ w_i e = a\_{1i} w_i + a_2 w_i^2 + b_i\left(R - A_i\right), \qquad c = R - w_i e \\ となります. \\q\\ は分子と分母で打ち消し合うので, 余暇の需要は公共財の水準に依存しません. 推定では, この余暇支出が家事時間とともにデータに当てられます. なお, \\\psi_i\\ が \\d\\ に依存しないのは, \\e \leq 1 - d\\ の制約が効かない (内点解の) 範囲を仮定しているからです ([Goussé et al. 2017](#ref-gousse2017), eqs. 5.1, 6.1-6.3).
 
 ここで, 規模の経済がどこにあるかを整理します. 夫婦の \\q\\ は2人の家事時間から一度だけ作られ, それを2人が同時に享受します. 公共財が世帯内で非競合であること自体が規模の経済で, さらに \\Z\_{ij}\\ が組み合わせ次第でその生産性を押し上げます. 一方, 私的消費 \\c\\ と私的余暇 \\e\\ の側には「2人なら1人あたり割安」という等価尺度は一切入っていません. 結局, 結婚の得失は公共財から得られるこの利益と, 生活費 \\C\_{ij}\\ とのトレードオフで決まります.
 
 #### HJB 方程式
 
-独身の男性 (タイプ \\i\\) の価値 \\V_m^0\left(i\right)\\ は次を満たします.
+独身の男性 (タイプ \\i\\) の価値 \\V_m^0\left(i\right)\\ は次を満たします. \\ r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left\[V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{+} n_f\left(j\right) dG\left(z\right) dj \tag{6.5}\\ \\u_m^0\left(i\right)\\ は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 \\\max\_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)\\), \\V_m^1\left(i, j, z\right)\\ はタイプ \\i\\ の男性がタイプ \\j\\ の相手とマッチの質 \\z\\ で結婚したときの価値です. 率 \\\lambda\\ で相手に出会い, 相手のタイプは独身女性の分布 \\n_f\\ から, \\z\\ は \\G\\ から引かれます. 正の部分 \\\left\[\cdot\right\]^{+}\\ が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.
 
-\\ r V_m^0\left(i\right) = u_m^0\left(i\right) + \lambda \iint \left\[V_m^1\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{+} n_f\left(j\right) dG\left(z\right) dj \tag{6.5}\\
-
-\\u_m^0\left(i\right)\\ は独身のフロー効用 (自分の家事時間を最適に選んだときの間接効用 \\\max\_{d} \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)\\), \\V_m^1\left(i, j, z\right)\\ はタイプ \\i\\ の男性がタイプ \\j\\ の相手とマッチの質 \\z\\ で結婚したときの価値です. 率 \\\lambda\\ で相手に出会い, 相手のタイプは独身女性の分布 \\n_f\\ から, \\z\\ は \\G\\ から引かれます. 正の部分 \\\left\[\cdot\right\]^{+}\\ が「合意しなければ独身のまま」で, 出会っても価値が上がらなければ結婚しません. 右辺第2項がそのまま外部機会の価値で, 良い相手に出会いやすいタイプほど大きくなります.
-
-結婚している男性の価値は, 自分のタイプ \\i\\ だけでなく相手のタイプ \\j\\ とマッチの質 \\z\\ にも依存します. 結婚契約の価値を \\W_m\left(i, j, z\right)\\ と書くと, 契約で決まったフロー効用 \\u_m\left(i, j, z\right)\\ と, 次に \\z\\ が引き直されたときの選択の価値からなります.
-
-\\ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left\[\max\left\\V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\\ - W_m\left(i, j, z\right)\right\] dG\left(z'\right) \tag{6.6}\\
-
-第2項が離婚のオプション価値です. 率 \\\delta\\ で新しい \\z'\\ が引かれ, 継続の価値 \\V_m^1\left(i, j, z'\right)\\ が独身の価値 \\V_m^0\left(i\right)\\ を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは \\z\\ だけで, タイプの組 \\\left(i, j\right)\\ は結婚している限り変わらないことに注意してください. 離婚してはじめて \\i\\ は独身プールに戻り, 相手を選び直します.
+結婚している男性の価値は, 自分のタイプ \\i\\ だけでなく相手のタイプ \\j\\ とマッチの質 \\z\\ にも依存します. 結婚契約の価値を \\W_m\left(i, j, z\right)\\ と書くと, 契約で決まったフロー効用 \\u_m\left(i, j, z\right)\\ と, 次に \\z\\ が引き直されたときの選択の価値からなります. \\ r W_m\left(i, j, z\right) = u_m\left(i, j, z\right) + \delta \int \left\[\max\left\\V_m^0\left(i\right), V_m^1\left(i, j, z'\right)\right\\ - W_m\left(i, j, z\right)\right\] dG\left(z'\right) \tag{6.6}\\ 第2項が離婚のオプション価値です. 率 \\\delta\\ で新しい \\z'\\ が引かれ, 継続の価値 \\V_m^1\left(i, j, z'\right)\\ が独身の価値 \\V_m^0\left(i\right)\\ を上回れば結婚は続き, 下回れば離婚します. 引き直されるのは \\z\\ だけで, タイプの組 \\\left(i, j\right)\\ は結婚している限り変わらないことに注意してください. 離婚してはじめて \\i\\ は独身プールに戻り, 相手を選び直します.
 
 以下では, 混乱の恐れがないところではタイプの引数を省いて \\V_m^0\\, \\V_m^1\left(z\right)\\, \\W_m\\ のように書きます.
 
 #### Nash Bargaining
 
-夫婦は, 家事時間 \\\left(d_m, d_f\right)\\ と私的支出への移転 \\\left(t_m, t_f\right)\\ を, 独身の価値 (outside options) を交渉決裂点とする, Nash bargaining で決めます.
-
-\\ \max\\ \left\[W_m\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{\beta} \left\[W_f\left(i, j, z\right) - V_f^0\left(j\right)\right\]^{1-\beta} \\
-
-ここではコミットメントができず, どちらもいつでも交渉から降りられる (離婚できる) と仮定します. そのため, \\z\\ が引き直されるたびに配分は再交渉されます.
+夫婦は, 家事時間 \\\left(d_m, d_f\right)\\ と私的支出への移転 \\\left(t_m, t_f\right)\\ を, 独身の価値 (outside options) を交渉決裂点とする, Nash bargaining で決めます. \\ \max\\ \left\[W_m\left(i, j, z\right) - V_m^0\left(i\right)\right\]^{\beta} \left\[W_f\left(i, j, z\right) - V_f^0\left(j\right)\right\]^{1-\beta} \\ ここではコミットメントができず, どちらもいつでも交渉から降りられる (離婚できる) と仮定します. そのため, \\z\\ が引き直されるたびに配分は再交渉されます.
 
 この時, 交渉力の源泉は次の2つからなります.
 
@@ -433,43 +305,23 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 推定では \\\beta\\ は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 \\z\\ の側にある, という構造になっています.
 
-コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり [式 eq-gousse-married](#eq-gousse-married) の契約の価値 \\W_m\\ は継続価値 \\V_m^1\left(z\right)\\ そのものでなければならず, これを代入して整理すると ([sec-apdx-nocommit](#sec-apdx-nocommit)), 次の式を得ます.
-
-\\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{6.7}\\
-
-左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. \\u_m - r V_m^0\\ が「今期, 結婚しているおかげで独身より多く得ている分」, \\\delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right)\\ が「次に \\z'\\ が引き直されたときのオプション価値」 になります.
+コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり [式 eq-gousse-married](#eq-gousse-married) の契約の価値 \\W_m\\ は継続価値 \\V_m^1\left(z\right)\\ そのものでなければならず, これを代入して整理すると ([sec-apdx-nocommit](#sec-apdx-nocommit)節), 次の式を得ます. \\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{6.7}\\ 左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. \\u_m - r V_m^0\\ が「今期, 結婚しているおかげで独身より多く得ている分」, \\\delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right)\\ が「次に \\z'\\ が引き直されたときのオプション価値」 になります.
 
 #### 余剰とマッチング集合
 
-TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を \\S\_{ij}\left(z\right) := B_i\left\[V_m^1\left(z\right) - V_m^0\right\] + B_j\left\[V_f^1\left(z\right) - V_f^0\right\]\\ と定義すると, [sec-apdx-gousse-surplus](#sec-apdx-gousse-surplus) より, 次の式が成り立ちます.
+TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を \\S\_{ij}\left(z\right) := B_i\left\[V_m^1\left(z\right) - V_m^0\right\] + B_j\left\[V_f^1\left(z\right) - V_f^0\right\]\\ と定義すると, [sec-apdx-gousse-surplus](#sec-apdx-gousse-surplus)節より, 次の式が成り立ちます. \\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{6.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
 
-\\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{6.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
+この時, 合意条件 \\\mathbb{1}\_{ij}\left(z\right) = \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\\\ を閉じた形でかけます. [式 eq-gousse-surplus](#eq-gousse-surplus) の右辺は \\zF\_{ij}X\_{ij}\\ のみが \\z\\ に依存し, 自明に増加かんすうであるので, 余剰 \\S\_{ij}\left(z\right)\\ も \\z\\ について増加関数になります. したがって, ある閾値 \\\underline{z}\_{ij}\\ が存在して, 「\\z\\ が \\\underline{z}\_{ij}\\ 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) のインディケータは次の形で書くことができます. \\ \alpha\_{ij} = \int \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\ dG\left(z\right) = 1 - G\left(\underline{z}\_{ij}\right) \tag{6.9}\\
 
-この時, 合意条件 \\\mathbb{1}\_{ij}\left(z\right) = \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\\\ を閉じた形でかけます. [式 eq-gousse-surplus](#eq-gousse-surplus) の右辺は \\zF\_{ij}X\_{ij}\\ のみが \\z\\ に依存し, 自明に増加かんすうであるので, 余剰 \\S\_{ij}\left(z\right)\\ も \\z\\ について増加関数になります. したがって, ある閾値 \\\underline{z}\_{ij}\\ が存在して, 「\\z\\ が \\\underline{z}\_{ij}\\ 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) のインディケータは次の形で書くことができます.
-
-\\ \alpha\_{ij} = \int \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\ dG\left(z\right) = 1 - G\left(\underline{z}\_{ij}\right) \tag{6.9}\\
-
-独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は [sec-apdx-gousse-single](#sec-apdx-gousse-single)).
-
-\\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{6.10}\\
-
-この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.
+独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は[sec-apdx-gousse-single](#sec-apdx-gousse-single)節). \\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{6.10}\\ この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.
 
 #### Sharing rule
 
-Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
-
-\\ \beta\_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\\ r V_m^0 - \beta B_j\\ r V_f^0}{z F\_{ij} X\_{ij}} \\
-
-となります (導出は付録の [sec-apdx-gousse-share](#sec-apdx-gousse-share) 節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
+Nash 交渉の解として, 夫が受け取る純私的支出のシェアは \\ \beta\_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\\ r V_m^0 - \beta B_j\\ r V_f^0}{z F\_{ij} X\_{ij}} \\ となります (導出は付録の[sec-apdx-gousse-share](#sec-apdx-gousse-share)節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
 
 #### 定常状態
 
-タイプの組 \\\left(i, j\right)\\ ごとに, 結婚による流入と離婚による流出がバランスします.
-
-\\ \delta\left(1-\alpha\_{ij}\right)\\ m\left(i, j\right) = \lambda\\ n_m\left(i\right)\\ n_f\left(j\right)\\ \alpha\_{ij} \tag{6.11}\\
-
-ここで, \\m\\ は夫婦の分布, \\n_m, n_f\\ は独身者の分布です. 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.
+タイプの組 \\\left(i, j\right)\\ ごとに, 結婚による流入と離婚による流出がバランスします. \\ \delta\left(1-\alpha\_{ij}\right)\\ m\left(i, j\right) = \lambda\\ n_m\left(i\right)\\ n_f\left(j\right)\\ \alpha\_{ij} \tag{6.11}\\ ここで, \\m\\ は夫婦の分布, \\n_m, n_f\\ は独身者の分布です. 実証上は, 経済は3年ごとの定常状態を渡り歩くと仮定し, 賃金・学歴・家族観の分布だけを期間ごとに動かして, 構造パラメータは全期間で共通とします.
 
 ### 6.4.3 推定
 
@@ -482,21 +334,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 - 夫婦の分布 \\m(i, j)\\
 - 結婚・離婚のフロー \\MF(i, j), DF(i, j)\\
 
-**1. 結婚・離婚フロー**: タイプの組ごとの結婚・離婚フローは次のようになります.
+**1. 結婚・離婚フロー**: タイプの組ごとの結婚・離婚フローは次のようになります. \\ \begin{aligned} MF\left(i, j\right) &= \lambda n_m\left(i\right) n_f\left(j\right) \alpha\_{ij}, \\ DF\left(i, j\right) &= \delta \left(1 - \alpha\_{ij}\right) m\left(i, j\right). \end{aligned} \\ ここで, 結婚率 \\MR(i, j) := \frac{MF(i, j)}{n_m(i) n_f(j)}\\, 離婚率 \\DR(i, j) := \frac{DF(i, j)}{m(i, j)}\\ と書くと, \\\alpha\_{ij}\\ を消去して, 次のように書けます. \\ \frac{MR(i, j)}{\lambda} + \frac{DR(i, j)}{\delta} = 1. \\ 出会い関数 \\\lambda = \xi \left(N_m N_f\right)^{-\frac{1}{2}}\\ を代入すると, 次の式を得ます. \\ \frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1. \tag{6.12}\\
 
-\\ \begin{aligned} MF\left(i, j\right) &= \lambda n_m\left(i\right) n_f\left(j\right) \alpha\_{ij}, \\ DF\left(i, j\right) &= \delta \left(1 - \alpha\_{ij}\right) m\left(i, j\right). \end{aligned} \\
-
-ここで, 結婚率 \\MR(i, j) := \frac{MF(i, j)}{n_m(i) n_f(j)}\\, 離婚率 \\DR(i, j) := \frac{DF(i, j)}{m(i, j)}\\ と書くと, \\\alpha\_{ij}\\ を消去して, 次のように書けます.
-
-\\ \frac{MR(i, j)}{\lambda} + \frac{DR(i, j)}{\delta} = 1. \\
-
-出会い関数 \\\lambda = \xi \left(N_m N_f\right)^{-\frac{1}{2}}\\ を代入すると, 次の式を得ます.
-
-\\ \frac{1}{\xi}\left(N_m N_f\right)^{\frac{1}{2}} MR(i, j) + \frac{1}{\delta} DR(i, j) = 1. \tag{6.12}\\
-
-フローはサンプルが小さいので, \\MR(i, j), DR(i, j)\\ は学歴 (男女それぞれ3カテゴリ) のセルごとに集計し, 4つの期間 (94-96, 97-99, 00-02, 03-05) をプールして推定します[^3]. 推定は1を被説明変数, \\\left(N_m N_f\right)^{1/2} MR(i, j)\\ と \\DR(i, j)\\ を説明変数とする切片なしの回帰です[^4]. これにより \\\hat{\xi} = 0.151\\, \\\hat{\delta} = 0.0378\\ を得ます. これは, 出会いの間隔は中央値で4年半ほど, 引き直し率は18年に1回ほどという意味です. また, \\\alpha\_{ij}\\ は [式 eq-gousse-steady](#eq-gousse-steady) を変形して,
-
-\\ \alpha\_{ij} = \frac{\delta m(i, j)}{\lambda n_m(i) n_f(j) + \delta m(i, j)}, \\ から復元されます.
+フローはサンプルが小さいので, \\MR(i, j), DR(i, j)\\ は学歴 (男女それぞれ3カテゴリ) のセルごとに集計し, 4つの期間 (94-96, 97-99, 00-02, 03-05) をプールして推定します[^3]. 推定は1を被説明変数, \\\left(N_m N_f\right)^{1/2} MR(i, j)\\ と \\DR(i, j)\\ を説明変数とする切片なしの回帰です[^4]. これにより \\\hat{\xi} = 0.151\\, \\\hat{\delta} = 0.0378\\ を得ます. これは, 出会いの間隔は中央値で4年半ほど, 引き直し率は18年に1回ほどという意味です. また, \\\alpha\_{ij}\\ は [式 eq-gousse-steady](#eq-gousse-steady) を変形して, \\ \alpha\_{ij} = \frac{\delta m(i, j)}{\lambda n_m(i) n_f(j) + \delta m(i, j)}, \\ から復元されます.
 
 ここで注意すべきなのは, この復元がセルごとに流入と流出が一致する \\MF(i, j) = DF(i, j)\\ を課していることです. この仮定はグラフで確認できます. タイプの組・期間ごとの結婚フロー \\MF(i, j)\\ を横軸, 離婚フロー \\DF(i, j)\\ を縦軸にとったのが [図 fig-gousse2017-flows](#fig-gousse2017-flows) で, 定常状態が成り立っていれば点は45度線に乗るはずです[^5]. 回帰直線の傾きは 0.86 (\\R^2 = 64\\\\) と45度線からやや外れますが, 系統的なズレは見られません.
 
@@ -504,11 +344,9 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは
 
 図 6.22: Marriage and divorce flows by type and period (Fig. 6)
 
-**2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと \\\left(\beta, \sigma\right)\\ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. \\\beta\\ は夫婦の余暇の水準から, \\\sigma\\ はその分散から識別されます (付録 [sec-apdx-gousse-est2](#sec-apdx-gousse-est2) 節)
+**2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと \\\left(\beta, \sigma\right)\\ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. \\\beta\\ は夫婦の余暇の水準から, \\\sigma\\ はその分散から識別されます (付録[sec-apdx-gousse-est2](#sec-apdx-gousse-est2)節)
 
-**3. 公共財の質** 均衡における家庭内生産は次の式で表されます.
-
-\\ F\_{ij} = Z\_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X\_{ij}^{K_m^1 + K_f^1}. \\ ここから, \\Z\_{ij}\\ が復元できます.
+**3. 公共財の質** 均衡における家庭内生産は次の式で表されます. \\ F\_{ij} = Z\_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X\_{ij}^{K_m^1 + K_f^1}. \\ ここから, \\Z\_{ij}\\ が復元できます.
 
 主要な推定値は, 出会い率 \\\xi = 0.151\\ (出会いの間隔は中央値で4年半ほど), 引き直し率 \\\delta = 0.038\\ (18年に1回ほど), Nash ウェイト \\\hat\beta = 0.45\\, マッチの質のばらつき \\\hat\sigma = 0.268\\ です. 選好と家庭内生産のパラメータは [図 fig-gousse2017-estimates](#fig-gousse2017-estimates) にまとめられています. 家族観が効くのは家庭内生産の最低投入時間で, 夫婦の \\D^1_j\left\[FVI\right\]\\ は女性で \\+0.0159\\, 男性で \\-0.0073\\ と符号が逆です. 保守的な妻は家事時間を増やし, 保守的な夫は減らす, という比較優位がここで作られています. 一方, 学歴は選好側 (消費のウェイト \\a\_{0j}\\, \\a\_{1j}\\) と生活費 \\C\\ に効きます.
 

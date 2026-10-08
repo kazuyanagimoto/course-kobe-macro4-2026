@@ -10,23 +10,17 @@ Code
 
 男性は \\i \in \mathcal{I}\\, 女性は \\j \in \mathcal{J}\\ と番号をつけ, 男性はタイプ \\x_i \in \mathcal{X}\\, 女性はタイプ \\y_j \in \mathcal{Y}\\ を持つとします. タイプは年齢・学歴・所得など, 研究者に観察できる属性で, 有限個とします. タイプ \\x\\ の男性の人数を \\n_x\\, タイプ \\y\\ の女性の人数を \\m_y\\ と書きます. 独身でいる選択肢を表すダミーのタイプ \\0\\ を両側に付け加え, \\\mathcal{X}\_0 := \mathcal{X} \cup \left\\0\right\\\\, \\\mathcal{Y}\_0 := \mathcal{Y} \cup \left\\0\right\\\\ とします.
 
-マッチングは2つの水準で記述します. **個人の水準**では, \\\mu\_{ij} \in \left\\0, 1\right\\\\ を男性 \\i\\ と女性 \\j\\ がマッチしているときに \\1\\, そうでないときに \\0\\ とし, 各人の相手は高々1人 (\\\sum_j \mu\_{ij} \leq 1\\, \\\sum_i \mu\_{ij} \leq 1\\) とします. **タイプの水準**では, タイプ \\x\\ の男性とタイプ \\y\\ の女性のマッチ数を \\\mu\_{xy}\\, 独身者数を \\\mu\_{x0}\\, \\\mu\_{0y}\\ と書きます. 実行可能なタイプ別マッチングの集合は次の通りです.
-
-\\ \mathcal{M} := \left\\\mu \in \mathbb{R}\_{+}^{\mathcal{X} \times \mathcal{Y}} : \sum\_{y \in \mathcal{Y}} \mu\_{xy} \leq n_x,\\ \sum\_{x \in \mathcal{X}} \mu\_{xy} \leq m_y\right\\ \\
-
-個人の水準の均衡概念が個人均衡 ([sec-matching-stability](#sec-matching-stability)), 同じタイプの中の観察できない異質性を入れてタイプの水準で書き直したものが**集計均衡** ([sec-matching-aggregate](#sec-matching-aggregate)) です.
+マッチングは2つの水準で記述します. **個人の水準**では, \\\mu\_{ij} \in \left\\0, 1\right\\\\ を男性 \\i\\ と女性 \\j\\ がマッチしているときに \\1\\, そうでないときに \\0\\ とし, 各人の相手は高々1人 (\\\sum_j \mu\_{ij} \leq 1\\, \\\sum_i \mu\_{ij} \leq 1\\) とします. **タイプの水準**では, タイプ \\x\\ の男性とタイプ \\y\\ の女性のマッチ数を \\\mu\_{xy}\\, 独身者数を \\\mu\_{x0}\\, \\\mu\_{0y}\\ と書きます. 実行可能なタイプ別マッチングの集合は次の通りです. \\ \mathcal{M} := \left\\\mu \in \mathbb{R}\_{+}^{\mathcal{X} \times \mathcal{Y}} : \sum\_{y \in \mathcal{Y}} \mu\_{xy} \leq n_x,\\ \sum\_{x \in \mathcal{X}} \mu\_{xy} \leq m_y\right\\ \\ 個人の水準の均衡概念が個人均衡 ([sec-matching-stability](#sec-matching-stability)節), 同じタイプの中の観察できない異質性を入れてタイプの水準で書き直したものが**集計均衡** ([sec-matching-aggregate](#sec-matching-aggregate)節) です.
 
 ### 7.1.2 交渉可能集合
 
 男性 \\i\\ (タイプ \\x\\) と女性 \\j\\ (タイプ \\y\\) がマッチしたとき, 2人は実行可能な効用の組 \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ の中から1点を選ぶとします. この集合に置く仮定は3つだけです.
 
-> **NOTE:**
->
-> 集合 \\\mathcal{F}\_{xy} \subset \mathbb{R}^2\\ が次の3条件を満たすとき, proper bargaining set と呼ぶ.
->
-> 1.  **閉かつ非空**
-> 2.  **Lower comprehensive**: \\u' \leq u\\, \\v' \leq v\\ かつ \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ ならば \\\left(u', v'\right) \in \mathcal{F}\_{xy}\\
-> 3.  **上に有界**: \\u_n \to +\infty\\ かつ \\v_n\\ が下に有界ならば, 十分大きな \\n\\ で \\\left(u_n, v_n\right) \notin \mathcal{F}\_{xy}\\. \\u_n\\ と \\v_n\\ を入れ替えても同様
+**定義 7.1 (交渉可能集合 (proper bargaining set))** 集合 \\\mathcal{F}\_{xy} \subset \mathbb{R}^2\\ が次の3条件を満たすとき, proper bargaining set と呼ぶ.
+
+1.  **閉かつ非空**
+2.  **Lower comprehensive**: \\u' \leq u\\, \\v' \leq v\\ かつ \\\left(u, v\right) \in \mathcal{F}\_{xy}\\ ならば \\\left(u', v'\right) \in \mathcal{F}\_{xy}\\
+3.  **上に有界**: \\u_n \to +\infty\\ かつ \\v_n\\ が下に有界ならば, 十分大きな \\n\\ で \\\left(u_n, v_n\right) \notin \mathcal{F}\_{xy}\\. \\u_n\\ と \\v_n\\ を入れ替えても同様
 
 条件1は効率的な配分が存在するために必要で, 条件2は自由処分 (free disposal), 条件3は「2人が同時にいくらでも高い効用を得ることはできない」という稀少性の要求です. 凸性を要求しないことがポイントです. 従来の枠組みでは凸な交渉フロンティアを考えることが多かったのですが, それは「効用の移転が可能である」ことを暗に仮定しているからです.
 
@@ -50,17 +44,9 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 集合 \\\mathcal{F}\_{xy}\\ を, その境界までの符号付き距離で表現します.
 
-> **NOTE:**
->
-> Proper bargaining set \\\mathcal{F}\_{xy}\\ の距離関数 \\D\_{xy} : \mathbb{R}^2 \to \mathbb{R}\\ を次のように定義する.
->
-> \\ D\_{xy}\left(u, v\right) = \min\left\\z \in \mathbb{R} : \left(u - z, v - z\right) \in \mathcal{F}\_{xy}\right\\. \tag{7.1}\\
+**定義 7.2 (距離関数 (distance-to-frontier function))** Proper bargaining set \\\mathcal{F}\_{xy}\\ の距離関数 \\D\_{xy} : \mathbb{R}^2 \to \mathbb{R}\\ を次のように定義する. \\ D\_{xy}\left(u, v\right) = \min\left\\z \in \mathbb{R} : \left(u - z, v - z\right) \in \mathcal{F}\_{xy}\right\\. \tag{7.1}\\
 
-\\D\_{xy}\left(u, v\right)\\ は, 点 \\\left(u, v\right)\\ から45度線に沿ってフロンティアまで測った距離です (正確には \\\sqrt{2}\\ 倍を除いた符号付き距離). \\\left(u, v\right)\\ が実行可能集合の外にあれば正, 内部にあれば負, 境界上でちょうど \\0\\ になります. したがって
-
-\\ \mathcal{F}\_{xy} = \left\\\left(u, v\right) : D\_{xy}\left(u, v\right) \leq 0\right\\ \\
-
-であり, フロンティアは \\D\_{xy}\left(u, v\right) = 0\\ を満たす点の集合です.
+\\D\_{xy}\left(u, v\right)\\ は, 点 \\\left(u, v\right)\\ から45度線に沿ってフロンティアまで測った距離です (正確には \\\sqrt{2}\\ 倍を除いた符号付き距離). \\\left(u, v\right)\\ が実行可能集合の外にあれば正, 内部にあれば負, 境界上でちょうど \\0\\ になります. したがって \\ \mathcal{F}\_{xy} = \left\\\left(u, v\right) : D\_{xy}\left(u, v\right) \leq 0\right\\ \\ であり, フロンティアは \\D\_{xy}\left(u, v\right) = 0\\ を満たす点の集合です.
 
 [![](../../static/cetz/itu_distance.svg)](../../static/cetz/itu_distance.svg "図 7.2: 距離関数. 各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では D_{xy} > 0, 内部の点では D_{xy} < 0, フロンティア上で D_{xy} = 0. [@galichon2019] にもとづく.")
 
@@ -81,21 +67,17 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 1つ目の性質により, 交渉可能集合はまるごと1つの関数の符号で表せます. 「夫婦がフロンティア上にいる」という条件は \\D\_{xy}\left(u, v\right) = 0\\ という1本の等式になるので, 実行可能性を均衡条件に方程式として入れられます. 2つ目は, 2人とも取り分を増やせば集合からより遠ざかる, という当たり前の性質です. 3つ目の平行移動不変性は, 点を対角線方向に \\a\\ だけ動かせば, フロンティアまでの対角線上の距離もちょうど \\a\\ だけ変わる, ということです. 両辺を \\a\\ で微分すれば, \\D\_{xy}\\ が微分可能な点では \\\partial_u D\_{xy} + \partial_v D\_{xy} = 1\\ も分かります. 図で見れば当たり前の性質ですが, 結婚の章でロジットのマッチング関数を閉形式で与え, その1次同次性を生む鍵になります. 4つ目は, 2人の取り分を動かしたときの \\D\_{xy}\\ の変化が, 2人の変化のうち小さい方と大きい方の間に収まることを表しています. どちらの取り分も高々 \\\varepsilon\\ しか動かなければ \\D\_{xy}\\ も高々 \\\varepsilon\\ しか動かないので, \\D\_{xy}\\ は連続です.
 
-**命題 7.1 (和集合と共通部分, Galichon et al. ([2019](#ref-galichon2019)))** \\\mathcal{F}^1, \ldots, \mathcal{F}^K\\ を proper bargaining set とすると, \\\bigcup_k \mathcal{F}^k\\ と \\\bigcap_k \mathcal{F}^k\\ も proper bargaining set であり, その距離関数は
-
-\\ D\_{\cup}\left(u, v\right) = \min_k D\_{\mathcal{F}^k}\left(u, v\right), \qquad D\_{\cap}\left(u, v\right) = \max_k D\_{\mathcal{F}^k}\left(u, v\right). \\
+**命題 7.1 (和集合と共通部分, Galichon et al. ([2019](#ref-galichon2019)))** \\\mathcal{F}^1, \ldots, \mathcal{F}^K\\ を proper bargaining set とすると, \\\bigcup_k \mathcal{F}^k\\ と \\\bigcap_k \mathcal{F}^k\\ も proper bargaining set であり, その距離関数は \\ D\_{\cup}\left(u, v\right) = \min_k D\_{\mathcal{F}^k}\left(u, v\right), \qquad D\_{\cap}\left(u, v\right) = \max_k D\_{\mathcal{F}^k}\left(u, v\right). \\
 
 ## 7.2 個人均衡と集計均衡
 
 ### 7.2.1 個人均衡
 
-> **NOTE:**
->
-> \\\left(\mu\_{ij}, u_i, v_j\right)\\ が個人均衡であるとは, 次の3条件が成り立つこと.
->
-> 1.  \\\mu\_{ij} \in \left\\0, 1\right\\\\, \\\sum_j \mu\_{ij} \leq 1\\, \\\sum_i \mu\_{ij} \leq 1\\
-> 2.  すべての \\i, j\\ について \\D\_{x_i y_j}\left(u_i, v_j\right) \geq 0\\. マッチしている (\\\mu\_{ij} = 1\\) ペアでは等号
-> 3.  \\u_i \geq U\_{i0}\\, \\v_j \geq V\_{0j}\\. 独身ならそれぞれ等号
+**定義 7.3 (個人均衡 (individual equilibrium) ([Galichon et al. 2019](#ref-galichon2019)))** \\\left(\mu\_{ij}, u_i, v_j\right)\\ が個人均衡であるとは, 次の3条件が成り立つこと.
+
+1.  \\\mu\_{ij} \in \left\\0, 1\right\\\\, \\\sum_j \mu\_{ij} \leq 1\\, \\\sum_i \mu\_{ij} \leq 1\\
+2.  すべての \\i, j\\ について \\D\_{x_i y_j}\left(u_i, v_j\right) \geq 0\\. マッチしている (\\\mu\_{ij} = 1\\) ペアでは等号
+3.  \\u_i \geq U\_{i0}\\, \\v_j \geq V\_{0j}\\. 独身ならそれぞれ等号
 
 条件2の不等式が**ブロッキングペアの不在**です. もし \\D\_{x_i y_j}\left(u_i, v_j\right) \< 0\\ なら \\\left(u_i, v_j\right)\\ は \\\mathcal{F}\_{x_i y_j}\\ の内部にあるので, 自由処分により2人とも今より高い効用を得られる点が存在し, 組み替えたほうが得になってしまいます. 条件3は個人合理性です.
 
@@ -103,19 +85,9 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 #### 未観測異質性と分離可能性
 
-ここから集計モデルに移ります. 男性のタイプ \\x \in \mathcal{X}\\, 女性のタイプ \\y \in \mathcal{Y}\\ は有限個で研究者に観察できるとします. 各タイプの人口は十分大きく, 人数ではなく質量で数えます. タイプ \\x\\ の男性の質量を \\n_x\\, タイプ \\y\\ の女性の質量を \\m_y\\ とします. タイプ \\x\\ の男性とタイプ \\y\\ の女性の夫婦の質量を \\\mu\_{xy}\\, 独身者の質量を
+ここから集計モデルに移ります. 男性のタイプ \\x \in \mathcal{X}\\, 女性のタイプ \\y \in \mathcal{Y}\\ は有限個で研究者に観察できるとします. 各タイプの人口は十分大きく, 人数ではなく質量で数えます. タイプ \\x\\ の男性の質量を \\n_x\\, タイプ \\y\\ の女性の質量を \\m_y\\ とします. タイプ \\x\\ の男性とタイプ \\y\\ の女性の夫婦の質量を \\\mu\_{xy}\\, 独身者の質量を \\ \mu\_{x0} = n_x - \sum\_{y \in \mathcal{Y}} \mu\_{xy}, \qquad \mu\_{0y} = m_y - \sum\_{x \in \mathcal{X}} \mu\_{xy} \\ と書き, \\\mu = \left(\mu\_{xy}\right)\\ をタイプの組ごとのマッチングと呼びます. 個人均衡の \\\mu\_{ij} \in \left\\0, 1\right\\\\ は「個人 \\i\\ と \\j\\ が結婚しているか」でしたが, \\\mu\_{xy}\\ は「タイプ \\\left(x, y\right)\\ の夫婦がどれだけいるか」を表します. 同じタイプの中で選好が異なることを次のように定式化します.
 
-\\ \mu\_{x0} = n_x - \sum\_{y \in \mathcal{Y}} \mu\_{xy}, \qquad \mu\_{0y} = m_y - \sum\_{x \in \mathcal{X}} \mu\_{xy} \\
-
-と書き, \\\mu = \left(\mu\_{xy}\right)\\ をタイプの組ごとのマッチングと呼びます. 個人均衡の \\\mu\_{ij} \in \left\\0, 1\right\\\\ は「個人 \\i\\ と \\j\\ が結婚しているか」でしたが, \\\mu\_{xy}\\ は「タイプ \\\left(x, y\right)\\ の夫婦がどれだけいるか」を表します. 同じタイプの中で選好が異なることを次のように定式化します.
-
-> **NOTE:**
->
-> \\i\\ と \\j\\ がマッチするとき, ある \\\left(U_i, V_j\right) \in \mathcal{F}\_{x_i y_j}\\ が存在して
->
-> \\ u_i = U_i + \varepsilon\_{i y_j}, \qquad v_j = V_j + \eta\_{x_i j}. \\
->
-> 独身なら \\u_i = \varepsilon\_{i0}\\, \\v_j = \eta\_{0j}\\. ここで \\\left(\varepsilon\_{iy}\right)\_{y \in \mathcal{Y}\_0}\\ と \\\left(\eta\_{xj}\right)\_{x \in \mathcal{X}\_0}\\ は分布 \\P_x, Q_y\\ からの iid な引きで, \\P_x, Q_y\\ は \\\mathbb{R}^{\mathcal{Y}\_0}, \mathbb{R}^{\mathcal{X}\_0}\\ 上で密度が消えない.
+**定義 7.4 (分離可能性 (separability))** \\i\\ と \\j\\ がマッチするとき, ある \\\left(U_i, V_j\right) \in \mathcal{F}\_{x_i y_j}\\ が存在して \\ u_i = U_i + \varepsilon\_{i y_j}, \qquad v_j = V_j + \eta\_{x_i j}. \\ 独身なら \\u_i = \varepsilon\_{i0}\\, \\v_j = \eta\_{0j}\\. ここで \\\left(\varepsilon\_{iy}\right)\_{y \in \mathcal{Y}\_0}\\ と \\\left(\eta\_{xj}\right)\_{x \in \mathcal{X}\_0}\\ は分布 \\P_x, Q_y\\ からの iid な引きで, \\P_x, Q_y\\ は \\\mathbb{R}^{\mathcal{Y}\_0}, \mathbb{R}^{\mathcal{X}\_0}\\ 上で密度が消えない.
 
 ショック \\\varepsilon\_{iy}\\ は「\\i\\ が**タイプ \\y\\ の**女性と結婚することから得る個人的な魅力」であって, 特定の個人 \\j\\ に対するものではありません. これが Choo and Siow ([2006](#ref-choo2006)) が最初に用いた分離可能性の仮定で, TU の文脈では Galichon and Salanié ([2022](#ref-galichon2022)) が識別への含意を徹底的に調べています.
 
@@ -127,25 +99,15 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 #### 集計均衡の定義
 
-分離可能性のもとで, 各人の問題は離散選択になります.
+分離可能性のもとで, 各人の問題は離散選択になります. \\ u_i = \max\_{y \in \mathcal{Y}\_0}\left\\U\_{x_i y} + \varepsilon\_{iy}\right\\, \qquad v_j = \max\_{x \in \mathcal{X}\_0}\left\\V\_{x y_j} + \eta\_{xj}\right\\. \\ 男女それぞれの期待最大効用の総和を \\ G\left(U\right) = \sum\_{x} n_x\\ \mathbb{E}\left\[\max\_{y \in \mathcal{Y}\_0}\left\\U\_{xy} + \varepsilon\_{iy}\right\\\right\], \qquad H\left(V\right) = \sum\_{y} m_y\\ \mathbb{E}\left\[\max\_{x \in \mathcal{X}\_0}\left\\V\_{xy} + \eta\_{xj}\right\\\right\] \\ と定義します. Daly–Zachary–Williams の定理 ([Williams 1977](#ref-williams1977)) により, タイプ \\y\\ の相手を望むタイプ \\x\\ の男性の質量は \\\partial G / \partial U\_{xy}\\, その逆は \\\partial H / \partial V\_{xy}\\ です. ショックが第一種極値分布なら, \\G\\ は対数和 (log-sum) の形になり, それを \\U\_{xy}\\ で微分するとロジットの選択確率が得られます.
 
-\\ u_i = \max\_{y \in \mathcal{Y}\_0}\left\\U\_{x_i y} + \varepsilon\_{iy}\right\\, \qquad v_j = \max\_{x \in \mathcal{X}\_0}\left\\V\_{x y_j} + \eta\_{xj}\right\\. \\
+これは第[sec-frictionless](#sec-frictionless)章で見る対数和 [式 eq-logsum](#eq-logsum) と選択確率 [式 eq-logit](#eq-logit) の関係そのものです.
 
-男女それぞれの期待最大効用の総和を
+**定義 7.5 (集計均衡 (aggregate equilibrium) ([Galichon et al. 2019](#ref-galichon2019)))** \\\left(\mu\_{xy}, U\_{xy}, V\_{xy}\right)\\ が集計均衡であるとは,
 
-\\ G\left(U\right) = \sum\_{x} n_x\\ \mathbb{E}\left\[\max\_{y \in \mathcal{Y}\_0}\left\\U\_{xy} + \varepsilon\_{iy}\right\\\right\], \qquad H\left(V\right) = \sum\_{y} m_y\\ \mathbb{E}\left\[\max\_{x \in \mathcal{X}\_0}\left\\V\_{xy} + \eta\_{xj}\right\\\right\] \\
-
-と定義します. Daly–Zachary–Williams の定理 ([Williams 1977](#ref-williams1977)) により, タイプ \\y\\ の相手を望むタイプ \\x\\ の男性の質量は \\\partial G / \partial U\_{xy}\\, その逆は \\\partial H / \partial V\_{xy}\\ です. ショックが第一種極値分布なら, \\G\\ は対数和 (log-sum) の形になり, それを \\U\_{xy}\\ で微分するとロジットの選択確率が得られます.
-
-これは第 [sec-frictionless](#sec-frictionless) 章で見る対数和 [式 eq-logsum](#eq-logsum) と選択確率 [式 eq-logit](#eq-logit) の関係そのものです.
-
-> **NOTE:**
->
-> \\\left(\mu\_{xy}, U\_{xy}, V\_{xy}\right)\\ が集計均衡であるとは,
->
-> 1.  \\\mu\\ が内点のマッチングである (\\\mu\_{xy} \> 0\\, \\\sum_y \mu\_{xy} \< n_x\\, \\\sum_x \mu\_{xy} \< m_y\\)
-> 2.  **実行可能性**: すべての \\x, y\\ について \\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\
-> 3.  **市場清算**: \\\mu = \nabla G\left(U\right) = \nabla H\left(V\right)\\
+1.  \\\mu\\ が内点のマッチングである (\\\mu\_{xy} \> 0\\, \\\sum_y \mu\_{xy} \< n_x\\, \\\sum_x \mu\_{xy} \< m_y\\)
+2.  **実行可能性**: すべての \\x, y\\ について \\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\
+3.  **市場清算**: \\\mu = \nabla G\left(U\right) = \nabla H\left(V\right)\\
 
 条件2がフロンティア上にいることを, 条件3が需給の一致を要求しています.
 
@@ -162,21 +124,13 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 #### 価格は wedge である
 
-条件2 (\\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\) はフロンティア上の1点を指定する条件なので, フロンティアを1次元でパラメトライズすればこの制約は自動的に満たせます. Galichon et al. ([2019](#ref-galichon2019)) はそのパラメータとして **wedge** \\W\_{xy} = U\_{xy} - V\_{xy}\\, すなわち夫婦の効用の差を使います. 実際, \\D\_{xy}\left(u, v\right) = 0\\ かつ \\u - v = w\\ を満たす \\\left(u, v\right)\\ は一意で,
-
-\\ \mathcal{U}\_{xy}\left(w\right) = -D\_{xy}\left(0, -w\right), \qquad \mathcal{V}\_{xy}\left(w\right) = -D\_{xy}\left(w, 0\right) \tag{7.3}\\
-
-と閉形式で書けます (\\\mathcal{U}\_{xy}\\ は非減少, \\\mathcal{V}\_{xy}\\ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge \\w\\ を動かすことはフロンティア上を滑ることに対応し, \\w\\ が大きいほど男性に有利な点が選ばれます.
+条件2 (\\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\) はフロンティア上の1点を指定する条件なので, フロンティアを1次元でパラメトライズすればこの制約は自動的に満たせます. Galichon et al. ([2019](#ref-galichon2019)) はそのパラメータとして **wedge** \\W\_{xy} = U\_{xy} - V\_{xy}\\, すなわち夫婦の効用の差を使います. 実際, \\D\_{xy}\left(u, v\right) = 0\\ かつ \\u - v = w\\ を満たす \\\left(u, v\right)\\ は一意で, \\ \mathcal{U}\_{xy}\left(w\right) = -D\_{xy}\left(0, -w\right), \qquad \mathcal{V}\_{xy}\left(w\right) = -D\_{xy}\left(w, 0\right) \tag{7.3}\\ と閉形式で書けます (\\\mathcal{U}\_{xy}\\ は非減少, \\\mathcal{V}\_{xy}\\ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge \\w\\ を動かすことはフロンティア上を滑ることに対応し, \\w\\ が大きいほど男性に有利な点が選ばれます.
 
 [![](../../static/cetz/itu_wedge.svg)](../../static/cetz/itu_wedge.svg "図 7.3: wedge によるパラメトライズ. 傾き 1 の直線 v = u - w とフロンティアの交点 (赤い点) が \left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right) である. w' > w のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.")
 
 図 7.3: **wedge によるパラメトライズ.** 傾き \\1\\ の直線 \\v = u - w\\ とフロンティアの交点 (赤い点) が \\\left(\mathcal{U}\_{xy}\left(w\right), \mathcal{V}\_{xy}\left(w\right)\right)\\ である. \\w' \> w\\ のように wedge を大きくすると, 男性に有利な点に移る. ([Galichon et al. 2019](#ref-galichon2019)) にもとづく.
 
-ここでカップルのタイプ \\xy\\ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, \\W\_{xy}\\ がその財の**価格**です. 供給は \\\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U\_{xy}\\, 需要は \\\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V\_{xy}\\ で, 超過需要関数は
-
-\\ Z\left(W\right) = \nabla H\left(\mathcal{V}\left(W\right)\right) - \nabla G\left(\mathcal{U}\left(W\right)\right) \tag{7.4}\\
-
-です. \\W\_{xy}\\ が上がるとフロンティア上を男性に有利な方向に動くので, 財 \\xy\\ の供給は増え需要は減ります. さらに次が成り立ちます.
+ここでカップルのタイプ \\xy\\ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, \\W\_{xy}\\ がその財の**価格**です. 供給は \\\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U\_{xy}\\, 需要は \\\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V\_{xy}\\ で, 超過需要関数は \\ Z\left(W\right) = \nabla H\left(\mathcal{V}\left(W\right)\right) - \nabla G\left(\mathcal{U}\left(W\right)\right) \tag{7.4}\\ です. \\W\_{xy}\\ が上がるとフロンティア上を男性に有利な方向に動くので, 財 \\xy\\ の供給は増え需要は減ります. さらに次が成り立ちます.
 
 **命題 7.2 (総代替性 (gross substitutes) ([Galichon et al. 2019](#ref-galichon2019)))** \\W\_{xy}\\ だけを上げたとき,
 
@@ -201,19 +155,9 @@ Decker et al. ([2013](#ref-decker2013)) が Choo–Siow について凸最適化
 
 独身の効用を \\0\\ に基準化し, \\\Phi\_{ij} := \Phi\_{x_i y_j}\\ と略記して, TU の場合の個人均衡を改めて書き下します.
 
-> **NOTE:**
->
-> TU マッチングとは, マッチング \\\mu\_{ij}\\ と利得 \\u_i \geq 0\\, \\v_j \geq 0\\ の組 \\\left(\mu, u, v\right)\\ であって, マッチした組では \\u_i + v_j = \Phi\_{ij}\\, 独身者の利得は \\0\\ であるものをいう. これが安定であるとは,
->
-> \\ u_i + v_j \geq \Phi\_{ij} \qquad \forall \left(i, j\right) \in \mathcal{I} \times \mathcal{J} \tag{7.5}\\
->
-> が成り立つことをいう.
+**定義 7.6 (安定マッチング (TU))** TU マッチングとは, マッチング \\\mu\_{ij}\\ と利得 \\u_i \geq 0\\, \\v_j \geq 0\\ の組 \\\left(\mu, u, v\right)\\ であって, マッチした組では \\u_i + v_j = \Phi\_{ij}\\, 独身者の利得は \\0\\ であるものをいう. これが安定であるとは, \\ u_i + v_j \geq \Phi\_{ij} \qquad \forall \left(i, j\right) \in \mathcal{I} \times \mathcal{J} \tag{7.5}\\ が成り立つことをいう.
 
-[式 eq-tu-stability](#eq-tu-stability) の意味は「ブロッキングペアの不在」です. もしある組で \\u_i + v_j \< \Phi\_{ij}\\ なら, \\i\\ と \\j\\ は駆け落ちして余剰 \\\Phi\_{ij}\\ を分け合い, 双方が現在の利得より多くを得られてしまいます. [式 eq-tu-stability](#eq-tu-stability) は次のようにも書けます.
-
-\\ u_i = \max\left\\0,\\ \max\_{j \in \mathcal{J}}\left\\\Phi\_{ij} - v_j\right\\\right\\. \tag{7.6}\\
-
-つまり \\v_j\\ は「女性 \\j\\ と結婚するための価格」であり, 各男性は価格表 \\v\\ を所与として最も得な相手を選びます (女性側も対称). マッチングモデルの背後にあるのは, 誰もがプライステイカーとして入札する完全競争市場です. 移転があるおかげで, どんな相手でも「十分高く入札すれば」獲得できます. 問題はその入札が割に合うかどうかであり, これが以下で見るように補完性の役割につながります.
+[式 eq-tu-stability](#eq-tu-stability) の意味は「ブロッキングペアの不在」です. もしある組で \\u_i + v_j \< \Phi\_{ij}\\ なら, \\i\\ と \\j\\ は駆け落ちして余剰 \\\Phi\_{ij}\\ を分け合い, 双方が現在の利得より多くを得られてしまいます. [式 eq-tu-stability](#eq-tu-stability) は次のようにも書けます. \\ u_i = \max\left\\0,\\ \max\_{j \in \mathcal{J}}\left\\\Phi\_{ij} - v_j\right\\\right\\. \tag{7.6}\\ つまり \\v_j\\ は「女性 \\j\\ と結婚するための価格」であり, 各男性は価格表 \\v\\ を所与として最も得な相手を選びます (女性側も対称). マッチングモデルの背後にあるのは, 誰もがプライステイカーとして入札する完全競争市場です. 移転があるおかげで, どんな相手でも「十分高く入札すれば」獲得できます. 問題はその入札が割に合うかどうかであり, これが以下で見るように補完性の役割につながります.
 
 TU マッチング理論の中心的な結果は, 分権的な均衡概念である安定性が, 集計的な最適化問題と正確に等価になることです.
 
@@ -230,15 +174,9 @@ TU マッチング理論の中心的な結果は, 分権的な均衡概念であ
 
 ### 7.3.2 Becker の同類婚
 
-余剰最大化との等価性から, 誰と誰が結婚するかについての予測が得られます. 特に関心があるのは, 第 [sec-search-matching](#sec-search-matching) 章で見た同類婚 (assortative mating), すなわち属性の似た者同士が結婚する傾向です. ここではその理論的な基準として, Becker ([1973](#ref-becker1973a)) の同類婚の条件を導きます. 以下ではタイプを1次元の実数とし, 余剰を \\\Phi\left(x, y\right)\\ と関数の形で書きます. 鍵になるのは余剰関数の補完性です.
+余剰最大化との等価性から, 誰と誰が結婚するかについての予測が得られます. 特に関心があるのは, 第[sec-search-matching](#sec-search-matching)章で見た同類婚 (assortative mating), すなわち属性の似た者同士が結婚する傾向です. ここではその理論的な基準として, Becker ([1973](#ref-becker1973a)) の同類婚の条件を導きます. 以下ではタイプを1次元の実数とし, 余剰を \\\Phi\left(x, y\right)\\ と関数の形で書きます. 鍵になるのは余剰関数の補完性です.
 
-> **NOTE:**
->
-> 余剰関数 \\\Phi\\ が強い意味で優モジュラ (strictly supermodular) であるとは, 任意の \\x \< x'\\, \\y \< y'\\ に対して
->
-> \\ \Phi\left(x', y'\right) + \Phi\left(x, y\right) \> \Phi\left(x', y\right) + \Phi\left(x, y'\right) \\
->
-> が成り立つことをいう. \\\Phi\\ が \\C^2\\ なら, \\\partial^2 \Phi / \partial x \partial y \> 0\\ (Spence–Mirrlees 条件) が十分条件である. 不等号が逆のとき劣モジュラ (submodular) という.
+**定義 7.7 (優モジュラ性 (supermodularity))** 余剰関数 \\\Phi\\ が強い意味で優モジュラ (strictly supermodular) であるとは, 任意の \\x \< x'\\, \\y \< y'\\ に対して \\ \Phi\left(x', y'\right) + \Phi\left(x, y\right) \> \Phi\left(x', y\right) + \Phi\left(x, y'\right) \\ が成り立つことをいう. \\\Phi\\ が \\C^2\\ なら, \\\partial^2 \Phi / \partial x \partial y \> 0\\ (Spence–Mirrlees 条件) が十分条件である. 不等号が逆のとき劣モジュラ (submodular) という.
 
 優モジュラ性の経済的な意味は, 「より良い相手を得るために限界的に上乗せできる入札額が, 自分のタイプとともに増える」こと, すなわちタイプ同士が**補完的**であることです.
 
@@ -248,23 +186,15 @@ TU マッチング理論の中心的な結果は, 分権的な均衡概念であ
 
 PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を \\F\\, 女性のそれを \\G\\ とすると, 結婚する人数が男女で等しいとき, タイプ \\x\\ の男性の相手 \\\varphi\left(x\right)\\ は \\1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)\\ で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, \\\Phi\\ が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります ([Chiappori and Salanié 2016](#ref-chiappori2016)).
 
-補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 (\\Q = t_W t_H\\) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (Becker ([1991](#ref-becker1991)) の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 (\\Q\\ が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第 [sec-search-matching](#sec-search-matching) 章で見た Greenwood et al. ([2016](#ref-greenwood2016)) の定量分析にもつながっています.
+補完性の源泉は家計のテクノロジーから読めます. 公共財が夫婦の時間投入だけで生産される「家事」型 (\\Q = t_W t_H\\) なら, 賃金の低い方が家事に特化する分業の利益が働き, 余剰は賃金について劣モジュラになります (Becker ([1991](#ref-becker1991)) の分業の論理, NAM). 一方, 公共財が「子どもの人的資本」型 (\\Q\\ が両親の人的資本と時間の積に依存) なら, 親の人的資本同士が補完的になり, 余剰は優モジュラになります (PAM). 20世紀後半に観察される同類婚の強まりは, 結婚の利益の源泉が分業から子どもへの共同投資に移った, という構造変化として読むことができます. この視点は第[sec-search-matching](#sec-search-matching)章で見た Greenwood et al. ([2016](#ref-greenwood2016)) の定量分析にもつながっています.
 
-第 [sec-frictionless](#sec-frictionless) 章では, 同類婚の原因を余剰の補完性と出会いの分断に分解する Ciscato ([2025](#ref-ciscato2025)) を扱います.
+第[sec-frictionless](#sec-frictionless)章では, 同類婚の原因を余剰の補完性と出会いの分断に分解する Ciscato ([2025](#ref-ciscato2025)) を扱います.
 
 ### 7.3.3 余剰の分配
 
-TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 ([sec-allocation](#sec-allocation) 節) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.
+TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 ([sec-allocation](#sec-allocation)節) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.
 
-**命題 7.5 (連続分布のもとでの分配)** タイプは1次元とし, 男女のタイプの分布は mass point を持たず, その support は区間であるとする. \\\Phi\\ は \\C^1\\ 級で強い意味で優モジュラとする. このとき [命題 prp-pam](#prp-pam) より安定マッチングは PAM であり, 既婚男性のタイプ \\x\\ に相手のタイプ \\\varphi\left(x\right)\\ を対応させる増加関数で表せる. 既婚男性のタイプの最小値を \\\underline{x}\\ とすると, 安定な利得 \\\left(u, v\right)\\ について \\u\\ は微分可能で
-
-\\ u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) \tag{7.9}\\
-
-を満たす. したがって \\K = u\left(\underline{x}\right)\\ として
-
-\\ u\left(x\right) = K + \int\_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\left(t, \varphi\left(t\right)\right) dt, \qquad v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right) \\
-
-と書ける. すなわち既婚者の利得は, 定数 \\K\\ の自由度を除いて一意に定まる.
+**命題 7.5 (連続分布のもとでの分配)** タイプは1次元とし, 男女のタイプの分布は mass point を持たず, その support は区間であるとする. \\\Phi\\ は \\C^1\\ 級で強い意味で優モジュラとする. このとき [命題 prp-pam](#prp-pam) より安定マッチングは PAM であり, 既婚男性のタイプ \\x\\ に相手のタイプ \\\varphi\left(x\right)\\ を対応させる増加関数で表せる. 既婚男性のタイプの最小値を \\\underline{x}\\ とすると, 安定な利得 \\\left(u, v\right)\\ について \\u\\ は微分可能で \\ u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) \tag{7.9}\\ を満たす. したがって \\K = u\left(\underline{x}\right)\\ として \\ u\left(x\right) = K + \int\_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\left(t, \varphi\left(t\right)\right) dt, \qquad v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right) \\ と書ける. すなわち既婚者の利得は, 定数 \\K\\ の自由度を除いて一意に定まる.
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-share)にあります.
 
@@ -272,13 +202,7 @@ TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各�
 
 #### 具体例
 
-各人の効用関数を \\q_i Q\\ (\\q_i\\ は私的財, \\Q\\ は公共財, 価格はともに \\1\\) とします. 所得 \\x\\ の男性と所得 \\y\\ の女性の夫婦は, 次のように2人の効用の和を最大化します.
-
-\\ \max\_{q_W, q_H, Q \geq 0} q_W Q + q_H Q \quad \text{ s.t. } q_W + q_H + Q = x + y. \\ この問題を解くと, \\Q = q_W + q_H = \frac{x+y}{2}\\ で, 効用の和の最大値は \\\frac{\left(x+y\right)^2}{4}\\ です. また, 独身者の問題は次のようになります.
-
-\\ \max\_{q, Q \geq 0} qQ \quad \text{ s.t. } q + Q = x. \\ この問題を解くと, \\Q = q = \frac{x}{2}\\ で, 独身の効用は \\\frac{x^2}{4}\\ です. したがって結婚の余剰は,
-
-\\ \Phi\left(x, y\right) = \frac{\left(x+y\right)^2}{4} - \frac{x^2}{4} - \frac{y^2}{4} = \frac{xy}{2}, \\ で, \\\frac{\partial^2 \Phi}{\partial x \partial y} = \frac{1}{2} \> 0\\ なので, 強い意味で優モジュラです. したがって [命題 prp-pam](#prp-pam) より, 安定マッチングは PAM になります.
+各人の効用関数を \\q_i Q\\ (\\q_i\\ は私的財, \\Q\\ は公共財, 価格はともに \\1\\) とします. 所得 \\x\\ の男性と所得 \\y\\ の女性の夫婦は, 次のように2人の効用の和を最大化します. \\ \max\_{q_W, q_H, Q \geq 0} q_W Q + q_H Q \quad \text{ s.t. } q_W + q_H + Q = x + y. \\ この問題を解くと, \\Q = q_W + q_H = \frac{x+y}{2}\\ で, 効用の和の最大値は \\\frac{\left(x+y\right)^2}{4}\\ です. また, 独身者の問題は次のようになります. \\ \max\_{q, Q \geq 0} qQ \quad \text{ s.t. } q + Q = x. \\ この問題を解くと, \\Q = q = \frac{x}{2}\\ で, 独身の効用は \\\frac{x^2}{4}\\ です. したがって結婚の余剰は, \\ \Phi\left(x, y\right) = \frac{\left(x+y\right)^2}{4} - \frac{x^2}{4} - \frac{y^2}{4} = \frac{xy}{2}, \\ で, \\\frac{\partial^2 \Phi}{\partial x \partial y} = \frac{1}{2} \> 0\\ なので, 強い意味で優モジュラです. したがって [命題 prp-pam](#prp-pam) より, 安定マッチングは PAM になります.
 
 次に人口を決めます. 男性の所得は \\\left\[1, 2\right\]\\ 上に密度 \\1\\ で一様に, 女性の所得は \\\left\[1 - \varepsilon, 2\right\]\\ 上に密度 \\1\\ で一様に分布するとします. 男性の人口は \\1\\, 女性の人口は \\1 + \varepsilon\\ で, 女性が \\\varepsilon \> 0\\ だけ多い状況です. 以下の \\u\left(x\right)\\, \\v\left(y\right)\\ はこれまでどおり結婚の利得, すなわち余剰 \\\Phi\\ のうちの取り分で, 独身の効用はすでに差し引いてあります. 安定な分配は次の3段階で求まります.
 
@@ -286,17 +210,13 @@ TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各�
 2.  包絡線の式を積分する. \\\frac{\partial \Phi}{\partial x} = \frac{y}{2}\\, \\\varphi\left(x\right) = x\\ なので, [式 eq-envelope](#eq-envelope) より, \\ u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) = \frac{x}{2}. \\ 既婚男性の最低所得は \\\underline{x} = 1\\ なので, [命題 prp-share](#prp-share) の式は \\ u\left(x\right) = K + \frac{x^2 - 1}{4}, \qquad v\left(x\right) = \Phi\left(x, x\right) - u\left(x\right) = \frac{x^2 + 1}{4} - K \\ となります. ここで \\v\left(x\right)\\ は所得 \\x\\ の妻の利得です. ただし, 包絡線の式は「安定マッチングなら利得はこの形になる」という必要条件なので, この利得のもとでブロッキングペアが本当にないかを確かめます. [式 eq-tu-stability](#eq-tu-stability) の条件を代入すると \\ u\left(x\right) + v\left(y\right) - \Phi\left(x, y\right) = \frac{x^2 + y^2}{4} - \frac{xy}{2} = \frac{\left(x - y\right)^2}{4} \geq 0 \\ なので, 確かに成り立ちます. なお, この条件には \\K\\ が現れないので, 既婚者どうしの条件は \\K\\ を決めません. \\K\\ を決めるのは, 次のステップの独身者との条件です.
 3.  \\K\\ を決める. 残るのは独身女性とのブロックです. 所得 \\y' \< 1\\ の独身女性の利得は \\0\\ なので, 男性 \\1\\ と彼女がブロッキングペアにならない条件は \\u\left(1\right) \geq \Phi\left(1, y'\right) = y'/2\\ です. \\y'\\ はいくらでも \\1\\ に近くとれるので \\u\left(1\right) \geq 1/2\\ が必要です. 一方, 夫婦 \\\left(1, 1\right)\\ では \\u\left(1\right) + v\left(1\right) = \Phi\left(1, 1\right) = 1/2\\ かつ \\v\left(1\right) \geq 0\\ です. よって \\K = u\left(1\right) = 1/2\\, \\v\left(1\right) = 0\\ で, 限界的な夫婦では夫が余剰を総取りします. このとき他の男性 \\x\\ についても \\u\left(x\right) - \Phi\left(x, y'\right) \geq \left(x - 1\right)^2/4 \geq 0\\ なので, 独身女性とのブロックは起きません.
 
-独身のときの効用を足した総効用 \\\bar{u}\left(x\right) = u\left(x\right) + x^2/4\\, \\\bar{v}\left(y\right) = v\left(y\right) + y^2/4\\ で書くと, 結果は
-
-\\ \bar{u}\left(x\right) = \frac{x^2}{2} + \frac{1}{4}, \qquad \bar{v}\left(y\right) = \frac{y^2}{2} - \frac{1}{4} \\
-
-です.
+独身のときの効用を足した総効用 \\\bar{u}\left(x\right) = u\left(x\right) + x^2/4\\, \\\bar{v}\left(y\right) = v\left(y\right) + y^2/4\\ で書くと, 結果は \\ \bar{u}\left(x\right) = \frac{x^2}{2} + \frac{1}{4}, \qquad \bar{v}\left(y\right) = \frac{y^2}{2} - \frac{1}{4} \\ です.
 
 比較のために, 男女が同数 (\\\varepsilon = 0\\) の場合を考えます. ステップ1と2はそのまま成り立ちますが, ステップ3の独身女性がいないので, \\K\\ への制約は \\u\left(1\right) = K \geq 0\\ と \\v\left(1\right) = 1/2 - K \geq 0\\ だけです. つまり \\K \in \left\[0, 1/2\right\]\\ のどれでも安定で, 総効用は \\\bar{u}\left(x\right) = x^2/2 + \left(K - 1/4\right)\\, \\\bar{v}\left(y\right) = y^2/2 - \left(K - 1/4\right)\\ です. 夫婦の所得は等しいので, \\K = 1/4\\ の等分 \\\bar{u} = \bar{v} = x^2/2\\ が自然な基準になります. 女性がわずかでも多いと \\K\\ はこの区間の上端 \\1/2\\ に決まり, 等分と比べてすべての夫が妻から \\1/4\\ の移転を受け取ります. この \\1/4\\ は \\\varepsilon\\ の大きさによりません. 女性側のごくわずかな超過が, すべての夫婦の分配を区間の端まで動かしたわけです.
 
 さらにこの例は, 社会規範との緊張も教えてくれます. かりに「妻は私的財の割合 \\k\\ を受け取る」という外生的な分配ルール (規範) を課すとします. 私的財の合計を \\s = q_W + q_H\\ とすると, 妻の効用は \\k s Q\\, 夫の効用は \\\left(1 - k\right) s Q\\ で, どちらも \\sQ\\ に比例します. したがって規範のもとでも公共財は \\s = Q = \left(x + y\right)/2\\ に選ばれ, 所得 \\x\\ どうしの夫婦では妻の総効用が \\k x^2\\, 夫の総効用が \\\left(1 - k\right) x^2\\ になります. 安定な分配は上で求めた1つしかないので, 規範どおりの分配が安定であるためには, すべての \\y \in \left\[1, 2\right\]\\ で \\k y^2 = y^2/2 - 1/4\\ が成り立つ必要があります. そのような \\k\\ はないので, どんな \\k\\ に対しても, 規範を破って分け方を交渉し直せば双方が得をするペア (ブロッキングペア) が存在します. 男女が同数なら \\k = 1/2\\ は安定な分配の1つなので, ここでも女性のわずかな超過が効いています. 市場で決まる分配と整合しない規範は, 夫婦双方の合意による「再交渉」の圧力に常にさらされるということです.
 
-最後に理論の限界にも触れておきます. 決定論的な摩擦なしマッチングでは, 性比が1をまたぐ瞬間に分配が不連続にジャンプするなど, 予測が鋭すぎる面があります. 同じタイプの中に観察できない選好のばらつきを入れると, この不連続性は滑らかになり, モデルはそのまま推定可能な形になります. [sec-matching-aggregate](#sec-matching-aggregate) 節の集計均衡は, まさにこのばらつきを入れたものでした. ショックを第一種極値分布にとった特殊ケースが Choo and Siow ([2006](#ref-choo2006)) と, その識別を一般化した Galichon and Salanié ([2022](#ref-galichon2022)) の枠組みです.
+最後に理論の限界にも触れておきます. 決定論的な摩擦なしマッチングでは, 性比が1をまたぐ瞬間に分配が不連続にジャンプするなど, 予測が鋭すぎる面があります. 同じタイプの中に観察できない選好のばらつきを入れると, この不連続性は滑らかになり, モデルはそのまま推定可能な形になります. [sec-matching-aggregate](#sec-matching-aggregate)節の集計均衡は, まさにこのばらつきを入れたものでした. ショックを第一種極値分布にとった特殊ケースが Choo and Siow ([2006](#ref-choo2006)) と, その識別を一般化した Galichon and Salanié ([2022](#ref-galichon2022)) の枠組みです.
 
 Becker, Gary S. 1973. “A Theory of Marriage: Part I.” *Journal of Political Economy* 81 (4): 813–46. <https://doi.org/10.1086/260084>.
 
