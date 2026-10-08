@@ -16,11 +16,12 @@ title: 結婚の経済学
 二人以上で住む場合は, 家賃や光熱費などの固定費を分担できたり, 食事をまとめて作ることでコストが下げられるなど, 消費の効率が上がることがあります. これを経済学では規模の経済 (economies of scale) と呼びます. 正確にモデル化すると複雑化してしまうので, ほとんどの研究では OECD の統計による簡便な尺度を用います.
 
 
-::: {.callout-note}
+<!-- A part page has no chapter number, so a numbered definition here would
+     clash with the numbering of the chapter before it. The same classes give
+     it the look of a definition without the number. -->
+::: {.theorem .definition}
 
-## OECD Equivalence Scale
-
-OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども $n$ 人の世帯の消費は $C(n) = 1 + 0.7 + 0.5n$ と表される. 世帯所得を $Y$ とすると, 世帯の消費水準は $Y/C(n)$ で表される.
+[**定義 (OECD Equivalence Scale)**]{.theorem-title} OECD equivalence scale は, 二人目以降の世帯員が消費する財の量を 0.7, 子どもは 0.5 として, 世帯の消費を調整する尺度である. 典型的な夫婦と子ども $n$ 人の世帯の消費は $C(n) = 1 + 0.7 + 0.5n$ と表される. 世帯所得を $Y$ とすると, 世帯の消費水準は $Y/C(n)$ で表される.
 
 なお, 近年は再計算が行われて, 大人は 0.5, 子どもは 0.3 に調整されており, これを OECD-modified equivalence scale と呼ぶ.
 
@@ -44,11 +45,9 @@ OECD equivalence scale は, 二人目以降の世帯員が消費する財の量�
 結婚に最も重要な要素は愛であると考える人は多いでしょう. それらは否定されることではありませんが, 観察されることでもありません. そのため, 経済学のモデルでは, 愛は確率的な要素として扱われることが多いです. 夢のない話のように思えるかもしれませんが, 上記のような経済学的な要因を差し引いても, 結婚が成立するのは, 愛があるからだと考えることもできます.
 
 
-::: {.callout-warning}
+::: {.theorem .definition}
 
-## 結婚の定義
-
-近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.
+[**定義 (結婚)**]{.theorem-title} 近年では多様な形のパートナーシップも広がっているが, 本講義では, 注釈のない限り異性間の法律婚を対象とします. しかし, 特に西欧諸国では事実婚と法律婚の違いが小さくなっているため, 事実婚や同居 (cohabitation) を含めた研究も多いです.
 
 :::
 

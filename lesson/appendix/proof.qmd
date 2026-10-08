@@ -2,7 +2,7 @@
 
 ## 黄金分割法における黄金比 {#sec-apdx-golden}
 
--@sec-golden-section 節 の黄金分割法では, 区間の内分点を黄金比 $\varphi = \frac{\sqrt{5} - 1}{2} \approx 0.618$ で取りました. ここでは, なぜ黄金比が現れるのかを示します.
+@sec-golden-section の黄金分割法では, 区間の内分点を黄金比 $\varphi = \frac{\sqrt{5} - 1}{2} \approx 0.618$ で取りました. ここでは, なぜ黄金比が現れるのかを示します.
 
 各反復で関数値が必要になりますが, 関数評価はコストが高いため, できるだけ評価回数を減らしたいです. そこで, 次の2つの条件を満たすように内分点を配置することを考えます.
 
@@ -14,11 +14,9 @@
 ## 黄金分割法の内分比
 
 区間 $[a, b]$ の幅を $L = b - a$ とし, 比率 $\varphi \in \left(\frac{1}{2}, 1\right)$ で左右対称に2つの内分点 $x_1 = a + \left(1 - \varphi\right) L$, $x_2 = a + \varphi L$ を取る配置のうち, 上の2条件 (一定の縮小率と点の再利用) を満たすものは
-
 $$
 \varphi = \frac{\sqrt{5} - 1}{2} \approx 0.618
 $$
-
 (黄金比の逆数) に限る.
 
 :::
@@ -30,13 +28,10 @@ $$
 $f(x_1) > f(x_2)$ の場合, 極小値は $x_1$ より右にあるので, 区間を $[x_1, b]$ に更新する. 新しい区間の幅は $L' = b - x_1 = \varphi L$ となるため, 縮小率は $r = \varphi$ で一定である (条件1). 対称な場合 $f(x_1) \leq f(x_2)$ でも, 区間は $[a, x_2]$ となり幅は $\varphi L$ で同じである.
 
 次に点の再利用を考える. 区間を $[x_1, b]$ に更新したとき, 古い点 $x_2$ は新しい区間の内部に残っている. これを新しい区間の (左側の) 内分点として再利用するには, $x_2$ が新しい区間 $[x_1, b]$ の左端から幅の $1 - \varphi$ の位置になければならない (条件2).
-
 $$
 x_2 = x_1 + (1 - \varphi) L'= x_1 + (1 - \varphi)\varphi L.
 $$
-
 ここで $x_1 = a + (1 - \varphi)L$, $x_2 = a + \varphi L$ を代入すると,
-
 $$
 \begin{aligned}
 a + \varphi L &= a + (1 - \varphi) L + (1 - \varphi)\varphi L \\
@@ -44,7 +39,6 @@ a + \varphi L &= a + (1 - \varphi) L + (1 - \varphi)\varphi L \\
 \varphi &= 1 - \varphi^2.
 \end{aligned}
 $$
-
 整理すると $\varphi^2 + \varphi - 1 = 0$ であり, $\varphi \in \left(\frac{1}{2}, 1\right)$ の解は $\varphi = \frac{\sqrt{5} - 1}{2}$ に限る.
 
 :::
@@ -53,14 +47,12 @@ $$
 
 ## 3次スプライン補間の最小曲率性 {#sec-apdx-spline}
 
--@sec-interpolation 節 では, 補間の手法として線形補間と3次スプライン補間を比較しました. ここでは, 3次スプライン補間が「滑らかさ」という明確な意味で最良の補間になっていることを示します.
+@sec-interpolation では, 補間の手法として線形補間と3次スプライン補間を比較しました. ここでは, 3次スプライン補間が「滑らかさ」という明確な意味で最良の補間になっていることを示します.
 
 **補間関数と滑らかさ.** データ点 $(x_1, y_1), \dots, (x_n, y_n)$ ($x_1 < \cdots < x_n$) が与えられたとき, これらを通る関数 $f$ (すなわち $f(x_i) = y_i$ を満たす関数) を補間関数と呼びます. 補間関数は無数に存在するため, 何らかの意味で「良い」ものを選ぶ必要があります. スプラインの語源は製図で用いる薄い弾性板 (しなう定規) で, その弾性エネルギーは曲率の2乗の積分に比例します. 勾配が小さいとき曲率は $f''$ で近似できるので, 「なめらかさ」を測る指標として次の**曲げエネルギー** (bending energy) を考えます.
-
 $$
 J(f) = \int_{x_1}^{x_n} \left(f''(x)\right)^2 dx.
 $$
-
 $J(f)$ が小さいほど関数の曲がりが少なく, 不要な振動のない滑らかな補間だといえます.
 
 ::: {#def-natural-spline}
@@ -81,7 +73,6 @@ $J(f)$ が小さいほど関数の曲がりが少なく, 不要な振動のな�
 ## 自然な3次スプラインの最小曲率性
 
 データ点を補間する任意の $C^2$ 級関数 $f$ の中で, 自然な3次スプライン $g$ は曲げエネルギー $J$ を最小にする.
-
 $$
 J(g) \leq J(f), \qquad \text{with equality iff } f = g.
 $$
@@ -93,29 +84,21 @@ $$
 ::: {.proof}
 
 $h := f - g$ とおく. $f, g$ はともにデータ点を補間するので, 各ノードで $h(x_i) = f(x_i) - g(x_i) = 0$ である. $f = g + h$ より, 曲げエネルギーを展開すると
-
 $$
 J(f) = \int_{x_1}^{x_n} \left(g'' + h''\right)^2 dx = J(g) + 2\int_{x_1}^{x_n} g'' h''\, dx + \int_{x_1}^k{x_n} \left(h''\right)^2 dx.
 $$
-
 交差項が消えることを示す. 部分積分すると
-
 $$
 \int_{x_1}^{x_n} g'' h''\, dx = \left[g''(x) h'(x)\right]_{x_1}^{x_n} - \int_{x_1}^{x_n} g'''(x) h'(x)\, dx.
 $$
-
 第1項は自然境界条件 $g''(x_1) = g''(x_n) = 0$ よりゼロである. 第2項は, $g$ が各小区間 $[x_i, x_{i+1}]$ で3次多項式なので $g'''$ がその区間で定数 $c_i$ となることを使う.
-
 $$
 \int_{x_1}^{x_n} g'''(x) h'(x)\, dx = \sum_{i=1}^{n-1} c_i \int_{x_i}^{x_{i+1}} h'(x)\, dx = \sum_{i=1}^{n-1} c_i \left(h(x_{i+1}) - h(x_i)\right) = 0.
 $$
-
 最後の等号は, すべてのノードで $h(x_i) = 0$ であることによる. したがって交差項はゼロとなり,
-
 $$
 J(f) = J(g) + \int_{x_1}^{x_n} \left(h''(x)\right)^2 dx \geq J(g).
 $$
-
 等号が成立するのは $\int (h'')^2 dx = 0$, すなわち $h'' \equiv 0$ のときに限る. このとき $h$ は1次関数だが, $h$ は2つ以上のノードでゼロになるため $h \equiv 0$, つまり $f = g$ でなければならない.
 
 :::
@@ -124,7 +107,7 @@ $$
 
 ## 縮小写像と動的計画法 {#sec-apdx-contraction}
 
-数値計算パートの動的計画法 (第 -@sec-dynamic-programming 章) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては @stokey1989 があります.
+数値計算パートの動的計画法 (@sec-dynamic-programming) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては @stokey1989 があります.
 
 ### 縮小写像
 
@@ -145,11 +128,9 @@ $$
 :::
 
 ここで使うのは, 状態空間 $X$ 上の有界関数の空間 $B\left(X\right)$ と sup ノルムの距離
-
 $$
 d\left(f, g\right) = \left\| f - g \right\|_{\infty} = \sup_{x \in X} \left| f\left(x\right) - g\left(x\right) \right|
 $$
-
 です. この空間が完備であることは知られています (有界関数の一様収束極限は有界).
 
 ::: {#def-contraction}
@@ -157,11 +138,9 @@ $$
 ## 縮小写像
 
 距離空間 $\left(S, d\right)$ 上の写像 $T \colon S \to S$ が係数 $\beta \in \left(0, 1\right)$ の縮小写像 (contraction mapping) であるとは, 任意の $f, g \in S$ に対して
-
 $$
 d\left(Tf, Tg\right) \leq \beta\, d\left(f, g\right)
 $$
-
 が成り立つことをいう.
 
 :::
@@ -185,19 +164,15 @@ $$
 ::: {.proof}
 
 Step1 (反復列はコーシー列): $d\left(v_{n+1}, v_n\right) = d\left(T v_n, T v_{n-1}\right) \leq \beta\, d\left(v_n, v_{n-1}\right)$ を繰り返すと $d\left(v_{n+1}, v_n\right) \leq \beta^n d\left(v_1, v_0\right)$ である. $m > n$ に対して三角不等式を使うと
-
 $$
 d\left(v_m, v_n\right) \leq \sum_{k=n}^{m-1} d\left(v_{k+1}, v_k\right) \leq \sum_{k=n}^{\infty} \beta^k d\left(v_1, v_0\right) = \frac{\beta^n}{1 - \beta} d\left(v_1, v_0\right)
 $$
-
 となり, $n \to \infty$ でゼロに収束する. よって $\left\{v_n\right\}$ はコーシー列であり, 完備性からある $v^* \in S$ に収束する.
 
 Step2 ($v^*$ は不動点): 任意の $n$ に対して
-
 $$
 d\left(T v^*, v^*\right) \leq d\left(T v^*, v_{n+1}\right) + d\left(v_{n+1}, v^*\right) \leq \beta\, d\left(v^*, v_n\right) + d\left(v_{n+1}, v^*\right)
 $$
-
 であり, 右辺は $n \to \infty$ でゼロに収束するので $d\left(T v^*, v^*\right) = 0$, すなわち $T v^* = v^*$.
 
 Step3 (一意性): $v, w$ がともに不動点なら $d\left(v, w\right) = d\left(Tv, Tw\right) \leq \beta\, d\left(v, w\right)$ であり, $\beta < 1$ より $d\left(v, w\right) = 0$, すなわち $v = w$.
@@ -222,11 +197,9 @@ $T \colon B\left(X\right) \to B\left(X\right)$ が次の2条件を満たすな�
 ::: {.proof}
 
 任意の $f, g$ に対して, すべての $x$ で $f\left(x\right) \leq g\left(x\right) + \left\| f - g \right\|_{\infty}$ が成り立つ. 単調性と割引を順に使うと
-
 $$
 Tf \leq T\left(g + \left\| f - g \right\|_{\infty}\right) \leq Tg + \beta \left\| f - g \right\|_{\infty}.
 $$
-
 $f$ と $g$ を入れ替えれば逆向きの不等式も得られるので, すべての $x$ で $\left| \left(Tf\right)\left(x\right) - \left(Tg\right)\left(x\right) \right| \leq \beta \left\| f - g \right\|_{\infty}$ となり, sup をとって $\left\| Tf - Tg \right\|_{\infty} \leq \beta \left\| f - g \right\|_{\infty}$.
 
 :::
@@ -234,17 +207,13 @@ $f$ と $g$ を入れ替えれば逆向きの不等式も得られるので, す
 ### ベルマン方程式への適用
 
 動的計画法の章で扱った問題を一般形で書きます. 状態 $x \in X$, 実行可能な選択の集合 $\Gamma\left(x\right)$, 当期リターン $u\left(x, a\right)$, 状態の遷移 $x' \sim Q\left(\cdot \mid x, a\right)$, 割引因子 $\beta \in \left(0, 1\right)$ とし, $u$ は有界とします. ベルマン方程式は
-
 $$
 V\left(x\right) = \max_{a \in \Gamma\left(x\right)} \left\{ u\left(x, a\right) + \beta\, \mathbb{E}\left[V\left(x'\right) \mid x, a\right] \right\}
 $${#eq-bellman}
-
 であり, 右辺を関数 $V$ への操作とみなしたものがベルマン作用素 $T$ です.
-
 $$
 \left(TV\right)\left(x\right) = \max_{a \in \Gamma\left(x\right)} \left\{ u\left(x, a\right) + \beta\, \mathbb{E}\left[V\left(x'\right) \mid x, a\right] \right\}.
 $$
-
 @eq-bellman を解くことは, $T$ の不動点を見つけることにほかなりません.
 
 ::: {#prp-bellman-contraction}
@@ -252,11 +221,9 @@ $$
 ## ベルマン作用素は縮小写像
 
 $u$ が有界なら, ベルマン作用素 $T$ は $B\left(X\right)$ 上の係数 $\beta$ の縮小写像である. したがって @eq-bellman の有界な解 $V^*$ はただ1つ存在し, 任意の初期関数 $V_0$ からの価値関数反復 $V_N = T V_{N-1}$ は
-
 $$
 \left\| V_N - V^* \right\|_{\infty} \leq \beta^N \left\| V_0 - V^* \right\|_{\infty}
 $$
-
 を満たして $V^*$ に収束する.
 
 :::
@@ -268,11 +235,9 @@ $u$ が有界 ($\left|u\right| \leq \bar{u}$) なら, $\left|V\right| \leq M$ �
 単調性: $f \leq g$ なら, どの $\left(x, a\right)$ でも $u\left(x, a\right) + \beta\, \mathbb{E}\left[f\right] \leq u\left(x, a\right) + \beta\, \mathbb{E}\left[g\right]$ であり, 各選択肢の値が大きくなるので max も大きくなる. よって $Tf \leq Tg$.
 
 割引: 定数 $a \geq 0$ に対して
-
 $$
 T\left(V + a\right)\left(x\right) = \max_{a' \in \Gamma\left(x\right)} \left\{ u\left(x, a'\right) + \beta\, \mathbb{E}\left[V\left(x'\right)\right] + \beta a \right\} = \left(TV\right)\left(x\right) + \beta a.
 $$
-
 よって @prp-blackwell より $T$ は係数 $\beta$ の縮小写像であり, $B\left(X\right)$ は完備なので @thm-banach のすべての結論が従う.
 
 :::
@@ -296,7 +261,6 @@ $$
 ::: {.proof}
 
 三角不等式と縮小性より
-
 $$
 \left\| V_N - V^* \right\|_{\infty}
 \leq \sum_{k=N}^{\infty} \left\| V_{k+1} - V_k \right\|_{\infty}
@@ -343,7 +307,6 @@ $$
 (2) $u \leq u'$, $v \leq v'$ とする. $z \in Z\left(u', v'\right)$ なら $\left(u - z, v - z\right) \leq \left(u' - z, v' - z\right) \in \mathcal{F}_{xy}$ なので $z \in Z\left(u, v\right)$ である. よって $Z\left(u', v'\right) \subseteq Z\left(u, v\right)$ であり, $D_{xy}\left(u, v\right) \leq D_{xy}\left(u', v'\right)$ が成り立つ. 狭義の部分は (3) を使う. $u < u'$, $v < v'$ なら $\delta = \min\left\{u' - u, v' - v\right\} > 0$ について $\left(u + \delta, v + \delta\right) \leq \left(u', v'\right)$ なので, $D_{xy}\left(u, v\right) + \delta = D_{xy}\left(u + \delta, v + \delta\right) \leq D_{xy}\left(u', v'\right)$ となる.
 
 (3) $z = z' + a$ と置き換えると
-
 $$
 D_{xy}\left(a + u, a + v\right)
 = \min\left\{z : \left(u - \left(z - a\right), v - \left(z - a\right)\right) \in \mathcal{F}_{xy}\right\}
@@ -352,11 +315,9 @@ D_{xy}\left(a + u, a + v\right)
 $$
 
 (4) $\underline{\delta} = \min\left\{u' - u, v' - v\right\}$, $\bar{\delta} = \max\left\{u' - u, v' - v\right\}$ とおくと, $\left(u + \underline{\delta}, v + \underline{\delta}\right) \leq \left(u', v'\right) \leq \left(u + \bar{\delta}, v + \bar{\delta}\right)$ である. (2) と (3) から
-
 $$
 D_{xy}\left(u, v\right) + \underline{\delta} \leq D_{xy}\left(u', v'\right) \leq D_{xy}\left(u, v\right) + \bar{\delta}
 $$
-
 が成り立つ. $\left(u', v'\right) \to \left(u, v\right)$ のとき $\underline{\delta}, \bar{\delta} \to 0$ なので, $D_{xy}$ は連続である.
 
 :::
@@ -370,21 +331,17 @@ $$
 (1) 各男性 $i$ について, $u_i$ を与える最大化の解を $y$ とし, その $y$ ごとに男性を分ける. タイプ $x$ の男性のうち解が $y$ である人の集合 $I_{xy}$ の質量は $\partial G\left(U\right) / \partial U_{xy}$ である. 同様に, タイプ $y$ の女性のうち解が $x$ である人の集合 $J_{xy}$ の質量は $\partial H\left(V\right) / \partial V_{xy}$ である. 市場清算 $\mu = \nabla G\left(U\right) = \nabla H\left(V\right)$ より両者の質量は等しいので, $I_{xy}$ の男性と $J_{xy}$ の女性を任意に組み合わせて $\mu_{ij}$ を作る. 解が独身の人は独身のままにする.
 
 このマッチングが個人均衡の3条件を満たすことを確かめる. 定義から, 任意の男性 $i$ (タイプ $x$) と女性 $j$ (タイプ $y$) について $u_i - \varepsilon_{iy} \geq U_{xy}$, $v_j - \eta_{xj} \geq V_{xy}$ である. 距離関数の単調性 (@lem-dist-props) と実行可能性より
-
 $$
 D_{xy}\left(u_i - \varepsilon_{iy},\ v_j - \eta_{xj}\right) \geq D_{xy}\left(U_{xy}, V_{xy}\right) = 0
 $$
-
 であり, ブロッキングペアは存在しない. マッチした $i \in I_{xy}$, $j \in J_{xy}$ では $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ なので等号が成り立つ. 独身者は最大化の解が独身なので $u_i = \varepsilon_{i0}$, $v_j = \eta_{0j}$ であり, 個人合理性も成り立つ.
 
 (2) 個人均衡の安定性から, すべての $i, j$ について $D_{x_i y_j}\left(u_i - \varepsilon_{i y_j},\ v_j - \eta_{x_i j}\right) \geq 0$ である. $D_{xy}$ の連続性と単調性から, タイプ $x$ の男性とタイプ $y$ の女性について下限をとっても $D_{xy}\left(U_{xy}, V_{xy}\right) \geq 0$ が成り立つ.
 
 $U_{xy}$ の定義から, タイプ $x$ の男性 $i$ はすべての $y$ について $u_i \geq U_{xy} + \varepsilon_{iy}$ を満たし, 個人合理性から $u_i \geq \varepsilon_{i0}$ である. よって $u_i \geq \max_{y \in \mathcal{Y}_0}\left\{U_{xy} + \varepsilon_{iy}\right\}$ である. この不等号が狭義だとすると, すべての $y$ について $u_i - \varepsilon_{iy} > U_{xy}$ である. $D_{xy}$ は狭義増加なので, タイプ $y$ の任意の女性 $j$ について
-
 $$
 D_{xy}\left(u_i - \varepsilon_{iy},\ v_j - \eta_{xj}\right) > D_{xy}\left(U_{xy},\ v_j - \eta_{xj}\right) \geq D_{xy}\left(U_{xy}, V_{xy}\right) \geq 0
 $$
-
 となり, $i$ は誰ともマッチできない (マッチしたペアでは等号が必要). すると $i$ は独身なので $u_i = \varepsilon_{i0}$ でなければならないが, これは $u_i > \varepsilon_{i0}$ に矛盾する. したがって $u_i = \max_{y \in \mathcal{Y}_0}\left\{U_{xy} + \varepsilon_{iy}\right\}$ であり, 女性についても同様である.
 
 各人は自分の最大化の解のタイプと組むので, タイプ $\left(x, y\right)$ の組の質量は男性側から見て $\partial G\left(U\right) / \partial U_{xy}$, 女性側から見て $\partial H\left(V\right) / \partial V_{xy}$ であり, 両者は一致する. ショックの分布の密度が消えないので, すべての $\left(x, y\right)$ でこの質量は正であり, マッチした組では $u_i - \varepsilon_{iy} = U_{xy}$, $v_j - \eta_{xj} = V_{xy}$ かつ $D_{xy}\left(U_{xy}, V_{xy}\right) = 0$ が成り立つ. よって $\left(U, V\right)$ は集計均衡を与える.
@@ -398,31 +355,25 @@ $$
 主問題では $\mu'_{ij} \in \left[0, 1\right]$ を $i$ と $j$ がマッチする確率と読み, 残りの確率は独身とする (制約行列が全ユニモジュラなので, 端点解は $\left\{0, 1\right\}$ に値をとる).
 
 Step1 (弱双対性): 主問題の任意の実行可能解 $\mu'$ と双対問題の任意の実行可能解 $\left(u, v\right)$ に対して,
-
 $$
 \sum_{i, j} \mu'_{ij} \Phi_{ij}
 \leq \sum_{i, j} \mu'_{ij} \left(u_i + v_j\right)
 \leq \sum_i u_i + \sum_j v_j.
 $$
-
 第1の不等式は双対制約 $u_i + v_j \geq \Phi_{ij}$, 第2の不等式は実行可能性と $u, v \geq 0$ による.
 
 Step2 (安定 $\Rightarrow$ 最適): $\left(\mu, u, v\right)$ が安定なら, @eq-tu-stability より $\left(u, v\right)$ は双対問題の実行可能解である. マッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得は $0$ なので, Step1 の2つの不等式がともに等号で成り立ち,
-
 $$
 \sum_{i, j} \mu_{ij} \Phi_{ij} = \sum_i u_i + \sum_j v_j.
 $$
-
 弱双対性より, 左辺の値はどの実行可能な $\mu'$ でも超えられず, 右辺の値はどの実行可能な $\left(u', v'\right)$ でも下回れない. よって $\mu$ は主問題の解, $\left(u, v\right)$ は双対問題の解である.
 
 Step3 (最適 $\Rightarrow$ 安定): $\mu$ を主問題の解とする. 線形計画の双対定理より, 双対問題の解 $\left(u, v\right)$ が存在して両問題の値が一致する. 値の一致を書き直すと
-
 $$
 \sum_{i, j} \mu_{ij} \left(u_i + v_j - \Phi_{ij}\right)
 + \sum_i \left(1 - \sum_j \mu_{ij}\right) u_i
 + \sum_j \left(1 - \sum_i \mu_{ij}\right) v_j = 0
 $$
-
 となり, 各項は双対制約と実行可能性より非負である. よってすべての項がゼロ, すなわちマッチした組では $u_i + v_j = \Phi_{ij}$, 独身者の利得はゼロであり, $\left(\mu, u, v\right)$ は実行可能かつ @eq-tu-stability を満たす安定マッチングである. 主問題は有界な線形計画なので解を持ち, 安定マッチングの存在も従う.
 
 :::
@@ -460,30 +411,51 @@ $$
 ::: {.proof}
 
 @eq-collective-demand を $\pi_l$ と $Y$ で微分し, @eq-slutsky に代入する.
-
 $$
 S_{kl}
 = \underbrace{\frac{\partial \tilde{q}_k}{\partial \pi_l} + q_l\, \frac{\partial \tilde{q}_k}{\partial Y}}_{\Sigma_{kl}}
 + \frac{\partial \tilde{q}_k}{\partial \mu}
 \left(\frac{\partial \mu}{\partial \pi_l} + q_l\, \frac{\partial \mu}{\partial Y}\right).
 $$
-
 第1項は, $\mu$ を固定した標準的な需要関数 $\tilde{q}\left(\cdot, \cdot, \mu\right)$ の Slutsky 行列なので対称かつ負値半定符号である. 第2項は $a_k b_l$ の形, すなわち2つのベクトルの外積なので, 行列としてのランクは高々 $1$ である.
 
 :::
+
+### Slutsky 対称性と SR1 の検定に必要な財の数 {#prf-sr1-goods}
+
+本文の「対称性は財が3つ以上で初めて制約になり, SR1 の検定には5つ以上の財が必要」という主張を示します. 導出は @browning1998 の Proposition 4 に従います. 2つの事実を使います. 第1に, 行列 $S$ が対称行列とランク高々 $1$ の行列の和に書けることは, 反対称行列 $M := S - S^\top$ のランクが $2$ 以下であることと同値である [@browning1998, Lemma 1]. 第2に, 実の反対称行列の0でない固有値は純虚数で共役の対をなすので, そのランクは偶数である [@browning1998, Lemma 2].
+
+::: {.proof}
+
+財が $n$ 個あり, 需要関数 $q\left(\pi, Y\right)$ は $\left(\pi, Y\right)$ について0次同次で, 予算制約を等号で満たす ($\pi^\top q\left(\pi, Y\right) = Y$, adding-up) とする.
+
+まず $S \pi = \mathbf{0}$ と $\pi^\top S = \mathbf{0}^\top$ を示す. 0次同次性 $q\left(t \pi, t Y\right) = q\left(\pi, Y\right)$ を $t$ で微分して $t = 1$ とおくと, Euler の定理 $\sum_l \pi_l\, \partial q_k / \partial \pi_l + Y\, \partial q_k / \partial Y = 0$ を得る. adding-up $\sum_k \pi_k q_k = Y$ を $\pi_l$ と $Y$ で微分すると, $q_l + \sum_k \pi_k\, \partial q_k / \partial \pi_l = 0$ と $\sum_k \pi_k\, \partial q_k / \partial Y = 1$ を得る. これらと @eq-slutsky から
+$$
+\begin{aligned}
+\left(S \pi\right)_k &= \sum_l \frac{\partial q_k}{\partial \pi_l} \pi_l + \left(\sum_l q_l \pi_l\right) \frac{\partial q_k}{\partial Y} = - Y \frac{\partial q_k}{\partial Y} + Y \frac{\partial q_k}{\partial Y} = 0, \\
+\left(\pi^\top S\right)_l &= \sum_k \pi_k \frac{\partial q_k}{\partial \pi_l} + q_l \sum_k \pi_k \frac{\partial q_k}{\partial Y} = - q_l + q_l = 0
+\end{aligned}
+$$
+である. したがって $M \pi = S \pi - \left(\pi^\top S\right)^\top = \mathbf{0}$ で, 価格ベクトル $\pi \neq \mathbf{0}$ が $M$ の核に入るので, $M$ のランクは $n - 1$ 以下である.
+
+(対称性) $n = 2$ のとき $M = \begin{pmatrix} 0 & m \\ -m & 0 \end{pmatrix}$ と書け, $M \pi = \left(m \pi_2, -m \pi_1\right)^\top = \mathbf{0}$ と $\pi_1, \pi_2 > 0$ から $m = 0$ である. すなわち財が2つなら Slutsky 行列は必ず対称で, 対称性の検定には3つ以上の財が必要である.
+
+(SR1) $n \leq 4$ なら $M$ のランクは $n - 1 \leq 3$ 以下で, しかも偶数なので $2$ 以下である. 第1の事実より, $S$ は必ず対称行列とランク高々 $1$ の行列の和に書ける. すなわち財が4つ以下なら SR1 は需要関数に何の制約も課さず, SR1 の検定には5つ以上の財が必要である.
+
+:::
+
+ここで扱ったのは「対称行列とランク $1$ の行列の和に書ける」という等式の制約だけです. 分解の対称部分 $\Sigma$ が負値半定符号であることからは, これとは別に不等式の制約が出ます [@browning1998, Proposition 3].
 
 ### Nash 交渉と collective model の双対性 {#prf-nash-collective}
 
 ::: {.proof}
 
 (1) フロンティア上で $u_H = \Psi\left(u_W\right)$ を代入すると, Nash 交渉問題は $\left(u_W - T_W\right)^{\beta}\left(\Psi\left(u_W\right) - T_H\right)^{1-\beta}$ の最大化になる. 対数を取って微分した一階条件は
-
 $$
 \frac{\beta}{u_W^* - T_W} + \frac{\left(1 - \beta\right)\Psi'\left(u_W^*\right)}{\Psi\left(u_W^*\right) - T_H} = 0
 \quad \Longleftrightarrow \quad
 -\Psi'\left(u_W^*\right) = \frac{\beta}{1 - \beta} \cdot \frac{u_H^* - T_H}{u_W^* - T_W}.
 $$
-
 一方, collective model の目的関数 $\mu u_W + \left(1 - \mu\right) \Psi\left(u_W\right)$ の一階条件は $-\Psi'\left(u_W\right) = \mu / \left(1 - \mu\right)$ である. $\Psi$ の凹性からどちらの一階条件も十分条件なので, @eq-nash-weight のもとで両者の解は一致する.
 
 (2) 効率的な内点 $\left(u_W^\circ, u_H^\circ\right)$ における接線の傾きを $-\lambda = \Psi'\left(u_W^\circ\right) < 0$ とする. 任意の $a > 0$ に対して脅威点を $T_W = u_W^\circ - a$, $T_H = u_H^\circ - \lambda a \left(1 - \beta\right) / \beta$ と選べば, $\left(u_W^\circ, u_H^\circ\right)$ は (1) の一階条件を満たし, 凹性よりこの脅威点に対する Nash 交渉解になる.
@@ -497,40 +469,30 @@ $$
 ::: {.proof}
 
 結婚時のウェイト $\mu_{j0} = \mu_j\left(\Omega_0\right)$ のもとで, 家計は生涯効用の加重和
-
 $$
 \sum_{j} \mu_{j0}\, \mathbb{E}_0 \sum_{t=0}^{\bar{t}} \beta^t u_{jt}
 $$
-
 を, 予算制約と, 各期 $t \geq 1$・各人 $j$ の参加制約 @eq-participation のもとで最大化する. ここで $u_{jt} = u_j\left(q_t, h_{jt}\right)$ と略記する. 期 $t$ の参加制約の Lagrange 乗数を $\beta^t \nu_{jt}$ と基準化する. $\nu_{jt} \geq 0$ は期 $t$ までの情報で決まる確率変数で, 制約が等号で成り立たない状態ではゼロである (相補スラック条件). Lagrangian のうち参加制約の部分は
-
 $$
 \sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt} \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)
 $$
-
 である. $\nu_{jt}$ は期 $t$ に分かっているので, 繰り返し期待値の法則から
-
 $$
 \mathbb{E}_0 \left[\beta^t \nu_{jt}\, \mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau}\right]
 = \mathbb{E}_0 \sum_{\tau = t}^{\bar{t}} \beta^{\tau} \nu_{jt}\, u_{j\tau}
 $$
-
 となる. さらに和の順序を入れ替えると
-
 $$
 \sum_{t=1}^{\bar{t}} \sum_{\tau = t}^{\bar{t}} \beta^{\tau} \nu_{jt}\, u_{j\tau}
 = \sum_{\tau = 1}^{\bar{t}} \beta^{\tau} u_{j\tau} \sum_{t=1}^{\tau} \nu_{jt}
 $$
-
 なので, Lagrangian は
-
 $$
 \mathbb{E}_0 \sum_{\tau = 0}^{\bar{t}} \beta^{\tau} \sum_j \mu_{j\tau}\, u_{j\tau}
 - \sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt}\, \tilde{V}_{jt},
 \qquad
 \mu_{j\tau} := \mu_{j0} + \sum_{t=1}^{\tau} \nu_{jt}
 $$
-
 と書ける. 期 $\tau$ の効用にかかる重みは $\mu_{j\tau}$ であり, 定義から $\mu_{j\tau} = \mu_{j, \tau - 1} + \nu_{j\tau}$ が成り立つ. これが @eq-lc-weight である. 外部オプションの価値 $\tilde{V}_{jt}$ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが [@theloudis2025], 効用にかかる重みの動きは変わらない.
 
 :::
@@ -544,28 +506,21 @@ $$
 ::: {.proof}
 
 $\varepsilon_{ni} = s$ で条件付けると, 選択肢 $i$ が選ばれるのは $\varepsilon_{nj} < s + V_{ni} - V_{nj}$ がすべての $j \neq i$ で成り立つときである. $\varepsilon_{nj}$ は独立なので, 条件付き確率は分布関数の積になる.
-
 $$
 \text{Prob}\left(\text{choose } i \mid \varepsilon_{ni} = s\right)
 = \prod_{j \neq i} e^{-e^{-\left(s + V_{ni} - V_{nj}\right)}}.
 $$
-
 これを $\varepsilon_{ni}$ の密度で積分すると
-
 $$
 P_{ni} = \int_{-\infty}^{\infty} \left(\prod_{j \neq i} e^{-e^{-\left(s + V_{ni} - V_{nj}\right)}}\right) e^{-s} e^{-e^{-s}}\, ds.
 $$
-
 $V_{ni} - V_{ni} = 0$ に注意すると, 最後の因子 $e^{-e^{-s}}$ は積の $j = i$ の項として取り込める. 指数をまとめると
-
 $$
 P_{ni}
 = \int_{-\infty}^{\infty} \exp\left(-\sum_{j} e^{-\left(s + V_{ni} - V_{nj}\right)}\right) e^{-s}\, ds
 = \int_{-\infty}^{\infty} \exp\left(-e^{-s} \sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}\right) e^{-s}\, ds.
 $$
-
 $t = e^{-s}$ と置換する ($dt = -e^{-s}\, ds$ で, $s \colon -\infty \to \infty$ のとき $t \colon \infty \to 0$).
-
 $$
 P_{ni}
 = \int_{0}^{\infty} \exp\left(-t \sum_{j} e^{-\left(V_{ni} - V_{nj}\right)}\right) dt
@@ -581,20 +536,16 @@ $$
 ::: {.proof}
 
 独立性より, 最大値の分布関数は各分布関数の積である.
-
 $$
 \text{Prob}\left(\max_j U_j \leq x\right)
 = \prod_{j} \text{Prob}\left(\varepsilon_j \leq x - V_j\right)
 = \prod_{j} e^{-e^{-\left(x - V_j\right)}}
 = \exp\left(-\sum_j e^{-\left(x - V_j\right)}\right).
 $$
-
 指数の中を整理すると
-
 $$
 \sum_j e^{-\left(x - V_j\right)} = e^{-x} \sum_j e^{V_j} = e^{-\left(x - \ln \sum_j e^{V_j}\right)}
 $$
-
 となり, これは位置パラメータ $\ln \sum_j e^{V_j}$ の第一種極値分布の分布関数である.
 
 :::
@@ -604,14 +555,12 @@ $$
 ::: {.proof}
 
 Step1: 標準的な第一種極値分布の平均が $\gamma$ であることを示す. $\varepsilon$ の密度 $f\left(s\right) = e^{-s} e^{-e^{-s}}$ に対して $t = e^{-s}$ と置換すると ($s = -\ln t$),
-
 $$
 \mathbb{E}\left[\varepsilon\right]
 = \int_{-\infty}^{\infty} s\, e^{-s} e^{-e^{-s}}\, ds
 = \int_{0}^{\infty} \left(-\ln t\right) e^{-t}\, dt
 = \gamma.
 $$
-
 最後の等号はガンマ関数の微分に関する既知の結果 $\int_0^{\infty} e^{-t} \ln t\, dt = \Gamma'\left(1\right) = -\gamma$ による.
 
 Step2: @prp-gumbel-max より, $\max_j U_j$ は「標準的な第一種極値分布に従う確率変数に定数 $\ln \sum_j e^{V_j}$ を足したもの」と同じ分布を持つ. よって期待値は $\ln \sum_j e^{V_j} + \gamma$ である.
@@ -624,17 +573,15 @@ Step2: @prp-gumbel-max より, $\max_j U_j$ は「標準的な第一種極値分
 
 ::: {.proof}
 
-Step1 (存在と一意性): @eq-mccall の右辺は -@sec-apdx-contraction 節で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 $V$ が一意に存在する.
+Step1 (存在と一意性): @eq-mccall の右辺は @sec-apdx-contraction で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 $V$ が一意に存在する.
 
 Step2 (閾値ルール): 受諾の価値 $w / (1 - \beta)$ は $w$ に対して狭義単調増加であり, 継続価値は定数なので,
-
 $$
 w^* = (1 - \beta) C,
 $$
 に対して, 閾値ルール「$w \geq w^*$ なら受諾」が最適である.
 
 Step3 (留保賃金と一意性): $V$ の表現を $C$ の定義に代入する.
-
 $$
 \begin{aligned}
 \frac{w^*}{1 - \beta} &= C \\
@@ -643,7 +590,6 @@ $$
 w^* &= b + \frac{\beta}{1-\beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right).
 \end{aligned}
 $$
-
 これは, 左辺が $w^*$ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
 
 :::
@@ -653,27 +599,20 @@ $$
 ::: {.proof}
 
 (1) @eq-reservation の右辺をすべて左辺に集めた式を定義する.
-
 $$
 \Phi\left(w^*, b\right) := w^* - b - \frac{\beta}{1 - \beta} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = 0.
 $$
-
 オプション価値項の微分は @lem-option-value より,
-
 $$
 \frac{\partial}{\partial w^*} \int_{w^*}^{\infty} \left(w - w^*\right) dF\left(w\right) = -\left(1 - F\left(w^*\right)\right).
 $$
-
 よって, 
-
 $$
 \frac{\partial \Phi}{\partial w^*} = 1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right) > 0,
 \qquad
 \frac{\partial \Phi}{\partial b} = -1
 $$
-
 であり, 陰関数定理から
-
 $$
 \frac{d w^*}{d b} = -\frac{\partial \Phi / \partial b}{\partial \Phi / \partial w^*} = \frac{1}{1 + \frac{\beta}{1 - \beta}\left(1 - F\left(w^*\right)\right)} > 0.
 $$
@@ -685,11 +624,9 @@ $$
 ## 留保賃金方程式のオプション価値項 {#sec-apdx-leibniz}
 
 サーチ理論の章の @prp-mccall-cs (留保賃金の比較静学) では, 留保賃金方程式のオプション価値項
-
 $$
 H\left(x\right) := \int_{x}^{\infty} \left(w - x\right) dF\left(w\right)
 $$
-
 を閾値 $x$ で微分して $H'\left(x\right) = -\left(1 - F\left(x\right)\right)$ を使いました. ここではこれを証明します. $x$ は積分の下端と被積分関数の両方に現れるので, ライプニッツ則 (積分記号下の微分) の出番です. 積分区間が無限に伸びていることが唯一の注意点で, 上端からの寄与を心配する必要はない代わりに, 微分と積分の交換を正当化する条件が要ります.
 
 ::: {#lem-option-value}
@@ -697,11 +634,9 @@ $$
 ## オプション価値項の微分
 
 $F$ を分布関数とし, $\mathbb{E}\left[w\right] = \int w \, dF\left(w\right) < \infty$ とする. このとき $H\left(x\right) = \int_{x}^{\infty}\left(w - x\right) dF\left(w\right)$ はすべての $x$ で有限であり, $F$ が $x$ に質点を持たない (すなわち $F$ が $x$ で連続な) 各点で微分可能で
-
 $$
 H'\left(x\right) = -\left(1 - F\left(x\right)\right)
 $$
-
 が成り立つ. とくに $F$ の台が有界ならば, 前提はつねに満たされる.
 
 :::
@@ -711,50 +646,38 @@ $$
 Step1 (有限性): $0 \leq \left(w - x\right)\mathbb{1}\left\{w > x\right\} \leq \left|w\right| + \left|x\right|$ であり, 右辺は $\mathbb{E}\left[w\right] < \infty$ より可積分である. よって $H\left(x\right)$ は有限である.
 
 Step2 (ライプニッツ則): $F$ が密度 $f$ を持つ場合を考える. 端点が動く積分に対するライプニッツ則は
-
 $$
 \frac{d}{dx} \int_{a\left(x\right)}^{b\left(x\right)} g\left(w, x\right) dw
 = g\left(b\left(x\right), x\right) b'\left(x\right) - g\left(a\left(x\right), x\right) a'\left(x\right)
 + \int_{a\left(x\right)}^{b\left(x\right)} \frac{\partial g}{\partial x}\left(w, x\right) dw
 $$
-
 である. 境界の2項は「端が動いた分だけ積分区間に出入りする短冊の面積」であり, その大きさは端における被積分関数の値に端の動く速さを掛けたものになる.
 
 いまの場合 $g\left(w, x\right) = \left(w - x\right) f\left(w\right)$, $a\left(x\right) = x$, $b\left(x\right) = \infty$ である. 上端は $x$ に依存しない定数なので, 動かない端からは短冊が出入りせず, 上端の境界項はそもそも現れない.^[$g\left(\infty, x\right) \cdot \frac{d \infty}{d x}$ のような項を書いてゼロとみなすのは誤りである. 上端が $x$ に依存する場合にのみ, その項が立つ.] 下端については $a'\left(x\right) = 1$ であるが, 被積分関数が $w = x$ でちょうどゼロになるため
-
 $$
 - g\left(x, x\right) a'\left(x\right) = -\left(x - x\right) f\left(x\right) = 0
 $$
-
 と消える. 残る積分項は $\partial g / \partial x = -f\left(w\right)$ より
-
 $$
 \int_{x}^{\infty} \frac{\partial g}{\partial x}\left(w, x\right) dw = -\int_{x}^{\infty} f\left(w\right) dw = -\left(1 - F\left(x\right)\right)
 $$
-
 である.
 
 Step3 (交換の正当化): 有限区間であれば微分と積分の交換は被積分関数の連続性から従うが, 積分区間が無限のときは広義積分の極限と微分の極限を入れ替えることになるため, 優関数が必要である. ここでは $x$ を含む任意の近傍上で
-
 $$
 \left|\frac{\partial}{\partial x}\left(w - x\right)\right| = 1, \qquad \int 1 \, dF\left(w\right) = 1 < \infty
 $$
-
 であり, 定数関数 $1$ が優関数として使える. よって優収束定理から交換が許され, Step2 の計算が正当化される.
 
 Step4 (密度を仮定しない場合): $F$ が密度を持たなくても結論は変わらない. $H\left(x\right) = \mathbb{E}\left[\max\left\{w - x, 0\right\}\right]$ と書き, $h > 0$ に対して差分を場合分けすると
-
 $$
 H\left(x + h\right) - H\left(x\right)
 = -h \left(1 - F\left(x + h\right)\right) - \int_{\left(x,\, x + h\right]} \left(w - x\right) dF\left(w\right)
 $$
-
 が厳密に成り立つ. 右辺第2項は $0$ 以上 $h \left(F\left(x + h\right) - F\left(x\right)\right)$ 以下なので, 差分商は
-
 $$
 -\left(1 - F\left(x\right)\right) \leq \frac{H\left(x + h\right) - H\left(x\right)}{h} \leq -\left(1 - F\left(x + h\right)\right)
 $$
-
 に挟まれる. $F$ は右連続だから $h \downarrow 0$ で両端が $-\left(1 - F\left(x\right)\right)$ に収束し, 右微分係数が定まる. 左からの差分商についても同様に計算すると極限は $-\left(1 - F\left(x^{-}\right)\right)$ となるので, 両側微分が一致するのは $F\left(x^{-}\right) = F\left(x\right)$, すなわち $F$ が $x$ に質点を持たないときである.
 
 :::
@@ -780,13 +703,11 @@ $H$ が $x$ について非増加であることは $H'\left(x\right) \leq 0$ �
 ::: {.proof}
 
 ここでは @prp-mccall-cs で使う 1 $\Rightarrow$ 2 の向きだけを示す. $X \sim F$, $\mathbb{E}\left[\varepsilon \mid X\right] = 0$, $X + \varepsilon \sim G$ とする. $\varphi$ が凸なら, $X$ で条件付けた上でイェンセンの不等式を適用して
-
 $$
 \mathbb{E}\left[\varphi\left(X + \varepsilon\right) \mid X\right]
 \geq \varphi\left(\mathbb{E}\left[X + \varepsilon \mid X\right]\right)
 = \varphi\left(X\right)
 $$
-
 が得られる. 両辺の期待値を取れば $\mathbb{E}_G\left[\varphi\right] = \mathbb{E}\left[\varphi\left(X + \varepsilon\right)\right] \geq \mathbb{E}\left[\varphi\left(X\right)\right] = \mathbb{E}_F\left[\varphi\right]$ である.
 
 残りの向きは非自明である. 2 $\Rightarrow$ 1 は, 与えられた凸順序を実現する結合の存在を主張するもので, Strassen の定理による [@strassen1965]. 2 $\Leftrightarrow$ 3 は部分積分による書き換えで, @rothschild1970 にある.
@@ -795,89 +716,70 @@ $$
 
 ## 標本統計量の影響関数 {#sec-apdx-influence}
 
--@sec-md 節 のターゲットは, 労働時間の平均 $\bar{h}$ と標準偏差 $s_h$, 対数月収の標準偏差 $s_y$, 両者の相関 $r_{hy}$, 40時間ちょうどの割合 $\bar{d}$ の5本でした. 標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. その分散共分散行列をデルタ法で導きます. 出発点は, 個人 $i$ から作れる6つの量です.
-
+@sec-md のターゲットは, 労働時間の平均 $\bar{h}$ と標準偏差 $s_h$, 対数月収の標準偏差 $s_y$, 両者の相関 $r_{hy}$, 40時間ちょうどの割合 $\bar{d}$ の5本でした. 標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. その分散共分散行列をデルタ法で導きます. 出発点は, 個人 $i$ から作れる6つの量です.
 $$
 a_i = \left(h_i,\ h_i^2,\ y_i,\ y_i^2,\ h_i y_i,\ d_i\right)^\top,
 \qquad \bar{a} = \frac{1}{N}\sum_{i=1}^{N} a_i
 $$ {#eq-apdx-if-a}
-
 5本のモーメントは, どれもこの標本平均の関数として書けます.
-
 $$
 \hat{m} = \phi\left(\bar{a}\right), \qquad
 \phi\left(a\right) = \left(a_1,\ \sqrt{a_2 - a_1^2},\ \sqrt{a_4 - a_3^2},\
 \frac{a_5 - a_1 a_3}{\sqrt{\left(a_2 - a_1^2\right)\left(a_4 - a_3^2\right)}},\ a_6\right)^\top
 $$ {#eq-apdx-if-phi}
-
 $\bar{a}$ は標本平均なので中心極限定理がそのまま使えます. $\mu_a = \mathbb{E}\left[a_i\right]$, $\Sigma_a = \operatorname{Var}\left(a_i\right)$ として $\sqrt{N}\left(\bar{a} - \mu_a\right) \xrightarrow{d} \mathcal{N}\left(0, \Sigma_a\right)$ です. あとは $\phi$ を通すだけで, $D = \partial \phi / \partial a^\top$ を $\mu_a$ で評価した $5 \times 6$ 行列とすると
-
 $$
 \sqrt{N}\left(\hat{m} - m\right) \xrightarrow{d} \mathcal{N}\left(0,\ D\, \Sigma_a\, D^\top\right)
 $$ {#eq-apdx-if-delta}
-
 となります. これがデルタ法です. ここで $\xi_i = D\left(a_i - \mu_a\right)$ と置くと, @eq-apdx-if-delta の分散は $\operatorname{Var}\left(\xi_i\right)$ そのもので, $\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i$ と, 推定誤差が個人ごとの寄与の平均として書けます. この $\xi_i$ を影響関数 (influence function) と呼びます. 行列 $D$ と $\Sigma_a$ を別々に持つ代わりに $\xi_i$ を1本の列として持てば, 実装は標本分散共分散を1回取るだけになります.
 
 $D$ を計算します. 第1行は $\phi_1 = a_1$ なので $\partial \phi_1 / \partial a = \left(1, 0, 0, 0, 0, 0\right)$, すなわち
-
 $$
 \xi_{1i} = h_i - \mathbb{E}\left[h\right]
 $$
-
 です. 第5行の指標も同じで, $\xi_{5i} = d_i - \mathbb{E}\left[d\right]$ です. 第2行は $\phi_2 = \left(a_2 - a_1^2\right)^{1/2}$ の微分です. 分母に現れる $\sqrt{a_2 - a_1^2}$ を $\mu_a$ で評価したものは $h$ の母標準偏差, つまりターゲットの2本目 $m_2 = \phi_2\left(\mu_a\right)$ そのものなので, それで書くと
-
 $$
 \frac{\partial \phi_2}{\partial a_1} = \frac{-a_1}{\sqrt{a_2 - a_1^2}} = -\frac{\mathbb{E}\left[h\right]}{m_2},
 \qquad
 \frac{\partial \phi_2}{\partial a_2} = \frac{1}{2\sqrt{a_2 - a_1^2}} = \frac{1}{2 m_2}
 $$
-
 なので, 2つの成分を合わせて
-
 $$
 \xi_{2i} = -\frac{\mathbb{E}\left[h\right]}{m_2}\left(h_i - \mathbb{E}\left[h\right]\right)
 + \frac{1}{2 m_2}\left(h_i^2 - \mathbb{E}\left[h^2\right]\right)
 $$ {#eq-apdx-if-psi2-raw}
-
 となります. 第2項を平均のまわりで書き直すと $h_i^2 - \mathbb{E}\left[h^2\right] = \left(h_i - \mathbb{E}\left[h\right]\right)^2 - m_2^2 + 2\, \mathbb{E}\left[h\right] \left(h_i - \mathbb{E}\left[h\right]\right)$ なので, これを @eq-apdx-if-psi2-raw に代入すると第1項がちょうど打ち消えて
-
 $$
 \xi_{2i} = \frac{\left(h_i - \mathbb{E}\left[h\right]\right)^2 - m_2^2}{2\, m_2}
 $$ {#eq-apdx-if-psi-sd}
-
 が残ります. 平均を推定したことによる誤差が, 標準偏差の影響関数には残らないということです. 第3行も $h$ を $y$ に, $m_2$ を $m_3$ に置き換えれば同じ形になります.
 
 第4行の相関も同じ手続きですが, $\phi_4$ が5つの成分に依存するので項が増えます. 標準化した値 $u_i = \left(h_i - \mathbb{E}\left[h\right]\right)/m_2$, $v_i = \left(y_i - \mathbb{E}\left[y\right]\right)/m_3$ を使うと, 整理した結果は次の形にまとまります.
-
 $$
 \xi_{4i} = u_i v_i - m_4
 - \frac{m_4}{2}\left(u_i^2 - 1\right)
 - \frac{m_4}{2}\left(v_i^2 - 1\right)
 $$ {#eq-apdx-if-psi-corr}
-
 第1項は共分散の影響関数で, 残りの2項は分母の2つの標準偏差を推定したことの効果です. 相関は標準偏差で割った量なので, 分母の推定誤差も相関の推定誤差に効いてくる, ということです.
 
 実装では母数を標本の値に置き換えて $\hat\xi_i$ を作り, その標本分散共分散を $N$ で割ります (@eq-ls-vhat).
 
 ## Goussé, Jacquemet, Robin (2017) の式の導出 {#sec-apdx-gousse}
 
--@sec-search-matching 章 の @gousse2017 のモデルについて, 本文で結果だけを示した式を導きます. 記号は本文のとおりで, 男性のタイプを $i$, 女性のタイプを $j$, マッチの質を $z$ とし, 混乱の恐れがないところではタイプの引数を省きます.
+@sec-search-matching の @gousse2017 のモデルについて, 本文で結果だけを示した式を導きます. 記号は本文のとおりで, 男性のタイプを $i$, 女性のタイプを $j$, マッチの質を $z$ とし, 混乱の恐れがないところではタイプの引数を省きます.
 
 ### コミットメントのない結婚の価値 {#sec-apdx-nocommit}
 
 まず, コミットメントのない結婚の純価値を与える @eq-gousse-nocommit を, 既婚者の価値の HJB 方程式 @eq-gousse-married から導きます. コミットメントがないので, 契約の価値 $W_m\left(i, j, z\right)$ は継続価値 $V_m^1\left(i, j, z\right)$ に等しくなければなりません. 以下ではタイプの引数 $\left(i, j\right)$ を省き, $u_m = u_m\left(i, j, z\right)$ と書きます. @eq-gousse-married に $W_m = V_m^1\left(z\right)$ を代入した
-
 $$
 r V_m^1\left(z\right) = u_m + \delta \int \left[\max\left\{V_m^0, V_m^1\left(z'\right)\right\} - V_m^1\left(z\right)\right] dG\left(z'\right)
 $$
-
 から出発します.
 
 まず, 自明に次の表現を得ます.
 $$
 \max\left\{V_m^0, V_m^1\left(z'\right)\right\} = V_m^0 + \left[V_m^1\left(z'\right) - V_m^0\right]^{+}.
 $$
-
 これを @eq-gousse-nocommit に代入すると, 次の式が得られます.
 $$
 \begin{aligned}
@@ -886,9 +788,7 @@ r V_m^1\left(z\right)
 &= u_m + \delta V_m^0 + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right) - \delta V_m^1\left(z\right)
 \end{aligned}
 $$
-
 $\delta V_m^1\left(z\right)$ を左辺に移して, $(r+\delta)V_m^0$ を引くと, 次の式を得ます.
-
 $$
 \left(r + \delta\right)\left[V_m^1\left(z\right) - V_m^0\right] = u_m + \delta \int \left[V_m^1\left(z'\right) - V_m^0\right]^{+} dG\left(z'\right) - r V_m^0.
 $$
@@ -896,23 +796,19 @@ $$
 ### 余剰の方程式 {#sec-apdx-gousse-surplus}
 
 本文の間接効用の特定化 $\psi_i\left(R, q\right) = q\left(R - A_i\right)/B_i$ のもとで, 夫婦のフロー効用は $u_m = z F_{ij}\left(R_m - A_i\right)/B_i$, $u_f = z F_{ij}\left(R_f - A_j\right)/B_j$ です. 価格指数で重みづけて足すと
-
 $$
 B_i u_m + B_j u_f = z F_{ij}\left(R_m + R_f - A_i - A_j\right) =: z F_{ij} X_{ij}
 $$
 となり, 移転 $\left(t_m, t_f\right)$ が消えます. $X_{ij} = w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j$ は, 世帯の私的支出から最低私的支出を差し引いた純私的支出で, 分配には依存しません.
 
 余剰を $S_{ij}\left(z\right) := B_i\left[V_m^1\left(z\right) - V_m^0\right] + B_j\left[V_f^1\left(z\right) - V_f^0\right]$ と定義します. TU のもとで Nash 交渉の解は余剰を交渉力の比で分けるので, 次の式を得ます.
-
 $$
 B_i\left[V_m^1\left(z\right) - V_m^0\right] = \beta\, S_{ij}\left(z\right), \qquad
 B_j\left[V_f^1\left(z\right) - V_f^0\right] = \left(1 - \beta\right) S_{ij}\left(z\right)
 $$ {#eq-apdx-nash-split}
-
 したがって夫婦がともに結婚を続けることに合意するのは $S_{ij}\left(z\right) \geq 0$ のときで, 正の部分についても $B_i\left[V_m^1\left(z'\right) - V_m^0\right]^{+} = \beta\, S_{ij}\left(z'\right)^{+}$, 女性側は $\left(1 - \beta\right) S_{ij}\left(z'\right)^{+}$ です.
 
 男性の @eq-gousse-nocommit を $B_i$ 倍, 女性側の同じ式を $B_j$ 倍して足します. 左辺は $\left(r + \delta\right) S_{ij}\left(z\right)$, 右辺のフロー効用の和は上の $z F_{ij} X_{ij}$, 積分の中は $\beta S^{+} + \left(1 - \beta\right) S^{+} = S_{ij}\left(z'\right)^{+}$ にまとまるので, 次の式を得ます.
-
 $$
 \left(r + \delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - B_i\, r V_m^0 - B_j\, r V_f^0 + \delta \int S_{ij}\left(z'\right)^{+} dG\left(z'\right)
 $$
@@ -920,81 +816,61 @@ $$
 ### 家事時間の効率性条件 {#sec-apdx-gousse-housework}
 
 夫婦は Nash 交渉で家事時間 $\left(d_m, d_f\right)$ と移転 $\left(t_m, t_f\right)$ を選びます. TU のもとでは Nash 交渉の解は「まず余剰 $S_{ij}\left(z\right)$ を最大化し, 次にそれを @eq-apdx-nash-split の比で分ける」と2段階に分かれます. 余剰の方程式で $\left(d_m, d_f\right)$ に依存するのは今期のフロー $z F_{ij}\left(d_m, d_f\right) X_{ij}\left(d_m, d_f\right)$ だけです. 独身の価値 $V_m^0, V_f^0$ は結婚市場の状態で決まる所与の量であり, 継続価値の項は引き直された $z'$ のもとで改めて選ばれる配分の価値なので, 今期の家事時間には依存しません. 移転は $X_{ij}$ に入らないので, 家事時間の問題は
-
 $$
 \max_{d_m, d_f}\ F_{ij}\left(d_m, d_f\right)\, X_{ij}\left(d_m, d_f\right), \qquad
 X_{ij} = w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C_{ij} - A_i - A_j
 $$
-
 という静学的な問題に落ちます. $z$ は掛け算の定数なので解に影響せず, これが本文で再帰性と呼んだ性質です. 一階条件は, $\partial X_{ij} / \partial d_m = -w_i$ を使って
-
 $$
 \frac{\partial F_{ij}}{\partial d_m} X_{ij} - w_i F_{ij} = 0
 \quad\Longleftrightarrow\quad
 \frac{1}{w_i}\frac{\partial \ln F_{ij}}{\partial d_m} = \frac{1}{X_{ij}},
 $$
-
 女性側も同様に $\frac{1}{w_j}\frac{\partial \ln F_{ij}}{\partial d_f} = \frac{1}{X_{ij}}$ です. 2本を並べれば本文の効率性条件
-
 $$
 \frac{1}{w_i}\frac{\partial \ln F_{ij}}{\partial d_m} = \frac{1}{w_j}\frac{\partial \ln F_{ij}}{\partial d_f}
 $$
-
 になります. 左右はそれぞれ「家事時間を1単位増やしたときの公共財の増加率を, その時間の機会費用 (賃金) で割ったもの」で, 家事1円あたりの限界生産性が夫婦で等しい, という標準的な効率性条件です.
 
 Stone-Geary 型 $F_{ij} = Z_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\right)^{K_f}$ では $\partial \ln F_{ij} / \partial d_m = K_m / \left(d_m - D_m\right)$ なので, 一階条件は $d_m - D_m = K_m X_{ij} / w_i$, $d_f - D_f = K_f X_{ij} / w_j$ と解けます. これを $X_{ij}$ の定義に戻すと $X_{ij} = w_i\left(1 - D_m\right) + w_j\left(1 - D_f\right) - C_{ij} - A_i - A_j - \left(K_m + K_f\right) X_{ij}$ なので,
-
 $$
 X_{ij} = \frac{w_i\left(1 - D_m\right) + w_j\left(1 - D_f\right) - C_{ij} - A_i - A_j}{1 + K_m + K_f}
 $$ {#eq-apdx-gousse-X}
-
 と純私的支出が閉じた形で決まり, 家事時間もそれに $K / w$ を掛けたものとして決まります. ここから本文の比較静学が読めます. 夫の賃金 $w_i$ が上がると $X_{ij} / w_i$ は下がり (分子の $w_i$ を含まない部分が正なら), 夫の家事時間は減ります. 妻の最低投入時間 $D_f$ が大きい (家族観が保守的) と $X_{ij}$ が $w_j / \left(1 + K_m + K_f\right)$ だけ下がるので, 夫の家事時間 $D_m + K_m X_{ij} / w_i$ は減り, 妻の家事時間 $D_f + K_f X_{ij} / w_j$ は $D_f$ の直接の増加が $X_{ij}$ を通じた減少 ($K_f / \left(1 + K_m + K_f\right) < 1$) を上回るので増えます.
 
 独身者の家事時間も同じ形で決まります. 本文の $u_m^0\left(i\right) = \max_d \psi_i\left(w_i\left(1 - d\right), F_i^0\left(d\right)\right)$ の一階条件は $\frac{1}{w_i}\frac{\partial \ln F_i^0}{\partial d} = \frac{1}{w_i\left(1 - d\right) - A_i}$ で, 分配の相手がいない分だけ右辺の純私的支出が本人のものだけになります. $F_i^0\left(d\right) = \left(d - D_m^0\right)^{K_m^0}$ を代入すると $K_m^0 \left(w_i\left(1 - d\right) - A_i\right) = w_i\left(d - D_m^0\right)$ なので,
-
 $$
 d_m^0 = D_m^0 + \frac{K_m^0}{1 + K_m^0}\left(1 - D_m^0 - \frac{A_i}{w_i}\right)
 $$
-
 と閉じた形で決まります (女性も同様).
 
 ### 独身の価値 {#sec-apdx-gousse-single}
 
 独身男性の HJB 方程式 @eq-gousse-single の両辺を $B_i$ 倍し, 正の部分に @eq-apdx-nash-split を使うと
-
 $$
 B_i\, r V_m^0 = B_i u_m^0 + \lambda \iint \beta\, S_{ij}\left(z\right)^{+} n_f\left(j\right)\, dG\left(z\right)\, dj
 = B_i u_m^0 + \lambda \beta \int \bar{S}_{ij}\, n_f\left(j\right)\, dj
 $$
-
 となります. ここで $\bar{S}_{ij} := \int S_{ij}\left(z\right)^{+} dG\left(z\right)$ は正の部分の期待余剰です. 女性側は $\beta$ を $1 - \beta$ に, $n_f$ を $n_m$ に替えれば同じ形です. 余剰の方程式と合わせると, $\left(S_{ij}, V_m^0, V_f^0\right)$ はタイプの組ごとに連立する線形の積分方程式系になります.
 
 ### Sharing rule {#sec-apdx-gousse-share}
 
 夫が受け取る純私的支出のシェアを $\beta_{ij}\left(z\right) := B_i u_m = \left(R_m - A_i\right) / X_{ij}$ と定義します. フロー効用の式から $B_i u_m = z F_{ij}\left(R_m - A_i\right)$ なので, $\beta_{ij}\left(z\right) = B_i u_m / \left(z F_{ij} X_{ij}\right)$ です. $B_i u_m$ は2通りに書けます. 男性の @eq-gousse-nocommit に @eq-apdx-nash-split を入れると
-
 $$
 \left(r + \delta\right)\beta\, S_{ij}\left(z\right) = B_i u_m + \delta \beta \int S_{ij}\left(z'\right)^{+} dG\left(z'\right) - B_i\, r V_m^0,
 $$
-
 一方, @eq-gousse-surplus を $\beta$ 倍すると
-
 $$
 \left(r + \delta\right)\beta\, S_{ij}\left(z\right) = \beta z F_{ij} X_{ij} - \beta B_i\, r V_m^0 - \beta B_j\, r V_f^0 + \delta \beta \int S_{ij}\left(z'\right)^{+} dG\left(z'\right).
 $$
-
 2式の右辺を等しいとおくと積分の項が消え,
-
 $$
 B_i u_m = \beta\, z F_{ij} X_{ij} + \left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0
 $$
-
 を得ます. 両辺を $z F_{ij} X_{ij}$ で割れば本文の sharing rule
-
 $$
 \beta_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\, r V_m^0 - \beta B_j\, r V_f^0}{z F_{ij} X_{ij}}
 $$
-
 です. 第1項が Nash ウェイト, 第2項が外部機会の差で, 分母に $z$ が入るので同じタイプの夫婦でも $z$ が高いほどシェアは $\beta$ に近づきます. 外部機会の差はフローの水準として一定なのに, 分けるべきパイ $z F_{ij} X_{ij}$ が大きくなるからです.
 
 ### 推定の手順 {#sec-apdx-gousse-estimation}
@@ -1008,34 +884,26 @@ $$
 **ストックとフロー.** 各期間について, 3年分の横断面をプールし, 独身男性・独身女性・夫婦のストックの分布 $n_m\left(i\right)$, $n_f\left(j\right)$, $m\left(i, j\right)$ を上の格子上でカーネル密度推定します. フローは連続する2年の状態の遷移を数えて作ります. たとえば「1994年に独身で1995年に既婚」の人数が1994年の結婚フロー, 「1993年に既婚で1994年に独身」の人数が1994年の離婚フローです. これを3年分足して期間のフローとします. フローの標本は小さいので, フローだけは学歴のみで集計します.
 
 **フローとマッチング確率の関係.** 独身の男女は率 $\lambda$ で出会い, 確率 $\alpha_{ij}$ で結婚します. 結婚している夫婦は率 $\delta$ で $z$ を引き直し, 確率 $1 - \alpha_{ij}$ で離婚します. よって単位時間あたりのフローは
-
 $$
 MF\left(i, j\right) = \lambda\, n_m\left(i\right) n_f\left(j\right) \alpha_{ij}, \qquad
 DF\left(i, j\right) = \delta\, m\left(i, j\right) \left(1 - \alpha_{ij}\right)
 $$ {#eq-apdx-gousse-flows}
-
 です [@gousse2017, eqs. B.1-B.2]. 結婚率 $MR\left(i, j\right) := MF\left(i, j\right) / \left[n_m\left(i\right) n_f\left(j\right)\right]$ と離婚率 $DR\left(i, j\right) := DF\left(i, j\right) / m\left(i, j\right)$ を定義すると, @eq-apdx-gousse-flows は $MR / \lambda = \alpha_{ij}$, $DR / \delta = 1 - \alpha_{ij}$ と書けます. 2本を足すと $\alpha_{ij}$ が消え,
-
 $$
 \frac{MR\left(i, j\right)}{\lambda} + \frac{DR\left(i, j\right)}{\delta} = 1
 $$ {#eq-apdx-gousse-mrdr}
-
 を得ます [@gousse2017, eq. B.3]. 同じ $z$ の引き直しが結婚と離婚の両方を決めているから, この制約が出てきます.
 
 **$\left(\xi, \delta\right)$ の OLS.** 出会い率は Cobb-Douglas のマッチング関数 $\lambda = \xi\left(N_m N_f\right)^{-1/2}$ なので, @eq-apdx-gousse-mrdr は
-
 $$
 1 = \frac{1}{\xi} \left[\left(N_m N_f\right)^{1/2} MR\left(i, j\right)\right] + \frac{1}{\delta}\, DR\left(i, j\right)
 $$
-
 という, 被説明変数が定数1で定数項のない線形回帰になります. 係数 $1 / \xi$ と $1 / \delta$ を OLS で推定します. $\alpha_{ij}$ がタイプの組によって異なる限り2つの説明変数は共線にならないので, この回帰で識別できます. 推定には中間の4期間 (94-96 から 03-05) をプールし, 両端の2期間は使いません. 1991年は前年の状態がないので離婚フローが, 2008年は翌年の状態がないので結婚フローが作れないからです. 生存時間モデルを使わないのは, 結婚期間にも独身期間にも打ち切りがあるためです. 推定値は $\hat\xi = 0.151$, $\hat\delta = 0.0378$ です. 出会いの間隔は中央値で約4.5年, $z$ の引き直しの間隔は中央値で約18年に対応します.
 
 **マッチング確率.** $\lambda$ と $\delta$ が分かれば, @eq-apdx-gousse-mrdr の2つの項からフローだけで $\alpha_{ij} = \delta MR / \left(\delta MR + \lambda DR\right)$ とも書けます [@gousse2017, eq. B.4]. しかし論文は, 流入と流出が等しい ($MF = DF$) という定常状態の条件 @eq-gousse-steady を $\alpha_{ij}$ について解いた
-
 $$
 \alpha_{ij} = \frac{\delta\, m\left(i, j\right)}{\delta\, m\left(i, j\right) + \lambda\, n_m\left(i\right) n_f\left(j\right)}
 $$ {#eq-gousse-alpha-stock}
-
 を使います [@gousse2017, eq. 6.14]. 理由は2つあります. 第1に, 家計が定常状態の分布を前提に期待を形成するというモデルの仮定と整合的です. 第2に, フローよりストックの標本の方がはるかに大きいので, 精度よく推定できます. 論文はこの $\hat\alpha_{ij}$ を「制約なしの (unconstrained)」マッチング確率と呼び, 本文の @fig-gousse2017-table2 はこれを集計したものです. @eq-gousse-alpha-stock はモデルの経済的なメカニズム (価値関数) を一切使っていない点に注意してください.
 
 #### 準備: $\alpha_{ij}$ から外部機会と家庭内生産の水準を求める {#sec-apdx-gousse-values}
@@ -1043,77 +911,58 @@ $$ {#eq-gousse-alpha-stock}
 第2段階と第3段階の両方で, 独身の価値 $B_i r V_m^0$, $B_j r V_f^0$ と夫婦の家庭内生産の水準 $F_{ij} X_{ij}$ が必要になります. これらは, パラメータ $\left(\beta, \sigma, D, K, C, A, B\right)$ と第1段階の $\alpha_{ij}$, $n_m$, $n_f$ が与えられれば, $Z_{ij}$ を知らなくても計算できます. その手順をまとめます.
 
 **マッチの質の分布.** $G$ は $\ln z \sim \mathcal{N}\left(0, \sigma^2\right)$ の対数正規分布です. 平均を0とするのは, 0でない平均は $Z_{ij}$ に吸収されるからです. 以下で $\overline{G}\left(s\right) := \int \left(z - s\right)^{+} dG\left(z\right)$ を使います. 対数正規分布では, 標準正規分布の CDF を $\Phi$ として
-
 $$
 G\left(s\right) = \Phi\left(\frac{\ln s}{\sigma}\right), \qquad
 \overline{G}\left(s\right) = e^{\sigma^2 / 2}\, \Phi\left(-\frac{\ln s}{\sigma} + \sigma\right) - s\, \Phi\left(-\frac{\ln s}{\sigma}\right)
 $$
-
 です [@gousse2017, sec. 6.1]. $\overline{G}$ は減少関数で, $\overline{G}'\left(s\right) = -\left(1 - G\left(s\right)\right)$ を満たします.
 
 **Step 1: 留保値.** @eq-gousse-alpha-threshold より, 留保値は
-
 $$
 \underline{z}_{ij} = G^{-1}\left(1 - \alpha_{ij}\right) = \exp\left(\sigma\, \Phi^{-1}\left(1 - \alpha_{ij}\right)\right)
 $$
-
 です. $\sigma$ を与えれば, 第1段階の $\alpha_{ij}$ からそのまま計算できます.
 
 **Step 2: 期待余剰と外部機会の比.** $\overline{S}_{ij} := \int S_{ij}\left(z'\right)^{+} dG\left(z'\right)$ はスカラーなので, @eq-gousse-surplus は
-
 $$
 \left(r + \delta\right) S_{ij}\left(z\right) = z F_{ij} X_{ij} - \left(B_i r V_m^0 + B_j r V_f^0\right) + \delta\, \overline{S}_{ij}
 $$
-
 という $z$ の1次式です. $S_{ij}\left(\underline{z}_{ij}\right) = 0$ で留保値を定めると
-
 $$
 \underline{z}_{ij} = \frac{B_i r V_m^0 + B_j r V_f^0 - \delta\, \overline{S}_{ij}}{F_{ij} X_{ij}}, \qquad
 \alpha_{ij} = 1 - G\left(\frac{B_i r V_m^0 + B_j r V_f^0 - \delta\, \overline{S}_{ij}}{F_{ij} X_{ij}}\right)
 $$ {#eq-gousse-alpha-closed}
-
 が得られ [@gousse2017, eq. 5.6], 余剰は $S_{ij}\left(z\right) = F_{ij} X_{ij}\left(z - \underline{z}_{ij}\right) / \left(r + \delta\right)$ と書けます. これを正の部分で積分すると
-
 $$
 \overline{S}_{ij} = \frac{F_{ij} X_{ij}}{r + \delta}\, \overline{G}\left(\underline{z}_{ij}\right)
 $$ {#eq-gousse-sbar}
-
 です [@gousse2017, eq. 5.5]. @eq-gousse-alpha-closed の左の式を $B_i r V_m^0 + B_j r V_f^0 = F_{ij} X_{ij}\, \underline{z}_{ij} + \delta\, \overline{S}_{ij}$ と書き直し, @eq-gousse-sbar で $F_{ij} X_{ij} = \left(r + \delta\right) \overline{S}_{ij} / \overline{G}\left(\underline{z}_{ij}\right)$ を代入すると
-
 $$
 B_i r V_m^0 + B_j r V_f^0 = \delta\, \overline{S}_{ij} \left[\frac{r + \delta}{\delta} \frac{\underline{z}_{ij}}{\overline{G}\left(\underline{z}_{ij}\right)} + 1\right]
 $$
-
 なので, 未知の $F_{ij} X_{ij}$ を含まない関係
-
 $$
 \delta\, \overline{S}_{ij} = \theta_{ij}\left(B_i r V_m^0 + B_j r V_f^0\right), \qquad
 \theta_{ij} := \frac{\overline{G}\left(\underline{z}_{ij}\right)}{\frac{r + \delta}{\delta}\, \underline{z}_{ij} + \overline{G}\left(\underline{z}_{ij}\right)}
 $$ {#eq-gousse-theta}
-
 を得ます [@gousse2017, eq. B.15]. $\theta_{ij} \in \left[0, 1\right]$ は $\alpha_{ij}$ と $\left(\sigma, r, \delta\right)$ だけで決まる既知の数です.
 
 **Step 3: 独身の価値を線形方程式として解く.** @eq-gousse-theta を @eq-gousse-single-value (と女性側の対応する式) の $\overline{S}_{ij}$ に代入すると
-
 $$
 \begin{aligned}
 B_i r V_m^0 &= B_i u_m^0 + \frac{\lambda \beta}{\delta} \int \left(B_i r V_m^0 + B_j r V_f^0\right) \theta_{ij}\, n_f\left(j\right) dj, \\
 B_j r V_f^0 &= B_j u_f^0 + \frac{\lambda \left(1 - \beta\right)}{\delta} \int \left(B_i r V_m^0 + B_j r V_f^0\right) \theta_{ij}\, n_m\left(i\right) di
 \end{aligned}
 $$ {#eq-gousse-fredholm}
-
-となります [@gousse2017, eqs. C.2-C.3]. ここで独身のフロー効用は, @eq-gousse-utility で $R - A_i = X_i^0$, $q = F_i^0\left(d_m^0\right)$ とおいたものです. 独身の家事時間の閉じた形 (-@sec-apdx-gousse-housework 節の末尾) を使うと
-
+となります [@gousse2017, eqs. C.2-C.3]. ここで独身のフロー効用は, @eq-gousse-utility で $R - A_i = X_i^0$, $q = F_i^0\left(d_m^0\right)$ とおいたものです. 独身の家事時間の閉じた形 (@sec-apdx-gousse-housework の末尾) を使うと
 $$
 X_i^0 := \frac{w_i\left(1 - D_m^0\right) - A_i}{1 + K_m^0}, \qquad
 d_m^0 = D_m^0 + \frac{K_m^0 X_i^0}{w_i}, \qquad
 B_i u_m^0 = \left(\frac{K_m^0 X_i^0}{w_i}\right)^{K_m^0} X_i^0
 $$ {#eq-apdx-gousse-single-flow}
-
 です ($R - A_i = w_i\left(1 - d_m^0\right) - A_i = X_i^0$ は $d_m^0$ を代入すれば確かめられます) [@gousse2017, eqs. 6.6, 6.9]. $B_i u_m^0$, $\theta_{ij}$, $n_m$, $n_f$ がすべて既知なので, @eq-gousse-fredholm は未知関数 $B_i r V_m^0$, $B_j r V_f^0$ についての**線形**の積分方程式 (第2種 Fredholm 方程式) です. 右辺の積分作用素が縮小写像なら解は一意で, その十分条件は $\lambda \beta \int \theta_{ij} n_f\left(j\right) dj < \delta$ と $\lambda \left(1 - \beta\right) \int \theta_{ij} n_m\left(i\right) di < \delta$ です [@gousse2017, Appendix B]. この方程式に $Z_{ij}$ は現れません.
 
 **離散化した解法.** タイプを格子点 $i, j$ に離散化し, 積分を Clenshaw-Curtis 求積の重み $\omega_i, \omega_j$ による和で置き換えます. 行列
-
 $$
 \Theta_m = -\frac{\lambda \beta}{\delta}\left[\theta_{ij}\, n_f\left(j\right) \omega_j\right]_{i, j}, \qquad
 \Theta_f = -\frac{\lambda \left(1 - \beta\right)}{\delta}\left[\theta_{ij}\, n_m\left(i\right) \omega_i\right]_{j, i},
@@ -1123,23 +972,18 @@ $$
 \Lambda_m = I - \frac{\lambda \beta}{\delta}\, \mathrm{diag}\left(\sum_j \theta_{ij}\, n_f\left(j\right) \omega_j\right), \qquad
 \Lambda_f = I - \frac{\lambda \left(1 - \beta\right)}{\delta}\, \mathrm{diag}\left(\sum_i \theta_{ij}\, n_m\left(i\right) \omega_i\right)
 $$
-
 を作ると, $\Lambda$ が自分の価値の係数, $\Theta$ が相手の価値の係数になり,
-
 $$
 \begin{bmatrix} B_i r V_m^0 \\ B_j r V_f^0 \end{bmatrix}
 = \begin{bmatrix} \Lambda_m & \Theta_m \\ \Theta_f & \Lambda_f \end{bmatrix}^{-1}
 \begin{bmatrix} B_i u_m^0 \\ B_j u_f^0 \end{bmatrix}
 $$
-
 と連立1次方程式1本で解けます [@gousse2017, Appendix D.3]. 価値関数反復は不要です.
 
 **Step 4: 期待余剰と家庭内生産の水準.** Step 3 の解を @eq-gousse-theta に入れると $\overline{S}_{ij}$ が, さらに @eq-gousse-sbar を逆に解くと
-
 $$
 F_{ij} X_{ij} = \frac{\left(r + \delta\right) \overline{S}_{ij}}{\overline{G}\left(\underline{z}_{ij}\right)}
 $$ {#eq-apdx-gousse-FX}
-
 が求まります [@gousse2017, eqs. 5.7, B.14]. 「このタイプの組がこの確率 $\alpha_{ij}$ で結婚するには, 家庭内生産がこの水準でなければならない」という逆算です.
 
 #### 第2段階: 選好・家庭内生産・交渉力・マッチの質の分散 {#sec-apdx-gousse-est2}
@@ -1147,30 +991,23 @@ $$ {#eq-apdx-gousse-FX}
 **パラメータ化.** 選好は本文の @eq-gousse-utility で, $a_{0i}, a_{1i}, b_i$ は本人の特性 $x_i$ (学歴と家族観指数) の線形関数, $a_2$ は性別ごとの定数です. 最低投入時間 $D_m, D_f, D_m^0, D_f^0$ は特性の関数, 生活費 $C_{ij}$ は $x_i$ と $x_j$ の線形関数 (交差項なし) です. 第2段階で推定するのは, これらと $\left(K_m, K_f, K_m^0, K_f^0\right)$, Nash ウェイト $\beta$, マッチの質の分散 $\sigma$ です.
 
 **独身者の条件付き期待値.** 独身の家事時間は @eq-apdx-gousse-single-flow の $d_m^0$ です. 余暇は, 本文の Roy の恒等式から得た $w_i e = a_{1i} w_i + a_2 w_i^2 + b_i\left(R - A_i\right)$ に $R - A_i = X_i^0$ を入れたものです. したがって残差は
-
 $$
 \varepsilon_i^0 = d_i^0 - D_m^0 - \frac{K_m^0 X_i^0}{w_i}, \qquad
 \eta_i^0 = e_i^0 - a_{1i} - a_2 w_i - \frac{b_i X_i^0}{w_i}
 $$
-
 です (女性も同様) [@gousse2017, Appendix C].
 
-**夫婦の条件付き期待値.** 家事時間は付録 -@sec-apdx-gousse-housework 節のとおり $d_m = D_m + K_m X_{ij} / w_i$, $d_f = D_f + K_f X_{ij} / w_j$ で, $X_{ij}$ は @eq-apdx-gousse-X です. $z$ に依存しないので, そのまま残差が作れます. 余暇は私的支出の分け方に依存します. Sharing rule の定義から $R_m - A_i = \beta_{ij}\left(z\right) X_{ij}$, $R_f - A_j = \left(1 - \beta_{ij}\left(z\right)\right) X_{ij}$ なので
-
+**夫婦の条件付き期待値.** 家事時間は付録 @sec-apdx-gousse-housework のとおり $d_m = D_m + K_m X_{ij} / w_i$, $d_f = D_f + K_f X_{ij} / w_j$ で, $X_{ij}$ は @eq-apdx-gousse-X です. $z$ に依存しないので, そのまま残差が作れます. 余暇は私的支出の分け方に依存します. Sharing rule の定義から $R_m - A_i = \beta_{ij}\left(z\right) X_{ij}$, $R_f - A_j = \left(1 - \beta_{ij}\left(z\right)\right) X_{ij}$ なので
 $$
 w_i e_m = a_{1i} w_i + a_2 w_i^2 + b_i\, \beta_{ij}\left(z\right) X_{ij}, \qquad
 w_j e_f = a_{1j} w_j + a_2 w_j^2 + b_j \left(1 - \beta_{ij}\left(z\right)\right) X_{ij}
 $$ {#eq-apdx-gousse-leisure}
-
 です [@gousse2017, eqs. B.5-B.6]. $z$ は計量経済学者には見えないので, 結婚していることを条件とした期待値を取ります. 既存の夫婦の $z$ は, 独立に引かれた最後の値のうち留保値を上回ったものなので, その分布は $G$ を $z \geq \underline{z}_{ij}$ で切断したものです. 本文の sharing rule を使うと
-
 $$
 \overline{\beta}_{ij} := E\left[\beta_{ij}\left(z\right) \mid z \geq \underline{z}_{ij}\right]
 = \beta + E\left[\frac{1}{z} \mid z \geq \underline{z}_{ij}\right] \frac{\left(1 - \beta\right) B_i r V_m^0 - \beta B_j r V_f^0}{F_{ij} X_{ij}}
 $$ {#eq-apdx-gousse-betabar}
-
-です [@gousse2017, eq. C.1]. 右辺の $B_i r V_m^0$, $B_j r V_f^0$, $F_{ij} X_{ij}$ は -@sec-apdx-gousse-values 節の手順で計算します. 残差は
-
+です [@gousse2017, eq. C.1]. 右辺の $B_i r V_m^0$, $B_j r V_f^0$, $F_{ij} X_{ij}$ は @sec-apdx-gousse-values の手順で計算します. 残差は
 $$
 \begin{aligned}
 \varepsilon_{m, ij} &= d_{m, ij} - D_m - \frac{K_m X_{ij}}{w_i}, &
@@ -1179,47 +1016,38 @@ $$
 \eta_{f, ij} &= e_{f, ij} - a_{1j} - a_2 w_j - \frac{b_j \left(1 - \overline{\beta}_{ij}\right) X_{ij}}{w_j}
 \end{aligned}
 $$
-
 です.
 
 **2次のモーメント.** 同じタイプの夫婦でも $z$ が違えば分け方 $\beta_{ij}\left(z\right)$ が違うので, 余暇がばらつきます. このばらつきが $\sigma$ の情報源です. 分け方の条件付き分散は
-
 $$
 \sigma_{ij}^2 := \mathrm{Var}\left[\beta_{ij}\left(z\right) \mid z \geq \underline{z}_{ij}\right]
 = \mathrm{Var}\left[\frac{1}{z} \mid z \geq \underline{z}_{ij}\right] \left(\frac{\left(1 - \beta\right) B_i r V_m^0 - \beta B_j r V_f^0}{F_{ij} X_{ij}}\right)^2
 $$
-
 です [@gousse2017, eq. C.4]. @eq-apdx-gousse-leisure より夫の余暇の偏差は $b_i X_{ij} / w_i$ 倍, 妻の余暇の偏差は $-b_j X_{ij} / w_j$ 倍の $\beta_{ij}\left(z\right) - \overline{\beta}_{ij}$ なので, 2次のモーメントの残差は
-
 $$
 \nu_{mm, ij} = \eta_{m, ij}^2 - \frac{b_i^2 \sigma_{ij}^2 X_{ij}^2}{w_i^2}, \qquad
 \nu_{ff, ij} = \eta_{f, ij}^2 - \frac{b_j^2 \sigma_{ij}^2 X_{ij}^2}{w_j^2}, \qquad
 \nu_{mf, ij} = \eta_{m, ij}\, \eta_{f, ij} + \frac{b_i b_j \sigma_{ij}^2 X_{ij}^2}{w_i w_j}
 $$
-
 となります. 夫婦の余暇の共分散が負 (夫の取り分が増えれば妻の取り分が減る) なので, $\nu_{mf}$ は足し算になります.
 
 **切断対数正規分布のモーメント.** @eq-apdx-gousse-betabar と $\sigma_{ij}^2$ には $1/z$ の切断モーメントが現れます. 以下は論文には書かれていない標準的な計算です. $x = \ln z \sim \mathcal{N}\left(0, \sigma^2\right)$ について $E\left[e^{-k x} \mathbb{1}\left\{x \geq \ell\right\}\right] = e^{k^2 \sigma^2 / 2}\, \Phi\left(-\ell / \sigma - k \sigma\right)$ が成り立ちます. $\ell = \ln \underline{z}_{ij}$, $\alpha_{ij} = \Phi\left(-\ell / \sigma\right)$ とおくと
-
 $$
 E\left[\frac{1}{z} \mid z \geq \underline{z}_{ij}\right] = \frac{e^{\sigma^2 / 2}\, \Phi\left(-\ell / \sigma - \sigma\right)}{\alpha_{ij}}, \qquad
 E\left[\frac{1}{z^2} \mid z \geq \underline{z}_{ij}\right] = \frac{e^{2 \sigma^2}\, \Phi\left(-\ell / \sigma - 2 \sigma\right)}{\alpha_{ij}}
 $$
-
 で, 分散は2番目から1番目の2乗を引いたものです.
 
-**推定量.** 残差 $\varepsilon$, $\eta$, $\nu$ の2乗和を, 選好・家庭内生産のパラメータ, $\beta$, $\sigma$ について最小化します (非線形最小二乗). パラメータを動かすたびに, -@sec-apdx-gousse-values 節の手順で $\underline{z}_{ij}$, $\theta_{ij}$, 独身の価値, $F_{ij} X_{ij}$, $\overline{\beta}_{ij}$, $\sigma_{ij}^2$ を計算し直します.
+**推定量.** 残差 $\varepsilon$, $\eta$, $\nu$ の2乗和を, 選好・家庭内生産のパラメータ, $\beta$, $\sigma$ について最小化します (非線形最小二乗). パラメータを動かすたびに, @sec-apdx-gousse-values の手順で $\underline{z}_{ij}$, $\theta_{ij}$, 独身の価値, $F_{ij} X_{ij}$, $\overline{\beta}_{ij}$, $\sigma_{ij}^2$ を計算し直します.
 
 付録 C の残差は第1段階の $\hat\alpha_{ij}$ と分布 $\hat n_m, \hat n_f$ を代入すれば計算できる形をしています. ただし論文の本文 (6.3 節) は, 反実仮想ではマッチング確率と分布をモデルから予測しなければならないので, 推定でもパラメータの更新ごとにそれらをモデルで計算し直し, ベンチマーク経済そのものをデータに当てる方が望ましい, と述べています. モデルで $\alpha_{ij}$ を計算するには $Z_{ij}$ が要るので, 論文が手順全体を iterative と呼んでいることと合わせると, 第2段階と第3段階を交互に繰り返していると読めます (この点は論文に明示されていません).
 
 **識別の考え方.** 付録 B の議論を要約します. 特性 $\left(x_i, x_j\right)$ を固定すると, 残る変動は賃金 $\left(w_i, w_j\right)$ と観察されない $z$ だけです.
 
 1. @eq-apdx-gousse-leisure の2本から $\beta_{ij}\left(z\right)$ を消去すると
-
     $$
     w_i e_m + \frac{b_i}{b_j} w_j e_f = a_{1i} w_i + a_2 w_i^2 + \frac{b_i}{b_j}\left(a_{1j} w_j + a_2 w_j^2\right) + b_i X_{ij}
     $$
-
     となり [@gousse2017, eq. B.8], 賃金を固定すれば右辺は定数です. 夫婦の余暇に残る変動は $z$ による分け方の違いだけなので, $w_i e_m$ を $w_j e_f$ に回帰した傾きから $b_i / b_j$ が分かります.
 2. 家事支出 $w_i d_m = w_i D_m + K_m X_{ij}$ と上の合成された余暇支出は, 賃金について非線形に動きます. その変動から $a_2$, $b$, $K$, $a_1$, $D$ が識別されます. このためには需要体系が賃金について線形でないこと ($a_2 \neq 0$) と, 家事時間が賃金に反応すること ($K_m + K_f \neq 0$) が必要です.
 3. 独身者の余暇と家事時間の式から $a_0$ と $\left(K^0, D^0\right)$ が識別され, $X_{ij}$ の式から生活費 $C_{ij}$ が決まります.
@@ -1231,18 +1059,14 @@ $$
 
 第2段階までで $Z_{ij}$ 以外のパラメータがすべて決まっています. $Z_{ij}$ は, モデルの予測するマッチング確率が第1段階の $\hat\alpha_{ij}$ に一致するように逆算します.
 
-**Step 5: 格子点ごとの $Z_{ij}$.** -@sec-apdx-gousse-values 節の Step 1-4 を推定済みのパラメータで実行し, 各タイプの組の $F_{ij} X_{ij}$ (@eq-apdx-gousse-FX) を得ます. 一方, 夫婦の家事時間 $d_m - D_m = K_m X_{ij} / w_i$, $d_f - D_f = K_f X_{ij} / w_j$ を Stone-Geary 型の生産関数に代入すると
-
+**Step 5: 格子点ごとの $Z_{ij}$.** @sec-apdx-gousse-values の Step 1-4 を推定済みのパラメータで実行し, 各タイプの組の $F_{ij} X_{ij}$ (@eq-apdx-gousse-FX) を得ます. 一方, 夫婦の家事時間 $d_m - D_m = K_m X_{ij} / w_i$, $d_f - D_f = K_f X_{ij} / w_j$ を Stone-Geary 型の生産関数に代入すると
 $$
 F_{ij} = Z_{ij} \left(\frac{K_m X_{ij}}{w_i}\right)^{K_m} \left(\frac{K_f X_{ij}}{w_j}\right)^{K_f}
 $$
-
 です [@gousse2017, eq. 6.10]. @eq-apdx-gousse-X のとおり $X_{ij}$ は $Z_{ij}$ に依存しないので, 両辺に $X_{ij}$ を掛けて $Z_{ij}$ について解くと
-
 $$
 Z_{ij} = F_{ij} X_{ij} \left[\left(\frac{K_m}{w_i}\right)^{K_m} \left(\frac{K_f}{w_j}\right)^{K_f} X_{ij}^{1 + K_m + K_f}\right]^{-1}
 $$ {#eq-gousse-Z}
-
 となります [@gousse2017, Appendix C]. これでタイプの組ごとに $Z_{ij}$ の値が1つずつ得られます.
 
 **Step 6: 多項式による平滑化.** 格子点ごとの $Z_{ij}$ は $\hat\alpha_{ij}$ の推定誤差をそのまま含むので, 両者の特性 $\left(x_i, x_j\right)$ のすべての交差項を含む高次多項式で近似します. 論文はこれを, 一致推定量 $\hat\alpha_{ij}$ に基づく標準的な最小距離推定と位置づけています [@gousse2017, sec. 6.3]. 学歴の補完性 (同類婚の動機) は, この多項式の交差項として $Z_{ij}$ に現れます.
@@ -1258,20 +1082,16 @@ $$ {#eq-gousse-Z}
 $h = \left(\theta + e\right)^{\gamma}$ を代入すると, 目的関数は $\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)$ となる. 予算制約より $c = w - n\left(\phi w + p e\right)$.
 
 $n$ と $e$ の一階条件はそれぞれ
-
 $$
 \frac{\phi w + p e}{c} = \frac{\delta}{n}, \qquad
 \frac{n p}{c} = \frac{\delta \gamma}{\theta + e}.
 $$
-
 2本の比を取ると $\gamma \left(\phi w + p e\right) = p \left(\theta + e\right)$ となり, これを解いて $e$ の式を得る. $n$ の一階条件 $n \left(\phi w + p e\right) = \delta c$ を予算制約に代入すると $c = w - \delta c$, すなわち $c = w / \left(1 + \delta\right)$. また $e$ の式より $\phi w + p e = \left(\phi w - p \theta\right) / \left(1 - \gamma\right)$ なので,
-
 $$
 n = \frac{\delta c}{\phi w + p e}
 = \frac{\delta}{1 + \delta} \cdot \frac{w \left(1 - \gamma\right)}{\phi w - p \theta}
 = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}.
 $$
-
 比較静学は式から直ちに従う. $w$ が上がると分母の $\phi - p\theta/w$ が大きくなるので $n$ は減少し, $\gamma \phi w - p \theta$ が大きくなるので $e$ は増加する.
 
 :::
@@ -1281,12 +1101,10 @@ $$
 ::: {.proof}
 
 @eq-outsource-n を $w_f$ で微分すると, $\partial \pi / \partial w_f = \left(1 - s\right) \phi$ より
-
 $$
 \frac{\partial n}{\partial w_f}
 = \frac{\delta}{1 + \delta} \cdot \frac{\pi\left(s\right) - \left(w_m + w_f\right) \left(1 - s\right) \phi}{\pi\left(s\right)^2}.
 $$
-
 分子は $\psi + s p_s \phi + \left(1 - s\right) w_f \phi - \left(1 - s\right) w_m \phi - \left(1 - s\right) w_f \phi = \psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi$ である. これは $s$ の増加関数で, $s \left(p_s + w_m\right) \phi = w_m \phi - \psi$ のときゼロになる. $\psi < w_m \phi$ なら $s^* > 0$, また $w_m \phi - \psi < \left(p_s + w_m\right) \phi$ なので $s^* < 1$ である.
 
 :::

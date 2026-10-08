@@ -54,6 +54,16 @@ website:
 
 bibliography: references.bib
 
+filters:
+  # @sec-x as 第7章 / 7.1節 / 付録B instead of Chapter 7 / Section 7.1.
+  - static/filters/sec-ref-ja.lua
+  # Typst only: Observable JS cells need a browser, so the PDF leaves them out.
+  - static/filters/ojs-html-only.lua
+  # HTML only: a theorem label with nothing after it gets a paragraph of its
+  # own, so that the label line styled in styles.css leaves no empty line.
+  - path: static/filters/theorem-label.lua
+    at: post-render
+
 number-depth: 3
 
 format:
@@ -98,3 +108,13 @@ crossref:
   lem-prefix: "補題"
   exm-title: "例"
   exm-prefix: "例"
+  cor-title: "系"
+  cor-prefix: "系"
+
+# Titles that crossref: does not take. The website is not `lang: ja`, so
+# the proof and remark labels would otherwise be in English.
+language:
+  crossref-alg-title: "アルゴリズム"
+  crossref-alg-prefix: "アルゴリズム"
+  environment-proof-title: "証明"
+  environment-remark-title: "注意"

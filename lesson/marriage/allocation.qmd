@@ -14,11 +14,9 @@ subtitle: Unitary and Collective Models, Nash Bargaining, and Commitment
 ### Unitary model
 
 伝統的な消費者理論を家計にそのまま適用すると, 家計は1つの効用関数 $U\left(q_W, q_H, Q\right)$ を予算制約
-
 $$
 p \cdot \left(q_W + q_H\right) + P\, Q \leq y_W + y_H =: Y
 $$
-
 のもとで最大化する主体になります. これを **unitary model** と呼びます [@becker1991]. 家計が複数の個人からなることを意識していても, 合意された家族の効用関数 (@samuelson1956 の社会厚生関数) か, 全員の選好を考慮して決める家長 (Becker の利他的な dictator) を仮定すれば, 結果として家計は1人のように振る舞います. 観察できるのは家計の需要, すなわち価格 $\pi = \left(p, P\right)$ と所得 $Y$ の関数としての総需要 $q\left(\pi, Y\right) = \left(q_W + q_H, Q\right)$ です. Unitary model はこの需要関数に2つの強い制約を課します.
 
 1. **Income pooling.** 所得は合計 $Y$ だけが意思決定に影響し, 誰が稼いだか ($y_W$ と $y_H$ の内訳) は影響しない. 選好にも予算集合にも入らない変数 (結婚市場の性比, 離婚法制, 給付の帰属先) は需要に影響しない. こうした変数を後で distribution factor と呼ぶ.
@@ -35,12 +33,10 @@ $${#eq-slutsky}
 を Slutsky 行列と呼ぶ. 2つ目の等号は Slutsky 分解を移項したもので, 観察できる需要 $q$ だけから $S$ を計算できることを表す. この Slutsky 行列 $S$ は対称かつ負値半定符号である.
 
 Slutsky 対称性の意味は, 財として夫婦それぞれの余暇をとると見えやすくなります. 私的財 $q_W, q_H$ は夫婦が同じ価格 $p$ で買うので, 価格を動かしても「誰の選好が効いているか」は分かりません. これに対して余暇の価格は各人の賃金です. 1人あたりの時間を $T$, 非労働所得を $y$ として, 家計が $U\left(c, l_W, l_H\right)$ を予算制約 $c + w_W l_W + w_H l_H = y + \left(w_W + w_H\right) T$ のもとで最大化するとします. 妻と夫の余暇についての Slutsky 行列の要素を $S_{WH}, S_{HW}$ と書くと, 対称性 $S_{WH} = S_{HW}$ は
-
 $$
 \frac{\partial l_W}{\partial w_H} - h_H\, \frac{\partial l_W}{\partial y}
 = \frac{\partial l_H}{\partial w_W} - h_W\, \frac{\partial l_H}{\partial y}
 $$
-
 となります. ここで $h_j = T - l_j$ は労働時間で, 微分は非労働所得 $y$ を一定にしたものです. 夫の賃金が上がったときの妻の余暇の (補償された) 反応と, 妻の賃金が上がったときの夫の余暇の反応が等しい, という関係です. しかし, 実際には夫の賃金の上昇は夫の発言権を高める効果があるとすると, 妻の余暇には「夫の選好の比重が増える」効果が加わり, 対称性は成り立たなくなります. Unitary model は, 家計の中に1つの効用関数を最大化する主体がいる限り, こうした目に見えにくい制約を課します.
 
 ### Collective model
@@ -52,11 +48,9 @@ $$
 ## 効率性と加重和最大化の双対性
 
 $\mathcal{U}$ が凸のとき, 配分 $\left(u_W^*, u_H^*\right) \in \mathcal{U}$ が Pareto 効率的であることは, ある Pareto ウェイト $\mu \in \left[0, 1\right]$ が存在して
-
 $$
 \left(u_W^*, u_H^*\right) \in \arg\max_{\left(u_W, u_H\right) \in \mathcal{U}}\ \mu\, u_W + \left(1 - \mu\right) u_H
 $${#eq-collective}
-
 となることと同値である.
 
 :::
@@ -64,22 +58,18 @@ $${#eq-collective}
 証明は[付録](../appendix/proof.qmd#prf-collective)にあります.
 
 つまり collective model の家計問題は
-
 $$
 \max_{q_W, q_H, Q}\ \mu\, u_W\left(q_W, Q\right) + \left(1 - \mu\right) u_H\left(q_H, Q\right)
 \quad \text{s.t.} \quad \text{budget constraint}
 $$
-
 と書け, フロンティア上の位置の選択はすべて $\mu$ に集約されます. $\mu$ は「交渉力」の指標であり, 価格・所得のほか, 選好にも予算集合にも影響しないが交渉力にだけ影響する変数, すなわち **distribution factor** (結婚市場の性比, 離婚法制, 給付の帰属先など) に依存してよいとします. 実は @sec-gmm-micro で GMM によって推定した二人家計のモデルは, まさにこの collective model であり, そこで推定した $\mu$ がここでの Pareto ウェイトです.
 
 ### Collective model の含意
 
 Collective model は unitary model より弱い仮定しか置きませんが, それでも家計需要に検定可能な制約を課します [@browning1998]. 鍵になるのは, 価格・所得・distribution factor が家計行動に効く経路が2つあることです. 1つは予算制約を通じる経路, もう1つは Pareto ウェイト $\mu\left(\pi, Y, z\right)$ を通じる経路です ($z$ は distribution factor のベクトル). 価格と所得は両方の経路を持ちますが, distribution factor は定義により予算制約に入らないので, 2つ目の経路しか持ちません. この違いが検定可能な含意を生みます. 実際, ウェイトを固定したときの家計需要を $\tilde{q}\left(\pi, Y, \mu\right)$ と書くと, 観察される需要は
-
 $$
 q\left(\pi, Y, z\right) = \tilde{q}\left(\pi, Y, \mu\left(\pi, Y, z\right)\right)
 $${#eq-collective-demand}
-
 です. ここで $\tilde{q}\left(\cdot, \cdot, \mu\right)$ は, 加重和 $\mu u_W + \left(1 - \mu\right) u_H$ を家計の総消費 $\left(q, Q\right)$ について最大化した「collective な家計効用関数」を予算制約のもとで最大化する, 標準的な需要関数です. したがって $\mu$ を固定すれば通常の消費者理論がそのまま成り立ちます.
 
 **Distribution factor とは.** 選好にも予算集合にも入らないが, 夫婦の交渉力 $\mu$ には影響しうる変数を distribution factor と呼びます. 典型例は所得の内訳です. 予算制約に入るのは総所得 $Y = y_W + y_H$ だけなので, 総所得を変えずに妻の取り分 $y_W / Y$ を増やしても, 家計が買える財の組み合わせは変わりません. それでも稼いでいる人の発言力が強くなるなら, $y_W / Y$ は $\mu$ を通じて消費を動かします. 総額を変えずに給付の受取人を夫から妻に変える改革, 結婚市場の性比, 離婚法制も同じ種類の変数です.
@@ -94,13 +84,11 @@ $${#eq-collective-demand}
   となり, これは一般にゼロではありません. つまり income pooling は成り立つとは限りません.
 
 **比例条件.** ただし collective model も何でも許すわけではありません. @eq-df-effect の右辺の第1因子 $\partial \tilde{q} / \partial \mu$ は $z_k$ によらない共通のベクトルなので, どの distribution factor の効果もこのベクトルの定数倍になり, 違うのは倍率 $\partial \mu / \partial z_k$ だけです. 需要は1次元の $\mu$ を通じてしか動かないからです. したがって, 2つの distribution factor $z_1, z_2$ と2つの財 $i, j$ について
-
 $$
 \frac{\partial q_i / \partial z_1}{\partial q_j / \partial z_1}
 = \frac{\partial q_i / \partial z_2}{\partial q_j / \partial z_2}
 = \frac{\partial \tilde{q}_i / \partial \mu}{\partial \tilde{q}_j / \partial \mu}
 $$
-
 が成り立ちます (比例条件, proportionality). 例えば, 児童手当の受取人を夫から妻に変える改革 ($z_1$) で, 女性服の支出が子ども服の支出の2倍だけ増えたとします. Collective model のもとでは, この 2:1 という比は $\partial \tilde{q} / \partial \mu$, つまり「妻の交渉力が上がったときに家計の支出がどう組み替わるか」で決まっており, どの distribution factor にも共通です. したがって, 結婚市場の性比 ($z_2$) の変化が女性服と子ども服を例えば 1:3 の比で動かしていたら, 2つの変数がどちらも1次元の交渉力 $\mu$ だけを通じて効いている, という collective model の構造と矛盾します. Distribution factor が1つしかなければ $\partial \tilde{q} / \partial \mu$ の向きは自由に選べるので制約になりませんが, 2つ以上あると, この比の等しさとして検定できます [@bourguignon2009].
 
 **Slutsky 行列.** 価格と所得についても同じ議論が使えます.
@@ -110,7 +98,6 @@ $$
 ## Slutsky 行列の SR1 条件, @browning1998
 
 Collective model の家計需要 @eq-collective-demand の Slutsky 行列 @eq-slutsky は, 対称で負値半定符号な行列 $\Sigma$ と, ランクが高々 $1$ の行列の和
-
 $$
 S\left(\pi, Y\right) = \Sigma\left(\pi, Y\right) + a\, b^{\top},
 \qquad
@@ -118,14 +105,13 @@ a = \frac{\partial \tilde{q}}{\partial \mu},
 \quad
 b = \nabla_{\pi}\, \mu + q\, \frac{\partial \mu}{\partial Y}
 $${#eq-sr1}
-
 に分解できる (symmetric plus rank one, SR1).
 
 :::
 
 証明は[付録](../appendix/proof.qmd#prf-sr1)にあります.
 
-証明の構造は比例条件と同じです. 家計の意思決定を「総所得と価格のもとで総消費を選ぶ段階」と「その消費を夫婦に配分する段階」に分けると, 前者は対称な Slutsky 行列を生み, 後者は Pareto ウェイトという**1次元の**変数を通じて効くのでランク $1$ の項しか足せません. $k + 1$ 人の家計なら, 相対的なウェイトが $k$ 次元になるので追加項のランクは高々 $k$ になります. なお, 財の数が少ないと SR1 は制約になりません. 対称性は財が3つ以上で初めて空でない制約になり, SR1 が検定可能な含意を持つには5つ以上の財が必要です [@browning1998].
+証明の構造は比例条件と同じです. 家計の意思決定を「総所得と価格のもとで総消費を選ぶ段階」と「その消費を夫婦に配分する段階」に分けると, 前者は対称な Slutsky 行列を生み, 後者は Pareto ウェイトという**1次元の**変数を通じて効くのでランク $1$ の項しか足せません. $k + 1$ 人の家計なら, 相対的なウェイトが $k$ 次元になるので追加項のランクは高々 $k$ になります. なお, 財の数が少ないと SR1 は制約になりません. 対称性は財が3つ以上で初めて空でない制約になり, SR1 が検定可能な含意を持つには5つ以上の財が必要です [@browning1998]. 証明は[付録](../appendix/proof.qmd#prf-sr1-goods)にあります.
 
 #### Collective Model の実証
 
@@ -146,12 +132,11 @@ Collective model は $\mu$ を誘導形として扱い, 何がそれを決める
 
 二人の交渉を扱う際の伝統として, 協力ゲーム理論の交渉解を家計に適用するものがあります [@manser1980; @mcelroy1981].
 
-::: {.callout-note}
+::: {#def-nash-bargaining}
 
 ## Nash 交渉解
 
 交渉が決裂したときの各自の効用 (脅威点, threat point) を $T = \left(T_W, T_H\right)$, 妻の交渉力を $\beta \in \left(0, 1\right)$ とする. Nash 交渉解は, 決裂点からの利得の加重積を最大化する配分である.
-
 $$
 \max_{\left(u_W, u_H\right) \in \mathcal{U},\ u_W \geq T_W,\ u_H \geq T_H}
 \left(u_W - T_W\right)^{\beta} \left(u_H - T_H\right)^{1 - \beta}.
@@ -216,7 +201,7 @@ $${#eq-nash-weight}
 - この人と結婚しない場合の効用は, 独身の場合や他の人と結婚した場合の効用である
 - したがって, モテる人ほど脅威点が高くなり, それと対応する Pareto ウェイト $\mu$ も高くなる
 
-ここでマッチングと家庭内配分の問題が合流し, 第 -@sec-matching 章と第 -@sec-frictionless 章の話につながっていきます.
+ここでマッチングと家庭内配分の問題が合流し, @sec-matching と @sec-frictionless の話につながっていきます.
 
 
 ## コミットメント {#sec-allocation-commitment}
@@ -226,46 +211,36 @@ $${#eq-nash-weight}
 ### 3つのコミットメント
 
 家計は $t = 0$ (結婚時) から $\bar{t}$ まで生き, 各期の賃金 $W_t$, 資産 $a_t$, 交渉力にだけ影響する distribution factor $Z_t$ (結婚市場の性比, 離婚法制, 個人に帰属する給付など) を観測します. 結婚時の情報を $\Omega_0$ と書きます. どの型でも, 家計の問題は Pareto ウェイト $\left(\mu_{1t}, \mu_{2t}\right)$ を付けた再帰的な形
-
 $$
 V_t\left(\Omega_t\right) = \max_{C_t}\ \mu_{1t}\, u_1\left(q_t, h_{1t}\right) + \mu_{2t}\, u_2\left(q_t, h_{2t}\right) + \beta\, \mathbb{E}_t V_{t+1}\left(\Omega_{t+1}\right)
 $$ {#eq-commit-recursive}
-
 に書けます (予算制約のもとで. $C_t$ は消費・労働時間・貯蓄の選択). 3つの型の違いは, ウェイト $\mu_{jt}$ の動きに課される制約の違いとして表れます.
 
 **完全コミットメント (full commitment).** 結婚時に, 将来のあらゆる状態に応じた配分計画に完全に約束できる. 計画は事前に (ex ante) 第一最善で効率的で, Pareto ウェイトは結婚時の情報だけで決まり, その後は一定です.
-
 $$
 \mu_{jt} = \mu_j\left(\Omega_0\right) \qquad \text{for all } t.
 $$
-
 賃金や distribution factor に事後的にどんなショックが来ても, 夫婦は余剰の分け方を変えずにリスクを完全に共有します. 結婚後に女性の交渉力を高めようとする政策 (女性に帰属する給付など) は, $\Omega_0$ を変えない限り配分に影響しません. 規範的には美しい仮定ですが, これを法的に強制する手段はほとんどなく, 現実性は疑問視されています.
 
 **限定コミットメント (limited commitment).** 配偶者は一方的に関係を離れられる (アメリカのような単意離婚) とします. すると, ある状態で一方の外部オプションが結婚内の価値を上回るような計画は実行できません. 夫婦は, 各期・各人の参加制約
-
 $$
 \underbrace{\mathbb{E}_t \sum_{\tau \geq t} \beta^{\tau - t} u_j\left(q_\tau, h_{j\tau}\right)}_{\text{inside value}}
 \ \geq\
 \underbrace{\tilde{V}_{jt}\left(\Omega_{jt}\right)}_{\text{outside value}}
 $$ {#eq-participation}
-
 を満たす範囲で, 結婚時の計画に約束します. 配分は参加制約つきの第二最善で効率的です. 参加制約の Lagrange 乗数を $\nu_{jt}$ と書くと, Pareto ウェイトは
-
 $$
 \mu_{jt} = \mu_{j,t-1} + \nu_{jt}, \qquad \mu_{j0} = \mu_j\left(\Omega_0\right)
 $$ {#eq-lc-weight}
-
 と動きます (導出は[付録](../appendix/proof.qmd#prf-lc-weight)にあります). 前期までの配分を続けると誰かの参加制約が破れるときだけ, その人のウェイトが「留まることと去ることが無差別になる最小の幅」だけ跳ね上がり, それ以外の期には動きません.
 
 限定コミットメントの夫婦は, 結婚時に「どちらかが別れたくなる事態にならない限り, 決めた分け方を守る」と約束しています. 妻によい仕事の話が来て, 今の分け方のままだと別れて一人になった方が得になる時だけ, 妻が残ってもいいと思えるところまで妻の取り分を増やします. そして増やした取り分は, 妻の外の条件が元に戻っても減らしません. 減るのは, 今度は夫の側が出て行きそうになり, 夫の取り分を増やすときだけです. ウェイトが「必要なときに必要なだけ上がり, 上がったまま残る」のはこのためです.
 
 **コミットメントなし (no commitment).** 結婚時に将来の配分について何も約束しない. 各期の配分は, そのときの環境 (賃金, distribution factor, 資産) を所与とする交渉ゲームで決まり,
-
 $$
 \mu_{jt} = \mu_j\left(\Omega_0, W_t, Z_t, a_t\right)
 $$ {#eq-nc-weight}
-
-と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で [@lundberg1993], 実証的な応用が結婚の部で読む @gousse2017 です. -@sec-allocation-nash 節 の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 $T_t$ が毎期の外部オプションで更新されれば, @eq-nash-weight の $\mu_t^*$ は現在の $T_t$ だけの関数になり, 履歴を持ちません.
+と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で [@lundberg1993], 実証的な応用が結婚の部で読む @gousse2017 です. @sec-allocation-nash の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 $T_t$ が毎期の外部オプションで更新されれば, @eq-nash-weight の $\mu_t^*$ は現在の $T_t$ だけの関数になり, 履歴を持ちません.
 
 3つの型は, ウェイトの状態変数の形で区別されます.
 

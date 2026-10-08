@@ -21,3 +21,61 @@
   max-height: 90vh;
   object-fit: contain;
 }
+
+/* Theorem-like environments (HTML only; the PDF keeps the jsbook look).
+   A quiet callout: a coloured rule on the left, a faint tint of the same
+   colour, and the label on its own line. The colours are the three dots of
+   the course logo: purple for statements, green for definitions, red for
+   algorithms. Examples and remarks only get a thin grey rule. */
+.theorem {
+  --thm-rgb: 149, 88, 178;   /* logo purple #9558b2 */
+  --thm-label: #7a3f98;      /* darker shade for the label text (AA on the tint) */
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid rgb(var(--thm-rgb));
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: rgba(var(--thm-rgb), 0.045);
+}
+
+.theorem.definition {
+  --thm-rgb: 56, 152, 38;    /* logo green #389826 */
+  --thm-label: #2a7a1c;
+}
+
+.theorem.algorithm {
+  --thm-rgb: 203, 60, 51;    /* logo red #cb3c33 */
+  --thm-label: #a8302a;
+}
+
+.theorem.example,
+.theorem.exercise {
+  --thm-rgb: 108, 117, 125;
+  --thm-label: #495057;
+  border-left-width: 2px;
+  background: none;
+}
+
+.theorem .theorem-title {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--thm-label);
+}
+
+.theorem > :last-child {
+  margin-bottom: 0;
+}
+
+.proof.remark {
+  margin: 1.25rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid #ced4da;
+}
+
+/* End of proof, so that the text after a proof is not read as part of it. */
+.proof:not(.remark)::after {
+  content: "∎";
+  display: block;
+  text-align: right;
+  color: #adb5bd;
+  line-height: 1;
+}

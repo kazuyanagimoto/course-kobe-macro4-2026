@@ -13,6 +13,7 @@ using Statistics
 using LinearAlgebra
 using DataFrames
 using CSV
+using ProjectRoot           # @projectroot: paths from the repository root
 using Optimization        # unified interface: OptimizationProblem + solve
 import OptimizationNLopt  # NLopt backend; import (not using) avoids clash
 import NLopt              # to name algorithms, e.g. NLopt.LN_NELDERMEAD()
@@ -38,16 +39,14 @@ default(size=(500, 308), titlefontsize=10, fmt=:svg, grid=false,
 
 データ $\{x_i\}_{i=1}^N$ と, 真のパラメータ $\theta_0$ のもとで期待値がゼロになるモーメント条件 $\mathbb{E}[g(x_i, \theta_0)] = \mathbf{0}$ が与えられたとします. 典型的には $g$ は最適化の一階条件で, 複数の条件を束ねてベクトルにできます. その標本版 $\bar{g}_N(\theta) = \frac{1}{N} \sum_{i} g(x_i, \theta)$ を可能な限りゼロに近づける $\theta$ を選ぶのが GMM です.
 
-::: {.callout-note}
+::: {#def-gmm}
 
 ## GMM 推定量
 
 GMM 推定量 $\hat{\theta}^{\text{GMM}}$ は, 正定値の重み行列 $W$ に対して, 次のように定義される:
-
 $$
 \hat{\theta}^{\text{GMM}} := \arg\min_{\theta}\ \bar{g}_N\left(\theta\right)^\top W\, \bar{g}_N\left(\theta\right).
 $$
-
 パラメータ数と同じだけモーメント条件があれば (丁度識別, just-identified), $W$ に依らず $\bar{g}_N(\hat\theta) = \mathbf{0}$ となる. モーメント条件の方が多い場合 (過剰識別, over-identified) は $W$ が推定効率に影響し, 最適な $W$ はモーメントの分散共分散行列の逆行列である.
 
 :::
@@ -61,18 +60,16 @@ $$
 ## GMM 推定量の漸近分布
 
 モーメント条件 $\mathbb{E}\left[g\left(x_i, \theta_0\right)\right] = \mathbf{0}$ が正しく, $\theta_0$ が識別され, 標準的な正則条件が成り立つとする. $G = \partial\, \mathbb{E}\left[g\right] / \partial \theta^\top$ ($p \times k$), $V = \lim_{N \to \infty} \text{Var}\left(\sqrt{N}\, \bar{g}_N\left(\theta_0\right)\right)$ とおくと,
-
 $$
 \sqrt{N}\left(\hat\theta - \theta_0\right) \xrightarrow{\ d\ } \mathcal{N}\left(\mathbf{0},\ \left(G^\top W G\right)^{-1} G^\top W V W G \left(G^\top W G\right)^{-1}\right).
 $${#eq-gmm-avar}
-
 特に $W = V^{-1}$ のとき, 分散は $\left(G^\top V^{-1} G\right)^{-1}$ に簡約され, これが $W$ の選び方の中で最小になる (効率的 GMM).
 
 :::
 
 証明は @newey1994 などを参考にしてください. @eq-gmm-avar は, 重み行列 $W$ の選び方が推定量の効率を左右することを言っています. 最適なのは $W = V^{-1}$ ですが, ここに循環があります. $V = \lim_N \operatorname{Var}\left(\sqrt{N}\, \bar{g}_N\left(\theta_0\right)\right)$ は真値のまわりで定義される量なので, $V$ を推定するには $\theta$ の推定値が必要です. 一方, 効率的に $\theta$ を推定するには $V$ が必要です. この鶏と卵の順番を決めるのが2段階 GMM です.
 
-::: {.callout-note}
+::: {#alg-two-step-gmm}
 
 ## 2段階 GMM
 
@@ -82,16 +79,15 @@ $${#eq-gmm-avar}
 
 :::
 
-実務上の注意が2つあります. 第一に, 第1段階の $W = I$ はモーメントの単位に依存する恣意的な選択です. スケールの大きく違うモーメントを混ぜるときは, 各モーメントを標本標準偏差で割った対角行列を第1段階に使うほうが安定します. 第二に, $\hat{S}$ は $p \times p$ の行列を $N$ 個の観測から推定したものです. モーメントの本数が多く標本が小さいと $\hat{S}^{-1}$ の推定誤差が大きくなり, 漸近的には効率的なはずの第2段階が, 有限標本ではかえって悪い推定量になることが知られています. 共分散構造の推定でこの小標本バイアスを詳しく調べたのが @altonji1996 です. その場合は非対角成分を捨てて対角の重みで済ませる, という保守的な選択がよく採られます. この章の後半 (-@sec-md 節) で使うのがまさにそれです.
+実務上の注意が2つあります. 第一に, 第1段階の $W = I$ はモーメントの単位に依存する恣意的な選択です. スケールの大きく違うモーメントを混ぜるときは, 各モーメントを標本標準偏差で割った対角行列を第1段階に使うほうが安定します. 第二に, $\hat{S}$ は $p \times p$ の行列を $N$ 個の観測から推定したものです. モーメントの本数が多く標本が小さいと $\hat{S}^{-1}$ の推定誤差が大きくなり, 漸近的には効率的なはずの第2段階が, 有限標本ではかえって悪い推定量になることが知られています. 共分散構造の推定でこの小標本バイアスを詳しく調べたのが @altonji1996 です. その場合は非対角成分を捨てて対角の重みで済ませる, という保守的な選択がよく採られます. この章の後半 (@sec-md) で使うのがまさにそれです.
 
 最後に, 効率的な重み行列にはおまけがついてきます. 最小化された目的関数そのものが検定統計量になるのです. モーメントがパラメータより多いとき, すべてのモーメントを同時にゼロにはできません. その「残り」がモデルと整合的な大きさに収まっているかを見るのが過剰識別の検定です.
 
-::: {.callout-note}
+::: {#prp-j-test}
 
 ## 過剰識別の検定 (Hansen の $J$)
 
 $W = \hat{V}^{-1}$ のとき, 最小化された目的関数に $N$ を掛けたものは, $p$ 本のモーメント条件がすべて正しいという帰無仮説の下で自由度 $p - k$ の $\chi^2$ 分布に従う.
-
 $$
 J = N\, \bar{g}_N\left(\hat\theta\right)^\top \hat{V}^{-1} \bar{g}_N\left(\hat\theta\right)
 \ \xrightarrow{\ d\ }\ \chi^2\left(p - k\right)
@@ -109,31 +105,24 @@ $J$ が棄却したときに分かるのは, 「$p$ 本のモーメント条件�
 GMM の真価は, 閉じた形の回帰式に落ちない複数の非線形な最適化条件をまとめてモーメント条件にできる点にあります. @lise2019 は, 夫と妻の個人別消費・時間配分のパネルデータを使い, 家計内の資源配分を特徴づける一階条件の体系を非線形 GMM で推定しています. ここでは, そのモデルの最小限のトイモデルを作ります.
 
 家計は妻 $W$ と夫 $H$ からなります. メンバー $j \in \{W, H\}$ は, 自分の私的消費 $c_j$ と自分の余暇 $\ell_j$ から効用を得ます. 効用関数は, $c_j$ と $\ell_j$ の CES 集計を CRRA で包んだ形とします.
-
 $$
 u_j\left(c_j, \ell_j\right) = \frac{1}{1 - \sigma_j}\left[\alpha_j c_j^{\phi_j} + \left(1 - \alpha_j\right) \ell_j^{\phi_j}\right]^{\frac{1 - \sigma_j}{\phi_j}}.
 $$ {#eq-utility}
-
 $\alpha_j$ は消費と余暇の相対的な選好, $\phi_j$ は両者の代替の弾力性 ($=1/(1-\phi_j)$) を決めます. ここでは, 妻と夫の選好に異質性があることが許容されています ($\alpha_W \neq \alpha_H$, $\phi_W \neq \phi_H$).
 
 家計は効率的に資源を配分する (collective model) とし, 妻への Pareto ウェイトを $\mu \in (0, 1)$ とします. 資産 $a$ を状態変数として, 家計の動的な問題は次の価値関数で書けます.
-
 $$
 V(a) = \max_{c_W, \ell_W, c_H, \ell_H, a'} \mu_W u_W\left(c_W, \ell_W\right) + \mu_H u_H\left(c_H, \ell_H\right) + \delta\, \mathbb{E} V(a'),
 $$ {#eq-value}
-
 subject to
-
 $$
 c_W + c_H + w_W \ell_W + w_H \ell_H + a' = w_W + w_H + \left(1 + r\right) a =: y.
 $$
-
 各メンバーの時間の賦存量を1に基準化し, 余暇を自分の賃金 $w_j$ で評価しています. 右辺の $y$ は full income です. また, $\mu_W, \mu_H \in (0, 1)$ は, 家計内の交渉力を表す Pareto ウェイトで, $\mu_W + \mu_H = 1$ です.
 
 #### モーメント条件
 
 予算制約のラグランジュ乗数を $\lambda$ とすると, 内点解での一階条件は次のようになります.
-
 $$
 \mu \frac{\partial u_j}{\partial c_j} = \lambda, \quad
 \mu \frac{\partial u_j}{\partial \ell_j} = \lambda w_j, \quad j \in \{W, H\},
@@ -142,21 +131,17 @@ $$ {#eq-foc}
 $$
 \lambda = \delta\, \mathbb{E} V'(a') \qquad (\text{Euler equation}).
 $$
-
 ここで $\lambda$ は 富の限界価値 (marginal value of wealth) で, 家計の効率的な配分を特徴づける共通の尺度です. すべての一階条件は $\lambda$ を含むので, @eq-foc の比を取ると $\lambda$ が消え, 家計内の配分の条件が残ります.
 
 **(1) 各メンバーの期内 MRS 条件.** $j \in \{W, H\}$ について, 消費と余暇の比を取ると $\lambda$ も $\mu$ も消えます.
-
 $$
 \frac{\alpha_j}{1 - \alpha_j}\left(\frac{c_j}{\ell_j}\right)^{\phi_j - 1} = \frac{1}{w_j}.
 $$ {#eq-mrs}
 
 **(2) 家計内の消費配分条件.** 妻と夫の消費の一階条件の比を取ると, $\lambda$ が消えて $\mu$ が残ります.
-
 $$
 \mu_W \frac{\partial u_W}{\partial c_W} = \mu_H \frac{\partial u_H}{\partial c_H}.
 $$ {#eq-share}
-
 余暇についての同様の条件は @eq-mrs と @eq-share から導かれるので, 独立な条件はこの3本です.
 
 ::: {.callout-note collapse="true"}
@@ -172,7 +157,6 @@ $$ {#eq-share}
 :::
 
 @eq-mrs と @eq-share の対数を取り, $A_j := \alpha_j c_j^{\phi_j} + (1 - \alpha_j)\ell_j^{\phi_j}$ とおくと,
-
 $$
 \begin{aligned}
 e_{ji} &= \log \frac{\alpha_j}{1 - \alpha_j} + \left(\phi_j - 1\right) \log \frac{c_{ji}}{\ell_{ji}} + \log w_{ji} & j \in \{W, H\},\\
@@ -181,11 +165,9 @@ e_{3i} &= \log \frac{\mu}{1 - \mu} + \log \frac{\alpha_W}{\alpha_H}
 &+ \left(\phi_W - 1\right) \log c_{W_i} - \left(\phi_H - 1\right) \log c_{H_i}.
 \end{aligned}
 $$
-
 モデルが正しければ, これらの残差は平均ゼロになります. つまり, $\mathbf{e}_i := (e_{Wi}, e_{Hi}, e_{3i})^\top$ に対して, $\mathbb{E}\left[\mathbf{e}_i\right] = \mathbf{0}$ です. ただし, これだけではパラメータ5個に対して3本のモーメントしかなく, 識別できません. そこで, 残差と賃金の直交条件を加えます. 賃金は外生なので, モデルが正しければ残差と相関しないはずです.
 
 ただし, どの賃金でもよいわけではありません. 賃金にも測定誤差が乗るからです. 観測される賃金を $w_{ji} = w_{ji}^{*} e^{\varepsilon_{ji}^{w}}$ とすると, @eq-mrs の残差には $\log w_{ji}$ がそのまま入っているので, $e_{ji}$ は測定誤差 $\varepsilon_{ji}^{w}$ を含みます. 自分の賃金を掛けた条件 $\mathbb{E}\left[e_{ji} \log w_{ji}\right]$ は, 残差と操作変数の両方に同じ誤差が入るぶんだけゼロから外れます. 一方, 配偶者の賃金なら測定誤差は独立なので直交条件は成り立ちます. 残差 $e_{3i}$ には賃金が入らないので, こちらは両方の賃金を使えます. 使えるモーメントは7本です.
-
 $$
 \begin{aligned}
 \mathbb{E}\left[e_{Wi}\left(1, \log w_{Hi}\right)^{\top}\right] &= \mathbf{0},\\
@@ -193,19 +175,16 @@ $$
 \mathbb{E}\left[e_{3i}\left(1, \log w_{Wi}, \log w_{Hi}\right)^{\top}\right] &= \mathbf{0}.
 \end{aligned}
 $$ {#eq-moments}
-
 自分の賃金を捨てるぶん, 曲率 $\phi_j$ の情報は減ります. パネルデータがあれば, 測定誤差が時点間で独立であることを使って1年前の賃金を操作変数にでき, 情報を取り戻せます. @lise2019 が実際に採っているのがこの戦略です.
 
 #### データ
 
 真値を @lise2019 の推定値に近い水準に取り, $N = 4000$ 世帯の人工的なクロスセクションデータを作ります.
-
 $$
 \left(\phi_W, \phi_H, \alpha_W, \alpha_H, \mu\right) = \left(0.2,\ 0.6,\ 0.45,\ 0.55,\ 0.45\right).
 $$
 
 データ生成過程 (DGP) は次の通りです. まず, 各家計 $i$ の賃金を対数正規分布から独立に引き, フルインカムを定めます.
-
 $$
 \begin{aligned}
 \log w_{Wi} &\sim \mathcal{N}\left(-0.15,\ 0.15^2\right),\\
@@ -213,9 +192,7 @@ $$
 y_i &= 1.05 \left(w_{Wi} + w_{Hi}\right).
 \end{aligned}
 $$
-
 次に, 真の賃金とフルインカムを所与として, 真の配分 $\left(c_{ji}^*, \ell_{ji}^*\right)$ を一階条件 @eq-mrs・@eq-share と予算制約から閉じた形で解きます. 最後に, 消費・余暇・賃金に乗法的な測定誤差を乗せたものを「観測値」とします.
-
 $$
 c_{ji} = c_{ji}^* e^{\varepsilon_{ji}^c}, \quad
 \ell_{ji} = \ell_{ji}^* e^{\varepsilon_{ji}^\ell}, \quad
@@ -223,7 +200,6 @@ w_{ji} = w_{ji}^* e^{\varepsilon_{ji}^w}, \quad
 \varepsilon_{ji}^c,\ \varepsilon_{ji}^\ell \overset{\text{iid}}{\sim} \mathcal{N}\left(0,\ 0.03^2\right), \quad
 \varepsilon_{ji}^w \overset{\text{iid}}{\sim} \mathcal{N}\left(0,\ 0.01^2\right).
 $$
-
 賃金の測定誤差は消費や余暇より小さく取っていますが, 大きさは問題ではありません. どれだけ小さくても, 自分の賃金は操作変数として無効になります.
 
 
@@ -278,7 +254,7 @@ plot!(xlabel=L"\log w_j", ylabel=L"\log (c_j / \ell_j)")
 
 ### 推定 {#sec-gmm-estimation}
 
-@eq-moments の7本のモーメントでパラメータ5個を推定します. 過剰識別 ($p = 7 > k = 5$) なので, -@sec-gmm-theory 節 の手順どおり2段階で最小化します. 最適化は `Optimization.jl` の共通インターフェース (第 -@sec-nonlinear-opt 章) で行い, 微分を使わない Nelder–Mead (NLopt の `LN_NELDERMEAD`) を呼びます. パラメータの制約 $\phi_j < 1$, $\alpha_j, \mu \in \left(0, 1\right)$ は, 変数変換ではなく箱制約 `lb` / `ub` としてソルバーに渡します.
+@eq-moments の7本のモーメントでパラメータ5個を推定します. 過剰識別 ($p = 7 > k = 5$) なので, @sec-gmm-theory の手順どおり2段階で最小化します. 最適化は `Optimization.jl` の共通インターフェース (@sec-nonlinear-opt) で行い, 微分を使わない Nelder–Mead (NLopt の `LN_NELDERMEAD`) を呼びます. パラメータの制約 $\phi_j < 1$, $\alpha_j, \mu \in \left(0, 1\right)$ は, 変数変換ではなく箱制約 `lb` / `ub` としてソルバーに渡します.
 
 ```{julia}
 #| label: gmm-household
@@ -317,7 +293,7 @@ pn = [raw"$\phi_W$", raw"$\phi_H$", raw"$\alpha_W$", raw"$\alpha_H$", raw"$\mu$"
 θ_true = [φW0, φH0, αW0, αH0, μ0]
 ```
 
-点推定が出たら, 次はその精度です. 2段階目の重み行列に $W = \hat{S}^{-1}$ を使ったので, これは @prp-gmm-avar の効率的なケースに当たり, 分散は $\left(G^\top V^{-1} G\right)^{-1} / N$ に簡約されます. 材料は2つです. ヤコビアン $\hat{G}$ は数値微分 (-@sec-differentiation 節) で計算し, $\hat{S}$ はモーメントの標本第2モーメント $\frac{1}{N}\sum_i g\left(x_i, \hat\theta\right) g\left(x_i, \hat\theta\right)^\top$ を推定値 $\hat\theta$ で評価し直したものを使います.
+点推定が出たら, 次はその精度です. 2段階目の重み行列に $W = \hat{S}^{-1}$ を使ったので, これは @prp-gmm-avar の効率的なケースに当たり, 分散は $\left(G^\top V^{-1} G\right)^{-1} / N$ に簡約されます. 材料は2つです. ヤコビアン $\hat{G}$ は数値微分 (@sec-differentiation) で計算し, $\hat{S}$ はモーメントの標本第2モーメント $\frac{1}{N}\sum_i g\left(x_i, \hat\theta\right) g\left(x_i, \hat\theta\right)^\top$ を推定値 $\hat\theta$ で評価し直したものを使います.
 
 ```{julia}
 #| label: gmm-se
@@ -382,7 +358,7 @@ plot(panels..., layout=(5, 1), size=(520, 620), left_margin=4Plots.mm)
 
 推定の入力は「パラメータからモーメントへの写像」$m\left(\theta\right) = \mathbb{E}\left[g\left(x_i, \theta\right)\right]$ でした. 識別はこの写像が反転できるかという問いとして書けます.
 
-::: {.callout-note}
+::: {#def-identification}
 
 ## 識別
 
@@ -400,7 +376,6 @@ plot(panels..., layout=(5, 1), size=(520, 620), left_margin=4Plots.mm)
 ランク条件の中身は, いちばん簡単な線形の例で見るのが早いです. パラメータが2つ $\theta = \left(\theta_1, \theta_2\right)^\top$, モーメントが2本で, モーメント写像がちょうど線形 $m\left(\theta\right) = G \theta$ だとします. 推定とは, データから得た $\hat{m}$ に対して連立1次方程式 $G \theta = \hat{m}$ を解くことです.
 
 まず, ランクが2の場合.
-
 $$
 \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}
 = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
@@ -408,17 +383,14 @@ $$
 \quad \Longrightarrow \quad
 \theta_1 = \frac{m_1 + m_2}{2}, \qquad \theta_2 = \frac{m_1 - m_2}{2}.
 $$
-
 2本の式は独立な情報を持っているので, 逆に解けます. モーメント $m_1$ は2つのパラメータの和を, $m_2$ は差を教えてくれる. 和と差が分かれば, もとの2つは決まります.
 
 次に, ランクが1の場合.
-
 $$
 \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}
 = \begin{pmatrix} 1 & 1 \\ 2 & 2 \end{pmatrix}
 \begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}.
 $$
-
 2本目の式は1本目をちょうど2倍しただけで, 新しい情報を持っていません. モーメントは2本あるのに ($p = 2 \geq k = 2$ で次数条件は満たされているのに), 決まるのは和 $\theta_1 + \theta_2$ だけです. $\left(\theta_1, \theta_2\right)$ を $\left(\theta_1 + t, \theta_2 - t\right)$ とずらしてもモーメントは1ミリも動かないので, $\left(1, -1\right)$ 方向についてデータは何も言っていません. これがランク落ちです.^[もっと露骨なランク落ちもあります. $G$ のある列がまるごとゼロ, つまりそのパラメータがモーメントにまったく現れない場合です. この後の @fig-jacobian で $\mu$ の列を見ると, MRS 条件の行がちょうどそうなっています.]
 
 非線形なモデルでも, 真値の近くでは $m\left(\theta\right) \approx m\left(\theta_0\right) + G\left(\theta - \theta_0\right)$ と1次近似できるので, 局所識別は結局この連立方程式が解けるかという問題に帰着します. これがランク条件の意味です.
@@ -427,24 +399,20 @@ $$
 
 ここまでは「解ける・解けない」という $0/1$ の話でした. しかし実際に数値計算の場面で遭遇するのは, その中間である「解けはするが, ほとんど解けていない」という状態です. 上のランク1の例で, 2本目の式の係数を $\left(2, 2\right)$ から $\left(2, 2.001\right)$ にずらしてみます. 2本の式はもう平行ではないので, ランクは2に戻り, 連立方程式は一意に解けます. それでも実質的に何も推定できていない, というのがこれから見ることです. ランクという離散的な判定ではなく, 「いちばん効かない方向でも, モーメントはどれだけ動くのか」という連続的な量が要ります. それを与えるのが特異値分解です.
 
-::: {.callout-note}
+::: {#prp-svd}
 
 ## 特異値分解
 
 $p \times k$ 行列 $G$ ($p \geq k$) は, 列が正規直交な $U$ ($p \times k$) と直交行列 $V$ ($k \times k$) を使って
-
 $$
 G = U \Sigma V^\top, \qquad
 \Sigma = \operatorname{diag}\left(s_1, \ldots, s_k\right), \quad s_1 \geq \cdots \geq s_k \geq 0
 $$
-
 と分解できる. $s_j$ を特異値, $V$ の第 $j$ 列 $v_j$ を右特異ベクトルという. $G v_j = s_j u_j$ であり, $u_j$ は単位ベクトルだから, $s_j$ は「パラメータを $v_j$ 方向に1単位動かしたときにモーメントが動く大きさ」である. 一般に
-
 $$
 \max_{\left\|v\right\| = 1} \left\|G v\right\| = s_1, \qquad
 \min_{\left\|v\right\| = 1} \left\|G v\right\| = s_k
 $$
-
 で, 最小は最終列 $v_k$ で達成される. したがって
 
 - $s_k > 0 \iff \operatorname{rank} G = k$: どの方向に動かしてもモーメントが動く (局所識別される),
@@ -521,9 +489,9 @@ plot(ps..., layout=(1, 3), size=(780, 300), bottom_margin=3Plots.mm, left_margin
 
 左は同心円で, 底が1点に定まっています. 右は平行な溝で, 谷底に沿ってどこまで動いても目的関数の値は変わりません. そして中央は, 目で見るかぎり右と区別がつきません. 実際には $v_2$ 方向にも $\left(3.2 \times 10^{-4}\right)^2$ の傾きがあり, 谷は $\left|\theta - \theta_0\right| \sim 3000$ のはるか遠方で閉じているのですが, この縮尺では平らな溝と同じものです. 弱識別が厄介なのは, この「ほとんど平ら」が, 数値的にはランク落ちと変わらない振る舞いをするからです.
 
-最適化アルゴリズムは谷底のどこかで問題なく「収束」します. どこに止まるかを決めているのは初期値と丸め誤差です. -@sec-gmm-estimation 節 で見た標準誤差の大きさは, この平らさの裏返しです.
+最適化アルゴリズムは谷底のどこかで問題なく「収束」します. どこに止まるかを決めているのは初期値と丸め誤差です. @sec-gmm-estimation で見た標準誤差の大きさは, この平らさの裏返しです.
 
-大域識別を確かめる一般的な方法はなく, 目的関数を複数の初期値から最小化して同じ解に収束するかを見る, といった間接的な確認に頼ることになります. 一方, 局所識別のランク条件はヤコビアンを数値微分 (-@sec-differentiation 節) で計算すれば機械的に確認できます. しかも識別の分析はデータの実現値をほとんど必要とせず, 候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.
+大域識別を確かめる一般的な方法はなく, 目的関数を複数の初期値から最小化して同じ解に収束するかを見る, といった間接的な確認に頼ることになります. 一方, 局所識別のランク条件はヤコビアンを数値微分 (@sec-differentiation) で計算すれば機械的に確認できます. しかも識別の分析はデータの実現値をほとんど必要とせず, 候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.
 
 #### 設計を点検する
 
@@ -565,7 +533,7 @@ plot!(xlabel="Parameter", ylabel="Moment")
 
 #### 過剰識別の検定 {#sec-overid}
 
--@sec-gmm-theory 節 の $J$ 統計量を計算します. 効率的な重み行列 $\hat{S}^{-1}$ は前項で作ったものをそのまま使います. モーメントが7本, パラメータが5個なので, 自由度は $7 - 5 = 2$ です.
+@sec-gmm-theory の $J$ 統計量を計算します. 効率的な重み行列 $\hat{S}^{-1}$ は前項で作ったものをそのまま使います. モーメントが7本, パラメータが5個なので, 自由度は $7 - 5 = 2$ です.
 
 ```{julia}
 #| label: gmm-overid
@@ -597,7 +565,7 @@ pretty_table(hcat(mlab, round.(ĝ, sigdigits=2), round.(se_m, sigdigits=2),
 
 どの条件も標準誤差1個分に収まっていて, 特定の式だけが外れているということはありません.^[個々の $t$ は厳密には標準正規ではありません. 7本のずれは互いに相関しており, しかも5個のパラメータを合わせた後の残りだからです. あくまで当たりをつけるための道具として読みます.]
 
-この節のモーメントは, すべて観測データとパラメータの解析的な式でした. しかしそれが成り立ったのは, 一階条件が閉じた形で書け, しかもそこに現れる変数がすべて観測できたからです. モデルの含意が数値的にしか出せない場合や, モデルに観測できない変数が入る場合には, この経路は閉じます. それが次節 (-@sec-md 節) の主題です.
+この節のモーメントは, すべて観測データとパラメータの解析的な式でした. しかしそれが成り立ったのは, 一階条件が閉じた形で書け, しかもそこに現れる変数がすべて観測できたからです. モデルの含意が数値的にしか出せない場合や, モデルに観測できない変数が入る場合には, この経路は閉じます. それが次節 (@sec-md) の主題です.
 
 ## 最小距離推定と SMM {#sec-md}
 
@@ -605,16 +573,14 @@ pretty_table(hcat(mlab, round.(ĝ, sigdigits=2), round.(se_m, sigdigits=2),
 
 書けなくなる理由は2つあります. 第一に, モデルの含意が数値的にしか出せない場合です. 動学モデルの政策関数, 均衡モデルの価格, 定常状態から計算される結婚率や失業率は, どれもパラメータを与えるたびにモデルを解き直さないと分かりません. データ側の結婚率は調査から数えれば済むのに, それに対応するモデル側の量は閉じた形で書けない, という非対称が生じます. しかも結婚率は誰か1人について定義される量ではないので, 個人 $i$ ごとの残差という形にそもそもなりません. 第二に, 世帯 $i$ について観測できない変数がモデルに入る場合です. 未観測の異質性や潜在的な状態変数があると, 観測できるのはそれらについて平均を取った後の分布だけになります. どちらも, モーメント関数 $g\left(x_i, \theta\right)$ が個人ごとに書けないという点で同じであり, モデルが含意する統計量を元に推定する必要があります.
 
-::: {.callout-note}
+::: {#def-minimum-distance}
 
 ## 最小距離推定
 
 データから計算した統計量 $\hat{m} = \frac{1}{N}\sum_i h\left(x_i\right)$ と, モデルが含意するその対応物 $m\left(\theta\right)$ の距離を最小化する推定量を最小距離推定量 (minimum distance estimator) という.
-
 $$
 \hat\theta = \arg\min_{\theta}\ \left(\hat{m} - m\left(\theta\right)\right)^\top W \left(\hat{m} - m\left(\theta\right)\right).
 $$
-
 これは $g\left(x_i, \theta\right) = h\left(x_i\right) - m\left(\theta\right)$ と置いた GMM である.
 
 :::
@@ -624,49 +590,37 @@ $$
 ### モデル {#sec-md-model}
 
 静学的な労働供給を考えます. 個人は消費 $c$ と労働時間 $h$ を選びます. 労働時間は週40時間を1とする単位で測ります.
-
 $$
 \max_{c,\, h} U(c, h; \psi_i) = \frac{c^{1-\gamma}}{1-\gamma} - \psi_i \frac{h^{1+1/\eta}}{1+1/\eta}
 \qquad \text{s.t.} \quad c = w h
 $$ {#eq-ls-problem}
-
 $\psi_i$ は働くことの不効用の重み, $\gamma$ は消費の曲率, $\eta$ は労働時間の Frisch 弾力性です. 一階条件は
-
 $$
 w \left(w h\right)^{-\gamma} = \psi_i\, h^{1/\eta}
 $$ {#eq-ls-foc}
 で, これは閉じた形で解けます.
-
 $$
 h^*\left(w, \psi\right) = \left(\frac{w^{1-\gamma}}{\psi}\right)^{\frac{\eta}{1 + \gamma}}.
 $$ {#eq-ls-hstar}
-
 この解を希望労働時間と呼ぶことにします. $\gamma > 1$ なら $w$ の指数が負で, 賃金が上がると希望労働時間は減ります. 所得効果が代替効果に勝つ領域です.
 
 ここで, 個人の異質性を考えます. 賃金 $w_i$ と労働の不効用の重み $\psi_i$ を独立な確率変数とします.
-
 $$
 \begin{aligned}
 \log w_i \sim \mathcal{N}\left(\mu_w, \sigma_w^2\right), \qquad
 \log \psi_i \sim \mathcal{N}\left(\mu_\psi, \sigma_\psi^2\right)
 \end{aligned}
 $${#eq-ls-hetero}
-
-
 @eq-ls-hstar の対数を取れば $h_i^* := \log h^*(w_i, \psi_i)$ は $\log w_i$ と $\log \psi_i$ の線形結合なので, 希望労働時間の分布も対数正規です.
 
 ここに標準労働時間を入れます. 仕事には標準の週労働時間 $\bar{H} = 1$ (40時間) があり, 何もしなければ人は $\bar{H}$ で働きます. 希望労働時間 $h^*_i$ で働くには, 時間を自由に選べる仕事を探すか, 雇い主と交渉するかが必要で, そのコスト $\kappa_i$ は人によって異なるとします. 希望時間で働くことの利得を
-
 $$
 g(w_i, \psi_i) := U\left(h^*_i; w_i, \psi_i\right) - U\left(\bar{H}; w_i, \psi_i\right) \geq 0,
 $$ {#eq-ls-gain}
-
 と書くと, 人は $g(w_i, \psi_i) > \kappa_i$ のときだけ標準労働時間から外れます. コスト $\kappa_i$ を平均 $\bar\kappa$ の指数分布とすれば, 外れる確率は @eq-ls-deviate です.
-
 $$
 \Pr\left(h_i = h^*_i \mid w_i, \psi_i\right) = 1 - \exp\left(-g(w_i, \psi_i) / \bar\kappa\right)
 $$ {#eq-ls-deviate}
-
 利得が大きい人ほど, つまり希望時間が40時間から遠い人ほど外れやすく, 希望時間が40時間に近い人は外れる価値がないのでそのまま40時間で働きます. $\mu_w = 0$ に基準化し, 推定するのは $\theta = \left(\mu_\psi, \sigma_w, \sigma_\psi, \bar\kappa\right)$ の4つで, 曲率 $\gamma$ と Frisch 弾力性 $\eta$ は文献から値を借りてくることにします.
 
 なお, 40時間への集中をモデルに入れる方法はいくつかあり, 代表的な研究として @bick2022 や @ma2024 があり, @yanagimoto2026b も凸型の所得関数を使って40時間の集中を説明しています.
@@ -700,7 +654,6 @@ plot!(xlabel=L"wage $w$", title=L"Desired Hours $h^*(w, \psi)$ (40h = 1)")
 賃金が上がると希望労働時間が減ることがわかります. $\psi$ を上げると, 働くことが苦になる分, 曲線全体が下に移動します. 曲線が点線と交わるあたりの人は希望時間が40時間に近く, 外れる利得 @eq-ls-gain が小さいので, ほぼ確実に40時間で働きます.
 
 この構造が最小距離推定を要求します. 前節では一階条件を個人ごとに評価できました. ここでは, 40時間で働いている人について分かるのは「外れる利得がコストを下回った」ことだけで, その人の希望時間も, したがって選好も, 点としては復元できません. 個人ごとの残差が書けないので, 残るのは分布どうしを突き合わせる最小距離推定です. たとえば平均労働時間のモデル側の対応物は @eq-ls-mean のような二重積分です.
-
 $$
 \mathbb{E}\left[h\right] = \iint \left[\left(1 - e^{-g(w, \psi) / \bar\kappa}\right) h^*\left(w, \psi\right) + e^{-g(w, \psi) / \bar\kappa}\, \bar{H}\right] dF_w\left(w\right) dF_\psi\left(\psi\right)
 $$ {#eq-ls-mean}
@@ -715,7 +668,7 @@ $h^*$ は閉じた形でも, 混合の重み $e^{-g(w, \psi)/\bar\kappa}$ が $\
 ```{julia}
 #| label: ls-data
 #| output: false
-nls = CSV.read("static/data/nls80.csv", DataFrame)
+nls = CSV.read(@projectroot("lesson", "numerical", "static", "data", "nls80.csv"), DataFrame)
 h_i = nls.hours ./ 40                                # hours, in 40-hour weeks
 y_i = log.(nls.earnings)                             # log monthly earnings
 d_i = Float64.(nls.hours .== 40)                     # at the standard workweek
@@ -745,7 +698,6 @@ histogram(nls.hours, bins=(20:2:82) .- 1, label="", lc=:white, lw=0.3,
 
 
 このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. @sec-apdx-influence の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として $\hat{m} - m \simeq \frac{1}{N}\sum_i \xi_i$ と書けます. この $\xi_i$ を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.
-
 $$
 \begin{aligned}
 \xi_{1i} &= h_i - \mathbb{E}\left[h\right], \qquad
@@ -755,9 +707,7 @@ $$
 \xi_{5i} = d_i - \mathbb{E}\left[d\right]
 \end{aligned}
 $$ {#eq-ls-influence}
-
 実装では母数を標本の値に置き換えます. $\mathbb{E}\left[h\right]$ を $\bar{h}$ に, $m_2$ を $s_h$ に, というようにです. こうして得た $\hat\xi_i$ を行に並べた $N \times 5$ 行列の標本分散共分散を $N$ で割れば, それが $\hat{m}$ の分散共分散行列です.
-
 $$
 \hat{V} = \frac{1}{N}\, \widehat{\operatorname{Var}}\left(\hat\xi_i\right)
 $$ {#eq-ls-vhat}
@@ -852,11 +802,9 @@ end
 ```
 
 重み行列には $\hat{V}^{-1}$ を使います. @sec-gmm-theory の意味で効率的な選択であり, 個票があるからこそ選べるものです.
-
 $$
 \hat\theta = \arg\min_{\theta}\ \left(m\left(\theta\right) - \hat{m}\right)^\top \hat{V}^{-1} \left(m\left(\theta\right) - \hat{m}\right)
 $$ {#eq-ls-loss}
-
 $\hat{V}$ はすでに $1/N$ を含んでいるので, この目的関数の最小値がそのまま Hansen の $J$ 統計量になります (@sec-overid).
 
 ### 推定 {#sec-md-estimation}
@@ -1019,24 +967,19 @@ se_indep = sqrt.(diag(Λ_diag * Diagonal(σj .^ 2) * Λ_diag'))
 ## 最悪ケース標準誤差 [@cocci2024]
 
 $p$ 本のモーメント $\hat{m}$ をターゲットにした最小距離推定量を考える.
-
 $$
 \hat\theta = \arg\min_\theta \left(m\left(\theta\right) - \hat{m}\right)^\top W \left(m\left(\theta\right) - \hat{m}\right)
 $$
 ここで, $W$ は $p \times p$ の半正定値な重み行列である.
 
 $G = \partial m\left(\theta_0\right) / \partial \theta^\top$, $V$ を $\sqrt{N}\left(\hat{m} - m\left(\theta_0\right)\right)$ の漸近分散共分散行列とする. この時, 関心のある量 $r\left(\theta\right)$ について, $\lambda = \partial r\left(\theta_0\right) / \partial \theta$, $x = W G \left(G^\top W G\right)^{-1} \lambda$ とおくと, デルタ法よりつぎの漸近分布が得られる.
-
 $$
 \sqrt{N}\left(r\left(\hat\theta\right) - r\left(\theta_0\right)\right) \xrightarrow{d} \mathcal{N}\left(0,\ x^\top V x\right)
 $$
-
 $V$ の対角成分 $\left(\sigma_1^2, \ldots, \sigma_p^2\right)$ だけが既知のとき,
-
 $$
 \max_{V \succeq 0,\ V_{jj} = \sigma_j^2}\ x^\top V x = \left(\sum_{j=1}^{p} \sigma_j \left|x_j\right|\right)^2
 $$
-
 であり, 最大はすべてのモーメントが完全相関する時に達成される.
 
 :::

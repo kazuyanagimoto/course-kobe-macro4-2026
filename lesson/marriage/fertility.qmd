@@ -16,24 +16,20 @@ title: 結婚と出生
 
 出生率の指標には2つの定義があるので, ここで整理しておきます.
 
-::: {.callout-note}
+::: {#def-fertility-rates}
 
 ## 2つの出生率
 
 **Total Fertility Rate** (TFR, 合計特殊出生率):
-
 $$
 TFR = \sum_{x=15}^{49} \frac{\text{\# of births to women aged } x}{\text{\# of women aged } x}.
 $$
-
 年齢別の出生行動が変わらないと仮定したとき, 女性が一生に産む子どもの数を表す. 晩産化のような年齢別の出生行動の変化が起きると, 一時的に大きく動くことに注意.
 
 **Complete Cohort Fertility** (CCF, 完結コーホート出生率):
-
 $$
 CCF = \frac{\text{\# of children to women born at year } b}{\text{\# of women born at year } b}.
 $$
-
 ある年に生まれた女性が実際に一生に産んだ子どもの数を表す. 通常は50歳になるまで確定しない (Human Fertility Database は「少なくとも44歳」の定義を採用).
 
 :::
@@ -84,7 +80,6 @@ $$
 #### A Toy Model
 
 まず, 閉形式で解ける warm glow 型のシンプルなモデルでトレードオフの仕組みを見ます. 親は消費 $c$, 子どもの数 $n$, 子ども1人あたりの人的資本 $h$ から効用を得ます.
-
 $$
 \max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)
 \quad \text{s.t.} \quad c + p e n \leq \left(1 - \phi n\right) w.
@@ -101,13 +96,11 @@ $$
 ## 閉形式解と賃金の効果
 
 内点解 ($\gamma \phi w > p \theta$) において, 最適な子どもの数と教育時間は
-
 $$
 n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta},
 \qquad
 e = \frac{\gamma \phi w - p\theta}{p \left(1-\gamma\right)}.
 $$
-
 したがって賃金 $w$ の上昇は, 子どもの数 $n$ を減らし, 1人あたりの教育時間 $e$ を増やす.
 
 :::
@@ -119,13 +112,11 @@ $$
 このモデルでも子どもは正常財です. 賃金ではなく資産が外生的に増えれば (純粋な所得効果), 出生は増えます. しかし家計の間の所得の違いの多くは, 資産ではなく稼得能力 $w$ の違いです. $w$ の変化には正の所得効果と負の代替効果が伴い, 代替効果には2つの成分があります. 第1に, 子どもは時間を使うので, $w$ が上がると子どもは消費に比べて高くなります. 第2に, $w$ が上がると質 $h$ が数 $n$ に比べて安くなります. この2つを合わせると代替効果が所得効果を上回り, 出生は $w$ とともに減ります.
 
 ただし, この結果を国の間の比較や1つの国の時系列に当てはめるときは注意が必要です. 教育の価格 $p$ は主に教師の賃金なので, 経済全体の賃金水準が上がれば $p$ も $w$ に比例して上がるはずです. $p = \tilde{p}\, w$ と置くと
-
 $$
 n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \tilde{p}\theta},
 \qquad
 e = \frac{\gamma \phi - \tilde{p}\theta}{\tilde{p} \left(1-\gamma\right)}
 $$
-
 となり, 賃金水準は出生にも教育にも影響しません. 集計レベルで負の相関を生むのは, 教育のリターン $\gamma$ です. $n$ は $\gamma$ の減少関数, $e$ は増加関数なので, 経済成長が人的資本のリターンの上昇によって駆動されているなら, 1人あたり所得の上昇と出生の低下が同時に起こります. 人的資本のリターンの上昇が成長を生む, という性質は成長理論の多くのベンチマークモデルが持っています.
 
 ### 女性の機会費用
@@ -137,36 +128,28 @@ Quantity-quality の文献は家計全体の意思決定を考え, 父親と母�
 @fig-doepke2023-fig5 はアメリカの例です. 既婚女性の労働参加率は20世紀初めには低く, 1930年代から1940年代に緩やかに, 第二次世界大戦後には急速に上昇しました (右). 女性のフルタイム労働者の賃金は, 1950年代から1970年代の一時的な落ち込みを除いて1世紀にわたって上昇し, 男性の賃金の50%未満から約80%になりました (左). 女性の賃金と労働参加の上昇は出生率の大きな低下と同時に起きており, 時系列で女性の労働参加と出生の間にはっきりとした負の関係が現れます. 1つの国のクロスセクションでも, フルタイムで働く女性は専業主婦より子どもが少なく, パートタイムの女性はその中間です. 国の間でも, 1980年代までは女性の労働参加率が低い国ほど出生率が高い傾向がありました.
 
 この事実が, 出生の経済学の第2の big idea を生みました. 子育ての多くを女性が担うなら, 子どもの時間費用を決めるのは平均的な賃金ではなく**女性の賃金**です. モデルを夫婦に拡張して確かめます. 夫婦の賃金を $w_m, w_f$ とし, 子育て時間はすべて妻が担うとします. 子育てが夫婦間で完全に代替可能で $w_m > w_f$ なら, 子育て時間の合計が妻の時間を超えない限り, これが最適な分業です.
-
 $$
 \max_{c, n, e}\ \log c + \delta \log \left(n\, h\left(\theta, e\right)\right)
 \quad \text{s.t.} \quad c + p e n = w_m + \left(1 - \phi n\right) w_f.
 $$
-
 @prp-qq-simple とまったく同じ計算で,
-
 $$
 n = \frac{\delta}{1+\delta} \cdot \frac{\left(w_m + w_f\right)\left(1-\gamma\right)}{\phi w_f - p\theta},
 \qquad
 e = \frac{\gamma \phi w_f - p\theta}{p\left(1-\gamma\right)}
 $$
-
 が得られます. 対数を取って女性の賃金 $w_f$ で微分すると,
-
 $$
 \frac{\partial \log n}{\partial w_f}
 = \frac{1}{w_m + w_f} - \frac{\phi}{\phi w_f - p\theta}
 = \frac{-p\theta - \phi w_m}{\left(w_m + w_f\right)\left(\phi w_f - p\theta\right)} < 0.
 $$
-
 第1項は所得効果 (家計のフルインカムが増える), 第2項は価格効果 (子育ての機会費用が上がる) です. 子育て時間の費用が女性の賃金だけに比例するため, 価格効果が必ず所得効果に勝ち, 女性の賃金上昇は出生を減らします. 一方で教育時間 $e$ は $w_f$ とともに増えるので, ここでも数から質への振り替えが起きています. 男性の賃金 $w_m$ の上昇は, 対照的に所得効果しか持たないので出生を増やします. 「誰の賃金が上がるか」が出生の予測を分ける, というのがこのモデルの核心です.
 
 @doepke2023 は男女の賃金格差の役割に焦点を当てるため, 教育のリターンをゼロ ($\gamma = 0$) と置いています. このとき教育投資はゼロ ($e = 0$) になり,
-
 $$
 n = \frac{\delta}{1+\delta} \cdot \frac{1}{\phi} \left(1 + \frac{w_m}{w_f}\right)
 $$
-
 が得られます. 出生率を決めるのは男女の賃金比 $w_m / w_f$ であり, 男女の賃金格差が縮まると出生は下がります. 男性の賃金の上昇が純粋な所得効果なのに対し, 女性の賃金の上昇には所得効果と代替効果の両方が伴います. 家計所得の大部分が男性の稼ぎである限り所得効果は小さく, 代替効果が勝ちます. このモデルは国内のクロスセクションにも含意を持ちます. 賃金の主な決定要因は教育なので, 夫婦の学歴が完全には相関しない限り, 女性の学歴と出生はクロスセクションで負に相関するはずです.
 
 同じ考え方を一般均衡に持ち込んだのが @galor1996 です. 物理資本は肉体労働を代替し, 女性の労働と補完的なので, 資本蓄積は男女の賃金格差を縮め, 女性の労働参加を増やします. 女性の労働参加の上昇は出生を下げ, 出生の低下は1人あたり資本の蓄積を速めます. この相互作用が人口転換と成長の加速を同時に生みます.
@@ -205,12 +188,11 @@ $$
 
 第2の big idea は, 子どもを増やすには女性が市場労働を減らさなければならない, という前提に立っていました. しかし子育てのサービスを市場で買えるなら, このトレードオフは弱まります. 子育てを外部化すると, 子どもの時間費用が金銭的な費用に変わるので, 女性の時間の機会費用の重要性が下がるからです. 2つ目の big idea のモデルを拡張して確かめます.
 
-::: {.callout-note}
+::: {#def-fertility-outsourcing}
 
 ## 子育ての市場化を含む出生モデル
 
 夫婦は消費 $c$ と子どもの数 $n$ を選ぶ (子どもの質は捨象する). 子ども1人あたり, 時間費用 $\phi$ に加えて, 食費や衣服などの金銭的な費用 $\psi$ がかかる. 子育て時間のうち割合 $s \in \left[0, \bar{s}\right]$ を市場から価格 $p_s$ で買うことができ, 残りの $\left(1 - s\right)$ は妻が担う. $\bar{s}$ は外部化できる子育ての上限である.
-
 $$
 \max_{c, n, s}\ \log c + \delta \log n
 \quad \text{s.t.} \quad
@@ -220,17 +202,13 @@ $$
 :::
 
 予算制約を整理すると $c + \pi\left(s\right) n = w_m + w_f$ となります. ここで
-
 $$
 \pi\left(s\right) = \psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi
 $$
-
 は子ども1人の完全価格 (full price) で, 金銭的費用と, 子育て時間を市場で買う分と妻が担う分の費用を合わせたものです. $s$ を所与とすると, 対数効用なので支出の割合は一定 ($c = \left(w_m + w_f\right) / \left(1 + \delta\right)$) で,
-
 $$
 n = \frac{\delta}{1 + \delta} \cdot \frac{w_m + w_f}{\psi + \left(s p_s + \left(1 - s\right) w_f\right) \phi}
 $${#eq-outsource-n}
-
 となります. これを目的関数に代入すると, 効用は $\pi\left(s\right)$ の減少関数です. $\pi\left(s\right)$ は $s$ について傾き $\phi \left(p_s - w_f\right)$ の線形関数なので, 最適な $s$ は端点になります. 妻の賃金が子育ての市場価格より低い ($w_f < p_s$) 夫婦は自分たちで子育てをし ($s = 0$), 高い ($w_f > p_s$) 夫婦は買えるだけ買います ($s = \bar{s}$). 高賃金の女性は働き続け, 低賃金の女性は子育てに時間を使って労働供給を減らします.
 
 ::: {#prp-outsource}
@@ -238,13 +216,10 @@ $${#eq-outsource-n}
 ## 女性の賃金と出生
 
 $s$ を所与とすると, 
-
 $$
 \frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi}{\pi\left(s\right)^2}.
 $$
-
 子どもの金銭的費用が時間費用に比べて小さい ($\psi < w_m \phi$) とき, これは $s < s^*$ なら負, $s = s^*$ ならゼロ, $s > s^*$ なら正である. ただし
-
 $$
 s^* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right).
 $$
@@ -364,64 +339,50 @@ $w_f = p_s$ では $\pi\left(s\right)$ が $s$ に依存しないので, 出生�
 モデルは静学で, 各エージェントは人生を1回の意思決定として選びます. 家計は性別のない独身者と有配偶者からなります. 独身者は1単位の時間を持ち, 家事労働 $h$ (household labor), 余暇 $l$ (leisure), 市場労働 $t$ (toiling in the market) に配分します ($h + l + t = 1$). 有配偶者は2人分の2単位の時間を持ち, これに加えて $k$ 人の子どもに対する基礎的な子育て $b$ (basic childcare) と教育 $e$ (education) の時間を使います ($h + l + t + bk + ek = 2$).
 
 **賃金.** スキルには合計が1になる _brain_ と _brawn_ の2種類があり, 賃金はそのポートフォリオで決まります.
-
 $$
 w = s v + \left(1 - s\right) u.
 $$
-
 $s \in \left[0, 1\right]$ は brain スキルの割合, $v$ と $u$ はそれぞれ brain と brawn のリターンで, $v > u$ を仮定します. 比率 $q = v/u$ が大卒プレミアムに対応します.
 
 **家庭内生産.** 家事の成果 $n$ は, 家庭内生産用の耐久財 $d$ (価格 $p$) と家事労働 $\texttt{h}$ の CES 集計で作られます.
-
 $$
 n = \left(\theta d^\sigma + \left(1 - \theta\right) \texttt{h}^\sigma\right)^{1/\sigma}.
 $$
-
 ここで家事労働の投入 $\texttt{h}$ には子どもも寄与します. 独身者では $\texttt{h} = h$ ですが, 有配偶者では子ども1人あたり生産性 $\chi$ で家事を手伝い, $\texttt{h} = h + \chi k$ となります. かつての子どもは農場や家庭内で立派な労働力でした. 児童労働の消滅は, この $\chi$ の低下として表現されます.
 
 **子どもの教育.** 親は子どもの brain スキル割合 $s$ を選べますが, そのためには子ども1人あたり $e = \gamma s$ の教育時間がかかります. 子どもを「高スキルに育てる」ことが親の時間を食う, という形で quantity-quality トレードオフが入っています.
 
 **効用関数.** 独身者は消費 $c$, 家事の成果 $n$, 余暇 $l$ から効用を得ます.
-
 $$
 u^S\left(c, n, l\right) = \alpha \frac{c^{1-\rho} - 1}{1-\rho} + \beta \frac{n^{1-\nu} - 1}{1 - \nu} +
 \left(1 - \alpha - \beta\right) \frac{l^{1-\lambda} - 1}{1 - \lambda}.
 $$
-
 有配偶者はこれに加えて, 子どもの数 $k$ と子どものスキル水準 $sv + \left(1-s\right)u$ からも効用を得ます.
-
 $$
 \begin{aligned}
 u^M\left(c, n, l, k, s\right) &= \alpha \frac{\left(\varepsilon c\right)^{1-\rho} - 1}{1-\rho} + \beta \frac{\left(\varepsilon n\right)^{1-\nu} - 1}{1 - \nu} + \delta \frac{l^{1-\lambda} - 1}{1 - \lambda} \\
 &+ \psi \frac{k^{1-\kappa} - 1}{1 - \kappa} + \xi \frac{\left(sv + \left(1-s\right)u\right)^{1-\zeta}-1}{1-\zeta}.
 \end{aligned}
 $$
-
 $\varepsilon \in \left[0.5, 1.0\right]$ は世帯の等価尺度 (equivalence scale) で, 2人で暮らすことの規模の経済を表します. 子どものスキルからの効用は, この章の前半の言葉で言えば warm glow 型 (子の効用ではなく属性から直接効用を得る) の質への選好です.
 
 **家計の問題.** 独身者と有配偶者の価値はそれぞれ
-
 $$
 \begin{aligned}
 S &= \max_{d, h, l} u^S\left(c, n\left(d, h\right), l\right) &\text{ s.t. } c + pd = w\left(1 - h - l\right), \\
 M &= \max_{d, h, l, k, s} u^M\left(c, n\left(d, h\right), l, k, s\right) &\text{ s.t. } c + pd = w\left(2 - h - l - bk - ek\right)
 \end{aligned}
 $$
-
 で与えられます.
 
 **結婚の決定.** 独身者は人生の初めに他の独身者とマッチし, 結婚生活の joy shock $j$ を引きます. 結婚するのは $M + j \geq S$ のときです. $j$ は位置 $\texttt{a}$, スケール $\texttt{d}$ のガンベル分布
-
 $$
 G\left(j\right) = \exp\left(-\exp\left(-\frac{j-\texttt{a}}{\texttt{d}}\right)\right)
 $$
-
 に従うとします (frictionless marriage の章で学んだ第一種極値分布です). 婚姻率を $\texttt{m}$ とすると, 独身者の割合は
-
 $$
 1 - \texttt{m} = \Pr\left(M + j < S\right) = G\left(S - M\right)
 $$
-
 と閉じた形で書けます.
 
 ### Calibration
@@ -449,68 +410,50 @@ $$
 数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの2時点比から, ウェイトパラメータは水準から」という形で逐次的に解けることです. 順番に見ていきます.
 
 **Step 1--2 ($\lambda$, $\delta$): 余暇.** 余暇 $l$ の一階条件は
-
 $$
 \delta l^{-\lambda} = \alpha \varepsilon^{1-\rho}\left(w\left(2 - b k - \gamma s k - h - l\right) - pd\right)^{-\rho}w.
 $${#eq-greenwood2023-foc-l}
-
 2020年と1880年でこの式の比を取ると $\delta$ が消え,
-
 $$
 \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} =
 \left(\frac{w_{2020}\left(2 - b k_{2020} - \gamma s_{2020} k_{2020} - h_{2020} - l_{2020}\right) - p_{2020}d_{2020}}{w_{1880}\left(2 - b k_{1880} - \gamma s_{1880} k_{1880} - h_{1880} - l_{1880}\right) - p_{1880}d_{1880}}\right)^{-\rho}\frac{w_{2020}}{w_{1880}}
 $$
-
 から $\lambda$ が求まります. $\lambda$ が分かれば, @eq-greenwood2023-foc-l を2020年の水準で評価して $\delta$ が求まります.
 
 **Step 3--4 ($\kappa$, $\psi$): 子どもの数.** 子どもの数 $k$ の一階条件は
-
 $$
 \psi k^{-\kappa} = \delta l^{-\lambda} \left(b + \gamma s - \chi\right).
 $${#eq-greenwood2023-foc-k}
-
 右辺の括弧は子ども1人の純時間費用 (子育て + 教育 $-$ 家事の手伝い) です. やはり2時点の比
-
 $$
 \left(\frac{k_{2020}}{k_{1880}}\right)^{-\kappa} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{b + \gamma s_{2020} - \chi_{2020}}{b + \gamma s_{1880} - \chi_{1880}}
 $$
-
 から $\kappa$ が, 水準から $\psi$ が求まります.
 
 **Step 5--6 ($\zeta$, $\xi$): 子どもの質.** 子どものスキル $s$ の一階条件は
-
 $$
 \xi \left(s v + \left(1-s\right) u\right)^{-\zeta} \left(v - u\right) = \delta l^{-\lambda} \gamma k.
 $${#eq-greenwood2023-foc-s}
-
 左辺は brain スキルを増やす限界便益, 右辺はその時間費用 (子ども全員分の教育時間) です. 2時点の比
-
 $$
 \left(\frac{s_{2020} v_{2020} + \left(1 - s_{2020}\right) u_{2020}}{s_{1880} v_{1880} + \left(1 - s_{1880}\right) u_{1880}}\right)^{-\zeta} \frac{v_{2020} - u_{2020}}{v_{1880} - u_{1880}} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda} \frac{k_{2020}}{k_{1880}}
 $$
-
 から $\zeta$ が, 水準から $\xi$ が求まります.
 
 **Step 7--8 ($\nu$, $\beta$): 家事.** 家事労働 $h$ の一階条件は
-
 $$
 \beta \varepsilon^{1-\nu} \left(1-\theta\right)\left(\theta d^{\sigma} + \left(1-\theta\right)\left(h + \chi k\right)^{\sigma}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(h + \chi k\right)^{\sigma - 1} = \delta l^{-\lambda}.
 $${#eq-greenwood2023-foc-h}
-
 2時点の比
-
 $$
 \left(\frac{\theta d_{2020}^\sigma + \left(1 - \theta\right)\left(h_{2020} + \chi_{2020} k_{2020}\right)^{\sigma}}{\theta d_{1880}^{\sigma} + \left(1 - \theta\right)\left(h_{1880} + \chi_{1880} k_{1880}\right)^{\sigma}}\right)^{\frac{1-\nu-\sigma}{\sigma}} \left(\frac{h_{2020} + \chi_{2020} k_{2020}}{h_{1880} + \chi_{1880} k_{1880}}\right)^{\sigma - 1} = \left(\frac{l_{2020}}{l_{1880}}\right)^{-\lambda}
 $$
-
 から $\nu$ が, 1880年の水準から $\beta$ が求まります.
 
 **外側のループ.** 残った $\left(\alpha, q_{1880}\right)$ は, 独身者の市場労働時間と家事労働時間 (1880, 2020) をターゲットに
-
 $$
 \min_{\alpha, q_{1880}} \sum_{i} \left(\frac{\mathcal{D}_i - \mathcal{M}_{i}\left(\alpha, q_{1880}\right)}{\mathcal{D}_i}\right)
 $$
-
 を最小化して決めます. 有配偶者側のモーメント (出生率, 教育, 時間配分) は内側のループの構成上, データと完全に一致します (@tbl-greenwood2023-table5-3).
 
 ::: {#tbl-greenwood2023-table5-3}
@@ -522,17 +465,13 @@ Results, data and model. Table 5.3 of @greenwood2023
 :::
 
 **結婚のパラメータ.** すべての選好パラメータが決まると $S$ と $M$ が計算できます. 独身者の割合 $\texttt{s} = 1 - \texttt{m}$ はガンベル分布から
-
 $$
 \log \left(-\log \texttt{s}\right) = - \left(S - M - \texttt{a}\right)/\texttt{d}
 $${#eq-greenwood2023-gumbel}
-
 を満たすので, 2時点の比
-
 $$
 \frac{\log \left(-\log \texttt{s}_{2020}\right)}{\log \left(-\log \texttt{s}_{1880}\right)} = \frac{S_{2020} - M_{2020} - \texttt{a}}{S_{1880} - M_{1880} - \texttt{a}}
 $$
-
 から $\texttt{a}$ が, @eq-greenwood2023-gumbel の水準から $\texttt{d}$ が求まります. 推定されたパラメータは @tbl-greenwood2023-table5-2 のとおりです.
 
 ::: {#tbl-greenwood2023-table5-2}
@@ -552,18 +491,14 @@ Parameter values. Table 5.2 of @greenwood2023
 1. 家庭内生産用耐久財の価格低下 ($p$)
 
 技術革新をモデル化するため, brawn 労働 $\mathbf{u}$ と brain 労働 $\mathbf{v}$ を CES で束ねる代表的企業を導入します.
-
 $$
 \max_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}}
 - u\mathbf{u} - v\mathbf{v}.
 $$
-
 一階条件から, 大卒プレミアム $q$ は
-
 $$
 q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1}
 $${#eq-college-premium}
-
 と書けます (最後の等式は, 総労働時間を $\mathbf{t}$ として $\mathbf{u} = \left(1 - s\right)\mathbf{t}$, $\mathbf{v} = s\mathbf{t}$ を代入したものです). CES のパラメータ $\left(\omega, \iota\right)$ は @acemoglu2011a の値を使い, @eq-college-premium から各時点の $\mathbf{x}$ が, brawn 労働の一階条件から $\mathbf{z}$ が逆算できます (@tbl-greenwood2023-table6-1).
 
 ::: {#tbl-greenwood2023-table6-1}

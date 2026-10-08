@@ -9,6 +9,7 @@ engine: julia
 #| label: setup
 #| output: false
 using Plots
+using ProjectRoot  # @projectroot: paths from the repository root
 using LaTeXStrings
 using Roots
 using LinearAlgebra
@@ -28,13 +29,10 @@ default(size=(500, 308), titlefontsize=10, fmt=:svg, grid=false,
 ## ベルマン方程式の数値解法
 
 以下の無限期間代表的個人のモデルを考えます.
-
 $$
 \max_{\{c_t, k_{t+1}\}_{t=0}^{\infty}} \sum_{t=0}^{\infty} \beta^t u(c_t) \quad \text{s.t.} \quad c_t + k_{t+1} = f(k_t) + (1-\delta)k_t.
 $$
-
 これをベルマン方程式 $V(k)$ に書き換えた時の数値解法を考えます.
-
 $$
 V(k) = \max_{k'} \left\{u(f(k) + (1-\delta)k - k') + \beta V(k')\right\}
 $$
@@ -82,7 +80,7 @@ f′(k; m) = m.α * k^(m.α - 1)
 
 ### Value Function Iteration
 
-::: {.callout-note}
+::: {#alg-vfi}
 
 ## Value Function Iteration
 
@@ -180,8 +178,9 @@ m = Model()
 history, dists = vfi_history(m)
 
 # save each iteration's value function and convergence distance to CSV
-mkpath("static/data")
-open("static/data/vfi_iterations.csv", "w") do io
+data_dir = @projectroot("lesson", "numerical", "static", "data")
+mkpath(data_dir)
+open(joinpath(data_dir, "vfi_iterations.csv"), "w") do io
     println(io, "iter,k,V")
     for (it, V) in enumerate(history)        # it = 1 is V^0
         for (k, v) in zip(m.k_grid, V)
@@ -189,7 +188,7 @@ open("static/data/vfi_iterations.csv", "w") do io
         end
     end
 end
-open("static/data/vfi_distance.csv", "w") do io
+open(joinpath(data_dir, "vfi_distance.csv"), "w") do io
     println(io, "iter,dist")
     for (it, d) in enumerate(dists)
         println(io, "$it,$d")
@@ -276,25 +275,21 @@ Plot.plot({
 ### Policy Function Iteration
 
 上記のベルマン方程式から, 以下のオイラー方程式が導出されます.
-
 $$
 u'(c) = \beta u'(c')\left(f'(k') + (1-\delta)\right).
 $${#eq-euler}
-
 ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数を通じて $c' = h(k')$ で与えられます.
 
 この政策関数 $h$ を反復的に更新します. 反復 $N$ での推定政策 $h^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
-
 $$
 \begin{aligned}
 u'(c) &= \beta\, u'\left(\tilde{h}^N(k')\right)\left(f'(k') + 1 - \delta\right), \\
 k' &= f(k_i) + (1-\delta)k_i - c.
 \end{aligned}
 $${#eq-pfi-euler}
-
 右辺の $\tilde{h}^N$ は前の反復から既知なので, これは $c$ に関する1本の非線形方程式です. これを解いた解が更新後の政策 $h_i^{N+1}$ であり, 政策が変化しなくなるまで反復すれば政策関数の不動点が得られます.
 
-::: {.callout-note}
+::: {#alg-pfi}
 
 ## Policy Function Iteration
 
@@ -411,8 +406,8 @@ end
 mpfi = Model()
 history_pfi, dists_pfi = pfi_history(mpfi)
 
-mkpath("static/data")
-open("static/data/pfi_iterations.csv", "w") do io
+mkpath(data_dir)
+open(joinpath(data_dir, "pfi_iterations.csv"), "w") do io
     println(io, "iter,k,h")
     for (it, h) in enumerate(history_pfi)    # it = 1 is h^0
         for (k, v) in zip(mpfi.k_grid, h)
@@ -420,7 +415,7 @@ open("static/data/pfi_iterations.csv", "w") do io
         end
     end
 end
-open("static/data/pfi_distance.csv", "w") do io
+open(joinpath(data_dir, "pfi_distance.csv"), "w") do io
     println(io, "iter,dist")
     for (it, d) in enumerate(dists_pfi)
         println(io, "$it,$d")
@@ -504,7 +499,7 @@ Plot.plot({
 1. $V(k) \leftarrow u(h(k)) + \beta V(g(k))$ を用いて $V(k)$ の不動点を求める方法 (VFI)
 1. 線形方程式
 
-::: {.callout-note}
+::: {#alg-value-recovery}
 
 ## 価値関数の復元 (線型方程式)
 
@@ -566,19 +561,16 @@ using BenchmarkTools
 PFI では各グリッド点でオイラー方程式という非線形の方程式の求根していました. Endogenous Grid Method (EGM) [@carroll2006] は, この求根を避ける高速な政策関数反復です. アイデアは, 今期の資本 $k$ をグリッドに固定するのではなく, 来期の資本 $k'$ をグリッドに固定し, オイラー方程式と予算制約を後ろ向きに解くことです.
 
 来期消費の政策 $c' = h(k')$ を所与とすると, オイラー方程式 (-@eq-euler) から今期の消費 $c$ は閉形式で求められます.
-
 $$
 c = \left(u'\right)^{-1}\left(\beta\, u'\left(h(k')\right)\left(f'(k') + 1 - \delta\right)\right).
 $$
-
 次に予算制約から今期の資本 $k$ を求めます. 資源関数 $m(k) := f(k) + (1 -\delta) k$ とすると, 予算制約は $c + k' = m(k)$ となるので, これを $k$ について解くと
 $$
 k = m^{-1}(c + k').
 $$
-
 なお, $m(k)$ は明らかに単調なので, 逆関数 $m^{-1}$ は一意に定まります. また, $m^{-1}$ は反復の前に決定されているので, 一度だけ計算しておけば良いです. これを用いることで, $(c, k)$ の組を求めることができ, グリッド上の点に保管することで, 新しい政策関数 $g(\cdot)$ を構築できます.
 
-::: {.callout-note}
+::: {#alg-egm}
 
 ## Endogenous Grid Method
 
@@ -650,18 +642,14 @@ VFI, PFI と同じ政策関数が得られます. EGM は反復の中で求根�
 ## 確率的なモデル {#sec-dp-stochastic}
 
 前節では決定論的な動学モデルを扱いました. ここでは確率的な不確実性を導入します. 生産関数 $f(k, z) = z k^\alpha$ とし, 生産性 $z$ が確率的に変化するモデルを考えます. 生産性 $z$ は以下のような AR(1) 過程に従うとします.
-
 $$
 \log z' = (1 - \rho) \mu + \rho \log z + \sigma \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, 1).
 $$
-
 この時, ベルマン方程式は以下のように書き換えられます.
-
 $$
 V(k, z) = \max_{k'} \left\{u(f(k, z) + (1-\delta)k - k') + \beta \mathbb{E}[V(k', z') \mid z]\right\}.
 $$
-
-この $V(k, z)$ を数値計算するためには, $z$ の状態空間を離散化する必要があります. 離散化には -@sec-discretization 節 で学んだ Rouwenhorst 法を使います. これは持続性の高い AR(1) 過程でも定常分散と自己相関を厳密に一致させられるため, Tauchen 法より望ましい選択です. `QuantEcon.jl` の `rouwenhorst` が返す遷移行列を $\Pi$ と書きます.
+この $V(k, z)$ を数値計算するためには, $z$ の状態空間を離散化する必要があります. 離散化には @sec-discretization で学んだ Rouwenhorst 法を使います. これは持続性の高い AR(1) 過程でも定常分散と自己相関を厳密に一致させられるため, Tauchen 法より望ましい選択です. `QuantEcon.jl` の `rouwenhorst` が返す遷移行列を $\Pi$ と書きます.
 
 ```{julia}
 #| label: rouwenhorst-quantecon
@@ -670,16 +658,14 @@ mc = rouwenhorst(5, 0.9, 1.0, 0.1) # rouwenhorst(N, ρ, σ, μ)
 mc.p
 ```
 
-`rouwenhorst` の引数の AR(1) の定義 (切片 $\mu$ の扱い) と, 過程の平均を任意の値に設定する方法は -@sec-discretization 節 を参照してください.
+`rouwenhorst` の引数の AR(1) の定義 (切片 $\mu$ の扱い) と, 過程の平均を任意の値に設定する方法は @sec-discretization を参照してください.
 
 ### Value Function Iteration
 
 AR(1) process を $\Pi$ で離散化した後のベルマン方程式は以下のようになります.
-
 $$
 V(k, z) = \max_{k'} \left\{u(f(k, z) + (1-\delta)k - k') + \beta \sum_{z'} \pi(z' \mid z) V(k', z')\right\}.
 $$
-
 VFIを用いる場合, 実装は価値関数 $V$ の次元を $z$ のために1つ増やし, ベルマン方程式の通り実装するだけです. 資本のグリッドは決定論的なモデルと揃えて $[1, 10]$ とします.^[生産性 $z$ ごとの定常状態は $k^*(z) = \left(\frac{z \alpha}{1/\beta - 1 + \delta}\right)^{\frac{1}{1-\alpha}}$ です. ここでの設定では $z \in [0.76, 1.32]$ に対して $k^*(z) \in [3.6, 8.9]$ となり, グリッド $[1, 10]$ に収まります. とくに後述の PFI はオイラー方程式を解くため, グリッドが定常状態を含んでいることが重要です.]
 
 ```{julia}
@@ -761,14 +747,12 @@ p
 ### Policy Function Iteration
 
 PFI も同じように拡張できます. 不確実性の下でのオイラー方程式は, 来期の生産性 $z'$ についての期待値を取る形になります.
-
 $$
 \begin{aligned}
 u'(c) &= \beta\, \mathbb{E}\left[u'(c')\left(f_k(k', z') + 1 - \delta\right) \mid z\right] \\
 &= \beta \sum_{z'} \pi(z' \mid z)\, u'\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right).
 \end{aligned}
 $$ {#eq-pfi-euler-stochastic}
-
 決定論的な場合 (@eq-pfi-euler) との違いは2点だけです. 第一に, 政策関数が $h(k, z)$ と2変数になるため, 補間は生産性の状態ごとに1本ずつ, 計 $n_z$ 本の $\tilde{h}(\cdot, z')$ を作ります. $z$ はグリッド上の有限個の状態しか取らないので, 補間が必要なのは $k$ の方向だけです. 第二に, 右辺が $\pi(z' \mid z)$ による期待値になります. なお予算制約 $k' = f(k, z) + (1-\delta)k - c$ に入るのは今期の $z$ である点に注意してください.
 
 ```{julia}
@@ -885,11 +869,9 @@ p
 ### Endogenous Grid Method
 
 EGM も確率的なモデルに自然に拡張できます. 来期の資本 $k'$ をグリッド上に固定し, 各生産性 $z$ についてオイラー方程式 (@eq-pfi-euler-stochastic) の右辺を評価すると, 今期の消費 $c$ が求根なしに求まります.
-
 $$
 c = (u')^{-1}\left( \beta \sum_{z'} \pi(z' \mid z)\, u'\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right) \right).
 $$
-
 この $c$ から資源制約 $c + k' = z k^\alpha + (1-\delta)k$ を $k$ について解けば内生グリッドが得られます. 決定論的な場合との違いは2点だけです. 第一に, 右辺が $\pi(z' \mid z)$ による期待値になります. 第二に, 資源制約の左辺 $M(k, z) = z k^\alpha + (1-\delta)k$ が今期の $z$ に依存するので, その逆関数 $M^{-1}(\cdot, z)$ を生産性の状態ごとに1本ずつ用意します.
 
 ```{julia}
@@ -957,56 +939,44 @@ p
 ### モデル
 
 質量 $1$ の連続体の家計が存在します. 各家計は無限期間生存し, 割引因子 $\beta \in (0, 1)$ で期待効用を最大化します.
-
 $$
 \mathbb{E}_0 \sum_{t=0}^{\infty} \beta^t\, u(c_t), \qquad u(c) = \frac{c^{1-\gamma}}{1-\gamma}.
 $$
-
 ここで $\gamma > 0$ は相対的リスク回避度です. 各家計は労働生産性 $z_t$ という個別ショック (idiosyncratic shock) に直面します. これは家計ごとに独立であり, 大数の法則によって経済全体では平均化されるため, マクロの集計的な不確実性 (Aggregate shock) はありません. $z_t$ は AR(1) 過程に従います.
-
 $$
 \log z_{t+1} = \rho \log z_t + \sigma \varepsilon_{t+1}, \qquad \varepsilon_{t+1} \sim \mathcal{N}(0, 1).
 $$
-
 ここで $\rho \in (-1, 1)$ なので $z_t$ は定常なマルコフ過程です. その定常分布関数を $\Phi(z)$, 遷移分布関数を $\Pi\left(z' \mid z\right) = \Pr\left(z_{t+1} \leq z' \mid z_t = z\right)$ と書きます. 将来の期待値 $\mathbb{E}\left[\cdot \mid z\right]$ はこの $\Pi$ に関する積分です.
 
 
 家計が保有できる資産は単一の安全資産 $a_t$ のみです. 実質賃金 $w$ と実質利子率 $r$ を所与として, 予算制約は
-
 $$
 c_t + a_{t+1} = w z_t + (1 + r)\, a_t
 $$
-
 で与えられます. 市場が不完備なのは, 家計が $z_t$ の変動を保険できる資産がこの 1 種類しかないためです. さらに, 家計は無制限には借入できず, 借入制約 (borrowing constraint)
-
 $$
 a_{t+1} \geq -\underline{a}, \qquad \underline{a} \geq 0
 $$
-
 に直面します. $\underline{a} = 0$ ならば借入は一切できず, 資産は非負に限られます. 以下ではこの場合を考えます.
 
 ### 家計の動的計画問題
 
 状態変数は手持ちの資産 $a$ と生産性 $z$ の組 $(a, z)$ です. 予算制約から消費を $c = wz + (1+r)a - a'$ と書けるので, 価値関数 $V(a, z)$ は価格 $(r, w)$ を所与として, 次のベルマン方程式を満たします.
-
 $$
 V(a, z) = \max_{a' \geq -\underline{a}}\left\{ u\left( wz + (1+r)a - a' \right) + \beta\, \mathbb{E}\left[ V(a', z') \mid z \right] \right\}.
 $${#eq-aiyagari-bellman}
-
 この解を貯蓄の政策関数 $a' = g(a, z)$ と消費の政策関数 $c(a, z)$ とします.
 
 この問題は, 借入制約を除けば, これまでの代表的個人の問題と同じ構造であり, VFI・PFI・EGM のいずれでも解けます. 以下では, オイラー方程式を求根なしに解ける EGM を用います.
 
 借入制約が内点解となる ($a' > -\underline{a}$ の) 領域では, 一階条件としてオイラー方程式が成立します. 制約が拘束する可能性まで含めると, 次の相補性条件 (Kuhn-Tucker 条件) になります.
-
 $$
 u'\left( c(a, z) \right) \geq \beta (1+r)\, \mathbb{E}\left[ u'\left( c(a', z') \right) \mid z \right].
 $${#eq-aiyagari-euler}
-
 等式は $a' > -\underline{a}$ のとき成立します.
 
 
-::: {.callout-note}
+::: {.remark}
 
 ## 予備的貯蓄 (precautionary saving)
 
@@ -1017,24 +987,20 @@ CRRA 効用は $u'''(c) > 0$ を満たす. このとき, イェンセンの不�
 ### 企業と価格
 
 生産側は, コブ・ダグラス型生産関数 $Y = K^{\alpha} L^{1-\alpha}$ を持つ代表的企業で記述されます. $\delta$ を資本減耗率とすると, 競争市場での利潤最大化条件 (要素価格 = 限界生産性) から, 価格は資本労働比 $K/L$ の関数として決まります.
-
 $$
 r = \alpha \left( \frac{K}{L} \right)^{\alpha - 1} - \delta, \qquad w = (1-\alpha) \left( \frac{K}{L} \right)^{\alpha}
 $${#eq-aiyagari-firm}
-
 逆に解くと, 利子率 $r$ から企業の資本需要が定まります.
-
 $$
 K^d(r) = L \left( \frac{\alpha}{r + \delta} \right)^{\frac{1}{1-\alpha}}, \qquad w(r) = (1-\alpha) \left( \frac{\alpha}{r + \delta} \right)^{\frac{\alpha}{1-\alpha}}.
 $${#eq-aiyagari-Kd}
-
 労働は非弾力的に供給され, 総労働は生産性の定常分布での平均 $L = \int z\, d\Phi(z)$ に等しくなります. 以下では生産性を基準化して $L = 1$ とします.
 
 ### 定常均衡
 
 家計が政策関数 $g(a, z)$ に従って動くと, 状態 $(a, z)$ の分布が経済全体に生まれます. その分布が時間を通じて不変になったものが定常分布です.
 
-::: {.callout-note}
+::: {#def-aiyagari-equilibrium}
 
 ## 定常一般均衡 (Stationary Recursive Competitive Equilibrium)
 
@@ -1055,7 +1021,6 @@ $${#eq-aiyagari-clearing}
 :::
 
 代表的個人モデル (完備市場) では, 定常状態で必ず $1 + r = 1/\beta$, すなわち $r = 1/\beta - 1$ が成立しました. Aiyagari モデルの核心は, 不完備市場では均衡利子率がこれより低くなることです.
-
 $$
 r^* < \frac{1}{\beta} - 1.
 $$
@@ -1067,17 +1032,13 @@ $$
 完備市場とは, 個別状態 $z$ のあらゆる実現に対して支払いが条件づけられた証券 (Arrow 証券) を家計が自由に売買できる状況を指す. 本モデルには集計的な不確実性がない (個別ショックは大数の法則で平均化される) ため, 個別リスクは完全に分散可能である. したがって均衡では完全なリスク分散 (perfect risk sharing) が達成され, 各家計の消費は個別状態 $z$ に依存しなくなる.
 
 これを家計の問題で見る. 完備市場では予算制約が生涯の一本の異時点間制約に統合され, 状態ごとの借入制約 $a' \geq -\underline{a}$ は均衡で拘束しない. このとき @eq-aiyagari-euler は等号で成立し, さらにリスク分散により $c_{t+1}$ が確実 (個別状態によらず一定) になるので, 右辺の期待値が外れて
-
 $$
 u'(c_t) = \beta (1+r)\, u'(c_{t+1})
 $$
-
 となる. 集計的な不確実性も成長もない定常状態では消費は一定 $c_t = c_{t+1}$ なので $u'(c_t) = u'(c_{t+1})$ となり,
-
 $$
 1 = \beta (1 + r) \quad\Longleftrightarrow\quad r = \frac{1}{\beta} - 1.
 $$
-
 すなわち均衡利子率は時間選好率にちょうど一致する. これは, 集計量が代表的個人の新古典派成長モデルと同じ修正黄金律に従うことの帰結でもある. 完備市場では予備的貯蓄の動機が消えるため, 資産供給曲線 $A(r)$ は @fig-supply-demand の不完備市場の曲線よりも左に位置し, $r = 1/\beta - 1$ で初めて発散する. 不完備市場の均衡 $r^*$ がその手前に来るのは, この予備的貯蓄の分だけ供給が右に膨らむためである.
 
 :::
@@ -1088,7 +1049,7 @@ $$
 
 均衡の探索は, 利子率 $r$ に関する一次元の求根問題に帰着します. 与えられた $r$ に対して家計の問題を解いて資産供給 $A(r)$ を集計し, @eq-aiyagari-clearing の超過需要 $A(r) - K^d(r)$ がゼロになる $r$ を探します.
 
-::: {.callout-tip}
+::: {#alg-aiyagari}
 
 ## Aiyagari モデルの解法
 
@@ -1099,18 +1060,16 @@ $$
 1. 政策 $g$ のもとで分布の更新式を反復し, 定常分布 $\Lambda$ を求める.
 1. 総資産 $A(r) = \int a\, d\Lambda$ を集計する.
 
-$A(r)$ は $r$ について増加, $K^d(r)$ は減少するので, 超過需要は単調増加である. したがって二分法 (-@sec-root-finding 節) が安定に使える.
+$A(r)$ は $r$ について増加, $K^d(r)$ は減少するので, 超過需要は単調増加である. したがって二分法 (@sec-root-finding) が安定に使える.
 
 :::
 
 **生産性ショックの離散化**
 
-モデルは連続な生産性 $z$ で書きましたが, 数値計算では状態空間を有限にする必要があります. 生産性の AR(1) 過程 $\log z' = \rho \log z + \sigma \varepsilon$ は, -@sec-discretization 節 の Rouwenhorst 法で $n_z$ 状態のマルコフ連鎖 $\{z_1, \ldots, z_{n_z}\}$ と遷移確率 $\pi(z' \mid z)$ に離散化します. これにより $\Pi$ に関する積分は有限和に置き換わり, 条件付き期待値は
-
+モデルは連続な生産性 $z$ で書きましたが, 数値計算では状態空間を有限にする必要があります. 生産性の AR(1) 過程 $\log z' = \rho \log z + \sigma \varepsilon$ は, @sec-discretization の Rouwenhorst 法で $n_z$ 状態のマルコフ連鎖 $\{z_1, \ldots, z_{n_z}\}$ と遷移確率 $\pi(z' \mid z)$ に離散化します. これにより $\Pi$ に関する積分は有限和に置き換わり, 条件付き期待値は
 $$
 \mathbb{E}\left[ V(a', z') \mid z \right] = \int V(a', z')\, d\Pi\left(z' \mid z\right) \;\approx\; \sum_{z'} \pi(z' \mid z)\, V(a', z')
 $$
-
 と評価できます. 生産性の定常分布 $\Phi$ は遷移行列の不変分布に, 家計の定常分布 $\Lambda$ は資産グリッドと生産性グリッド上の確率質量 (コードの `λ`) に対応し, 定常性の条件はその質量の更新式になります. ここでは `QuantEcon.jl` の `rouwenhorst` と, 遷移行列の不変分布を求める `stationary_distributions` をそのまま使います.
 
 **パラメータの設定**
@@ -1146,7 +1105,7 @@ wage(r, m) = (1 - m.α) * (m.α / (r + m.δ))^(m.α / (1 - m.α))
 
 **家計の問題 (内側ループ)**
 
-オイラー方程式 (@eq-aiyagari-euler) を EGM で解きます. 手順は -@sec-dp-stochastic 節 と同じで, 新しいのは借入制約の扱いだけです. 内生グリッドの下端 $a_{\text{endog}}[1]$ は $a' = 0$ を選ぶ家計に対応するので, 手持ち資産がこれより小さい家計では制約が拘束します. その領域では $a' = 0$ に張り付き, 消費は予算制約から $c = wz + (1+r)a$ となります.
+オイラー方程式 (@eq-aiyagari-euler) を EGM で解きます. 手順は @sec-dp-stochastic と同じで, 新しいのは借入制約の扱いだけです. 内生グリッドの下端 $a_{\text{endog}}[1]$ は $a' = 0$ を選ぶ家計に対応するので, 手持ち資産がこれより小さい家計では制約が拘束します. その領域では $a' = 0$ に張り付き, 消費は予算制約から $c = wz + (1+r)a$ となります.
 
 ```{julia}
 #| label: fn-household
@@ -1192,11 +1151,9 @@ end
 **定常分布の計算 (滑らかな分布のための工夫)**
 
 EGM が返す貯蓄政策 $g(a, z)$ は補間で構成された滑らかな連続関数ですが, その返り値 $a'$ は資産グリッドの点とは限りません. これを最近傍のグリッド点に丸めて分布を更新すると, 到達可能な少数の点だけに質量が集中し, 分布がギザギザになります. そこで抽選 (lottery) を使います. 政策が返す $a'$ が隣り合うグリッド点 $a_j \leq a' < a_{j+1}$ の間に落ちるとき, その家計の質量を重み $\omega$ で2点に按分します (`lottery`). 重みは, 抽選の期待値がもとの $a'$ に一致するように決めます.
-
 $$
 \omega\, a_j + \left(1 - \omega\right) a_{j+1} = a' \quad\Longleftrightarrow\quad \omega = \frac{a_{j+1} - a'}{a_{j+1} - a_j}.
 $$
-
 $a'$ が $a_{j+1}$ に近いほど $a_{j+1}$ に多くの質量が割り当てられます. これは非確率的シミュレーション [@young2010] として知られ, 離散グリッド上で連続的な分布を精度よく近似します.
 
 ```{julia}
