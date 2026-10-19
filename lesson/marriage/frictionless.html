@@ -429,7 +429,7 @@ f\left(\varepsilon\right) = e^{-\varepsilon} e^{-e^{-\varepsilon}}
 P_{ni} = \frac{e^{V_{ni}}}{\sum_{j=1}^{J} e^{V_{nj}}}.
 \tag{8.2}\]</span></span></p>
 </div>
-<p>証明は第一種極値分布の分布関数を使った素直な積分の計算で, 付録 (<a href="../appendix/proof.html#sec-apdx-logit" class="quarto-xref"><span>A.6</span></a>節) にあります.</p>
+<p>証明は第一種極値分布の分布関数を使った素直な積分の計算で, 付録 (<a href="../appendix/proof.html#sec-apdx-logit" class="quarto-xref"><span>A.8.1</span></a>節) にあります.</p>
 <p><a href="#eq-logit" class="quarto-xref">式&nbsp;<span>8.2</span></a> はいくつかの望ましい性質を持ちます. 選択確率は必ず <span class="math inline">\(0 &lt; P_{ni} &lt; 1\)</span> の範囲に収まり, 全選択肢について足すと <span class="math inline">\(1\)</span> になります. また <span class="math inline">\(P_{ni}\)</span> は <span class="math inline">\(V_{ni}\)</span> の増加に対してシグモイド型に変化し, <span class="math inline">\(P_{ni} = 1/2\)</span> の付近で限界効果が最大になります. 線形の特定 <span class="math inline">\(V_{nj} = x_{nj}' \beta\)</span> のもとでは対数尤度が <span class="math inline">\(\beta\)</span> について大域的に凹になることが知られており, 最尤推定が数値的に安定するのもロジットの利点です <span class="citation" data-cites="train2009">(<a href="../../references.html#ref-train2009" role="doc-biblioref">Train 2009, sec. 3.1</a>)</span>.</p>
 </section>
 <section id="対数和と期待効用" class="level4">
@@ -446,7 +446,7 @@ P_{ni} = \frac{e^{V_{ni}}}{\sum_{j=1}^{J} e^{V_{nj}}}.
 \mathbb{E}\left[\max_j U_j\right] = \ln \sum_{j=1}^{J} e^{V_j} + \gamma.
 \tag{8.3}\]</span></span> ここで <span class="math inline">\(\gamma \approx 0.5772\)</span> はオイラー・マスケローニ定数.</p>
 </div>
-<p>2つの命題の証明も付録 (<a href="../appendix/proof.html#sec-apdx-logit" class="quarto-xref"><span>A.6</span></a>節) にあります. 対数和 <span class="math inline">\(\ln \sum_j e^{V_j}\)</span> は <a href="#eq-logit" class="quarto-xref">式&nbsp;<span>8.2</span></a> の分母の対数にほかなりません. この量はそのまま厚生分析の道具になります. 選択環境の変化の厚生効果 (選択肢の質の変化はもちろん, 選択肢の追加・削除も) は, 変化前後の対数和の差で測れるからです <span class="citation" data-cites="train2009">(<a href="../../references.html#ref-train2009" role="doc-biblioref">Train 2009, sec. 3.5</a>)</span>. 効用の水準が測れないことに対応する定数 (<span class="math inline">\(\gamma\)</span> を含む) は, 差をとると消えます.</p>
+<p>2つの命題の証明も付録 (<a href="../appendix/proof.html#sec-apdx-logit" class="quarto-xref"><span>A.8.1</span></a>節) にあります. 対数和 <span class="math inline">\(\ln \sum_j e^{V_j}\)</span> は <a href="#eq-logit" class="quarto-xref">式&nbsp;<span>8.2</span></a> の分母の対数にほかなりません. この量はそのまま厚生分析の道具になります. 選択環境の変化の厚生効果 (選択肢の質の変化はもちろん, 選択肢の追加・削除も) は, 変化前後の対数和の差で測れるからです <span class="citation" data-cites="train2009">(<a href="../../references.html#ref-train2009" role="doc-biblioref">Train 2009, sec. 3.5</a>)</span>. 効用の水準が測れないことに対応する定数 (<span class="math inline">\(\gamma\)</span> を含む) は, 差をとると消えます.</p>
 </section>
 <section id="無関係な選択肢からの独立-iia" class="level4">
 <h4 class="anchored" data-anchor-id="無関係な選択肢からの独立-iia">無関係な選択肢からの独立 (IIA)</h4>

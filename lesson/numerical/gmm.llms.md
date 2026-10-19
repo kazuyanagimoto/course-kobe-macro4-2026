@@ -988,7 +988,7 @@ se5 = sqrt.(diag(inv(Ĝ5) * V̂ * inv(Ĝ5)'))         # just identified: Λ = G^
 
 Altonji, Joseph G., and Lewis M. Segal. 1996. “Small-Sample Bias in GMM Estimation of Covariance Structures.” *Journal of Business & Economic Statistics* 14 (3): 353–66. <https://doi.org/10.1080/07350015.1996.10524661>.
 
-Andrews, Isaiah, Matthew Gentzkow, and Jesse M. Shapiro. 2017. “Measuring the Sensitivity of Parameter Estimates to Estimation Moments\*.” *The Quarterly Journal of Economics* 132 (4): 1553–92. <https://doi.org/10.1093/qje/qjx023>.
+Andrews, Isaiah, Matthew Gentzkow, and Jesse M. Shapiro. 2017. “Measuring the Sensitivity of Parameter Estimates to Estimation Moments.” *The Quarterly Journal of Economics* 132 (4): 1553–92. <https://doi.org/10.1093/qje/qjx023>.
 
 Bick, Alexander, Adam Blandin, and Richard Rogerson. 2022. “Hours and Wages.” *The Quarterly Journal of Economics* 137 (3): 1901–62. <https://doi.org/10.1093/qje/qjac005>.
 

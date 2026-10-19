@@ -305,19 +305,19 @@ Greenwood and Guner ([2009](#ref-greenwood2009)) に対する拡張のポイン�
 
 推定では \\\beta\\ は全カップル共通の定数として1つだけ推定されます. したがって, カップルによって分配が違う理由はすべて outside options の差とマッチの質 \\z\\ の側にある, という構造になっています.
 
-コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり [式 eq-gousse-married](#eq-gousse-married) の契約の価値 \\W_m\\ は継続価値 \\V_m^1\left(z\right)\\ そのものでなければならず, これを代入して整理すると ([sec-apdx-nocommit](#sec-apdx-nocommit)節), 次の式を得ます. \\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{6.7}\\ 左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. \\u_m - r V_m^0\\ が「今期, 結婚しているおかげで独身より多く得ている分」, \\\delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right)\\ が「次に \\z'\\ が引き直されたときのオプション価値」 になります.
+コミットメントがないということは, 契約が約束する継続価値が, 各時点で本人にとって最適な選択と整合的でなければならない, ということです. つまり [式 eq-gousse-married](#eq-gousse-married) の契約の価値 \\W_m\\ は継続価値 \\V_m^1\left(z\right)\\ そのものでなければならず, これを代入して整理すると ([付録](../../lesson/appendix/proof.llms.md#sec-apdx-nocommit)), 次の式を得ます. \\ \left(r + \delta\right)\left\[V_m^1\left(z\right) - V_m^0\right\] = u_m - r V_m^0 + \delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right) \tag{6.7}\\ 左辺が結婚をしていることの純価値 (net surplus) のフロー換算で, 右辺が結婚した場合に受け取るフローの効用になります. \\u_m - r V_m^0\\ が「今期, 結婚しているおかげで独身より多く得ている分」, \\\delta \int \left\[V_m^1\left(z'\right) - V_m^0\right\]^{+} dG\left(z'\right)\\ が「次に \\z'\\ が引き直されたときのオプション価値」 になります.
 
 #### 余剰とマッチング集合
 
-TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を \\S\_{ij}\left(z\right) := B_i\left\[V_m^1\left(z\right) - V_m^0\right\] + B_j\left\[V_f^1\left(z\right) - V_f^0\right\]\\ と定義すると, [sec-apdx-gousse-surplus](#sec-apdx-gousse-surplus)節より, 次の式が成り立ちます. \\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{6.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
+TUのもとでは, 男女の取り分を足し合わせて1つの余剰にまとめられます. 余剰を \\S\_{ij}\left(z\right) := B_i\left\[V_m^1\left(z\right) - V_m^0\right\] + B_j\left\[V_f^1\left(z\right) - V_f^0\right\]\\ と定義すると, [付録](../../lesson/appendix/proof.llms.md#sec-apdx-gousse-surplus)で導くように, 次の式が成り立ちます. \\ \left(r+\delta\right) S\_{ij}\left(z\right) = z F\_{ij} X\_{ij} - B_i\\ r V_m^0 - B_j\\ r V_f^0 + \delta \int S\_{ij}\left(z'\right)^{+}\\ dG\left(z'\right) \tag{6.8}\\ ここで, 家計の純私的支出 \\X\_{ij} := w_i\left(1 - d_m\right) + w_j\left(1 - d_f\right) - C\_{ij} - A_i - A_j\\ です.
 
 この時, 合意条件 \\\mathbb{1}\_{ij}\left(z\right) = \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\\\ を閉じた形でかけます. [式 eq-gousse-surplus](#eq-gousse-surplus) の右辺は \\zF\_{ij}X\_{ij}\\ のみが \\z\\ に依存し, 自明に増加かんすうであるので, 余剰 \\S\_{ij}\left(z\right)\\ も \\z\\ について増加関数になります. したがって, ある閾値 \\\underline{z}\_{ij}\\ が存在して, 「\\z\\ が \\\underline{z}\_{ij}\\ 以上なら結婚, それ未満なら独身」という留保値ルールが成り立ちます. すなわち, [式 eq-gousse2017-alpha](#eq-gousse2017-alpha) のインディケータは次の形で書くことができます. \\ \alpha\_{ij} = \int \mathbb{1}\left\\S\_{ij}\left(z\right) \geq 0\right\\ dG\left(z\right) = 1 - G\left(\underline{z}\_{ij}\right) \tag{6.9}\\
 
-独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は[sec-apdx-gousse-single](#sec-apdx-gousse-single)節). \\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{6.10}\\ この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.
+独身の価値は, 出会える相手の分布に対する期待余剰で決まります (導出は[付録](../../lesson/appendix/proof.llms.md#sec-apdx-gousse-single)). \\ B_i\\ r V_m^0 = B_i u_m^0 + \lambda \beta \int \bar{S}\_{ij}\\ n_f\left(j\right)\\ dj \tag{6.10}\\ この方程式が outside option を定めます. 良い相手に出会いやすいタイプほど期待余剰が大きくなり家計内の交渉力が強くなります.
 
 #### Sharing rule
 
-Nash 交渉の解として, 夫が受け取る純私的支出のシェアは \\ \beta\_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\\ r V_m^0 - \beta B_j\\ r V_f^0}{z F\_{ij} X\_{ij}} \\ となります (導出は付録の[sec-apdx-gousse-share](#sec-apdx-gousse-share)節). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
+Nash 交渉の解として, 夫が受け取る純私的支出のシェアは \\ \beta\_{ij}\left(z\right) = \beta + \frac{\left(1 - \beta\right) B_i\\ r V_m^0 - \beta B_j\\ r V_f^0}{z F\_{ij} X\_{ij}} \\ となります (導出は[付録](../../lesson/appendix/proof.llms.md#sec-apdx-gousse-share)). Collective モデルで外生だった Pareto ウェイトが, 「Nash ウェイト \\\beta\\ + 外部機会の差」という2つの構造的な源泉に分解されているのが分かります. 分母にマッチの質 \\z\\ が入るので, 同じタイプの夫婦でも \\z\\ の実現によってシェアが異なります. この「観察できない配分のばらつき」が, 後で識別に使われます.
 
 #### 定常状態
 
@@ -344,7 +344,7 @@ Nash 交渉の解として, 夫が受け取る純私的支出のシェアは \\ 
 
 図 6.22: Marriage and divorce flows by type and period (Fig. 6)
 
-**2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと \\\left(\beta, \sigma\right)\\ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. \\\beta\\ は夫婦の余暇の水準から, \\\sigma\\ はその分散から識別されます (付録[sec-apdx-gousse-est2](#sec-apdx-gousse-est2)節)
+**2. 家事時間と余暇支出の回帰**: 家事時間と余暇支出を, 賃金・学歴・家族観に回帰する形で選好・家庭内生産のパラメータと \\\left(\beta, \sigma\right)\\ を推定します. パラメータを更新するたびに均衡 (マッチング確率, 独身者の分布, sharing rule) を解き直します. \\\beta\\ は夫婦の余暇の水準から, \\\sigma\\ はその分散から識別されます ([付録](../../lesson/appendix/proof.llms.md#sec-apdx-gousse-est2))
 
 **3. 公共財の質** 均衡における家庭内生産は次の式で表されます. \\ F\_{ij} = Z\_{ij}\left(\frac{K_m^1}{w_i}\right)K^{K_m^1}\left(\frac{K_f^1}{w_j}\right)X\_{ij}^{K_m^1 + K_f^1}. \\ ここから, \\Z\_{ij}\\ が復元できます.
 
