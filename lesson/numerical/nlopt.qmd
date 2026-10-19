@@ -9,7 +9,7 @@ engine: julia
 #| label: setup
 #| output: false
 using Roots
-using ProjectRoot  # @projectroot: paths from the repository root
+using ProjectRoot
 using NonlinearSolve
 using Optim
 using Optimization

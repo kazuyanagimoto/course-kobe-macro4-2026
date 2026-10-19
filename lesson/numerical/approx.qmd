@@ -302,13 +302,13 @@ end
 
 ## モンテカルロ法 (Monte Carlo Method)
 
-確率変数 $X \sim F$ に対する期待値
+確率変数 $X \sim G$ に対する期待値
 $$
-\mathbb{E}[f(X)] = \int f(x) \,dF(x)
+\mathbb{E}[f(X)] = \int f(x) \,dG(x)
 $$
-を, $F$ から独立に抽出した $n$ 個のサンプル $x_1, \dots, x_n$ を用いて
+を, $G$ から独立に抽出した $n$ 個のサンプル $x_1, \dots, x_n$ を用いて
 $$
-\mathbb{E}[f(X)] \simeq \frac{1}{n} \sum_{i=1}^{n} f(x_i), \quad x_i \overset{\text{i.i.d.}}{\sim} F
+\mathbb{E}[f(X)] \simeq \frac{1}{n} \sum_{i=1}^{n} f(x_i), \quad x_i \overset{\text{i.i.d.}}{\sim} G
 $$
 と近似する. 大数の法則により, $n \to \infty$ で真の値に収束する. 収束レートは $O(n^{-1/2})$ である.
 
@@ -332,7 +332,7 @@ mc_hours()
 
 ## 準モンテカルロ法 (Quasi-Monte Carlo Method)
 
-モンテカルロ法では擬似乱数を用いるのに対し, 準モンテカルロ法では**低食い違い量列** (low-discrepancy sequence) と呼ばれる決定的な点列を用いる. 代表的な低食い違い量列として, Halton 列, Sobol 列, Niederreiter 列などがある.
+モンテカルロ法では擬似乱数を用いるのに対し, 準モンテカルロ法では低食い違い量列 (low-discrepancy sequence) と呼ばれる決定的な点列を用いる. 代表的な低食い違い量列として, Halton 列, Sobol 列, Niederreiter 列などがある.
 
 一様分布 $U[0, 1]$ 上の積分
 $$
@@ -397,7 +397,7 @@ $$
 
 ::: {.remark}
 
-## 定義域の変換 (ガウス求積)
+## gauss求積の定義域の変換
 
 `FastGaussQuadrature.jl` 等のパッケージを利用する際には, 定義域を $[-1, 1]$ に変換する必要がある. $x = \frac{b-a}{2} z + \frac{a+b}{2}$ と変換すると
 $$
@@ -460,6 +460,8 @@ end
 mean_hours()
 ```
 
+10個程度の評価点で少数第三位までの精度が得られていることがわかります. これは, モンテカルロ法や準モンテカルロ法よりも少ないサンプル数で, より高精度な結果を得られることを示しています.
+
 ## AR(1) 過程の離散化 {#sec-discretization}
 
 補間と数値微分は「グリッド上の値しか持たない関数」を扱う道具でした. 動的計画法 (@sec-dynamic-programming) ではもう1つ, 「連続な値をとる確率過程」を有限個の状態で近似する操作が必要になります. 生産性や所得のショックは AR(1) のような連続状態の過程でモデル化されますが, ベルマン方程式の期待値を計算するには, これを有限状態のマルコフ連鎖に置き換えるのが最も手軽だからです. 過程の分布としての性質 (平均・分散・持続性) をできるだけ保ったまま離散化する, これも関数近似の一種です.
@@ -509,7 +511,7 @@ $$
 
 :::
 
-![**Visualization of Tauchen Method**. $\mu = 0$.](/static/cetz/tauchen_method.svg){#fig-tauchen-method width=100%}
+![**Visualization of Tauchen Method**.](/static/cetz/tauchen_method.svg){#fig-tauchen-method width=100%}
 
 ```{julia}
 #| label: tauchen-method
@@ -564,9 +566,9 @@ Tauchen 法は直感的で実装も簡単ですが, 2つの近似誤差を持ち
 
 ## Rouwenhorst 法
 
-AR(1) 過程 $x_{t+1} = \rho x_t + \varepsilon_{t+1}$, $\varepsilon \sim \mathcal{N}\left(0, \sigma^2\right)$ を $n$ 状態で離散化する.
+AR(1) 過程 $x_{t+1} = \mu + \rho x_t + \varepsilon_{t+1}$, $\varepsilon \sim \mathcal{N}\left(0, \sigma^2\right)$ を $n$ 状態で離散化する.
 
-1. グリッドは $\left[-\psi, \psi\right]$ の等間隔 $n$ 点とする. ただし $\psi = \sigma \sqrt{\dfrac{n - 1}{1 - \rho^2}}$.
+1. グリッドは定常平均 $\bar{x} = \mu / (1 - \rho)$ を中心とする $\left[\bar{x} - \psi, \bar{x} + \psi\right]$ の等間隔 $n$ 点とする. ただし $\psi = \sigma \sqrt{\dfrac{n - 1}{1 - \rho^2}}$.
 1. $p = \dfrac{1 + \rho}{2}$ とし, 遷移行列を次の再帰で構成する. $n = 2$ のとき
    $$
    \Pi_2 = \begin{pmatrix} p & 1 - p \\ 1 - p & p \end{pmatrix}.
@@ -582,19 +584,23 @@ AR(1) 過程 $x_{t+1} = \rho x_t + \varepsilon_{t+1}$, $\varepsilon \sim \mathca
 
 :::
 
-この構成の見返りは, 打ち切りに頼らないことと, 連鎖の性質が厳密に分かることです.
-
 ::: {#prp-rouwenhorst}
 
 ## Rouwenhorst 法の厳密性
 
-Rouwenhorst 法で離散化された連鎖の定常分布は, 二項分布 $B\left(n-1, 1/2\right)$ をグリッドに載せたものである. 定常平均・分散・1次自己相関は元の AR(1) の $0$, $\sigma_x^2 = \sigma^2 / \left(1 - \rho^2\right)$, $\rho$ に厳密に一致し, さらに条件付き期待値も $\mathbb{E}\left[x' \mid x\right] = \rho x$ と厳密に一致する. これらは状態数 $n$ と持続性 $\rho$ の値によらない (証明は @kopecky2010 を参照).
-
+Rouwenhorst 法で離散化されたマルコフ連鎖の定常平均・分散・1次自己相関は元の AR(1) の $\bar{x} = \mu / (1 - \rho)$, $\sigma_x^2 = \sigma^2 / \left(1 - \rho^2\right)$, $\rho$ に厳密に一致し, さらに条件付き期待値も $\mathbb{E}\left[x' \mid x\right] = \mu + \rho x$ と厳密に一致する. これらは状態数 $n$ と持続性 $\rho$ の値によらない.
 :::
+
+$\mu = 0$ の場合の証明は @kopecky2010 [Section 2.3] を参照してください. $\mu \neq 0$ の場合は平行移動で従います. $z_t = x_t - \bar{x}$ とおくと $z_{t+1} = \rho z_t + \varepsilon_{t+1}$ は平均 $0$ の AR(1) で, 上のアルゴリズムは $z$ のグリッド $\left[-\psi, \psi\right]$ を $\bar{x}$ だけずらしているだけです. 遷移行列 $\Pi_n$ は $\mu$ に依存しないので, 分散と自己相関は $z$ のものと同じで, 定常平均は $\bar{x}$ だけずれます. 条件付き期待値は
+$$
+\mathbb{E}\left[x' \mid x\right] = \bar{x} + \rho \left(x - \bar{x}\right) = \left(1 - \rho\right) \bar{x} + \rho x = \mu + \rho x
+$$
+となります.
+
 
 ```{julia}
 #| label: rouwenhorst-method
-function rouwenhorst_method(; n=5, ρ=0.9, σ=1.0)
+function rouwenhorst_method(; n=5, ρ=0.9, μ=0.1, σ=1.0)
     p = (1 + ρ) / 2
     Π = [p 1-p; 1-p p]
     for k in 3:n
@@ -606,8 +612,9 @@ function rouwenhorst_method(; n=5, ρ=0.9, σ=1.0)
         Πn[2:(k-1), :] ./= 2
         Π = Πn
     end
+    x_mean = μ / (1 - ρ)
     ψ = σ * sqrt((n - 1) / (1 - ρ^2))
-    x = collect(range(-ψ, ψ, length=n))
+    x = collect(range(x_mean - ψ, x_mean + ψ, length=n))
     return x, Π
 end
 
@@ -616,7 +623,7 @@ x, Π = rouwenhorst_method()
 Π
 ```
 
-こちらも実用上は `QuantEcon.jl` の `rouwenhorst(N, ρ, σ)` が使えます (上の実装と一致します). 2つの方法を, 離散化された連鎖の定常分布の標準偏差と1次自己相関で比べてみましょう. 真の値は $\sigma_x = \sigma / \sqrt{1 - \rho^2}$ と $\rho$ です.
+こちらも実用上は `QuantEcon.jl` の `rouwenhorst(N, ρ, σ, μ)` が使えます (上の実装と一致します). 2つの方法を, 離散化された連鎖の定常分布の標準偏差と1次自己相関で比べてみましょう. 真の値は $\sigma_x = \sigma / \sqrt{1 - \rho^2}$ と $\rho$ です.
 
 ```{julia}
 #| label: tbl-discretization
@@ -632,28 +639,30 @@ function chain_moments(x, Π)
     return sqrt(v), (Ex1x - m^2) / v
 end
 
-rows = []
-for ρ in (0.9, 0.99), n in (5, 7)
-    sd_true = 1.0 / sqrt(1 - ρ^2)
+cases = [(ρ, n) for ρ in (0.9, 0.99) for n in (5, 7)]
+sd = zeros(3, length(cases))                    # rows: true, Tauchen, Rouwenhorst
+ac = zeros(3, length(cases))
+for (k, (ρ, n)) in enumerate(cases)
     mc_t = tauchen(n, ρ, 1.0)
     sd_t, ac_t = chain_moments(collect(mc_t.state_values), mc_t.p)
-    x_r, Π_r = rouwenhorst_method(n=n, ρ=ρ)
-    sd_r, ac_r = chain_moments(x_r, Π_r)
-    push!(rows, Any[ρ, n, round(sd_true, digits=2),
-        round(sd_t, digits=2), round(ac_t, digits=3),
-        round(sd_r, digits=2), round(ac_r, digits=3)])
+    sd_r, ac_r = chain_moments(rouwenhorst_method(n=n, ρ=ρ, μ=0.0)...)
+    sd[:, k] = [1.0 / sqrt(1 - ρ^2), sd_t, sd_r]
+    ac[:, k] = [ρ, ac_t, ac_r]
 end
 
-pretty_table(permutedims(hcat(rows...));
-    column_labels=[raw"$\rho$", raw"$n$", raw"$\sigma_x$ (true)",
-        raw"$\hat\sigma_x$ (Tauchen)", raw"$\hat\rho$ (Tauchen)",
-        raw"$\hat\sigma_x$ (Rouwenhorst)", raw"$\hat\rho$ (Rouwenhorst)"],
+# One column per case, so that the true value and the two methods stack up.
+fmt2, fmt3 = fmt__printf("%.2f"), fmt__printf("%.3f")
+pretty_table(hcat([raw"定常標準偏差 $\sigma_x$", "", "", raw"1次自己相関 $\rho$", "", ""],
+        repeat(["真の値", "Tauchen", "Rouwenhorst"], 2), vcat(sd, ac));
+    column_labels=["", "", ("\$\\rho = $ρ\$, \$n = $n\$" for (ρ, n) in cases)...],
+    formatters=[(v, i, j) -> v isa Float64 ? (i <= 3 ? fmt2 : fmt3)(v, i, j) : v],
+    alignment=[:l, :l, :r, :r, :r, :r],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
 Tauchen 法は $\rho = 0.9$ ですでに定常標準偏差を2〜3割過大にし, $\rho = 0.99$ では自己相関がほぼ $1$ に張り付いてしまいます. Rouwenhorst 法はどのケースでも厳密です.
 
-**Tauchen 法の退化**. @fig-tauchen-error は, 状態 $x_4$ を条件とした $x'$ の分布 $\mathcal{N}\left(\rho x_4, \sigma^2\right)$ に, グリッド点と升目の境界を重ねたものです. Tauchen 法は, この条件付き分布の確率質量を升目ごとに拾って遷移確率にするのでした. 定常標準偏差 $\sigma_x$ を固定したまま持続性を上げると, 条件付き分布の幅 $\sigma = \sigma_x \sqrt{1 - \rho^2}$ はどんどん狭くなる一方, 升目の幅 $d$ はグリッドの設定 ($n$ と $n_{std}$) だけで決まって動きません. $\rho = 0.99$ では分布がまるごと自分の升目に収まって $\pi_{44} \approx 1$ となり, どの状態でも同じことが起きるため連鎖はほとんど動けなくなります. これが自己相関の張り付きの正体です. 逆に $\rho$ が中程度でも, 升目が粗ければ「最寄りのグリッドに丸める」ことで余分な分散が毎期加わり, 定常分散が過大になります (@tbl-discretization の $\hat\sigma_x$ の列). この退化の正確な主張と証明は @kopecky2010 を参照してください.
+**Tauchen 法の退化**. @fig-tauchen-error は, 状態 $x_4$ で条件づけた $x'$ の分布 $\mathcal{N}\left(\rho x_4, \sigma^2\right)$ に, グリッド点と升目の境界を重ねたものです. Tauchen 法は, この条件付き分布の確率質量を升目ごとに拾って遷移確率にするのでした. 定常標準偏差 $\sigma_x$ を固定したまま持続性を上げると, 条件付き分布の幅 $\sigma = \sigma_x \sqrt{1 - \rho^2}$ はどんどん狭くなる一方, 升目の幅 $d$ はグリッドの設定 ($n$ と $n_{std}$) だけで決まって動きません. $\rho = 0.99$ では分布がまるごと自分の升目に収まって $\pi_{44} \approx 1$ となり, どの状態でも同じことが起きるため連鎖はほとんど動けなくなります. これが自己相関の張り付きの正体です. 逆に $\rho$ が中程度でも, 升目が粗ければ「最寄りのグリッドに丸める」ことで余分な分散が毎期加わり, 定常分散が過大になります (@tbl-discretization の定常標準偏差の Tauchen の行). この退化の正確な主張と証明は @kopecky2010 を参照してください.
 
 ```{julia}
 #| label: fig-tauchen-error
@@ -678,4 +687,3 @@ end
 plot(panels..., layout=(1, 2), size=(650, 250))
 ```
 
-持続性の高い過程を扱うとき, そして**データから推定した $\left(\rho, \sigma\right)$ をそのまま離散化に渡すとき** (このとき離散化のずれは推定と数値解法の不整合として推定結果を歪めます) は, Rouwenhorst 法を使うのが安全です. 

@@ -4,12 +4,13 @@
 
 #show math.equation: block.with(fill: white, inset: 1pt)
 
-#let Phi(x) = calc.exp(-calc.pow(x, 2) / 2) / calc.sqrt(2 * calc.pi)
-
-#let rh = 0.8
-#let x_i = 0.
-#let x_j = 1.
+// Conditional mean mu + rho x_i of x' given x_i, and the cell around x_j.
+#let m = 0.
+#let x_j = 1.2
 #let d = 1.
+
+// Density of x' | x_i ~ N(mu + rho x_i, 1).
+#let phi(x) = calc.exp(-calc.pow(x - m, 2) / 2) / calc.sqrt(2 * calc.pi)
 
 #cetz.canvas(length: 3cm, {
   import cetz.draw: *
@@ -17,17 +18,17 @@
   let ctx = plot-ctx(x-range: (-0.5, 3), y-range: (0, 0.45), size: (3, 1))
 
   draw-axes(ctx, style: "left")
-  fill-between(ctx, Phi, (x_j - d / 2, x_j + d / 2))
-  draw-curve(ctx, Phi, (-1, 3), stroke: color-base)
+  fill-between(ctx, phi, (x_j - d / 2, x_j + d / 2))
+  draw-curve(ctx, phi, (-1, 3), stroke: color-base)
 
   let y_xlabel = -0.07
-  label(ctx, rh * x_i, y_xlabel, [$ rho x_i $])
+  label(ctx, m, y_xlabel, [$ mu + rho x_i $])
   label(ctx, x_j, y_xlabel, [$ x_j $])
   label(ctx, x_j + d / 2, y_xlabel, [$ x_j + d / 2 $])
   label(ctx, x_j - d / 2, y_xlabel, [$ x_j - d / 2 $])
 
-  draw-vline(ctx, rh * x_i, 0., Phi(rh * x_i), stroke: stroke-dashed)
-  draw-vline(ctx, x_j, 0., Phi(x_j), stroke: stroke-dashed)
-  draw-vline(ctx, x_j + d / 2, 0., Phi(x_j + d / 2), stroke: stroke-guide)
-  draw-vline(ctx, x_j - d / 2, 0., Phi(x_j - d / 2), stroke: stroke-guide)
+  draw-vline(ctx, m, 0., phi(m), stroke: stroke-dashed)
+  draw-vline(ctx, x_j, 0., phi(x_j), stroke: stroke-dashed)
+  draw-vline(ctx, x_j + d / 2, 0., phi(x_j + d / 2), stroke: stroke-guide)
+  draw-vline(ctx, x_j - d / 2, 0., phi(x_j - d / 2), stroke: stroke-guide)
 })

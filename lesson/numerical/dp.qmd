@@ -9,7 +9,7 @@ engine: julia
 #| label: setup
 #| output: false
 using Plots
-using ProjectRoot  # @projectroot: paths from the repository root
+using ProjectRoot
 using LaTeXStrings
 using Roots
 using LinearAlgebra
@@ -41,7 +41,7 @@ $$
 
 1. **Value Function Iteration**
     - ベルマン方程式の不動点を直接求める方法
-    - 収束性が保証されているが, 収束速度は比較的遅い
+    - 収束性が保証されているが (証明は @sec-apdx-contraction), 収束速度は比較的遅い
 1. **Policy Function Iteration**
     - 政策関数の不動点を求める方法
     - 収束性は保証されていないが, 収束速度は比較的速い
@@ -94,7 +94,7 @@ f′(k; m) = m.α * k^(m.α - 1)
 
 :::
 
-なおこのような収束の閾値 $\varepsilon$ を tolerance と呼ぶことがあります.
+VFI がどんな初期値 $V^0$ から始めても収束するのは, ベルマン方程式の右辺が縮小写像になっているためです (@prp-bellman-contraction). また, 更新幅を最大値ノルム $\left\| V^N - V^{N-1} \right\|_{\infty}$ で測り, これが $\varepsilon$ を下回ったところで止めれば, 真の価値関数との誤差は $\beta \varepsilon / \left(1 - \beta\right)$ 以下に収まります (@prp-error-bound). 下の実装 `vfi!` もこの最大値ノルムで収束を判定しています.
 
 ```{julia}
 #| label: value-function-iteration
@@ -278,9 +278,9 @@ Plot.plot({
 $$
 u'(c) = \beta u'(c')\left(f'(k') + (1-\delta)\right).
 $${#eq-euler}
-ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数を通じて $c' = h(k')$ で与えられます.
+ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数 $h(k)$ を所与とすると, $c' = h(k')$ で与えられます.
 
-この政策関数 $h$ を反復的に更新します. 反復 $N$ での推定政策 $h^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
+ここで, 問題を政策関数 $h$ の不動点を求める問題に設定します. 反復 $N$ での推定政策 $h^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
 $$
 \begin{aligned}
 u'(c) &= \beta\, u'\left(\tilde{h}^N(k')\right)\left(f'(k') + 1 - \delta\right), \\
@@ -358,7 +358,7 @@ end
 
 m = Model()
 pfi!(m)
-plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $h(k)$")
+plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $c = h(k)$")
 ```
 
 **収束の可視化**
@@ -506,7 +506,9 @@ Plot.plot({
 1. 離散化された $k$ から $k'$ への遷移行列 $P$ を求める. グリッド $k_i$ が $k_j$ と $k_{j+1}$ の間に遷移する場合, 以下のように定義する.
     - $P_{i, j} = \frac{k_{j+1} - g(k_i)}{k_{j+1} - k_j}$
     - $P_{i, j+1} = \frac{g(k_i) - k_j}{k_{j+1} - k_j}$
-    - $P_{i, k} = 0, \quad k \neq j, j+1$
+    - $P_{i, l} = 0, \quad l \neq j, j+1$
+
+    $g(k_i)$ がグリッドの外に出る場合は, 近い方の端点に重み $1$ を置く.
 1. $u, V$ を $u(h(k)), V(k)$ からなる離散化されたベクトルとすると
     $$
     V = u + \beta P V.
@@ -515,7 +517,24 @@ Plot.plot({
 
 :::
 
+$P$ の重みは線形補間の重みそのものです. $PV$ の $i$ 行目は $P_{i, j} V_j + P_{i, j+1} V_{j+1}$ であり, 来期の価値 $V(g(k_i))$ を両隣のグリッド点の値から線形補間したもの (@sec-interpolation) になっています.
+
 ここでは, より高速な線型方程式を用いる方法を実装します. より速度を求める場合, 遷移行列はほとんどの要素がゼロであるため, 疎行列 (Sparse Matrix) を用いることで高速化する可能性があります. Juliaの場合, `SparseArrays.jl` で実装されています.
+
+重みの計算は関数 `lottery` にまとめます. これは $g(k_i)$ を挟む2つのグリッド点の番号と, 下側の点の重み $\omega = P_{i, j}$ を返します.
+
+```{julia}
+#| label: fn-lottery
+#| output: false
+function lottery(x, grid)
+    n = length(grid)
+    x <= grid[begin] && return (1, 1, 1.0)
+    x >= grid[end] && return (n, n, 1.0)
+    j = searchsortedlast(grid, x)
+    ω = (grid[j+1] - x) / (grid[j+1] - grid[j])
+    return (j, j + 1, ω)
+end
+```
 
 ```{julia}
 #| label: fig-pfi-vf
@@ -525,13 +544,9 @@ function compute_vf!(m::Model)
     P = zeros(n_k, n_k)
     for (i_k, k) in enumerate(k_grid)
         g = f(k; m) + (1 - δ) * k - h[i_k]
-        j = searchsortedlast(k_grid, g)
-        if j == 1 || j == n_k
-            P[i_k, j] = 1.0
-        else
-            P[i_k, j] = (k_grid[j+1] - g) / (k_grid[j+1] - k_grid[j])
-            P[i_k, j+1] = (g - k_grid[j]) / (k_grid[j+1] - k_grid[j])
-        end
+        j_lo, j_hi, ω = lottery(g, k_grid)
+        P[i_k, j_lo] += ω
+        P[i_k, j_hi] += 1 - ω
     end
 
     m.V .= (I - β * P) \ (u.(h; m))
@@ -629,7 +644,7 @@ end
 
 m = Model()
 egm!(m)
-plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $h(k)$")
+plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $c = h(k)$")
 ```
 
 VFI, PFI と同じ政策関数が得られます. EGM は反復の中で求根を行わないため, さらに高速です.
@@ -823,7 +838,7 @@ p
 
 **価値関数の復元**
 
-PFI が返すのは政策関数 $h(k, z)$ です. 決定論的な場合と同じ線形方程式で価値関数 $V(k, z)$ を復元できます. 政策から来期資本 $g(k, z) = f(k, z) + (1-\delta)k - h(k, z)$ を求め, $(k, z)$ 上の遷移行列 $P$ を作ります. 資本方向は $g(k, z)$ を挟む2つのグリッド点に補間で振り分け, 生産性方向は $\pi(z' \mid z)$ で遷移させます. すると $V = (I - \beta P)^{-1} u$ で価値関数が求まります.
+PFI が返すのは政策関数 $h(k, z)$ です. 決定論的な場合と同じ線形方程式で価値関数 $V(k, z)$ を復元できます. 政策から来期資本 $g(k, z) = f(k, z) + (1-\delta)k - h(k, z)$ を求め, $(k, z)$ 上の遷移行列 $P$ を作ります. 資本方向は決定論的な場合と同じく `lottery` の重みで $g(k, z)$ を挟む2つのグリッド点に振り分け, 生産性方向は $\pi(z' \mid z)$ で遷移させます. すると $V = (I - \beta P)^{-1} u$ で価値関数が求まります.
 
 ```{julia}
 #| label: fig-vfi-recover
@@ -838,18 +853,10 @@ function compute_vf!(m::StochasticModel)
         row = idx(i_k, i_z)
         uvec[row] = u(h[i_k, i_z]; m)
         g = f(k, z; m) + (1 - δ) * k - h[i_k, i_z]   # next capital k'(k, z)
-        j = searchsortedlast(k_grid, g)
-        if j <= 1 || j >= n_k  # boundary: all weight on one node
-            jj = clamp(j, 1, n_k)
-            for i_z′ in 1:n_z
-                P[row, idx(jj, i_z′)] += Π[i_z, i_z′]
-            end
-        else  # interpolate over the two bracketing nodes
-            w = (k_grid[j+1] - g) / (k_grid[j+1] - k_grid[j])
-            for i_z′ in 1:n_z
-                P[row, idx(j, i_z′)] += w * Π[i_z, i_z′]
-                P[row, idx(j + 1, i_z′)] += (1 - w) * Π[i_z, i_z′]
-            end
+        j_lo, j_hi, ω = lottery(g, k_grid)
+        for i_z′ in 1:n_z
+            P[row, idx(j_lo, i_z′)] += ω * Π[i_z, i_z′]
+            P[row, idx(j_hi, i_z′)] += (1 - ω) * Π[i_z, i_z′]
         end
     end
     m.V .= reshape((I - β * P) \ uvec, n_k, n_z)
@@ -978,9 +985,9 @@ $${#eq-aiyagari-euler}
 
 ::: {.remark}
 
-## 予備的貯蓄 (precautionary saving)
+## 予備的貯蓄, precautionary saving
 
-CRRA 効用は $u'''(c) > 0$ を満たす. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u'(c')]$ を引き上げる. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持つ. これを予備的貯蓄と呼ぶ. これは保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機である.
+CRRA 効用は $u'''(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u'(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼び, 保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機です.
 
 :::
 
@@ -1150,25 +1157,19 @@ end
 
 **定常分布の計算 (滑らかな分布のための工夫)**
 
-EGM が返す貯蓄政策 $g(a, z)$ は補間で構成された滑らかな連続関数ですが, その返り値 $a'$ は資産グリッドの点とは限りません. これを最近傍のグリッド点に丸めて分布を更新すると, 到達可能な少数の点だけに質量が集中し, 分布がギザギザになります. そこで抽選 (lottery) を使います. 政策が返す $a'$ が隣り合うグリッド点 $a_j \leq a' < a_{j+1}$ の間に落ちるとき, その家計の質量を重み $\omega$ で2点に按分します (`lottery`). 重みは, 抽選の期待値がもとの $a'$ に一致するように決めます.
+EGM が返す貯蓄政策 $g(a, z)$ は補間で構成された滑らかな連続関数ですが, その返り値 $a'$ は資産グリッドの点とは限りません. これを最近傍のグリッド点に丸めて分布を更新すると, 到達可能な少数の点だけに質量が集中し, 分布がギザギザになります. そこで, $a'$ を挟む2つのグリッド点 $a_j \leq a' < a_{j+1}$ に家計の質量を按分します. 按分の重みは, PFI で価値関数を復元したとき (@alg-value-recovery) の遷移行列 $P$ の重みと同じ
 $$
-\omega\, a_j + \left(1 - \omega\right) a_{j+1} = a' \quad\Longleftrightarrow\quad \omega = \frac{a_{j+1} - a'}{a_{j+1} - a_j}.
+\omega = \frac{a_{j+1} - a'}{a_{j+1} - a_j}
 $$
-$a'$ が $a_{j+1}$ に近いほど $a_{j+1}$ に多くの質量が割り当てられます. これは非確率的シミュレーション [@young2010] として知られ, 離散グリッド上で連続的な分布を精度よく近似します.
+で, 関数もそこで定義した `lottery` をそのまま使います.
+
+違うのは $P$ を使う向きだけです. 価値関数の復元では $P$ を右から $V$ に掛け, 来期の価値 $V(a')$ を2点の値の加重平均 $\omega V_j + \left(1 - \omega\right) V_{j+1}$ で近似しました (線形補間). 分布の更新では, 同じ重みで今期の質量を来期の2点に振り分けます. 遷移行列 $P$ を確率的なモデルの価値関数の復元と同じく $(a, z)$ 上に作れば, 更新式は転置を掛けた $\lambda' = P^\top \lambda$ です. 下のコードは $P$ を作らずに, この積をループで直接計算しています.
+
+重みは $\omega a_j + \left(1 - \omega\right) a_{j+1} = a'$ を満たすので, 振り分けた後の資産の平均はもとの $a'$ に一致します. 家計を確率 $\omega$ で $a_j$ に, 確率 $1 - \omega$ で $a_{j+1}$ に送る抽選とみなせるので, この使い方を抽選 (lottery) と呼びます. 非確率的シミュレーション [@young2010] としても知られ, 離散グリッド上で連続的な分布を精度よく近似します.
 
 ```{julia}
 #| label: fn-distribution
 #| output: false
-# the two grid points bracketing a', and the weight ω on the lower one
-function lottery(a′, a)
-    n = length(a)
-    a′ <= a[begin] && return (1, 1, 1.0)
-    a′ >= a[end] && return (n, n, 1.0)
-    j = searchsortedlast(a, a′)
-    ω = (a[j+1] - a′) / (a[j+1] - a[j])
-    return (j, j + 1, ω)
-end
-
 function distribution(g, m; tol=1e-12, maxit=100_000)
     (; a, Π, na, nz) = m
     λ = fill(1 / (na * nz), na, nz)
