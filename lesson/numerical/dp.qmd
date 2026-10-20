@@ -68,8 +68,8 @@ $$
     k_min::TF = 1.0
     k_max::TF = 10.0
     k_grid::Vector{TF} = collect(range(k_min, k_max, length=n_k))
-    V::Vector{TF} = zeros(n_k)
-    h::Vector{TF} = copy(k_grid)
+    Vs::Vector{TF} = zeros(n_k)
+    hs::Vector{TF} = copy(k_grid)
 end
 
 u(c; m) = log(c)
@@ -85,16 +85,16 @@ f′(k; m) = m.α * k^(m.α - 1)
 ## Value Function Iteration
 
 1. $k$ の定義域 $[k_{\min}, k_{\max}]$ を $n$ 個のグリッドポイントに分割する.
-1. $V(k)$ の初期値 $V^0$ を適当に設定する. つまり, $V^0 = (V_0^0, V_1^0, \dots, V_n^0)$ に適当な値を設定する.
-1. $V^0$ をベルマン方程式の右辺に代入し, 各 $k_i$ に対して $V_i^1$ を計算する.
+1. $V(k)$ の初期値 $\boldsymbol{V}^0$ を適当に設定する. つまり, $\boldsymbol{V}^0 = (V_0^0, V_1^0, \dots, V_n^0)$ に適当な値を設定する.
+1. $\boldsymbol{V}^0$ をベルマン方程式の右辺に代入し, 各 $k_i$ に対して $V_i^1$ を計算する.
 1. 2-3を繰り返す. 収束条件は以下のように設定する.
-    - $|V^N - V^{N-1}| < \varepsilon$
-    - $|V^N - V^{N-1}|$ はベクトルのノルム
+    - $|\boldsymbol{V}^N - \boldsymbol{V}^{N-1}| < \varepsilon$
+    - $|\boldsymbol{V}^N - \boldsymbol{V}^{N-1}|$ はベクトルのノルム
     - $\varepsilon$ は十分小さな値を設定する. 例えば, $\varepsilon = 10^{-6}$ とする
 
 :::
 
-VFI がどんな初期値 $V^0$ から始めても収束するのは, ベルマン方程式の右辺が縮小写像になっているためです (@prp-bellman-contraction). また, 更新幅を最大値ノルム $\left\| V^N - V^{N-1} \right\|_{\infty}$ で測り, これが $\varepsilon$ を下回ったところで止めれば, 真の価値関数との誤差は $\beta \varepsilon / \left(1 - \beta\right)$ 以下に収まります (@prp-error-bound). 下の実装 `vfi!` もこの最大値ノルムで収束を判定しています.
+VFI がどんな初期値 $\boldsymbol{V}^0$ から始めても収束するのは, ベルマン方程式の右辺が縮小写像になっているためです (@prp-bellman-contraction). また, 更新幅を最大値ノルム $\left\| \boldsymbol{V}^N - \boldsymbol{V}^{N-1} \right\|_{\infty}$ で測り, これが $\varepsilon$ を下回ったところで止めれば, 真の価値関数との誤差は $\beta \varepsilon / \left(1 - \beta\right)$ 以下に収まります (@prp-error-bound). 下の実装 `vfi!` もこの最大値ノルムで収束を判定しています.
 
 ```{julia}
 #| label: value-function-iteration
@@ -103,18 +103,18 @@ function vfi!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, β, δ) = m
 
     iter, dist = 0, Inf
-    V_new = similar(m.V)
+    Vs_new = similar(m.Vs)
     while dist > tol && iter < max_iter
         for (i_k, k) in enumerate(k_grid)
             c_min = 1e-9 # consumption cannot be negative
-            V_new[i_k] = maximum(
-                log(max(f(k; m) + (1 - δ) * k - k′, c_min)) + β * m.V[i_k′]
+            Vs_new[i_k] = maximum(
+                log(max(f(k; m) + (1 - δ) * k - k′, c_min)) + β * m.Vs[i_k′]
                 for (i_k′, k′) in enumerate(k_grid)
             )
         end
 
-        dist = maximum(abs, V_new - m.V)
-        m.V .= V_new
+        dist = maximum(abs, Vs_new - m.Vs)
+        m.Vs .= Vs_new
         iter += 1
     end
 
@@ -135,14 +135,18 @@ end
 #| fig-cap: Value Function Iteration.
 m = Model()
 vfi!(m)
-plot(m.k_grid, m.V, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
+plot(m.k_grid, m.Vs, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 ```
 
 なお, 各イタレーションでは, $k$ に対する最適な $k'$ や $c$ を求めています. それらを記録しておくことで, 政策関数 $c = h(k)$ や $k' = g(k)$ を求めることができます.
 
+::: {.content-visible when-format="html"}
+
 **収束の可視化**
 
 スライダー (Iteration $N$) を動かすと, 各反復での価値関数 $V^N(k)$ (実線) が不動点 (灰色の破線) へ収束していく様子を確認できます.
+
+:::
 
 ```{julia}
 #| label: vfi-history
@@ -151,47 +155,47 @@ plot(m.k_grid, m.V, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 function vfi_history(m::Model; tol=1e-6, max_iter=1000)
     (; k_grid, β, δ) = m
 
-    V = zeros(length(k_grid))
-    history = [copy(V)]       # V^0 (initial guess)
+    Vs = zeros(length(k_grid))
+    V_history = [copy(Vs)]    # V^0 (initial guess)
     dists = Float64[]
     iter, dist = 0, Inf
-    V_new = similar(V)
+    Vs_new = similar(Vs)
     while dist > tol && iter < max_iter
         for (i_k, k) in enumerate(k_grid)
             c_min = 1e-9
-            V_new[i_k] = maximum(
-                log(max(f(k; m) + (1 - δ) * k - k′, c_min)) + β * V[i_k′]
+            Vs_new[i_k] = maximum(
+                log(max(f(k; m) + (1 - δ) * k - k′, c_min)) + β * Vs[i_k′]
                 for (i_k′, k′) in enumerate(k_grid)
             )
         end
-        dist = maximum(abs, V_new - V)
-        V .= V_new
+        dist = maximum(abs, Vs_new - Vs)
+        Vs .= Vs_new
         iter += 1
-        push!(history, copy(V))
+        push!(V_history, copy(Vs))
         push!(dists, dist)
     end
 
-    return history, dists
+    return V_history, dists
 end
 
 m = Model()
-history, dists = vfi_history(m)
+V_history, dists_vfi = vfi_history(m)
 
 # save each iteration's value function and convergence distance to CSV
 data_dir = @projectroot("lesson", "numerical", "static", "data")
 mkpath(data_dir)
 open(joinpath(data_dir, "vfi_iterations.csv"), "w") do io
     println(io, "iter,k,V")
-    for (it, V) in enumerate(history)        # it = 1 is V^0
-        for (k, v) in zip(m.k_grid, V)
-            println(io, "$(it - 1),$k,$v")
+    for (it, Vs) in enumerate(V_history)     # it = 1 is V^0
+        for (k, V_k) in zip(m.k_grid, Vs)
+            println(io, "$(it - 1),$k,$V_k")
         end
     end
 end
 open(joinpath(data_dir, "vfi_distance.csv"), "w") do io
     println(io, "iter,dist")
-    for (it, d) in enumerate(dists)
-        println(io, "$it,$d")
+    for (it, dist) in enumerate(dists_vfi)
+        println(io, "$it,$dist")
     end
 end
 ```
@@ -257,7 +261,7 @@ Plot.plot({
   style: {fontSize: "16px"},
   x: {label: "Iteration N"},
   y: {
-    label: "‖Vᴺ − Vᴺ⁻¹‖∞",
+    label: "‖𝐕ᴺ − 𝐕ᴺ⁻¹‖∞",
     type: "log",
     ticks: [1, 1e-2, 1e-4, 1e-6],
     tickFormat: pow10
@@ -280,7 +284,7 @@ u'(c) = \beta u'(c')\left(f'(k') + (1-\delta)\right).
 $${#eq-euler}
 ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数 $h(k)$ を所与とすると, $c' = h(k')$ で与えられます.
 
-ここで, 問題を政策関数 $h$ の不動点を求める問題に設定します. 反復 $N$ での推定政策 $h^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
+ここで, 問題を政策関数 $h$ の不動点を求める問題に設定します. 反復 $N$ での推定政策 $\boldsymbol{h}^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
 $$
 \begin{aligned}
 u'(c) &= \beta\, u'\left(\tilde{h}^N(k')\right)\left(f'(k') + 1 - \delta\right), \\
@@ -294,11 +298,11 @@ $${#eq-pfi-euler}
 ## Policy Function Iteration
 
 1. $k$ の定義域 $[k_{\min}, k_{\max}]$ を $n$ 個のグリッドポイントに分割する.
-1. 政策関数の初期値 $h^0 = (h_1^0, \dots, h_n^0)$ を適当に設定する.
-1. 現在の政策 $h^N$ を補間して, 連続な関数 $\tilde{h}^N$ を作る. 各グリッド点 $k_i$ について @eq-pfi-euler を今期の消費 $c$ について解き, その解を $h_i^{N+1}$ とする.
+1. 政策関数の初期値 $\boldsymbol{h}^0 = (h_1^0, \dots, h_n^0)$ を適当に設定する.
+1. 現在の政策 $\boldsymbol{h}^N$ を補間して, 連続な関数 $\tilde{h}^N$ を作る. 各グリッド点 $k_i$ について @eq-pfi-euler を今期の消費 $c$ について解き, その解を $h_i^{N+1}$ とする.
 1. 3を繰り返す. 収束条件は以下のように設定する.
-    - $|h^{N+1} - h^N| < \varepsilon$
-    - $|h^{N+1} - h^N|$ はベクトルのノルム
+    - $|\boldsymbol{h}^{N+1} - \boldsymbol{h}^N| < \varepsilon$
+    - $|\boldsymbol{h}^{N+1} - \boldsymbol{h}^N|$ はベクトルのノルム
     - $\varepsilon$ は十分小さな値を設定する. 例えば, $\varepsilon = 10^{-6}$ とする
 
 :::
@@ -320,28 +324,29 @@ end
 function pfi!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, δ) = m
 
-    h_new = similar(m.h)
+    hs_new = similar(m.hs)
     iter, dist = 0, Inf
     while dist > tol && iter < max_iter
 
-        h_itp = linear_interpolation(k_grid, m.h)  # interpolant, once per sweep
+        # interpolant, once per sweep
+        h_itp = linear_interpolation(k_grid, m.hs)
         for (i_k, k) in enumerate(k_grid)
             c_min = max(1e-9, f(k; m) + (1 - δ) * k - k_grid[end])
             c_max = f(k; m) + (1 - δ) * k - k_grid[begin]
-            ee_left = euler_eq(c_min, k, h_itp; m)
-            ee_right = euler_eq(c_max, k, h_itp; m)
-            if ee_left > 0 && ee_right > 0
-                h_new[i_k] = c_max
-            elseif ee_left < 0 && ee_right < 0
-                h_new[i_k] = c_min
+            residual_at_c_min = euler_eq(c_min, k, h_itp; m)
+            residual_at_c_max = euler_eq(c_max, k, h_itp; m)
+            if residual_at_c_min > 0 && residual_at_c_max > 0
+                hs_new[i_k] = c_max
+            elseif residual_at_c_min < 0 && residual_at_c_max < 0
+                hs_new[i_k] = c_min
             else
-                h_new[i_k] = find_zero(c -> euler_eq(c, k, h_itp; m),
+                hs_new[i_k] = find_zero(c -> euler_eq(c, k, h_itp; m),
                     (c_min, c_max))
             end
         end
 
-        dist = maximum(abs, h_new .- m.h)
-        m.h .= h_new
+        dist = maximum(abs, hs_new .- m.hs)
+        m.hs .= hs_new
         iter += 1
     end
 
@@ -358,12 +363,17 @@ end
 
 m = Model()
 pfi!(m)
-plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $c = h(k)$")
+plot(m.k_grid, m.hs, label=false, xlabel=L"Capital $k$",
+    ylabel=L"Policy $c = h(k)$")
 ```
+
+::: {.content-visible when-format="html"}
 
 **収束の可視化**
 
 スライダー (Iteration $N$) を動かすと, 各反復での政策関数 $h^N(k)$ (実線) が不動点 (灰色の破線) へ収束していく様子を確認できます.
+
+:::
 
 ```{julia}
 #| label: pfi-history
@@ -372,53 +382,53 @@ plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $c = h(k
 function pfi_history(m::Model; tol=1e-6, max_iter=1000)
     (; k_grid, δ) = m
 
-    h = copy(m.h)              # h^0 = k_grid (initial guess)
-    history = [copy(h)]
+    hs = copy(m.hs)            # h^0 = k_grid (initial guess)
+    h_history = [copy(hs)]
     dists = Float64[]
-    h_new = similar(h)
+    hs_new = similar(hs)
     iter, dist = 0, Inf
     while dist > tol && iter < max_iter
-        h_itp = linear_interpolation(k_grid, h)
+        h_itp = linear_interpolation(k_grid, hs)
         for (i_k, k) in enumerate(k_grid)
             c_min = max(1e-9, f(k; m) + (1 - δ) * k - k_grid[end])
             c_max = f(k; m) + (1 - δ) * k - k_grid[begin]
-            ee_left = euler_eq(c_min, k, h_itp; m)
-            ee_right = euler_eq(c_max, k, h_itp; m)
-            if ee_left > 0 && ee_right > 0
-                h_new[i_k] = c_max
-            elseif ee_left < 0 && ee_right < 0
-                h_new[i_k] = c_min
+            residual_at_c_min = euler_eq(c_min, k, h_itp; m)
+            residual_at_c_max = euler_eq(c_max, k, h_itp; m)
+            if residual_at_c_min > 0 && residual_at_c_max > 0
+                hs_new[i_k] = c_max
+            elseif residual_at_c_min < 0 && residual_at_c_max < 0
+                hs_new[i_k] = c_min
             else
-                h_new[i_k] = find_zero(c -> euler_eq(c, k, h_itp; m),
+                hs_new[i_k] = find_zero(c -> euler_eq(c, k, h_itp; m),
                     (c_min, c_max))
             end
         end
-        dist = maximum(abs, h_new - h)
-        h .= h_new
+        dist = maximum(abs, hs_new - hs)
+        hs .= hs_new
         iter += 1
-        push!(history, copy(h))
+        push!(h_history, copy(hs))
         push!(dists, dist)
     end
 
-    return history, dists
+    return h_history, dists
 end
 
-mpfi = Model()
-history_pfi, dists_pfi = pfi_history(mpfi)
+m_pfi = Model()
+h_history, dists_pfi = pfi_history(m_pfi)
 
 mkpath(data_dir)
 open(joinpath(data_dir, "pfi_iterations.csv"), "w") do io
     println(io, "iter,k,h")
-    for (it, h) in enumerate(history_pfi)    # it = 1 is h^0
-        for (k, v) in zip(mpfi.k_grid, h)
-            println(io, "$(it - 1),$k,$v")
+    for (it, hs) in enumerate(h_history)     # it = 1 is h^0
+        for (k, h_k) in zip(m_pfi.k_grid, hs)
+            println(io, "$(it - 1),$k,$h_k")
         end
     end
 end
 open(joinpath(data_dir, "pfi_distance.csv"), "w") do io
     println(io, "iter,dist")
-    for (it, d) in enumerate(dists_pfi)
-        println(io, "$it,$d")
+    for (it, dist) in enumerate(dists_pfi)
+        println(io, "$it,$dist")
     end
 end
 ```
@@ -477,7 +487,7 @@ Plot.plot({
   style: {fontSize: "16px"},
   x: {label: "Iteration N"},
   y: {
-    label: "‖hᴺ − hᴺ⁻¹‖∞",
+    label: "‖𝐡ᴺ − 𝐡ᴺ⁻¹‖∞",
     type: "log",
     ticks: [1, 1e-2, 1e-4, 1e-6],
     tickFormat: pow10
@@ -509,15 +519,15 @@ Plot.plot({
     - $P_{i, l} = 0, \quad l \neq j, j+1$
 
     $g(k_i)$ がグリッドの外に出る場合は, 近い方の端点に重み $1$ を置く.
-1. $u, V$ を $u(h(k)), V(k)$ からなる離散化されたベクトルとすると
+1. $\boldsymbol{u}, \boldsymbol{V}$ を $u(h(k)), V(k)$ からなる離散化されたベクトルとすると
     $$
-    V = u + \beta P V.
+    \boldsymbol{V} = \boldsymbol{u} + \beta P \boldsymbol{V}.
     $$
-1. $V = (I - \beta P)^{-1} u$ により $V$ を求める.
+1. $\boldsymbol{V} = (I - \beta P)^{-1} \boldsymbol{u}$ により $\boldsymbol{V}$ を求める.
 
 :::
 
-$P$ の重みは線形補間の重みそのものです. $PV$ の $i$ 行目は $P_{i, j} V_j + P_{i, j+1} V_{j+1}$ であり, 来期の価値 $V(g(k_i))$ を両隣のグリッド点の値から線形補間したもの (@sec-interpolation) になっています.
+$P$ の重みは線形補間の重みそのものです. $P \boldsymbol{V}$ の $i$ 行目は $P_{i, j} V_j + P_{i, j+1} V_{j+1}$ であり, 来期の価値 $V(g(k_i))$ を両隣のグリッド点の値から線形補間したもの (@sec-interpolation) になっています.
 
 ここでは, より高速な線型方程式を用いる方法を実装します. より速度を求める場合, 遷移行列はほとんどの要素がゼロであるため, 疎行列 (Sparse Matrix) を用いることで高速化する可能性があります. Juliaの場合, `SparseArrays.jl` で実装されています.
 
@@ -526,12 +536,12 @@ $P$ の重みは線形補間の重みそのものです. $PV$ の $i$ 行目は 
 ```{julia}
 #| label: fn-lottery
 #| output: false
-function lottery(x, grid)
-    n = length(grid)
-    x <= grid[begin] && return (1, 1, 1.0)
-    x >= grid[end] && return (n, n, 1.0)
-    j = searchsortedlast(grid, x)
-    ω = (grid[j+1] - x) / (grid[j+1] - grid[j])
+function lottery(x, x_grid)
+    n = length(x_grid)
+    x <= x_grid[begin] && return (1, 1, 1.0)
+    x >= x_grid[end] && return (n, n, 1.0)
+    j = searchsortedlast(x_grid, x)
+    ω = (x_grid[j+1] - x) / (x_grid[j+1] - x_grid[j])
     return (j, j + 1, ω)
 end
 ```
@@ -540,22 +550,22 @@ end
 #| label: fig-pfi-vf
 #| fig-cap: Value Function from PFI and Linear Equation.
 function compute_vf!(m::Model)
-    (; h, n_k, k_grid, β, δ) = m
+    (; hs, n_k, k_grid, β, δ) = m
     P = zeros(n_k, n_k)
     for (i_k, k) in enumerate(k_grid)
-        g = f(k; m) + (1 - δ) * k - h[i_k]
+        g = f(k; m) + (1 - δ) * k - hs[i_k]
         j_lo, j_hi, ω = lottery(g, k_grid)
         P[i_k, j_lo] += ω
         P[i_k, j_hi] += 1 - ω
     end
 
-    m.V .= (I - β * P) \ (u.(h; m))
+    m.Vs .= (I - β * P) \ (u.(hs; m))
 
     return nothing
 end
 
 compute_vf!(m)
-plot(m.k_grid, m.V, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
+plot(m.k_grid, m.Vs, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 ```
 
 また, VFIよりもPFIの方が収束速度が速いことも確認できますが, 実行速度も速いことも確認できます.
@@ -563,11 +573,13 @@ plot(m.k_grid, m.V, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 ```{julia}
 #| label: bm-vfi
 using BenchmarkTools
+println("Value function iteration:")
 @benchmark vfi!(m, verbose=false) setup = (m = Model())
 ```
 
 ```{julia}
 #| label: bm-pfi
+println("Policy function iteration:")
 @benchmark (pfi!(m, verbose=false); compute_vf!(m)) setup = (m = Model())
 ```
 
@@ -590,7 +602,7 @@ $$
 ## Endogenous Grid Method
 
 1. 来期資本 $k'$ のグリッドを固定し, 資源関数の逆関数 $m^{-1}(\cdot)$ を一度だけ構築する.
-1. 政策関数の初期値 $h^0 = (h_1^0, \dots, h_n^0)$ を適当に設定する.
+1. 政策関数の初期値 $\boldsymbol{h}^0 = (h_1^0, \dots, h_n^0)$ を適当に設定する.
 1. 政策 $\tilde{h}^N(k')$ を所与に, 各グリッド点 $k'_j$ について
     - オイラー方程式から今期消費 $c_j = \left(u'\right)^{-1}\left(\beta u'(h(k'_j))(f'(k'_j) + 1 - \delta)\right)$ を求める.
     - 予算制約から今期資本 $k_j = m^{-1}(c_j + k'_j)$ を求める.
@@ -602,32 +614,33 @@ $$
 ```{julia}
 #| label: fig-egm
 #| fig-cap: Endogenous Grid Method.
-u′_inv(ū; m) = 1 / ū
+u′_inv(marg_u; m) = 1 / marg_u
 
 function egm!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, β, δ) = m
 
     # Construct the resource function and its inverse
-    m_func = f.(k_grid; m) .+ (1 - δ) .* k_grid
-    m_inv = linear_interpolation(m_func, k_grid, extrapolation_bc=Line())
+    resources = f.(k_grid; m) .+ (1 - δ) .* k_grid
+    m⁻¹ = linear_interpolation(resources, k_grid, extrapolation_bc=Line())
 
-    h_new = similar(m.h)
-    c_endog = similar(k_grid)
-    k_endog = similar(k_grid)
+    hs_new = similar(m.hs)
+    cs_endog = similar(k_grid)
+    ks_endog = similar(k_grid)
     iter, dist = 0, Inf
     while dist > tol && iter < max_iter
-        for (j, k′) in enumerate(k_grid)                  # fix k' on the grid
-            rhs = β * u′(m.h[j]; m) * (f′(k′; m) + 1 - δ)  # m.h[j] is c(k'_j)
-            c_endog[j] = u′_inv(rhs; m)
-            k_endog[j] = m_inv(c_endog[j] + k′)             # m(k) = c + k'
+        for (j, k′) in enumerate(k_grid)                    # fix k' on the grid
+            rhs = β * u′(m.hs[j]; m) * (f′(k′; m) + 1 - δ)  # m.hs[j] is c(k'_j)
+            cs_endog[j] = u′_inv(rhs; m)
+            ks_endog[j] = m⁻¹(cs_endog[j] + k′)             # m(k) = c + k'
         end
         # interpolate the endogenous grid back onto the fixed grid
-        c_itp = linear_interpolation(k_endog, c_endog, extrapolation_bc=Line())
+        c_itp = linear_interpolation(ks_endog, cs_endog,
+            extrapolation_bc=Line())
         for (i, k) in enumerate(k_grid)
-            h_new[i] = c_itp(k)
+            hs_new[i] = c_itp(k)
         end
-        dist = maximum(abs, h_new - m.h)
-        m.h .= h_new
+        dist = maximum(abs, hs_new - m.hs)
+        m.hs .= hs_new
         iter += 1
     end
 
@@ -644,13 +657,15 @@ end
 
 m = Model()
 egm!(m)
-plot(m.k_grid, m.h, label=false, xlabel=L"Capital $k$", ylabel=L"Policy $c = h(k)$")
+plot(m.k_grid, m.hs, label=false, xlabel=L"Capital $k$",
+    ylabel=L"Policy $c = h(k)$")
 ```
 
 VFI, PFI と同じ政策関数が得られます. EGM は反復の中で求根を行わないため, さらに高速です.
 
 ```{julia}
 #| label: bm-egm
+println("Endogenous grid method:")
 @benchmark (egm!(m, verbose=false); compute_vf!(m)) setup = (m = Model())
 ```
 
@@ -668,9 +683,10 @@ $$
 
 ```{julia}
 #| label: rouwenhorst-quantecon
-mc = rouwenhorst(5, 0.9, 1.0, 0.1) # rouwenhorst(N, ρ, σ, μ)
-@show mc.state_values
-mc.p
+z_chain = rouwenhorst(5, 0.9, 1.0, 0.1) # rouwenhorst(N, ρ, σ, μ)
+println("Grid: ", round.(collect(z_chain.state_values), digits=3))
+println("Transition matrix Π:")
+z_chain.p
 ```
 
 `rouwenhorst` の引数の AR(1) の定義 (切片 $\mu$ の扱い) と, 過程の平均を任意の値に設定する方法は @sec-discretization を参照してください.
@@ -702,9 +718,9 @@ VFIを用いる場合, 実装は価値関数 $V$ の次元を $z$ のために1�
     k_min::TF = 1.0
     k_max::TF = 10.0
     k_grid::Vector{TF} = collect(range(k_min, k_max, length=n_k))
-    mc::MarkovChain = rouwenhorst(n_z, ρ, σ, μ)
-    z_grid::Vector{TF} = collect(exp.(mc.state_values))
-    Π::Matrix{TF} = mc.p
+    z_chain::MarkovChain = rouwenhorst(n_z, ρ, σ, μ)
+    z_grid::Vector{TF} = collect(exp.(z_chain.state_values))
+    Π::Matrix{TF} = z_chain.p
     V::Matrix{TF} = zeros(n_k, n_z)
     h::Matrix{TF} = repeat(k_grid, 1, n_z)
 end
@@ -748,12 +764,12 @@ function vfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     return nothing
 end
 
-ms = StochasticModel()
-vfi!(ms)
-p = plot(ms.k_grid, ms.V[:, 5], label=L"z_5",
+m_stoch = StochasticModel()
+vfi!(m_stoch)
+p = plot(m_stoch.k_grid, m_stoch.V[:, 5], label=L"z_5",
     xlabel=L"Capital $k$", ylabel=L"Value $V(k, z)$")
 for i in 4:-1:1
-    plot!(ms.k_grid, ms.V[:, i], label=L"z_%$i")
+    plot!(m_stoch.k_grid, m_stoch.V[:, i], label=L"z_%$i")
 end
 
 p
@@ -794,14 +810,14 @@ function pfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
         # build one interpolant per productivity state, once per sweep
         h_itps = [linear_interpolation(k_grid, m.h[:, i_z′]) for i_z′ in 1:n_z]
         for (i_z, z) in enumerate(z_grid), (i_k, k) in enumerate(k_grid)
-            coh = f(k, z; m) + (1 - δ) * k
-            c_min = max(1e-9, coh - k_grid[end])
-            c_max = coh - k_grid[begin]
-            ee_left = euler_eq(c_min, k, i_z, h_itps; m)
-            ee_right = euler_eq(c_max, k, i_z, h_itps; m)
-            if ee_left > 0 && ee_right > 0
+            cash_on_hand = f(k, z; m) + (1 - δ) * k
+            c_min = max(1e-9, cash_on_hand - k_grid[end])
+            c_max = cash_on_hand - k_grid[begin]
+            residual_at_c_min = euler_eq(c_min, k, i_z, h_itps; m)
+            residual_at_c_max = euler_eq(c_max, k, i_z, h_itps; m)
+            if residual_at_c_min > 0 && residual_at_c_max > 0
                 h_new[i_k, i_z] = c_max
-            elseif ee_left < 0 && ee_right < 0
+            elseif residual_at_c_min < 0 && residual_at_c_max < 0
                 h_new[i_k, i_z] = c_min
             else
                 h_new[i_k, i_z] = find_zero(c -> euler_eq(c, k, i_z, h_itps; m),
@@ -825,12 +841,12 @@ function pfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     return nothing
 end
 
-ms_pfi = StochasticModel()
-pfi!(ms_pfi)
-p = plot(ms_pfi.k_grid, ms_pfi.h[:, 5], label=L"z_5",
+m_stoch_pfi = StochasticModel()
+pfi!(m_stoch_pfi)
+p = plot(m_stoch_pfi.k_grid, m_stoch_pfi.h[:, 5], label=L"z_5",
     xlabel=L"Capital $k$", ylabel=L"Policy $h(k, z)$")
 for i in 4:-1:1
-    plot!(ms_pfi.k_grid, ms_pfi.h[:, i], label=L"z_%$i")
+    plot!(m_stoch_pfi.k_grid, m_stoch_pfi.h[:, i], label=L"z_%$i")
 end
 
 p
@@ -838,36 +854,36 @@ p
 
 **価値関数の復元**
 
-PFI が返すのは政策関数 $h(k, z)$ です. 決定論的な場合と同じ線形方程式で価値関数 $V(k, z)$ を復元できます. 政策から来期資本 $g(k, z) = f(k, z) + (1-\delta)k - h(k, z)$ を求め, $(k, z)$ 上の遷移行列 $P$ を作ります. 資本方向は決定論的な場合と同じく `lottery` の重みで $g(k, z)$ を挟む2つのグリッド点に振り分け, 生産性方向は $\pi(z' \mid z)$ で遷移させます. すると $V = (I - \beta P)^{-1} u$ で価値関数が求まります.
+PFI が返すのは政策関数 $h(k, z)$ です. 決定論的な場合と同じ線形方程式で価値関数 $V(k, z)$ を復元できます. 政策から来期資本 $g(k, z) = f(k, z) + (1-\delta)k - h(k, z)$ を求め, $(k, z)$ 上の遷移行列 $P$ を作ります. 資本方向は決定論的な場合と同じく `lottery` の重みで $g(k, z)$ を挟む2つのグリッド点に振り分け, 生産性方向は $\pi(z' \mid z)$ で遷移させます. すると $\boldsymbol{V} = (I - \beta P)^{-1} \boldsymbol{u}$ で価値関数が求まります.
 
 ```{julia}
 #| label: fig-vfi-recover
 #| fig-cap: Value function recovered from the PFI policy (stochastic model).
 function compute_vf!(m::StochasticModel)
     (; h, n_k, n_z, k_grid, z_grid, β, δ, Π) = m
-    N = n_k * n_z
-    idx(i_k, i_z) = i_k + (i_z - 1) * n_k  # linear index for (k, z)
-    P = zeros(N, N)
-    uvec = zeros(N)
+    n_kz = n_k * n_z
+    state_index(i_k, i_z) = i_k + (i_z - 1) * n_k  # linear index for (k, z)
+    P = zeros(n_kz, n_kz)
+    us = zeros(n_kz)
     for (i_z, z) in enumerate(z_grid), (i_k, k) in enumerate(k_grid)
-        row = idx(i_k, i_z)
-        uvec[row] = u(h[i_k, i_z]; m)
+        row = state_index(i_k, i_z)
+        us[row] = u(h[i_k, i_z]; m)
         g = f(k, z; m) + (1 - δ) * k - h[i_k, i_z]   # next capital k'(k, z)
         j_lo, j_hi, ω = lottery(g, k_grid)
         for i_z′ in 1:n_z
-            P[row, idx(j_lo, i_z′)] += ω * Π[i_z, i_z′]
-            P[row, idx(j_hi, i_z′)] += (1 - ω) * Π[i_z, i_z′]
+            P[row, state_index(j_lo, i_z′)] += ω * Π[i_z, i_z′]
+            P[row, state_index(j_hi, i_z′)] += (1 - ω) * Π[i_z, i_z′]
         end
     end
-    m.V .= reshape((I - β * P) \ uvec, n_k, n_z)
+    m.V .= reshape((I - β * P) \ us, n_k, n_z)
     return nothing
 end
 
-compute_vf!(ms_pfi)
-p = plot(ms_pfi.k_grid, ms_pfi.V[:, 5], label=L"z_5",
+compute_vf!(m_stoch_pfi)
+p = plot(m_stoch_pfi.k_grid, m_stoch_pfi.V[:, 5], label=L"z_5",
     xlabel=L"Capital $k$", ylabel=L"Value $V(k, z)$")
 for i in 4:-1:1
-    plot!(ms_pfi.k_grid, ms_pfi.V[:, i], label=L"z_%$i")
+    plot!(m_stoch_pfi.k_grid, m_stoch_pfi.V[:, i], label=L"z_%$i")
 end
 
 p
@@ -891,8 +907,8 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
         extrapolation_bc=Line()) for z in z_grid]
     c = copy(m.h)  # h holds the consumption policy
     c_new = similar(c)
-    c_endog = similar(k_grid)
-    k_endog = similar(k_grid)
+    cs_endog = similar(k_grid)
+    ks_endog = similar(k_grid)
     iter, dist = 0, Inf
     while dist > tol && iter < max_iter
         for (i_z, z) in enumerate(z_grid)
@@ -900,10 +916,10 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
                 rhs = β * sum(Π[i_z, i_z′] * u′(c[j, i_z′]; m) *
                               (f′(k′, z′; m) + 1 - δ)
                               for (i_z′, z′) in enumerate(z_grid))
-                c_endog[j] = 1 / rhs  # (u')⁻¹(rhs) since u = log
-                k_endog[j] = M⁻¹[i_z](c_endog[j] + k′)  # invert M(k, z)
+                cs_endog[j] = 1 / rhs  # (u')⁻¹(rhs) since u = log
+                ks_endog[j] = M⁻¹[i_z](cs_endog[j] + k′)  # invert M(k, z)
             end
-            c_itp = linear_interpolation(k_endog, c_endog,
+            c_itp = linear_interpolation(ks_endog, cs_endog,
                 extrapolation_bc=Line())
             for (i, k) in enumerate(k_grid)
                 c_new[i, i_z] = c_itp(k)
@@ -926,12 +942,12 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     return nothing
 end
 
-ms_egm = StochasticModel()
-egm!(ms_egm)
-p = plot(ms_egm.k_grid, ms_egm.h[:, 5], label=L"z_5",
+m_stoch_egm = StochasticModel()
+egm!(m_stoch_egm)
+p = plot(m_stoch_egm.k_grid, m_stoch_egm.h[:, 5], label=L"z_5",
     xlabel=L"Capital $k$", ylabel=L"Policy $h(k, z)$")
 for i in 4:-1:1
-    plot!(ms_egm.k_grid, ms_egm.h[:, i], label=L"z_%$i")
+    plot!(m_stoch_egm.k_grid, m_stoch_egm.h[:, i], label=L"z_%$i")
 end
 
 p
@@ -1081,12 +1097,13 @@ $$
 
 **パラメータの設定**
 
-モデルのパラメータと, 状態空間 (資産グリッドと生産性グリッド) を `AiyagariModel` にまとめます. 借入制約 $a \geq 0$ の近くで政策関数が大きく曲がるため, 資産グリッドは原点付近を密にとります.^[`(range(0, 1, length=na)).^2` のように $[0, 1]$ の等間隔点を二乗することで, 原点付近に点を集めたグリッドを作っています.] 生産性は不変分布での平均が $1$ になるよう基準化し, 総労働を $L = 1$ とします.
+モデルのパラメータと, 状態空間 (資産グリッドと生産性グリッド) を `AiyagariModel` にまとめます. 借入制約 $a \geq 0$ の近くで政策関数が大きく曲がるため, 資産グリッドは原点付近を密にとります.^[`(range(0, 1, length=n_a)).^2` のように $[0, 1]$ の等間隔点を二乗することで, 原点付近に点を集めたグリッドを作っています.] 生産性は不変分布での平均が $1$ になるよう基準化し, 総労働を $L = 1$ とします.
 
 ```{julia}
 #| label: setup-model
 #| output: false
-normalize_mean(z, p) = z ./ dot(p, z)  # normalize so that E[z] = 1
+# normalize so that E[z] = 1
+normalize_mean(z_grid, z_probs) = z_grid ./ dot(z_probs, z_grid)
 
 @kwdef struct AiyagariModel{TF<:AbstractFloat,TI<:Integer}
     β::TF = 0.96
@@ -1096,14 +1113,15 @@ normalize_mean(z, p) = z ./ dot(p, z)  # normalize so that E[z] = 1
     ρ::TF = 0.9
     σ::TF = 0.2
     L::TF = 1.0
-    na::TI = 200
-    nz::TI = 7
-    amax::TF = 50.0
-    a::Vector{TF} = (range(0, 1, length=na)) .^ 2 .* amax  # dense near origin
-    mc::MarkovChain = rouwenhorst(nz, ρ, σ)  # QuantEcon.jl
-    z::Vector{TF} = normalize_mean(exp.(collect(mc.state_values)),
-        stationary_distributions(mc)[1])
-    Π::Matrix{TF} = mc.p
+    n_a::TI = 200
+    n_z::TI = 7
+    a_max::TF = 50.0
+    # dense near origin
+    a_grid::Vector{TF} = (range(0, 1, length=n_a)) .^ 2 .* a_max
+    z_chain::MarkovChain = rouwenhorst(n_z, ρ, σ)  # QuantEcon.jl
+    z_grid::Vector{TF} = normalize_mean(exp.(collect(z_chain.state_values)),
+        stationary_distributions(z_chain)[1])
+    Π::Matrix{TF} = z_chain.p
 end
 
 K_demand(r, m) = m.L * (m.α / (r + m.δ))^(1 / (1 - m.α))
@@ -1112,46 +1130,50 @@ wage(r, m) = (1 - m.α) * (m.α / (r + m.δ))^(m.α / (1 - m.α))
 
 **家計の問題 (内側ループ)**
 
-オイラー方程式 (@eq-aiyagari-euler) を EGM で解きます. 手順は @sec-dp-stochastic と同じで, 新しいのは借入制約の扱いだけです. 内生グリッドの下端 $a_{\text{endog}}[1]$ は $a' = 0$ を選ぶ家計に対応するので, 手持ち資産がこれより小さい家計では制約が拘束します. その領域では $a' = 0$ に張り付き, 消費は予算制約から $c = wz + (1+r)a$ となります.
+オイラー方程式 (@eq-aiyagari-euler) を EGM で解きます. 手順は @sec-dp-stochastic と同じで, 新しいのは借入制約の扱いだけです. 内生グリッドの下端 (コードの `as_endog[1]`) は $a' = 0$ を選ぶ家計に対応するので, 手持ち資産がこれより小さい家計では制約が拘束します. その領域では $a' = 0$ に張り付き, 消費は予算制約から $c = wz + (1+r)a$ となります.
 
 ```{julia}
 #| label: fn-household
 #| output: false
 u′(c, γ) = c^(-γ)
-u′inv(x, γ) = x^(-1 / γ)
+u′_inv(marg_u, γ) = marg_u^(-1 / γ)
 
 # EGM: iterate the consumption policy c(a, z); return saving policy a'
-function solve_household(r, m; tol=1e-9, maxit=10_000)
-    (; β, γ, z, Π, a, na, nz) = m
+function solve_household(r, m; tol=1e-9, max_iter=10_000)
+    (; β, γ, z_grid, Π, a_grid, n_a, n_z) = m
     w = wage(r, m)
-    c = w .* z' .+ max(r, 1e-4) .* a  # initial guess: labor income + interest
+    # initial guess: labor income + interest
+    c = w .* z_grid' .+ max(r, 1e-4) .* a_grid
     c_new = similar(c)
-    a_endog = similar(a)
-    c_endog = similar(a)
-    for _ in 1:maxit
-        Emu = (u′.(c, γ)) * Π'  # Emu[a',z] = Σ_z' π(z'|z) u'(c(a',z'))
-        for iz in 1:nz
-            for ja in 1:na
+    as_endog = similar(a_grid)
+    cs_endog = similar(a_grid)
+    for _ in 1:max_iter
+        # expected marginal utility at (a', z): Σ_z' π(z'|z) u'(c(a', z'))
+        expected_u′ = (u′.(c, γ)) * Π'
+        for iz in 1:n_z
+            for ja in 1:n_a
                 # invert the Euler eq., then the budget for the endogenous asset
-                c_endog[ja] = u′inv(β * (1 + r) * Emu[ja, iz], γ)
-                a_endog[ja] = (c_endog[ja] + a[ja] - w * z[iz]) / (1 + r)
+                cs_endog[ja] = u′_inv(β * (1 + r) * expected_u′[ja, iz], γ)
+                as_endog[ja] =
+                    (cs_endog[ja] + a_grid[ja] - w * z_grid[iz]) / (1 + r)
             end
-            c_itp = linear_interpolation(a_endog, c_endog,
+            c_itp = linear_interpolation(as_endog, cs_endog,
                 extrapolation_bc=Line())
-            for ia in 1:na
-                if a[ia] <= a_endog[begin]  # constraint binds: a' = 0
-                    c_new[ia, iz] = w * z[iz] + (1 + r) * a[ia]
+            for ia in 1:n_a
+                if a_grid[ia] <= as_endog[begin]  # constraint binds: a' = 0
+                    c_new[ia, iz] = w * z_grid[iz] + (1 + r) * a_grid[ia]
                 else
-                    c_new[ia, iz] = c_itp(a[ia])
+                    c_new[ia, iz] = c_itp(a_grid[ia])
                 end
             end
         end
-        diff = maximum(abs.(c_new - c))
+        dist = maximum(abs.(c_new - c))
         c .= c_new
-        diff < tol && break
+        dist < tol && break
     end
-    g = @. w * z' + (1 + r) * a - c  # saving policy a' = coh - c
-    return max.(g, a[begin])  # enforce a' >= 0 (borrowing constraint)
+    # saving policy a' = cash on hand - c
+    g = @. w * z_grid' + (1 + r) * a_grid - c
+    return max.(g, a_grid[begin])  # enforce a' >= 0 (borrowing constraint)
 end
 ```
 
@@ -1163,32 +1185,34 @@ $$
 $$
 で, 関数もそこで定義した `lottery` をそのまま使います.
 
-違うのは $P$ を使う向きだけです. 価値関数の復元では $P$ を右から $V$ に掛け, 来期の価値 $V(a')$ を2点の値の加重平均 $\omega V_j + \left(1 - \omega\right) V_{j+1}$ で近似しました (線形補間). 分布の更新では, 同じ重みで今期の質量を来期の2点に振り分けます. 遷移行列 $P$ を確率的なモデルの価値関数の復元と同じく $(a, z)$ 上に作れば, 更新式は転置を掛けた $\lambda' = P^\top \lambda$ です. 下のコードは $P$ を作らずに, この積をループで直接計算しています.
+違うのは $P$ を使う向きだけです. 価値関数の復元では $P$ を右から $\boldsymbol{V}$ に掛け, 来期の価値 $V(a')$ を2点の値の加重平均 $\omega V_j + \left(1 - \omega\right) V_{j+1}$ で近似しました (線形補間). 分布の更新では, 同じ重みで今期の質量を来期の2点に振り分けます. 遷移行列 $P$ を確率的なモデルの価値関数の復元と同じく $(a, z)$ 上に作れば, 更新式は転置を掛けた $\boldsymbol{\lambda}' = P^\top \boldsymbol{\lambda}$ です. 下のコードは $P$ を作らずに, この積をループで直接計算しています.
 
 重みは $\omega a_j + \left(1 - \omega\right) a_{j+1} = a'$ を満たすので, 振り分けた後の資産の平均はもとの $a'$ に一致します. 家計を確率 $\omega$ で $a_j$ に, 確率 $1 - \omega$ で $a_{j+1}$ に送る抽選とみなせるので, この使い方を抽選 (lottery) と呼びます. 非確率的シミュレーション [@young2010] としても知られ, 離散グリッド上で連続的な分布を精度よく近似します.
 
 ```{julia}
 #| label: fn-distribution
 #| output: false
-function distribution(g, m; tol=1e-12, maxit=100_000)
-    (; a, Π, na, nz) = m
-    λ = fill(1 / (na * nz), na, nz)
-    for _ in 1:maxit
-        λnew = zeros(na, nz)
-        for iz in 1:nz, ia in 1:na
-            jlo, jhi, ω = lottery(g[ia, iz], a)  # split a' between grid points
-            for jz in 1:nz
-                λnew[jlo, jz] += λ[ia, iz] * Π[iz, jz] * ω
-                λnew[jhi, jz] += λ[ia, iz] * Π[iz, jz] * (1 - ω)
+function distribution(g, m; tol=1e-12, max_iter=100_000)
+    (; a_grid, Π, n_a, n_z) = m
+    λ = fill(1 / (n_a * n_z), n_a, n_z)
+    for _ in 1:max_iter
+        λ_new = zeros(n_a, n_z)
+        for iz in 1:n_z, ia in 1:n_a
+            # split a' between grid points
+            j_lo, j_hi, ω = lottery(g[ia, iz], a_grid)
+            for jz in 1:n_z
+                λ_new[j_lo, jz] += λ[ia, iz] * Π[iz, jz] * ω
+                λ_new[j_hi, jz] += λ[ia, iz] * Π[iz, jz] * (1 - ω)
             end
         end
-        maximum(abs.(λnew - λ)) < tol && return λnew
-        λ = λnew
+        maximum(abs.(λ_new - λ)) < tol && return λ_new
+        λ = λ_new
     end
     return λ
 end
 
-aggregate_A(λ, m) = sum(λ[ia, iz] * m.a[ia] for ia in 1:m.na, iz in 1:m.nz)
+aggregate_A(λ, m) =
+    sum(λ[ia, iz] * m.a_grid[ia] for ia in 1:m.n_a, iz in 1:m.n_z)
 ```
 
 **一般均衡 (外側ループ)**
@@ -1203,12 +1227,12 @@ function excess_demand(r, m)
     return aggregate_A(λ, m) - K_demand(r, m)
 end
 
-ma = AiyagariModel()
-r_star = find_zero(r -> excess_demand(r, ma),
-    (0.005, 1 / ma.β - 1 - 1e-3), atol=1e-4)
-complete_market = 1 / ma.β - 1
-K_star = K_demand(r_star, ma)
-@show r_star complete_market K_star;
+m_aiyagari = AiyagariModel()
+r_star = find_zero(r -> excess_demand(r, m_aiyagari),
+    (0.005, 1 / m_aiyagari.β - 1 - 1e-3), atol=1e-4)
+r_complete = 1 / m_aiyagari.β - 1
+K_star = K_demand(r_star, m_aiyagari)
+@show r_star r_complete K_star;
 ```
 
 均衡利子率 $r^* \approx 0.025$ は, 完備市場の値 $1/\beta - 1 \approx 0.042$ を明確に下回っています. これが Aiyagari モデルの中心的な結果であり, 予備的貯蓄による過剰な資本蓄積を反映しています.
@@ -1223,13 +1247,14 @@ K_star = K_demand(r_star, ma)
 #| label: fig-policy
 #| code-fold: true
 #| fig-cap: "**Savings policy function $a' = g(a, z)$.** 破線は45度線 $a' = a$. 右は原点付近の拡大."
-g = solve_household(r_star, ma)
+g = solve_household(r_star, m_aiyagari)
 
 function policy_panel(xlim; legend=true)
-    p = plot(ma.a, g[:, 1], label=legend ? L"z_{\min}" : false, lw=2,
+    (; a_grid, n_z) = m_aiyagari
+    p = plot(a_grid, g[:, 1], label=legend ? L"z_{\min}" : false, lw=2,
         xlabel=L"a", ylabel=L"a'")
-    plot!(p, ma.a, g[:, ma.nz], label=legend ? L"z_{\max}" : false, lw=2)
-    plot!(p, ma.a, ma.a, label=false, ls=:dash, color=:black, lw=1)
+    plot!(p, a_grid, g[:, n_z], label=legend ? L"z_{\max}" : false, lw=2)
+    plot!(p, a_grid, a_grid, label=false, ls=:dash, color=:black, lw=1)
     plot!(p, xlims=(0, xlim), ylims=(0, xlim))
     return p
 end
@@ -1246,25 +1271,28 @@ plot(policy_panel(20.0), policy_panel(0.3, legend=false),
 #| label: fig-distribution
 #| code-fold: true
 #| fig-cap: "**Stationary distribution of assets.** 幅 $0.5$ のビンに集計した資産の周辺分布. $a = 0$ のビンの質量が借入制約に張り付く家計にあたる."
-g = solve_household(r_star, ma)
-marg_a = vec(sum(distribution(g, ma), dims=2))
+g = solve_household(r_star, m_aiyagari)
+masses_by_a = vec(sum(distribution(g, m_aiyagari), dims=2))
 
 # split each grid point's cell across the equal-width bins it overlaps
-bnds = vcat(ma.a[begin], (ma.a[1:(end-1)] .+ ma.a[2:end]) ./ 2, ma.a[end])
-edges = range(0, 30, length=61)
-mass = zeros(length(edges) - 1)
-mass[begin] = marg_a[begin]                      # atom at the constraint
-for i in 2:ma.na
-    lo, hi = bnds[i], bnds[i+1]
-    for k in eachindex(mass)
-        ov = min(hi, edges[k+1]) - max(lo, edges[k])
-        ov > 0 && (mass[k] += marg_a[i] * ov / (hi - lo))
+(; a_grid, n_a) = m_aiyagari
+cell_edges = vcat(a_grid[begin], (a_grid[1:(end-1)] .+ a_grid[2:end]) ./ 2,
+    a_grid[end])
+bin_edges = range(0, 30, length=61)
+masses_by_bin = zeros(length(bin_edges) - 1)
+masses_by_bin[begin] = masses_by_a[begin]        # atom at the constraint
+for i_a in 2:n_a
+    lo, hi = cell_edges[i_a], cell_edges[i_a+1]
+    for i_bin in eachindex(masses_by_bin)
+        overlap = min(hi, bin_edges[i_bin+1]) - max(lo, bin_edges[i_bin])
+        overlap > 0 &&
+            (masses_by_bin[i_bin] += masses_by_a[i_a] * overlap / (hi - lo))
     end
 end
 
-centers = (edges[1:(end-1)] .+ edges[2:end]) ./ 2
-bar(centers, mass, label=false, xlabel=L"a", ylabel="mass",
-    lw=0, color=1, bar_width=step(edges), xlims=(-0.8, 30))
+bin_centers = (bin_edges[1:(end-1)] .+ bin_edges[2:end]) ./ 2
+bar(bin_centers, masses_by_bin, label=false, xlabel=L"a", ylabel="mass",
+    lw=0, color=1, bar_width=step(bin_edges), xlims=(-0.8, 30))
 ```
 
 **資本の需要と供給**
@@ -1275,27 +1303,29 @@ bar(centers, mass, label=false, xlabel=L"a", ylabel="mass",
 #| label: fig-supply-demand
 #| code-fold: true
 #| fig-cap: "**Capital supply and demand.** 灰破線は完備市場の利子率 $1/\\beta - 1$, 点は均衡 $\\left(K^*, r^*\\right)$."
-rgrid = range(-0.01, 1 / ma.β - 1 - 2e-3, length=40)
-Asupply = [aggregate_A(distribution(solve_household(r, ma), ma), ma)
-           for r in rgrid]
-Kdemand = K_demand.(rgrid, Ref(ma))
+r_grid = range(-0.01, r_complete - 2e-3, length=40)
+As_supply = [aggregate_A(distribution(solve_household(r, m_aiyagari),
+                                      m_aiyagari), m_aiyagari)
+             for r in r_grid]
+Ks_demand = K_demand.(r_grid, Ref(m_aiyagari))
 
-rbar = 1 / ma.β - 1
-keep = Asupply .<= 13.2          # both curves end at a similar capital level
+visible = As_supply .<= 13.2     # both curves end at a similar capital level
 xmax = 15.0
 
-plot(Asupply[keep], rgrid[keep], label=false, lw=2,
+plot(As_supply[visible], r_grid[visible], label=false, lw=2,
     xlabel="capital", ylabel=L"r",
-    xlims=(0, xmax), ylims=(-0.015, rbar + 0.007))
-plot!(Kdemand, rgrid, label=false, lw=2)
-plot!([0, 13.6], [rbar, rbar], ls=:dash, color=:gray, lw=1, label=false)
+    xlims=(0, xmax), ylims=(-0.015, r_complete + 0.007))
+plot!(Ks_demand, r_grid, label=false, lw=2)
+plot!([0, 13.6], [r_complete, r_complete], ls=:dash, color=:gray, lw=1,
+    label=false)
 scatter!([K_star], [r_star], label=false, color=mypalette[3])
 
 # label each line at its right end instead of using a legend
-annotate!(Asupply[keep][end] + 0.3, rgrid[keep][end],
+annotate!(As_supply[visible][end] + 0.3, r_grid[visible][end],
     text(L"A(r)", :black, 9, :left))
-annotate!(Kdemand[begin] + 0.3, rgrid[begin], text(L"K^d(r)", :black, 9, :left))
-annotate!(13.9, rbar, text(L"1/\beta - 1", :black, 9, :left))
+annotate!(Ks_demand[begin] + 0.3, r_grid[begin],
+    text(L"K^d(r)", :black, 9, :left))
+annotate!(13.9, r_complete, text(L"1/\beta - 1", :black, 9, :left))
 annotate!(K_star - 0.4, r_star - 0.004, text(L"r^*", :black, 9, :left))
 ```
 

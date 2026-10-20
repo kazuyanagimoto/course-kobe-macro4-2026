@@ -30,11 +30,11 @@ default(size=(500, 308), titlefontsize=10, fmt=:svg, grid=false,
 ```
 
 
-経済モデルを数値的に解く作業は, 多くの場合「非線形方程式 $f(\mathbf{x}) = \mathbf{0}$ を解く」か「非線形関数を最大化・最小化する」のどちらかに帰着します. 両者は表裏一体です. 最大化問題は一階条件を導出すれば方程式として解けますし, 最適化アルゴリズムの多くは方程式の解法の analogy として理解できます. 本章では, 前半で非線形方程式の解法である**求根法** (root finding) を, 後半で目的関数を直接扱う**非線形最適化** (nonlinear optimization) を解説します.
+経済モデルを数値的に解く作業は, 多くの場合「非線形方程式 $\boldsymbol{f}(\boldsymbol{x}) = \boldsymbol{0}$ を解く」か「非線形関数を最大化・最小化する」のどちらかに帰着します. 両者は表裏一体です. 最大化問題は一階条件を導出すれば方程式として解けますし, 最適化アルゴリズムの多くは方程式の解法の analogy として理解できます. 本章では, 前半で非線形方程式の解法である**求根法** (root finding) を, 後半で目的関数を直接扱う**非線形最適化** (nonlinear optimization) を解説します.
 
 ## 求根法 {#sec-root-finding}
 
-モデルを解く際に, $f(\mathbf{x}) = \mathbf{0}$ となるような $\mathbf{x}$ を求める必要があることが多いです. 例えば, 家計の最大化問題を解く際の一階条件は, 一般に非線形方程式の形をとります. ごく特殊なケースを除いて, 解析的に解くことができないため, 数値的に解を求める必要があります. この様な非線形方程式の数値解法は, 一変数の場合と多変数の場合に分けられます. 以下では, それぞれの方法について解説します.
+モデルを解く際に, $\boldsymbol{f}(\boldsymbol{x}) = \boldsymbol{0}$ となるような $\boldsymbol{x}$ を求める必要があることが多いです. 例えば, 家計の最大化問題を解く際の一階条件は, 一般に非線形方程式の形をとります. ごく特殊なケースを除いて, 解析的に解くことができないため, 数値的に解を求める必要があります. この様な非線形方程式の数値解法は, 一変数の場合と多変数の場合に分けられます. 以下では, それぞれの方法について解説します.
 
 ### 一変数の非線形方程式
 
@@ -92,40 +92,45 @@ Non-bracketing method は基本的には一階微分を利用し, 初期値 $x_0
 dfoc(l; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5) =
     w^(1 - γ_c) * γ_c * (1 - l)^(-γ_c - 1) + α_l * γ_l * l^(-γ_l - 1)
 
-find_zero((foc, dfoc), 0.5, Roots.Newton())
+l = find_zero((foc, dfoc), 0.5, Roots.Newton())
+println("Newton method: l = ", l)
 ```
 
+::: {.content-visible when-format="html"}
+
 実際に `foc` の上でニュートン法が収束していく様子を見てみましょう. 初期値を $x_0 = 0.15$ とし, スライダー (Iteration $N$) を動かすと, 各反復での接線 (赤) が引かれ, その $x$ 切片が次の点 $x_{N+1}$ になります. 接線が急な最初の一歩で大きく動き, 数回の反復で根 (灰色の破線) に急速に近づく様子が確認できます.
+
+:::
 
 ```{julia}
 #| label: newton-history
 #| echo: false
 #| output: false
 function newton_history(f, df, x0; tol=1e-8, maxit=30)
-    xs, fs, ds, xnext = Float64[], Float64[], Float64[], Float64[]
+    xs, fs, dfs, xs_next = Float64[], Float64[], Float64[], Float64[]
     x = x0
     for _ in 1:maxit
         fx, dfx = f(x), df(x)
-        xn = x - fx / dfx
+        x_next = x - fx / dfx
         push!(xs, x)
         push!(fs, fx)
-        push!(ds, dfx)
-        push!(xnext, xn)
+        push!(dfs, dfx)
+        push!(xs_next, x_next)
         abs(fx) < tol && break
-        x = xn
+        x = x_next
     end
-    return xs, fs, ds, xnext
+    return xs, fs, dfs, xs_next
 end
 
-xs, fs, ds, xnext = newton_history(foc, dfoc, 0.15)
+xs, fs, dfs, xs_next = newton_history(foc, dfoc, 0.15)
 
 # save the iteration path and a dense curve of foc for the OJS visualization
 data_dir = @projectroot("lesson", "numerical", "static", "data")
 mkpath(data_dir)
 open(joinpath(data_dir, "newton_iterations.csv"), "w") do io
     println(io, "iter,x,f,d,xnext")
-    for (n, (x, fx, dx, xn)) in enumerate(zip(xs, fs, ds, xnext))
-        println(io, "$(n - 1),$x,$fx,$dx,$xn")
+    for (n, (x, fx, dfx, x_next)) in enumerate(zip(xs, fs, dfs, xs_next))
+        println(io, "$(n - 1),$x,$fx,$dfx,$x_next")
     end
 end
 open(joinpath(data_dir, "newton_curve.csv"), "w") do io
@@ -210,6 +215,7 @@ Juliaの`Roots.jl`のデフォルトのNon-bracketing method (`Order0()`)は, �
 ```{julia}
 #| label: find-zero-hybrid
 l = find_zero(foc, 0.5)
+println("Default method of find_zero: l = ", l)
 ```
 
 
@@ -237,6 +243,7 @@ $$
 #| label: find-zero-transform
 y = find_zero(y -> foc(1 / (1 + exp(-y))), 0.0)
 l = 1 / (1 + exp(-y))
+println("Transformed domain, l = 1 / (1 + exp(-y)): l = ", l)
 ```
 
 #### Bracketing method
@@ -262,9 +269,14 @@ Bracketing method は, 解が存在する区間 $[a, b]$ を選び, その区間
 #| label: find-zero-bracketing
 ϵ = 1e-9
 l = find_zero(foc, (ϵ, 1 - ϵ))
+println("Bisection on (ϵ, 1 - ϵ): l = ", l)
 ```
 
+::: {.content-visible when-format="html"}
+
 二分法が区間を狭めていく様子も見てみましょう. 開始区間を $[a_0, b_0] = [0.4, 0.8]$ とし, スライダー (Iteration $N$) を動かすと, 中点 $c_N$ での符号に応じて区間 (水色の帯) が半分ずつに狭まっていきます. ニュートン法と違い解は常に区間内に保証されますが, 区間幅は毎回半分になるだけなので, 同じ精度に達するにはより多くの反復が必要です.
+
+:::
 
 ```{julia}
 #| label: bisection-history
@@ -405,13 +417,13 @@ function foc_bargaining(l_f; w_m=1.0, w_f=0.5, γ_c=1.5, α_l=1.2, γ_l=1.5)
 end
 
 lf_grid = 0.01:0.01:0.99
-cols = [mypalette[6], mypalette[2], mypalette[4]]
+line_colors = [mypalette[6], mypalette[2], mypalette[4]]
 p = plot(xlabel=L"l_f", legend=false, xlims=(0.0, 1.13))
 for (i, wf) in enumerate([1.0, 0.5, 0.1])
-    ys = foc_bargaining.(lf_grid; w_f=wf)
-    plot!(p, lf_grid, ys, lw=2, color=cols[i])
+    foc_values = foc_bargaining.(lf_grid; w_f=wf)
+    plot!(p, lf_grid, foc_values, lw=2, color=line_colors[i])
     # direct label at the right end of each line
-    annotate!(p, 1.0, ys[end], text(L"w_f = %$wf", 9, :black, :left))
+    annotate!(p, 1.0, foc_values[end], text(L"w_f = %$wf", 9, :black, :left))
 end
 hline!(p, [0.0], ls=:dash, lw=2, label=false, color=:black)
 p
@@ -434,12 +446,12 @@ $$
 function solve_bargaining(; w_m=1.0, w_f=0.5, γ_c=1.5, α_l=1.2, γ_l=1.5)
 
     ϵ = 1e-9
-    left = w_m * (1 - (w_f / w_m)^(1 / γ_l) * ϵ) + w_f * (1 - ϵ) -
-           2 * (w_f / α_l)^(1 / γ_c) * ϵ^(γ_l / γ_c)
-    right = w_m * (1 - (w_f / w_m)^(1 / γ_l) * (1 - ϵ)) + w_f * ϵ -
-            2 * (w_f / α_l)^(1 / γ_c) * (1 - ϵ)^(γ_l / γ_c)
+    foc_left = w_m * (1 - (w_f / w_m)^(1 / γ_l) * ϵ) + w_f * (1 - ϵ) -
+               2 * (w_f / α_l)^(1 / γ_c) * ϵ^(γ_l / γ_c)
+    foc_right = w_m * (1 - (w_f / w_m)^(1 / γ_l) * (1 - ϵ)) + w_f * ϵ -
+                2 * (w_f / α_l)^(1 / γ_c) * (1 - ϵ)^(γ_l / γ_c)
 
-    if left * right < 0
+    if foc_left * foc_right < 0
         l_f = find_zero(
             l_f -> w_m * (1 - (w_f / w_m)^(1 / γ_l) * l_f) + w_f * (1 - l_f) -
                    2 * (w_f / α_l)^(1 / γ_c) * l_f^(γ_l / γ_c),
@@ -447,19 +459,19 @@ function solve_bargaining(; w_m=1.0, w_f=0.5, γ_c=1.5, α_l=1.2, γ_l=1.5)
         l_m = (w_f / w_m)^(1 / γ_l) * l_f
     else
         l_f = 1.0
-        x = find_zero(
-            x -> w_m * (1 - 1 / (1 + exp(x))) -
-                 2 * (w_m / α_l)^(1 / γ_c) * (1 / (1 + exp(x)))^(γ_l / γ_c),
+        y = find_zero(
+            y -> w_m * (1 - 1 / (1 + exp(y))) -
+                 2 * (w_m / α_l)^(1 / γ_c) * (1 / (1 + exp(y)))^(γ_l / γ_c),
             0.0)
-        l_m = 1 / (1 + exp(x))
+        l_m = 1 / (1 + exp(y))
     end
 
     c = w_m * (1 - l_m) + w_f * (1 - l_f)
     c_m = 0.5 * c
     c_f = 0.5 * c
-    U = (c_m^(1 - γ_c) / (1 - γ_c)) + α_l * (l_m^(1 - γ_l) / (1 - γ_l)) +
-        (c_f^(1 - γ_c) / (1 - γ_c)) + α_l * (l_f^(1 - γ_l) / (1 - γ_l))
-    return (c_m=c_m, c_f=c_f, l_m=l_m, l_f=l_f, U=U)
+    utility = (c_m^(1 - γ_c) / (1 - γ_c)) + α_l * (l_m^(1 - γ_l) / (1 - γ_l)) +
+              (c_f^(1 - γ_c) / (1 - γ_c)) + α_l * (l_f^(1 - γ_l) / (1 - γ_l))
+    return (c_m=c_m, c_f=c_f, l_m=l_m, l_f=l_f, utility=utility)
 end
 ```
 
@@ -468,14 +480,14 @@ end
 #| label: fig-sol-bargaining
 #| fig-cap: "**Solution of bargaining problem.** $w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
 wf_grid = 0.1:0.01:0.9
-lm = [solve_bargaining(w_f=w).l_m for w in wf_grid]
-lf = [solve_bargaining(w_f=w).l_f for w in wf_grid]
+lms = [solve_bargaining(w_f=w).l_m for w in wf_grid]
+lfs = [solve_bargaining(w_f=w).l_f for w in wf_grid]
 p = plot(xlabel=L"w_f", legend=false, xlims=(0.1, 1.0))
-plot!(p, wf_grid, lm, lw=2, color=mypalette[6])
-plot!(p, wf_grid, lf, lw=2, color=mypalette[2])
+plot!(p, wf_grid, lms, lw=2, color=mypalette[6])
+plot!(p, wf_grid, lfs, lw=2, color=mypalette[2])
 # direct labels at the right end (nudged apart since the lines converge there)
-annotate!(p, 0.915, lm[end] - 0.02, text(L"l_m", 9, :black, :left))
-annotate!(p, 0.915, lf[end] + 0.02, text(L"l_f", 9, :black, :left))
+annotate!(p, 0.915, lms[end] - 0.02, text(L"l_m", 9, :black, :left))
+annotate!(p, 0.915, lfs[end] + 0.02, text(L"l_f", 9, :black, :left))
 p
 ```
 
@@ -495,7 +507,7 @@ $${#eq-foc-nonlinear-system}
 ```{julia}
 #| label: solve-nonlinear-system
 function solve_nonlinear_system(; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5)
-    f((c, l, λ), par) = [
+    f((c, l, λ), params) = [
         λ * c^γ_c - 1,
         α_l - λ * w * l^γ_l,
         c - w * (1 - l)
@@ -515,9 +527,9 @@ solve_nonlinear_system()
 
 ここからは, 非線形最適化の方法について解説します. 基本的には, 次の非線形関数 $f(\cdot)$ の最小化問題を考えます.
 $$
-\min_{\mathbf{x} \in \mathcal{X}} f(\mathbf{x}).
+\min_{\boldsymbol{x} \in \mathcal{X}} f(\boldsymbol{x}).
 $$
-制約条件として, $g(\mathbf{x}) = \mathbf{0}$ や $h(\mathbf{x}) \leq \mathbf{0}$ を課すこともできますが, まずは制約なしの最適化問題を考えます. 制約付きの最適化問題については @sec-constrained-opt で解説します.
+制約条件として, $\boldsymbol{g}(\boldsymbol{x}) = \boldsymbol{0}$ や $\boldsymbol{h}(\boldsymbol{x}) \leq \boldsymbol{0}$ を課すこともできますが, まずは制約なしの最適化問題を考えます. 制約付きの最適化問題については @sec-constrained-opt で解説します.
 
 一変数の非線形最適化は, @sec-root-finding で解説した, ニュートン法と二分法の analogy である, **準ニュートン法** (Quasi-Newton method) と **黄金分割法** (Golden-section search) で解くことができます. これらの方法は, それぞれニュートン法と二分法のように, 収束の速さと保証のトレードオフがあります. 準ニュートン法は, 収束が速い代わりに, 解が存在する保証がありません. 一方で, 黄金分割法は, 収束が遅い代わりに, 解が存在する区間を保証することができます.
 
@@ -554,8 +566,8 @@ v(l; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5) =
 ```{julia}
 #| label: optim-bfgs
 ϵ = 1e-9
-result = optimize(l -> -v(l[1]), [ϵ], [1.0 - ϵ], [0.5], Fminbox(BFGS()))
-result.minimizer[1]
+result = optimize(ls -> -v(ls[1]), [ϵ], [1.0 - ϵ], [0.5], Fminbox(BFGS()))
+println("BFGS with Fminbox: l = ", result.minimizer[1])
 ```
 
 求根法のニュートン法と同様に, 初期値の選び方によっては収束しない場合があり, 大域的な最適解への収束は保証されません.
@@ -596,7 +608,7 @@ result.minimizer[1]
 #| label: optim-golden
 ϵ = 1e-9
 result = optimize(l -> -v(l), ϵ, 1 - ϵ, Optim.GoldenSection())
-result.minimizer
+println("Golden section search: l = ", result.minimizer)
 ```
 
 二分法と同様に, 適切な区間を指定すれば収束が保証されるため, 準ニュートン法よりも堅牢な方法です.
@@ -610,15 +622,15 @@ result.minimizer
 
 ### 単純なケース
 
-一変数の場合と同様に, 多変数関数 $f: \mathbb{R}^n \to \mathbb{R}$ の最小化も, 一階条件 $\nabla f(\mathbf{x}) = \mathbf{0}$ を解く問題として捉えられます. これは @sec-root-finding の多変数求根法を最適化に応用したものです. ニュートン法は, ヤコビアンの代わりにヘッセ行列 $\nabla^2 f$ を用いて更新します.
+一変数の場合と同様に, 多変数関数 $f: \mathbb{R}^n \to \mathbb{R}$ の最小化も, 一階条件 $\nabla f(\boldsymbol{x}) = \boldsymbol{0}$ を解く問題として捉えられます. これは @sec-root-finding の多変数求根法を最適化に応用したものです. ニュートン法は, ヤコビアンの代わりにヘッセ行列 $\nabla^2 f$ を用いて更新します.
 
 ::: {#alg-newton-multi}
 
 ## ニュートン法 (多変数)
 
-1. 初期値 $\mathbf{x}_0$ を選ぶ. 停止条件として十分小さい $\epsilon > 0$ を選ぶ.
-1. $\mathbf{x}_{n+1} = \mathbf{x}_n - \left[\nabla^2 f(\mathbf{x}_n)\right]^{-1} \nabla f(\mathbf{x}_n)$ を計算する.
-1. $\|\nabla f(\mathbf{x}_{n+1})\| < \epsilon$ ならば停止する. そうでなければ $n \leftarrow n+1$ として2に戻る.
+1. 初期値 $\boldsymbol{x}_0$ を選ぶ. 停止条件として十分小さい $\epsilon > 0$ を選ぶ.
+1. $\boldsymbol{x}_{n+1} = \boldsymbol{x}_n - \left[\nabla^2 f(\boldsymbol{x}_n)\right]^{-1} \nabla f(\boldsymbol{x}_n)$ を計算する.
+1. $\|\nabla f(\boldsymbol{x}_{n+1})\| < \epsilon$ ならば停止する. そうでなければ $n \leftarrow n+1$ として2に戻る.
 
 :::
 
@@ -640,11 +652,13 @@ $k, l > 0$ の正値制約を満たすため, 対数をとった変数 $(\log k,
 
 ```{julia}
 #| label: optim-multivariate
-obj(a) = -profit(exp(a[1]), exp(a[2]))
-res_bfgs = optimize(obj, [0.0, 0.0], BFGS())
-res_nm = optimize(obj, [0.0, 0.0], NelderMead())
-println("BFGS:        ", round.(exp.(Optim.minimizer(res_bfgs)), digits=4))
-println("Nelder-Mead: ", round.(exp.(Optim.minimizer(res_nm)), digits=4))
+neg_profit(log_inputs) = -profit(exp(log_inputs[1]), exp(log_inputs[2]))
+result_bfgs = optimize(neg_profit, [0.0, 0.0], BFGS())
+result_nelder_mead = optimize(neg_profit, [0.0, 0.0], NelderMead())
+println("BFGS:        (k, l) = ",
+    round.(exp.(Optim.minimizer(result_bfgs)), digits=4))
+println("Nelder-Mead: (k, l) = ",
+    round.(exp.(Optim.minimizer(result_nelder_mead)), digits=4))
 ```
 
 どちらも同じ最適点 $(k, l) \approx (2.76, 0.46)$ に収束します.
@@ -660,14 +674,14 @@ println("Nelder-Mead: ", round.(exp.(Optim.minimizer(res_nm)), digits=4))
 
 多峰性の例として, 多数の局所最適点をもつ Rastrigin 関数を最小化します.
 $$
-f(\mathbf{x}) = 10 n + \sum_{i=1}^{n} \left[ x_i^2 - 10 \cos\left(2\pi x_i\right) \right], \qquad \mathbf{x} \in [-5.12, 5.12]^n.
+f(\boldsymbol{x}) = 10 n + \sum_{i=1}^{n} \left[ x_i^2 - 10 \cos\left(2\pi x_i\right) \right], \qquad \boldsymbol{x} \in [-5.12, 5.12]^n.
 $$
-放物線 $\sum_i x_i^2$ に余弦波の細かい起伏を重ねた関数で, 定義域の至る所に局所最適点をもちます. 大域的最適点は原点 $\mathbf{x} = \mathbf{0}$ で, そこで $f = 0$ です. 以下では $n = 2$ とします.
+放物線 $\sum_i x_i^2$ に余弦波の細かい起伏を重ねた関数で, 定義域の至る所に局所最適点をもちます. 大域的最適点は原点 $\boldsymbol{x} = \boldsymbol{0}$ で, そこで $f = 0$ です. 以下では $n = 2$ とします.
 
 ```{julia}
 #| label: fn-rastrigin
 #| output: false
-rastrigin(x) = 10 * length(x) + sum(x .^ 2 .- 10 .* cos.(2π .* x))
+rastrigin(xs) = 10 * length(xs) + sum(xs .^ 2 .- 10 .* cos.(2π .* xs))
 ```
 
 @fig-rastrigin にこの関数の形状を示します. 放物線状のなだらかな椀の上に細かい起伏が重なり, 至る所に局所最適点 (谷) があるのが分かります.
@@ -676,9 +690,9 @@ rastrigin(x) = 10 * length(x) + sum(x .^ 2 .- 10 .* cos.(2π .* x))
 #| label: fig-rastrigin
 #| code-fold: true
 #| fig-cap: "**Rastrigin function ($n = 2$).** Local minima appear throughout the domain."
-xs = range(-5.12, 5.12, length=150)
-Z = [rastrigin([x, y]) for y in xs, x in xs]
-surface(xs, xs, Z, c=:inferno, xlabel=L"x_1", ylabel=L"x_2",
+x_grid = range(-5.12, 5.12, length=150)
+f_matrix = [rastrigin([x1, x2]) for x2 in x_grid, x1 in x_grid]
+surface(x_grid, x_grid, f_matrix, c=:inferno, xlabel=L"x_1", ylabel=L"x_2",
     zlabel=L"f(\mathbf{x})", colorbar=false, camera=(35, 40), size=(560, 440))
 ```
 
@@ -686,9 +700,9 @@ surface(xs, xs, Z, c=:inferno, xlabel=L"x_1", ylabel=L"x_2",
 
 ```{julia}
 #| label: optim-local-trap
-res_local = optimize(rastrigin, [3.0, 3.0], NelderMead())
-(x=round.(Optim.minimizer(res_local), digits=3),
-    f=round(Optim.minimum(res_local), digits=3))
+result_local = optimize(rastrigin, [3.0, 3.0], NelderMead())
+(xs=round.(Optim.minimizer(result_local), digits=3),
+    f=round(Optim.minimum(result_local), digits=3))
 ```
 
 局所最適点 $(2.98, 2.98)$ に捕まり, $f \approx 17.9$ と大域的最適値 $0$ から大きく外れています. 初期値を原点の近くにとれば $f = 0$ に収束しますが, どの谷に落ちるかは初期値次第です.
@@ -697,21 +711,22 @@ res_local = optimize(rastrigin, [3.0, 3.0], NelderMead())
 
 ```{julia}
 #| label: optim-global
-optf = OptimizationFunction((u, p) -> rastrigin(u))
-prob = OptimizationProblem(optf, [3.0, 3.0]; lb=[-5.12, -5.12], ub=[5.12, 5.12])
+opt_function = OptimizationFunction((u, p) -> rastrigin(u))
+prob = OptimizationProblem(opt_function, [3.0, 3.0];
+    lb=[-5.12, -5.12], ub=[5.12, 5.12])
 sol = solve(prob, NLopt.GN_DIRECT_L(), maxiters=5000)
-(x=round.(sol.u, digits=3), f=round(sol.objective, digits=3))
+(xs=round.(sol.u, digits=3), f=round(sol.objective, digits=3))
 ```
 
-初期値によらず大域的最適点 $\mathbf{x} = \mathbf{0}$ ($f = 0$) にたどり着きます. DIRECT (DIviding RECTangles) は探索範囲を系統的に分割していく決定論的な手法で, 初期値の値には依存しません.
+初期値によらず大域的最適点 $\boldsymbol{x} = \boldsymbol{0}$ ($f = 0$) にたどり着きます. DIRECT (DIviding RECTangles) は探索範囲を系統的に分割していく決定論的な手法で, 初期値の値には依存しません.
 
 実務では, 大域的手法で有望な領域を絞り込んでから局所的手法で精密化する, という組み合わせがよく使われます. NLopt の **MLSL** (Multi-Level Single-Linkage, `:G_MLSL_LDS`) は, 定義域全体から多数の初期値をサンプルして局所的手法を繰り返し適用する **multistart** 法で, この考えを体系化したものです.
 
 ## 制約付き非線形最適化 {#sec-constrained-opt}
 
-経済モデルでは, 予算制約などの制約付き最適化が中心的です. 一般に, 等式制約 $g(\mathbf{x}) = \mathbf{0}$ と不等式制約 $h(\mathbf{x}) \leq \mathbf{0}$ のもとで $f(\mathbf{x})$ を最小化する問題を考えます. ラグランジュ関数
+経済モデルでは, 予算制約などの制約付き最適化が中心的です. 一般に, 等式制約 $\boldsymbol{g}(\boldsymbol{x}) = \boldsymbol{0}$ と不等式制約 $\boldsymbol{h}(\boldsymbol{x}) \leq \boldsymbol{0}$ のもとで $f(\boldsymbol{x})$ を最小化する問題を考えます. ラグランジュ関数
 $$
-\mathcal{L}(\mathbf{x}, \lambda, \mu) = f(\mathbf{x}) - \lambda^\top g(\mathbf{x}) - \mu^\top h(\mathbf{x})
+\mathcal{L}(\boldsymbol{x}, \boldsymbol{\lambda}, \boldsymbol{\mu}) = f(\boldsymbol{x}) - \boldsymbol{\lambda}^\top \boldsymbol{g}(\boldsymbol{x}) - \boldsymbol{\mu}^\top \boldsymbol{h}(\boldsymbol{x})
 $$
 の停留点を KKT 条件のもとで求める, というのが基本的な考え方です. 数値的には主に3つのアプローチがあります.
 
@@ -724,9 +739,10 @@ $$
 ```{julia}
 #| label: constrained-substitution
 p1, p2, m = 1.0, 2.0, 10.0
-u2(c1; a=0.4, b=0.6) = c1^a * ((m - p1 * c1) / p2)^b
-res = optimize(c1 -> -u2(c1), 1e-6, m / p1 - 1e-6, Optim.GoldenSection())
-c1 = Optim.minimizer(res)
+utility_c1(c1; a=0.4, b=0.6) = c1^a * ((m - p1 * c1) / p2)^b
+result = optimize(c1 -> -utility_c1(c1), 1e-6, m / p1 - 1e-6,
+    Optim.GoldenSection())
+c1 = Optim.minimizer(result)
 (c1=c1, c2=(m - p1 * c1) / p2)
 ```
 
@@ -736,8 +752,8 @@ c1 = Optim.minimizer(res)
 
 ```{julia}
 #| label: constrained-box
-negu(c1, p) = -(c1[1]^0.4 * ((m - p1 * c1[1]) / p2)^0.6)
-prob = OptimizationProblem(OptimizationFunction(negu), [2.0];
+neg_utility_c1(c1s, p) = -(c1s[1]^0.4 * ((m - p1 * c1s[1]) / p2)^0.6)
+prob = OptimizationProblem(OptimizationFunction(neg_utility_c1), [2.0];
     lb=[1e-6], ub=[m / p1 - 1e-6])
 sol = solve(prob, NLopt.LN_BOBYQA(), maxiters=10_000)
 (c1=sol.u[1], c2=(m - p1 * sol.u[1]) / p2)
@@ -745,17 +761,17 @@ sol = solve(prob, NLopt.LN_BOBYQA(), maxiters=10_000)
 
 変数消去と同じ解 $(c_1, c_2) = (4, 3)$ が得られます.
 
-**一般の制約.** 変数消去が難しい一般の等式・不等式制約は, 制約関数を直接ソルバーに渡して扱います. 制約 $g(\mathbf{x})$ を `cons` で, その下限・上限を `lcons` / `ucons` で与えます (等式制約は下限 = 上限). 予算制約 $p_1 c_1 + p_2 c_2 = m$ を消去せずに, 制約を扱える NLopt の COBYLA 法で解いてみましょう.
+**一般の制約.** 変数消去が難しい一般の等式・不等式制約は, 制約関数を直接ソルバーに渡して扱います. 制約 $\boldsymbol{g}(\boldsymbol{x})$ を `cons` で, その下限・上限を `lcons` / `ucons` で与えます (等式制約は下限 = 上限). 予算制約 $p_1 c_1 + p_2 c_2 = m$ を消去せずに, 制約を扱える NLopt の COBYLA 法で解いてみましょう.
 
 ```{julia}
 #| label: constrained-cobyla
-negu2(c, p) = -(c[1]^0.4 * c[2]^0.6)
-budget(res, c, p) = (res[1] = p1 * c[1] + p2 * c[2] - m)
-optf = OptimizationFunction(negu2; cons=budget)
-prob = OptimizationProblem(optf, [2.0, 4.0]; lcons=[0.0], ucons=[0.0],
+neg_utility(bundle, p) = -(bundle[1]^0.4 * bundle[2]^0.6)
+budget(gs, bundle, p) = (gs[1] = p1 * bundle[1] + p2 * bundle[2] - m)
+opt_function = OptimizationFunction(neg_utility; cons=budget)
+prob = OptimizationProblem(opt_function, [2.0, 4.0]; lcons=[0.0], ucons=[0.0],
     lb=[0.0, 0.0], ub=[50.0, 50.0])
 sol = solve(prob, NLopt.LN_COBYLA(), maxiters=10_000)
-sol.u
+(c1=sol.u[1], c2=sol.u[2])
 ```
 
 予算制約 $p_1 c_1 + p_2 c_2 - m$ の下限・上限をともに $0$ とすることで等式を表しています. 同じ解 $(c_1, c_2) = (4, 3)$ が得られます. NLopt には勾配を使う SLSQP など制約付き問題向けの手法も揃っており, 真の内点法が必要であれば次節の Ipopt を使います.
@@ -798,7 +814,7 @@ function solve_jump(; w_m=1.0, w_f=0.5, γ_c=1.5, α_l=1.2, γ_l=1.5)
         c_f=value(c_f),
         l_m=value(l_m),
         l_f=value(l_f),
-        U=objective_value(model)
+        utility=objective_value(model)
     )
 end
 ```
@@ -810,13 +826,13 @@ end
 #| label: fig-sol-jump
 #| fig-cap: "**Solution of bargaining problem by JuMP.** $w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
 wf_grid = 0.1:0.01:0.9
-lm = [solve_jump(w_f=w).l_m for w in wf_grid]
-lf = [solve_jump(w_f=w).l_f for w in wf_grid]
+lms = [solve_jump(w_f=w).l_m for w in wf_grid]
+lfs = [solve_jump(w_f=w).l_f for w in wf_grid]
 p = plot(xlabel=L"w_f", legend=false, xlims=(0.1, 1.0))
-plot!(p, wf_grid, lm, lw=2, color=mypalette[6])
-plot!(p, wf_grid, lf, lw=2, color=mypalette[2])
-annotate!(p, 0.915, lm[end] - 0.02, text(L"l_m", 9, :black, :left))
-annotate!(p, 0.915, lf[end] + 0.02, text(L"l_f", 9, :black, :left))
+plot!(p, wf_grid, lms, lw=2, color=mypalette[6])
+plot!(p, wf_grid, lfs, lw=2, color=mypalette[2])
+annotate!(p, 0.915, lms[end] - 0.02, text(L"l_m", 9, :black, :left))
+annotate!(p, 0.915, lfs[end] + 0.02, text(L"l_f", 9, :black, :left))
 p
 ```
 

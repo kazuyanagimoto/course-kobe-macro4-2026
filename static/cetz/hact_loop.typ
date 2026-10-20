@@ -17,7 +17,7 @@
   box((0, 6.0), "r", [Guess $r$: firm FOC gives \ $k(r), w(r)$], fill: rgb("#f2f7f8"))
   box((0, 4.0), "hjb", [*HJB* (backward) \ $rho v = max_c u(c) + dots$])
   box((0, 2.0), "pol", [policy $c(a, x)$, generator $A$], stroke: gray, h: 0.8)
-  box((0, 0.0), "kf", [*KF* (forward) \ $A^top g = 0$])
+  box((0, 0.0), "kf", [*KF* (forward) \ $A^top bold(g) = bold(0)$])
   box((0, -2.0), "mkt", [*Market clearing* \ $S(r) = integral a thin g dif a dif x - k(r)$])
   box((0, -4.0), "eq", [$S(r) = 0$: equilibrium], stroke: color-accent, h: 0.9)
 

@@ -64,7 +64,7 @@ scatter(1:10, u, label=false, xlabel=L"n", ylabel=L"u(c, n)")
 
 ```{julia}
 #| label: grid-search
-argmax(u, 1:10)
+println("Grid search: n = $(argmax(u, 1:10))")
 ```
 
 ### 区分線形補間と3次スプライン補間
@@ -75,10 +75,10 @@ argmax(u, 1:10)
 #| label: define-profit-interp
 #| output: false
 n_grid = 1:10
-v_grid = v.(n_grid)
-v_interp = linear_interpolation(n_grid, v_grid)
+vs = v.(n_grid)
+v_linear = linear_interpolation(n_grid, vs)
 v_spline = Interpolations.scale(
-    interpolate(v_grid, BSpline(Cubic(Line(OnGrid())))),
+    interpolate(vs, BSpline(Cubic(Line(OnGrid())))),
     n_grid
 )
 ```
@@ -88,7 +88,7 @@ v_spline = Interpolations.scale(
 #| fig-cap: "Linear and Spline Interpolation of Cost Function $v(n)$."
 #| code-fold: true
 scatter(1:10, v, label="Grid Points", xlabel=L"n", ylabel=L"v(n)")
-plot!(1:0.1:10, n -> v_interp(n), label="Linear Interpolation", legend=:topleft)
+plot!(1:0.1:10, n -> v_linear(n), label="Linear Interpolation")
 plot!(1:0.1:10, n -> v_spline(n), label="Cubic Spline", linestyle=:dash)
 ```
 
@@ -98,13 +98,13 @@ plot!(1:0.1:10, n -> v_spline(n), label="Cubic Spline", linestyle=:dash)
 
 ```{julia}
 #| label: optimization-comparison
-u_interp(n) = log(n) - v_interp(n)
+u_linear(n) = log(n) - v_linear(n)
 u_spline(n) = log(n) - v_spline(n)
 
-sol_interp = optimize(n -> -u_interp(n), 1.0, 10.0)
+sol_linear = optimize(n -> -u_linear(n), 1.0, 10.0)
 sol_spline = optimize(n -> -u_spline(n), 1.0, 10.0)
 
-println("Linear Interpolation: n = $(round(sol_interp.minimizer, digits=4))")
+println("Linear Interpolation: n = $(round(sol_linear.minimizer, digits=4))")
 println("Cubic Spline: n = $(round(sol_spline.minimizer, digits=4))")
 ```
 
@@ -163,18 +163,20 @@ $$
 #| fig-cap: "**Accuracy of numerical derivatives.** Absolute error of $f'(0.5)$ for $f(x) = e^x$ as a function of the step size $h$."
 #| code-fold: true
 f(x) = exp(x)
-df_exact = exp(0.5)
+fprime_exact = exp(0.5)
 x0 = 0.5
-hs = 10.0 .^ range(-16, -1, length=61)
+h_grid = 10.0 .^ range(-16, -1, length=61)
 
-err_fwd = [abs((f(x0 + h) - f(x0)) / h - df_exact) for h in hs]
-err_ctr = [abs((f(x0 + h) - f(x0 - h)) / (2h) - df_exact) for h in hs]
-err_cpx = [max(abs(imag(f(x0 + im * h)) / h - df_exact), 1e-17) for h in hs]
+errs_forward = [abs((f(x0 + h) - f(x0)) / h - fprime_exact) for h in h_grid]
+errs_central = [abs((f(x0 + h) - f(x0 - h)) / (2h) - fprime_exact)
+                for h in h_grid]
+errs_complex = [max(abs(imag(f(x0 + im * h)) / h - fprime_exact), 1e-17)
+                for h in h_grid]
 
-plot(hs, err_fwd, xscale=:log10, yscale=:log10, lw=2,
-    label="Forward diff.", xlabel=L"h", ylabel="absolute error", legend=:bottomright)
-plot!(hs, err_ctr, lw=2, label="Central diff.")
-plot!(hs, err_cpx, lw=2, label="Complex step")
+plot(h_grid, errs_forward, xscale=:log10, yscale=:log10, lw=2,
+    label="Forward diff.", xlabel=L"h", ylabel="absolute error")
+plot!(h_grid, errs_central, lw=2, label="Central diff.")
+plot!(h_grid, errs_complex, lw=2, label="Complex step")
 ```
 
 @fig-fd-error の前進差分と中心差分はいずれも V 字（対数軸では下に凸）を描きます. 右側では打ち切り誤差が, 左側では桁落ちによる丸め誤差が支配的です. 中心差分の谷の方が前進差分より低く, かつ左寄りにあり, 精度が高いことが分かります.
@@ -196,7 +198,7 @@ $$
 ```{julia}
 #| label: complex-step
 h = 1e-200
-imag(f(x0 + im * h)) / h - df_exact
+(h = h, error = imag(f(x0 + im * h)) / h - fprime_exact)
 ```
 
 ただし複素ステップ微分が使えるのは, $f$ が複素数に対しても解析的に評価できる場合に限られます. 絶対値や複素数向けに特別な分岐を持つ関数などには適用できません.
@@ -213,20 +215,20 @@ $$
 
 ```{julia}
 #| label: forwarddiff-scalar
-ForwardDiff.derivative(f, x0), df_exact
+(forwarddiff = ForwardDiff.derivative(f, x0), exact = fprime_exact)
 ```
 
 有限差分の最良ケースでも誤差は $10^{-8}$ 程度でしたが, 自動微分は厳密解と一致します. 多変数関数に対しては, 勾配やヘッセ行列も同様に求められます.
 
 ```{julia}
 #| label: forwarddiff-grad
-g(x) = x[1]^2 * sin(x[2]) + exp(x[1] * x[2])
-ForwardDiff.gradient(g, [1.0, 2.0])
+g(xs) = xs[1]^2 * sin(xs[2]) + exp(xs[1] * xs[2])
+(gradient = ForwardDiff.gradient(g, [1.0, 2.0]),)
 ```
 
 ```{julia}
 #| label: forwarddiff-hess
-ForwardDiff.hessian(g, [1.0, 2.0])
+(hessian = ForwardDiff.hessian(g, [1.0, 2.0]),)
 ```
 
 @sec-nonlinear-opt で用いた `Roots.jl`, `Optim.jl`, `NonlinearSolve.jl` は, 内部でこの `ForwardDiff.jl` による自動微分を利用しています. 解析的な勾配を渡さなくても, これらのソルバーが機械精度の導関数を自動で計算してくれるため, 多くの場合はそのまま高速・高精度に解くことができます.
@@ -261,14 +263,15 @@ $$
 #| label: compute-trapezoid-rule
 
 function trapezoid_rule(f, a, b, n)
-    xs = range(a, b, length=n)
-    return sum((xs[i] - xs[i-1]) * (f(xs[i-1]) + f(xs[i])) / 2 for i in 2:n)
+    x_grid = range(a, b, length=n)
+    return sum((x_grid[i] - x_grid[i-1]) * (f(x_grid[i-1]) + f(x_grid[i])) / 2
+               for i in 2:n)
 end
 
-sol_tr100 = trapezoid_rule(x -> sqrt(1 - x^2), 0.0, 1.0, 100)
-sol_tr1000 = trapezoid_rule(x -> sqrt(1 - x^2), 0.0, 1.0, 1000)
+trapezoid_100 = trapezoid_rule(x -> sqrt(1 - x^2), 0.0, 1.0, 100)
+trapezoid_1000 = trapezoid_rule(x -> sqrt(1 - x^2), 0.0, 1.0, 1000)
 
-π / 4, sol_tr100, sol_tr1000
+(; exact = π / 4, trapezoid_100, trapezoid_1000)
 ```
 
 100個の評価点で少数第三位まで, 1000個の評価点で少数第四位までの精度が得られていることがわかります.
@@ -286,13 +289,15 @@ $$
 ```{julia}
 #| label: integral-example
 #| include: false
-foc(l; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5) =
-    w^(1 - γ_c) * (1 - l)^(-γ_c) - α_l * l^(-γ_l)
+foc(leisure; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5) =
+    w^(1 - γ_c) * (1 - leisure)^(-γ_c) - α_l * leisure^(-γ_l)
 
 function hours_worked(w; γ_c=1.5, α_l=1.2, γ_l=1.5)
-    y::Float64 = find_zero(y -> foc(1 / (1 + exp(-y)), w=w, γ_c=γ_c, α_l=α_l, γ_l=γ_l), 0.0)
-    l = 1 / (1 + exp(-y))
-    return 1 - l
+    # Solve for the logit of leisure, so that leisure stays in (0, 1).
+    logit_leisure::Float64 = find_zero(
+        s -> foc(1 / (1 + exp(-s)), w=w, γ_c=γ_c, α_l=α_l, γ_l=γ_l), 0.0)
+    leisure = 1 / (1 + exp(-logit_leisure))
+    return 1 - leisure
 end
 ```
 
@@ -318,12 +323,14 @@ $$
 
 ```{julia}
 #| label: compute-monte-carlo
-mc_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5, μ=0.0, σ=0.5, n=10^6) = mean(
+monte_carlo_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5, μ=0.0, σ=0.5, n=10^6) = mean(
     hours_worked(rand(LogNormal(μ, σ)), γ_c=γ_c, α_l=α_l, γ_l=γ_l)
     for _ in 1:n
 )
 
-mc_hours()
+n_draws = 10^6
+println("Mean hours, Monte Carlo with $(n_draws) draws: ",
+    monte_carlo_hours(n=n_draws))
 ```
 
 #### 準モンテカルロ法
@@ -348,15 +355,18 @@ $$
 #| label: fig-qmc-grid
 #| fig-cap: "Pseudo-random draws vs. a Sobol sequence: 256 points on the unit square."
 #| code-fold: true
-n_pts = 256
-u_mc = rand(2, n_pts)
-u_qmc = QuasiMonteCarlo.sample(n_pts, zeros(2), ones(2), SobolSample())
-qmc_panels = map([("Pseudo-random", u_mc), ("Sobol sequence", u_qmc)]) do (t, u)
-    scatter(u[1, :], u[2, :], ms=2.5, msw=0, label=false, title=t,
+n_points = 256
+sample_random = rand(2, n_points)
+sample_sobol = QuasiMonteCarlo.sample(n_points, zeros(2), ones(2),
+    SobolSample())
+sample_panels = map([("Pseudo-random", sample_random),
+        ("Sobol sequence", sample_sobol)]) do (method, sample_matrix)
+    scatter(sample_matrix[1, :], sample_matrix[2, :], ms=2.5, msw=0,
+        label=false, title=method,
         xlabel=L"u_1", ylabel=L"u_2", aspect_ratio=1,
         xlims=(0, 1), ylims=(0, 1))
 end
-plot(qmc_panels..., layout=(1, 2), size=(640, 330))
+plot(sample_panels..., layout=(1, 2), size=(640, 330))
 ```
 
 擬似乱数は各点を独立に引くため, 偶然の塊と空白ができます. これが分散, ひいては $O(n^{-1/2})$ という遅い収束の源です. 一方 Sobol 列は既存の点が埋めていない場所に次の点を置くように設計された決定的な列で, 同じ256点でも空間をほぼ均等に覆っていることが分かります.
@@ -368,13 +378,16 @@ plot(qmc_panels..., layout=(1, 2), size=(640, 330))
 ```{julia}
 #| label: compute-quasi-monte-carlo
 
-function qmc_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5, μ=0.0, σ=0.5, n=10^4)
-    u = QuasiMonteCarlo.sample(n, 0, 1, SobolSample())
-    ws = quantile.(LogNormal(μ, σ), u)
-    return mean(hours_worked(w, γ_c=γ_c, α_l=α_l, γ_l=γ_l) for w in ws)
+function quasi_monte_carlo_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5,
+        μ=0.0, σ=0.5, n=10^4)
+    us = vec(QuasiMonteCarlo.sample(n, 0, 1, SobolSample()))
+    wages = quantile.(LogNormal(μ, σ), us)
+    return mean(hours_worked(w, γ_c=γ_c, α_l=α_l, γ_l=γ_l) for w in wages)
 end
 
-qmc_hours()
+n_sobol = 10^4
+println("Mean hours, quasi-Monte Carlo with $(n_sobol) Sobol points: ",
+    quasi_monte_carlo_hours(n=n_sobol))
 ```
 
 モンテカルロ法では $10^6$ 個のサンプルを用いているのに対し, 準モンテカルロ法では $10^4$ 個のサンプルで同等以上の精度が得られていることがわかります.
@@ -411,14 +424,14 @@ $$
 #| label: compute-gaussian-quadrature
 
 function gaussian_quadrature(f, a, b, n)
-    z, w = gausslegendre(n)
-    return (b - a) / 2 * sum(w .* f.((b - a) / 2 * z .+ (a + b) / 2))
+    zs, ws = gausslegendre(n)
+    return (b - a) / 2 * sum(ws .* f.((b - a) / 2 * zs .+ (a + b) / 2))
 end
 
-sol_gl10 = gaussian_quadrature(x -> sqrt(1 - x^2), 0.0, 1.0, 10)
-sol_gl100 = gaussian_quadrature(x -> sqrt(1 - x^2), 0.0, 1.0, 100)
+gauss_legendre_10 = gaussian_quadrature(x -> sqrt(1 - x^2), 0.0, 1.0, 10)
+gauss_legendre_100 = gaussian_quadrature(x -> sqrt(1 - x^2), 0.0, 1.0, 100)
 
-π / 4, sol_gl10, sol_gl100
+(; exact = π / 4, gauss_legendre_10, gauss_legendre_100)
 ```
 
 10個程度の評価点で少数第三位まで, 100個程度の評価点で少数第六位までの精度が得られていることがわかります.
@@ -452,12 +465,15 @@ $${#eq-mean-hours}
 ```{julia}
 #| label: compute-gaussian-hermite
 
-function mean_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5, μ=0.0, σ=0.5, n=10)
-    x, w = gausshermite(n)
-    return sum(w .* hours_worked.(exp.(sqrt(2) * σ * x .+ μ), γ_c=γ_c, α_l=α_l, γ_l=γ_l) / sqrt(π))
+function gauss_hermite_hours(; γ_c=1.5, α_l=1.2, γ_l=1.5, μ=0.0, σ=0.5, n=10)
+    xs, ws = gausshermite(n)
+    return sum(ws .* hours_worked.(exp.(sqrt(2) * σ * xs .+ μ),
+        γ_c=γ_c, α_l=α_l, γ_l=γ_l) / sqrt(π))
 end
 
-mean_hours()
+n_nodes = 10
+println("Mean hours, Gauss-Hermite with $(n_nodes) nodes: ",
+    gauss_hermite_hours(n=n_nodes))
 ```
 
 10個程度の評価点で少数第三位までの精度が得られていることがわかります. これは, モンテカルロ法や準モンテカルロ法よりも少ないサンプル数で, より高精度な結果を得られることを示しています.
@@ -520,42 +536,45 @@ function tauchen_method(; n_std=3.0, n=5, ρ=0.9, μ=0.1, σ=1.0)
     x_mean = μ / (1 - ρ)
     x_min = x_mean - n_std * sqrt(σ^2 / (1 - ρ^2))
     x_max = x_mean + n_std * sqrt(σ^2 / (1 - ρ^2))
-    x = range(x_min, x_max, length=n)
+    x_grid = range(x_min, x_max, length=n)
 
     d = (x_max - x_min) / (n - 1)
     Π = zeros(n, n)
     for i in 1:n
-        Π[i, 1] = cdf(Normal(0.0, σ), x[1] + d / 2 - μ - ρ * x[i])
-        Π[i, n] = 1 - cdf(Normal(0.0, σ), x[n] - d / 2 - μ - ρ * x[i])
+        Π[i, 1] = cdf(Normal(0.0, σ), x_grid[1] + d / 2 - μ - ρ * x_grid[i])
+        Π[i, n] = 1 - cdf(Normal(0.0, σ), x_grid[n] - d / 2 - μ - ρ * x_grid[i])
         for j in 2:(n-1)
-            Π[i, j] = cdf(Normal(0.0, σ), x[j] + d / 2 - μ - ρ * x[i]) -
-                      cdf(Normal(0.0, σ), x[j] - d / 2 - μ - ρ * x[i])
+            Π[i, j] =
+                cdf(Normal(0.0, σ), x_grid[j] + d / 2 - μ - ρ * x_grid[i]) -
+                cdf(Normal(0.0, σ), x_grid[j] - d / 2 - μ - ρ * x_grid[i])
         end
     end
 
-    return x, Π
+    return x_grid, Π
 end
 
-x, Π = tauchen_method()
-@show x
-Π
+x_grid_tauchen, Π_tauchen = tauchen_method()
+println("Grid: ", round.(collect(x_grid_tauchen), digits=3))
+println("Transition matrix Π:")
+Π_tauchen
 ```
 
 実用上は `QuantEcon.jl` の `tauchen` 関数を利用するのがいいでしょう.
 
 ```{julia}
 #| label: tauchen-quantecon
-mc = tauchen(5, 0.9, 1.0, 0.1) # tauchen(N, ρ, σ, μ)
-@show mc.state_values
-mc.p
+qe_chain = tauchen(5, 0.9, 1.0, 0.1) # tauchen(N, ρ, σ, μ)
+println("Grid: ", round.(collect(qe_chain.state_values), digits=3))
+println("Transition matrix Π:")
+qe_chain.p
 ```
 
 定常平均は $\mathbb{E}[x_{t}] = \frac{\mu}{1-\rho}$ で, 上の例では $\mu = 0.1$, $\rho = 0.9$ としているため $\mathbb{E}[x_{t}] = 1.0$ となります.
 
 ```{julia}
 #| label: tauchen-stationary
-ps = vcat(stationary_distributions(mc)...)
-ps' * collect(mc.state_values)
+stationary_probs = vcat(stationary_distributions(qe_chain)...)
+(stationary_mean = stationary_probs' * collect(qe_chain.state_values),)
 ```
 
 ### Rouwenhorst 法
@@ -575,10 +594,10 @@ AR(1) 過程 $x_{t+1} = \mu + \rho x_t + \varepsilon_{t+1}$, $\varepsilon \sim \
    $$
    $k = 3, \ldots, n$ について, $\Pi_{k-1}$ を左上・右上・左下・右下に埋め込んだ4つの $k \times k$ 行列の加重和
    $$
-   \Pi_k = p \begin{pmatrix} \Pi_{k-1} & \mathbf{0} \\ \mathbf{0}' & 0 \end{pmatrix}
-   + \left(1 - p\right) \begin{pmatrix} \mathbf{0} & \Pi_{k-1} \\ 0 & \mathbf{0}' \end{pmatrix}
-   + \left(1 - p\right) \begin{pmatrix} \mathbf{0}' & 0 \\ \Pi_{k-1} & \mathbf{0} \end{pmatrix}
-   + p \begin{pmatrix} 0 & \mathbf{0}' \\ \mathbf{0} & \Pi_{k-1} \end{pmatrix}
+   \Pi_k = p \begin{pmatrix} \Pi_{k-1} & \boldsymbol{0} \\ \boldsymbol{0}' & 0 \end{pmatrix}
+   + \left(1 - p\right) \begin{pmatrix} \boldsymbol{0} & \Pi_{k-1} \\ 0 & \boldsymbol{0}' \end{pmatrix}
+   + \left(1 - p\right) \begin{pmatrix} \boldsymbol{0}' & 0 \\ \Pi_{k-1} & \boldsymbol{0} \end{pmatrix}
+   + p \begin{pmatrix} 0 & \boldsymbol{0}' \\ \boldsymbol{0} & \Pi_{k-1} \end{pmatrix}
    $$
    を作り, 中間の行 ($2, \ldots, k-1$ 行目) を $2$ で割る.
 
@@ -604,23 +623,24 @@ function rouwenhorst_method(; n=5, ρ=0.9, μ=0.1, σ=1.0)
     p = (1 + ρ) / 2
     Π = [p 1-p; 1-p p]
     for k in 3:n
-        Πn = zeros(k, k)
-        Πn[1:(k-1), 1:(k-1)] += p .* Π
-        Πn[1:(k-1), 2:k] += (1 - p) .* Π
-        Πn[2:k, 1:(k-1)] += (1 - p) .* Π
-        Πn[2:k, 2:k] += p .* Π
-        Πn[2:(k-1), :] ./= 2
-        Π = Πn
+        Πk = zeros(k, k)
+        Πk[1:(k-1), 1:(k-1)] += p .* Π
+        Πk[1:(k-1), 2:k] += (1 - p) .* Π
+        Πk[2:k, 1:(k-1)] += (1 - p) .* Π
+        Πk[2:k, 2:k] += p .* Π
+        Πk[2:(k-1), :] ./= 2
+        Π = Πk
     end
     x_mean = μ / (1 - ρ)
     ψ = σ * sqrt((n - 1) / (1 - ρ^2))
-    x = collect(range(x_mean - ψ, x_mean + ψ, length=n))
-    return x, Π
+    x_grid = collect(range(x_mean - ψ, x_mean + ψ, length=n))
+    return x_grid, Π
 end
 
-x, Π = rouwenhorst_method()
-@show x
-Π
+x_grid_rouwenhorst, Π_rouwenhorst = rouwenhorst_method()
+println("Grid: ", round.(x_grid_rouwenhorst, digits=3))
+println("Transition matrix Π:")
+Π_rouwenhorst
 ```
 
 こちらも実用上は `QuantEcon.jl` の `rouwenhorst(N, ρ, σ, μ)` が使えます (上の実装と一致します). 2つの方法を, 離散化された連鎖の定常分布の標準偏差と1次自己相関で比べてみましょう. 真の値は $\sigma_x = \sigma / \sqrt{1 - \rho^2}$ と $\rho$ です.
@@ -631,31 +651,40 @@ x, Π = rouwenhorst_method()
 #| output: asis
 #| code-fold: true
 
-function chain_moments(x, Π)
-    πs = vcat(stationary_distributions(MarkovChain(Π, x))...)
-    m = dot(πs, x)
-    v = dot(πs, (x .- m) .^ 2)
-    Ex1x = sum(πs[i] * x[i] * dot(Π[i, :], x) for i in eachindex(x))
-    return sqrt(v), (Ex1x - m^2) / v
+function chain_moments(x_grid, Π)
+    stationary_probs =
+        vcat(stationary_distributions(MarkovChain(Π, x_grid))...)
+    mean_x = dot(stationary_probs, x_grid)
+    var_x = dot(stationary_probs, (x_grid .- mean_x) .^ 2)
+    cross_moment = sum(stationary_probs[i] * x_grid[i] * dot(Π[i, :], x_grid)
+                       for i in eachindex(x_grid))
+    return sqrt(var_x), (cross_moment - mean_x^2) / var_x
 end
 
-cases = [(ρ, n) for ρ in (0.9, 0.99) for n in (5, 7)]
-sd = zeros(3, length(cases))                    # rows: true, Tauchen, Rouwenhorst
-ac = zeros(3, length(cases))
-for (k, (ρ, n)) in enumerate(cases)
-    mc_t = tauchen(n, ρ, 1.0)
-    sd_t, ac_t = chain_moments(collect(mc_t.state_values), mc_t.p)
-    sd_r, ac_r = chain_moments(rouwenhorst_method(n=n, ρ=ρ, μ=0.0)...)
-    sd[:, k] = [1.0 / sqrt(1 - ρ^2), sd_t, sd_r]
-    ac[:, k] = [ρ, ac_t, ac_r]
+param_cases = [(ρ, n) for ρ in (0.9, 0.99) for n in (5, 7)]
+sd_table = zeros(3, length(param_cases))  # rows: true, Tauchen, Rouwenhorst
+autocorr_table = zeros(3, length(param_cases))
+for (col, (ρ, n)) in enumerate(param_cases)
+    tauchen_chain = tauchen(n, ρ, 1.0)
+    sd_tauchen, autocorr_tauchen =
+        chain_moments(collect(tauchen_chain.state_values), tauchen_chain.p)
+    sd_rouwenhorst, autocorr_rouwenhorst =
+        chain_moments(rouwenhorst_method(n=n, ρ=ρ, μ=0.0)...)
+    sd_table[:, col] = [1.0 / sqrt(1 - ρ^2), sd_tauchen, sd_rouwenhorst]
+    autocorr_table[:, col] = [ρ, autocorr_tauchen, autocorr_rouwenhorst]
 end
 
 # One column per case, so that the true value and the two methods stack up.
-fmt2, fmt3 = fmt__printf("%.2f"), fmt__printf("%.3f")
-pretty_table(hcat([raw"定常標準偏差 $\sigma_x$", "", "", raw"1次自己相関 $\rho$", "", ""],
-        repeat(["真の値", "Tauchen", "Rouwenhorst"], 2), vcat(sd, ac));
-    column_labels=["", "", ("\$\\rho = $ρ\$, \$n = $n\$" for (ρ, n) in cases)...],
-    formatters=[(v, i, j) -> v isa Float64 ? (i <= 3 ? fmt2 : fmt3)(v, i, j) : v],
+fmt_sd, fmt_autocorr = fmt__printf("%.2f"), fmt__printf("%.3f")
+row_groups = [raw"定常標準偏差 $\sigma_x$", "", "",
+    raw"1次自己相関 $\rho$", "", ""]
+case_labels = ["\$\\rho = $ρ\$, \$n = $n\$" for (ρ, n) in param_cases]
+pretty_table(hcat(row_groups,
+        repeat(["真の値", "Tauchen", "Rouwenhorst"], 2),
+        vcat(sd_table, autocorr_table));
+    column_labels=["", "", case_labels...],
+    formatters=[(cell, row, col) -> cell isa Float64 ?
+        (row <= 3 ? fmt_sd : fmt_autocorr)(cell, row, col) : cell],
     alignment=[:l, :l, :r, :r, :r, :r],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
@@ -668,22 +697,26 @@ Tauchen 法は $\rho = 0.9$ ですでに定常標準偏差を2〜3割過大に�
 #| label: fig-tauchen-error
 #| fig-cap: "Why Tauchen breaks down: the conditional density vs. the grid cells."
 #| code-fold: true
-xg = range(-3, 3, length=5)                    # grid for σ_x = 1, n_std = 3
-d = step(xg)
-panels = []
+x_grid_unit = range(-3, 3, length=5)           # grid for σ_x = 1, n_std = 3
+d = step(x_grid_unit)
+density_panels = []
 for ρ in (0.5, 0.99)
     σε = sqrt(1 - ρ^2)
-    m_cond = ρ * xg[4]                          # conditioning state x_4
-    π44 = cdf(Normal(m_cond, σε), xg[4] + d / 2) - cdf(Normal(m_cond, σε), xg[4] - d / 2)
-    xs = range(-4, 4, length=500)
-    p = plot(xs, pdf.(Normal(m_cond, σε), xs), lw=1.5, label=false,
+    cond_mean = ρ * x_grid_unit[4]              # conditioning state x_4
+    π44 = cdf(Normal(cond_mean, σε), x_grid_unit[4] + d / 2) -
+          cdf(Normal(cond_mean, σε), x_grid_unit[4] - d / 2)
+    x_fine_grid = range(-4, 4, length=500)
+    panel = plot(x_fine_grid, pdf.(Normal(cond_mean, σε), x_fine_grid),
+        lw=1.5, label=false,
         title=L"\rho = %$ρ, \quad \pi_{44} = %$(round(π44, digits=2))",
         titlefontsize=10, xlabel=L"x'")
-    vspan!(p, [xg[4] - d / 2, xg[4] + d / 2], color=mypalette[1], alpha=0.3, label=false)
-    vline!(p, collect(xg), color=:gray, ls=:dot, label=false)
-    scatter!(p, collect(xg), zeros(5), color=:black, ms=3, label=false)
-    push!(panels, p)
+    vspan!(panel, [x_grid_unit[4] - d / 2, x_grid_unit[4] + d / 2],
+        color=mypalette[1], alpha=0.3, label=false)
+    vline!(panel, collect(x_grid_unit), color=:gray, ls=:dot, label=false)
+    scatter!(panel, collect(x_grid_unit), zeros(5), color=:black, ms=3,
+        label=false)
+    push!(density_panels, panel)
 end
-plot(panels..., layout=(1, 2), size=(650, 250))
+plot(density_panels..., layout=(1, 2), size=(650, 250))
 ```
 

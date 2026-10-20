@@ -170,7 +170,7 @@ $$
 
 残る10個のパラメータ
 $$
-\lambda := \left(\overline{c}, p_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right)
+\boldsymbol{\lambda} := \left(\overline{c}, p_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right)
 $$
 は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします (@fig-gg2009-estimates).
 

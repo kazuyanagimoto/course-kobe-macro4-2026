@@ -7,9 +7,6 @@
 - **講義サイト**: <https://kazuyanagimoto.com/course-kobe-macro4-2026/>
 - **講義ノート (PDF)**: <https://kazuyanagimoto.com/course-kobe-macro4-2026/Family-Macroeconomics.pdf>
 
-> [!NOTE]
-> サイトは準備中です. ビルド済みのものは `gh-pages` ブランチにあります.
-
 ## 課題
 
 提出期限は変更されることがあります. 出題前の課題は「未公開」と表示され,
@@ -24,17 +21,6 @@
 | Exercise 3 | 2027年1月5日 | 未公開 |
 | Exercise 4 | 2027年1月19日 | 未公開 |
 <!-- assignments:end -->
-
-## このレポジトリについて
-
-このレポジトリの中身は非公開の開発レポジトリ
-[`course-kobe-macro4-2026-dev`](https://github.com/kazuyanagimoto/course-kobe-macro4-2026-dev)
-から自動で同期されています. **直接編集しても次の同期で上書きされます.**
-誤りを見つけた場合は Issue でお知らせください.
-
-`main` への push で GitHub Actions が Quarto book をレンダリングし,
-`gh-pages` ブランチへ置きます. 計算結果は `_freeze/` にキャッシュ
-されているので, ビルドに Julia は不要です.
 
 ## ライセンス
 

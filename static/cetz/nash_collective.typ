@@ -56,7 +56,7 @@
     panel(ctx, [*(b) Nash bargaining*])
     // threat point and the ray to the solution
     marker(ctx, TW, TH, radius: 0.028, color: black)
-    label(ctx, TW - 0.1, TH - 0.1, [$T$])
+    label(ctx, TW - 0.1, TH - 0.1, [$bold(T)$])
     line((ctx.pt)(TW, TH), (ctx.pt)(1.02, TH + ray * (1.02 - TW)), stroke: stroke-dashed)
     // level curve of the Nash product through the solution
     draw-curve(ctx, nash, (0.62, 1.55), stroke: (dash: "dashed", paint: color-base))

@@ -437,7 +437,7 @@ $${#eq-ou-intensity}
 
 以上を合わせると, 離散化された HJB 方程式は
 $$
-\rho v = u + A\left(v\right) v
+\rho \boldsymbol{v} = \boldsymbol{u} + A\left(\boldsymbol{v}\right) \boldsymbol{v}
 $${#eq-hjb-discrete}
 という形になります. $A$ は $N_a N_x \times N_a N_x$ の疎行列で, 資産方向の upwind 部分 (三重対角) と生産性方向の $B_x$ (帯2本) の和です. 重要な性質が2つあります.
 
@@ -454,27 +454,33 @@ $${#eq-hjb-discrete}
 #| label: fig-hact-sparsity
 #| fig-cap: "**Sparsity pattern of $A$** ($N_a = 12$, $N_x = 4$ for illustration)."
 #| code-fold: true
-Nad, Nxd = 12, 4
-Ta = spdiagm(-1 => ones(Nad - 1), 0 => fill(2.0, Nad), 1 => ones(Nad - 1))
-Bd = spdiagm(-1 => ones(Nxd - 1), 0 => fill(2.0, Nxd), 1 => ones(Nxd - 1))
-Ad = blockdiag((Ta for _ in 1:Nxd)...) + kron(Bd, sparse(I, Nad, Nad))
-nzrows, nzcols, _ = findnz(Ad)
-scatter(nzcols, nzrows, yflip=true, aspect_ratio=1, markersize=2.5, color=:black,
-    markerstrokewidth=0, legend=false, xlabel="Column", ylabel="Row",
-    xlims=(0, Nad * Nxd + 1), ylims=(0, Nad * Nxd + 1), size=(380, 380))
-vline!(collect(Nad:Nad:(Nad*(Nxd-1))) .+ 0.5, color=:gray, ls=:dash, alpha=0.6)
-hline!(collect(Nad:Nad:(Nad*(Nxd-1))) .+ 0.5, color=:gray, ls=:dash, alpha=0.6)
+Na_demo, Nx_demo = 12, 4
+asset_block = spdiagm(-1 => ones(Na_demo - 1), 0 => fill(2.0, Na_demo),
+    1 => ones(Na_demo - 1))                  # one tridiagonal asset block
+Bx_demo = spdiagm(-1 => ones(Nx_demo - 1), 0 => fill(2.0, Nx_demo),
+    1 => ones(Nx_demo - 1))
+A_demo = blockdiag((asset_block for _ in 1:Nx_demo)...) +
+    kron(Bx_demo, sparse(I, Na_demo, Na_demo))
+nzrows, nzcols, _ = findnz(A_demo)
+N_demo = Na_demo * Nx_demo
+scatter(nzcols, nzrows, yflip=true, aspect_ratio=1, markersize=2.5,
+    color=:black, markerstrokewidth=0, legend=false, xlabel="Column",
+    ylabel="Row", xlims=(0, N_demo + 1), ylims=(0, N_demo + 1),
+    size=(380, 380))
+block_edges = collect(Na_demo:Na_demo:(N_demo - Na_demo)) .+ 0.5
+vline!(block_edges, color=:gray, ls=:dash, alpha=0.6)
+hline!(block_edges, color=:gray, ls=:dash, alpha=0.6)
 ```
 
 行列のサイズは $N_a N_x$ の2乗で増えますが, 非ゼロ要素は $5 N_a N_x$ 程度にしか増えません. 疎行列ソルバはゼロでない要素だけを保存・計算するので, 後で出てくる連立一次方程式 (陰的スキームと KF 方程式) は巨大なグリッドでも一瞬で解けます. これが有限差分法の速さの核心です.
 
 ### 陰的スキーム
 
-@eq-hjb-discrete は $A$ が $v$ に依存する非線形方程式なので, 反復で解きます. 擬似的な時間ステップ $\Delta$ を入れた**陰的スキーム** (implicit scheme) を使います.
+@eq-hjb-discrete は $A$ が $\boldsymbol{v}$ に依存する非線形方程式なので, 反復で解きます. 擬似的な時間ステップ $\Delta$ を入れた**陰的スキーム** (implicit scheme) を使います.
 $$
-\frac{v^{n+1} - v^n}{\Delta} + \rho v^{n+1} = u\left(c^n\right) + A\left(v^n\right) v^{n+1}
+\frac{\boldsymbol{v}^{n+1} - \boldsymbol{v}^n}{\Delta} + \rho \boldsymbol{v}^{n+1} = \boldsymbol{u}\left(\boldsymbol{c}^n\right) + A\left(\boldsymbol{v}^n\right) \boldsymbol{v}^{n+1}
 \quad \Longleftrightarrow \quad
-\left[\left(\frac{1}{\Delta} + \rho\right) I - A^n\right] v^{n+1} = u^n + \frac{v^n}{\Delta}.
+\left[\left(\frac{1}{\Delta} + \rho\right) I - A^n\right] \boldsymbol{v}^{n+1} = \boldsymbol{u}^n + \frac{\boldsymbol{v}^n}{\Delta}.
 $${#eq-implicit}
 各反復は疎な連立一次方程式を1回解くだけです. 陰的スキームは無条件に安定なので, $\Delta$ をいくらでも大きく取れます ($\Delta = 1000$ など). その結果, 反復は**数十回**で収束します. 素朴な価値関数反復が何百回もかかるのと比べると大きな違いです (離散時間との定量的な比較は実装のあとで行います).
 
@@ -482,7 +488,7 @@ $${#eq-implicit}
 
 分布はどう求めるのでしょうか. ここが有限差分法の最も美しい部分です. KF 作用素は HJB に現れる生成作用素の**随伴** (adjoint) なので, 離散化すると @eq-kf は
 $$
-A^{\top} g = 0
+A^{\top} \boldsymbol{g} = \boldsymbol{0}
 $${#eq-kf-discrete}
 になります [@achdou2022, sec. 5.4]. HJB を解いた時点で $A$ は手元にあるので, KF 方程式は**転置行列の連立一次方程式を1回解くだけ**です. 分布のシミュレーションも, 遷移行列の別途構築も要りません. @eq-kf-discrete は特異 (解が定数倍で不定) なので, 1つの成分を固定して解いてから, 密度の積分が1になるように正規化します. 借入制約に張り付く家計の質量は, 下端のグリッド点に立つ大きな値として現れます.
 
@@ -515,15 +521,15 @@ const σx = 0.2 / sqrt(1 - 0.9^2)  # stationary sd of x (matches the AR(1))
 const σ = σx * sqrt(2θ)           # OU diffusion coefficient
 
 const amin, amax, Na = 0.0, 50.0, 2000
-const a = range(amin, amax, length=Na)
-const da = step(a)
+const a_grid = range(amin, amax, length=Na)
+const da = step(a_grid)
 const Nx = 31
-const x = range(-3σx, 3σx, length=Nx)
-const dx = step(x)
+const x_grid = range(-3σx, 3σx, length=Nx)
+const dx = step(x_grid)
 
 u(c) = c^(1 - γ) / (1 - γ)
 u′(c) = c^(-γ)
-u′inv(v) = max(v, 1e-10)^(-1 / γ)  # guard against negative slopes early on
+u′inv(dv) = max(dv, 1e-10)^(-1 / γ)  # guard against negative slopes early on
 ```
 
 まず生産性方向の生成作用素 $B_x$ を @eq-ou-intensity のとおり組み立てます. その定常分布を使って $\mathbb{E}\left[z\right] = 1$ に基準化し, 離散化が OU 過程の定常標準偏差を再現しているかも確認しておきます.
@@ -531,38 +537,41 @@ u′inv(v) = max(v, 1e-10)^(-1 / γ)  # guard against negative slopes early on
 ```{julia}
 #| label: hact-ou
 function ou_generator()
-    B = spzeros(Nx, Nx)
+    Bx = spzeros(Nx, Nx)
     for j in 1:Nx
-        lo = σ^2 / (2dx^2) + max(θ * x[j], 0) / dx    # intensity of moving down
-        hi = σ^2 / (2dx^2) + max(-θ * x[j], 0) / dx   # intensity of moving up
+        # intensities of moving one grid point down and up
+        λ_down = σ^2 / (2dx^2) + max(θ * x_grid[j], 0) / dx
+        λ_up = σ^2 / (2dx^2) + max(-θ * x_grid[j], 0) / dx
         if j > 1
             ;
-            B[j, j-1] = lo;
-            B[j, j] -= lo;
+            Bx[j, j-1] = λ_down;
+            Bx[j, j] -= λ_down;
         end # boundary: drop the outward jump
         if j < Nx
             ;
-            B[j, j+1] = hi;
-            B[j, j] -= hi;
+            Bx[j, j+1] = λ_up;
+            Bx[j, j] -= λ_up;
         end
     end
-    return B
+    return Bx
 end
 const Bx = ou_generator()
 
-function stat_x(B)                              # stationary distribution over x
-    BT = copy(sparse(transpose(B)))
-    b = zeros(Nx);
-    BT[1, :] .= 0;
-    BT[1, 1] = 1.0;
-    b[1] = 0.1
-    ψ = BT \ b
-    ψ ./ sum(ψ)
+function stationary_dist_x(Bx)                 # stationary distribution over x
+    BxT = copy(sparse(transpose(Bx)))
+    rhs = zeros(Nx);
+    BxT[1, :] .= 0;
+    BxT[1, 1] = 1.0;
+    rhs[1] = 0.1
+    dist_x = BxT \ rhs
+    dist_x ./ sum(dist_x)
 end
-const ψ = stat_x(Bx)
-const z = exp.(x) ./ dot(ψ, exp.(x))                  # normalize E[z] = 1
-const Bswitch = kron(Bx, sparse(I, Na, Na))     # x-part on the full (a, x) grid
-(sd_discretized=round(sqrt(dot(ψ, x .^ 2) - dot(ψ, x)^2), digits=4), sd_theory=round(σx, digits=4))
+const dist_x = stationary_dist_x(Bx)
+const z_grid = exp.(x_grid) ./ dot(dist_x, exp.(x_grid))   # normalize E[z] = 1
+const Bx_full = kron(Bx, sparse(I, Na, Na))     # x-part on the full (a, x) grid
+sd_discretized = sqrt(dot(dist_x, x_grid .^ 2) - dot(dist_x, x_grid)^2)
+(sd_discretized=round(sd_discretized, digits=4),
+    sd_theory=round(σx, digits=4))
 ```
 
 HJB 方程式のソルバは, upwind による政策の計算, 遷移行列 $A$ の構築, 陰的更新 @eq-implicit の3ステップの反復です.
@@ -570,37 +579,47 @@ HJB 方程式のソルバは, upwind による政策の計算, 遷移行列 $A$ 
 ```{julia}
 #| label: hact-hjb
 #| output: false
-function solve_hjb(r, w; Δ=1000.0, maxit=400, tol=1e-8)
-    inc = w .* z' .+ r .* a                  # inc[i, j] = w z_j + r a_i
-    v = u.(inc) ./ ρ
-    dVf = similar(v);
-    dVb = similar(v)
+function solve_hjb(r, w; Δ=1000.0, max_iter=400, tol=1e-8)
+    income = w .* z_grid' .+ r .* a_grid     # income[i, j] = w z_j + r a_i
+    v = u.(income) ./ ρ
+    dv_forward = similar(v);
+    dv_backward = similar(v)
     A = spzeros(Na * Nx, Na * Nx);
     c = similar(v)
-    for it in 1:maxit
-        dVf[1:(end-1), :] = diff(v, dims=1) ./ da
-        dVf[end, :] = u′.(inc[end, :])       # unused: saving is negative up top
-        dVb[2:end, :] = diff(v, dims=1) ./ da
-        dVb[1, :] = u′.(inc[1, :])         # state-constraint boundary condition
-        cf = u′inv.(dVf);
-        sf = inc .- cf     # saving under the forward difference
-        cb = u′inv.(dVb);
-        sb = inc .- cb     # saving under the backward difference
-        If = sf .> 0
-        Ib = (sb .< 0) .& .!If
+    for it in 1:max_iter
+        dv_forward[1:(end-1), :] = diff(v, dims=1) ./ da
+        # unused: saving is negative up top
+        dv_forward[end, :] = u′.(income[end, :])
+        dv_backward[2:end, :] = diff(v, dims=1) ./ da
+        # state-constraint boundary condition
+        dv_backward[1, :] = u′.(income[1, :])
+        # consumption and saving under the forward and backward differences
+        c_forward = u′inv.(dv_forward);
+        s_forward = income .- c_forward
+        c_backward = u′inv.(dv_backward);
+        s_backward = income .- c_backward
+        use_forward = s_forward .> 0
+        use_backward = (s_backward .< 0) .& .!use_forward
         # where neither drift applies the household is at rest, so s = 0
-        c = cf .* If .+ cb .* Ib .+ inc .* (.!If .& .!Ib)
+        c = c_forward .* use_forward .+ c_backward .* use_backward .+
+            income .* (.!use_forward .& .!use_backward)
 
-        X = -min.(sb, 0) ./ da         # intensity of moving one grid point down
-        Z = max.(sf, 0) ./ da            # intensity of moving one grid point up
+        # intensities of moving one grid point down and up in a
+        intensity_down = -min.(s_backward, 0) ./ da
+        intensity_up = max.(s_forward, 0) ./ da
         A = blockdiag(
-            (spdiagm(-1 => X[2:end, j], 0 => -X[:, j] .- Z[:, j], 1 => Z[1:(end-1), j])
-             for j in 1:Nx)...) + Bswitch
+            (spdiagm(-1 => intensity_down[2:end, j],
+                0 => -intensity_down[:, j] .- intensity_up[:, j],
+                1 => intensity_up[1:(end-1), j])
+             for j in 1:Nx)...) + Bx_full
 
-        B = (1 / Δ + ρ) * sparse(I, Na * Nx, Na * Nx) - A
-        vnew = reshape(B \ (vec(u.(c)) .+ vec(v) ./ Δ), Na, Nx)
-        maximum(abs.(vnew .- v)) < tol && return (v=vnew, c=c, s=inc .- c, A=A, iter=it)
-        v = vnew
+        # left-hand matrix of the implicit update
+        implicit_lhs = (1 / Δ + ρ) * sparse(I, Na * Nx, Na * Nx) - A
+        v_new = reshape(implicit_lhs \ (vec(u.(c)) .+ vec(v) ./ Δ), Na, Nx)
+        if maximum(abs.(v_new .- v)) < tol
+            return (v=v_new, c=c, s=income .- c, A=A, iter=it)
+        end
+        v = v_new
     end
     error("HJB did not converge")
 end
@@ -613,13 +632,13 @@ KF 方程式は転置行列の連立一次方程式です. 特異性は1成分�
 #| output: false
 function stationary_dist(A)
     AT = copy(sparse(transpose(A)))
-    b = zeros(Na * Nx)
+    rhs = zeros(Na * Nx)
     AT[1, :] .= 0.0;
     AT[1, 1] = 1.0;
-    b[1] = 0.1  # fix one entry of the singular system
-    g = AT \ b
-    g ./= sum(g) * da * dx                        # normalize to a density
-    return reshape(g, Na, Nx)
+    rhs[1] = 0.1  # fix one entry of the singular system
+    gs = AT \ rhs
+    gs ./= sum(gs) * da * dx                      # normalize to a density
+    return reshape(gs, Na, Nx)
 end
 ```
 
@@ -631,29 +650,31 @@ prices(r) = (k=(α / (r + δ))^(1 / (1 - α)); (k=k, w=(1 - α) * k^α))
 
 function excess_supply(r)
     (; k, w) = prices(r)
-    sol = solve_hjb(r, w)
-    g = stationary_dist(sol.A)
-    return sum(g .* a) * da * dx - k, sol, g
+    household = solve_hjb(r, w)
+    g = stationary_dist(household.A)
+    return sum(g .* a_grid) * da * dx - k, household, g
 end
 
-function equilibrium(rlo, rhi; n=20)
-    for _ in 1:n
-        rm = (rlo + rhi) / 2
-        first(excess_supply(rm)) > 0 ? (rhi = rm) : (rlo = rm)
+function equilibrium(r_low, r_high; n_bisect=20)
+    for _ in 1:n_bisect
+        r_mid = (r_low + r_high) / 2
+        first(excess_supply(r_mid)) > 0 ? (r_high = r_mid) : (r_low = r_mid)
     end
-    return (rlo + rhi) / 2
+    return (r_low + r_high) / 2
 end
 
 r★ = equilibrium(0.005, ρ - 1e-4)
-ex, sol, g = excess_supply(r★)
-(r=round(r★, digits=4), K=round(prices(r★).k, digits=2), hjb_iter=sol.iter)
+_, household, g = excess_supply(r★)
+(r=round(r★, digits=4), K=round(prices(r★).k, digits=2),
+    hjb_iter=household.iter)
 ```
 
 均衡利子率は割引率 $\rho = -\log 0.96 \approx 0.041$ を明確に下回ります. 予備的貯蓄による過剰な資本蓄積という Aiyagari モデルの中心的な結果が, 連続時間でもそのまま現れています. 離散時間の章で得た $r^* \approx 0.021$ とはカリブレーションの写像や離散化の違いから小さなずれがありますが, 定性的な結論は同じです. そして, グリッドが $N_a N_x = 62{,}000$ 点あるにもかかわらず, HJB 方程式の反復が数十回, 均衡全体も二分法 20 回で数分以内に収まっていることに注目してください. 速さの源泉は @fig-hact-sparsity で見た疎性です. 実際の $A$ は $62{,}000 \times 62{,}000$ ですが, 非ゼロ要素は全体の 0.01% にも遠く及びません.
 
 ```{julia}
 #| label: hact-nnz
-(nonzeros=nnz(sol.A), share_percent=round(100 * nnz(sol.A) / (Na * Nx)^2, sigdigits=2))
+(nonzeros=nnz(household.A),
+    share_percent=round(100 * nnz(household.A) / (Na * Nx)^2, sigdigits=2))
 ```
 
 ### 政策関数
@@ -662,13 +683,15 @@ ex, sol, g = excess_supply(r★)
 #| label: fig-hact-policy
 #| fig-cap: "**Saving policy functions.** Low-productivity households at the constraint have $s = 0$."
 #| code-fold: true
-jmid = (Nx + 1) ÷ 2
-idx = a .<= 10.0
-plot(a[idx], sol.s[idx, 1], label=L"x = -3\sigma_x", lw=2)
-plot!(a[idx], sol.s[idx, jmid], label=L"x = 0", lw=2, ls=:dash)
-plot!(a[idx], sol.s[idx, Nx], label=L"x = 3\sigma_x", lw=2, ls=:dashdot)
+j_mid = (Nx + 1) ÷ 2                     # index of x = 0
+shown = a_grid .<= 10.0                  # asset range shown in the plot
+plot(a_grid[shown], household.s[shown, 1], label=L"x = -3\sigma_x", lw=2)
+plot!(a_grid[shown], household.s[shown, j_mid], label=L"x = 0", lw=2,
+    ls=:dash)
+plot!(a_grid[shown], household.s[shown, Nx], label=L"x = 3\sigma_x", lw=2,
+    ls=:dashdot)
 hline!([0], color=:gray, ls=:dot, label=false)
-plot!(xlabel=L"a", ylabel="Saving", legend=:topright)
+plot!(xlabel=L"a", ylabel="Saving")
 ```
 
 生産性の低い家計は資産を取り崩しながら借入制約に向かって滑り落ち, 制約点でちょうど $s = 0$ になります. 内点で制約が binding にならない, という理論の構造がそのまま見えています. 生産性の高い家計は広い範囲で貯蓄を続けますが, 十分に資産を持つと ($\rho > r^*$ なので) やはり取り崩しに転じます.
@@ -679,14 +702,15 @@ plot!(xlabel=L"a", ylabel="Saving", legend=:topright)
 #| label: fig-hact-dist
 #| fig-cap: "**Stationary asset distribution.** The point mass at the constraint is omitted."
 #| code-fold: true
-ga = vec(sum(g, dims=2)) .* dx                # marginal density of assets
-plot(a[2:end][a[2:end] .<= 30], ga[2:end][a[2:end] .<= 30],
+gs_a = vec(sum(g, dims=2)) .* dx              # marginal density of assets
+plot(a_grid[2:end][a_grid[2:end] .<= 30], gs_a[2:end][a_grid[2:end] .<= 30],
     label=false, lw=2, xlabel=L"a", ylabel="Density")
 ```
 
 ```{julia}
 #| label: hact-mass
-println("mass at the borrowing constraint: ", round(sum(g[1, :]) * da * dx, sigdigits=3))
+println("mass at the borrowing constraint: ",
+    round(sum(g[1, :]) * da * dx, sigdigits=3))
 ```
 
 離散時間版と同じく, 借入制約の近くに密度が集中し, 制約点そのものには質量が立ちます (図では質量を除いた密度部分を描いています). KF 方程式に一切の境界条件を与えていないのに, 質量まで含めて正しい分布が「転置を解くだけ」で出てくるのが, この手法の強みです.
@@ -701,93 +725,99 @@ println("mass at the borrowing constraint: ", round(sum(g[1, :]) * da * dx, sigd
 #| output: false
 const β = exp(-ρ)                        # discrete-time discount factor
 
-function dt_setup(; na, nz, uniform=false)
-    mc = rouwenhorst(nz, 0.9, 0.2)
-    Π = mc.p
-    zdt = exp.(collect(mc.state_values))
-    zdt ./= dot(vcat(stationary_distributions(mc)...), zdt)   # E[z] = 1
-    ag = uniform ? collect(range(0, amax, length=na)) :
-         collect(range(0, 1, length=na)) .^ 2 .* amax
-    (; Π, zdt, ag, na, nz)
+function discrete_setup(; n_a, n_z, uniform=false)
+    z_chain = rouwenhorst(n_z, 0.9, 0.2)
+    Π = z_chain.p
+    z_grid_discrete = exp.(collect(z_chain.state_values))
+    # normalize E[z] = 1
+    z_probs = vcat(stationary_distributions(z_chain)...)
+    z_grid_discrete ./= dot(z_probs, z_grid_discrete)
+    a_grid_discrete = uniform ? collect(range(0, amax, length=n_a)) :
+                      collect(range(0, 1, length=n_a)) .^ 2 .* amax
+    (; Π, z_grid_discrete, a_grid_discrete, n_a, n_z)
 end
 
-function dt_vfi(r, w, m; howard=50, tol=1e-6, maxit=1000)
-    (; Π, zdt, ag, na, nz) = m
-    V = [u(w * zdt[iz] + r * ag[ia] + 1e-10) / (1 - β) for ia in 1:na, iz in 1:nz]
-    pol = ones(Int, na, nz)
-    iters = 0
-    for it in 1:maxit
-        iters = it
-        EV = β .* (V * Π')
-        Vnew = similar(V)
-        for iz in 1:nz
-            lo = 1
-            for ia in 1:na
-                res = w * zdt[iz] + (1 + r) * ag[ia]
-                best = -Inf
-                besti = lo
-                for ja in lo:na                       # monotone grid search
-                    c = res - ag[ja]
+function discrete_vfi(r, w, model; n_howard=50, tol=1e-6, max_iter=1000)
+    (; Π, z_grid_discrete, a_grid_discrete, n_a, n_z) = model
+    V = [u(w * z_grid_discrete[iz] + r * a_grid_discrete[ia] + 1e-10) / (1 - β)
+         for ia in 1:n_a, iz in 1:n_z]
+    policy = ones(Int, n_a, n_z)      # index of the chosen a' on the grid
+    n_iter = 0
+    for it in 1:max_iter
+        n_iter = it
+        continuation = β .* (V * Π')  # discounted expected value of each a'
+        V_new = similar(V)
+        for iz in 1:n_z
+            ja_min = 1                # monotone policy: search from here up
+            for ia in 1:n_a
+                resources = w * z_grid_discrete[iz] +
+                            (1 + r) * a_grid_discrete[ia]
+                best_value = -Inf
+                best_ja = ja_min
+                for ja in ja_min:n_a                  # monotone grid search
+                    c = resources - a_grid_discrete[ja]
                     c <= 0 && break
-                    val = u(c) + EV[ja, iz]
-                    if val > best
-                        best = val
-                        besti = ja
+                    value = u(c) + continuation[ja, iz]
+                    if value > best_value
+                        best_value = value
+                        best_ja = ja
                     else
                         break                       # concavity: passed the peak
                     end
                 end
-                Vnew[ia, iz] = best
-                pol[ia, iz] = besti
-                lo = besti
+                V_new[ia, iz] = best_value
+                policy[ia, iz] = best_ja
+                ja_min = best_ja
             end
         end
-        for _ in 1:howard                             # Howard improvement
-            EVh = β .* (Vnew * Π')
-            for iz in 1:nz, ia in 1:na
-                c = w * zdt[iz] + (1 + r) * ag[ia] - ag[pol[ia, iz]]
-                Vnew[ia, iz] = u(c) + EVh[pol[ia, iz], iz]
+        for _ in 1:n_howard                           # Howard improvement
+            continuation = β .* (V_new * Π')
+            for iz in 1:n_z, ia in 1:n_a
+                c = w * z_grid_discrete[iz] + (1 + r) * a_grid_discrete[ia] -
+                    a_grid_discrete[policy[ia, iz]]
+                V_new[ia, iz] = u(c) + continuation[policy[ia, iz], iz]
             end
         end
-        if maximum(abs.(Vnew .- V)) < tol
-            V = Vnew
+        if maximum(abs.(V_new .- V)) < tol
+            V = V_new
             break
         end
-        V = Vnew
+        V = V_new
     end
-    return V, pol, iters
+    return V, policy, n_iter
 end
 
-function dt_dist(pol, m; tol=1e-10, maxit=100_000)
-    (; Π, na, nz) = m
-    n = na * nz
-    Is = Int[];
-    Js = Int[];
-    Vs = Float64[]
-    for iz in 1:nz, ia in 1:na
-        row = ia + (iz - 1) * na
-        for jz in 1:nz
-            push!(Is, row)
-            push!(Js, pol[ia, iz] + (jz - 1) * na)
-            push!(Vs, Π[iz, jz])
+function discrete_dist(policy, model; tol=1e-10, max_iter=100_000)
+    (; Π, n_a, n_z) = model
+    n_states = n_a * n_z
+    from_states = Int[];
+    to_states = Int[];
+    probs = Float64[]
+    for iz in 1:n_z, ia in 1:n_a
+        i_from = ia + (iz - 1) * n_a
+        for jz in 1:n_z
+            push!(from_states, i_from)
+            push!(to_states, policy[ia, iz] + (jz - 1) * n_a)
+            push!(probs, Π[iz, jz])
         end
     end
-    Tt = sparse(Js, Is, Vs, n, n)                 # transposed transition matrix
-    λ = fill(1 / n, n)
-    iters = 0
-    for it in 1:maxit
-        iters = it
-        λn = Tt * λ
-        if maximum(abs.(λn .- λ)) < tol
-            λ = λn
+    # transposed transition matrix
+    transition_T = sparse(to_states, from_states, probs, n_states, n_states)
+    dist = fill(1 / n_states, n_states)
+    n_iter = 0
+    for it in 1:max_iter
+        n_iter = it
+        dist_new = transition_T * dist
+        if maximum(abs.(dist_new .- dist)) < tol
+            dist = dist_new
             break
         end
-        λ = λn
+        dist = dist_new
     end
-    return reshape(λ, na, nz), iters
+    return reshape(dist, n_a, n_z), n_iter
 end
 
-dt_assets(λ, m) = sum(λ .* m.ag)
+discrete_assets(dist, model) = sum(dist .* model.a_grid_discrete)
 ```
 
 まず, 資本の需要曲線と供給曲線を両方のモデルで重ねてみます (@fig-hact-vs-dt).
@@ -796,73 +826,101 @@ dt_assets(λ, m) = sum(λ .* m.ag)
 #| label: fig-hact-vs-dt
 #| fig-cap: "**Capital demand and supply.** Continuous vs. discrete time, same calibration."
 #| code-fold: true
-mdt = dt_setup(na=200, nz=7)
+model_coarse = discrete_setup(n_a=200, n_z=7)
 
-function dt_supply(r)
+function discrete_supply(r)
     w = prices(r).w
-    _, pol, _ = dt_vfi(r, w, mdt)
-    dt_assets(first(dt_dist(pol, mdt)), mdt)
+    _, policy, _ = discrete_vfi(r, w, model_coarse)
+    discrete_assets(first(discrete_dist(policy, model_coarse)), model_coarse)
 end
-ct_supply(r) = first(excess_supply(r)) + prices(r).k
+continuous_supply(r) = first(excess_supply(r)) + prices(r).k
 
-rvals = range(0.005, 0.033, length=8)
-A_dt = dt_supply.(rvals)
-A_ct = ct_supply.(rvals)
+r_grid = range(0.005, 0.033, length=8)
+assets_discrete = discrete_supply.(r_grid)
+assets_continuous = continuous_supply.(r_grid)
 
-rfine = range(0.005, 0.033, length=100)
-plot(map(r -> prices(r).k, rfine), rfine, label=L"Demand $k(r)$",
+r_grid_fine = range(0.005, 0.033, length=100)
+plot(map(r -> prices(r).k, r_grid_fine), r_grid_fine, label=L"Demand $k(r)$",
     color=:gray, ls=:dot, lw=2)
-plot!(A_ct, rvals, label="Supply (continuous time)", lw=2, marker=:circle)
-plot!(A_dt, rvals, label="Supply (discrete time)", lw=2, ls=:dash, marker=:square)
-plot!(xlabel="Assets / capital", ylabel=L"r", legend=:bottomright)
+plot!(assets_continuous, r_grid, label="Supply (continuous time)", lw=2,
+    marker=:circle)
+plot!(assets_discrete, r_grid, label="Supply (discrete time)", lw=2, ls=:dash,
+    marker=:square)
+plot!(xlabel="Assets / capital", ylabel=L"r")
 ```
 
 供給曲線はほぼ重なり, 需要曲線との交点 (均衡利子率) も互いに近い位置にあります.
 
 ```{julia}
 #| label: dt-ct-rstar
-function dt_equilibrium(rlo, rhi; n=20)
-    for _ in 1:n
-        rm = (rlo + rhi) / 2
-        dt_supply(rm) > prices(rm).k ? (rhi = rm) : (rlo = rm)
+function discrete_equilibrium(r_low, r_high; n_bisect=20)
+    for _ in 1:n_bisect
+        r_mid = (r_low + r_high) / 2
+        if discrete_supply(r_mid) > prices(r_mid).k
+            r_high = r_mid
+        else
+            r_low = r_mid
+        end
     end
-    return (rlo + rhi) / 2
+    return (r_low + r_high) / 2
 end
-(r_discrete=round(dt_equilibrium(0.005, 0.035), digits=4), r_continuous=round(r★, digits=4))
+(r_discrete=round(discrete_equilibrium(0.005, 0.035), digits=4),
+    r_continuous=round(r★, digits=4))
 ```
 
 残る小さな差は, 意思決定のタイミング (離散時間では1年分まとめて意思決定する) と離散化そのものの違いによるものです. 連続時間版は離散時間の Aiyagari モデルの答えを再現しつつ, 滑らかな政策関数と分布を返している, と言ってよいでしょう.
 
-次に計算時間です. 同じ均衡価格のもとで, 家計問題と定常分布の計算をそれぞれ計測します (収束判定はどちらも $\max \left|\Delta v\right| < 10^{-6}$).
+次に計算時間です. 同じ均衡価格のもとで, 家計問題と定常分布の計算をそれぞれ計測します (収束判定はどちらも $\max \left|\Delta \boldsymbol{v}\right| < 10^{-6}$).
 
 ```{julia}
 #| label: hact-bench
 #| output: false
-mdt31 = dt_setup(na=Na, nz=Nx, uniform=true)   # same grid as continuous time
+# same grid as continuous time
+model_fine = discrete_setup(n_a=Na, n_z=Nx, uniform=true)
 w★ = prices(r★).w
-dt_vfi(r★, w★, mdt31)                                 # warmup
+discrete_vfi(r★, w★, model_fine)                            # warmup
 
-t_vfi7 = @elapsed ((_, pol7, it7) = dt_vfi(r★, w★, mdt))
-t_dist7 = @elapsed ((λ7, itd7) = dt_dist(pol7, mdt))
-t_vfi31 = @elapsed ((_, pol31, it31) = dt_vfi(r★, w★, mdt31))
-t_dist31 = @elapsed ((λ31, itd31) = dt_dist(pol31, mdt31))
-t_hjb = @elapsed (solb = solve_hjb(r★, w★; tol=1e-6))
-t_kf = @elapsed stationary_dist(solb.A)
+elapsed_vfi_coarse = @elapsed begin
+    _, policy_coarse, n_iter_vfi_coarse = discrete_vfi(r★, w★, model_coarse)
+end
+elapsed_dist_coarse = @elapsed begin
+    _, n_iter_dist_coarse = discrete_dist(policy_coarse, model_coarse)
+end
+elapsed_vfi_fine = @elapsed begin
+    _, policy_fine, n_iter_vfi_fine = discrete_vfi(r★, w★, model_fine)
+end
+elapsed_dist_fine = @elapsed begin
+    _, n_iter_dist_fine = discrete_dist(policy_fine, model_fine)
+end
+elapsed_hjb = @elapsed (household_bench = solve_hjb(r★, w★; tol=1e-6))
+elapsed_kf = @elapsed stationary_dist(household_bench.A)
 
-cell(t, n, unit) = string(round(t, digits=2), " 秒 / ", n, " ", unit)
+format_cell(elapsed, iteration_count, unit) =
+    string(round(elapsed, digits=2), " 秒 / ", iteration_count, " ", unit)
 ```
 
 ```{julia}
 #| label: tbl-hact-bench
 #| output: asis
 #| tbl-cap: "家計問題と定常分布の計算時間"
-benchrows = [
-    "離散時間 VFI + Howard" raw"$200 \times 7$" cell(t_vfi7, it7, "反復") cell(t_dist7, itd7, "反復");
-    "離散時間 VFI + Howard" raw"$2{,}000 \times 31$" cell(t_vfi31, it31, "反復") cell(t_dist31, itd31, "反復");
-    "連続時間 有限差分" raw"$2{,}000 \times 31$" cell(t_hjb, solb.iter, "反復") cell(t_kf, 1, "回の求解")
-]
-pretty_table(benchrows;
-    column_labels=["手法", raw"状態数 $N_a \times N_z$", "家計問題", "定常分布"],
+# One vector per column, one entry per method
+method_column = ["離散時間 VFI + Howard", "離散時間 VFI + Howard",
+    "連続時間 有限差分"]
+size_column = [raw"$200 \times 7$", raw"$2{,}000 \times 31$",
+    raw"$2{,}000 \times 31$"]
+household_column = [
+    format_cell(elapsed_vfi_coarse, n_iter_vfi_coarse, "反復"),
+    format_cell(elapsed_vfi_fine, n_iter_vfi_fine, "反復"),
+    format_cell(elapsed_hjb, household_bench.iter, "反復")]
+distribution_column = [
+    format_cell(elapsed_dist_coarse, n_iter_dist_coarse, "反復"),
+    format_cell(elapsed_dist_fine, n_iter_dist_fine, "反復"),
+    format_cell(elapsed_kf, 1, "回の求解")]
+bench_table = hcat(method_column, size_column, household_column,
+    distribution_column)
+pretty_table(bench_table;
+    column_labels=["手法", raw"状態数 $N_a \times N_z$", "家計問題",
+        "定常分布"],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
