@@ -14,11 +14,11 @@ Code
 
 意思決定者 \\n\\ が \\J\\ 個の選択肢から1つを選ぶ状況を考えます. 意思決定者自身は各選択肢の効用を知って選んでいますが, 研究者はその一部しか観察できません. そこで, 効用を研究者が観察・特定できる部分と, できない部分に分解します.
 
-**定義 8.1 (確率効用モデル (Random Utility Model))** 意思決定者 \\n\\ は選択肢 \\j = 1, \ldots, J\\ のうち, 効用 \\U\_{nj}\\ が最大になるものを選ぶ. 効用を \\ U\_{nj} = V\_{nj} + \varepsilon\_{nj} \\ と分解する. \\V\_{nj}\\ は研究者が観察できる属性から特定する部分 (代表効用, representative utility), \\\varepsilon\_{nj}\\ はその残差である. \\\varepsilon_n = \left(\varepsilon\_{n1}, \ldots, \varepsilon\_{nJ}\right)\\ が同時密度 \\f\left(\varepsilon_n\right)\\ に従うとき, 選択肢 \\i\\ が選ばれる確率は \\ \begin{aligned} P\_{ni} &= \text{Pr}\left(V\_{ni} + \varepsilon\_{ni} \> V\_{nj} + \varepsilon\_{nj} \quad \forall j \neq i\right) \\ &= \int \mathbb{1}\left(\varepsilon\_{nj} - \varepsilon\_{ni} \< V\_{ni} - V\_{nj} \quad \forall j \neq i\right) f\left(\varepsilon_n\right)\\ d\varepsilon_n. \end{aligned} \tag{8.1}\\ ここで \\\mathbb{1}\left(\cdot\right)\\ は指示関数.
+**定義 8.1 (確率効用モデル (Random Utility Model))** 意思決定者 \\n\\ は選択肢 \\j = 1, \ldots, J\\ のうち, 効用 \\U\_{nj}\\ が最大になるものを選ぶ. 効用を \\ U\_{nj} = V\_{nj} + \varepsilon\_{nj} \\ と分解する. \\V\_{nj}\\ は研究者が観察できる属性から特定する部分 (代表効用, representative utility), \\\varepsilon\_{nj}\\ はその残差である. \\\boldsymbol{\varepsilon}\_n = \left(\varepsilon\_{n1}, \ldots, \varepsilon\_{nJ}\right)\\ が同時密度 \\f\left(\boldsymbol{\varepsilon}\_n\right)\\ に従うとき, 選択肢 \\i\\ が選ばれる確率は \\ \begin{aligned} P\_{ni} &= \text{Pr}\left(V\_{ni} + \varepsilon\_{ni} \> V\_{nj} + \varepsilon\_{nj} \quad \forall j \neq i\right) \\ &= \int \mathbb{1}\left(\varepsilon\_{nj} - \varepsilon\_{ni} \< V\_{ni} - V\_{nj} \quad \forall j \neq i\right) f\left(\boldsymbol{\varepsilon}\_n\right)\\ d\boldsymbol{\varepsilon}\_n. \end{aligned} \tag{8.1}\\ ここで \\\mathbb{1}\left(\cdot\right)\\ は指示関数.
 
-重要なのは, \\\varepsilon\_{nj}\\ が「選択そのものに内在するランダムネス」ではなく, 研究者の特定した \\V\_{nj}\\ に対して定義される残差だという点です. どの分布を \\\varepsilon_n\\ に仮定するかは, \\V\_{nj}\\ をどれだけうまく特定できたかに依存する, 研究者側のモデリング上の選択です. \\P\_{ni}\\ は「観察可能な部分が同じ人々の集団のうち, 選択肢 \\i\\ を選ぶ人の割合」と解釈できます.
+重要なのは, \\\varepsilon\_{nj}\\ が「選択そのものに内在するランダムネス」ではなく, 研究者の特定した \\V\_{nj}\\ に対して定義される残差だという点です. どの分布を \\\boldsymbol{\varepsilon}\_n\\ に仮定するかは, \\V\_{nj}\\ をどれだけうまく特定できたかに依存する, 研究者側のモデリング上の選択です. \\P\_{ni}\\ は「観察可能な部分が同じ人々の集団のうち, 選択肢 \\i\\ を選ぶ人の割合」と解釈できます.
 
-[式 eq-rum-prob](#eq-rum-prob) の密度 \\f\left(\varepsilon_n\right)\\ の仮定を変えることで, さまざまな離散選択モデルが得られます.
+[式 eq-rum-prob](#eq-rum-prob) の密度 \\f\left(\boldsymbol{\varepsilon}\_n\right)\\ の仮定を変えることで, さまざまな離散選択モデルが得られます.
 
 - IID の第一種極値分布: ロジット (閉形式)
 - 一般化極値 (GEV) 分布: 入れ子ロジットなど (閉形式)
@@ -29,11 +29,11 @@ Code
 
 #### 1. 効用の差のみが識別可能
 
-[式 eq-rum-prob](#eq-rum-prob) から明らかなように, 選択確率は効用の差 \\U\_{ni} - U\_{nj}\\ のみに依存します. したがって次のようなモデルを考えると識別できるのは \\k_j - k_l\\ だけになります. \\ V\_{nj} = x\_{nj}^{\top} \beta + k_j. \\ したがって, 定数項は高々 \\J-1\\ 個しか入れられず, 1つを \\0\\ に基準化する必要があります.
+[式 eq-rum-prob](#eq-rum-prob) から明らかなように, 選択確率は効用の差 \\U\_{ni} - U\_{nj}\\ のみに依存します. したがって次のようなモデルを考えると識別できるのは \\k_j - k_l\\ だけになります. \\ V\_{nj} = \boldsymbol{x}\_{nj}^{\top} \boldsymbol{\beta} + k_j. \\ したがって, 定数項は高々 \\J-1\\ 個しか入れられず, 1つを \\0\\ に基準化する必要があります.
 
 #### 2. 効用のスケールは任意
 
-\\\lambda \> 0\\ に対して, \\U\_{nj} = V\_{nj} + \varepsilon\_{nj}\\ と \\\lambda U\_{nj} = \lambda V\_{nj} + \lambda \varepsilon\_{nj}\\ は同じ行動を意味します. したがって, 効用のスケールを固定する基準化が必要で, 慣習的には誤差項の分散を固定します. 例えば \\\operatorname{Var}(\varepsilon\_{nj}) = \sigma^2\\, かつ \\V\_{nj} = x\_{nj}' \beta\\ のモデルの分散を1に基準化すると, \\ U\_{nj} = x\_{nj}^{\top} \left(\frac{\beta}{\sigma}\right) + \frac{\varepsilon\_{nj}}{\sigma}. \\ 隣, 推定されるのは \\\beta / \sigma\\ になります.
+\\\lambda \> 0\\ に対して, \\U\_{nj} = V\_{nj} + \varepsilon\_{nj}\\ と \\\lambda U\_{nj} = \lambda V\_{nj} + \lambda \varepsilon\_{nj}\\ は同じ行動を意味します. したがって, 効用のスケールを固定する基準化が必要で, 慣習的には誤差項の分散を固定します. 例えば \\\operatorname{Var}(\varepsilon\_{nj}) = \sigma^2\\, かつ \\V\_{nj} = \boldsymbol{x}\_{nj}^{\top} \boldsymbol{\beta}\\ のモデルの分散を1に基準化すると, \\ U\_{nj} = \boldsymbol{x}\_{nj}^{\top} \left(\frac{\boldsymbol{\beta}}{\sigma}\right) + \frac{\varepsilon\_{nj}}{\sigma}. \\ 隣, 推定されるのは \\\boldsymbol{\beta} / \sigma\\ になります.
 
 ### 8.1.2 ロジットモデル
 
@@ -51,7 +51,7 @@ Code
 
 証明は第一種極値分布の分布関数を使った素直な積分の計算で, 付録 ([sec-apdx-logit](#sec-apdx-logit)節) にあります.
 
-[式 eq-logit](#eq-logit) はいくつかの望ましい性質を持ちます. 選択確率は必ず \\0 \< P\_{ni} \< 1\\ の範囲に収まり, 全選択肢について足すと \\1\\ になります. また \\P\_{ni}\\ は \\V\_{ni}\\ の増加に対してシグモイド型に変化し, \\P\_{ni} = 1/2\\ の付近で限界効果が最大になります. 線形の特定 \\V\_{nj} = x\_{nj}' \beta\\ のもとでは対数尤度が \\\beta\\ について大域的に凹になることが知られており, 最尤推定が数値的に安定するのもロジットの利点です ([Train 2009, sec. 3.1](#ref-train2009)).
+[式 eq-logit](#eq-logit) はいくつかの望ましい性質を持ちます. 選択確率は必ず \\0 \< P\_{ni} \< 1\\ の範囲に収まり, 全選択肢について足すと \\1\\ になります. また \\P\_{ni}\\ は \\V\_{ni}\\ の増加に対してシグモイド型に変化し, \\P\_{ni} = 1/2\\ の付近で限界効果が最大になります. 線形の特定 \\V\_{nj} = \boldsymbol{x}\_{nj}^{\top} \boldsymbol{\beta}\\ のもとでは対数尤度が \\\boldsymbol{\beta}\\ について大域的に凹になることが知られており, 最尤推定が数値的に安定するのもロジットの利点です ([Train 2009, sec. 3.1](#ref-train2009)).
 
 #### 対数和と期待効用
 
@@ -214,7 +214,7 @@ Ciscato ([2025](#ref-ciscato2025)) の解決策は, できたカップルがそ�
 
 図 8.2: Separation rate by duration (Fig. 1)
 
-**推定.** 1期は1年で, 割引因子は \\\beta = 0.95\\ に固定します. 出会いのコストと1期あたりの余剰はタイプの線形関数として \\ \Lambda\_{ij} = x\_{ij}^{\top} \lambda, \qquad H\_{ij,a,k} = x\_{ij}^{\top} \delta + \zeta_a + \eta_k \\ と特定し, \\x\_{ij}\\ には各人の年齢・人種・学歴に加えて, 同じ年齢層・同じ人種・同じ学歴かどうかを表す2人の属性の交差項を入れます. 交差項の係数が, 出会いのコストでは分断の, 余剰では補完性の強さを表します. マッチの質 \\k\\ は2つの値をとります. パラメータは, マッチ率と離別率 (全体と, 性別・学歴・人種別), 別れたときの平均年齢, 交際の平均期間をモーメントとする積率法で推定します. 基本の推定では人種を白人とそれ以外の2つ, 学歴を3つに分けます.
+**推定.** 1期は1年で, 割引因子は \\\beta = 0.95\\ に固定します. 出会いのコストと1期あたりの余剰はタイプの線形関数として \\ \Lambda\_{ij} = \boldsymbol{x}\_{ij}^{\top} \boldsymbol{\lambda}, \qquad H\_{ij,a,k} = \boldsymbol{x}\_{ij}^{\top} \boldsymbol{\delta} + \zeta_a + \eta_k \\ と特定し, \\\boldsymbol{x}\_{ij}\\ には各人の年齢・人種・学歴に加えて, 同じ年齢層・同じ人種・同じ学歴かどうかを表す2人の属性の交差項を入れます. 交差項の係数が, 出会いのコストでは分断の, 余剰では補完性の強さを表します. マッチの質 \\k\\ は2つの値をとります. パラメータは, マッチ率と離別率 (全体と, 性別・学歴・人種別), 別れたときの平均年齢, 交際の平均期間をモーメントとする積率法で推定します. 基本の推定では人種を白人とそれ以外の2つ, 学歴を3つに分けます.
 
 ### 8.3.5 結果
 
@@ -296,11 +296,11 @@ Reynoso ([2024](#ref-reynoso2024)) のモデルは, 結婚市場の均衡と, �
 
 **所得.** 賃金は \\ \log w\_{it} = \log W_i\left(s_i\right) + a_1^{G_i}\left(s_i\right) \text{exper}\_{it} + a_2^{G_i}\left(s_i\right) \text{exper}\_{it}^2 + a_3\left(s_i\right) K_t\\ \mathbb{1}\left\\G_i = \mathcal{Y}\right\\ + \varepsilon\_{it} \\ に従います. \\W_i\left(s_i\right)\\ は学歴の市場価格, \\\text{exper}\_{it}\\ は労働市場での経験年数, \\K_t = \sum\_{r=1}^{t-1} k_r\\ は妻が家庭に入っていた期間, \\\varepsilon\_{it}\\ は恒常的な所得ショック (ランダムウォーク), \\G_i\\ は性別で \\\mathcal{Y}\\ が男性です. 鍵は \\a_3\\ です. 妻が家庭に入ると, 夫は長時間働いたり出張や転勤をしたりしやすくなり, 夫の人的資本が増えます. 逆に家庭に入った妻は経験年数が伸びないので, 賃金が下がります. どちらの効果も離婚後まで残ります. 夫の人的資本は離婚時に分けにくいので, \\a_3\\ と経験の収益が, 事実1の契約できない投資をモデルの中で表しています.
 
-**家計の問題.** 結婚市場で, 各人は相手のタイプごとに, 相手が結婚の条件として要求する生涯効用 (効用価格) を所与とします. 学歴 \\s_f\\ の女性と結婚するには, 男性はその女性の効用価格 \\\bar{U}\_{\mathcal{X}}^{s_f s_m}\\ を保証しなければなりません. 夫婦は, 状態に応じた消費・労働参加・離婚・離婚後の送金の計画 \\\mathbf{a}\\ を collective に選びます. \\ \begin{aligned} \bar{U}\_{\mathcal{Y}}^{s_f s_m} = \max\_{\mathbf{a}}\\ & \mathbb{E}\_0 \sum\_{t=1}^{T} \delta^{t-1} \left(\left(1 - D_t\right) u_m^M\left(a_t\right) + D_t u_m^D\left(a_t\right)\right) \\ \text{s.t.}\\ & \mathbb{E}\_0 \sum\_{t=1}^{T} \delta^{t-1} \left(\left(1 - D_t\right) u_f^M\left(a_t\right) + D_t u_f^D\left(a_t\right)\right) \geq \bar{U}\_{\mathcal{X}}^{s_f s_m} \end{aligned} \tag{8.9}\\ \\D_t\\ は離婚したかどうかを表します. 予算制約は, 結婚中なら \\c\_{ft} + c\_{mt} + q_t = w\_{ft}\left(1 - k_t\right) + w\_{mt}\\, 離婚後なら元妻が \\x\_{ft} + q_t = w\_{ft} + \tau_t\\, 元夫が \\x\_{mt} = w\_{mt} - \tau_t\\ です. \\\tau_t \geq 0\\ は元夫から元妻への養育費です. 妻の参加制約の Lagrange 乗数 \\\lambda_0^{s_f s_m}\\ が, 結婚時の妻の Pareto ウェイトになります ([命題 prp-collective](#prp-collective)). 状態変数 \\\omega_t = \left(\lambda_t, K_t, \varepsilon\_{ft}, \varepsilon\_{mt}, \theta_t\right)\\ は, その期の Pareto ウェイト \\\lambda_t\\ を含みます.
+**家計の問題.** 結婚市場で, 各人は相手のタイプごとに, 相手が結婚の条件として要求する生涯効用 (効用価格) を所与とします. 学歴 \\s_f\\ の女性と結婚するには, 男性はその女性の効用価格 \\\bar{U}\_{\mathcal{X}}^{s_f s_m}\\ を保証しなければなりません. 夫婦は, 状態に応じた消費・労働参加・離婚・離婚後の送金の計画 \\\boldsymbol{a}\\ を collective に選びます. \\ \begin{aligned} \bar{U}\_{\mathcal{Y}}^{s_f s_m} = \max\_{\boldsymbol{a}}\\ & \mathbb{E}\_0 \sum\_{t=1}^{T} \delta^{t-1} \left(\left(1 - D_t\right) u_m^M\left(\boldsymbol{a}\_t\right) + D_t u_m^D\left(\boldsymbol{a}\_t\right)\right) \\ \text{s.t.}\\ & \mathbb{E}\_0 \sum\_{t=1}^{T} \delta^{t-1} \left(\left(1 - D_t\right) u_f^M\left(\boldsymbol{a}\_t\right) + D_t u_f^D\left(\boldsymbol{a}\_t\right)\right) \geq \bar{U}\_{\mathcal{X}}^{s_f s_m} \end{aligned} \tag{8.9}\\ \\D_t\\ は離婚したかどうかを表します. 予算制約は, 結婚中なら \\c\_{ft} + c\_{mt} + q_t = w\_{ft}\left(1 - k_t\right) + w\_{mt}\\, 離婚後なら元妻が \\x\_{ft} + q_t = w\_{ft} + \tau_t\\, 元夫が \\x\_{mt} = w\_{mt} - \tau_t\\ です. \\\tau_t \geq 0\\ は元夫から元妻への養育費です. 妻の参加制約の Lagrange 乗数 \\\lambda_0^{s_f s_m}\\ が, 結婚時の妻の Pareto ウェイトになります ([命題 prp-collective](#prp-collective)). 状態変数 \\\boldsymbol{\omega}\_t = \left(\lambda_t, K_t, \varepsilon\_{ft}, \varepsilon\_{mt}, \theta_t\right)\\ は, その期の Pareto ウェイト \\\lambda_t\\ を含みます.
 
 **離婚後は協力しない.** 離婚した2人は非協力的な Stackelberg ゲームを行います. 元夫が養育費 \\\tau_t\\ を決め, 元妻はそれを所与として私的財と公共財に支出を配分します. 元夫は元妻が送金を何に使うかを確認できないので, 公共財への支出は効率的な水準を下回ります. さらに, 家庭に入った配偶者のおかげで人的資本を積んだ側は, 離婚後にその収益を分ける必要がありません. 結婚中の1期の配分は TU の性質を持ちますが, 離婚後は元夫婦の公共財の評価が異なるので, 協力したとしても TU になりません. こうして, 離婚後に協力できないことと結婚中の投資の収益を離婚時に分けられないことから, このモデルは ITU になります. Becker–Coase 定理の条件のうち, 離婚後の TU と交換レートの不変性がここで破れています.
 
-**2つの離婚制度.** 離婚制度の違いは, 計画 \\\mathbf{a}\\ に課される制約の違いとして表れます. \\t\\ 期以降の生涯の期待効用を, 結婚を続けた場合 \\V\_{it}^M\\, 離婚した場合 \\V\_{it}^D\\ と書きます.
+**2つの離婚制度.** 離婚制度の違いは, 計画 \\\boldsymbol{a}\\ に課される制約の違いとして表れます. \\t\\ 期以降の生涯の期待効用を, 結婚を続けた場合 \\V\_{it}^M\\, 離婚した場合 \\V\_{it}^D\\ と書きます.
 
 - **協議離婚**: 離婚には双方の合意が必要です. 2人とも離婚した方がよくなる配分 (\\V\_{ft}^D \geq V\_{ft}^M\\ かつ \\V\_{mt}^D \geq V\_{mt}^M\\) が存在するときだけ離婚します. 離婚した最初の期には, 2人は離婚の合意 (divorce settlement) のもとで効率的な配分を選び, 結婚を続けたかった側に補償します. その後は非協力になります. 結婚中の Pareto ウェイトは \\\lambda_t = \lambda_0\\ のまま変わりません.
 - **単意離婚**: どちらか一方の意思で離婚できるので, 結婚を続けるには双方の合意が必要です. 毎期, どちらかが離婚したくなったら, その人の Pareto ウェイトを, 留まってもよいと思える最小の幅だけ引き上げて引き止めます. どうウェイトを動かしても2人とも結婚を続けた方がよいという配分 (\\V\_{ft}^M \geq V\_{ft}^D\\ かつ \\V\_{mt}^M \geq V\_{mt}^D\\) が作れないときに離婚します. 離婚の合意はなく, すぐに非協力になります.
@@ -326,23 +326,23 @@ Pareto ウェイト \\\lambda_0^{s_f s_m}\\ を動かすと, [式 eq-reynoso-ho
 
 **データと4つの結婚市場.** データは PSID の 1968–92 年で, 形成される時点から観察できる家計 (初婚の夫婦と, 40歳まで結婚しなかった独身者) を使います. 単意離婚の効果を後で模擬するために, 標本期間を通じて協議離婚だった19州の家計だけで推定します. 標本は 3,528 世帯 (夫婦 2,817 組, 独身女性 400 人, 独身男性 311 人) です. Gayle and Shephard ([2019](#ref-gayle2019)) にならい, 国勢調査の地域区分にもとづいて4つの結婚市場 (Northeast, Midwest and West, South Atlantic, South Central) を定義します. 市場によって学歴の分布が異なることが, 識別の鍵になります.
 
-**推定の手順.** 1期を3年として \\T = 10\\ (25歳以下から50歳以上まで) とします. 第1段階で, モデルの外で識別されるパラメータ (割引因子 \\\delta\\, 元夫の公共財へのウェイト \\\gamma\\, 消費の規模 \\\rho\\, 恒常所得ショックの分散) を固定し, 好みのショックを標準的な第一種極値分布とします. 第2段階で, 残る54個のパラメータ \\\Pi\\ (妻が家庭に入ることの効用 9 個, マッチの質の平均 9 個と分散 9 個, 独身の非経済的な価値 6 個, 所得過程 21 個) を, 市場ごと・夫婦のタイプごとの初期 Pareto ウェイト \\\Lambda = \left\\\lambda\_{0g}^{s_f s_m}\right\\\\ (\\9 \times 4 = 36\\ 個) と同時に推定します.
+**推定の手順.** 1期を3年として \\T = 10\\ (25歳以下から50歳以上まで) とします. 第1段階で, モデルの外で識別されるパラメータ (割引因子 \\\delta\\, 元夫の公共財へのウェイト \\\gamma\\, 消費の規模 \\\rho\\, 恒常所得ショックの分散) を固定し, 好みのショックを標準的な第一種極値分布とします. 第2段階で, 残る54個のパラメータ \\\boldsymbol{\Pi}\\ (妻が家庭に入ることの効用 9 個, マッチの質の平均 9 個と分散 9 個, 独身の非経済的な価値 6 個, 所得過程 21 個) を, 市場ごと・夫婦のタイプごとの初期 Pareto ウェイト \\\Lambda = \left\\\lambda\_{0g}^{s_f s_m}\right\\\\ (\\9 \times 4 = 36\\ 個) と同時に推定します.
 
 **識別.** 識別の鍵は複数の結婚市場です. 選好と所得過程のパラメータは市場間で共通で, 市場間で異なるのは学歴の分布だけだと仮定します. すると学歴の分布の違いは, 選好にも予算にも入らず Pareto ウェイトにだけ効く distribution factor ([sec-allocation](#sec-allocation)節) として働き, Pareto ウェイトを選好とは別に識別します ([Galichon et al. 2019](#ref-galichon2019); [Gayle and Shephard 2019](#ref-gayle2019)). Pareto ウェイトが分かれば, 残りのパラメータは, それぞれが強く効く行動 (結婚のパターン, 妻の就業, 離婚) から識別されます. モーメントは, 市場ごとの学歴別の独身率 (24 個), 夫婦のタイプの頻度 (72 個), 夫婦のタイプ別の専業主婦の割合 (36 個) と離婚確率 (36 個), 学歴・性別の平均賃金 (24 個) と賃金の経験プロファイル (60 個) の計 252 個です.
 
-**均衡制約つきの SMM.** パラメータは, 市場清算を制約とする simulated method of moments で推定します. \\ \begin{aligned} \left(\hat{\Pi}, \hat{\Lambda}\right) = \arg\min\_{\Pi, \Lambda}\\ & \left(\text{mom}^{\text{sim}}\left(\Pi, \Lambda\right) - \text{mom}^{\text{data}}\right)^{\top} V \left(\text{mom}^{\text{sim}}\left(\Pi, \Lambda\right) - \text{mom}^{\text{data}}\right) \\ \text{s.t.}\\ & \mu\_{s_f \to s_m}\left(\Pi, \Lambda\right) = \mu\_{s_f \leftarrow s_m}\left(\Pi, \Lambda\right) \qquad \forall \left(s_f, s_m\right) \in \mathcal{S}^2 \end{aligned} \\ \\V\\ はデータのモーメントの分散の逆数を対角に並べた重み行列です. Pareto ウェイト \\\Lambda\\ は, 本来ならパラメータ \\\Pi\\ を与えるごとに市場清算から決まる内生変数ですが, ここでは推定するパラメータに含め, 市場清算の条件を制約として課しています. これが次に見る MPEC の考え方です.
+**均衡制約つきの SMM.** パラメータは, 市場清算を制約とする simulated method of moments で推定します. \\ \begin{aligned} \left(\hat{\boldsymbol{\Pi}}, \hat{\Lambda}\right) = \arg\min\_{\boldsymbol{\Pi}, \Lambda}\\ & \left(\boldsymbol{\mathrm{mom}}^{\text{sim}}\left(\boldsymbol{\Pi}, \Lambda\right) - \boldsymbol{\mathrm{mom}}^{\text{data}}\right)^{\top} V \left(\boldsymbol{\mathrm{mom}}^{\text{sim}}\left(\boldsymbol{\Pi}, \Lambda\right) - \boldsymbol{\mathrm{mom}}^{\text{data}}\right) \\ \text{s.t.}\\ & \mu\_{s_f \to s_m}\left(\boldsymbol{\Pi}, \Lambda\right) = \mu\_{s_f \leftarrow s_m}\left(\boldsymbol{\Pi}, \Lambda\right) \qquad \forall \left(s_f, s_m\right) \in \mathcal{S}^2 \end{aligned} \\ \\V\\ はデータのモーメントの分散の逆数を対角に並べた重み行列です. Pareto ウェイト \\\Lambda\\ は, 本来ならパラメータ \\\boldsymbol{\Pi}\\ を与えるごとに市場清算から決まる内生変数ですが, ここでは推定するパラメータに含め, 市場清算の条件を制約として課しています. これが次に見る MPEC の考え方です.
 
 #### MPEC
 
-[sec-gmm-micro](#sec-gmm-micro)節の家計モデルは, パラメータを与えれば配分が閉じた形で解けました. しかし Reynoso ([2024](#ref-reynoso2024)) のような一般均衡モデルの推定では, パラメータ \\\Pi\\ を与えるたびに均衡を解く内側のループが必要になります. ここでは結婚市場を清算する Pareto ウェイト (と期待価値の行列) が, Aiyagari モデルなら資産市場を清算する金利が, パラメータごとの不動点計算として挟まるわけです. この入れ子構造 (nested fixed point) は計算コストの大部分を占めがちで, 最適化の1ステップごとに高精度で均衡を解き直すのは大きな無駄になります.
+[sec-gmm-micro](#sec-gmm-micro)節の家計モデルは, パラメータを与えれば配分が閉じた形で解けました. しかし Reynoso ([2024](#ref-reynoso2024)) のような一般均衡モデルの推定では, パラメータ \\\boldsymbol{\Pi}\\ を与えるたびに均衡を解く内側のループが必要になります. ここでは結婚市場を清算する Pareto ウェイト (と期待価値の行列) が, Aiyagari モデルなら資産市場を清算する金利が, パラメータごとの不動点計算として挟まるわけです. この入れ子構造 (nested fixed point) は計算コストの大部分を占めがちで, 最適化の1ステップごとに高精度で均衡を解き直すのは大きな無駄になります.
 
 Su and Judd ([2012](#ref-su2012)) が提案した **MPEC** (mathematical programming with equilibrium constraints) は, この入れ子を解消します. アイデアは単純で, 均衡条件を「パラメータごとに解いてから目的関数を評価する」のではなく, 内生変数を最適化の変数に昇格させ, 均衡条件を制約として最適化ソルバに渡すことです. 上の constrained SMM がまさにこの形で, 均衡価格にあたる \\\Lambda\\ が最適化の変数に昇格し, 結婚市場の清算条件 \\\mu\_{s_f \rightarrow s_m} = \mu\_{s_f \leftarrow s_m}\\ が制約として課されています.
 
 最適化の途中では均衡が満たされていなくてよく, 収束時に満たされていればよい, というのが要点です. 制約付き最適化は[sec-constrained-opt](#sec-constrained-opt)節で学んだ手法 (内点法など) がそのまま使えます. 代表的な解き方のひとつが拡張ラグランジュ法です.
 
-**アルゴリズム 8.2 (拡張ラグランジュ法 (Augmented Lagrangian method))** 制約付き最適化問題 \\ \min\_{\mathbf{x}} f\left(\mathbf{x}\right) \quad \text{s.t.} \quad c_i\left(\mathbf{x}\right) = 0 \quad \forall i \\ に対して, 乗数項とペナルティ項を加えた無制約問題 \\ \min\_{\mathbf{x}}\\ f\left(\mathbf{x}\right) + \sum\_{i} \nu_i c_i\left(\mathbf{x}\right) + \frac{\rho}{2} \sum\_{i} c_i\left(\mathbf{x}\right)^2 \\ を, 乗数 \\\nu_i\\ とペナルティの重み \\\rho\\ を更新しながら繰り返し解く.
+**アルゴリズム 8.2 (拡張ラグランジュ法 (Augmented Lagrangian method))** 制約付き最適化問題 \\ \min\_{\boldsymbol{x}} f\left(\boldsymbol{x}\right) \quad \text{s.t.} \quad c_i\left(\boldsymbol{x}\right) = 0 \quad \forall i \\ に対して, 乗数項とペナルティ項を加えた無制約問題 \\ \min\_{\boldsymbol{x}}\\ f\left(\boldsymbol{x}\right) + \sum\_{i} \nu_i c_i\left(\boldsymbol{x}\right) + \frac{\rho}{2} \sum\_{i} c_i\left(\boldsymbol{x}\right)^2 \\ を, 乗数 \\\nu_i\\ とペナルティの重み \\\rho\\ を更新しながら繰り返し解く.
 
-\\\mathbf{x} = \left(\Pi, \Lambda\right)\\, \\f\\ を SMM の目的関数, \\c_i\\ を各市場の均衡条件とすれば, 実用上はターゲットが制約条件の数だけ増えた SMM とみなすことができます. Gayle and Shephard ([2019](#ref-gayle2019)) も, 結婚市場均衡を制約とするこの形の constrained SMM でモデルを推定しています.
+\\\boldsymbol{x} = \left(\boldsymbol{\Pi}, \Lambda\right)\\, \\f\\ を SMM の目的関数, \\c_i\\ を各市場の均衡条件とすれば, 実用上はターゲットが制約条件の数だけ増えた SMM とみなすことができます. Gayle and Shephard ([2019](#ref-gayle2019)) も, 結婚市場均衡を制約とするこの形の constrained SMM でモデルを推定しています.
 
 ### 8.4.5 推定結果
 

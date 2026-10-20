@@ -295,7 +295,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 残りのパラメータは SMM で推定しますが, その実装に工夫があります. 推定を外側と内側の2つのループに分けるのです.
 
 - **外側のループ**: \\\left(\alpha, q\_{1880}\right)\\ だけを数値的に探索する
-- **内側のループ**: 残りの選好パラメータ \\\Lambda\left(\alpha, q\_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)\\ は, \\\left(\alpha, q\_{1880}\right)\\ を所与とすると一階条件から解析的に決まる
+- **内側のループ**: 残りの選好パラメータ \\\boldsymbol{\Lambda}\left(\alpha, q\_{1880}\right) = \left(\beta, \nu, \delta, \lambda, \psi, \kappa, \xi, \zeta\right)\\ は, \\\left(\alpha, q\_{1880}\right)\\ を所与とすると一階条件から解析的に決まる
 - ガンベル分布のパラメータ \\\left(\texttt{a}, \texttt{d}\right)\\ は, 他のすべてが決まった後に婚姻率から決まる
 
 数値的に探索するパラメータが実質2個まで減るので, 推定は非常に軽くなります. 内側のループの仕掛けは, どの一階条件も「曲率パラメータはデータの2時点比から, ウェイトパラメータは水準から」という形で逐次的に解けることです. 順番に見ていきます.
@@ -324,17 +324,17 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 1880年から2020年への変化を駆動する力として, 論文は3つに注目します.
 
-1.  全体的な技術革新 (neutral technological progress, \\\mathbf{z}\\)
-2.  スキル偏向的な技術革新 (skill-biased technological progress, \\\mathbf{x}\\)
+1.  全体的な技術革新 (neutral technological progress, \\Z\\)
+2.  スキル偏向的な技術革新 (skill-biased technological progress, \\X\\)
 3.  家庭内生産用耐久財の価格低下 (\\p\\)
 
-技術革新をモデル化するため, brawn 労働 \\\mathbf{u}\\ と brain 労働 \\\mathbf{v}\\ を CES で束ねる代表的企業を導入します. \\ \max\_{\mathbf{u}, \mathbf{v}} \mathbf{z}\left(\left(1-\omega\right)\mathbf{u}^{\iota} + \omega \mathbf{x}\mathbf{v}^{\iota}\right)^{\frac{1}{\iota}} - u\mathbf{u} - v\mathbf{v}. \\ 一階条件から, 大卒プレミアム \\q\\ は \\ q = \frac{v}{u} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{\mathbf{v}}{\mathbf{u}}\right)^{\iota-1} = \frac{\omega \mathbf{x}}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{9.7}\\ と書けます (最後の等式は, 総労働時間を \\\mathbf{t}\\ として \\\mathbf{u} = \left(1 - s\right)\mathbf{t}\\, \\\mathbf{v} = s\mathbf{t}\\ を代入したものです). CES のパラメータ \\\left(\omega, \iota\right)\\ は Acemoglu and Autor ([2011](#ref-acemoglu2011a)) の値を使い, [式 eq-college-premium](#eq-college-premium) から各時点の \\\mathbf{x}\\ が, brawn 労働の一階条件から \\\mathbf{z}\\ が逆算できます ([表 tbl-greenwood2023-table6-1](#tbl-greenwood2023-table6-1)).
+技術革新をモデル化するため, brawn 労働 \\U\\ と brain 労働 \\V\\ を CES で束ねる代表的企業を導入します. \\ \max\_{U, V} Z\left(\left(1-\omega\right)U^{\iota} + \omega X V^{\iota}\right)^{\frac{1}{\iota}} - u U - v V. \\ 一階条件から, 大卒プレミアム \\q\\ は \\ q = \frac{v}{u} = \frac{\omega X}{1-\omega} \left(\frac{V}{U}\right)^{\iota-1} = \frac{\omega X}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{9.7}\\ と書けます (最後の等式は, 総労働時間を \\T\\ として \\U = \left(1 - s\right)T\\, \\V = sT\\ を代入したものです). CES のパラメータ \\\left(\omega, \iota\right)\\ は Acemoglu and Autor ([2011](#ref-acemoglu2011a)) の値を使い, [式 eq-college-premium](#eq-college-premium) から各時点の \\X\\ が, brawn 労働の一階条件から \\Z\\ が逆算できます ([表 tbl-greenwood2023-table6-1](#tbl-greenwood2023-table6-1)). この表と以下の図では, 論文の表記に従って \\X\\, \\Z\\ が \\x\\, \\z\\ と書かれています.
 
 [![](../../static/img/article/greenwood2023/table6_1.svg)](../../static/img/article/greenwood2023/table6_1.svg "表 9.3: Technology parameter values. Table 6.1 of @greenwood2023")
 
 表 9.3: Technology parameter values. Table 6.1 of Greenwood et al. ([2023](#ref-greenwood2023))
 
-3つの駆動力を \\\mathbf{z}\_t = \mathbf{z}\_{1880} e^{\Delta\mathbf{z}\left(t-1880\right)}\\, \\\mathbf{x}\_t = \mathbf{x}\_{1880} e^{\Delta\mathbf{x}\left(t-1880\right)}\\, \\p_t = p\_{1880} e^{\Delta p\left(t-1880\right)}\\ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.
+3つの駆動力を \\Z_t = Z\_{1880} e^{\Delta Z\left(t-1880\right)}\\, \\X_t = X\_{1880} e^{\Delta X\left(t-1880\right)}\\, \\p_t = p\_{1880} e^{\Delta p\left(t-1880\right)}\\ と指数的に動かし, モデルに1880年から2020年までの移行経路を生成させます.
 
 [![](../../static/img/article/greenwood2023/fig6_1.svg)](../../static/img/article/greenwood2023/fig6_1.svg "図 9.21: Transitional dynamics: fertility, schooling, and marriage. Figure 6.1 of @greenwood2023")
 
@@ -344,13 +344,13 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 では, どの駆動力がどの事実を担っているのでしょうか. 反実仮想で1つずつ止めてみます.
 
-**スキル偏向的な技術革新 \\\mathbf{x}\\ を止めると.**
+**スキル偏向的な技術革新 \\X\\ を止めると.**
 
 [![](../../static/img/article/greenwood2023/fig6_2.svg)](../../static/img/article/greenwood2023/fig6_2.svg "図 9.22: Comparative dynamics: fertility and schooling. Figure 6.2 of @greenwood2023")
 
 図 9.22: Comparative dynamics: fertility and schooling. Figure 6.2 of Greenwood et al. ([2023](#ref-greenwood2023))
 
-大卒プレミアムが上昇しない世界 ([図 fig-greenwood2023-fig6-2](#fig-greenwood2023-fig6-2)) では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 (\\\mathbf{x}\\) から出ていることが分かります.
+大卒プレミアムが上昇しない世界 ([図 fig-greenwood2023-fig6-2](#fig-greenwood2023-fig6-2)) では, 出生率は高止まりし, 大卒者の割合も増えません. 教育のリターンが低いままなので, 親は子どもの「質」ではなく「数」に投資し続けるからです. 出生率の低下と教育の拡大が, quantity-quality トレードオフを通じて同じ1つの力 (\\X\\) から出ていることが分かります.
 
 **耐久財価格 \\p\\ の低下を止めると.**
 
@@ -370,7 +370,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 6つの Kuznets facts は, 実質的に2つの駆動力に整理されます.
 
-**スキル偏向的な技術革新** (\\\mathbf{x}\\: 大卒プレミアムの上昇)
+**スキル偏向的な技術革新** (\\X\\: 大卒プレミアムの上昇)
 
 - 高学歴者の増加 (⑤) とホワイトカラーへの転換 (⑥) を直接駆動する
 - Quantity-quality トレードオフを通じて, 出生率の低下 (②) と世帯サイズの縮小 (④) を駆動する

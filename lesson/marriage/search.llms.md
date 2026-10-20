@@ -91,7 +91,7 @@ Code
 - \\\theta = 0.206, \kappa = 0.189\\: McGrattan et al. ([1997](#ref-mcgrattan1997))
 - \\w\_{1950} = 1.00\\ (基準化), \\w\_{t} = w\_{1950} \exp\left(0.022 (t - 1950)\right)\\: 1950-2000年の平均賃金上昇率
 
-残る10個のパラメータ \\ \lambda := \left(\overline{c}, p\_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right) \\ は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします ([図 fig-gg2009-estimates](#fig-gg2009-estimates)).
+残る10個のパラメータ \\ \boldsymbol{\lambda} := \left(\overline{c}, p\_{1950}, \gamma, \alpha, \zeta, \mu_s, \sigma_s, \mu_m, \sigma_m, \rho \right) \\ は, 1950年から2000年までの16個の統計量 (婚姻世帯と独身世帯の労働時間の各年代値, 婚姻率・結婚確率・離婚確率の始点と終点) をターゲットとした SMM でカリブレーションします ([図 fig-gg2009-estimates](#fig-gg2009-estimates)).
 
 [![](../../static/img/article/greenwood2009/table2.svg)](../../static/img/article/greenwood2009/table2.svg "図 6.4: SMM estimates (Table 2)")
 

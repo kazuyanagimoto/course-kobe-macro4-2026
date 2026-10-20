@@ -8,18 +8,18 @@ Unitary and Collective Models, Nash Bargaining, and Commitment
 
 Chiappori and Mazzocco ([2017](#ref-chiappori2017c)) を参照しながら, 家計内配分の理論を整理します. 次の設定を考えます
 
-- 妻 \\W\\ と夫 \\H\\ がそれぞれ効用関数 \\u_W\left(q_W, Q\right)\\, \\u_H\left(q_H, Q\right)\\ を持つ. \\q_j\\ は私的財, \\Q\\ は公共財
+- 妻 \\W\\ と夫 \\H\\ がそれぞれ効用関数 \\u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right)\\, \\u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right)\\ を持つ. \\\boldsymbol{q}\_j\\ は私的財, \\\boldsymbol{Q}\\ は公共財のベクトル
 - 家計の予算制約のもとで実現可能な効用の組の集合を \\\mathcal{U}\\ とする. \\\mathcal{U}\\ は凸でコンパクト
 - Pareto フロンティアは減少関数 \\u_H = \Psi\left(u_W\right)\\ で表せるとする
 
 ### 5.1.1 Unitary model
 
-伝統的な消費者理論を家計にそのまま適用すると, 家計は1つの効用関数 \\U\left(q_W, q_H, Q\right)\\ を予算制約 \\ p \cdot \left(q_W + q_H\right) + P\\ Q \leq y_W + y_H =: Y \\ のもとで最大化する主体になります. これを **unitary model** と呼びます ([Becker 1991](#ref-becker1991)). 家計が複数の個人からなることを意識していても, 合意された家族の効用関数 (Samuelson ([1956](#ref-samuelson1956)) の社会厚生関数) か, 全員の選好を考慮して決める家長 (Becker の利他的な dictator) を仮定すれば, 結果として家計は1人のように振る舞います. 観察できるのは家計の需要, すなわち価格 \\\pi = \left(p, P\right)\\ と所得 \\Y\\ の関数としての総需要 \\q\left(\pi, Y\right) = \left(q_W + q_H, Q\right)\\ です. Unitary model はこの需要関数に2つの強い制約を課します.
+伝統的な消費者理論を家計にそのまま適用すると, 家計は1つの効用関数 \\U\left(\boldsymbol{q}\_W, \boldsymbol{q}\_H, \boldsymbol{Q}\right)\\ を予算制約 \\ \boldsymbol{p} \cdot \left(\boldsymbol{q}\_W + \boldsymbol{q}\_H\right) + \boldsymbol{P} \cdot \boldsymbol{Q} \leq y_W + y_H =: Y \\ のもとで最大化する主体になります. これを **unitary model** と呼びます ([Becker 1991](#ref-becker1991)). 家計が複数の個人からなることを意識していても, 合意された家族の効用関数 (Samuelson ([1956](#ref-samuelson1956)) の社会厚生関数) か, 全員の選好を考慮して決める家長 (Becker の利他的な dictator) を仮定すれば, 結果として家計は1人のように振る舞います. 観察できるのは家計の需要, すなわち価格 \\\boldsymbol{\pi} = \left(\boldsymbol{p}, \boldsymbol{P}\right)\\ と所得 \\Y\\ の関数としての総需要 \\\boldsymbol{q}\left(\boldsymbol{\pi}, Y\right) = \left(\boldsymbol{q}\_W + \boldsymbol{q}\_H, \boldsymbol{Q}\right)\\ です. Unitary model はこの需要関数に2つの強い制約を課します.
 
 1.  **Income pooling.** 所得は合計 \\Y\\ だけが意思決定に影響し, 誰が稼いだか (\\y_W\\ と \\y_H\\ の内訳) は影響しない. 選好にも予算集合にも入らない変数 (結婚市場の性比, 離婚法制, 給付の帰属先) は需要に影響しない. こうした変数を後で distribution factor と呼ぶ.
-2.  **Slutsky 対称性.** 財 \\l\\ の価格 \\\pi_l\\ が上がったときの財 \\k\\ の需要の変化は, 代替効果と所得効果に分解できる (Slutsky 分解). \\ \frac{\partial q_k}{\partial \pi_l} = \underbrace{\frac{\partial q^{c}\_k}{\partial \pi_l}}\_{\text{substitution effect}} \underbrace{- \\ q_l\\ \frac{\partial q_k}{\partial Y}}\_{\text{income effect}} \\ ここで \\q^{c}\_k\left(\pi, u\right)\\ は, 効用を \\u\\ に保つように所得を補償したときの需要 (補償需要, Hicksian demand. 上付きの \\c\\ は compensated の意味) で, 実際の効用水準 \\u = v\left(\pi, Y\right)\\ で評価する. 価格 \\\pi_l\\ が上がると, 買っている量 \\q_l\\ に比例して実質所得が目減りするので, 所得効果は \\-q_l\\ \partial q_k / \partial Y\\ になる. 代替効果を並べた行列 \\ S\_{kl}\left(\pi, Y\right) = \frac{\partial q^{c}\_k}{\partial \pi_l} = \frac{\partial q_k}{\partial \pi_l} + q_l\\ \frac{\partial q_k}{\partial Y} \tag{5.1}\\ を Slutsky 行列と呼ぶ. 2つ目の等号は Slutsky 分解を移項したもので, 観察できる需要 \\q\\ だけから \\S\\ を計算できることを表す. この Slutsky 行列 \\S\\ は対称かつ負値半定符号である.
+2.  **Slutsky 対称性.** 財 \\l\\ の価格 \\\pi_l\\ が上がったときの財 \\k\\ の需要の変化は, 代替効果と所得効果に分解できる (Slutsky 分解). \\ \frac{\partial q_k}{\partial \pi_l} = \underbrace{\frac{\partial q^{c}\_k}{\partial \pi_l}}\_{\text{substitution effect}} \underbrace{- \\ q_l\\ \frac{\partial q_k}{\partial Y}}\_{\text{income effect}} \\ ここで \\q^{c}\_k\left(\boldsymbol{\pi}, u\right)\\ は, 効用を \\u\\ に保つように所得を補償したときの需要 (補償需要, Hicksian demand. 上付きの \\c\\ は compensated の意味) で, 実際の効用水準 \\u = v\left(\boldsymbol{\pi}, Y\right)\\ で評価する. 価格 \\\pi_l\\ が上がると, 買っている量 \\q_l\\ に比例して実質所得が目減りするので, 所得効果は \\-q_l\\ \partial q_k / \partial Y\\ になる. 代替効果を並べた行列 \\ S\_{kl}\left(\boldsymbol{\pi}, Y\right) = \frac{\partial q^{c}\_k}{\partial \pi_l} = \frac{\partial q_k}{\partial \pi_l} + q_l\\ \frac{\partial q_k}{\partial Y} \tag{5.1}\\ を Slutsky 行列と呼ぶ. 2つ目の等号は Slutsky 分解を移項したもので, 観察できる需要 \\\boldsymbol{q}\\ だけから \\S\\ を計算できることを表す. この Slutsky 行列 \\S\\ は対称かつ負値半定符号である.
 
-Slutsky 対称性の意味は, 財として夫婦それぞれの余暇をとると見えやすくなります. 私的財 \\q_W, q_H\\ は夫婦が同じ価格 \\p\\ で買うので, 価格を動かしても「誰の選好が効いているか」は分かりません. これに対して余暇の価格は各人の賃金です. 1人あたりの時間を \\T\\, 非労働所得を \\y\\ として, 家計が \\U\left(c, l_W, l_H\right)\\ を予算制約 \\c + w_W l_W + w_H l_H = y + \left(w_W + w_H\right) T\\ のもとで最大化するとします. 妻と夫の余暇についての Slutsky 行列の要素を \\S\_{WH}, S\_{HW}\\ と書くと, 対称性 \\S\_{WH} = S\_{HW}\\ は \\ \frac{\partial l_W}{\partial w_H} - h_H\\ \frac{\partial l_W}{\partial y} = \frac{\partial l_H}{\partial w_W} - h_W\\ \frac{\partial l_H}{\partial y} \\ となります. ここで \\h_j = T - l_j\\ は労働時間で, 微分は非労働所得 \\y\\ を一定にしたものです. 夫の賃金が上がったときの妻の余暇の (補償された) 反応と, 妻の賃金が上がったときの夫の余暇の反応が等しい, という関係です. しかし, 実際には夫の賃金の上昇は夫の発言権を高める効果があるとすると, 妻の余暇には「夫の選好の比重が増える」効果が加わり, 対称性は成り立たなくなります. Unitary model は, 家計の中に1つの効用関数を最大化する主体がいる限り, こうした目に見えにくい制約を課します.
+Slutsky 対称性の意味は, 財として夫婦それぞれの余暇をとると見えやすくなります. 私的財 \\\boldsymbol{q}\_W, \boldsymbol{q}\_H\\ は夫婦が同じ価格 \\\boldsymbol{p}\\ で買うので, 価格を動かしても「誰の選好が効いているか」は分かりません. これに対して余暇の価格は各人の賃金です. 1人あたりの時間を \\T\\, 非労働所得を \\y\\ として, 家計が \\U\left(c, l_W, l_H\right)\\ を予算制約 \\c + w_W l_W + w_H l_H = y + \left(w_W + w_H\right) T\\ のもとで最大化するとします. 妻と夫の余暇についての Slutsky 行列の要素を \\S\_{WH}, S\_{HW}\\ と書くと, 対称性 \\S\_{WH} = S\_{HW}\\ は \\ \frac{\partial l_W}{\partial w_H} - h_H\\ \frac{\partial l_W}{\partial y} = \frac{\partial l_H}{\partial w_W} - h_W\\ \frac{\partial l_H}{\partial y} \\ となります. ここで \\h_j = T - l_j\\ は労働時間で, 微分は非労働所得 \\y\\ を一定にしたものです. 夫の賃金が上がったときの妻の余暇の (補償された) 反応と, 妻の賃金が上がったときの夫の余暇の反応が等しい, という関係です. しかし, 実際には夫の賃金の上昇は夫の発言権を高める効果があるとすると, 妻の余暇には「夫の選好の比重が増える」効果が加わり, 対称性は成り立たなくなります. Unitary model は, 家計の中に1つの効用関数を最大化する主体がいる限り, こうした目に見えにくい制約を課します.
 
 ### 5.1.2 Collective model
 
@@ -29,24 +29,24 @@ Slutsky 対称性の意味は, 財として夫婦それぞれの余暇をとる�
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-collective)にあります.
 
-つまり collective model の家計問題は \\ \max\_{q_W, q_H, Q}\\ \mu\\ u_W\left(q_W, Q\right) + \left(1 - \mu\right) u_H\left(q_H, Q\right) \quad \text{s.t.} \quad \text{budget constraint} \\ と書け, フロンティア上の位置の選択はすべて \\\mu\\ に集約されます. \\\mu\\ は「交渉力」の指標であり, 価格・所得のほか, 選好にも予算集合にも影響しないが交渉力にだけ影響する変数, すなわち **distribution factor** (結婚市場の性比, 離婚法制, 給付の帰属先など) に依存してよいとします. 実は[sec-gmm-micro](#sec-gmm-micro)節で GMM によって推定した二人家計のモデルは, まさにこの collective model であり, そこで推定した \\\mu\\ がここでの Pareto ウェイトです.
+つまり collective model の家計問題は \\ \max\_{\boldsymbol{q}\_W, \boldsymbol{q}\_H, \boldsymbol{Q}}\\ \mu\\ u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right) + \left(1 - \mu\right) u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right) \quad \text{s.t.} \quad \text{budget constraint} \\ と書け, フロンティア上の位置の選択はすべて \\\mu\\ に集約されます. \\\mu\\ は「交渉力」の指標であり, 価格・所得のほか, 選好にも予算集合にも影響しないが交渉力にだけ影響する変数, すなわち **distribution factor** (結婚市場の性比, 離婚法制, 給付の帰属先など) に依存してよいとします. 実は[sec-gmm-micro](#sec-gmm-micro)節で GMM によって推定した二人家計のモデルは, まさにこの collective model であり, そこで推定した \\\mu\\ がここでの Pareto ウェイトです.
 
 ### 5.1.3 Collective model の含意
 
-Collective model は unitary model より弱い仮定しか置きませんが, それでも家計需要に検定可能な制約を課します ([Browning and Chiappori 1998](#ref-browning1998)). 鍵になるのは, 価格・所得・distribution factor が家計行動に効く経路が2つあることです. 1つは予算制約を通じる経路, もう1つは Pareto ウェイト \\\mu\left(\pi, Y, z\right)\\ を通じる経路です (\\z\\ は distribution factor のベクトル). 価格と所得は両方の経路を持ちますが, distribution factor は定義により予算制約に入らないので, 2つ目の経路しか持ちません. この違いが検定可能な含意を生みます. 実際, ウェイトを固定したときの家計需要を \\\tilde{q}\left(\pi, Y, \mu\right)\\ と書くと, 観察される需要は \\ q\left(\pi, Y, z\right) = \tilde{q}\left(\pi, Y, \mu\left(\pi, Y, z\right)\right) \tag{5.3}\\ です. ここで \\\tilde{q}\left(\cdot, \cdot, \mu\right)\\ は, 加重和 \\\mu u_W + \left(1 - \mu\right) u_H\\ を家計の総消費 \\\left(q, Q\right)\\ について最大化した「collective な家計効用関数」を予算制約のもとで最大化する, 標準的な需要関数です. したがって \\\mu\\ を固定すれば通常の消費者理論がそのまま成り立ちます.
+Collective model は unitary model より弱い仮定しか置きませんが, それでも家計需要に検定可能な制約を課します ([Browning and Chiappori 1998](#ref-browning1998)). 鍵になるのは, 価格・所得・distribution factor が家計行動に効く経路が2つあることです. 1つは予算制約を通じる経路, もう1つは Pareto ウェイト \\\mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right)\\ を通じる経路です (\\\boldsymbol{z}\\ は distribution factor のベクトル). 価格と所得は両方の経路を持ちますが, distribution factor は定義により予算制約に入らないので, 2つ目の経路しか持ちません. この違いが検定可能な含意を生みます. 実際, ウェイトを固定したときの家計需要を \\\tilde{\boldsymbol{q}}\left(\boldsymbol{\pi}, Y, \mu\right)\\ と書くと, 観察される需要は \\ \boldsymbol{q}\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right) = \tilde{\boldsymbol{q}}\left(\boldsymbol{\pi}, Y, \mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right)\right) \tag{5.3}\\ です. ここで \\\tilde{\boldsymbol{q}}\left(\cdot, \cdot, \mu\right)\\ は, 加重和 \\\mu u_W + \left(1 - \mu\right) u_H\\ を家計の総消費 \\\left(\boldsymbol{q}, \boldsymbol{Q}\right)\\ について最大化した「collective な家計効用関数」を予算制約のもとで最大化する, 標準的な需要関数です. したがって \\\mu\\ を固定すれば通常の消費者理論がそのまま成り立ちます.
 
 **Distribution factor とは.** 選好にも予算集合にも入らないが, 夫婦の交渉力 \\\mu\\ には影響しうる変数を distribution factor と呼びます. 典型例は所得の内訳です. 予算制約に入るのは総所得 \\Y = y_W + y_H\\ だけなので, 総所得を変えずに妻の取り分 \\y_W / Y\\ を増やしても, 家計が買える財の組み合わせは変わりません. それでも稼いでいる人の発言力が強くなるなら, \\y_W / Y\\ は \\\mu\\ を通じて消費を動かします. 総額を変えずに給付の受取人を夫から妻に変える改革, 結婚市場の性比, 離婚法制も同じ種類の変数です.
 
 **2つのモデルの予測.** Distribution factor が需要に効くかどうかで, 2つのモデルの予測が分かれます.
 
-- **Unitary model**: 家計は1つの効用関数を同じ予算集合のもとで最大化するので, distribution factor は需要に影響しません (\\\partial q / \partial z = 0\\). \\z = y_W / Y\\ の場合がちょうど income pooling です.
-- **Collective model**: distribution factor は \\\mu\\ を通じて需要を動かせます. [式 eq-collective-demand](#eq-collective-demand) を \\z_k\\ で微分すると \\ \frac{\partial q}{\partial z_k} = \frac{\partial \tilde{q}}{\partial \mu}\\ \frac{\partial \mu}{\partial z_k} \tag{5.4}\\ となり, これは一般にゼロではありません. つまり income pooling は成り立つとは限りません.
+- **Unitary model**: 家計は1つの効用関数を同じ予算集合のもとで最大化するので, distribution factor は需要に影響しません (\\\partial \boldsymbol{q} / \partial \boldsymbol{z} = 0\\). Distribution factor が妻の所得の割合 \\y_W / Y\\ だけの場合がちょうど income pooling です.
+- **Collective model**: distribution factor は \\\mu\\ を通じて需要を動かせます. [式 eq-collective-demand](#eq-collective-demand) を \\z_k\\ で微分すると \\ \frac{\partial \boldsymbol{q}}{\partial z_k} = \frac{\partial \tilde{\boldsymbol{q}}}{\partial \mu}\\ \frac{\partial \mu}{\partial z_k} \tag{5.4}\\ となり, これは一般にゼロではありません. つまり income pooling は成り立つとは限りません.
 
-**比例条件.** ただし collective model も何でも許すわけではありません. [式 eq-df-effect](#eq-df-effect) の右辺の第1因子 \\\partial \tilde{q} / \partial \mu\\ は \\z_k\\ によらない共通のベクトルなので, どの distribution factor の効果もこのベクトルの定数倍になり, 違うのは倍率 \\\partial \mu / \partial z_k\\ だけです. 需要は1次元の \\\mu\\ を通じてしか動かないからです. したがって, 2つの distribution factor \\z_1, z_2\\ と2つの財 \\i, j\\ について \\ \frac{\partial q_i / \partial z_1}{\partial q_j / \partial z_1} = \frac{\partial q_i / \partial z_2}{\partial q_j / \partial z_2} = \frac{\partial \tilde{q}\_i / \partial \mu}{\partial \tilde{q}\_j / \partial \mu} \\ が成り立ちます (比例条件, proportionality). 例えば, 児童手当の受取人を夫から妻に変える改革 (\\z_1\\) で, 女性服の支出が子ども服の支出の2倍だけ増えたとします. Collective model のもとでは, この 2:1 という比は \\\partial \tilde{q} / \partial \mu\\, つまり「妻の交渉力が上がったときに家計の支出がどう組み替わるか」で決まっており, どの distribution factor にも共通です. したがって, 結婚市場の性比 (\\z_2\\) の変化が女性服と子ども服を例えば 1:3 の比で動かしていたら, 2つの変数がどちらも1次元の交渉力 \\\mu\\ だけを通じて効いている, という collective model の構造と矛盾します. Distribution factor が1つしかなければ \\\partial \tilde{q} / \partial \mu\\ の向きは自由に選べるので制約になりませんが, 2つ以上あると, この比の等しさとして検定できます ([Bourguignon et al. 2009](#ref-bourguignon2009)).
+**比例条件.** ただし collective model も何でも許すわけではありません. [式 eq-df-effect](#eq-df-effect) の右辺の第1因子 \\\partial \tilde{\boldsymbol{q}} / \partial \mu\\ は \\z_k\\ によらない共通のベクトルなので, どの distribution factor の効果もこのベクトルの定数倍になり, 違うのは倍率 \\\partial \mu / \partial z_k\\ だけです. 需要は1次元の \\\mu\\ を通じてしか動かないからです. したがって, 2つの distribution factor \\z_1, z_2\\ と2つの財 \\i, j\\ について \\ \frac{\partial q_i / \partial z_1}{\partial q_j / \partial z_1} = \frac{\partial q_i / \partial z_2}{\partial q_j / \partial z_2} = \frac{\partial \tilde{q}\_i / \partial \mu}{\partial \tilde{q}\_j / \partial \mu} \\ が成り立ちます (比例条件, proportionality). 例えば, 児童手当の受取人を夫から妻に変える改革 (\\z_1\\) で, 女性服の支出が子ども服の支出の2倍だけ増えたとします. Collective model のもとでは, この 2:1 という比は \\\partial \tilde{\boldsymbol{q}} / \partial \mu\\, つまり「妻の交渉力が上がったときに家計の支出がどう組み替わるか」で決まっており, どの distribution factor にも共通です. したがって, 結婚市場の性比 (\\z_2\\) の変化が女性服と子ども服を例えば 1:3 の比で動かしていたら, 2つの変数がどちらも1次元の交渉力 \\\mu\\ だけを通じて効いている, という collective model の構造と矛盾します. Distribution factor が1つしかなければ \\\partial \tilde{\boldsymbol{q}} / \partial \mu\\ の向きは自由に選べるので制約になりませんが, 2つ以上あると, この比の等しさとして検定できます ([Bourguignon et al. 2009](#ref-bourguignon2009)).
 
 **Slutsky 行列.** 価格と所得についても同じ議論が使えます.
 
-**命題 5.2 (Slutsky 行列の SR1 条件, Browning and Chiappori ([1998](#ref-browning1998)))** Collective model の家計需要 [式 eq-collective-demand](#eq-collective-demand) の Slutsky 行列 [式 eq-slutsky](#eq-slutsky) は, 対称で負値半定符号な行列 \\\Sigma\\ と, ランクが高々 \\1\\ の行列の和 \\ S\left(\pi, Y\right) = \Sigma\left(\pi, Y\right) + a\\ b^{\top}, \qquad a = \frac{\partial \tilde{q}}{\partial \mu}, \quad b = \nabla\_{\pi}\\ \mu + q\\ \frac{\partial \mu}{\partial Y} \tag{5.5}\\ に分解できる (symmetric plus rank one, SR1).
+**命題 5.2 (Slutsky 行列の SR1 条件, Browning and Chiappori ([1998](#ref-browning1998)))** Collective model の家計需要 [式 eq-collective-demand](#eq-collective-demand) の Slutsky 行列 [式 eq-slutsky](#eq-slutsky) は, 対称で負値半定符号な行列 \\\Sigma\\ と, ランクが高々 \\1\\ の行列の和 \\ S\left(\boldsymbol{\pi}, Y\right) = \Sigma\left(\boldsymbol{\pi}, Y\right) + \boldsymbol{a}\\ \boldsymbol{b}^{\top}, \qquad \boldsymbol{a} = \frac{\partial \tilde{\boldsymbol{q}}}{\partial \mu}, \quad \boldsymbol{b} = \nabla\_{\boldsymbol{\pi}}\\ \mu + \boldsymbol{q}\\ \frac{\partial \mu}{\partial Y} \tag{5.5}\\ に分解できる (symmetric plus rank one, SR1).
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-sr1)にあります.
 
@@ -61,6 +61,38 @@ Collective model は unitary model より弱い仮定しか置きませんが, �
 - **SR1 (collective)**: 同じ研究で, 夫婦でも SR1 は棄却されていません.
 - **比例条件 (collective)**: さまざまなデータで検定されてきましたが, 棄却されていません ([Bourguignon et al. 2009](#ref-bourguignon2009)).
 
+**Income pooling の自然実験.** 稼ぎや資産所得の内訳は選好や働き方と無関係に決まるわけではないので, 所得の内訳が需要に効くという横断面の証拠には内生性の疑いが残ります. Lundberg et al. ([1997](#ref-lundberg1997)) は, 英国の児童手当改革を自然実験として使いました. 1977年4月より前の児童手当は, 母親に現金で払われる Family Allowance と, 父親の給与から源泉徴収される税を減らす Child Tax Allowance の2本立てでした. 1977年から1979年にかけて, この2つは母親に現金で払われる Child Benefit に一本化されます. 税控除を受けられるだけの所得がある子ども2人の家計では, 1972-73年度から1979-80年度にかけて, 夫への支払いが男性の平均年収の約 6% 分減り, 妻への支払いがほぼ同じだけ増えました. 夫婦が所得をプールしているなら, この受取人の変更は支出に影響しないはずです.
+
+[図 fig-lundberg1997-ratio](#fig-lundberg1997-ratio) は, 英国の家計支出調査 (Family Expenditure Survey, FES) から, 子ども服と男性服, 女性服と男性服の支出の比を年ごとに描いたものです. 破線は改革前 (1973-76年) と改革後 (1980-90年) の平均です. 子どもが2人, 3人の家計では, 改革をはさんで比が一段上がり, その後は上昇のトレンドを持たずにその水準にとどまっています. 子どもが1人の家計では, はっきりした変化は見えません.
+
+[![](../../static/img/article/lundberg1997/fig1a.png)](../../static/img/article/lundberg1997/fig1a.png "図 5.1 (a): Children’s to men’s clothing (Fig. 1a of @lundberg1997)")
+
+\(a\) Children’s to men’s clothing (Fig. 1a of Lundberg et al. ([1997](#ref-lundberg1997)))
+
+[![](../../static/img/article/lundberg1997/fig1b.png)](../../static/img/article/lundberg1997/fig1b.png "図 5.1 (b): Women’s to men’s clothing (Fig. 1b of @lundberg1997)")
+
+\(b\) Women’s to men’s clothing (Fig. 1b of Lundberg et al. ([1997](#ref-lundberg1997)))
+
+図 5.1: Clothing expenditure ratios, 1973-90
+
+[図 fig-lundberg1997-table4](#fig-lundberg1997-table4) は, これを回帰で確かめたものです. 観測値は個々の家計ではなく, FES が所得階級と子どもの数で区切って公表しているセルの平均で, 被説明変数は子ども服と男性服の支出の比です. 子どもの数と年齢構成, 所得を制御し, 改革後の期間を表すダミーと子どもの数のダミーの交差項 \\D_1, D_2, D_3\\ の係数で改革の効果を測ります. 括弧内は \\t\\ 値, \\H_0\\ の行は \\D_1 = D_2 = D_3 = 0\\ の同時検定の \\p\\ 値です. 1列目 (改革前 1973-76年, 改革後 1980-90年) では, 子ども2人, 3人の家計の係数が正で有意で, 3つの係数が同時に \\0\\ という仮説は 0.05% 水準で棄却されます. 2列目は, 改革後を 1980-83年に絞っても結果が変わらないことを示します. 3列目は, 改革をはさまない 1980-83年と 1987-90年を同じ方法で比べたプラセボで, ダミーは同時には有意ではありません (\\p = 0.23\\). 支出比の上昇が, もともとのトレンドではなく, 改革の時点での1回限りのシフトだったことを示しています. 女性服と男性服の比 (論文の Table 6) でも結論は同じです. 係数の大きさは, 子ども2人の家計で, 年 400 ポンドを超える夫から妻への移転に対して, 子ども服が年約 52 ポンド, 女性服が年約 27 ポンド増えたことに相当します.
+
+[![](../../static/img/article/lundberg1997/table4.png)](../../static/img/article/lundberg1997/table4.png "図 5.2: Ratio of children’s to men’s clothing (Table 4 of @lundberg1997)")
+
+図 5.2: Ratio of children’s to men’s clothing (Table 4 of Lundberg et al. ([1997](#ref-lundberg1997)))
+
+**単身者と夫婦の比較.** [図 fig-browning1998-unitary](#fig-browning1998-unitary) は, Browning and Chiappori ([1998](#ref-browning1998)) が unitary model の制約を3つの標本に同じように検定した結果です. 列は単身女性, 単身男性, 夫婦の標本で, 各セルは \\\chi^2\\ 統計量, 括弧内が自由度, 角括弧内が帰無仮説のもとでの確率 (\\p\\ 値) です. 1行目は操作変数の過剰識別制約の検定です. 夫婦の標本では妻と夫それぞれの稼ぎが操作変数に入っているので, 個人の所得が需要に直接効かないこと (income pooling) の検定を兼ねています. 2行目が Slutsky 対称性の検定です. 単身者ではどちらの制約も棄却されないのに対して, 夫婦ではどちらも 1% 水準で棄却されます. なお著者たちは, 標本の大きさに応じて棄却の基準を厳しくする Schwarz の基準を使えば夫婦でも unitary model が選ばれる, という読み方もありうることを認めたうえで, 単身者との対比から制約の方を疑う立場をとっています.
+
+[![](../../static/img/article/browning1998/table1.png)](../../static/img/article/browning1998/table1.png "図 5.3: Tests of the unitary model (Table I of @browning1998)")
+
+図 5.3: Tests of the unitary model (Table I of Browning and Chiappori ([1998](#ref-browning1998)))
+
+[図 fig-browning1998-collective](#fig-browning1998-collective) は, 夫婦の標本で, 需要に2つの distribution factor (妻と夫の稼ぎの対数の差と, 妻の稼ぎの対数) を加えた collective model を推定し, その制約を検定したものです. 個人の所得を需要から除く制約は 2.7% で棄却され (income pooling の棄却), 対称性も 0.41% で棄却されます. これに対して, SR1 (44.3%), distribution factor の比例条件 (26.0%), それらに線形性の制約を加えた同時検定 (15.7%) はどれも棄却されません. 同じデータで, unitary model の制約は棄却され, collective model の制約は棄却されない, という結果です.
+
+[![](../../static/img/article/browning1998/table3.png)](../../static/img/article/browning1998/table3.png "図 5.4: Tests of the collective model, couples (Table III of @browning1998)")
+
+図 5.4: Tests of the collective model, couples (Table III of Browning and Chiappori ([1998](#ref-browning1998)))
+
 まとめると, unitary model の2つの含意 (income pooling と Slutsky 対称性) は夫婦のデータで棄却され, collective model のより弱い制約 (SR1 と比例条件) は棄却されていません. 少なくともこれらの検定の範囲では, 家計を1人の意思決定者とみなすことはできないが, 夫婦が効率的な配分を選んでいるという仮定はデータと矛盾しない, というのが現在の理解です.
 
 ## 5.2 Collective model と Nash bargaining
@@ -71,7 +103,7 @@ Collective model は \\\mu\\ を誘導形として扱い, 何がそれを決め�
 
 二人の交渉を扱う際の伝統として, 協力ゲーム理論の交渉解を家計に適用するものがあります ([Manser and Brown 1980](#ref-manser1980); [McElroy and Horney 1981](#ref-mcelroy1981)).
 
-**定義 5.1 (Nash 交渉解)** 交渉が決裂したときの各自の効用 (脅威点, threat point) を \\T = \left(T_W, T_H\right)\\, 妻の交渉力を \\\beta \in \left(0, 1\right)\\ とする. Nash 交渉解は, 決裂点からの利得の加重積を最大化する配分である. \\ \max\_{\left(u_W, u_H\right) \in \mathcal{U},\\ u_W \geq T_W,\\ u_H \geq T_H} \left(u_W - T_W\right)^{\beta} \left(u_H - T_H\right)^{1 - \beta}. \tag{5.6}\\
+**定義 5.1 (Nash 交渉解)** 交渉が決裂したときの各自の効用 (脅威点, threat point) を \\\boldsymbol{T} = \left(T_W, T_H\right)\\, 妻の交渉力を \\\beta \in \left(0, 1\right)\\ とする. Nash 交渉解は, 決裂点からの利得の加重積を最大化する配分である. \\ \max\_{\left(u_W, u_H\right) \in \mathcal{U},\\ u_W \geq T_W,\\ u_H \geq T_H} \left(u_W - T_W\right)^{\beta} \left(u_H - T_H\right)^{1 - \beta}. \tag{5.6}\\
 
 \\\beta = 1/2\\ が Nash ([1950](#ref-nash1950)) の対称な Nash 交渉解で, Nash ([1950](#ref-nash1950)) はこれが次の公理系を満たす唯一の解であることを示しました:
 
@@ -98,27 +130,27 @@ Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロ
 
 **命題 5.3 (Nash 交渉と collective model の双対性)** フロンティア \\\Psi\\ は微分可能で狭義に凹とする.
 
-1.  脅威点 \\T\\, 交渉力 \\\beta\\ の Nash 交渉解 \\\left(u_W^\*, u_H^\*\right)\\ は, Pareto ウェイトを \\ \frac{\mu^\*}{1 - \mu^\*} = \frac{\beta}{1 - \beta} \cdot \frac{u_H^\* - T_H}{u_W^\* - T_W} \tag{5.7}\\ と選んだ collective model [式 eq-collective](#eq-collective) の解に一致する.
+1.  脅威点 \\\boldsymbol{T}\\, 交渉力 \\\beta\\ の Nash 交渉解 \\\left(u_W^\*, u_H^\*\right)\\ は, Pareto ウェイトを \\ \frac{\mu^\*}{1 - \mu^\*} = \frac{\beta}{1 - \beta} \cdot \frac{u_H^\* - T_H}{u_W^\* - T_W} \tag{5.7}\\ と選んだ collective model [式 eq-collective](#eq-collective) の解に一致する.
 2.  逆に, 任意の Pareto 効率的な配分 \\\left(u_W^\circ, u_H^\circ\right)\\ (内点) は, どんな \\\beta\\ に対しても, 脅威点を適当に選べば Nash 交渉解として実現できる.
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-nash-collective)にあります.
 
-[![](../../static/cetz/nash_collective.svg)](../../static/cetz/nash_collective.svg "図 5.1: Collective model と Nash 交渉. 影は実現可能集合 \mathcal{U}, 青い曲線はその Pareto フロンティア \Psi. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 T から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.")
+[![](../../static/cetz/nash_collective.svg)](../../static/cetz/nash_collective.svg "図 5.5: Collective model と Nash 交渉. 影は実現可能集合 \mathcal{U}, 青い曲線はその Pareto フロンティア \Psi. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \boldsymbol{T} から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.")
 
-図 5.1: **Collective model と Nash 交渉.** 影は実現可能集合 \\\mathcal{U}\\, 青い曲線はその Pareto フロンティア \\\Psi\\. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \\T\\ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.
+図 5.5: **Collective model と Nash 交渉.** 影は実現可能集合 \\\mathcal{U}\\, 青い曲線はその Pareto フロンティア \\\Psi\\. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \\\boldsymbol{T}\\ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.
 
 [図 fig-nash-collective](#fig-nash-collective) は2つの問題を図解したものです. どちらも Pareto フロンティア上の1点を選ぶ問題ですが, 選び方が違います.
 
 1.  Collective model: 加重和 \\\mu u_W + \left(1 - \mu\right) u_H\\ の等高線 (傾き \\-\mu / \left(1 - \mu\right)\\ の直線) がフロンティアに接する点を選ぶ
-2.  Nash bargaining: 脅威点 \\T\\ から広げた Nash 積の等高線がフロンティアに接する点を選ぶ. この点では, フロンティアの接線の傾きが, \\T\\ から解へ伸びる線分の傾きの \\-\beta / \left(1 - \beta\right)\\ 倍になる
+2.  Nash bargaining: 脅威点 \\\boldsymbol{T}\\ から広げた Nash 積の等高線がフロンティアに接する点を選ぶ. この点では, フロンティアの接線の傾きが, \\\boldsymbol{T}\\ から解へ伸びる線分の傾きの \\-\beta / \left(1 - \beta\right)\\ 倍になる
 
-どちらも結局はフロンティアの接線の傾きを決めているので, 2つの傾きを等しくおくと, Nash 交渉の解に対応する \\\mu\\ が求まります ([式 eq-nash-weight](#eq-nash-weight)). \\\mu\\ を選ぶことと \\T\\ (と \\\beta\\) を選ぶことが表裏一体であることは, [命題 prp-nash-collective](#prp-nash-collective) が示しています.
+どちらも結局はフロンティアの接線の傾きを決めているので, 2つの傾きを等しくおくと, Nash 交渉の解に対応する \\\mu\\ が求まります ([式 eq-nash-weight](#eq-nash-weight)). \\\mu\\ を選ぶことと \\\boldsymbol{T}\\ (と \\\beta\\) を選ぶことが表裏一体であることは, [命題 prp-nash-collective](#prp-nash-collective) が示しています.
 
 #### パレートウェイト \\\mu\\ は何が決めるか
 
 この双対性を理解すると, マッチング, すなわち結婚市場の均衡がパレートウェイト \\\mu\\ を決めることが分かります. 結婚前にカップルが夫婦になった場合の効用を交渉して結婚するとすると, 次のように解釈できます.
 
-- 脅威点 \\T\\ はこの人と結婚しない場合の効用と考えられる
+- 脅威点 \\\boldsymbol{T}\\ はこの人と結婚しない場合の効用と考えられる
 - この人と結婚しない場合の効用は, 独身の場合や他の人と結婚した場合の効用である
 - したがって, モテる人ほど脅威点が高くなり, それと対応する Pareto ウェイト \\\mu\\ も高くなる
 
@@ -130,7 +162,7 @@ Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロ
 
 ### 5.3.1 3つのコミットメント
 
-家計は \\t = 0\\ (結婚時) から \\\bar{t}\\ まで生き, 各期の賃金 \\W_t\\, 資産 \\a_t\\, 交渉力にだけ影響する distribution factor \\Z_t\\ (結婚市場の性比, 離婚法制, 個人に帰属する給付など) を観測します. 結婚時の情報を \\\Omega_0\\ と書きます. どの型でも, 家計の問題は Pareto ウェイト \\\left(\mu\_{1t}, \mu\_{2t}\right)\\ を付けた再帰的な形 \\ V_t\left(\Omega_t\right) = \max\_{C_t}\\ \mu\_{1t}\\ u_1\left(q_t, h\_{1t}\right) + \mu\_{2t}\\ u_2\left(q_t, h\_{2t}\right) + \beta\\ \mathbb{E}\_t V\_{t+1}\left(\Omega\_{t+1}\right) \tag{5.8}\\ に書けます (予算制約のもとで. \\C_t\\ は消費・労働時間・貯蓄の選択). 3つの型の違いは, ウェイト \\\mu\_{jt}\\ の動きに課される制約の違いとして表れます.
+家計は \\t = 0\\ (結婚時) から \\\bar{t}\\ まで生き, 各期の夫婦の賃金 \\\boldsymbol{W}\_t\\, 資産 \\a_t\\, 交渉力にだけ影響する distribution factor \\\boldsymbol{Z}\_t\\ (結婚市場の性比, 離婚法制, 個人に帰属する給付など) を観測します. 結婚時の情報を \\\Omega_0\\ と書きます. どの型でも, 家計の問題は Pareto ウェイト \\\left(\mu\_{1t}, \mu\_{2t}\right)\\ を付けた再帰的な形 \\ V_t\left(\Omega_t\right) = \max\_{\boldsymbol{C}\_t}\\ \mu\_{1t}\\ u_1\left(q_t, h\_{1t}\right) + \mu\_{2t}\\ u_2\left(q_t, h\_{2t}\right) + \beta\\ \mathbb{E}\_t V\_{t+1}\left(\Omega\_{t+1}\right) \tag{5.8}\\ に書けます (予算制約のもとで. \\\boldsymbol{C}\_t\\ は消費・労働時間・貯蓄の選択). 3つの型の違いは, ウェイト \\\mu\_{jt}\\ の動きに課される制約の違いとして表れます.
 
 **完全コミットメント (full commitment).** 結婚時に, 将来のあらゆる状態に応じた配分計画に完全に約束できる. 計画は事前に (ex ante) 第一最善で効率的で, Pareto ウェイトは結婚時の情報だけで決まり, その後は一定です. \\ \mu\_{jt} = \mu_j\left(\Omega_0\right) \qquad \text{for all } t. \\ 賃金や distribution factor に事後的にどんなショックが来ても, 夫婦は余剰の分け方を変えずにリスクを完全に共有します. 結婚後に女性の交渉力を高めようとする政策 (女性に帰属する給付など) は, \\\Omega_0\\ を変えない限り配分に影響しません. 規範的には美しい仮定ですが, これを法的に強制する手段はほとんどなく, 現実性は疑問視されています.
 
@@ -138,21 +170,37 @@ Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロ
 
 限定コミットメントの夫婦は, 結婚時に「どちらかが別れたくなる事態にならない限り, 決めた分け方を守る」と約束しています. 妻によい仕事の話が来て, 今の分け方のままだと別れて一人になった方が得になる時だけ, 妻が残ってもいいと思えるところまで妻の取り分を増やします. そして増やした取り分は, 妻の外の条件が元に戻っても減らしません. 減るのは, 今度は夫の側が出て行きそうになり, 夫の取り分を増やすときだけです. ウェイトが「必要なときに必要なだけ上がり, 上がったまま残る」のはこのためです.
 
-**コミットメントなし (no commitment).** 結婚時に将来の配分について何も約束しない. 各期の配分は, そのときの環境 (賃金, distribution factor, 資産) を所与とする交渉ゲームで決まり, \\ \mu\_{jt} = \mu_j\left(\Omega_0, W_t, Z_t, a_t\right) \tag{5.11}\\ と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で ([Lundberg and Pollak 1993](#ref-lundberg1993)), 実証的な応用が結婚の部で読む Goussé et al. ([2017](#ref-gousse2017)) です. [sec-allocation-nash](#sec-allocation-nash)節の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 \\T_t\\ が毎期の外部オプションで更新されれば, [式 eq-nash-weight](#eq-nash-weight) の \\\mu_t^\*\\ は現在の \\T_t\\ だけの関数になり, 履歴を持ちません.
+**コミットメントなし (no commitment).** 結婚時に将来の配分について何も約束しない. 各期の配分は, そのときの環境 (賃金, distribution factor, 資産) を所与とする交渉ゲームで決まり, \\ \mu\_{jt} = \mu_j\left(\Omega_0, \boldsymbol{W}\_t, \boldsymbol{Z}\_t, a_t\right) \tag{5.11}\\ と, 現在の情報だけに連続的に反応します. 過去のショックは (資産を通じる以外は) 忘れられ, ウェイトに履歴はありません. 各期の配分は事後的には効率的ですが, 期をまたぐ移転を約束できないので事前には非効率で, リスクの共有は大きく制限されます. 関係が短期の交渉ゲームの繰り返しになる, というこの見方の理論的な分析が Lundberg と Pollak の一連の研究で ([Lundberg and Pollak 1993](#ref-lundberg1993)), 実証的な応用が結婚の部で読む Goussé et al. ([2017](#ref-gousse2017)) です. [sec-allocation-nash](#sec-allocation-nash)節の Nash 交渉を毎期やり直すモデルは, ちょうどこの型です. 脅威点 \\\boldsymbol{T}\_t\\ が毎期の外部オプションで更新されれば, [式 eq-nash-weight](#eq-nash-weight) の \\\mu_t^\*\\ は現在の \\\boldsymbol{T}\_t\\ だけの関数になり, 履歴を持ちません.
 
 3つの型は, ウェイトの状態変数の形で区別されます.
 
 |  | Pareto ウェイト | 何が動かすか | 履歴 | 効率性 |
 |----|----|----|:--:|----|
 | 完全コミットメント | \\\mu_j\left(\Omega_0\right)\\ | 結婚時の情報のみ | なし | 事前に第一最善 |
-| 限定コミットメント | \\\mu\_{j,t-1} + \nu\_{jt}\\ | 参加制約が縛る \\Z_t\\, \\W_t\\ のショック | あり | 参加制約つきの第二最善 |
-| コミットメントなし | \\\mu_j\left(\Omega_0, W_t, Z_t, a_t\right)\\ | 現在の \\Z_t\\, \\W_t\\, \\a_t\\ | なし | 事後のみ効率的 |
+| 限定コミットメント | \\\mu\_{j,t-1} + \nu\_{jt}\\ | 参加制約が縛る \\\boldsymbol{Z}\_t\\, \\\boldsymbol{W}\_t\\ のショック | あり | 参加制約つきの第二最善 |
+| コミットメントなし | \\\mu_j\left(\Omega_0, \boldsymbol{W}\_t, \boldsymbol{Z}\_t, a_t\right)\\ | 現在の \\\boldsymbol{Z}\_t\\, \\\boldsymbol{W}\_t\\, \\a_t\\ | なし | 事後のみ効率的 |
 
 ### 5.3.2 実証
 
 3つの型は, 家計の行動が**いつの**ショックに反応するかで区別できます. Theloudis et al. ([2025](#ref-theloudis2025)) はこれを労働供給の検定にしました. Distribution factor へのショックが労働供給に及ぼす「交渉効果」(予算集合を通じる効果を除いた, Pareto ウェイト経由の効果) を考えると, 完全コミットメントでは現在のショックも過去のショックも効かず, コミットメントなしでは現在のショックだけが効き, 限定コミットメントでは現在と過去の両方が効きます. しかも効き方には符号の制約があります. 女性に帰属する給付が女性のウェイトを上げれば, 女性の余暇は増えて労働供給は減り, 男性は逆に働くようになる, という夫婦で非対称な反応です. 米国の PSID を使った推定では, 完全コミットメントとコミットメントなしは棄却され, 限定コミットメントが強く支持されました. ただし家計間の異質性は大きく, 約束の強さは家計によって違います.
 
 Mazzocco ([2007](#ref-mazzocco2007)) の先駆的な検定は「現在のニュースが消費の分け方を動かすか」を見るもので, 完全コミットメントを棄却しました. Lise and Yamada ([2019](#ref-lise2019)) も同様です. しかしこの種の検定は, 限定コミットメントとコミットメントなしを区別できません. どちらも現在のショックに反応するからです. 両者を分けるのは過去のショックの役割で, それが Theloudis et al. ([2025](#ref-theloudis2025)) の検定の要点です.
+
+**検定の結果.** [図 fig-theloudis2025-table1](#fig-theloudis2025-table1) が Theloudis et al. ([2025](#ref-theloudis2025)) の検定の中心となる表です. 被説明変数は労働時間の成長率 \\\Delta \log h\_{jt}\\ (\\j = 1\\ が夫, \\j = 2\\ が妻) で, PSID の 1999-2019年 (隔年) から, 夫婦とも働いている世帯を3期以上続けて観察した標本を使います. 時間とともに変わる distribution factor としては, 配偶者の賃金を使います. 世帯所得, 資産, 配偶者の稼ぎを制御すれば, 配偶者の賃金が自分の労働時間に効く経路は交渉力しか残らない, という考え方です. 賃金の変化のうち年齢などで予期できる部分は除き, 予期しなかった賃金ショック \\\omega\\ だけが交渉力を動かすとします. 結婚時に決まりその後は変わらない distribution factor としては, 結婚時の年齢差のダミー (夫が妻より年下, 夫が妻よりかなり年上) を使います. 年下の方が結婚市場で有利だ, という想定です.
+
+表の左の3列 FC, NC, LC は, それぞれ完全コミットメント, コミットメントなし, 限定コミットメントが予測する係数の符号です. 配偶者の現在の賃金ショックの係数 \\\beta\_{j\[w\_{-jt}\]}\\ は, 完全コミットメントでは \\0\\, ほかの2つでは正です (配偶者の交渉力が上がり, 自分はより多く働く). 1期前 (\\t - 1\\) と2期前 (\\t - 2\\) のショック, 結婚時の年齢差は限定コミットメントでだけ効き, 自分の交渉力を上げるものは負, 配偶者の交渉力を上げるものは正の符号を持ちます. 自分の現在の賃金は交渉と関係なく労働時間の価格として効くので, 検定には使いません (FC, NC, LC の列が「.」). 表の最後の2行は, 完全コミットメント (\\\mathcal{H}\_0^{\text{FC}}\\) とコミットメントなし (\\\mathcal{H}\_0^{\text{NC}}\\) の制約 (対応する係数がすべて \\0\\) の検定の \\p\\ 値で, どの列でも 0.1% 水準で棄却されます. なお係数が大きいのは右辺に前期の労働時間の逆数が掛かっているためで, そのまま弾力性としては読めません.
+
+[![](../../static/img/article/theloudis2025/table1.svg)](../../static/img/article/theloudis2025/table1.svg "図 5.6: Commitment test, reduced form (Table 1)")
+
+図 5.6: Commitment test, reduced form (Table 1)
+
+符号も, おおむね限定コミットメントの予測どおりです. 3期以上の標本 (列 (1), (2)) では, 1期前の自分のショックは男女とも労働時間を減らし, 配偶者のショックは増やします. 4期以上の標本 (列 (3), (4)) では, 2期前 (4年前) のショックも予測どおりの符号を持ちます (有意性は下がります). ただし, すべてが合うわけではありません. 妻の式では夫の現在のショックの係数が有意でなく, 夫の式の「自分がかなり年上」のダミー (\\\beta\_{j\[young\_{-j}\]}\\) の係数は予測 (正) と逆に負です. また, 係数の構造を課して Pareto ウェイトの弾力性を推定した特定化 (論文の Table 2) では, コミットメントなしの棄却は \\p\\ 値 0.025 から 0.052 と弱くなります.
+
+**家計の異質性.** 論文の3つ目の特定化では, Pareto ウェイトの弾力性が過去の賃金の水準に依存することを許し, 夫婦ごとに賃金ショックに対する労働時間の偏効果 \\\partial \Delta \log h\_{jt} / \partial \omega\_{kt-\tau}\\ を計算します. [図 fig-theloudis2025-heterogeneity](#fig-theloudis2025-heterogeneity) は, それを4期以上観察される夫婦について描いたものです. 横軸が偏効果, 縦軸が \\t\\ 期の労働時間で, 左の列が自分のショック, 右の列が配偶者のショック, 上から現在, 1期前, 2期前のショックです. 限定コミットメントのもとでは, 過去の自分に有利なショックは自分の交渉力を上げて労働時間を減らし (左の列で \\0\\ より左), 配偶者に有利なショックは労働時間を増やします (右の列で \\0\\ より右). 2期前のショック (パネル (c)) では, 多くの夫婦の偏効果が \\0\\ かこの符号の側にあります. その後の賃金ショックや所得・資産を制御しても, 4年前のショックがなお労働時間に効いているということです. 1期前のショックには, 夫の自分のショックの平均効果のように予測と逆の符号のものもありますが, 対応するパラメータは有意ではありません. 一方で偏効果がほぼ \\0\\ の夫婦も多く, 論文はこれを, 完全コミットメントのように振る舞う夫婦と限定コミットメントの夫婦が混在していると解釈しています. 平均的な大きさは, 過去のショックの効果が絶対値で 0.01 から 0.05, つまり賃金が 10% 変わると労働時間が 0.1% から 0.5% 動く程度です.
+
+[![](../../static/img/article/theloudis2025/fig1.jpeg)](../../static/img/article/theloudis2025/fig1.jpeg "図 5.7: Partial effects of wage shocks on hours (Fig. 1)")
+
+図 5.7: Partial effects of wage shocks on hours (Fig. 1)
 
 Becker, Gary S. 1991. *A Treatise on the Family*. Enl. Harvard University Press.
 
