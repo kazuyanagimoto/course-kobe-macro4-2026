@@ -109,6 +109,91 @@ $$
 
 以上より, 自然な3次スプラインは「与えられた点を通る最も滑らかな関数」という変分問題の解になっています. これが, 高次の多項式補間で生じる不要な振動 (Runge 現象) を避けつつ, 線形補間と違って2階微分まで連続な補間が得られる理由です.
 
+### ガウス求積 {#prf-gauss-quadrature}
+
+@prp-gauss-quadrature を, ルジャンドル多項式の直交性から示します. ルジャンドル多項式 $P_0, P_1, \dots$ は, $P_k$ が $k$ 次の多項式で, 次数の異なるものどうしが区間 $\left[-1, 1\right]$ で直交する
+$$
+\int_{-1}^{1} P_j\left(x\right) P_k\left(x\right) dx = 0, \qquad j \neq k
+$$
+ような多項式の列です. $n - 1$ 次以下の多項式は $P_0, \dots, P_{n-1}$ の線形結合で書けるので, $P_n$ は $n - 1$ 次以下のどの多項式 $q$ とも直交します.
+$$
+\int_{-1}^{1} q\left(x\right) P_n\left(x\right) dx = 0, \qquad \deg q \leq n - 1.
+$$ {#eq-apdx-legendre-orth}
+
+まず, 命題の評価点がきちんと $n$ 個とれることを補題として示しておきます.
+
+::: {#lem-legendre-zeros}
+
+## ルジャンドル多項式の零点
+
+$P_n$ は開区間 $\left(-1, 1\right)$ に $n$ 個の相異なる零点を持ち, それが $P_n$ のすべての零点である.
+
+:::
+
+::: {.proof}
+
+背理法で示す. $P_n$ が $\left(-1, 1\right)$ で符号を変える点が $k < n$ 個しかないとし, それを $z_1 < \cdots < z_k$ とする ($k = 0$ でもよい). これらの点でだけ符号を変える多項式
+$$
+q\left(x\right) = \prod_{j=1}^{k} \left(x - z_j\right)
+$$
+を作る ($k = 0$ なら $q = 1$). $q$ は $k$ 次の多項式で, 各 $z_j$ を通るたびに符号を変え, それ以外の点では符号を変えない.
+
+積 $q P_n$ の符号を調べる. 点 $z_1, \dots, z_k$ で区間 $\left(-1, 1\right)$ を区切ると, 各小区間の内側では $q$ も $P_n$ も符号を変えない. 境目の $z_j$ では $q$ と $P_n$ がそろって符号を変えるので, 積の符号は変わらない. したがって $q P_n$ は $\left(-1, 1\right)$ 全体で同じ符号をとる (つねに $0$ 以上, またはつねに $0$ 以下).
+
+また, $q$ も $P_n$ も $0$ でない多項式なので, $q P_n$ が $0$ になる点は有限個しかない. 同じ符号をとり, 有限個の点を除いて $0$ でない連続関数の積分は $0$ にならないので,
+$$
+\int_{-1}^{1} q\left(x\right) P_n\left(x\right) dx \neq 0
+$$
+である. ところが $q$ の次数 $k$ は $n - 1$ 以下なので, @eq-apdx-legendre-orth よりこの積分は $0$ でなければならない. これは矛盾である.
+
+よって $P_n$ は $\left(-1, 1\right)$ で少なくとも $n$ 回符号を変える. 符号が変わる点はどれも零点なので, $P_n$ は $\left(-1, 1\right)$ に少なくとも $n$ 個の相異なる零点を持つ. $P_n$ は $n$ 次多項式なので零点は高々 $n$ 個であり, これら $n$ 個がすべての零点である.
+
+:::
+
+もう1つ, 余りの部分の積分に使う Lagrange 補間を補題にしておきます.
+
+::: {#lem-lagrange}
+
+## Lagrange 補間
+
+$x_1, \dots, x_n$ を相異なる $n$ 点とし, $L_i\left(x\right) = \prod_{j \neq i} \left(x - x_j\right)$ とする. $n - 1$ 次以下の任意の多項式 $r$ は, $n$ 点での値を使って
+$$
+r\left(x\right) = \sum_{i=1}^{n} r\left(x_i\right) \frac{L_i\left(x\right)}{L_i\left(x_i\right)}
+$$
+と表せる.
+
+:::
+
+::: {.proof}
+
+右辺を $s\left(x\right)$ とおく. 各 $L_i$ は $n - 1$ 次の多項式なので, $s$ は $n - 1$ 次以下の多項式である. 点が相異なるので $L_i\left(x_i\right) \neq 0$ であり, $j \neq i$ では $L_i\left(x_j\right) = 0$ だから, $s\left(x_j\right) = r\left(x_j\right)$ がすべての $j$ で成り立つ. すると $r - s$ は $n - 1$ 次以下の多項式で $n$ 個の零点 $x_1, \dots, x_n$ を持つ. $0$ でない $n - 1$ 次以下の多項式の零点は高々 $n - 1$ 個なので, $r - s$ は恒等的に $0$ であり, $r = s$ を得る.
+
+:::
+
+この2つの補題を使って, 命題を示します.
+
+::: {.proof}
+
+@lem-legendre-zeros より, 評価点 $x_1, \dots, x_n$ は相異なる $n$ 点であり, $L_i$ と重み $w_i$ はきちんと定義される. $f$ を $2n - 1$ 次以下の多項式とする. $f$ を $P_n$ で割ると, $n - 1$ 次以下の多項式 $q, r$ を用いて
+$$
+f\left(x\right) = q\left(x\right) P_n\left(x\right) + r\left(x\right)
+$$
+と書ける. 真の積分は, @eq-apdx-legendre-orth より第1項が消えて
+$$
+\int_{-1}^{1} f\left(x\right) dx = \int_{-1}^{1} r\left(x\right) dx
+$$
+となる. 求積公式は, 評価点 $x_i$ が $P_n$ の零点なので $f\left(x_i\right) = r\left(x_i\right)$ となり
+$$
+\sum_{i=1}^{n} w_i f\left(x_i\right) = \sum_{i=1}^{n} w_i r\left(x_i\right)
+$$
+である. 最後に, $r$ は $n - 1$ 次以下なので @lem-lagrange の形に表せる. その両辺を積分すると, 重みの定義 $w_i = \int_{-1}^{1} L_i\left(x\right) / L_i\left(x_i\right) dx$ より
+$$
+\int_{-1}^{1} r\left(x\right) dx = \sum_{i=1}^{n} w_i r\left(x_i\right)
+$$
+を得る. 以上の3式から $\int_{-1}^{1} f\left(x\right) dx = \sum_{i=1}^{n} w_i f\left(x_i\right)$ が成り立つ.
+
+:::
+
 ## 動的計画法 {#sec-apdx-contraction}
 
 数値計算パートの動的計画法 (@sec-dynamic-programming) では, 価値関数反復 (VFI) がひとつの関数に収束していく様子を可視化で確認しました. ここでは, その背後にある理論を証明付きで整理します. ベルマン方程式の解 (価値関数) は存在するのか, 一意なのか, そして VFI はなぜ, どれくらいの速さで収束するのか. 答えはすべて, 縮小写像 (contraction mapping) という一つの概念から得られます. 標準的な教科書としては @stokey1989 があります.
