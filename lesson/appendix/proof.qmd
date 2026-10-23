@@ -388,58 +388,6 @@ $$
 
 縮小写像の枠組みは, サーチ理論の章での留保値の存在の議論にもそのまま使われています.
 
-## GMM {#sec-apdx-gmm}
-
-### 標本統計量の影響関数 {#sec-apdx-influence}
-
-@sec-md のターゲットは, 労働時間の平均 $\bar{h}$ と標準偏差 $s_h$, 対数月収の標準偏差 $s_y$, 両者の相関 $r_{hy}$, 40時間ちょうどの割合 $\bar{d}$ の5本でした. 標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. その分散共分散行列をデルタ法で導きます. 出発点は, 個人 $i$ から作れる6つの量です.
-$$
-\boldsymbol{a}_i = \left(h_i,\ h_i^2,\ y_i,\ y_i^2,\ h_i y_i,\ d_i\right)^\top,
-\qquad \bar{\boldsymbol{a}} = \frac{1}{N}\sum_{i=1}^{N} \boldsymbol{a}_i
-$$ {#eq-apdx-if-a}
-5本のモーメントは, どれもこの標本平均の関数として書けます.
-$$
-\hat{\boldsymbol{m}} = \boldsymbol{\phi}\left(\bar{\boldsymbol{a}}\right), \qquad
-\boldsymbol{\phi}\left(\boldsymbol{a}\right) = \left(a_1,\ \sqrt{a_2 - a_1^2},\ \sqrt{a_4 - a_3^2},\
-\frac{a_5 - a_1 a_3}{\sqrt{\left(a_2 - a_1^2\right)\left(a_4 - a_3^2\right)}},\ a_6\right)^\top
-$$ {#eq-apdx-if-phi}
-$\bar{\boldsymbol{a}}$ は標本平均なので中心極限定理がそのまま使えます. $\boldsymbol{\mu}_a = \mathbb{E}\left[\boldsymbol{a}_i\right]$, $\Sigma_a = \operatorname{Var}\left(\boldsymbol{a}_i\right)$ として $\sqrt{N}\left(\bar{\boldsymbol{a}} - \boldsymbol{\mu}_a\right) \xrightarrow{d} \mathcal{N}\left(\boldsymbol{0}, \Sigma_a\right)$ です. あとは $\boldsymbol{\phi}$ を通すだけで, $D = \partial \boldsymbol{\phi} / \partial \boldsymbol{a}^\top$ を $\boldsymbol{\mu}_a$ で評価した $5 \times 6$ 行列とすると
-$$
-\sqrt{N}\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\right) \xrightarrow{d} \mathcal{N}\left(\boldsymbol{0},\ D\, \Sigma_a\, D^\top\right)
-$$ {#eq-apdx-if-delta}
-となります. これがデルタ法です. ここで $\boldsymbol{\xi}_i = D\left(\boldsymbol{a}_i - \boldsymbol{\mu}_a\right)$ と置くと, @eq-apdx-if-delta の分散は $\operatorname{Var}\left(\boldsymbol{\xi}_i\right)$ そのもので, $\hat{\boldsymbol{m}} - \boldsymbol{m} \simeq \frac{1}{N}\sum_i \boldsymbol{\xi}_i$ と, 推定誤差が個人ごとの寄与の平均として書けます. この $\boldsymbol{\xi}_i$ を影響関数 (influence function) と呼びます. 行列 $D$ と $\Sigma_a$ を別々に持つ代わりに $\boldsymbol{\xi}_i$ を1本の列として持てば, 実装は標本分散共分散を1回取るだけになります.
-
-$D$ を計算します. 第1行は $\phi_1 = a_1$ なので $\partial \phi_1 / \partial \boldsymbol{a}^\top = \left(1, 0, 0, 0, 0, 0\right)$, すなわち
-$$
-\xi_{1i} = h_i - \mathbb{E}\left[h\right]
-$$
-です. 第5行の指標も同じで, $\xi_{5i} = d_i - \mathbb{E}\left[d\right]$ です. 第2行は $\phi_2 = \left(a_2 - a_1^2\right)^{1/2}$ の微分です. 分母に現れる $\sqrt{a_2 - a_1^2}$ を $\boldsymbol{\mu}_a$ で評価したものは $h$ の母標準偏差, つまりターゲットの2本目 $m_2 = \phi_2\left(\boldsymbol{\mu}_a\right)$ そのものなので, それで書くと
-$$
-\frac{\partial \phi_2}{\partial a_1} = \frac{-a_1}{\sqrt{a_2 - a_1^2}} = -\frac{\mathbb{E}\left[h\right]}{m_2},
-\qquad
-\frac{\partial \phi_2}{\partial a_2} = \frac{1}{2\sqrt{a_2 - a_1^2}} = \frac{1}{2 m_2}
-$$
-なので, 2つの成分を合わせて
-$$
-\xi_{2i} = -\frac{\mathbb{E}\left[h\right]}{m_2}\left(h_i - \mathbb{E}\left[h\right]\right)
-+ \frac{1}{2 m_2}\left(h_i^2 - \mathbb{E}\left[h^2\right]\right)
-$$ {#eq-apdx-if-psi2-raw}
-となります. 第2項を平均のまわりで書き直すと $h_i^2 - \mathbb{E}\left[h^2\right] = \left(h_i - \mathbb{E}\left[h\right]\right)^2 - m_2^2 + 2\, \mathbb{E}\left[h\right] \left(h_i - \mathbb{E}\left[h\right]\right)$ なので, これを @eq-apdx-if-psi2-raw に代入すると第1項がちょうど打ち消えて
-$$
-\xi_{2i} = \frac{\left(h_i - \mathbb{E}\left[h\right]\right)^2 - m_2^2}{2\, m_2}
-$$ {#eq-apdx-if-psi-sd}
-が残ります. 平均を推定したことによる誤差が, 標準偏差の影響関数には残らないということです. 第3行も $h$ を $y$ に, $m_2$ を $m_3$ に置き換えれば同じ形になります.
-
-第4行の相関も同じ手続きですが, $\phi_4$ が5つの成分に依存するので項が増えます. 標準化した値 $u_i = \left(h_i - \mathbb{E}\left[h\right]\right)/m_2$, $v_i = \left(y_i - \mathbb{E}\left[y\right]\right)/m_3$ を使うと, 整理した結果は次の形にまとまります.
-$$
-\xi_{4i} = u_i v_i - m_4
-- \frac{m_4}{2}\left(u_i^2 - 1\right)
-- \frac{m_4}{2}\left(v_i^2 - 1\right)
-$$ {#eq-apdx-if-psi-corr}
-第1項は共分散の影響関数で, 残りの2項は分母の2つの標準偏差を推定したことの効果です. 相関は標準偏差で割った量なので, 分母の推定誤差も相関の推定誤差に効いてくる, ということです.
-
-実装では母数を標本の値に置き換えて $\hat{\boldsymbol{\xi}}_i$ を作り, その標本分散共分散を $N$ で割ります (@eq-ls-vhat).
-
 ## 家計内配分 {#sec-apdx-allocation-proofs}
 
 ### 効率性と加重和最大化の双対性 {#prf-collective}

@@ -57,7 +57,8 @@ u(n::Int; w=1.0) = log(n) - v(n)
 
 ```{julia}
 #| label: fig-grid-search
-#| fig-cap: "Grid Search for Optimal n. $\\phi = 0.1$."
+#| fig-cap: "Grid Search for Optimal n"
+#| fig-notes: "$\\phi = 0.1$."
 #| code-fold: true
 scatter(1:10, u, label=false, xlabel=L"n", ylabel=L"u(c, n)")
 ```
@@ -160,7 +161,8 @@ $$
 
 ```{julia}
 #| label: fig-fd-error
-#| fig-cap: "**Accuracy of numerical derivatives.** Absolute error of $f'(0.5)$ for $f(x) = e^x$ as a function of the step size $h$."
+#| fig-cap: "Accuracy of numerical derivatives"
+#| fig-notes: "Absolute error of $f'(0.5)$ for $f(x) = e^x$ as a function of the step size $h$."
 #| code-fold: true
 f(x) = exp(x)
 fprime_exact = exp(0.5)
@@ -353,7 +355,8 @@ $$
 
 ```{julia}
 #| label: fig-qmc-grid
-#| fig-cap: "Pseudo-random draws vs. a Sobol sequence: 256 points on the unit square."
+#| fig-cap: "Pseudo-random draws vs. a Sobol sequence"
+#| fig-notes: "256 points on the unit square."
 #| code-fold: true
 n_points = 256
 sample_random = rand(2, n_points)
@@ -663,7 +666,8 @@ println("Transition matrix Π:")
 
 ```{julia}
 #| label: tbl-discretization
-#| tbl-cap: "離散化された連鎖の定常標準偏差と1次自己相関 ($\\sigma = 1$)"
+#| tbl-cap: "離散化された連鎖の定常標準偏差と1次自己相関"
+#| tbl-notes: "$\\sigma = 1$. 真の値は $\\sigma_x = \\sigma / \\sqrt{1 - \\rho^2}$ と $\\rho$."
 #| output: asis
 #| code-fold: true
 
@@ -711,7 +715,8 @@ Tauchen 法は $\rho = 0.9$ ですでに定常標準偏差を2〜3割過大に�
 
 ```{julia}
 #| label: fig-tauchen-error
-#| fig-cap: "Why Tauchen breaks down: the conditional density vs. the grid cells."
+#| fig-cap: "Why Tauchen breaks down"
+#| fig-notes: "The conditional density vs. the grid cells."
 #| code-fold: true
 x_grid_unit = range(-3, 3, length=5)           # grid for σ_x = 1, n_std = 3
 d = step(x_grid_unit)

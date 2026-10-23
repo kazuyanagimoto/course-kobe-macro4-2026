@@ -13,13 +13,14 @@ using Statistics
 using LinearAlgebra
 using DataFrames
 using CSV
-using ProjectRoot           # @projectroot: paths from the repository root
-using Optimization        # unified interface: OptimizationProblem + solve
-import OptimizationNLopt  # NLopt backend; import (not using) avoids clash
-import NLopt              # to name algorithms, e.g. NLopt.LN_NELDERMEAD()
+using ProjectRoot
+using Optimization
+using ForwardDiff
+import OptimizationNLopt
+import NLopt
 using Distributions
 using FastGaussQuadrature
-using Roots                # find_zero
+using Roots
 using PrettyTables
 using Plots
 using LaTeXStrings
@@ -218,9 +219,9 @@ function alloc(wW, wH, y, φW, φH, αW, αH, μ)
     A_unit_H = αH * c_over_ℓ_H^φH + (1 - αH)
     # leisure up to a common scale, from the sharing condition
     ℓrel_W = (μ * A_unit_W^((1 - σ - φW) / φW) * αW *
-              c_over_ℓ_W^(φW - 1))^(1 / σ)
+        c_over_ℓ_W^(φW - 1))^(1 / σ)
     ℓrel_H = ((1 - μ) * A_unit_H^((1 - σ - φH) / φH) * αH *
-              c_over_ℓ_H^(φH - 1))^(1 / σ)
+        c_over_ℓ_H^(φH - 1))^(1 / σ)
     # full-income cost of that bundle; the budget pins down the scale
     cost = (c_over_ℓ_W + wW) * ℓrel_W + (c_over_ℓ_H + wH) * ℓrel_H
     ℓW = ℓrel_W * y / cost
@@ -252,7 +253,8 @@ first(households, 5)
 
 ```{julia}
 #| label: fig-mrs
-#| fig-cap: "**Preference heterogeneity.** The intra-temporal MRS condition (@eq-mrs) in logs. The slope identifies $\\phi_j$ and is free of the Pareto weight."
+#| fig-cap: "Preference heterogeneity"
+#| fig-notes: "The intra-temporal MRS condition (@eq-mrs) in logs. The slope identifies $\\phi_j$ and is free of the Pareto weight."
 #| code-fold: true
 scatter(log.(ws_W), log.(cs_W ./ ℓs_W), ms=1.5, ma=0.25, label="Wife", msw=0)
 scatter!(log.(ws_H), log.(cs_H ./ ℓs_H), ms=1.5, ma=0.25, label="Husband",
@@ -264,7 +266,9 @@ plot!(xlabel=L"\log w_j", ylabel=L"\log (c_j / \ell_j)")
 
 ### 推定 {#sec-gmm-estimation}
 
-@eq-moments の7本のモーメントでパラメータ5個を推定します. 過剰識別 ($p = 7 > k = 5$) なので, @sec-gmm-theory の手順どおり2段階で最小化します. 最適化は `Optimization.jl` の共通インターフェース (@sec-nonlinear-opt) で行い, 微分を使わない Nelder–Mead (NLopt の `LN_NELDERMEAD`) を呼びます. パラメータの制約 $\phi_j < 1$, $\alpha_j, \mu \in \left(0, 1\right)$ は, 変数変換ではなく箱制約 `lb` / `ub` としてソルバーに渡します.
+@eq-moments の7本のモーメントでパラメータ5個を推定します. 過剰識別 ($p = 7 > k = 5$) なので, @sec-gmm-theory の手順どおり2段階で最小化します.
+
+**点推定** 残差 $\boldsymbol{e}_i$ は $\boldsymbol{\theta}$ の対数とべき乗だけでできた閉形式なので, 目的関数 $\bar{\boldsymbol{g}}\left(\boldsymbol{\theta}\right)^\top W \bar{\boldsymbol{g}}\left(\boldsymbol{\theta}\right)$ の勾配は解析的に計算できます. て計算で勾配を導出するのは面倒なので, 自動微分を (@sec-differentiation) を用いた、 準ニュートン法 (L-BFGS, @sec-multivariate-opt) を使って最小化します. 最適化は `Optimization.jl` の共通インターフェース (@sec-nonlinear-opt) で行い, `OptimizationFunction` に `AutoForwardDiff()` を渡すと, `ForwardDiff.jl` が目的関数のコードから勾配を計算します. パラメータの制約 $\phi_j < 1$, $\alpha_j, \mu \in \left(0, 1\right)$ は, 変数変換ではなく箱制約 `lb` / `ub` としてソルバーに渡します.
 
 ```{julia}
 #| label: gmm-household
@@ -280,9 +284,9 @@ function resid(θs)
     es_W = log(αW / (1 - αW)) .+ (φW - 1) .* log.(cs_W ./ ℓs_W) .+ log.(ws_W)
     es_H = log(αH / (1 - αH)) .+ (φH - 1) .* log.(cs_H ./ ℓs_H) .+ log.(ws_H)
     es_3 = log(μ / (1 - μ)) + log(αW / αH) .+
-           ((1 - σ - φW) / φW) .* log.(As_W) .-
-           ((1 - σ - φH) / φH) .* log.(As_H) .+
-           (φW - 1) .* log.(cs_W) .- (φH - 1) .* log.(cs_H)
+        ((1 - σ - φW) / φW) .* log.(As_W) .-
+        ((1 - σ - φH) / φH) .* log.(As_H) .+
+        (φW - 1) .* log.(cs_W) .- (φH - 1) .* log.(cs_H)
     return (es_W, es_H, es_3)
 end
 # stack the seven moments into an N×7 matrix
@@ -295,9 +299,12 @@ gbar(θs) = vec(mean(moments(θs), dims=1))
 
 lb = [-5.0, -5.0, 0.01, 0.01, 0.01]               # φj < 1, αj, μ ∈ (0, 1)
 ub = [0.99, 0.99, 0.99, 0.99, 0.99]
+# quasi-Newton with box constraints; the gradient comes from ForwardDiff
 minimize(f, θs0) = solve(
-    OptimizationProblem(OptimizationFunction((θs, _) -> f(θs)), θs0; lb, ub),
-    NLopt.LN_NELDERMEAD(), maxiters=20_000)
+    OptimizationProblem(
+        OptimizationFunction((θs, _) -> f(θs), Optimization.AutoForwardDiff()),
+        θs0; lb, ub),
+    NLopt.LD_LBFGS(), maxiters=20_000)
 
 θs0 = [0.3, 0.3, 0.5, 0.5, 0.5]
 # step 1: W = I
@@ -314,27 +321,14 @@ param_labels_gmm = [raw"$\phi_W$", raw"$\phi_H$", raw"$\alpha_W$",
 θs_true = [φW0, φH0, αW0, αH0, μ0]
 ```
 
-点推定が出たら, 次はその精度です. 2段階目の重み行列に $W = \hat{S}^{-1}$ を使ったので, これは @prp-gmm-avar の効率的なケースに当たり, 分散は $\left(G^\top V^{-1} G\right)^{-1} / N$ に簡約されます. 材料は2つです. ヤコビアン $\hat{G}$ は数値微分 (@sec-differentiation) で計算し, $\hat{S}$ はモーメントの標本第2モーメント $\frac{1}{N}\sum_i \boldsymbol{g}\left(\boldsymbol{x}_i, \hat{\boldsymbol{\theta}}\right) \boldsymbol{g}\left(\boldsymbol{x}_i, \hat{\boldsymbol{\theta}}\right)^\top$ を推定値 $\hat{\boldsymbol{\theta}}$ で評価し直したものを使います.
+**標準誤差** 二段階 GMM を用いているため, 分散は $\left(\hat{G}^\top \hat{S}^{-1} \hat{G}\right)^{-1} / N$ に簡約化されます. ヤコビアン $\hat{G} = \partial \bar{\boldsymbol{g}} / \partial \boldsymbol{\theta}^\top$ は, $\bar{\boldsymbol{g}}$ を計算する関数 `gbar` がすでにあるので, 自動微分で求められます. 分散共分散行列は $\hat{S} = \frac{1}{N}\sum_i \boldsymbol{g}\left(\boldsymbol{x}_i, \hat{\boldsymbol{\theta}}\right) \boldsymbol{g}\left(\boldsymbol{x}_i, \hat{\boldsymbol{\theta}}\right)^\top$ です.
 
 ```{julia}
 #| label: gmm-se
 #| output: false
-function jacobian(f, θs; step=1e-4)
-    G = zeros(length(f(θs)), length(θs))
-    for l in eachindex(θs)
-        dθ = step * max(abs(θs[l]), 1.0)
-        θs_plus = copy(θs)
-        θs_plus[l] += dθ
-        θs_minus = copy(θs)
-        θs_minus[l] -= dθ
-        G[:, l] = (f(θs_plus) - f(θs_minus)) ./ (2dθ)
-    end
-    return G
-end
-
 g_obs = moments(θ̂s)                             # row i: g(x_i, θ̂)'
 ses_m = vec(std(g_obs, dims=1)) ./ sqrt(N)       # standard error of each moment
-Ĝ = jacobian(gbar, θ̂s)
+Ĝ = ForwardDiff.jacobian(gbar, θ̂s)              # 7×5, ∂ḡ/∂θ' at θ̂s
 Ŝ = (g_obs' * g_obs) ./ N                        # moment covariance at θ̂s
 ses_gmm = sqrt.(diag(inv(Ĝ' * inv(Ŝ) * Ĝ) ./ N))
 ```
@@ -344,15 +338,17 @@ ses_gmm = sqrt.(diag(inv(Ĝ' * inv(Ŝ) * Ĝ) ./ N))
 #| code-fold: true
 #| output: asis
 #| tbl-cap: "2段階 GMM の推定値と標準誤差"
+#| tbl-notes: "データは真値のもとでモデルから生成したもの."
 pretty_table(hcat(param_labels_gmm, round.(θ̂s, digits=4),
-        round.(ses_gmm, sigdigits=2), θs_true);
+    round.(ses_gmm, sigdigits=2), θs_true);
     column_labels=["パラメータ", "推定値", "標準誤差", "真値"],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
 ```{julia}
 #| label: fig-gmm-coef
-#| fig-cap: "**GMM estimates.** Dot: point estimate. Horizontal bar: 95% confidence interval. Dashed line: true value. Each panel has its own scale."
+#| fig-cap: "GMM estimates"
+#| fig-notes: "Dot: point estimate. Horizontal bar: 95% confidence interval. Dashed line: true value. Each panel has its own scale."
 #| code-fold: true
 param_plot_labels_gmm = [L"\phi_W", L"\phi_H", L"\alpha_W", L"\alpha_H",
     L"\mu"]
@@ -372,9 +368,7 @@ plot(panels..., layout=(5, 1), size=(520, 620), left_margin=4Plots.mm)
 
 5つのパラメータはどれも真値のごく近くに戻っています. 選好の曲率 $\left(\phi_W, \phi_H\right)$ と選好の水準 $\left(\alpha_W, \alpha_H\right)$ は夫婦で異なる値が, そして家計内の交渉力 $\mu$ も, それぞれ正しく推定されています. 複数の非線形な期内条件をまとめてモーメント条件にすることで, 選好と交渉力が同時に識別されるわけです. これが @lise2019 が実際の家計パネルで行っている構造推定の核となる仕組みです.^[@mazzocco2007 は逆に, 家計のオイラー方程式を使って家計内のコミットメントを検定します. @lise2019 が期内条件のみを使うのは, その検定が流動性制約と区別できないという問題を避けるためです.]
 
-@fig-gmm-coef で目を引くのは, 信頼区間の幅がパラメータによってまるで違うことです (パネルごとに横軸の目盛りが違うことに注意してください). $\phi_W$ の標準誤差だけが飛び抜けて大きく, 推定値に対する比で見ると $\phi_H$ の4倍, $\alpha_H$ の30倍あります. なぜ妻の曲率だけが決まりにくいのか. その答えは次項の識別の分析にあります.
-
-この人工データで撹乱の源になっているのは測定誤差だけなので, 標準誤差の絶対水準は実際の推定より小さく出ます. 現実のデータでは, 選好の異質性や最適化の誤差など, モデルが説明しない変動がもっと大きいからです.
+@fig-gmm-coef で目を引くのは, 信頼区間の幅がパラメータによって大きく違うことです (パネルごとに横軸の目盛りが違うことに注意してください). $\phi_W$ の標準誤差だけが飛び抜けて大きく, 推定値に対する比で見ると $\phi_H$ の4倍, $\alpha_H$ の30倍あります. なぜ妻の曲率だけが決まりにくいのか. その答えは次項の識別の分析にあります.
 
 ### 識別 {#sec-gmm-identification}
 
@@ -395,33 +389,41 @@ plot(panels..., layout=(5, 1), size=(520, 620), left_margin=4Plots.mm)
 
 :::
 
-#### ランク条件は何を言っているのか
+#### ランク条件の解釈
 
-ランク条件の中身は, いちばん簡単な線形の例で見るのが早いです. パラメータが2つ $\boldsymbol{\theta} = \left(\theta_1, \theta_2\right)^\top$, モーメントが2本で, モーメント写像がちょうど線形 $\boldsymbol{m}\left(\boldsymbol{\theta}\right) = G \boldsymbol{\theta}$ だとします. 推定とは, データから得た $\hat{\boldsymbol{m}}$ に対して連立1次方程式 $G \boldsymbol{\theta} = \hat{\boldsymbol{m}}$ を解くことです.
-
-まず, ランクが2の場合.
+真値 $\boldsymbol{\theta}_0$ の近くでは, モーメント写像は1次近似できます.
 $$
-\begin{pmatrix} m_1 \\ m_2 \end{pmatrix}
+\boldsymbol{m}\left(\boldsymbol{\theta}\right) \approx \boldsymbol{m}\left(\boldsymbol{\theta}_0\right) + G\left(\boldsymbol{\theta} - \boldsymbol{\theta}_0\right).
+$$
+推定は, データから得た $\hat{\boldsymbol{m}}$ に $\boldsymbol{m}\left(\boldsymbol{\theta}\right)$ を合わせる $\boldsymbol{\theta}$ を探すことなので, 真値の近くでは連立1次方程式
+$$
+G\left(\boldsymbol{\theta} - \boldsymbol{\theta}_0\right) = \hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)
+$$
+を $\boldsymbol{\theta} - \boldsymbol{\theta}_0$ について解く問題に帰着します. この解 ($p > k$ なら両辺の距離を最小にする解) が一意に決まるのは, $G$ の $k$ 本の列が1次独立なとき, すなわち $\operatorname{rank} G = k$ のときです. これがランク条件の意味です.
+
+パラメータが2つ $\boldsymbol{\theta} = \left(\theta_1, \theta_2\right)^\top$, モーメントが2本の場合を考えます. 真値からのずれを $\Delta\boldsymbol{\theta} = \boldsymbol{\theta} - \boldsymbol{\theta}_0$, $\Delta\boldsymbol{m} = \hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)$ と書くと, 解くのは $G \Delta\boldsymbol{\theta} = \Delta\boldsymbol{m}$ です.
+
+ヤコビアンのランクが2の場合.
+$$
+\begin{pmatrix} \Delta m_1 \\ \Delta m_2 \end{pmatrix}
 = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
-\begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}
+\begin{pmatrix} \Delta\theta_1 \\ \Delta\theta_2 \end{pmatrix}
 \quad \Longrightarrow \quad
-\theta_1 = \frac{m_1 + m_2}{2}, \qquad \theta_2 = \frac{m_1 - m_2}{2}.
+\Delta\theta_1 = \frac{\Delta m_1 + \Delta m_2}{2}, \qquad \Delta\theta_2 = \frac{\Delta m_1 - \Delta m_2}{2}.
 $$
-2本の式は独立な情報を持っているので, 逆に解けます. モーメント $m_1$ は2つのパラメータの和を, $m_2$ は差を教えてくれる. 和と差が分かれば, もとの2つは決まります.
+2本の式は独立な情報を持っているので, $\Delta \boldsymbol{\theta}$ は一意に決まります.
 
-次に, ランクが1の場合.
+また, ヤコビアンのランクが1の場合,
 $$
-\begin{pmatrix} m_1 \\ m_2 \end{pmatrix}
+\begin{pmatrix} \Delta m_1 \\ \Delta m_2 \end{pmatrix}
 = \begin{pmatrix} 1 & 1 \\ 2 & 2 \end{pmatrix}
-\begin{pmatrix} \theta_1 \\ \theta_2 \end{pmatrix}.
+\begin{pmatrix} \Delta\theta_1 \\ \Delta\theta_2 \end{pmatrix}.
 $$
-2本目の式は1本目をちょうど2倍しただけで, 新しい情報を持っていません. モーメントは2本あるのに ($p = 2 \geq k = 2$ で次数条件は満たされているのに), 決まるのは和 $\theta_1 + \theta_2$ だけです. $\left(\theta_1, \theta_2\right)$ を $\left(\theta_1 + t, \theta_2 - t\right)$ とずらしてもモーメントは1ミリも動かないので, $\left(1, -1\right)$ 方向についてデータは何も言っていません. これがランク落ちです.^[もっと露骨なランク落ちもあります. $G$ のある列がまるごとゼロ, つまりそのパラメータがモーメントにまったく現れない場合です. この後の @fig-jacobian で $\mu$ の列を見ると, MRS 条件の行がちょうどそうなっています.]
+これは自明に一意に定まりません.
 
-非線形なモデルでも, 真値の近くでは $\boldsymbol{m}\left(\boldsymbol{\theta}\right) \approx \boldsymbol{m}\left(\boldsymbol{\theta}_0\right) + G\left(\boldsymbol{\theta} - \boldsymbol{\theta}_0\right)$ と1次近似できるので, 局所識別は結局この連立方程式が解けるかという問題に帰着します. これがランク条件の意味です.
+#### 識別の強さと特異値
 
-#### 識別の強さを特異値で測る
-
-ここまでは「解ける・解けない」という $0/1$ の話でした. しかし実際に数値計算の場面で遭遇するのは, その中間である「解けはするが, ほとんど解けていない」という状態です. 上のランク1の例で, 2本目の式の係数を $\left(2, 2\right)$ から $\left(2, 2.001\right)$ にずらしてみます. 2本の式はもう平行ではないので, ランクは2に戻り, 連立方程式は一意に解けます. それでも実質的に何も推定できていない, というのがこれから見ることです. ランクという離散的な判定ではなく, 「いちばん効かない方向でも, モーメントはどれだけ動くのか」という連続的な量が要ります. それを与えるのが特異値分解です.
+ここまでは 「解ける・解けない」という2値の話でした. しかし, 実際に数値計算の場面で遭遇するのは, その中間である 「理屈上解けはするが, 現実的な時間で収束しない」という 「弱識別」の状態になります. 極端な話, 上のランク条件は, 2本目の式の係数を $\left(2, 2\right)$ から $\left(2, 2.001\right)$ にズラせばランク条件を満たしたことになります. しかし, 2本目の式は1本目の式とほとんど同じなので, 識別という観点からするとほとんど意味がありません. そのため, ランクという離散的な判定ではなく, 「いちばん効かない方向でも, モーメントはどれだけ動くのか」という連続的な量が要ります. それを与えるのが特異値分解です.
 
 ::: {#prp-svd}
 
@@ -439,7 +441,7 @@ $$
 $$
 で, 最小は最終列 $\boldsymbol{v}_k$ で達成される. したがって
 
-- $s_k > 0 \iff \operatorname{rank} G = k$: どの方向に動かしてもモーメントが動く (局所識別される),
+- $s_k > 0 \iff \operatorname{rank} G = k$: どの方向に動かしてもモーメントが動く (局所識別),
 - $s_k = 0 \iff G \boldsymbol{v}_k = \boldsymbol{0}$: $\boldsymbol{v}_k$ 方向にはモーメントがまったく動かない (ランク落ち),
 - $s_k$ が $s_1$ に比べて極端に小さい: $\boldsymbol{v}_k$ 方向にはほとんど動かない (弱識別).
 
@@ -451,7 +453,8 @@ $$
 #| label: tbl-svd-rank
 #| code-fold: true
 #| output: asis
-#| tbl-cap: "3つの $G$ の特異値と右特異ベクトル (1行目はどれも $(1, 1)$)"
+#| tbl-cap: "3つの $G$ の特異値と右特異ベクトル"
+#| tbl-notes: "どの $G$ も1行目は $(1, 1)$."
 Gs = ([1.0 1.0; 1.0 -1.0], [1.0 1.0; 2.0 2.001], [1.0 1.0; 2.0 2.0])
 svd_rows = Any[]
 for G in Gs
@@ -468,82 +471,56 @@ pretty_table(permutedims(hcat(svd_rows...));
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
-1行目は素直なケースです. 特異値が2つとも $\sqrt{2} \approx 1.41$ で, どの方向に動かしてもモーメントは同じだけ動きます (特異値が等しいので, 「いちばん効かない方向」を1つに決める意味はありません).
-
-3行目のランク落ちのケースを見ると, $s_2$ はちょうどゼロではなく $10^{-17}$ 程度の値になっています. 解析的にはゼロですが, 浮動小数点の計算に厳密なゼロはめったに現れません. ランクの判定が「ゼロとみなす閾値」に依存してしまうのはこのためで, これも特異値そのものを見たい理由の1つです. $\boldsymbol{v}_2$ は $\left(1, -1\right)/\sqrt{2}$, つまり先ほど「ずらしてもモーメントが動かない」と言った方向そのものです. この章でこの後 `svd(G).V[:, end]` を「識別できない方向」として何度も読むのは, これを見ています.
-
-そして中央が本題です. ランクは2で, 連立方程式は一意に解けます. しかし $s_2 = 3.2 \times 10^{-4}$ で, $s_1$ の1万分の1しかありません. $\boldsymbol{v}_2 = \left(1, -1\right)/\sqrt{2}$ 方向にパラメータを1動かしても, モーメントは $0.00032$ しか動かない. 逆に言えば, モーメントのわずかな誤差が, この方向に沿ってパラメータの巨大な誤差に翻訳されます. 真値を $\boldsymbol{\theta}_0 = \left(1, 1\right)$ として, 2本目のモーメントだけを $0.001$ ずらしたデータを与えてみます.
-
-```{julia}
-#| label: tbl-weak-identification
-#| code-fold: true
-#| output: asis
-#| tbl-cap: "モーメントを $0.001$ ずらしたときの解 (真値は $\\boldsymbol{\\theta}_0 = (1, 1)$)"
-θs0_lin = [1.0, 1.0]
-perturbed_rows = Any[]
-for G in Gs[1:2]                                   # the third G is singular
-    θ̂s_lin = G \ (G * θs0_lin + [0.0, 0.001])     # just solve the linear system
-    push!(perturbed_rows, Any["($(G[2, 1]), $(G[2, 2]))",
-        round(θ̂s_lin[1], digits=4), round(θ̂s_lin[2], digits=4)])
-end
-
-pretty_table(permutedims(hcat(perturbed_rows...));
-    column_labels=[raw"$G$ の2行目", raw"$\hat\theta_1$", raw"$\hat\theta_2$"],
-    backend=:markdown, allow_markdown_in_cells=true)
-```
-
-素直なケースでは $0.001$ のずれは $0.0005$ のずれにしかなりません. 弱識別のケースでは, 同じ $0.001$ が $\hat{\boldsymbol{\theta}} = \left(0, 2\right)$ という, 真値から $\left(-1, +1\right)$ も離れた解を生みます. モーメントの誤差が1000倍に増幅されたわけです ($1/s_2 \approx 3000$ 倍が上限で, その方向にほぼ全部乗っています). ランク条件は満たされ, ソルバーはエラーも警告も出さず, 一意の答えを返します. それでもこの推定値には何の意味もありません. ランク条件が教えてくれるのは識別の必要条件だけで, 推定が実質的に可能かどうかを決めているのは最小特異値の大きさです.
+1行目が局所識別であり, 特異値が十分大きい値であることがわかります. 3行目がランク落ちのケースであり, $s_2$ がほとんどゼロであり, 識別されないことが表現されています (解析的には $s_2 = 0$ ですが, 浮動小数点の計算ではごく小さい値になります). そして, 2行目が弱識別のケースです. ランク条件は満たしていますが, $v_2$ の方向にほとんどモーメントが動かないことが $s_2$ が非常に小さいことからわかります.
 
 目的関数 $\left\|G\left(\boldsymbol{\theta} - \boldsymbol{\theta}_0\right)\right\|^2$ の等高線を描くと, このことがそのまま図形になります. 等高線は $\boldsymbol{v}_1, \ldots, \boldsymbol{v}_k$ を軸とする楕円で, 軸の長さは $1/s_j$ に比例します. 特異値が小さい方向ほど楕円は細長く伸び, $s_k = 0$ では無限に伸びて平行な溝になります.
 
 ```{julia}
 #| label: fig-rank
-#| fig-cap: "**What the rank condition means.** Contours of $\\|G(\\boldsymbol{\\theta} - \\boldsymbol{\\theta}_0)\\|^2$ around the truth, for the three $G$ of @tbl-svd-rank. The middle panel has full rank, but is indistinguishable from the rank-deficient one."
+#| fig-cap: "Strong and weak identification"
+#| fig-notes: "Contours of $\\|G(\\boldsymbol{\\theta} - \\boldsymbol{\\theta}_0)\\|^2$ around the truth, for the first two $G$ of @tbl-svd-rank. Both have full rank, but at this scale the right one looks flat along $\\boldsymbol{v}_2$."
 #| code-fold: true
 d_grid = range(-1, 1, length=201)
 objective_lin(G, Δθ1, Δθ2) = sum(abs2, G * [Δθ1, Δθ2])
-titles = ["rank 2", "rank 2, weak", "rank 1"]
+titles = ["rank 2", "rank 2, weak"]
 
 ps = [contour(d_grid, d_grid, (Δθ1, Δθ2) -> objective_lin(G, Δθ1, Δθ2),
     levels=12, colorbar=false, title=panel_title, aspect_ratio=1,
     xlabel=L"\theta_1 - \theta_{10}",
     ylabel=(k == 1 ? L"\theta_2 - \theta_{20}" : ""))
-      for (k, (G, panel_title)) in enumerate(zip(Gs, titles))]
+      for (k, (G, panel_title)) in enumerate(zip(Gs[1:2], titles))]
 scatter!(ps[1], [0], [0], ms=4, c=:black, label="")
-plot!(ps[2], [-1, 1], [1, -1], lw=2, ls=:dash, c=:black, label=L"\mathbf{v}_2")
-plot!(ps[3], [-1, 1], [1, -1], lw=2, ls=:dash, c=:black, label="")
-plot(ps..., layout=(1, 3), size=(780, 300), bottom_margin=3Plots.mm,
+plot!(ps[2], [-1, 1], [1, -1], lw=2, ls=:dash, c=:black, label="")
+Plots.annotate!(ps[2], 0.42, -0.2, Plots.text(L"\mathbf{v}_2", 11))
+plot(ps..., layout=(1, 2), size=(540, 300), bottom_margin=3Plots.mm,
     left_margin=3Plots.mm)
 ```
 
-左は同心円で, 底が1点に定まっています. 右は平行な溝で, 谷底に沿ってどこまで動いても目的関数の値は変わりません. そして中央は, 目で見るかぎり右と区別がつきません. 実際には $\boldsymbol{v}_2$ 方向にも $\left(3.2 \times 10^{-4}\right)^2$ の傾きがあり, 谷は $\left|\boldsymbol{\theta} - \boldsymbol{\theta}_0\right| \sim 3000$ のはるか遠方で閉じているのですが, この縮尺では平らな溝と同じものです. 弱識別が厄介なのは, この「ほとんど平ら」が, 数値的にはランク落ちと変わらない振る舞いをするからです.
+左は同心円で, 底が1点に定まっています. 右は $\boldsymbol{v}_2$ 方向に伸びた溝で, 目で見るかぎり, 谷底に沿ってどこまで動いても目的関数の値は変わりません. 実際には $\boldsymbol{v}_2$ 方向にも $\left(3.2 \times 10^{-4}\right)^2$ の傾きがあり, 谷は $\left|\boldsymbol{\theta} - \boldsymbol{\theta}_0\right| \sim 3000$ のはるか遠方で閉じているのですが, この縮尺ではランク落ち ($s_2 = 0$) の平らな溝とほぼ同じものです.
 
-最適化アルゴリズムは谷底のどこかで問題なく「収束」します. どこに止まるかを決めているのは初期値と丸め誤差です. @sec-gmm-estimation で見た標準誤差の大きさは, この平らさの裏返しです.
-
-大域識別を確かめる一般的な方法はなく, 目的関数を複数の初期値から最小化して同じ解に収束するかを見る, といった間接的な確認に頼ることになります. 一方, 局所識別のランク条件はヤコビアンを数値微分 (@sec-differentiation) で計算すれば機械的に確認できます. しかも識別の分析はデータの実現値をほとんど必要とせず, 候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.
+最適化アルゴリズムは谷底のどこかで「収束」しますが, どこに止まるかを決めているのは初期値と丸め誤差です. 識別ができているかどうかの判定は, 収束した点の近くでのヤコビアンの特異値を見ればできます. また, 特異値の計算は候補となるパラメータ値でモデルを微分するだけなので, 推定の前にモデルとモーメントの設計を点検する道具になります.
 
 #### 設計を点検する
 
-標準誤差を計算するときに, 7本のモーメントの5つのパラメータに関するヤコビアン $\hat{G}$ を数値微分で求めてありました. 同じものを識別の点検に使い回します. 目的関数と同じ距離で測るため, 行を各モーメントの標準誤差で割り, 列をパラメータの値でスケールしたうえで, 特異値を見ます.
+標準誤差を計算するときに, 7本のモーメントの5つのパラメータに関するヤコビアン $\hat{G}$ を自動微分で求めてありました. 同じものを識別の点検に使い回します. 目的関数と同じ距離で測るため, 行を各モーメントの標準誤差で割り, 列をパラメータの値でスケールしたうえで, 特異値を見ます.
 
 ```{julia}
 #| label: jacobian-gmm
 G_scaled = (Ĝ ./ ses_m) .* θ̂s'
 svals_gmm = svdvals(G_scaled)
-(singular_values = round.(svals_gmm, sigdigits=3),)
+(singular_values=round.(svals_gmm, sigdigits=3),)
 ```
 
 特異値は5つともゼロから明確に離れており, ランク条件は満たされています. 前節の推定がうまくいったのは幸運ではなかったわけです.
 
-ランク落ちや弱い識別の症状は, 推定を回しても見えにくいことに注意してください. 目的関数は識別できない方向に沿った**平らな谷**になり, 最適化は谷底のどこかで正常に収束します. 複数の初期値も同じ谷に落ちるだけのことがあるので, 大域識別の間接チェックすら失敗を検出できるとは限りません. 識別の分析は推定より先に済ませられるのだから, **推定を回す前に**特異値を確認するのが定石です.
-
-#### どのモーメントがどのパラメータを識別するか
+#### ヤコビアンの可視化
 
 ヤコビアンには, ランク条件の成否以上の情報が詰まっています. 「パラメータを1%動かしたとき, 各モーメントが標準誤差の何倍動くか」を行列として可視化すると, どのモーメントがどのパラメータの情報源かが一目で分かります.
 
 ```{julia}
 #| label: fig-jacobian
-#| fig-cap: "**Which moment identifies which parameter?** Elasticity of each moment with respect to each parameter."
+#| fig-cap: "Which moment identifies which parameter?"
+#| fig-notes: "Elasticity of each moment with respect to each parameter."
 #| code-fold: true
 G_percent = (Ĝ .* θ̂s') ./ ses_m ./ 100
 moment_plot_labels_gmm = [L"e_W \times 1", L"e_W \times \ln w_H",
@@ -556,7 +533,7 @@ heatmap(1:5, 1:7, G_percent, c=:RdBu, clims=(-color_limit, color_limit),
 # PrettyTables also exports annotate!, so name the module
 Plots.annotate!(vec([(l, k, text(round(G_percent[k, l], digits=1), 7,
     abs(G_percent[k, l]) > 0.6 * color_limit ? :white : :black))
-    for k in 1:7, l in 1:5]))
+                     for k in 1:7, l in 1:5]))
 plot!(xlabel="Parameter", ylabel="Moment")
 ```
 
@@ -576,30 +553,6 @@ println("J = ", round(J, digits=2),
 
 $J$ は臨界値を大きく下回り, 過剰識別の制約はデータと整合的です. データをモデルから作ったのだから当然ではありますが, 実装が意図どおり動いていることの確認にはなります. 前項で述べたとおり, 検定が通ったからといってモデルが正しいと結論できるわけではありません.
 
-念のため, 推定値における7本のずれも標準誤差で割って見ておきます. 棄却されたときに最初にやる作業を, 通ったときにも一度やっておく, というだけのことです.
-
-```{julia}
-#| label: tbl-overid-diagnosis
-#| code-fold: true
-#| output: asis
-#| tbl-cap: "推定値におけるモーメントごとのずれ"
-moment_labels_gmm = [raw"$e_W \times 1$", raw"$e_W \times \log w_H$",
-    raw"$e_H \times 1$", raw"$e_H \times \log w_W$",
-    raw"$e_3 \times 1$", raw"$e_3 \times \log w_W$", raw"$e_3 \times \log w_H$"]
-ĝs = gbar(θ̂s)
-
-pretty_table(hcat(moment_labels_gmm, round.(ĝs, sigdigits=2),
-        round.(ses_m, sigdigits=2), round.(ĝs ./ ses_m, digits=2));
-    column_labels=["モーメント",
-        raw"$\bar{g}_j\left(\hat{\boldsymbol{\theta}}\right)$", "標準誤差",
-        raw"$t$"],
-    backend=:markdown, allow_markdown_in_cells=true)
-```
-
-どの条件も標準誤差1個分に収まっていて, 特定の式だけが外れているということはありません.^[個々の $t$ は厳密には標準正規ではありません. 7本のずれは互いに相関しており, しかも5個のパラメータを合わせた後の残りだからです. あくまで当たりをつけるための道具として読みます.]
-
-この節のモーメントは, すべて観測データとパラメータの解析的な式でした. しかしそれが成り立ったのは, 一階条件が閉じた形で書け, しかもそこに現れる変数がすべて観測できたからです. モデルの含意が数値的にしか出せない場合や, モデルに観測できない変数が入る場合には, この経路は閉じます. それが次節 (@sec-md) の主題です.
-
 ## 最小距離推定と SMM {#sec-md}
 
 前節の GMM が機能したのは, モーメント関数 $\boldsymbol{g}\left(\boldsymbol{x}_i, \boldsymbol{\theta}\right)$ (残差 $\times$ 操作変数) が観測データとパラメータだけで計算できたからです. 一階条件を「残差 = 0」の形に書き直し, 世帯ごとの数字を代入すれば評価できました. 構造推定では, これが書けることの方がむしろ例外です.
@@ -617,6 +570,28 @@ $$
 これは $\boldsymbol{g}\left(\boldsymbol{x}_i, \boldsymbol{\theta}\right) = \boldsymbol{h}\left(\boldsymbol{x}_i\right) - \boldsymbol{m}\left(\boldsymbol{\theta}\right)$ と置いた GMM である.
 
 :::
+
+::: {#prp-md-efficient}
+
+## 最小距離推定量の漸近分布と最適な重み
+
+@prp-gmm-avar の条件が成り立つとし, $G = \partial \boldsymbol{m}\left(\boldsymbol{\theta}_0\right) / \partial \boldsymbol{\theta}^\top$ ($p \times k$), $V = \lim_{N \to \infty} \operatorname{Var}\left(\sqrt{N}\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)\right)\right)$ とおくと,
+$$
+\sqrt{N}\left(\hat{\boldsymbol{\theta}} - \boldsymbol{\theta}_0\right) \xrightarrow{\ d\ } \mathcal{N}\left(\boldsymbol{0},\ \Lambda V \Lambda^\top\right),
+\qquad
+\Lambda = \left(G^\top W G\right)^{-1} G^\top W.
+$$ {#eq-md-avar}
+特に $W = V^{-1}$ のとき, 分散は $\left(G^\top V^{-1} G\right)^{-1}$ に簡約され, これが $W$ の選び方の中で最小になる. すなわち, 最適な重み行列はデータのモーメントの分散共分散行列の逆行列である.
+
+:::
+
+これは @prp-gmm-avar を最小距離推定に当てはめただけです. $\boldsymbol{g}\left(\boldsymbol{x}_i, \boldsymbol{\theta}\right) = \boldsymbol{h}\left(\boldsymbol{x}_i\right) - \boldsymbol{m}\left(\boldsymbol{\theta}\right)$ なので $\bar{\boldsymbol{g}}_N\left(\boldsymbol{\theta}\right) = \hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}\right)$ です. したがって @prp-gmm-avar のヤコビアンは $-G$ で, モーメントの分散共分散行列は
+$$
+V = \lim_{N \to \infty} \operatorname{Var}\left(\sqrt{N}\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)\right)\right) = \lim_{N \to \infty} \operatorname{Var}\left(\sqrt{N}\, \hat{\boldsymbol{m}}\right)
+$$ {#eq-md-v}
+です. $\boldsymbol{m}\left(\boldsymbol{\theta}_0\right)$ は確率変数ではなくただの定数なので, 分散を取ると消えます. つまり $V$ はデータのモーメント $\hat{\boldsymbol{m}}$ の分散共分散行列そのもので, モデルにもパラメータにも依存しません. @eq-gmm-avar に代入すると $-G$ の符号は打ち消し合って $\left(G^\top W G\right)^{-1} G^\top W V W G \left(G^\top W G\right)^{-1} = \Lambda V \Lambda^\top$ となり, 最適な重みも @prp-gmm-avar の $W = V^{-1}$ そのままです. 最適な重みがパラメータに依存せずデータから計算できるので, 最小距離推定の場合は2段階推定をする必要はありません.
+
+$\Lambda$ は「データのモーメントが1単位動いたとき推定値がどれだけ動くか」を並べた $k \times p$ 行列で, 推定量は漸近的に $\hat{\boldsymbol{\theta}} - \boldsymbol{\theta}_0 \simeq \Lambda\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)\right)$ と書けます. モーメントの誤差の分散 $V$ が $\Lambda$ を通って推定値の分散になる, ということです. この $\Lambda$ は, 標準誤差 (@sec-md-estimation) にも感応度 (@sec-md-sensitivity) にも出てきます. 最適な重み $V^{-1}$ は, 分散の小さい, つまり精度よく測れているモーメントのずれほど重く数え, 互いに相関するモーメントは重なっている情報を割り引いて数える重み付けです.
 
 モデル側 $\boldsymbol{m}\left(\boldsymbol{\theta}\right)$ を, シミュレーションによって計算する場合を, とくに SMM (simulated method of moments) と呼びます. 推定量が変わるわけではなく, $\boldsymbol{m}\left(\boldsymbol{\theta}\right)$ の計算方法の名前です. 以下の例ではモデル側の量が2次元の積分になるので, シミュレーション (モンテカルロ法) は使わず求積で計算します.
 
@@ -674,7 +649,8 @@ $\eta = 0.5$ は @chetty2011 の値です. 彼らは準実験的なミクロ研�
 
 ```{julia}
 #| label: fig-ls-hours
-#| fig-cap: "**Desired hours.** Hours from @eq-ls-hstar as a function of the wage, for two values of the disutility of work. The dotted line is the standard workweek."
+#| fig-cap: "Desired hours"
+#| fig-notes: "Hours from @eq-ls-hstar as a function of the wage, for two values of the disutility of work. The dotted line is the standard workweek."
 #| code-fold: true
 w_grid = range(0.3, 3.0, length=120)
 plot(w_grid, [hours(w; ψ=0.5) for w in w_grid], lw=1.8, label=L"\psi = 0.5")
@@ -715,7 +691,8 @@ m̂s = data_moments(hs_ls, ys_ls, ds_ls)
 
 ```{julia}
 #| label: fig-ls-histogram
-#| fig-cap: "**Usual weekly hours.** 935 working men, NLS 1980. More than half report exactly 40 hours."
+#| fig-cap: "Usual weekly hours"
+#| fig-notes: "935 working men, NLS 1980. More than half report exactly 40 hours."
 #| code-fold: true
 histogram(nls.hours, bins=(20:2:82) .- 1, label="", lc=:white, lw=0.3,
     xlabel="usual weekly hours", ylabel="men")
@@ -723,89 +700,31 @@ histogram(nls.hours, bins=(20:2:82) .- 1, label="", lc=:white, lw=0.3,
 
 @fig-ls-histogram がこの節のモデルを決めた事実です. 標本の `{julia} round(Int, 100 * m̂s[5])`% がちょうど40時間で, 40時間未満は `{julia} round(Int, 100 * mean(nls.hours .< 40))`% しかいません. 残りの `{julia} round(Int, 100 * mean(nls.hours .> 40))`% は40時間より長く, 45, 50, 55, 60 時間といった切りのよい値に集まっています.
 
-ターゲットとするモーメントは5本です.
-
-1. 個人 $i$ の労働時間 $h_i$ の平均, $\mathbb{E}[h_i]$
-1. 個人 $i$ の労働時間 $h_i$ の標準偏差, $\sqrt{\operatorname{Var}\left[h_i\right]}$
-1. 個人 $i$ の対数月収 $y_i$ の標準偏差, $\sqrt{\operatorname{Var}\left[y_i\right]}$
-1. 労働時間 $h_i$ と対数月収 $y_i$ の相関, $\operatorname{Cov}\left(h_i, y_i\right) / \left(s_h s_y\right)$
-1. 40時間で働く人のダミー $d_i$ の平均, $\mathbb{E}[d_i]$
-
-
-このうち標本平均そのものは1本目と5本目で, 残りの3本は標本平均の非線形な関数です. 標準誤差を出すには, その非線形性をデルタ法で通す必要があります. @sec-apdx-influence の導出を用いれば,, どのモーメントの推定誤差も個人ごとの寄与の平均として $\hat{\boldsymbol{m}} - \boldsymbol{m} \simeq \frac{1}{N}\sum_i \boldsymbol{\xi}_i$ と書けます. この $\boldsymbol{\xi}_i$ を影響関数 (influence function) と呼び, 5本のモーメントに対応する成分は次のとおりです.
-$$
-\begin{aligned}
-\xi_{1i} &= h_i - \mathbb{E}\left[h\right], \qquad
-\xi_{2i} = \frac{\left(h_i - \mathbb{E}\left[h\right]\right)^2 - m_2^2}{2\, m_2}, \qquad
-\xi_{3i} = \frac{\left(y_i - \mathbb{E}\left[y\right]\right)^2 - m_3^2}{2\, m_3}, \\
-\xi_{4i} &= u_i v_i - m_4 - \frac{m_4}{2}\left(u_i^2 - 1\right) - \frac{m_4}{2}\left(v_i^2 - 1\right), \qquad
-\xi_{5i} = d_i - \mathbb{E}\left[d\right]
-\end{aligned}
-$$ {#eq-ls-influence}
-実装では母数を標本の値に置き換えます. $\mathbb{E}\left[h\right]$ を $\bar{h}$ に, $m_2$ を $s_h$ に, というようにです. こうして得た $\hat{\boldsymbol{\xi}}_i$ を行に並べた $N \times 5$ 行列の標本分散共分散を $N$ で割れば, それが $\hat{\boldsymbol{m}}$ の分散共分散行列です.
-$$
-\hat{V} = \frac{1}{N}\, \widehat{\operatorname{Var}}\left(\hat{\boldsymbol{\xi}}_i\right)
-$$ {#eq-ls-vhat}
-
-```{julia}
-#| label: ls-vcov
-#| output: false
-function influence(hs, ys, ds)       # influence functions of the five moments
-    h̄, s_h = mean(hs), std(hs)
-    ȳ, s_y = mean(ys), std(ys)
-    us = (hs .- h̄) ./ s_h
-    vs = (ys .- ȳ) ./ s_y
-    r_hy = mean(us .* vs)
-    hcat(hs .- h̄, s_h .* (us .^ 2 .- 1) ./ 2, s_y .* (vs .^ 2 .- 1) ./ 2,
-        us .* vs .- r_hy .- (r_hy / 2) .* (us .^ 2 .- 1) .-
-            (r_hy / 2) .* (vs .^ 2 .- 1),
-        ds .- mean(ds))
-end
-
-V̂ = cov(influence(hs_ls, ys_ls, ds_ls)) ./ N_ls      # variance of the moments
-σs = sqrt.(diag(V̂))                                  # s.e. of each moment
-```
+ターゲットとするモーメントは @tbl-ls-moments にまとめました.
 
 ```{julia}
 #| label: tbl-ls-moments
 #| code-fold: true
 #| output: asis
-#| tbl-cap: "ターゲットにする5本のモーメント (NLS 若年男性コホート 1980年, 就業者 935人)"
+#| tbl-cap: "ターゲットにする5本のモーメント"
+#| tbl-notes: "標本は NLS 若年男性コホートの1980年時点の就業者 935人."
 moment_labels_ls = ["週間就業時間の平均 \$\\bar{h}\$",
     "週間就業時間の標準偏差 \$s_h\$",
     "対数月収の標準偏差 \$s_y\$",
-    "両者の相関 \$r_{hy}\$",
+    "労働時間と対数月収の相関 \$r_{hy}\$",
     "ちょうど40時間の割合 \$\\bar{d}\$"]
 m̂s_raw = [m̂s[1] * 40, m̂s[2] * 40, m̂s[3], m̂s[4], m̂s[5]]
-σs_raw = [σs[1] * 40, σs[2] * 40, σs[3], σs[4], σs[5]]
 
-pretty_table(hcat(moment_labels_ls, round.(m̂s_raw, digits=4),
-        round.(σs_raw, sigdigits=2));
-    column_labels=["モーメント", "データの値", "標準誤差"],
+pretty_table(hcat(moment_labels_ls, round.(m̂s_raw, digits=4));
+    column_labels=["モーメント", "データの値"],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
-平均は週 `{julia} round(m̂s[1] * 40, digits=1)`時間, 標準偏差は週 `{julia} round(m̂s[2] * 40, digits=1)`時間, 対数所得の標準偏差は `{julia} round(m̂s[3], digits=2)` です. 目を引くのは4本目で, 労働時間と対数月収の相関は `{julia} round(m̂s[4], digits=3)`, つまりほぼゼロです. 長く働く人ほど稼ぐわけではない, ということです. 散らばりの源が賃金だけならこうはなりません. 賃金が高い人は (このモデルでは) 働く時間が短く, かつ所得は高いので, 相関は明確に負になるはずです.
-
-```{julia}
-#| label: tbl-ls-corr
-#| code-fold: true
-#| output: asis
-#| tbl-cap: "5本のモーメントの相関"
-moment_corr = V̂ ./ (σs * σs')
-moment_symbols_ls = [raw"$\bar{h}$", raw"$s_h$", raw"$s_y$", raw"$r_{hy}$",
-    raw"$\bar{d}$"]
-
-pretty_table(hcat(moment_symbols_ls, round.(moment_corr, digits=3));
-    column_labels=["", moment_symbols_ls...],
-    backend=:markdown, allow_markdown_in_cells=true)
-```
-
-平均労働時間と労働時間の標準偏差の相関が `{julia} round(moment_corr[1, 2], digits=2)` と高いのは, どちらも同じ 935人の労働時間から作られているからです. 40時間の割合は労働時間の散らばりと負に相関します. 40時間に人が集まれば散らばりは小さくなるからです. この非対角成分が使えることが, 個票を持っていることの利点です.
+目を引くのは4本目で, 労働時間と対数月収の相関は `{julia} round(m̂s[4], digits=3)`, つまりほぼゼロです. 長く働く人ほど稼ぐわけではない, ということです. 散らばりの源が賃金だけならこうはなりません. 賃金が高い人は (このモデルでは) 働く時間が短く, かつ所得は高いので, 相関は明確に負になるはずです.
 
 #### モーメント条件 {#sec-md-quad}
 
-@eq-ls-mean の積分は2次元です. 賃金も選好も対数正規なので, どちらも $\exp\left(\mu + \sqrt{2}\,s\, z\right)$ と変換すればガウス・エルミート求積 (@sec-integral) がそのまま使えます. 2つの積分は独立なので, 節点の直積を取るだけです. 各節点では希望時間 $h^*$ と利得 $g$ を計算し, @eq-ls-deviate の確率で「希望時間で働く」と「40時間で働く」の2つの枝に重みを分けます. 被積分関数は滑らかなので, 各次元10点で足ります.^[8点から20点まで変えても, 以下で報告する $J$ 統計量は小数第2位まで動きません.]
+@eq-ls-mean の積分は2次元です. 賃金も選好も対数正規なので, どちらも $\exp\left(\mu + \sqrt{2}\,s\, z\right)$ と変換すればガウス・エルミート求積 (@sec-integral) がそのまま使えます. 2つの積分は独立なので, グリッドの直積を取るだけです. 各節点では希望時間 $h^*$ と利得 $g$ を計算し, @eq-ls-deviate の確率で「希望時間で働く」と「40時間で働く」の2つの枝に重みを分けます. 被積分関数は滑らかなので, 各次元10点で足ります.^[8点から20点まで変えても, 以下で報告する $J$ 統計量は小数第2位まで動きません.]
 
 ```{julia}
 #| label: ls-model-moments
@@ -822,7 +741,7 @@ function model_moments(θs; μw=μw_ls, γ=γ_ls, η=η_ls, n_nodes=10)
         ψ = exp(μψ + sqrt(2) * σψ * xs[j])      # μψ is the mean of log ψ
         h★ = hours(w; ψ=ψ, γ=γ, η=η)
         gain = utility(h★, w; ψ=ψ, γ=γ, η=η) -
-               utility(H̄, w; ψ=ψ, γ=γ, η=η)
+            utility(H̄, w; ψ=ψ, γ=γ, η=η)
         prob_deviate = 1 - exp(-gain / κ̄)            # @eq-ls-deviate
         for (prob, h) in ((prob_deviate, h★), (1 - prob_deviate, H̄))
             weight = ωs[i] * ωs[j] * prob
@@ -841,43 +760,189 @@ function model_moments(θs; μw=μw_ls, γ=γ_ls, η=η_ls, n_nodes=10)
 end
 ```
 
-重み行列には $\hat{V}^{-1}$ を使います. @sec-gmm-theory の意味で効率的な選択であり, 個票があるからこそ選べるものです.
-$$
-\hat{\boldsymbol{\theta}} = \arg\min_{\boldsymbol{\theta}}\ \left(\boldsymbol{m}\left(\boldsymbol{\theta}\right) - \hat{\boldsymbol{m}}\right)^\top \hat{V}^{-1} \left(\boldsymbol{m}\left(\boldsymbol{\theta}\right) - \hat{\boldsymbol{m}}\right)
-$$ {#eq-ls-loss}
-$\hat{V}$ はすでに $1/N$ を含んでいるので, この目的関数の最小値がそのまま Hansen の $J$ 統計量になります (@sec-overid).
-
 ### 推定 {#sec-md-estimation}
 
-@eq-ls-loss を最小化します. 大域識別の間接チェックを兼ねて, 離れた3つの初期値から解きます.
+#### 重み行列 $\hat{V}$
+
+@prp-md-efficient の通り, 最適な重みはデータモーメントの分散共分散行列の逆行列です. GMM では $\bar{\boldsymbol{g}}_N$ が個人ごとの $\boldsymbol{g}\left(\boldsymbol{x}_i, \hat{\boldsymbol{\theta}}\right)$ の標本平均だったので, その標本分散共分散 $\hat{S}$ がそのまま $V$ の推定量になりました. 最小距離推定でも, モーメントが標本平均なら同じです. 5本のうち1本目と5本目はそうなっていて, $h_i$ と $d_i$ の標本分散を $N$ で割れば済みます. しかし残りの3本, 2つの標準偏差と相関は標本平均の非線形な関数で, @def-minimum-distance のように $\frac{1}{N}\sum_i \boldsymbol{h}\left(\boldsymbol{x}_i\right)$ の形には書けません. この場合, ブートストラップを用いるか影響関数を使ったデルタ法で分散共分散行列を計算します. @tbl-ls-vcov-bootstrap を使った結果です.
+
+```{julia}
+#| label: ls-vcov-bootstrap
+#| output: false
+function bootstrap_moments(R, hs, ys, ds)   # keep the loop inside a function
+    N = length(hs)
+    moments_resampled = Matrix{Float64}(undef, R, 5)
+    for r in 1:R
+        resampled = rand(1:N, N)            # resample men, with replacement
+        moments_resampled[r, :] =
+            data_moments(hs[resampled], ys[resampled], ds[resampled])
+    end
+    return moments_resampled
+end
+
+Random.seed!(1234)
+R_moments = 1000
+V̂_bootstrap = cov(bootstrap_moments(R_moments, hs_ls, ys_ls, ds_ls))
+```
+
+```{julia}
+#| label: tbl-ls-vcov-bootstrap
+#| code-fold: true
+#| output: asis
+#| tbl-cap: "ブートストラップで求めたデータモーメントの分散共分散行列 ($\\times 10^4$)"
+#| tbl-notes: "935人を復元抽出して5本のモーメントを計算し直すことを1000回繰り返し, その分散共分散を取ったもの. 値は $10^4$ 倍して表示している. 労働時間は40時間を1とする単位で測っている."
+moment_symbols_ls = [raw"$\bar{h}$", raw"$s_h$", raw"$s_y$", raw"$r_{hy}$",
+    raw"$\bar{d}$"]
+
+pretty_table(hcat(moment_symbols_ls, round.(1e4 .* V̂_bootstrap, digits=2));
+    column_labels=["", moment_symbols_ls...],
+    backend=:markdown, allow_markdown_in_cells=true)
+```
+
+影響関数を使った方法は次のデルタ法の考え方を使います. 個人ごとの量を $\boldsymbol{a}_i = \left(h_i, h_i^2, y_i, y_i^2, h_i y_i, d_i\right)^\top$ とかける場合を考えます. この時, 5本のモーメントは個人ごとの量の標本平均 $\bar{\boldsymbol{a}} = \frac{1}{N}\sum_i \boldsymbol{a}_i$ の滑らかな関数 $\hat{\boldsymbol{m}} = \boldsymbol{\phi}\left(\bar{\boldsymbol{a}}\right)$ と書けます. 例えば労働時間の標準偏差は $\sqrt{\bar{a}_2 - \bar{a}_1^2}$ です. 標本平均 $\bar{\boldsymbol{a}}$ の誤差は中心極限定理で扱えるので, あとは $\phi(\cdot)$ のヤコビアンを考えればデルタ法 (@prp-delta-method) から $\phi(\bar{\boldsymbol{a}})$ の誤差の分散共分散行列が計算できます.
+
+::: {#prp-delta-method}
+
+## デルタ法
+
+確率ベクトルの列 $\hat{\boldsymbol{x}}_N$ が $\sqrt{N}\left(\hat{\boldsymbol{x}}_N - \boldsymbol{\mu}\right) \xrightarrow{\ d\ } \mathcal{N}\left(\boldsymbol{0},\ \Sigma\right)$ を満たすとする. 関数 $\boldsymbol{\phi}$ が $\boldsymbol{\mu}$ で微分可能で, そのヤコビアンを $D = \partial \boldsymbol{\phi}\left(\boldsymbol{\mu}\right) / \partial \boldsymbol{x}^\top$ とすると,
+$$
+\sqrt{N}\left(\boldsymbol{\phi}\left(\hat{\boldsymbol{x}}_N\right) - \boldsymbol{\phi}\left(\boldsymbol{\mu}\right)\right) \xrightarrow{\ d\ } \mathcal{N}\left(\boldsymbol{0},\ D \Sigma D^\top\right).
+$$
+
+:::
+
+これを個人ごとの量 $\hat{\boldsymbol{\xi}}_i = \hat{D}\left(\boldsymbol{a}_i - \bar{\boldsymbol{a}}\right)$ の分散として計算します (@alg-influence).
+
+::: {#alg-influence}
+
+## 影響関数による $\hat{V}$ の計算
+
+1. 個人ごとの量 $\boldsymbol{a}_i$ を, モーメントがその標本平均の滑らかな関数 $\hat{\boldsymbol{m}} = \boldsymbol{\phi}\left(\bar{\boldsymbol{a}}\right)$ になるように並べる.
+2. $\boldsymbol{\phi}$ のヤコビアンを標本平均で評価した $\hat{D} = \partial \boldsymbol{\phi}\left(\bar{\boldsymbol{a}}\right) / \partial \boldsymbol{a}^\top$ を求める.
+3. 個人ごとの影響関数 $\hat{\boldsymbol{\xi}}_i = \hat{D}\left(\boldsymbol{a}_i - \bar{\boldsymbol{a}}\right)$ を計算する.
+4. その標本分散共分散を $N$ で割る.
+$$
+\hat{V} = \frac{1}{N}\, \widehat{\operatorname{Var}}\left(\hat{\boldsymbol{\xi}}_i\right)
+$$ {#eq-ls-vhat}
+
+:::
+
+手順2のヤコビアンは, GMM の $\hat{G}$ と同じく, $\boldsymbol{\phi}$ を Julia の関数として書けば `ForwardDiff.jacobian` で正確に求まるので, 微分を手で計算する必要はありません.
+
+```{julia}
+#| label: ls-vcov
+#| output: false
+# φ: the five moments as a function of the sample means of a_i
+moments_of_means(a) = [a[1], sqrt(a[2] - a[1]^2), sqrt(a[4] - a[3]^2),
+    (a[5] - a[1] * a[3]) / sqrt((a[2] - a[1]^2) * (a[4] - a[3]^2)), a[6]]
+
+function influence(hs, ys, ds)           # row i: ξ̂_i' = (a_i - ā)' D̂'
+    a_obs = hcat(hs, hs .^ 2, ys, ys .^ 2, hs .* ys, ds)   # row i: a_i'
+    ā = vec(mean(a_obs, dims=1))
+    D̂ = ForwardDiff.jacobian(moments_of_means, ā)        # 5×6
+    return (a_obs .- ā') * D̂'
+end
+
+V̂ = cov(influence(hs_ls, ys_ls, ds_ls)) ./ N_ls      # variance of the moments
+σs = sqrt.(diag(V̂))                                  # s.e. of each moment
+```
+
+```{julia}
+#| label: tbl-ls-vcov-influence
+#| code-fold: true
+#| output: asis
+#| tbl-cap: "影響関数で求めたデータモーメントの分散共分散行列 ($\\times 10^4$)"
+#| tbl-notes: "@alg-influence で計算した $\\hat{V}$. 値は $10^4$ 倍して表示している. 労働時間は40時間を1とする単位で測っている."
+moment_corr = V̂ ./ (σs * σs')                       # quoted in the text below
+
+pretty_table(hcat(moment_symbols_ls, round.(1e4 .* V̂, digits=2));
+    column_labels=["", moment_symbols_ls...],
+    backend=:markdown, allow_markdown_in_cells=true)
+```
+
+平均労働時間と労働時間の標準偏差の相関が `{julia} round(moment_corr[1, 2], digits=2)` と高いのは, どちらも同じ 935人の労働時間から作られているからです. 40時間の割合は労働時間の散らばりと負に相関します. 40時間に人が集まれば散らばりは小さくなるからです. この非対角成分が使えることが, 個票を持っていることの利点です.
+
+#### 点推定と標準誤差
+
+重み行列を $W = \hat{V}^{-1}$ として, @def-minimum-distance の目的関数を最小化します. モデルのモーメントは求積の和なので $\boldsymbol{\theta}$ について滑らかで, GMM のとき (@sec-gmm-estimation) と同じく, 自動微分で求めた勾配を使う L-BFGS で最小化できます. 目的関数は $J$ 統計量と同じ尺度の量なので, その変化が $10^{-6}$ を下回ったら止めます (`abstol`). 大域識別の間接チェックを兼ねて, 離れた3つの初期値から解きます.
 
 ```{julia}
 #| label: ls-estimate
 #| output: false
 W_md = inv(V̂)                                        # efficient weight, fixed
-md_loss(m̂s, θs) = (gs=model_moments(θs) .- m̂s; dot(gs, W_md, gs))
+md_loss(m̂s, θs, W) = (gs=model_moments(θs) .- m̂s; dot(gs, W, gs))
 
+# quasi-Newton with box constraints; the gradient comes from ForwardDiff
 minimize4(f, θs0) = solve(
-    OptimizationProblem(OptimizationFunction((θs, _) -> f(θs)), θs0;
-        lb=[-5.0, 0.02, 0.01, 1e-4], ub=[5.0, 5.0, 5.0, 10.0]),
-    NLopt.LN_NELDERMEAD(), maxiters=20_000)
+    OptimizationProblem(
+        OptimizationFunction((θs, _) -> f(θs), Optimization.AutoForwardDiff()),
+        θs0; lb=[-5.0, 0.02, 0.01, 1e-4], ub=[5.0, 5.0, 5.0, 10.0]),
+    NLopt.LD_LBFGS(), maxiters=20_000, abstol=1e-6)
 
 initial_values = ([0.0, 0.45, 0.5, 0.05], [-1.2, 0.3, 0.8, 0.005],
     [1.1, 0.9, 0.2, 0.5])
-solutions = [minimize4(θs -> md_loss(m̂s, θs), θs0) for θs0 in initial_values]
+solutions = [minimize4(θs -> md_loss(m̂s, θs, W_md), θs0)
+             for θs0 in initial_values]
 θ̂s_ls = solutions[1].u
 
 param_labels_ls = [raw"$\mu_\psi$", raw"$\sigma_w$", raw"$\sigma_\psi$",
     raw"$\bar{\kappa}$"]
 ```
 
-3つの初期値は同じ点に収束しました. 対数不効用の平均 $\hat{\mu}_\psi =$ `{julia} round(θ̂s_ls[1], digits=2)` (重みの中央値は $e^{\hat{\mu}_\psi} =$ `{julia} round(exp(θ̂s_ls[1]), digits=2)`), 対数賃金の標準偏差 $\hat\sigma_w =$ `{julia} round(θ̂s_ls[2], digits=2)`, 対数不効用の標準偏差 $\hat\sigma_\psi =$ `{julia} round(θ̂s_ls[3], digits=2)`, 逸脱コストの平均 $\hat{\bar\kappa} =$ `{julia} round(θ̂s_ls[4], digits=3)` です. 選好の散らばりは無視できる大きさではなく, 上下1標準偏差の人の間で不効用の重みが `{julia} round(exp(2 * θ̂s_ls[3]), digits=1)`倍違います. @eq-ls-hstar によれば, これは希望労働時間の `{julia} round(exp(2 * θ̂s_ls[3] / (1 / η_ls + γ_ls)), digits=2)`倍の違いにあたります. $\bar\kappa$ は効用の単位なので, それ自体を読むより, 含意される「標準から外れる人の割合」`{julia} round(Int, 100 * (1 - model_moments(θ̂s_ls)[5]))`% の方が分かりやすいでしょう.
+```{julia}
+#| label: tbl-ls-starts
+#| code-fold: true
+#| output: asis
+#| tbl-cap: "3つの初期値からの最小化"
+#| tbl-notes: "目的関数は重み行列を $W = \\hat{V}^{-1}$ とした @def-minimum-distance の距離."
+losses_initial = [md_loss(m̂s, θs0, W_md) for θs0 in initial_values]
+start_row_labels = ["初期値 " .* param_labels_ls; "初期値での目的関数";
+    "収束先 " .* param_labels_ls; "収束先での目的関数"]
+start_columns = [vcat(θs0, round(loss0, digits=1), round.(solution.u, digits=6),
+    round(solution.objective, sigdigits=6))
+                 for (θs0, loss0, solution) in
+                     zip(initial_values, losses_initial, solutions)]
 
-当てはまりは, モーメントの標準誤差で測れます.
+pretty_table(hcat(start_row_labels, start_columns...);
+    column_labels=["", "初期値 1", "初期値 2", "初期値 3"],
+    backend=:markdown, allow_markdown_in_cells=true)
+```
+
+@tbl-ls-starts のとおり, 目的関数の値が `{julia} round(Int, minimum(losses_initial))` から `{julia} round(Int, maximum(losses_initial))` の離れた点から出発しても, 3つとも同じ点に収束しました. 収束先は表示した小数第6位まで一致し, そこでの目的関数の値も同じです.
+
+推定量の漸近分散は @eq-md-avar で与えられます. 材料のうち $\hat{V}$ はすでに手元にあるので, 新しく要るのはヤコビアンを推定値で評価した $\hat{G} = \partial \boldsymbol{m}\left(\hat{\boldsymbol{\theta}}\right) / \partial \boldsymbol{\theta}^\top$ だけです. モデルのモーメントは Gauss–Hermite 求積の和として閉じた式で計算しているので, GMM のときと同じく `ForwardDiff.jacobian` で求まります. $\hat{V}$ は $1/N$ を含んだ量なので, 推定値の分散共分散行列は $\hat{\Lambda} \hat{V} \hat{\Lambda}^\top$ で, $\hat{\Lambda} = \left(\hat{G}^\top W \hat{G}\right)^{-1} \hat{G}^\top W$ です. $W = \hat{V}^{-1}$ なので, これは $\left(\hat{G}^\top \hat{V}^{-1} \hat{G}\right)^{-1}$ に簡約されます.
+
+```{julia}
+#| label: ls-analytic-se
+#| output: false
+Ĝ = ForwardDiff.jacobian(model_moments, θ̂s_ls)
+Λ = inv(Ĝ' * W_md * Ĝ) * (Ĝ' * W_md)         # how θ̂s_ls moves with each moment
+ses_analytic = sqrt.(diag(Λ * V̂ * Λ'))
+```
+
+```{julia}
+#| label: tbl-ls-estimates
+#| code-fold: true
+#| output: asis
+#| tbl-cap: "最小距離推定の推定値と標準誤差"
+#| tbl-notes: "重み行列は $W = \\hat{V}^{-1}$. 標準誤差は @eq-md-avar による."
+pretty_table(hcat(param_labels_ls, round.(θ̂s_ls, digits=4),
+    round.(ses_analytic, sigdigits=2));
+    column_labels=["パラメータ", "推定値", "標準誤差"],
+    backend=:markdown, allow_markdown_in_cells=true)
+```
+
+対数不効用の平均 $\hat{\mu}_\psi =$ `{julia} round(θ̂s_ls[1], digits=2)` (重みの中央値は $e^{\hat{\mu}_\psi} =$ `{julia} round(exp(θ̂s_ls[1]), digits=2)`), 対数賃金の標準偏差 $\hat\sigma_w =$ `{julia} round(θ̂s_ls[2], digits=2)`, 対数不効用の標準偏差 $\hat\sigma_\psi =$ `{julia} round(θ̂s_ls[3], digits=2)`, 逸脱コストの平均 $\hat{\bar\kappa} =$ `{julia} round(θ̂s_ls[4], digits=3)` です. 選好の散らばりは無視できる大きさではなく, 上下1標準偏差の人の間で不効用の重みが `{julia} round(exp(2 * θ̂s_ls[3]), digits=1)`倍違います. @eq-ls-hstar によれば, これは希望労働時間の `{julia} round(exp(2 * θ̂s_ls[3] / (1 / η_ls + γ_ls)), digits=2)`倍の違いにあたります. $\bar\kappa$ は効用の単位なので, それ自体を読むより, 含意される「標準から外れる人の割合」`{julia} round(Int, 100 * (1 - model_moments(θ̂s_ls)[5]))`% の方が分かりやすいでしょう.
+
+#### モデルのフィット
+
+モデルへの当てはまりは, モーメントの標準誤差で測れます.
 
 ```{julia}
 #| label: fig-ls-fit
-#| fig-cap: "**Fit.** Targeted moments, model minus data, in standard errors of the moment."
+#| fig-cap: "Fit"
+#| fig-notes: "Targeted moments, model minus data, in standard errors of the moment."
 #| code-fold: true
 moment_plot_labels_ls = ["mean hours", "sd hours", "sd log earnings",
     "corr(h, log earnings)", "share at 40 hours"]
@@ -887,10 +952,12 @@ scatter(deviations, 1:5, ms=6, label="")
 vline!([0], c=:black, lw=1, label="")
 plot!(xlabel="(model − data) / s.e. of the moment",
     yticks=(1:5, moment_plot_labels_ls),
-    ylims=(0.5, 5.5), xlims=(-2.5, 2.5), size=(560, 280))
+    ylims=(0.5, 5.5), xlims=(-1, 1), size=(560, 280))
 ```
 
-5本とも `{julia} round(maximum(abs, deviations), digits=1)` 標準誤差の内側に収まっています. パラメータ4つで5本を狙っているので完全には合いませんが, 符号が入り混じっているのはモデルがデータをうまくとらえていることの示唆です.
+@fig-ls-fit で見るように, 5本とも `{julia} round(maximum(abs, deviations), digits=1)` 標準誤差の内側に収まっています. パラメータ4つで5本を狙っているので完全には合いませんが, 符号が入り混じっているのはモデルがデータをうまくとらえていることの示唆です.
+
+重みが $\hat{V}^{-1}$ なので, 目的関数の最小値がそのまま Hansen の $J$ 統計量になります (@prp-j-test). $\hat{V}$ がすでに $1/N$ を含んでいるので, $N$ を掛ける必要はありません.
 
 ```{julia}
 #| label: ls-overid
@@ -901,35 +968,19 @@ pval_ls = ccdf(Chisq(5 - 4), J_ls)
 
 過剰識別の検定をします. $J =$ `{julia} round(J_ls, digits=2)` で, 自由度 $5 - 4 = 1$ の $\chi^2$ の 5% 点 `{julia} round(quantile(Chisq(1), 0.95), digits=2)` を下回ります ($p =$ `{julia} round(pval_ls, digits=2)`). 5本のモーメントは, この4つのパラメータで整合的に説明できる範囲にあります. $J$ がほとんどゼロなのは偶然ではありません. @sec-md-sensitivity で見るとおり, 持ち込んだ $\eta = 0.5$ がこのデータの好む値とほぼ一致していることも関係しています.
 
-### 標準誤差 {#sec-md-se}
+### 標準誤差の別の求め方 {#sec-md-se}
 
-最小距離推定において標準誤差を考える場合, 大きく3つの場合があります.
+@sec-md-estimation の標準誤差は, データのモーメントの分散共分散行列 $\hat{V}$ とモデル側のヤコビアン $\hat{G}$ を @eq-md-avar に入れたものでした. ここでは, 推定そのものをやり直すブートストラップと, 個票がなく $\hat{V}$ が手に入らない場合の最悪ケースの標準誤差を見ます.
 
-1. **解析的な方法**: 個票があり, 分散共分散行列が手に入る場合
-2. **ブートストラップ法**: 個票があるが, 分散共分散行列が手に入らない場合
-3. **最悪条件**: 個票がなく, 分散共分散行列しか手に入らない場合
+#### ブートストラップ
 
-#### 1. 解析的な方法
+@tbl-ls-vcov-bootstrap のブートストラップは, データのモーメントだけを作り直すものでした. 影響関数が使いにくいモーメントでも, そうして $\hat{V}$ さえ作れれば, 標準誤差は @eq-md-avar で解析的に求まります.^[分位点がその例です. $\tau$ 分位点 $q_\tau$ の影響関数は $\left(\tau - 1\left\{y_i \leq q_\tau\right\}\right) / f\left(q_\tau\right)$ と解析的に書けますが, 分位点での密度 $f\left(q_\tau\right)$ をカーネル密度推定で求める必要があり, 結果がバンド幅の選び方に左右されます. また, この節の労働時間のように値が1点に集中していると (中央値はちょうど40時間です), その点で密度が存在せず, 分位点の漸近正規性そのものが崩れます.] 標準誤差のためだけに推定をやり直す必要はありません. 推定ごとやり直すブートストラップが必要になる, あるいは有利になるのは, 次のような場面です.
 
-モーメントを単一の個票で作った場合, データモーメントの分散共分散行列 $\hat{V}$ を用いることで, 解析的な標準誤差を計算できます. これは GMM の場合と同じです.
+- **ヤコビアン $\hat{G}$.** モデル側の都合によってモーメントが滑らかでない場合, $\hat{G}$ の推定が不安定になり, 構成した解析的な標準誤差が信頼できなくなります.
+- **多段階推定.** 最小距離推定自体の計算が重いので, モデルを解く前にデータから一部のパラメータを推定する場合がよくあります. この段階の標準誤差が @eq-md-avar に含まれないため, 両段階をやり直すブートストラップが必要になります.
+- **推定値.** 推定が終わったあと, 反実仮想などを行なった結果に標準誤差をつけたい場合があります (厚生変化など). その場合, デルタ法で標準誤差を与えるにはモデル自体を関数と見なしてそのヤコビアンを求める必要があります. しかし, この数値微分は不安定になりがちです.
 
-今, $\hat{V}$ が非対角成分まで手元にあるので, @prp-gmm-avar をそのまま使えます. 必要なのはモデル側のヤコビアン $\hat{G} = \partial \boldsymbol{m} / \partial \boldsymbol{\theta}$ だけで, これは数値微分で取ります.
-
-```{julia}
-#| label: ls-analytic-se
-#| output: false
-Ĝ = jacobian(model_moments, θ̂s_ls; step=1e-5)
-Λ = inv(Ĝ' * W_md * Ĝ) * (Ĝ' * W_md)         # how θ̂s_ls moves with each moment
-ses_analytic = sqrt.(diag(Λ * V̂ * Λ'))
-```
-
-行列 $\Lambda = \left(\hat{G}^\top \hat{V}^{-1} \hat{G}\right)^{-1} \hat{G}^\top \hat{V}^{-1}$ は「モーメントが1単位動いたとき推定値がどれだけ動くか」を並べたもので, デルタ法の中身そのものです. 標準誤差は $\sqrt{\operatorname{diag}\left(\Lambda \hat{V} \Lambda^\top\right)}$ になります.
-
-#### 2. ブートストラップ法
-
-@eq-ls-vhat にたどり着くには, ターゲットにした統計量の影響関数を1本ずつ手で導く必要がありました. モーメントが分位点や回帰係数のように込み入ってくると, これは面倒になり, 間違えやすくもなります. そういうときは, 公式を使わずに標本の引き直しで測れます. 個票があるので手続きは素直です. 935人を復元抽出で引き直し, 5本のモーメントを作り直し, 最適化までやり直す. これを繰り返して得られる $\hat{\boldsymbol{\theta}}^{\left(r\right)}$ の散らばりが標準誤差です.
-
-最後の一段が肝心で, モーメントの分散だけでなく, そこから推定値への伝わり方も込みで測れます. 重み行列は全標本の $\hat{V}^{-1}$ に固定したままにします. 重みは推定量の定義の一部であって推定対象ではないので, 引き直しのたびに作り直すと, 測りたい散らばりに重みの揺らぎが混ざります.^[$\hat{V}$ が手に入らない状況なら, 重みも $\hat{V}^{-1}$ 以外の固定した行列 (単位行列や対角行列) を使うことになります. どの重みを使っても推定量は一致性を持ち, ブートストラップはその重みに対応した標準誤差を返します.]
+今回の授業の例ではどれにも当たらないので, ブートスラップを解析的な標準誤差の検算として行います. 935人を復元抽出で引き直し, 5本のモーメントを作り直し, 最適化までやり直す. これを繰り返して得られる $\hat{\boldsymbol{\theta}}^{\left(r\right)}$ の散らばりが標準誤差です. 重み行列も, 引き直した標本で影響関数から作り直します. 推定の手順を丸ごと再現するのがブートストラップの考え方だからです. 重み行列の推定誤差は1次の漸近分布には効かないので, 全標本の $\hat{V}^{-1}$ に固定しても漸近的には同じ結果になりますが, 小標本での性質までとらえたいなら作り直すのが筋です.
 
 ```{julia}
 #| label: ls-bootstrap
@@ -939,8 +990,10 @@ function bootstrap_md(R, hs, ys, ds, θs0)   # keep the loop inside a function
     estimates = Matrix{Float64}(undef, R, length(θs0))
     for r in 1:R
         resampled = rand(1:N, N)            # resample men, with replacement
-        m̂s_r = data_moments(hs[resampled], ys[resampled], ds[resampled])
-        estimates[r, :] = minimize4(θs -> md_loss(m̂s_r, θs), θs0).u
+        hs_r, ys_r, ds_r = hs[resampled], ys[resampled], ds[resampled]
+        m̂s_r = data_moments(hs_r, ys_r, ds_r)
+        W_r = inv(cov(influence(hs_r, ys_r, ds_r)) ./ N)   # weight rebuilt
+        estimates[r, :] = minimize4(θs -> md_loss(m̂s_r, θs, W_r), θs0).u
     end
     return estimates
 end
@@ -955,40 +1008,52 @@ ses_boot = vec(std(boot_estimates, dims=1))
 #| label: tbl-ls-se
 #| code-fold: true
 #| output: asis
-#| tbl-cap: "解析的な標準誤差とブートストラップ標準誤差 (引き直し 250 回)"
+#| tbl-cap: "解析的な標準誤差とブートストラップ標準誤差"
+#| tbl-notes: "ブートストラップ標準誤差は, 935人を復元抽出し, モーメントと重み行列の計算から最適化までやり直すことを250回繰り返したときの推定値の標準偏差. 比はブートストラップ標準誤差を解析的な標準誤差で割ったもの."
 pretty_table(hcat(param_labels_ls, round.(θ̂s_ls, digits=4),
-        round.(ses_analytic, sigdigits=2), round.(ses_boot, sigdigits=2),
-        round.(ses_boot ./ ses_analytic, digits=2));
-    column_labels=["パラメータ", "推定値", "(1) 解析的", "(2) ブートストラップ",
-        "比"],
+    round.(ses_analytic, sigdigits=3), round.(ses_boot, sigdigits=3),
+    round.(ses_boot ./ ses_analytic, digits=2));
+    column_labels=["パラメータ", "推定値", "解析的", "ブートストラップ", "比"],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
-4つとも `{julia} round(Int, 100 * maximum(abs, ses_boot ./ ses_analytic .- 1))`% 以内で一致しています. 一致するはずのものが一致した, というだけの結果ですが, 確かめる価値はあります. ヤコビアンの数値微分, 影響関数の導出, デルタ法の適用のどこかを間違えていれば, ここでずれます. とくに相関の影響関数 (@eq-ls-influence の $\xi_{4i}$) は項が3つあって間違えやすいので, ブートストラップと突き合わせておくと安心です. 素早い解析式と, 遅いが導出の要らない引き直しの, 相互チェックだと思うのがよいでしょう.
+4つとも `{julia} round(Int, 100 * maximum(abs, ses_boot ./ ses_analytic .- 1))`% 以内で一致していルコとが分かります. 一致するはずのものが一致した, というだけの結果ですが, 確かめる価値はあります. モーメントの関数 $\boldsymbol{\phi}$ の書き方やデルタ法の適用のどこかを間違えていれば, ここでずれます.
 
 ```{julia}
 #| label: fig-ls-boot
-#| fig-cap: "**Bootstrap distribution.** 250 resamples, with the point estimate and the analytic 95% interval."
+#| fig-cap: "Bootstrap distribution"
+#| fig-notes: "Kernel density of the 250 bootstrap estimates (Gaussian kernel, Silverman's rule-of-thumb bandwidth). Solid vertical line: point estimate. Dashed lines: analytic 95% interval."
 #| code-fold: true
+# Gaussian kernel density with Silverman's rule-of-thumb bandwidth
+function kernel_density(xs; n_points=200)
+    interquartile_range = quantile(xs, 0.75) - quantile(xs, 0.25)
+    bandwidth = 0.9 * min(std(xs), interquartile_range / 1.34) *
+        length(xs)^(-1 / 5)
+    x_grid = range(minimum(xs) - 3 * bandwidth, maximum(xs) + 3 * bandwidth,
+        length=n_points)
+    densities = [mean(pdf.(Normal(x, bandwidth), xs)) for x in x_grid]
+    return x_grid, densities
+end
+
 ps_boot = []
 for k in 1:4
-    p = histogram(boot_estimates[:, k], bins=25, label="", lc=:white, lw=0.3,
-        title=[L"\mu_\psi", L"\sigma_w", L"\sigma_\psi", L"\bar{\kappa}"][k],
-        normalize=:pdf)
+    x_grid, densities = kernel_density(boot_estimates[:, k])
+    p = plot(x_grid, densities, lw=1.8, label="",
+        title=[L"\mu_\psi", L"\sigma_w", L"\sigma_\psi", L"\bar{\kappa}"][k])
     vline!(p, [θ̂s_ls[k]], c=:black, lw=2, label="")
     vline!(p, θ̂s_ls[k] .+ [-1.96, 1.96] .* ses_analytic[k], c=:black, ls=:dash,
         lw=1.5, label="")
     push!(ps_boot, p)
 end
-plot(ps_boot..., layout=(1, 4), size=(900, 240), yticks=false,
+plot(ps_boot..., layout=(2, 2), size=(700, 440), yticks=false,
     bottom_margin=3Plots.mm)
 ```
 
-@fig-ls-boot は同じことを絵にしたものです. 破線が解析的な95%区間で, ヒストグラムがブートストラップ分布です. 分布はほぼ対称で, 区間の幅も揃っています.
+@fig-ls-boot はブートストラップ推定値の分布をカーネル密度で描いたものです. 破線が解析的な95%区間で, 曲線がブートストラップ推定値のカーネル密度です. 分布はほぼ対称で, 区間の幅も揃っています.
 
-#### 3. 最悪条件
+#### 最悪ケース
 
-ここまでの2つは, どちらも個票が手元にあるため計算することができました. しかし, 構造推定ではそうでない場合もよくあります.ターゲットが先行研究や公表統計の点推定で, 手元にあるのは各モーメントの標準誤差 (対角成分) だけ, というのがよくある状況です. もし, 複数の資料からモーメントを集めてくれば, それらの相関はまず手に入りません [@cocci2024]. この例でいえば, 労働時間は労働力調査から, 所得の分散は賃金構造基本統計調査から, というような組み合わせです.
+解析的な方法もブートストラップ法も, 個票が手元にあったから計算できました. しかし, 構造推定ではそうでない場合もよくあります. ターゲットが先行研究や公表統計の点推定で, 手元にあるのは各モーメントの標準誤差 (対角成分) だけ, というのがよくある状況です. もし, 複数の資料からモーメントを集めてくれば, それらの相関はまず手に入りません [@cocci2024]. この例でいえば, 労働時間は労働力調査から, 所得の分散は賃金構造基本統計調査から, というような組み合わせです.
 
 対角成分しか分からないなら, 重み行列も対角にするしかありません. まずその推定量を作ります.
 
@@ -996,9 +1061,8 @@ plot(ps_boot..., layout=(1, 4), size=(900, 240), yticks=false,
 #| label: ls-diag-fit
 #| output: false
 W_diag = Diagonal(1 ./ σs .^ 2)              # all we can build from the s.e.
-diag_loss(θs) = (gs=model_moments(θs) .- m̂s; dot(gs, W_diag, gs))
-θ̂s_diag = minimize4(diag_loss, θ̂s_ls).u
-Ĝ_diag = jacobian(model_moments, θ̂s_diag; step=1e-5)
+θ̂s_diag = minimize4(θs -> md_loss(m̂s, θs, W_diag), θ̂s_ls).u
+Ĝ_diag = ForwardDiff.jacobian(model_moments, θ̂s_diag)
 Λ_diag = inv(Ĝ_diag' * W_diag * Ĝ_diag) * (Ĝ_diag' * W_diag)
 ses_indep = sqrt.(diag(Λ_diag * Diagonal(σs .^ 2) * Λ_diag'))
 ```
@@ -1015,7 +1079,7 @@ $$
 $$
 ここで, $W$ は $p \times p$ の半正定値な重み行列である.
 
-$G = \partial \boldsymbol{m}\left(\boldsymbol{\theta}_0\right) / \partial \boldsymbol{\theta}^\top$, $V$ を $\sqrt{N}\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)\right)$ の漸近分散共分散行列とする. この時, 関心のある量 $r\left(\boldsymbol{\theta}\right)$ について, $\boldsymbol{\lambda} = \partial r\left(\boldsymbol{\theta}_0\right) / \partial \boldsymbol{\theta}$, $\boldsymbol{x} = W G \left(G^\top W G\right)^{-1} \boldsymbol{\lambda}$ とおくと, デルタ法よりつぎの漸近分布が得られる.
+$G = \partial \boldsymbol{m}\left(\boldsymbol{\theta}_0\right) / \partial \boldsymbol{\theta}^\top$, $V$ を $\sqrt{N}\left(\hat{\boldsymbol{m}} - \boldsymbol{m}\left(\boldsymbol{\theta}_0\right)\right)$ の漸近分散共分散行列とする. この時, 関心のある量 $r\left(\boldsymbol{\theta}\right)$ について, $\boldsymbol{\lambda} = \partial r\left(\boldsymbol{\theta}_0\right) / \partial \boldsymbol{\theta}$, $\boldsymbol{x} = W G \left(G^\top W G\right)^{-1} \boldsymbol{\lambda}$ とおくと, デルタ法 (@prp-delta-method) よりつぎの漸近分布が得られる.
 $$
 \sqrt{N}\left(r\left(\hat{\boldsymbol{\theta}}\right) - r\left(\boldsymbol{\theta}_0\right)\right) \xrightarrow{d} \mathcal{N}\left(0,\ \boldsymbol{x}^\top V \boldsymbol{x}\right)
 $$
@@ -1029,26 +1093,27 @@ $$
 
 上限の直感は素朴です. $V$ が半正定値なら相関係数は1を超えられない, すなわち $\left|V_{ij}\right| \leq \sigma_i \sigma_j$ なので, $\boldsymbol{x}^\top V \boldsymbol{x} = \sum_{i,j} x_i x_j V_{ij}$ は各項を $\left|x_i\right| \left|x_j\right| \sigma_i \sigma_j$ で置き換えたものより大きくなれません. すべてのモーメントが完全相関するとき, その上限がちょうど達成されます.
 
-実装では $\sigma_j$ をモーメント $j$ の標準誤差に置き換えれば, $\sum_j \sigma_j \left|x_j\right|$ がそのまま $r\left(\hat{\boldsymbol{\theta}}\right)$ の標準誤差になります. 必要なのは各モーメントの標準誤差とヤコビアンだけなので, 先行研究の公表値をターゲットにしたカリブレーションにもそのまま使えます. この最悪ケース標準誤差に基づく信頼区間は, どんな相関構造のもとでも漸近的に名目以上の被覆率を持ちます (完全相関のケースで等号). その代償として, 真の相関構造によっては保守的 (広すぎる区間) になります.
+実装では $\sigma_j$ をモーメント $j$ の標準誤差に置き換えれば, $\sum_j \sigma_j \left|x_j\right|$ がそのまま $r\left(\hat{\boldsymbol{\theta}}\right)$ の標準誤差になります. 必要なのは各モーメントの標準誤差とヤコビアンだけなので, 先行研究の公表値をターゲットにしたカリブレーションにもそのまま使えます.^[逆に, 先行研究が点推定だけを報告していて, モーメントの標準誤差すら手に入らない場合には, $\sigma_j$ が分からないので @prp-worst-case の上限も計算できず, 推定値の標準誤差は求まりません.] この最悪ケース標準誤差に基づく信頼区間は, どんな相関構造のもとでも漸近的に名目以上の被覆率を持ちます (完全相関のケースで等号). その代償として, 真の相関構造によっては保守的 (広すぎる区間) になります.
 
 ```{julia}
 #| label: tbl-ls-worst
 #| code-fold: true
 #| output: asis
 #| tbl-cap: "最悪ケース標準誤差"
+#| tbl-notes: "推定量は, $\\hat{V}$ の対角成分の逆数を重み行列とした最小距離推定量. 「分散共分散」は $\\hat{V}$ を非対角成分まで使った標準誤差, 「無相関仮定」は非対角成分をゼロとみなした標準誤差, 「最悪ケース」は @prp-worst-case の上限."
 ses_full = sqrt.(diag(Λ_diag * V̂ * Λ_diag'))         # full V̂, same estimator
 ses_worst = [sum(σs .* abs.(Λ_diag[k, :])) for k in 1:4]
 
 pretty_table(hcat(param_labels_ls, round.(θ̂s_diag, digits=4),
-        round.(ses_full, sigdigits=2), round.(ses_indep, sigdigits=2),
-        round.(ses_worst, sigdigits=2),
-        round.(ses_worst ./ ses_indep, digits=2));
+    round.(ses_full, sigdigits=2), round.(ses_indep, sigdigits=2),
+    round.(ses_worst, sigdigits=2),
+    round.(ses_worst ./ ses_indep, digits=2));
     column_labels=["パラメータ", "推定値", "分散共分散", "無相関仮定",
         "最悪ケース", "最悪 / 無相関"],
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
-3つの列は同じ推定量 $\hat{\boldsymbol{\theta}}$ の標準誤差を, $V$ について知っていることの量を変えて計算したものです. 左の列は $\hat{V}$ を非対角成分まで使った通常の値で, 個票があるからこそ計算できます. 中の列は非対角成分をゼロとみなした値, 右の列は非対角成分が最悪だったとき (@prp-worst-case の完全相関) の値です. 最悪ケースは無相関仮定の `{julia} round(minimum(ses_worst ./ ses_indep), digits=1)`倍から `{julia} round(maximum(ses_worst ./ ses_indep), digits=1)`倍になっています. これが相関を知らないことの代償です. 信頼区間をこれだけ広げておけば, 真の相関がどうであっても被覆率は名目以上になります. そしてこの代償には天井があります. @cocci2024 が示すとおり, Hölder の不等式から最悪ケースは無相関仮定の高々 $\sqrt{p}$ 倍で, モーメント5本なら $\sqrt{5} \approx$ `{julia} round(sqrt(5), digits=2)` 倍です. 相関について何も知らなくても, 区間の幅が無相関で計算したものの 2.24倍を超えることはない. 「頑健性の値段は法外ではない」とはこの意味です.
+@tbl-ls-worst は, 同じ推定量 $\hat{\boldsymbol{\theta}}$ の標準誤差を, $V$ の分散共分散行列について知っていることを変えて計算したものです. 左の列は $\hat{V}$ を非対角成分まで使った通常の値で, 個票があるからこそ計算できます. 中の列は非対角成分をゼロとみなした値, 右の列は非対角成分が最悪だったとき (@prp-worst-case の完全相関) の値です. 最悪ケースは無相関仮定の `{julia} round(minimum(ses_worst ./ ses_indep), digits=1)`倍から `{julia} round(maximum(ses_worst ./ ses_indep), digits=1)`倍になっています. これが相関を知らないことの代償です. 信頼区間をこれだけ広げておけば, 真の相関がどうであっても被覆率は名目以上になります. そしてこの代償には天井があります. @cocci2024 が示すとおり, Hölder の不等式から最悪ケースは無相関仮定の高々 $\sqrt{p}$ 倍で, モーメント5本なら $\sqrt{5} \approx$ `{julia} round(sqrt(5), digits=2)` 倍です.
 
 ここで注意したいのは無相関仮定の列です. この例では左の解析的な列と比べて `{julia} round(minimum(ses_indep ./ ses_full), digits=2)`倍から `{julia} round(maximum(ses_indep ./ ses_full), digits=2)`倍で, 大きくは外れていません. しかし相関を無視した標準誤差が正しい値を上回るのか下回るのかは, 一般には決まりません. @cocci2024 のメニューコストモデルを使ったモンテカルロ実験では逆に, 無相関を仮定した信頼区間の被覆率が名目95%を下回り (パラメータによっては89%程度), 検定が過剰に棄却します [@cocci2024, sec. 5.1]. 相関の符号と感応度 $\Lambda$ の符号の組み合わせ次第で, どちらにも転びうるということです. 相関が本当に手に入らないなら, 「独立とみなす」のではなく最悪ケースを併記するのが安全です.
 
@@ -1062,14 +1127,15 @@ pretty_table(hcat(param_labels_ls, round.(θ̂s_diag, digits=4),
 #| label: jacobian-md
 G_scaled = (Ĝ ./ σs) .* θ̂s_ls'
 svals_md = svdvals(G_scaled)
-(singular_values = round.(svals_md, sigdigits=3),)
+(singular_values=round.(svals_md, sigdigits=3),)
 ```
 
 4つとも0から離れていて, 最大と最小の比は `{julia} round(svals_md[1] / svals_md[end], digits=1)`倍です. 全てのパラメータがよく識別されていることが示唆されています.
 
 ```{julia}
 #| label: fig-ls-jacobian
-#| fig-cap: "**Which moment identifies which parameter?** Change of each moment (in s.e. units) per 1% change of each parameter."
+#| fig-cap: "Which moment identifies which parameter?"
+#| fig-notes: "Change of each moment (in s.e. units) per 1% change of each parameter."
 #| code-fold: true
 G_percent = G_scaled ./ 100
 param_plot_labels_ls = [L"\mu_\psi", L"\sigma_w", L"\sigma_\psi",
@@ -1081,7 +1147,7 @@ heatmap(1:4, 1:5, G_percent, c=:RdBu, clims=(-color_limit, color_limit),
 # PrettyTables also exports annotate!, so name the module
 Plots.annotate!(vec([(l, k, text(round(G_percent[k, l], digits=2), 8,
     abs(G_percent[k, l]) > 0.6 * color_limit ? :white : :black))
-    for k in 1:5, l in 1:4]))
+                     for k in 1:5, l in 1:4]))
 plot!(xlabel="Parameter", ylabel="Moment")
 ```
 
@@ -1093,22 +1159,26 @@ plot!(xlabel="Parameter", ylabel="Moment")
 
 推定結果を報告するとき, 推定値と標準誤差のほかに何を添えるべきか. 構造推定の実務で定着している答えが2つあります. モーメントに対する感応度と, 外生的に定めた値に対する頑健性です.
 
-第一の感応度は, 標準誤差の計算で使った $\Lambda = \left(\hat{G}^\top W \hat{G}\right)^{-1} \hat{G}^\top W$ そのものです. @andrews2017 はこれを感応度 (sensitivity) と名づけ, 報告することを勧めています.^[@andrews2017 はモーメント条件を $\boldsymbol{g}\left(\boldsymbol{\theta}\right) = \hat{\boldsymbol{s}} - \boldsymbol{s}\left(\boldsymbol{\theta}\right)$ と「データ引くモデル」の向きで書くので, 定義は $\Lambda = -\left(G^\top W G\right)^{-1} G^\top W$ と符号がつきます [@andrews2017, def. 1]. この節では $\boldsymbol{m}\left(\boldsymbol{\theta}\right) - \hat{\boldsymbol{m}}$ の向きで書いているので符号が消え, 同じ行列になります.] 意味は @prp-gmm-avar の線形化そのもので, モーメント $j$ が $\Delta$ だけずれたとき推定値 $\hat\theta_k$ は $\Lambda_{kj}\Delta$ だけ動く, という一次近似です. モーメントの1本が誤って測られている, あるいはモデルの仮定の1つが破れてそのモーメントだけがずれる, という状況を読者が想定したとき, それが推定値にどう伝わるかを $\Lambda$ から読み取れます. 単位を揃えるために, 列はモーメントの標準誤差, 行は推定値の標準誤差でスケールしておきます [@andrews2017, sec. IV.A].
+第一の感応度は, 標準誤差の計算で使った $\Lambda = \left(\hat{G}^\top W \hat{G}\right)^{-1} \hat{G}^\top W$ そのものです. @andrews2017 はこれを感応度 (sensitivity) と名づけ, 報告することを勧めています.^[@andrews2017 はモーメント条件を $\boldsymbol{g}\left(\boldsymbol{\theta}\right) = \hat{\boldsymbol{s}} - \boldsymbol{s}\left(\boldsymbol{\theta}\right)$ と「データ引くモデル」の向きで書くので, 定義は $\Lambda = -\left(G^\top W G\right)^{-1} G^\top W$ と符号がつきます [@andrews2017, def. 1]. この節では $\boldsymbol{m}\left(\boldsymbol{\theta}\right) - \hat{\boldsymbol{m}}$ の向きで書いているので符号が消え, 同じ行列になります.] 意味は @prp-md-efficient の線形化そのもので, モーメント $j$ が $\Delta$ だけずれたとき推定値 $\hat\theta_k$ は $\Lambda_{kj}\Delta$ だけ動く, という一次近似です. モーメントの1本が誤って測られている, あるいはモデルの仮定の1つが破れてそのモーメントだけがずれる, という状況を読者が想定したとき, それが推定値にどう伝わるかを $\Lambda$ から読み取れます. 単位を揃えるために, 列はモーメントの標準誤差, 行は推定値の標準誤差でスケールしておきます [@andrews2017, sec. IV.A].
 
 ```{julia}
-#| label: tbl-ls-lambda
+#| label: fig-ls-lambda
+#| fig-cap: "Which moment drives which estimate?"
+#| fig-notes: "Sensitivity $\\hat\\Lambda$: change of each estimate (in its s.e. units) when each moment moves by one s.e. of the moment."
 #| code-fold: true
-#| output: asis
-#| tbl-cap: "感応度行列 $\\hat\\Lambda$"
-#| tbl-notes: "モーメント $j$ が標準誤差1つ分ずれたときに推定値 $\\hat\\theta_k$ が動く量を, $\\hat\\theta_k$ の標準誤差を単位として測ったもの."
 Λ_se = (Λ .* σs') ./ ses_analytic            # rows: parameters, cols: moments
-
-pretty_table(hcat(param_labels_ls, round.(Λ_se, digits=2));
-    column_labels=["", moment_symbols_ls...],
-    backend=:markdown, allow_markdown_in_cells=true)
+sensitivity = permutedims(Λ_se)              # same layout as the Jacobian plot
+color_limit_λ = maximum(abs, sensitivity)
+heatmap(1:4, 1:5, sensitivity, c=:RdBu, clims=(-color_limit_λ, color_limit_λ),
+    colorbar=false, xticks=(1:4, param_plot_labels_ls),
+    yticks=(1:5, moment_plot_labels_ls), yflip=true, size=(600, 360))
+Plots.annotate!(vec([(l, k, text(round(sensitivity[k, l], digits=2), 8,
+    abs(sensitivity[k, l]) > 0.6 * color_limit_λ ? :white : :black))
+                     for k in 1:5, l in 1:4]))
+plot!(xlabel="Parameter", ylabel="Moment")
 ```
 
-読み方は @fig-ls-jacobian の逆向きです. ヤコビアンは「パラメータを動かすとモーメントがどう動くか」, $\Lambda$ は「モーメントが動くと推定値がどう動くか」を並べています. たとえば $\hat\sigma_\psi$ は`{julia} strip(first(split(moment_labels_ls[argmax(abs.(Λ_se[3, :]))], '\$')))`に, $\hat{\bar\kappa}$ は`{julia} strip(first(split(moment_labels_ls[argmax(abs.(Λ_se[4, :]))], '\$')))`にもっとも強く依存しています. $\Lambda$ の計算に追加の費用はかからないので, 推定値の表と一緒に載せておく価値があります.
+@fig-ls-lambda の読み方は @fig-ls-jacobian の逆向きです. 縦軸と横軸をそろえてあるので, 同じマスどうしを見比べられます. ヤコビアンは「パラメータを動かすとモーメントがどう動くか」, $\Lambda$ は「モーメントが動くと推定値がどう動くか」を並べています. たとえば $\hat\sigma_\psi$ は`{julia} strip(first(split(moment_labels_ls[argmax(abs.(Λ_se[3, :]))], '\$')))`に, $\hat{\bar\kappa}$ は`{julia} strip(first(split(moment_labels_ls[argmax(abs.(Λ_se[4, :]))], '\$')))`にもっとも強く依存しています. $\Lambda$ の計算に追加の費用はかからないので, 推定値の表と一緒に載せておく価値があります.
 
 第二の頑健性は, 外生的に定めた値についてです. ここでは消費の曲率 $\gamma = 1.5$ と Frisch 弾力性 $\eta = 0.5$ の2つで, どちらも先行研究の値です. 外から定めた値を動かして結果がどう変わるかを示すのは, 構造推定の論文では付録の定番で, @bick2022 は所得関数の傾きを区間で動かして主結果が変わらないことを確かめ [@bick2022, sec. III.C], @ma2024 は曲率 $\gamma$ の代替値で弾力性を再計算しています [@ma2024, sec. 5.2.2]. 同じことをします.
 
@@ -1117,6 +1187,7 @@ pretty_table(hcat(param_labels_ls, round.(Λ_se, digits=2));
 #| code-fold: true
 #| output: asis
 #| tbl-cap: "外生パラメータの頑健性"
+#| tbl-notes: "各行は, 持ち込んだ値のうち1つだけを変えて推定し直した結果. 基準は $\\gamma = 1.5$, $\\eta = 0.5$."
 scenarios = ((raw"基準", (;)), (raw"$\gamma = 1.2$", (γ=1.2,)),
     (raw"$\gamma = 1.8$", (γ=1.8,)), (raw"$\eta = 0.25$", (η=0.25,)),
     (raw"$\eta = 1$", (η=1.0,)))
@@ -1127,7 +1198,7 @@ scenario_solutions = [
 
 scenario_rows = [Any[label, round.(sol.u[1:3], digits=3)...,
     round(sol.u[4], digits=4), round(sol.objective, digits=2)]
-    for ((label, _), sol) in zip(scenarios, scenario_solutions)]
+                 for ((label, _), sol) in zip(scenarios, scenario_solutions)]
 
 pretty_table(permutedims(hcat(scenario_rows...));
     column_labels=["持ち込んだ値", param_labels_ls..., raw"$J$"],
@@ -1142,16 +1213,17 @@ pretty_table(permutedims(hcat(scenario_rows...));
 #| label: ls-eta-free
 #| output: false
 minimize5(f, θs0) = solve(
-    OptimizationProblem(OptimizationFunction((θs, _) -> f(θs)), θs0;
-        lb=[-5.0, 0.02, 0.01, 1e-4, 0.05], ub=[5.0, 5.0, 5.0, 10.0, 5.0]),
-    NLopt.LN_NELDERMEAD(), maxiters=40_000)
+    OptimizationProblem(
+        OptimizationFunction((θs, _) -> f(θs), Optimization.AutoForwardDiff()),
+        θs0; lb=[-5.0, 0.02, 0.01, 1e-4, 0.05], ub=[5.0, 5.0, 5.0, 10.0, 5.0]),
+    NLopt.LD_LBFGS(), maxiters=20_000, abstol=1e-6)
 model_moments_η(θs) = model_moments(θs[1:4]; η=θs[5])
 θ̂s_η = minimize5(θs -> (gs=model_moments_η(θs) .- m̂s; dot(gs, W_md, gs)),
     [θ̂s_ls; η_ls]).u
-Ĝ_η = jacobian(model_moments_η, θ̂s_η; step=1e-5)
+Ĝ_η = ForwardDiff.jacobian(model_moments_η, θ̂s_η)
 ses_η = sqrt.(diag(inv(Ĝ_η) * V̂ * inv(Ĝ_η)'))     # just identified: Λ = G^{-1}
 ```
 
 推定された Frisch 弾力性は $\hat\eta =$ `{julia} round(θ̂s_η[5], digits=2)` (標準誤差 `{julia} round(ses_η[5], digits=2)`) です. @chetty2011 のメタ分析の 0.54 と, 持ち込んだ 0.5 は, どちらも95%信頼区間 [`{julia} round(θ̂s_η[5] - 1.96 * ses_η[5], digits=2)`, `{julia} round(θ̂s_η[5] + 1.96 * ses_η[5], digits=2)`] の中にあります. 準実験からの推定値と, 横断面の分布の形からの推定値が一致するのは, それ自体が1つの結果です. ただし標準誤差は他のパラメータより大きく, 丁度識別なので当てはまりの良し悪しでモデルを疑う手段を失います. 外から信頼できる値が持ち込めるなら, それを使って過剰識別の余地を残す方が, 教科書的には筋が通っています.
 
-最後に大きさを見比べておきます. $\hat\sigma_\psi$ の標準誤差は `{julia} round(ses_analytic[3], digits=3)` で, 推定値の `{julia} round(100 * ses_analytic[3] / θ̂s_ls[3], digits=1)`% でした. 一方 @tbl-ls-sensitivity では, 外生的に定めた値を動かすと $\hat\sigma_\psi$ が `{julia} round(minimum(sol.u[3] for sol in scenario_solutions), digits=2)` から `{julia} round(maximum(sol.u[3] for sol in scenario_solutions), digits=2)` まで動きます. 標本誤差より一桁大きい幅です. だからこの表は, 標準誤差と切り離さずに, 推定結果の一部として並べて報告します.
+最後に大きさを見比べておきます. $\hat\sigma_\psi$ の標準誤差は `{julia} round(ses_analytic[3], digits=3)` で, 推定値の `{julia} round(100 * ses_analytic[3] / θ̂s_ls[3], digits=1)`% でした. 一方 @tbl-ls-sensitivity では, 外生的に定めた値を動かすと $\hat\sigma_\psi$ が `{julia} round(minimum(sol.u[3] for sol in scenario_solutions), digits=2)` から `{julia} round(maximum(sol.u[3] for sol in scenario_solutions), digits=2)` まで動きます. 標本誤差より一桁大きい幅です. そのためこの表は, 標準誤差と切り離さずに, 推定結果の一部として並べて報告するのが望ましいでしょう.

@@ -1246,7 +1246,8 @@ K_star = K_demand(r_star, m_aiyagari)
 ```{julia}
 #| label: fig-policy
 #| code-fold: true
-#| fig-cap: "**Savings policy function $a' = g(a, z)$.** 破線は45度線 $a' = a$. 右は原点付近の拡大."
+#| fig-cap: "Savings policy function $a' = g(a, z)$"
+#| fig-notes: "破線は45度線 $a' = a$. 右は原点付近の拡大."
 g = solve_household(r_star, m_aiyagari)
 
 function policy_panel(xlim; legend=true)
@@ -1270,7 +1271,8 @@ plot(policy_panel(20.0), policy_panel(0.3, legend=false),
 ```{julia}
 #| label: fig-distribution
 #| code-fold: true
-#| fig-cap: "**Stationary distribution of assets.** 幅 $0.5$ のビンに集計した資産の周辺分布. $a = 0$ のビンの質量が借入制約に張り付く家計にあたる."
+#| fig-cap: "Stationary distribution of assets"
+#| fig-notes: "幅 $0.5$ のビンに集計した資産の周辺分布. $a = 0$ のビンの質量が借入制約に張り付く家計にあたる."
 g = solve_household(r_star, m_aiyagari)
 masses_by_a = vec(sum(distribution(g, m_aiyagari), dims=2))
 
@@ -1302,7 +1304,8 @@ bar(bin_centers, masses_by_bin, label=false, xlabel=L"a", ylabel="mass",
 ```{julia}
 #| label: fig-supply-demand
 #| code-fold: true
-#| fig-cap: "**Capital supply and demand.** 灰破線は完備市場の利子率 $1/\\beta - 1$, 点は均衡 $\\left(K^*, r^*\\right)$."
+#| fig-cap: "Capital supply and demand"
+#| fig-notes: "灰破線は完備市場の利子率 $1/\\beta - 1$, 点は均衡 $\\left(K^*, r^*\\right)$."
 r_grid = range(-0.01, r_complete - 2e-3, length=40)
 As_supply = [aggregate_A(distribution(solve_household(r, m_aiyagari),
                                       m_aiyagari), m_aiyagari)

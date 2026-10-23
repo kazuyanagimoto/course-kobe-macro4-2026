@@ -42,7 +42,7 @@ $$
 
 @fig-matching-frontiers は, 典型的なフロンティアを並べたものです.
 
-![**移転可能性とフロンティア.** 影は交渉可能集合 $\mathcal{F}_{xy}$, 黒線はそのフロンティア.](/static/cetz/matching_frontiers.svg){#fig-matching-frontiers width=80% fig-align="center"}
+![移転可能性とフロンティア](/static/cetz/matching_frontiers.svg){#fig-matching-frontiers width=80% fig-align="center" fig-notes="影は交渉可能集合 $\mathcal{F}_{xy}$, 黒線はそのフロンティア."}
 
 TUはフロンティアが傾き $-1$ の直線で, NTUは1点だけが効率的です. ITUは一般の減少曲線で, 内側にへこむこともあります. LTU (linearly transferable utility) は ITU の特殊ケースで, 交換レートは一定だが $1$ ではありません.
 
@@ -67,7 +67,7 @@ $$
 $$
 であり, フロンティアは $D_{xy}\left(u, v\right) = 0$ を満たす点の集合です.
 
-![**距離関数.** 各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では $D_{xy} > 0$, 内部の点では $D_{xy} < 0$, フロンティア上で $D_{xy} = 0$. [@galichon2019] にもとづく.](/static/cetz/itu_distance.svg){#fig-matching-itu-distance width=62% fig-align="center"}
+![距離関数](/static/cetz/itu_distance.svg){#fig-matching-itu-distance width=62% fig-align="center" fig-notes="各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では $D_{xy} > 0$, 内部の点では $D_{xy} < 0$, フロンティア上で $D_{xy} = 0$. [@galichon2019] にもとづく."}
 
 #### 距離関数の性質
 
@@ -235,7 +235,7 @@ $$
 $${#eq-wedge-param}
 と閉形式で書けます ($\mathcal{U}_{xy}$ は非減少, $\mathcal{V}_{xy}$ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge $w$ を動かすことはフロンティア上を滑ることに対応し, $w$ が大きいほど男性に有利な点が選ばれます.
 
-![**wedge によるパラメトライズ.** 傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' > w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.](/static/cetz/itu_wedge.svg){#fig-itu-wedge width=64% fig-align="center"}
+![wedge によるパラメトライズ](/static/cetz/itu_wedge.svg){#fig-itu-wedge width=64% fig-align="center" fig-notes="傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' > w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく."}
 
 ここでカップルのタイプ $xy$ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, $W_{xy}$ がその財の**価格**です. 供給は $\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U_{xy}$, 需要は $\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V_{xy}$ で, 超過需要関数は
 $$

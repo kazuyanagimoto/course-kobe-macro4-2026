@@ -452,7 +452,8 @@ $${#eq-hjb-discrete}
 
 ```{julia}
 #| label: fig-hact-sparsity
-#| fig-cap: "**Sparsity pattern of $A$** ($N_a = 12$, $N_x = 4$ for illustration)."
+#| fig-cap: "Sparsity pattern of $A$"
+#| fig-notes: "$N_a = 12$, $N_x = 4$ for illustration."
 #| code-fold: true
 Na_demo, Nx_demo = 12, 4
 asset_block = spdiagm(-1 => ones(Na_demo - 1), 0 => fill(2.0, Na_demo),
@@ -681,7 +682,8 @@ _, household, g = excess_supply(r★)
 
 ```{julia}
 #| label: fig-hact-policy
-#| fig-cap: "**Saving policy functions.** Low-productivity households at the constraint have $s = 0$."
+#| fig-cap: "Saving policy functions"
+#| fig-notes: "Low-productivity households at the constraint have $s = 0$."
 #| code-fold: true
 j_mid = (Nx + 1) ÷ 2                     # index of x = 0
 shown = a_grid .<= 10.0                  # asset range shown in the plot
@@ -700,7 +702,8 @@ plot!(xlabel=L"a", ylabel="Saving")
 
 ```{julia}
 #| label: fig-hact-dist
-#| fig-cap: "**Stationary asset distribution.** The point mass at the constraint is omitted."
+#| fig-cap: "Stationary asset distribution"
+#| fig-notes: "The point mass at the constraint is omitted."
 #| code-fold: true
 gs_a = vec(sum(g, dims=2)) .* dx              # marginal density of assets
 plot(a_grid[2:end][a_grid[2:end] .<= 30], gs_a[2:end][a_grid[2:end] .<= 30],
@@ -824,7 +827,8 @@ discrete_assets(dist, model) = sum(dist .* model.a_grid_discrete)
 
 ```{julia}
 #| label: fig-hact-vs-dt
-#| fig-cap: "**Capital demand and supply.** Continuous vs. discrete time, same calibration."
+#| fig-cap: "Capital demand and supply"
+#| fig-notes: "Continuous vs. discrete time, same calibration."
 #| code-fold: true
 model_coarse = discrete_setup(n_a=200, n_z=7)
 
@@ -903,6 +907,7 @@ format_cell(elapsed, iteration_count, unit) =
 #| label: tbl-hact-bench
 #| output: asis
 #| tbl-cap: "家計問題と定常分布の計算時間"
+#| tbl-notes: "計算時間は, この教材を render した計算機での値."
 # One vector per column, one entry per method
 method_column = ["離散時間 VFI + Howard", "離散時間 VFI + Howard",
     "連続時間 有限差分"]

@@ -59,7 +59,8 @@ foc(l; w=1.0, γ_c=1.5, α_l=1.2, γ_l=1.5) =
 ```{julia}
 #| code-fold: true
 #| label: fig-foc-crra
-#| fig-cap: FOC for CRRA utility. $f(l) = w^{1-\gamma_c} (1-l)^{-\gamma_c} - \alpha_l l^{-\gamma_l}$.
+#| fig-cap: "FOC for CRRA utility"
+#| fig-notes: "$f(l) = w^{1-\\gamma_c} (1-l)^{-\\gamma_c} - \\alpha_l l^{-\\gamma_l}$."
 plot(0.1:0.01:0.9, foc, label=false, lw=2)
 hline!([0.0], ls=:dash, lw=2, label=false, color=:black)
 ```
@@ -409,7 +410,8 @@ $$
 ```{julia}
 #| code-fold: true
 #| label: fig-foc-bargaining
-#| fig-cap: "**FOC for bargaining problem.** $w_m = 1.0$, $\\alpha_l = 1.2$, $\\gamma_c = \\gamma_l = 1.5$."
+#| fig-cap: "FOC for bargaining problem"
+#| fig-notes: "$w_m = 1.0$, $\\alpha_l = 1.2$, $\\gamma_c = \\gamma_l = 1.5$."
 
 function foc_bargaining(l_f; w_m=1.0, w_f=0.5, γ_c=1.5, α_l=1.2, γ_l=1.5)
     return w_m * (1 - (w_f / w_m)^(1 / γ_l) * l_f) + w_f * (1 - l_f) -
@@ -478,7 +480,8 @@ end
 ```{julia}
 #| code-fold: true
 #| label: fig-sol-bargaining
-#| fig-cap: "**Solution of bargaining problem.** $w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
+#| fig-cap: "Solution of bargaining problem"
+#| fig-notes: "$w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
 wf_grid = 0.1:0.01:0.9
 lms = [solve_bargaining(w_f=w).l_m for w in wf_grid]
 lfs = [solve_bargaining(w_f=w).l_f for w in wf_grid]
@@ -618,7 +621,7 @@ println("Golden section search: l = ", result.minimizer)
 `Optim.optimize()` では, メソッドを指定せずに区間を指定した場合は, デフォルトでは黄金分割法を改良した [Brent法](https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AC%E3%83%B3%E3%83%88%E6%B3%95) が用いられます (`Brent()`).
 
 
-## 多変数の非線形最適化
+## 多変数の非線形最適化 {#sec-multivariate-opt}
 
 ### 単純なケース
 
@@ -689,7 +692,8 @@ rastrigin(xs) = 10 * length(xs) + sum(xs .^ 2 .- 10 .* cos.(2π .* xs))
 ```{julia}
 #| label: fig-rastrigin
 #| code-fold: true
-#| fig-cap: "**Rastrigin function ($n = 2$).** Local minima appear throughout the domain."
+#| fig-cap: "Rastrigin function ($n = 2$)"
+#| fig-notes: "Local minima appear throughout the domain."
 x_grid = range(-5.12, 5.12, length=150)
 f_matrix = [rastrigin([x1, x2]) for x2 in x_grid, x1 in x_grid]
 surface(x_grid, x_grid, f_matrix, c=:inferno, xlabel=L"x_1", ylabel=L"x_2",
@@ -824,7 +828,8 @@ end
 ```{julia}
 #| code-fold: true
 #| label: fig-sol-jump
-#| fig-cap: "**Solution of bargaining problem by JuMP.** $w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
+#| fig-cap: "Solution of bargaining problem by JuMP"
+#| fig-notes: "$w_m = 1.0, \\alpha_l = 1.2, \\gamma_c = \\gamma_l = 1.5$."
 wf_grid = 0.1:0.01:0.9
 lms = [solve_jump(w_f=w).l_m for w in wf_grid]
 lfs = [solve_jump(w_f=w).l_f for w in wf_grid]

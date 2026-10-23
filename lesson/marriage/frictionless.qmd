@@ -412,7 +412,7 @@ $$
 
 @fig-ciscato2025-separation は交際期間ごとの離別率です. 1年目にはおよそ4割のカップルが別れ, 離別率は急速に下がって10年後には5%前後で安定します. 推定されたモデルでは, この急な低下は, 質の低いカップルが最初の5年ほどでほとんど別れてしまう動学的セレクションで説明されます. 注目すべきは (b) と (c) の違いです. 同人種と異人種のカップルの離別率はほとんど同じなのに対し, 学歴の異なるカップルは最初の10年間, 学歴の同じカップルより別れやすくなっています. 前節の識別の議論に照らすと, モデルを推定する前から結論の輪郭が見えています.
 
-![Separation rate by duration (Fig. 1)](/static/img/article/ciscato2025/fig1.jpeg){#fig-ciscato2025-separation width=90% fig-align="center"}
+![Separation rate by duration](/static/img/article/ciscato2025/fig1.jpeg){#fig-ciscato2025-separation width=90% fig-align="center" fig-notes="@ciscato2025 の Figure 1." fig-notes-title="出典:"}
 
 **推定.** 1期は1年で, 割引因子は $\beta = 0.95$ に固定します. 出会いのコストと1期あたりの余剰はタイプの線形関数として
 $$
@@ -424,7 +424,7 @@ $$
 
 ### 結果
 
-![Estimates of frictions and gains (Table 3)](/static/img/article/ciscato2025/table3.svg){#fig-ciscato2025-estimates width=90% fig-align="center"}
+![Estimates of frictions and gains](/static/img/article/ciscato2025/table3.svg){#fig-ciscato2025-estimates width=90% fig-align="center" fig-notes="@ciscato2025 の Table 3." fig-notes-title="出典:"}
 
 @fig-ciscato2025-estimates が基本モデルの推定値です. 同人種であることは出会いのコストを $3.75$ (標準誤差 $0.69$) 下げますが, 1期あたりの余剰への効果は $0.05$ (標準誤差 $0.06$) で統計的に有意ではありません. 学歴はちょうど逆で, 同学歴であることの出会いのコストへの効果は $-0.46$ (標準誤差 $0.53$) で統計的に有意でない一方, 余剰は $0.11$ (標準誤差 $0.04$) 大きくなります. 年齢が近いことは, 出会いやすさと余剰の両方に効いています.
 
@@ -432,7 +432,7 @@ $$
 
 **分解.** 独身者のプールを固定したまま, 出会いのコストがなかったら新しいカップルの組み方がどう変わるかを計算したのが @fig-ciscato2025-decomp です.
 
-![Homogamy among new couples (Table 7)](/static/img/article/ciscato2025/table7.svg){#fig-ciscato2025-decomp width=90% fig-align="center"}
+![Homogamy among new couples](/static/img/article/ciscato2025/table7.svg){#fig-ciscato2025-decomp width=90% fig-align="center" fig-notes="@ciscato2025 の Table 7." fig-notes-title="出典:"}
 
 新しいカップルのうち同人種の割合はデータで 88.2% ですが, 出会いのコストを取り除くと 55.5% まで下がり, ランダムに組んだ場合の 53.3% とほとんど変わりません. 人種の同類婚は, ほぼすべて出会いの分断で説明されます. 同学歴の割合はデータで 49.2% で, 出会いのコストを取り除くと 40.8%, ランダムなら 33.5% です. ランダムとの差のおよそ半分が分断, 残りの半分が補完性ということになります. 人種と学歴の区分を細かくしても結論は変わりません.
 
@@ -444,7 +444,7 @@ $$
 
 分配への効果は一様ではありません (@fig-ciscato2025-exp1). 分断された市場では, 人種内の性比が不利なグループ, すなわち女性が多い黒人の女性と, 男性が多いヒスパニックの男性が, 同じ人種の相手の不足に苦しんでいました. 分断がなくなると彼らはより広い相手のプールにアクセスでき, 交渉力も上がります. パートナーのいる割合はヒスパニックの男性を除くすべてのグループで下がりますが, 黒人女性の低下は2ポイントにとどまります. その結果, 白人女性と黒人女性のパートナーのいる割合の差は 13.7 ポイントから 7.8 ポイントへ, 43.1% 縮まります. 分断は, 人種内の性比の不均衡を通じて交渉力の格差を生んでいたわけです.
 
-![Experiment I: partnership and bargaining power (Fig. 3)](/static/img/article/ciscato2025/fig3.jpeg){#fig-ciscato2025-exp1 width=90% fig-align="center"}
+![Experiment I: partnership and bargaining power](/static/img/article/ciscato2025/fig3.jpeg){#fig-ciscato2025-exp1 width=90% fig-align="center" fig-notes="@ciscato2025 の Figure 3." fig-notes-title="出典:"}
 
 ### まとめ
 
@@ -487,7 +487,7 @@ $$
 $$
 $\text{Ed}_m^w$, $\text{Ed}_m^h$ は妻と夫の結婚時の教育年数, $t(m)$ と $g(m)$ は結婚した年と州です. $\text{UD}_{tg}^k$ は, 州 $g$ で単意離婚が $k$ 年前に導入されたことを示すダミーで, $k$ は $-10$ 年より前, $\left(-9, -8\right)$, $\ldots$, $\left(-2, -1\right)$, $0$, $\left(1, 2\right)$, $\ldots$, $10$ 年より後, という区間をとります. 州ごとの傾き $\delta_{g(m)}$ が通常の同類婚の強さを, $\beta_2^k$ が単意離婚による上乗せを表します. データは PSID の 1968–92 年の, 初婚の新婚夫婦 (結婚から2年以内) です.
 
-![UD and assortativeness in education (Fig. 1)](/static/img/article/reynoso2024/fig1.svg){#fig-reynoso2024-fig1 width=80% fig-align="center"}
+![UD and assortativeness in education](/static/img/article/reynoso2024/fig1.svg){#fig-reynoso2024-fig1 width=80% fig-align="center" fig-notes="@reynoso2024 の Figure 1." fig-notes-title="出典:"}
 
 @fig-reynoso2024-fig1 が $\beta_2^k$ の推定値です. 基準となる同類婚の強さは, 夫の教育年数が1年長いと妻の教育年数が約0.25年長いという程度で, 単意離婚の州ではこれとほぼ同じ大きさの上乗せがあります. 導入から2年以内に結婚した夫婦でも, 夫婦の教育年数の結びつきは基準より 61.5% 強くなっています. 2年では結婚前の教育を変える時間はほとんどないので, この即時の効果は, 教育を所与とした相手の選び方の変化と解釈できます. 導入から年数がたつほど効果は大きくなり, こちらには結婚前の教育投資の変化も含まれていると考えられます. 導入前の係数は, 10年以上前の区間を除いて統計的に有意でなく, 事前のトレンドがないという仮定を支持しています.
 
@@ -497,7 +497,7 @@ $\text{Ed}_m^w$, $\text{Ed}_m^h$ は妻と夫の結婚時の教育年数, $t(m)$
 
 @reynoso2024 のモデルは, 結婚市場の均衡と, 結婚後のライフサイクルの collective model を組み合わせたものです (@fig-reynoso2024-fig2). 女性 $f$ と男性 $m$ はそれぞれ連続体で, 学歴 $s_i \in \mathcal{S} = \left\{\text{hs}, \text{sc}, \text{c+}\right\}$ (高卒, 大学中退を含む some college, 大卒以上) を外生的に持ちます. $t = 0$ の結婚市場で, 各人は独身にとどまるか, どの学歴の相手と結婚するかを選びます. $t = 1, \ldots, T$ は家計のライフサイクルで, 夫婦は消費と妻の労働参加を, $t \geq 2$ では離婚するかどうかも決めます. 離婚制度 $\mathcal{D} \in \left\{\text{MCD}, \text{UD}\right\}$ は結婚時に観察され, その後も変わらないと予想されます. 貯蓄と再婚はありません.
 
-![Life cycle of individuals (Fig. 2)](/static/img/article/reynoso2024/fig2.svg){#fig-reynoso2024-fig2 width=80% fig-align="center"}
+![Life cycle of individuals](/static/img/article/reynoso2024/fig2.svg){#fig-reynoso2024-fig2 width=80% fig-align="center" fig-notes="@reynoso2024 の Figure 2." fig-notes-title="出典:"}
 
 **選好.** 結婚している妻と夫の1期の効用は
 $$
@@ -627,7 +627,7 @@ $\boldsymbol{x} = \left(\boldsymbol{\Pi}, \Lambda\right)$, $f$ を SMM の目的
 
 選好のパラメータ (論文の Table 1) からは, 次のことが読み取れます. 妻が家庭に入ることの効用 $\alpha^{s_f s_m}$ は, 夫が高卒の家計で最も高く, 夫が大卒の家計で最も低く推定されます. 夫が大卒なら, 妻が家庭に入ることで夫の人的資本が最も大きく増えるので, 小さな $\alpha$ でも妻は家庭に入るからです. マッチの質の分散は大卒どうしの夫婦で最も小さく, 結婚が最も安定しています.
 
-![Initial Pareto weights under MCD (Table 2)](/static/img/article/reynoso2024/table2.svg){#fig-reynoso2024-weights width=80% fig-align="center"}
+![Initial Pareto weights under MCD](/static/img/article/reynoso2024/table2.svg){#fig-reynoso2024-weights width=80% fig-align="center" fig-notes="@reynoso2024 の Table 2." fig-notes-title="出典:"}
 
 @fig-reynoso2024-weights は, 協議離婚のもとで市場を清算する妻の初期 Pareto ウェイトを, 市場の大きさで加重平均したものです. ここでは2人のウェイトの和が1になるように $\lambda = \lambda_0 / \left(1 + \lambda_0\right)$ と変換しています. 妻のウェイトは妻の学歴とともに上がり, 結婚市場で女性の学歴が評価されていることを示しています. また, 自分より学歴の低い夫と結婚する女性ほどウェイトが高く, 学歴の差を家計内の取り分で補償されています. 市場ごとに見ると, 大卒女性が大卒男性に比べて過剰な South Central では, 大卒どうしの夫婦の妻のウェイトが4つの市場で最も低くなります. 学歴の分布が交渉力を動かすという, 識別に使った経路がここに表れています.
 
@@ -639,17 +639,17 @@ $\boldsymbol{x} = \left(\boldsymbol{\Pi}, \Lambda\right)$, $f$ を SMM の目的
 
 **同類婚.** 単意離婚の導入で, 学歴の同類婚は即座に強まります (@fig-reynoso2024-excess). ランダムに組んだ場合と比べた同学歴の夫婦の超過割合は, 4つのうち3つの市場で増え, 事実2と整合的です. 学歴の高い市場ほど同類婚の程度もその増加も大きくなります. 例外は大卒女性が過剰な South Central で, 高卒どうしと大卒どうしの夫婦が減って同類婚が弱まります. 学歴の分布が効果の向きまで左右するという, ITU の均衡モデルならではの結果です.
 
-![Excess marriages relative to random matching (Table 3)](/static/img/article/reynoso2024/table3.svg){#fig-reynoso2024-excess width=80% fig-align="center"}
+![Excess marriages relative to random matching](/static/img/article/reynoso2024/table3.svg){#fig-reynoso2024-excess width=80% fig-align="center" fig-notes="@reynoso2024 の Table 3." fig-notes-title="出典:"}
 
 メカニズムを見るために, 同学歴の夫婦の割合をランダムに組んだ場合の割合で割った指標を4つのモデルで比べたのが @fig-reynoso2024-pam です. 単意離婚に離婚の合意を戻すか, 結婚中のウェイトへのコミットメントを戻すと, どの市場でも同類婚の強まりは小さくなるか, 逆転します. 同類婚の強まりは, 単意離婚のもとで夫婦の協力とリスクの共有が弱まり, 学歴の異なる夫婦の低学歴側の保障が薄くなることから来ている, というのが論文の解釈です.
 
-![Same-education share relative to random matching (Table 4)](/static/img/article/reynoso2024/table4.svg){#fig-reynoso2024-pam width=80% fig-align="center"}
+![Same-education share relative to random matching](/static/img/article/reynoso2024/table4.svg){#fig-reynoso2024-pam width=80% fig-align="center" fig-notes="@reynoso2024 の Table 4." fig-notes-title="出典:"}
 
 **専業主婦と離婚.** 単意離婚のもとで結婚した夫婦は, 妻が家庭に入りにくく, 離婚しやすくなります. 大卒男性のうち専業主婦の妻を持つ割合は, 平均で 6% 下がります (@fig-reynoso2024-sah). 大卒男性が働き続ける大卒女性と結婚しやすくなることと, 単意離婚が妻を労働市場にとどめることの両方によるものです. 一方 some college の男性は, 南部の市場で家庭に入りやすい高卒女性と結婚する割合が増えるため, 平均では専業主婦の妻を持つ割合がむしろ上がります. 離婚確率はすべての夫婦のタイプで上がり, 上昇幅は妻が大卒の夫婦で最も大きくなりますが, その水準は依然として最も低いままです (@fig-reynoso2024-divorce). 離婚の合意を戻しても離婚確率は変わりません. 片方が離婚を望み, 結婚中の再交渉でも引き止められないという事情は, 合意の有無では変わらないからです. 逆に, 結婚中の再交渉を禁じると離婚は増えます.
 
-![Share of men married to stay-at-home wives (Fig. 5)](/static/img/article/reynoso2024/fig5.svg){#fig-reynoso2024-sah width=80% fig-align="center"}
+![Share of men married to stay-at-home wives](/static/img/article/reynoso2024/fig5.svg){#fig-reynoso2024-sah width=80% fig-align="center" fig-notes="@reynoso2024 の Figure 5." fig-notes-title="出典:"}
 
-![Divorce probability by couple type (Fig. 6)](/static/img/article/reynoso2024/fig6.svg){#fig-reynoso2024-divorce width=80% fig-align="center"}
+![Divorce probability by couple type](/static/img/article/reynoso2024/fig6.svg){#fig-reynoso2024-divorce width=80% fig-align="center" fig-notes="@reynoso2024 の Figure 6." fig-notes-title="出典:"}
 
 **結婚の利益.** 最後に, 好みのショックが実現する前の段階で, 結婚という選択肢が独身に比べてどれだけ価値があるか (gains from marriage, GM) を見ます. ショックが第一種極値分布なので, 学歴 $s_f$ の女性の結婚の利益は対数和 (@eq-logsum) で書けます.
 $$
@@ -658,7 +658,7 @@ $$
 
 @fig-reynoso2024-gm は, 女性の結婚の利益と, 協議離婚と同じ厚生を保つのに必要な毎期の消費の変化率 (消費等価) です. 結婚の利益はどちらの制度でも正です. 単意離婚で得をするのは学歴が中位 (some college) の女性で, 協議離婚にとどめるには毎期の消費の 1.13% の補償が必要です. 主な理由は離婚の自由で, 結婚中の再交渉を禁じると, 利益は協議離婚のときより下がります. 損をするのは大卒女性で, 単意離婚を避けるためなら毎期の消費の 2.26% を手放してもよいほどです. 離婚の増加が最も大きいのがこのグループで, 離婚の合意を戻すと損失は和らぎます. 高卒女性は平均してわずかに得をしますが, 市場によって異なります. 論文全体としては, 多くのグループで結婚の利益が下がるという結論です.
 
-![Gains from marriage for women (Fig. 7)](/static/img/article/reynoso2024/fig7.svg){#fig-reynoso2024-gm width=80% fig-align="center"}
+![Gains from marriage for women](/static/img/article/reynoso2024/fig7.svg){#fig-reynoso2024-gm width=80% fig-align="center" fig-notes="@reynoso2024 の Figure 7." fig-notes-title="出典:"}
 
 推定に使っていない2つの効果, すなわち単意離婚が同類婚に与える効果 (事実2) と, すでに結婚している夫婦の行動に与える効果も, モデルはよく再現します [@reynoso2024, app. D].
 

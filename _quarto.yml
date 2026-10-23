@@ -63,6 +63,11 @@ filters:
   # own, so that the label line styled in styles.css leaves no empty line.
   - path: static/filters/theorem-label.lua
     at: post-render
+  # tbl-notes / fig-notes chunk options: a "注:" line below the table or figure.
+  - quarto-notes-filter
+
+tbl-notes-title: "注:"
+fig-notes-title: "注:"
 
 number-depth: 3
 
