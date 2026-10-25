@@ -65,33 +65,41 @@ Collective model は unitary model より弱い仮定しか置きませんが, �
 
 [図 fig-lundberg1997-ratio](#fig-lundberg1997-ratio) は, 英国の家計支出調査 (Family Expenditure Survey, FES) から, 子ども服と男性服, 女性服と男性服の支出の比を年ごとに描いたものです. 破線は改革前 (1973-76年) と改革後 (1980-90年) の平均です. 子どもが2人, 3人の家計では, 改革をはさんで比が一段上がり, その後は上昇のトレンドを持たずにその水準にとどまっています. 子どもが1人の家計では, はっきりした変化は見えません.
 
-[![](../../static/img/article/lundberg1997/fig1a.png)](../../static/img/article/lundberg1997/fig1a.png "図 5.1 (a): Children’s to men’s clothing (Fig. 1a of @lundberg1997)")
+[![](../../static/img/article/lundberg1997/fig1a.png)](../../static/img/article/lundberg1997/fig1a.png "図 5.1 (a): Children’s to men’s clothing")
 
-\(a\) Children’s to men’s clothing (Fig. 1a of Lundberg et al. ([1997](#ref-lundberg1997)))
+\(a\) Children’s to men’s clothing
 
-[![](../../static/img/article/lundberg1997/fig1b.png)](../../static/img/article/lundberg1997/fig1b.png "図 5.1 (b): Women’s to men’s clothing (Fig. 1b of @lundberg1997)")
+[![](../../static/img/article/lundberg1997/fig1b.png)](../../static/img/article/lundberg1997/fig1b.png "図 5.1 (b): Women’s to men’s clothing")
 
-\(b\) Women’s to men’s clothing (Fig. 1b of Lundberg et al. ([1997](#ref-lundberg1997)))
+\(b\) Women’s to men’s clothing
 
 図 5.1: Clothing expenditure ratios, 1973-90
 
+*出典:* Lundberg et al. ([1997](#ref-lundberg1997)) の Figure 1a, 1b.
+
 [図 fig-lundberg1997-table4](#fig-lundberg1997-table4) は, これを回帰で確かめたものです. 観測値は個々の家計ではなく, FES が所得階級と子どもの数で区切って公表しているセルの平均で, 被説明変数は子ども服と男性服の支出の比です. 子どもの数と年齢構成, 所得を制御し, 改革後の期間を表すダミーと子どもの数のダミーの交差項 \\D_1, D_2, D_3\\ の係数で改革の効果を測ります. 括弧内は \\t\\ 値, \\H_0\\ の行は \\D_1 = D_2 = D_3 = 0\\ の同時検定の \\p\\ 値です. 1列目 (改革前 1973-76年, 改革後 1980-90年) では, 子ども2人, 3人の家計の係数が正で有意で, 3つの係数が同時に \\0\\ という仮説は 0.05% 水準で棄却されます. 2列目は, 改革後を 1980-83年に絞っても結果が変わらないことを示します. 3列目は, 改革をはさまない 1980-83年と 1987-90年を同じ方法で比べたプラセボで, ダミーは同時には有意ではありません (\\p = 0.23\\). 支出比の上昇が, もともとのトレンドではなく, 改革の時点での1回限りのシフトだったことを示しています. 女性服と男性服の比 (論文の Table 6) でも結論は同じです. 係数の大きさは, 子ども2人の家計で, 年 400 ポンドを超える夫から妻への移転に対して, 子ども服が年約 52 ポンド, 女性服が年約 27 ポンド増えたことに相当します.
 
-[![](../../static/img/article/lundberg1997/table4.png)](../../static/img/article/lundberg1997/table4.png "図 5.2: Ratio of children’s to men’s clothing (Table 4 of @lundberg1997)")
+[![](../../static/img/article/lundberg1997/table4.png)](../../static/img/article/lundberg1997/table4.png "図 5.2: Ratio of children’s to men’s clothing@lundberg1997 の Table 4.")
 
-図 5.2: Ratio of children’s to men’s clothing (Table 4 of Lundberg et al. ([1997](#ref-lundberg1997)))
+図 5.2: Ratio of children’s to men’s clothing
+
+*出典:* Lundberg et al. ([1997](#ref-lundberg1997)) の Table 4.
 
 **単身者と夫婦の比較.** [図 fig-browning1998-unitary](#fig-browning1998-unitary) は, Browning and Chiappori ([1998](#ref-browning1998)) が unitary model の制約を3つの標本に同じように検定した結果です. 列は単身女性, 単身男性, 夫婦の標本で, 各セルは \\\chi^2\\ 統計量, 括弧内が自由度, 角括弧内が帰無仮説のもとでの確率 (\\p\\ 値) です. 1行目は操作変数の過剰識別制約の検定です. 夫婦の標本では妻と夫それぞれの稼ぎが操作変数に入っているので, 個人の所得が需要に直接効かないこと (income pooling) の検定を兼ねています. 2行目が Slutsky 対称性の検定です. 単身者ではどちらの制約も棄却されないのに対して, 夫婦ではどちらも 1% 水準で棄却されます. なお著者たちは, 標本の大きさに応じて棄却の基準を厳しくする Schwarz の基準を使えば夫婦でも unitary model が選ばれる, という読み方もありうることを認めたうえで, 単身者との対比から制約の方を疑う立場をとっています.
 
-[![](../../static/img/article/browning1998/table1.png)](../../static/img/article/browning1998/table1.png "図 5.3: Tests of the unitary model (Table I of @browning1998)")
+[![](../../static/img/article/browning1998/table1.png)](../../static/img/article/browning1998/table1.png "図 5.3: Tests of the unitary model@browning1998 の Table I.")
 
-図 5.3: Tests of the unitary model (Table I of Browning and Chiappori ([1998](#ref-browning1998)))
+図 5.3: Tests of the unitary model
+
+*出典:* Browning and Chiappori ([1998](#ref-browning1998)) の Table I.
 
 [図 fig-browning1998-collective](#fig-browning1998-collective) は, 夫婦の標本で, 需要に2つの distribution factor (妻と夫の稼ぎの対数の差と, 妻の稼ぎの対数) を加えた collective model を推定し, その制約を検定したものです. 個人の所得を需要から除く制約は 2.7% で棄却され (income pooling の棄却), 対称性も 0.41% で棄却されます. これに対して, SR1 (44.3%), distribution factor の比例条件 (26.0%), それらに線形性の制約を加えた同時検定 (15.7%) はどれも棄却されません. 同じデータで, unitary model の制約は棄却され, collective model の制約は棄却されない, という結果です.
 
-[![](../../static/img/article/browning1998/table3.png)](../../static/img/article/browning1998/table3.png "図 5.4: Tests of the collective model, couples (Table III of @browning1998)")
+[![](../../static/img/article/browning1998/table3.png)](../../static/img/article/browning1998/table3.png "図 5.4: Tests of the collective model, couples@browning1998 の Table III.")
 
-図 5.4: Tests of the collective model, couples (Table III of Browning and Chiappori ([1998](#ref-browning1998)))
+図 5.4: Tests of the collective model, couples
+
+*出典:* Browning and Chiappori ([1998](#ref-browning1998)) の Table III.
 
 まとめると, unitary model の2つの含意 (income pooling と Slutsky 対称性) は夫婦のデータで棄却され, collective model のより弱い制約 (SR1 と比例条件) は棄却されていません. 少なくともこれらの検定の範囲では, 家計を1人の意思決定者とみなすことはできないが, 夫婦が効率的な配分を選んでいるという仮定はデータと矛盾しない, というのが現在の理解です.
 
@@ -135,9 +143,11 @@ Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロ
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-nash-collective)にあります.
 
-[![](../../static/cetz/nash_collective.svg)](../../static/cetz/nash_collective.svg "図 5.5: Collective model と Nash 交渉. 影は実現可能集合 \mathcal{U}, 青い曲線はその Pareto フロンティア \Psi. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \boldsymbol{T} から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.")
+[![](../../static/cetz/nash_collective.svg)](../../static/cetz/nash_collective.svg "図 5.5: Collective model と Nash 交渉影は実現可能集合 \mathcal{U}, 青い曲線はその Pareto フロンティア \Psi. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \boldsymbol{T} から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.")
 
-図 5.5: **Collective model と Nash 交渉.** 影は実現可能集合 \\\mathcal{U}\\, 青い曲線はその Pareto フロンティア \\\Psi\\. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \\\boldsymbol{T}\\ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.
+図 5.5: Collective model と Nash 交渉
+
+*注:* 影は実現可能集合 \\\mathcal{U}\\, 青い曲線はその Pareto フロンティア \\\Psi\\. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \\\boldsymbol{T}\\ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.
 
 [図 fig-nash-collective](#fig-nash-collective) は2つの問題を図解したものです. どちらも Pareto フロンティア上の1点を選ぶ問題ですが, 選び方が違います.
 
@@ -190,17 +200,21 @@ Mazzocco ([2007](#ref-mazzocco2007)) の先駆的な検定は「現在のニュ�
 
 表の左の3列 FC, NC, LC は, それぞれ完全コミットメント, コミットメントなし, 限定コミットメントが予測する係数の符号です. 配偶者の現在の賃金ショックの係数 \\\beta\_{j\[w\_{-jt}\]}\\ は, 完全コミットメントでは \\0\\, ほかの2つでは正です (配偶者の交渉力が上がり, 自分はより多く働く). 1期前 (\\t - 1\\) と2期前 (\\t - 2\\) のショック, 結婚時の年齢差は限定コミットメントでだけ効き, 自分の交渉力を上げるものは負, 配偶者の交渉力を上げるものは正の符号を持ちます. 自分の現在の賃金は交渉と関係なく労働時間の価格として効くので, 検定には使いません (FC, NC, LC の列が「.」). 表の最後の2行は, 完全コミットメント (\\\mathcal{H}\_0^{\text{FC}}\\) とコミットメントなし (\\\mathcal{H}\_0^{\text{NC}}\\) の制約 (対応する係数がすべて \\0\\) の検定の \\p\\ 値で, どの列でも 0.1% 水準で棄却されます. なお係数が大きいのは右辺に前期の労働時間の逆数が掛かっているためで, そのまま弾力性としては読めません.
 
-[![](../../static/img/article/theloudis2025/table1.svg)](../../static/img/article/theloudis2025/table1.svg "図 5.6: Commitment test, reduced form (Table 1)")
+[![](../../static/img/article/theloudis2025/table1.svg)](../../static/img/article/theloudis2025/table1.svg "図 5.6: Commitment test, reduced form@theloudis2025 の Table 1.")
 
-図 5.6: Commitment test, reduced form (Table 1)
+図 5.6: Commitment test, reduced form
+
+*出典:* Theloudis et al. ([2025](#ref-theloudis2025)) の Table 1.
 
 符号も, おおむね限定コミットメントの予測どおりです. 3期以上の標本 (列 (1), (2)) では, 1期前の自分のショックは男女とも労働時間を減らし, 配偶者のショックは増やします. 4期以上の標本 (列 (3), (4)) では, 2期前 (4年前) のショックも予測どおりの符号を持ちます (有意性は下がります). ただし, すべてが合うわけではありません. 妻の式では夫の現在のショックの係数が有意でなく, 夫の式の「自分がかなり年上」のダミー (\\\beta\_{j\[young\_{-j}\]}\\) の係数は予測 (正) と逆に負です. また, 係数の構造を課して Pareto ウェイトの弾力性を推定した特定化 (論文の Table 2) では, コミットメントなしの棄却は \\p\\ 値 0.025 から 0.052 と弱くなります.
 
 **家計の異質性.** 論文の3つ目の特定化では, Pareto ウェイトの弾力性が過去の賃金の水準に依存することを許し, 夫婦ごとに賃金ショックに対する労働時間の偏効果 \\\partial \Delta \log h\_{jt} / \partial \omega\_{kt-\tau}\\ を計算します. [図 fig-theloudis2025-heterogeneity](#fig-theloudis2025-heterogeneity) は, それを4期以上観察される夫婦について描いたものです. 横軸が偏効果, 縦軸が \\t\\ 期の労働時間で, 左の列が自分のショック, 右の列が配偶者のショック, 上から現在, 1期前, 2期前のショックです. 限定コミットメントのもとでは, 過去の自分に有利なショックは自分の交渉力を上げて労働時間を減らし (左の列で \\0\\ より左), 配偶者に有利なショックは労働時間を増やします (右の列で \\0\\ より右). 2期前のショック (パネル (c)) では, 多くの夫婦の偏効果が \\0\\ かこの符号の側にあります. その後の賃金ショックや所得・資産を制御しても, 4年前のショックがなお労働時間に効いているということです. 1期前のショックには, 夫の自分のショックの平均効果のように予測と逆の符号のものもありますが, 対応するパラメータは有意ではありません. 一方で偏効果がほぼ \\0\\ の夫婦も多く, 論文はこれを, 完全コミットメントのように振る舞う夫婦と限定コミットメントの夫婦が混在していると解釈しています. 平均的な大きさは, 過去のショックの効果が絶対値で 0.01 から 0.05, つまり賃金が 10% 変わると労働時間が 0.1% から 0.5% 動く程度です.
 
-[![](../../static/img/article/theloudis2025/fig1.jpeg)](../../static/img/article/theloudis2025/fig1.jpeg "図 5.7: Partial effects of wage shocks on hours (Fig. 1)")
+[![](../../static/img/article/theloudis2025/fig1.jpeg)](../../static/img/article/theloudis2025/fig1.jpeg "図 5.7: Partial effects of wage shocks on hours@theloudis2025 の Figure 1.")
 
-図 5.7: Partial effects of wage shocks on hours (Fig. 1)
+図 5.7: Partial effects of wage shocks on hours
+
+*出典:* Theloudis et al. ([2025](#ref-theloudis2025)) の Figure 1.
 
 Becker, Gary S. 1991. *A Treatise on the Family*. Enl. Harvard University Press.
 

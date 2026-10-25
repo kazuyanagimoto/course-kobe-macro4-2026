@@ -34,9 +34,11 @@ Code
 
 [図 fig-matching-frontiers](#fig-matching-frontiers) は, 典型的なフロンティアを並べたものです.
 
-[![](../../static/cetz/matching_frontiers.svg)](../../static/cetz/matching_frontiers.svg "図 7.1: 移転可能性とフロンティア. 影は交渉可能集合 \mathcal{F}_{xy}, 黒線はそのフロンティア.")
+[![](../../static/cetz/matching_frontiers.svg)](../../static/cetz/matching_frontiers.svg "図 7.1: 移転可能性とフロンティア影は交渉可能集合 \mathcal{F}_{xy}, 黒線はそのフロンティア.")
 
-図 7.1: **移転可能性とフロンティア.** 影は交渉可能集合 \\\mathcal{F}\_{xy}\\, 黒線はそのフロンティア.
+図 7.1: 移転可能性とフロンティア
+
+*注:* 影は交渉可能集合 \\\mathcal{F}\_{xy}\\, 黒線はそのフロンティア.
 
 TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率的です. ITUは一般の減少曲線で, 内側にへこむこともあります. LTU (linearly transferable utility) は ITU の特殊ケースで, 交換レートは一定だが \\1\\ ではありません.
 
@@ -48,9 +50,11 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 \\D\_{xy}\left(u, v\right)\\ は, 点 \\\left(u, v\right)\\ から45度線に沿ってフロンティアまで測った距離です (正確には \\\sqrt{2}\\ 倍を除いた符号付き距離). \\\left(u, v\right)\\ が実行可能集合の外にあれば正, 内部にあれば負, 境界上でちょうど \\0\\ になります. したがって \\ \mathcal{F}\_{xy} = \left\\\left(u, v\right) : D\_{xy}\left(u, v\right) \leq 0\right\\ \\ であり, フロンティアは \\D\_{xy}\left(u, v\right) = 0\\ を満たす点の集合です.
 
-[![](../../static/cetz/itu_distance.svg)](../../static/cetz/itu_distance.svg "図 7.2: 距離関数. 各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では D_{xy} > 0, 内部の点では D_{xy} < 0, フロンティア上で D_{xy} = 0. [@galichon2019] にもとづく.")
+[![](../../static/cetz/itu_distance.svg)](../../static/cetz/itu_distance.svg "図 7.2: 距離関数各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では D_{xy} > 0, 内部の点では D_{xy} < 0, フロンティア上で D_{xy} = 0. [@galichon2019] にもとづく.")
 
-図 7.2: **距離関数.** 各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では \\D\_{xy} \> 0\\, 内部の点では \\D\_{xy} \< 0\\, フロンティア上で \\D\_{xy} = 0\\. ([Galichon et al. 2019](#ref-galichon2019)) にもとづく.
+図 7.2: 距離関数
+
+*注:* 各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では \\D\_{xy} \> 0\\, 内部の点では \\D\_{xy} \< 0\\, フロンティア上で \\D\_{xy} = 0\\. ([Galichon et al. 2019](#ref-galichon2019)) にもとづく.
 
 #### 距離関数の性質
 
@@ -126,9 +130,11 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 
 条件2 (\\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\) はフロンティア上の1点を指定する条件なので, フロンティアを1次元でパラメトライズすればこの制約は自動的に満たせます. Galichon et al. ([2019](#ref-galichon2019)) はそのパラメータとして **wedge** \\W\_{xy} = U\_{xy} - V\_{xy}\\, すなわち夫婦の効用の差を使います. 実際, \\D\_{xy}\left(u, v\right) = 0\\ かつ \\u - v = w\\ を満たす \\\left(u, v\right)\\ は一意で, \\ \mathcal{U}\_{xy}\left(w\right) = -D\_{xy}\left(0, -w\right), \qquad \mathcal{V}\_{xy}\left(w\right) = -D\_{xy}\left(w, 0\right) \tag{7.3}\\ と閉形式で書けます (\\\mathcal{U}\_{xy}\\ は非減少, \\\mathcal{V}\_{xy}\\ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge \\w\\ を動かすことはフロンティア上を滑ることに対応し, \\w\\ が大きいほど男性に有利な点が選ばれます.
 
-[![](../../static/cetz/itu_wedge.svg)](../../static/cetz/itu_wedge.svg "図 7.3: wedge によるパラメトライズ. 傾き 1 の直線 v = u - w とフロンティアの交点 (赤い点) が \left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right) である. w' > w のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.")
+[![](../../static/cetz/itu_wedge.svg)](../../static/cetz/itu_wedge.svg "図 7.3: wedge によるパラメトライズ傾き 1 の直線 v = u - w とフロンティアの交点 (赤い点) が \left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right) である. w' > w のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく.")
 
-図 7.3: **wedge によるパラメトライズ.** 傾き \\1\\ の直線 \\v = u - w\\ とフロンティアの交点 (赤い点) が \\\left(\mathcal{U}\_{xy}\left(w\right), \mathcal{V}\_{xy}\left(w\right)\right)\\ である. \\w' \> w\\ のように wedge を大きくすると, 男性に有利な点に移る. ([Galichon et al. 2019](#ref-galichon2019)) にもとづく.
+図 7.3: wedge によるパラメトライズ
+
+*注:* 傾き \\1\\ の直線 \\v = u - w\\ とフロンティアの交点 (赤い点) が \\\left(\mathcal{U}\_{xy}\left(w\right), \mathcal{V}\_{xy}\left(w\right)\right)\\ である. \\w' \> w\\ のように wedge を大きくすると, 男性に有利な点に移る. ([Galichon et al. 2019](#ref-galichon2019)) にもとづく.
 
 ここでカップルのタイプ \\xy\\ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, \\W\_{xy}\\ がその財の**価格**です. 供給は \\\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U\_{xy}\\, 需要は \\\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V\_{xy}\\ で, 超過需要関数は \\ Z\left(W\right) = \nabla H\left(\mathcal{V}\left(W\right)\right) - \nabla G\left(\mathcal{U}\left(W\right)\right) \tag{7.4}\\ です. \\W\_{xy}\\ が上がるとフロンティア上を男性に有利な方向に動くので, 財 \\xy\\ の供給は増え需要は減ります. さらに次が成り立ちます.
 
