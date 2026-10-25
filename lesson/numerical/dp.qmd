@@ -73,7 +73,7 @@ $$
 end
 
 u(c; m) = log(c)
-u′(c; m) = 1 / c
+u_c(c; m) = 1 / c
 f(k; m) = k^m.α
 f′(k; m) = m.α * k^(m.α - 1)
 ```
@@ -280,14 +280,14 @@ Plot.plot({
 
 上記のベルマン方程式から, 以下のオイラー方程式が導出されます.
 $$
-u'(c) = \beta u'(c')\left(f'(k') + (1-\delta)\right).
+u_c(c) = \beta u_c(c')\left(f'(k') + (1-\delta)\right).
 $${#eq-euler}
-ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数 $h(k)$ を所与とすると, $c' = h(k')$ で与えられます.
+$u_c(c) := du(c)/dc$ は限界効用を表します. ここで消費 $c$ を選ぶと, 来期の資本は予算制約 $k' = f(k) + (1-\delta)k - c$ で決まり, 来期の消費は政策関数 $h(k)$ を所与とすると, $c' = h(k')$ で与えられます.
 
 ここで, 問題を政策関数 $h$ の不動点を求める問題に設定します. 反復 $N$ での推定政策 $\boldsymbol{h}^N = (h_1^N, \dots, h_n^N)$ はグリッド点 $\{k_i\}$ 上でしか値を持たないので, これを補間して連続な関数 $\tilde{h}^N(k)$ に拡張します. 補間は線形でもスプラインでもよく, グリッド点では $\tilde{h}^N(k_i) = h_i^N$ を満たします. この $\tilde{h}^N$ を来期の政策としてオイラー方程式の右辺に代入すると, 各グリッド点 $k_i$ に対して, 今期の消費 $c$ を未知数とする次の方程式が得られます.
 $$
 \begin{aligned}
-u'(c) &= \beta\, u'\left(\tilde{h}^N(k')\right)\left(f'(k') + 1 - \delta\right), \\
+u_c(c) &= \beta\, u_c\left(\tilde{h}^N(k')\right)\left(f'(k') + 1 - \delta\right), \\
 k' &= f(k_i) + (1-\delta)k_i - c.
 \end{aligned}
 $${#eq-pfi-euler}
@@ -318,7 +318,7 @@ function euler_eq(c, k, h_itp; m)
     k′ = max(f(k; m) + (1 - δ) * k - c, k_grid[begin])
     c′ = h_itp(k′)
 
-    return u′(c; m) - β * u′(c′; m) * (f′(k′; m) + 1 - δ)
+    return u_c(c; m) - β * u_c(c′; m) * (f′(k′; m) + 1 - δ)
 end
 
 function pfi!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
@@ -589,7 +589,7 @@ PFI では各グリッド点でオイラー方程式という非線形の方程�
 
 来期消費の政策 $c' = h(k')$ を所与とすると, オイラー方程式 (-@eq-euler) から今期の消費 $c$ は閉形式で求められます.
 $$
-c = \left(u'\right)^{-1}\left(\beta\, u'\left(h(k')\right)\left(f'(k') + 1 - \delta\right)\right).
+c = u_c^{-1}\left(\beta\, u_c\left(h(k')\right)\left(f'(k') + 1 - \delta\right)\right).
 $$
 次に予算制約から今期の資本 $k$ を求めます. 資源関数 $m(k) := f(k) + (1 -\delta) k$ とすると, 予算制約は $c + k' = m(k)$ となるので, これを $k$ について解くと
 $$
@@ -604,7 +604,7 @@ $$
 1. 来期資本 $k'$ のグリッドを固定し, 資源関数の逆関数 $m^{-1}(\cdot)$ を一度だけ構築する.
 1. 政策関数の初期値 $\boldsymbol{h}^0 = (h_1^0, \dots, h_n^0)$ を適当に設定する.
 1. 政策 $\tilde{h}^N(k')$ を所与に, 各グリッド点 $k'_j$ について
-    - オイラー方程式から今期消費 $c_j = \left(u'\right)^{-1}\left(\beta u'(h(k'_j))(f'(k'_j) + 1 - \delta)\right)$ を求める.
+    - オイラー方程式から今期消費 $c_j = u_c^{-1}\left(\beta u_c(h(k'_j))(f'(k'_j) + 1 - \delta)\right)$ を求める.
     - 予算制約から今期資本 $k_j = m^{-1}(c_j + k'_j)$ を求める.
 1. 内生グリッド $(k_j, c_j)$ を補間して, 固定グリッド上の新しい政策 $h^{N+1}(k)$ を得る.
 1. 政策が収束するまで 3-4 を繰り返す.
@@ -614,7 +614,7 @@ $$
 ```{julia}
 #| label: fig-egm
 #| fig-cap: Endogenous Grid Method.
-u′_inv(marg_u; m) = 1 / marg_u
+u_c_inv(marg_u; m) = 1 / marg_u
 
 function egm!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, β, δ) = m
@@ -629,8 +629,8 @@ function egm!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
     iter, dist = 0, Inf
     while dist > tol && iter < max_iter
         for (j, k′) in enumerate(k_grid)                    # fix k' on the grid
-            rhs = β * u′(m.hs[j]; m) * (f′(k′; m) + 1 - δ)  # m.hs[j] is c(k'_j)
-            cs_endog[j] = u′_inv(rhs; m)
+            rhs = β * u_c(m.hs[j]; m) * (f′(k′; m) + 1 - δ)  # m.hs[j] is c(k'_j)
+            cs_endog[j] = u_c_inv(rhs; m)
             ks_endog[j] = m⁻¹(cs_endog[j] + k′)             # m(k) = c + k'
         end
         # interpolate the endogenous grid back onto the fixed grid
@@ -780,8 +780,8 @@ p
 PFI も同じように拡張できます. 不確実性の下でのオイラー方程式は, 来期の生産性 $z'$ についての期待値を取る形になります.
 $$
 \begin{aligned}
-u'(c) &= \beta\, \mathbb{E}\left[u'(c')\left(f_k(k', z') + 1 - \delta\right) \mid z\right] \\
-&= \beta \sum_{z'} \pi(z' \mid z)\, u'\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right).
+u_c(c) &= \beta\, \mathbb{E}\left[u_c(c')\left(f_k(k', z') + 1 - \delta\right) \mid z\right] \\
+&= \beta \sum_{z'} \pi(z' \mid z)\, u_c\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right).
 \end{aligned}
 $$ {#eq-pfi-euler-stochastic}
 決定論的な場合 (@eq-pfi-euler) との違いは2点だけです. 第一に, 政策関数が $h(k, z)$ と2変数になるため, 補間は生産性の状態ごとに1本ずつ, 計 $n_z$ 本の $\tilde{h}(\cdot, z')$ を作ります. $z$ はグリッド上の有限個の状態しか取らないので, 補間が必要なのは $k$ の方向だけです. 第二に, 右辺が $\pi(z' \mid z)$ による期待値になります. なお予算制約 $k' = f(k, z) + (1-\delta)k - c$ に入るのは今期の $z$ である点に注意してください.
@@ -794,10 +794,10 @@ function euler_eq(c, k, i_z, h_itps; m)
 
     k′ = clamp(f(k, z_grid[i_z]; m) + (1 - δ) * k - c,
         k_grid[begin], k_grid[end])
-    rhs = sum(Π[i_z, i_z′] * u′(h_itps[i_z′](k′); m) * (f′(k′, z′; m) + 1 - δ)
+    rhs = sum(Π[i_z, i_z′] * u_c(h_itps[i_z′](k′); m) * (f′(k′, z′; m) + 1 - δ)
               for (i_z′, z′) in enumerate(z_grid))
 
-    return u′(c; m) - β * rhs
+    return u_c(c; m) - β * rhs
 end
 
 function pfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
@@ -893,7 +893,7 @@ p
 
 EGM も確率的なモデルに自然に拡張できます. 来期の資本 $k'$ をグリッド上に固定し, 各生産性 $z$ についてオイラー方程式 (@eq-pfi-euler-stochastic) の右辺を評価すると, 今期の消費 $c$ が求根なしに求まります.
 $$
-c = (u')^{-1}\left( \beta \sum_{z'} \pi(z' \mid z)\, u'\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right) \right).
+c = u_c^{-1}\left( \beta \sum_{z'} \pi(z' \mid z)\, u_c\left(\tilde{h}(k', z')\right)\left(f_k(k', z') + 1 - \delta\right) \right).
 $$
 この $c$ から資源制約 $c + k' = z k^\alpha + (1-\delta)k$ を $k$ について解けば内生グリッドが得られます. 決定論的な場合との違いは2点だけです. 第一に, 右辺が $\pi(z' \mid z)$ による期待値になります. 第二に, 資源制約の左辺 $M(k, z) = z k^\alpha + (1-\delta)k$ が今期の $z$ に依存するので, その逆関数 $M^{-1}(\cdot, z)$ を生産性の状態ごとに1本ずつ用意します.
 
@@ -913,10 +913,10 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     while dist > tol && iter < max_iter
         for (i_z, z) in enumerate(z_grid)
             for (j, k′) in enumerate(k_grid)               # fix k' on the grid
-                rhs = β * sum(Π[i_z, i_z′] * u′(c[j, i_z′]; m) *
+                rhs = β * sum(Π[i_z, i_z′] * u_c(c[j, i_z′]; m) *
                               (f′(k′, z′; m) + 1 - δ)
                               for (i_z′, z′) in enumerate(z_grid))
-                cs_endog[j] = 1 / rhs  # (u')⁻¹(rhs) since u = log
+                cs_endog[j] = 1 / rhs  # u_c⁻¹(rhs) since u = log
                 ks_endog[j] = M⁻¹[i_z](cs_endog[j] + k′)  # invert M(k, z)
             end
             c_itp = linear_interpolation(ks_endog, cs_endog,
@@ -994,7 +994,7 @@ $${#eq-aiyagari-bellman}
 
 借入制約が内点解となる ($a' > -\underline{a}$ の) 領域では, 一階条件としてオイラー方程式が成立します. 制約が拘束する可能性まで含めると, 次の相補性条件 (Kuhn-Tucker 条件) になります.
 $$
-u'\left( c(a, z) \right) \geq \beta (1+r)\, \mathbb{E}\left[ u'\left( c(a', z') \right) \mid z \right].
+u_c\left( c(a, z) \right) \geq \beta (1+r)\, \mathbb{E}\left[ u_c\left( c(a', z') \right) \mid z \right].
 $${#eq-aiyagari-euler}
 等式は $a' > -\underline{a}$ のとき成立します.
 
@@ -1003,7 +1003,7 @@ $${#eq-aiyagari-euler}
 
 ## 予備的貯蓄, precautionary saving
 
-CRRA 効用は $u'''(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u'(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼び, 保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機です.
+CRRA 効用は $u_{ccc}(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u_c(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼び, 保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機です.
 
 :::
 
@@ -1056,9 +1056,9 @@ $$
 
 これを家計の問題で見る. 完備市場では予算制約が生涯の一本の異時点間制約に統合され, 状態ごとの借入制約 $a' \geq -\underline{a}$ は均衡で拘束しない. このとき @eq-aiyagari-euler は等号で成立し, さらにリスク分散により $c_{t+1}$ が確実 (個別状態によらず一定) になるので, 右辺の期待値が外れて
 $$
-u'(c_t) = \beta (1+r)\, u'(c_{t+1})
+u_c(c_t) = \beta (1+r)\, u_c(c_{t+1})
 $$
-となる. 集計的な不確実性も成長もない定常状態では消費は一定 $c_t = c_{t+1}$ なので $u'(c_t) = u'(c_{t+1})$ となり,
+となる. 集計的な不確実性も成長もない定常状態では消費は一定 $c_t = c_{t+1}$ なので $u_c(c_t) = u_c(c_{t+1})$ となり,
 $$
 1 = \beta (1 + r) \quad\Longleftrightarrow\quad r = \frac{1}{\beta} - 1.
 $$
@@ -1135,8 +1135,8 @@ wage(r, m) = (1 - m.α) * (m.α / (r + m.δ))^(m.α / (1 - m.α))
 ```{julia}
 #| label: fn-household
 #| output: false
-u′(c, γ) = c^(-γ)
-u′_inv(marg_u, γ) = marg_u^(-1 / γ)
+u_c(c, γ) = c^(-γ)
+u_c_inv(marg_u, γ) = marg_u^(-1 / γ)
 
 # EGM: iterate the consumption policy c(a, z); return saving policy a'
 function solve_household(r, m; tol=1e-9, max_iter=10_000)
@@ -1148,12 +1148,12 @@ function solve_household(r, m; tol=1e-9, max_iter=10_000)
     as_endog = similar(a_grid)
     cs_endog = similar(a_grid)
     for _ in 1:max_iter
-        # expected marginal utility at (a', z): Σ_z' π(z'|z) u'(c(a', z'))
-        expected_u′ = (u′.(c, γ)) * Π'
+        # expected marginal utility at (a', z): Σ_z' π(z'|z) u_c(c(a', z'))
+        expected_u_c = (u_c.(c, γ)) * Π'
         for iz in 1:n_z
             for ja in 1:n_a
                 # invert the Euler eq., then the budget for the endogenous asset
-                cs_endog[ja] = u′_inv(β * (1 + r) * expected_u′[ja, iz], γ)
+                cs_endog[ja] = u_c_inv(β * (1 + r) * expected_u_c[ja, iz], γ)
                 as_endog[ja] =
                     (cs_endog[ja] + a_grid[ja] - w * z_grid[iz]) / (1 + r)
             end
