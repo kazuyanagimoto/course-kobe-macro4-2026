@@ -6,7 +6,7 @@ Unitary and Collective Models, Nash Bargaining, and Commitment
 
 ## 5.1 Unitary model vs. Collective model
 
-Chiappori and Mazzocco ([2017](#ref-chiappori2017c)) を参照しながら, 家計内配分の理論を整理します. 次の設定を考えます
+Chiappori and Mazzocco ([2017](#ref-chiappori2017b)) を参照しながら, 家計内配分の理論を整理します. 次の設定を考えます
 
 - 妻 \\W\\ と夫 \\H\\ がそれぞれ効用関数 \\u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right)\\, \\u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right)\\ を持つ. \\\boldsymbol{q}\_j\\ は私的財, \\\boldsymbol{Q}\\ は公共財のベクトル
 - 家計の予算制約のもとで実現可能な効用の組の集合を \\\mathcal{U}\\ とする. \\\mathcal{U}\\ は凸でコンパクト
@@ -37,7 +37,7 @@ Collective model は unitary model を特殊ケースとして含みます. Pare
 
 証明は[付録](../../lesson/appendix/proof.llms.md#prf-collective-unitary)にあります.
 
-特に \\\bar{\mu} = 1/2\\ とすると, 家族の効用関数は2人の効用の単純な和 \\u_W + u_H\\ (の \\1/2\\ 倍), すなわち夫婦の効用を等しい重みで足し合わせる (功利主義的な) 家族の効用関数になります. ただし, 家計が unitary になるのは \\\mu\\ が動かないからで, その値が \\1/2\\ だからではありません. \\\mu = 0.3\\ で固定された家計も unitary です. そもそも \\\mu\\ の値は効用の尺度に依存します ([Browning et al. 2014](#ref-browning2014)). 妻の効用を \\2 u_W\\ に取り替えても妻の選好は変わりませんが, \\\mu = 1/2\\ での加重和 \\\left(2 u_W + u_H\right) / 2\\ は元の効用で \\\mu = 2/3\\ とおいた加重和 \\\left(2 u_W + u_H\right) / 3\\ に比例するので, 同じ配分を選ぶウェイトは \\1/2\\ から \\2/3\\ に変わります. したがって \\\mu\\ を交渉力と読めるのは「\\\mu\\ が大きいほど妻の交渉力が強い」という大小の比較の意味においてで, \\1/2\\ という水準そのものが対等を意味するわけではありません ([Browning et al. 2014](#ref-browning2014); [Chiappori and Mazzocco 2017](#ref-chiappori2017c)).
+特に \\\bar{\mu} = 1/2\\ とすると, 家族の効用関数は2人の効用の単純な和 \\u_W + u_H\\ (の \\1/2\\ 倍), すなわち夫婦の効用を等しい重みで足し合わせる (功利主義的な) 家族の効用関数になります. ただし, 家計が unitary になるのは \\\mu\\ が動かないからで, その値が \\1/2\\ だからではありません. \\\mu = 0.3\\ で固定された家計も unitary です. そもそも \\\mu\\ の値は効用の尺度に依存します ([Browning et al. 2014](#ref-browning2014)). 妻の効用を \\2 u_W\\ に取り替えても妻の選好は変わりませんが, \\\mu = 1/2\\ での加重和 \\\left(2 u_W + u_H\right) / 2\\ は元の効用で \\\mu = 2/3\\ とおいた加重和 \\\left(2 u_W + u_H\right) / 3\\ に比例するので, 同じ配分を選ぶウェイトは \\1/2\\ から \\2/3\\ に変わります. したがって \\\mu\\ を交渉力と読めるのは「\\\mu\\ が大きいほど妻の交渉力が強い」という大小の比較の意味においてで, \\1/2\\ という水準そのものが対等を意味するわけではありません ([Browning et al. 2014](#ref-browning2014); [Chiappori and Mazzocco 2017](#ref-chiappori2017b)).
 
 逆に言えば, collective model が unitary model より一般的なのは, \\\mu\\ が価格・所得・distribution factor に反応することを許す点です. 次の節で見る income pooling の破れと Slutsky 行列のランク \\1\\ の項は, どちらも \\\mu\\ が動くことから生じます.
 
@@ -136,7 +136,7 @@ Collective model は \\\mu\\ を誘導形として扱い, 何がそれを決め�
 
 対称性の公理を落とすと, 解は [式 eq-nash](#eq-nash) の形で重み \\\beta\\ を1つ持つ族になります (一般化 Nash 交渉解). \\\beta\\ は妻の利得にかかる指数で, 大きいほど解は妻に有利な側へ寄ります.二つの注意点があります.
 
-**アフィン変換** 普遍性はアフィン変換に限られます.効用に非線形な単調変換を施すと解が変わるので, Nash 交渉は効用の基数的な表現に依存します ([Chiappori 2017](#ref-chiappori2017a)).
+**アフィン変換** 普遍性はアフィン変換に限られます.効用に非線形な単調変換を施すと解が変わるので, Nash 交渉は効用の基数的な表現に依存します ([Chiappori 2017](#ref-chiappori2017c)).
 
 **脅威点の特定** モデルの中身は脅威点の特定に強く依存します. 脅威点の候補としては, 次の二つです.
 

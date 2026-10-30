@@ -50,7 +50,7 @@ Code
 
 「豊かになると子どもが減る」という事実は, 一見すると経済学的な説明と矛盾するように思えます. 豊かになれば, 人は普通あらゆるものを多く消費するからです. 出生の低下は, 経済学の外にある文化や規範の変化で子どもへの「好み」が薄れたことを反映しているだけかもしれません. これに対する Gary Becker の答えが, 出生の経済学の第1の big idea である quantity-quality トレードオフです.
 
-出発点は, 親は子どもの**数** (quantity) だけでなく, 一人あたりにかける資源, すなわち**質** (quality) も選ぶ, という観察です. ここでの「質」は価値判断ではなく, 教育・健康など子ども一人あたりへの投資を指します. Becker and Lewis ([1973](#ref-becker1973)) が定式化したように, 質への支出が所得とともに増えるなら, 豊かな親にとって子どもは高くつきます. したがって質の需要が所得に対して十分に弾力的なら, 子どもの数は所得とともに減りえます.
+出発点は, 親は子どもの**数** (quantity) だけでなく, 一人あたりにかける資源, すなわち**質** (quality) も選ぶ, という観察です. ここでの「質」は価値判断ではなく, 教育・健康など子ども一人あたりへの投資を指します. Becker and Lewis ([1973](#ref-becker1973a)) が定式化したように, 質への支出が所得とともに増えるなら, 豊かな親にとって子どもは高くつきます. したがって質の需要が所得に対して十分に弾力的なら, 子どもの数は所得とともに減りえます.
 
 [![](../../static/img/article/doepke2023/fig4.svg)](../../static/img/article/doepke2023/fig4.svg "図 9.4: Average years of schooling since 1870@doepke2023 の Figure 4.")
 
@@ -292,7 +292,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 
 *出典:* Greenwood et al. ([2023](#ref-greenwood2023)) の Figure 2.15.
 
-ホワイトカラーの割合は上昇しており ([図 fig-greenwood2023-fig2-14](#fig-greenwood2023-fig2-14)), 所得とも正の相関を持ちます ([図 fig-greenwood2023-fig2-15](#fig-greenwood2023-fig2-15)). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です ([Acemoglu and Autor 2011](#ref-acemoglu2011a)). 以下では, これら6つの事実を1つのモデルで説明する Greenwood et al. ([2023](#ref-greenwood2023)) の定量分析を読みます.
+ホワイトカラーの割合は上昇しており ([図 fig-greenwood2023-fig2-14](#fig-greenwood2023-fig2-14)), 所得とも正の相関を持ちます ([図 fig-greenwood2023-fig2-15](#fig-greenwood2023-fig2-15)). 背景にあるのはスキル偏向的な技術進歩 (skill-biased technological change) です ([Acemoglu and Autor 2011](#ref-acemoglu2011)). 以下では, これら6つの事実を1つのモデルで説明する Greenwood et al. ([2023](#ref-greenwood2023)) の定量分析を読みます.
 
 ### 9.2.2 Model
 
@@ -362,7 +362,7 @@ Greenwood et al. ([2023](#ref-greenwood2023)) は Kuznets ([1957](#ref-kuznets19
 2.  スキル偏向的な技術革新 (skill-biased technological progress, \\X\\)
 3.  家庭内生産用耐久財の価格低下 (\\p\\)
 
-技術革新をモデル化するため, brawn 労働 \\U\\ と brain 労働 \\V\\ を CES で束ねる代表的企業を導入します. \\ \max\_{U, V} Z\left(\left(1-\omega\right)U^{\iota} + \omega X V^{\iota}\right)^{\frac{1}{\iota}} - u U - v V. \\ 一階条件から, 大卒プレミアム \\q\\ は \\ q = \frac{v}{u} = \frac{\omega X}{1-\omega} \left(\frac{V}{U}\right)^{\iota-1} = \frac{\omega X}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{9.7}\\ と書けます (最後の等式は, 総労働時間を \\T\\ として \\U = \left(1 - s\right)T\\, \\V = sT\\ を代入したものです). CES のパラメータ \\\left(\omega, \iota\right)\\ は Acemoglu and Autor ([2011](#ref-acemoglu2011a)) の値を使い, [式 eq-college-premium](#eq-college-premium) から各時点の \\X\\ が, brawn 労働の一階条件から \\Z\\ が逆算できます ([表 tbl-greenwood2023-table6-1](#tbl-greenwood2023-table6-1)). この表と以下の図では, 論文の表記に従って \\X\\, \\Z\\ が \\x\\, \\z\\ と書かれています.
+技術革新をモデル化するため, brawn 労働 \\U\\ と brain 労働 \\V\\ を CES で束ねる代表的企業を導入します. \\ \max\_{U, V} Z\left(\left(1-\omega\right)U^{\iota} + \omega X V^{\iota}\right)^{\frac{1}{\iota}} - u U - v V. \\ 一階条件から, 大卒プレミアム \\q\\ は \\ q = \frac{v}{u} = \frac{\omega X}{1-\omega} \left(\frac{V}{U}\right)^{\iota-1} = \frac{\omega X}{1-\omega} \left(\frac{s}{1-s}\right)^{\iota-1} \tag{9.7}\\ と書けます (最後の等式は, 総労働時間を \\T\\ として \\U = \left(1 - s\right)T\\, \\V = sT\\ を代入したものです). CES のパラメータ \\\left(\omega, \iota\right)\\ は Acemoglu and Autor ([2011](#ref-acemoglu2011)) の値を使い, [式 eq-college-premium](#eq-college-premium) から各時点の \\X\\ が, brawn 労働の一階条件から \\Z\\ が逆算できます ([表 tbl-greenwood2023-table6-1](#tbl-greenwood2023-table6-1)). この表と以下の図では, 論文の表記に従って \\X\\, \\Z\\ が \\x\\, \\z\\ と書かれています.
 
 [![](../../static/img/article/greenwood2023/table6_1.svg)](../../static/img/article/greenwood2023/table6_1.svg "表 9.3: Technology parameter values. Table 6.1 of @greenwood2023")
 

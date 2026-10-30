@@ -158,7 +158,7 @@ TU の場合, quasi-demand と quasi-supply を足し合わせると移転 \\\ta
 
 ### 8.3.1 Motivation
 
-学歴や人種の似た者同士の結婚, すなわち同類婚には, 観察上区別しにくい2つの説明があります. 1つは**補完性** (complementarities) で, 似た者同士のマッチほど結婚の余剰が大きいという, Becker ([1973](#ref-becker1973a)) 以来の説明です ([命題 prp-pam](#prp-pam)). 子どもの教育に夫婦で協力するなら両親とも高学歴の方が利得が大きく, 価値観を子どもに伝えたいなら文化的な背景が近い方が利得が大きい, という具合です. もう1つは**分断** (segmentation) で, 居住地・学校・職場・友人関係が同質的なために, そもそも似た者同士ばかりが出会うという説明です.
+学歴や人種の似た者同士の結婚, すなわち同類婚には, 観察上区別しにくい2つの説明があります. 1つは**補完性** (complementarities) で, 似た者同士のマッチほど結婚の余剰が大きいという, Becker ([1973](#ref-becker1973b)) 以来の説明です ([命題 prp-pam](#prp-pam)). 子どもの教育に夫婦で協力するなら両親とも高学歴の方が利得が大きく, 価値観を子どもに伝えたいなら文化的な背景が近い方が利得が大きい, という具合です. もう1つは**分断** (segmentation) で, 居住地・学校・職場・友人関係が同質的なために, そもそも似た者同士ばかりが出会うという説明です.
 
 2つの説明は政策的な含意が大きく異なります. 補完性が原因なら, 同類婚は家計の技術を反映した効率的な組み合わせの結果です. 分断が原因なら, 同類婚は余剰を生まないまま格差や文化的な隔たりを強めていることになり, 出会いの構造を変える政策 (住宅・教育など) が意味を持ちます.
 
@@ -430,7 +430,7 @@ Becker, Gary S. 1973. “A Theory of Marriage: Part I.” *Journal of Political 
 
 Becker, Gary S. 1991. *A Treatise on the Family*. Enl. Harvard University Press.
 
-Chiappori, Pierre-Andre, Murat Iyigun, and Yoram Weiss. 2015. “The Becker–Coase Theorem Reconsidered.” *Journal of Demographic Economics* 81 (2): 157–77. <https://doi.org/10.1017/dem.2015.3>.
+Chiappori, Pierre-André, Murat Iyigun, and Yoram Weiss. 2015. “The Becker–Coase Theorem Reconsidered.” *Journal of Demographic Economics* 81 (2): 157–77. <https://doi.org/10.1017/dem.2015.3>.
 
 Choo, Eugene, and Aloysius Siow. 2006. “Who Marries Whom and Why.” *Journal of Political Economy* 114 (1): 175–201. <https://doi.org/10.1086/498585>.
 
