@@ -400,45 +400,23 @@ $$
 
 :::
 
-### Slutsky 行列の SR1 条件 {#prf-sr1}
+### Unitary model は collective model の特殊ケース {#prf-collective-unitary}
 
 ::: {.proof}
 
-@eq-collective-demand を $\pi_l$ と $Y$ で微分し, @eq-slutsky に代入する.
+$\mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right) = \bar{\mu}$ が定数なら, collective model の家計問題
 $$
-S_{kl}
-= \underbrace{\frac{\partial \tilde{q}_k}{\partial \pi_l} + q_l\, \frac{\partial \tilde{q}_k}{\partial Y}}_{\Sigma_{kl}}
-+ \frac{\partial \tilde{q}_k}{\partial \mu}
-\left(\frac{\partial \mu}{\partial \pi_l} + q_l\, \frac{\partial \mu}{\partial Y}\right).
+\max_{\boldsymbol{q}_W, \boldsymbol{q}_H, \boldsymbol{Q}}\ \bar{\mu}\, u_W\left(\boldsymbol{q}_W, \boldsymbol{Q}\right) + \left(1 - \bar{\mu}\right) u_H\left(\boldsymbol{q}_H, \boldsymbol{Q}\right)
+\quad \text{s.t.} \quad
+\boldsymbol{p} \cdot \left(\boldsymbol{q}_W + \boldsymbol{q}_H\right) + \boldsymbol{P} \cdot \boldsymbol{Q} \leq Y
 $$
-第1項は, $\mu$ を固定した標準的な需要関数 $\tilde{\boldsymbol{q}}\left(\cdot, \cdot, \mu\right)$ の Slutsky 行列なので対称かつ負値半定符号である. 第2項は $a_k b_l$ の形, すなわち2つのベクトルの外積なので, 行列としてのランクは高々 $1$ である.
+の目的関数は, 価格・所得・distribution factor によらない1つの関数 @eq-unitary-weighted であり, 制約は unitary model と同じ家計の予算制約である. したがってこれは unitary model の家計問題そのもので, 需要は $\boldsymbol{q}\left(\boldsymbol{\pi}, Y\right) = \tilde{\boldsymbol{q}}\left(\boldsymbol{\pi}, Y, \bar{\mu}\right)$ と書ける.
+
+(Income pooling) 需要は総所得 $Y$ を通じてしか所得に依存せず, distribution factor $\boldsymbol{z}$ にも依存しないので, $\partial \boldsymbol{q} / \partial \boldsymbol{z} = \boldsymbol{0}$ である. @eq-df-effect でいえば $\partial \mu / \partial z_k = 0$ の場合にあたる.
+
+(Slutsky 対称性) 1つの効用関数を予算制約のもとで最大化した需要なので, 標準的な消費者理論から Slutsky 行列は対称かつ負値半定符号である. @eq-sr1 でいえば, $\mu$ が定数なので $\boldsymbol{b} = \nabla_{\boldsymbol{\pi}}\, \mu + \boldsymbol{q}\, \partial \mu / \partial Y = \boldsymbol{0}$ となり, $S = \Sigma$ となる場合にあたる.
 
 :::
-
-### Slutsky 対称性と SR1 の検定に必要な財の数 {#prf-sr1-goods}
-
-本文の「対称性は財が3つ以上で初めて制約になり, SR1 の検定には5つ以上の財が必要」という主張を示します. 導出は @browning1998 の Proposition 4 に従います. 2つの事実を使います. 第1に, 行列 $S$ が対称行列とランク高々 $1$ の行列の和に書けることは, 反対称行列 $M := S - S^\top$ のランクが $2$ 以下であることと同値である [@browning1998, Lemma 1]. 第2に, 実の反対称行列の0でない固有値は純虚数で共役の対をなすので, そのランクは偶数である [@browning1998, Lemma 2].
-
-::: {.proof}
-
-財が $n$ 個あり, 需要関数 $\boldsymbol{q}\left(\boldsymbol{\pi}, Y\right)$ は $\left(\boldsymbol{\pi}, Y\right)$ について0次同次で, 予算制約を等号で満たす ($\boldsymbol{\pi}^\top \boldsymbol{q}\left(\boldsymbol{\pi}, Y\right) = Y$, adding-up) とする.
-
-まず $S \boldsymbol{\pi} = \boldsymbol{0}$ と $\boldsymbol{\pi}^\top S = \boldsymbol{0}^\top$ を示す. 0次同次性 $\boldsymbol{q}\left(t \boldsymbol{\pi}, t Y\right) = \boldsymbol{q}\left(\boldsymbol{\pi}, Y\right)$ を $t$ で微分して $t = 1$ とおくと, Euler の定理 $\sum_l \pi_l\, \partial q_k / \partial \pi_l + Y\, \partial q_k / \partial Y = 0$ を得る. adding-up $\sum_k \pi_k q_k = Y$ を $\pi_l$ と $Y$ で微分すると, $q_l + \sum_k \pi_k\, \partial q_k / \partial \pi_l = 0$ と $\sum_k \pi_k\, \partial q_k / \partial Y = 1$ を得る. これらと @eq-slutsky から
-$$
-\begin{aligned}
-\left(S \boldsymbol{\pi}\right)_k &= \sum_l \frac{\partial q_k}{\partial \pi_l} \pi_l + \left(\sum_l q_l \pi_l\right) \frac{\partial q_k}{\partial Y} = - Y \frac{\partial q_k}{\partial Y} + Y \frac{\partial q_k}{\partial Y} = 0, \\
-\left(\boldsymbol{\pi}^\top S\right)_l &= \sum_k \pi_k \frac{\partial q_k}{\partial \pi_l} + q_l \sum_k \pi_k \frac{\partial q_k}{\partial Y} = - q_l + q_l = 0
-\end{aligned}
-$$
-である. したがって $M \boldsymbol{\pi} = S \boldsymbol{\pi} - \left(\boldsymbol{\pi}^\top S\right)^\top = \boldsymbol{0}$ で, 価格ベクトル $\boldsymbol{\pi} \neq \boldsymbol{0}$ が $M$ の核に入るので, $M$ のランクは $n - 1$ 以下である.
-
-(対称性) $n = 2$ のとき $M = \begin{pmatrix} 0 & m \\ -m & 0 \end{pmatrix}$ と書け, $M \boldsymbol{\pi} = \left(m \pi_2, -m \pi_1\right)^\top = \boldsymbol{0}$ と $\pi_1, \pi_2 > 0$ から $m = 0$ である. すなわち財が2つなら Slutsky 行列は必ず対称で, 対称性の検定には3つ以上の財が必要である.
-
-(SR1) $n \leq 4$ なら $M$ のランクは $n - 1 \leq 3$ 以下で, しかも偶数なので $2$ 以下である. 第1の事実より, $S$ は必ず対称行列とランク高々 $1$ の行列の和に書ける. すなわち財が4つ以下なら SR1 は需要関数に何の制約も課さず, SR1 の検定には5つ以上の財が必要である.
-
-:::
-
-ここで扱ったのは「対称行列とランク $1$ の行列の和に書ける」という等式の制約だけです. 分解の対称部分 $\Sigma$ が負値半定符号であることからは, これとは別に不等式の制約が出ます [@browning1998, Proposition 3].
 
 ### Nash 交渉と collective model の双対性 {#prf-nash-collective}
 
@@ -462,15 +440,33 @@ $$
 
 ::: {.proof}
 
-結婚時のウェイト $\mu_{j0} = \mu_j\left(\Omega_0\right)$ のもとで, 家計は生涯効用の加重和
+期 $t$ までに実現したショック (賃金 $\boldsymbol{W}_t$, distribution factor $\boldsymbol{Z}_t$ など) の履歴を $s^t$ と書き, 簡単のためショックは離散的とする. 家計が選ぶのは労働時間 $h_{1t}, h_{2t}$ と貯蓄 $a_{t+1}$ で, 履歴 $s^t$ に応じて決めてよい. 消費 $q_t$ は予算制約から
 $$
-\sum_{j} \mu_{j0}\, \mathbb{E}_0 \sum_{t=0}^{\bar{t}} \beta^t u_{jt}
+q_t = \left(1 + r\right) a_t + w_{1t} h_{1t} + w_{2t} h_{2t} - a_{t+1}
 $$
-を, 予算制約と, 各期 $t \geq 1$・各人 $j$ の参加制約 @eq-participation のもとで最大化する. ここで $u_{jt} = u_j\left(q_t, h_{jt}\right)$ と略記する. 期 $t$ の参加制約の Lagrange 乗数を $\beta^t \nu_{jt}$ と基準化する. $\nu_{jt} \geq 0$ は期 $t$ までの情報で決まる確率変数で, 制約が等号で成り立たない状態ではゼロである (相補スラック条件). Lagrangian のうち参加制約の部分は
+と決まるので ($r$ は利子率, $a_0$ は所与で $a_{\bar{t} + 1} = 0$), これを効用に代入し, $u_{jt} = u_j\left(q_t, h_{jt}\right)$ と略記する. 予算制約は @theloudis2025 では税・給付を通した可処分所得で書かれているが, 以下の導出には関係しないので省いた. 結婚時のウェイト $\mu_{j0} = \mu_j\left(\Omega_0\right)$ のもとで, 限定コミットメントの家計の問題は
 $$
-\sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt} \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)
+\begin{aligned}
+\max_{\left\{h_{1t}, h_{2t}\right\}_{t=0}^{\bar{t}},\ \left\{a_{t+1}\right\}_{t=0}^{\bar{t} - 1}}\ & \sum_{j=1}^{2} \mu_{j0}\, \mathbb{E}_0 \sum_{t=0}^{\bar{t}} \beta^t u_{jt} \\
+\text{s.t.}\ & \mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} \geq \tilde{V}_{jt}\left(\Omega_{jt}\right), \quad t = 1, \ldots, \bar{t},\ j = 1, 2
+\end{aligned}
 $$
-である. $\nu_{jt}$ は期 $t$ に分かっているので, 繰り返し期待値の法則から
+である. 制約は参加制約 @eq-participation で, 各期のすべての履歴 $s^t$ で課される. 参加制約を外せば完全コミットメントの問題になる.
+
+参加制約に Lagrange 乗数を掛けて目的関数に入れる. 履歴 $s^t$ での $j$ の参加制約の乗数を $\beta^t \Pr\left(s^t\right) \nu_{jt}\left(s^t\right)$ と基準化する. $\nu_{jt}\left(s^t\right) \geq 0$ で, 制約が等号で成り立たない履歴ではゼロである (相補スラック条件). 確率で重み付けた和は期待値なので, 期 $t$ の参加制約に乗数を掛けてすべての履歴について足したものは
+$$
+\sum_{s^t} \beta^t \Pr\left(s^t\right) \nu_{jt}\left(s^t\right) \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)
+= \mathbb{E}_0 \left[\beta^t \nu_{jt} \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)\right]
+$$
+となる. したがって Lagrangian は
+$$
+\mathcal{L}
+= \sum_{j} \mu_{j0}\, \mathbb{E}_0 \sum_{t=0}^{\bar{t}} \beta^t u_{jt}
++ \sum_{j} \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt} \left(\mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau} - \tilde{V}_{jt}\right)
+$$
+である.
+
+あとは第2項を整理する. $\nu_{jt}$ は履歴 $s^t$ の関数で期 $t$ に分かっているので, 繰り返し期待値の法則から
 $$
 \mathbb{E}_0 \left[\beta^t \nu_{jt}\, \mathbb{E}_t \sum_{\tau = t}^{\bar{t}} \beta^{\tau - t} u_{j\tau}\right]
 = \mathbb{E}_0 \sum_{\tau = t}^{\bar{t}} \beta^{\tau} \nu_{jt}\, u_{j\tau}
@@ -482,12 +478,13 @@ $$
 $$
 なので, Lagrangian は
 $$
-\mathbb{E}_0 \sum_{\tau = 0}^{\bar{t}} \beta^{\tau} \sum_j \mu_{j\tau}\, u_{j\tau}
+\mathcal{L}
+= \mathbb{E}_0 \sum_{\tau = 0}^{\bar{t}} \beta^{\tau} \sum_j \mu_{j\tau}\, u_{j\tau}
 - \sum_j \mathbb{E}_0 \sum_{t=1}^{\bar{t}} \beta^t \nu_{jt}\, \tilde{V}_{jt},
 \qquad
 \mu_{j\tau} := \mu_{j0} + \sum_{t=1}^{\tau} \nu_{jt}
 $$
-と書ける. 期 $\tau$ の効用にかかる重みは $\mu_{j\tau}$ であり, 定義から $\mu_{j\tau} = \mu_{j, \tau - 1} + \nu_{j\tau}$ が成り立つ. これが @eq-lc-weight である. 外部オプションの価値 $\tilde{V}_{jt}$ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが [@theloudis2025], 効用にかかる重みの動きは変わらない.
+と書ける. 第1項は, 期ごと・履歴ごとに変わるウェイト $\mu_{j\tau}$ を付けた効用の加重和である. 期 $\tau$ の効用にかかる重みは $\mu_{j\tau}$ であり, 定義から $\mu_{j\tau} = \mu_{j, \tau - 1} + \nu_{j\tau}$ が成り立つ. これが @eq-lc-weight である. 参加制約のない完全コミットメントでは $\nu_{jt} = 0$ なので, $\mu_{j\tau} = \mu_{j0}$ が一定になる. 外部オプションの価値 $\tilde{V}_{jt}$ が家計の選択 (離婚時に分ける資産など) に依存する場合は, 第2項から各期の目的関数に追加の項が加わるが [@theloudis2025], 効用にかかる重みの動きは変わらない.
 
 :::
 
