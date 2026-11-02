@@ -132,6 +132,7 @@ end
 
 ```{julia}
 #| label: fig-vfi
+#| code-fold: true
 #| fig-cap: Value Function Iteration.
 m = Model()
 vfi!(m)
@@ -142,7 +143,7 @@ plot(m.k_grid, m.Vs, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 
 ::: {.content-visible when-format="html"}
 
-**収束の可視化**
+#### 収束の可視化
 
 スライダー (Iteration $N$) を動かすと, 各反復での価値関数 $V^N(k)$ (実線) が不動点 (灰色の破線) へ収束していく様子を確認できます.
 
@@ -310,8 +311,8 @@ $${#eq-pfi-euler}
 実装では, 補間 $\tilde{h}^N$ を `h_itp` として表します. これは1回の反復の中では変化しないので, 反復の冒頭で一度だけ構築し, その反復内のすべての `find_zero` の評価で使い回します (`euler_eq` には政策のベクトルではなく, この構築済みの `h_itp` を渡します). ここでは補間に `linear_interpolation` を使っていますが, スプライン補間などに差し替えても構いません.
 
 ```{julia}
-#| label: fig-pfi
-#| fig-cap: Policy Function Iteration.
+#| label: fn-pfi
+#| output: false
 function euler_eq(c, k, h_itp; m)
     (; β, δ, k_grid) = m
 
@@ -360,7 +361,12 @@ function pfi!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-pfi
+#| code-fold: true
+#| fig-cap: Policy Function Iteration.
 m = Model()
 pfi!(m)
 plot(m.k_grid, m.hs, label=false, xlabel=L"Capital $k$",
@@ -369,7 +375,7 @@ plot(m.k_grid, m.hs, label=false, xlabel=L"Capital $k$",
 
 ::: {.content-visible when-format="html"}
 
-**収束の可視化**
+#### 収束の可視化
 
 スライダー (Iteration $N$) を動かすと, 各反復での政策関数 $h^N(k)$ (実線) が不動点 (灰色の破線) へ収束していく様子を確認できます.
 
@@ -502,7 +508,7 @@ Plot.plot({
 })
 ```
 
-**価値関数の復元**
+#### 価値関数の復元
 
 ここから $k' := g(k) = f(k) + (1-\delta)k - h(k)$ が求められます. さらに, $h(k), g(k)$ から価値関数 $V(k)$ を求める方法は主に2つあります.
 
@@ -527,7 +533,42 @@ Plot.plot({
 
 :::
 
-$P$ の重みは線形補間の重みそのものです. $P \boldsymbol{V}$ の $i$ 行目は $P_{i, j} V_j + P_{i, j+1} V_{j+1}$ であり, 来期の価値 $V(g(k_i))$ を両隣のグリッド点の値から線形補間したもの (@sec-interpolation) になっています.
+$P$ の重みは線形補間の重みそのものです. $P \boldsymbol{V}$ の $i$ 行目は $P_{i, j} V_j + P_{i, j+1} V_{j+1}$ であり, 来期の価値 $V(g(k_i))$ を両隣のグリッド点の値から線形補間したもの (@sec-interpolation) になっています. 幾何的には, $g(k_i)$ が区間 $[k_j, k_{j+1}]$ を内分する比で重みが決まり, 各点の重みは反対側の区間の長さに比例します (@fig-lottery-weights). $g(k_i)$ に近いグリッド点ほど大きな重みを受け取ります.
+
+```{julia}
+#| label: fig-lottery-weights
+#| echo: false
+#| fig-cap: Transition weights as an interior division.
+#| fig-notes: "点線は真の価値関数 (イメージ), 黒線は $V_j$ と $V_{j+1}$ の線形補間. 下の各区間の長さを $k_{j+1} - k_j$ で割ったものが, 同じ色のグリッド点の重み $P_{i, j}, P_{i, j+1}$ になる."
+V_illust(k) = 2log(k)   # illustrative value function
+k_lo, k_hi, g = 1.0, 3.0, 1.6
+V_lo, V_hi = V_illust(k_lo), V_illust(k_hi)
+ω = (k_hi - g) / (k_hi - k_lo)
+V_g = ω * V_lo + (1 - ω) * V_hi
+c_lo, c_hi = mypalette[6], mypalette[2]
+y_seg = -0.45           # height of the segment bars
+
+p = plot(xlims=(0.6, 3.4), ylims=(-0.75, 2.6), yticks=false,
+    xticks=([k_lo, g, k_hi], [L"k_j", L"g(k_i)", L"k_{j+1}"]),
+    xlabel=L"Capital $k'$", ylabel=L"V(k')", legend=false)
+plot!(p, range(0.7, 3.3, length=100), V_illust, color=:gray, ls=:dot, lw=1)
+plot!(p, [k_lo, k_hi], [V_lo, V_hi], color=:black, lw=1.5)
+for (x, y) in ((k_lo, V_lo), (g, V_g), (k_hi, V_hi))
+    plot!(p, [x, x], [y_seg, y], color=:gray, ls=:dash, lw=0.8)
+end
+# each segment carries the color of the grid point it weights (the opposite end)
+plot!(p, [k_lo, g], [y_seg, y_seg], color=c_hi, lw=4)
+plot!(p, [g, k_hi], [y_seg, y_seg], color=c_lo, lw=4)
+annotate!(p, (k_lo + g) / 2, y_seg - 0.17, text(L"g(k_i) - k_j", 8, c_hi))
+annotate!(p, (g + k_hi) / 2, y_seg - 0.17, text(L"k_{j+1} - g(k_i)", 8, c_lo))
+scatter!(p, [k_lo], [V_lo], color=c_lo, ms=6, msw=0)
+scatter!(p, [k_hi], [V_hi], color=c_hi, ms=6, msw=0)
+scatter!(p, [g], [V_g], color=:white, msc=:black, ms=5)
+annotate!(p, k_lo - 0.08, V_lo + 0.15, text(L"V_j", 9, :right))
+annotate!(p, k_hi + 0.08, V_hi - 0.1, text(L"V_{j+1}", 9, :left))
+annotate!(p, g - 0.05, V_g + 0.35, text(L"P_{i,j} V_j + P_{i,j+1} V_{j+1}", 9, :right))
+p
+```
 
 ここでは, より高速な線型方程式を用いる方法を実装します. より速度を求める場合, 遷移行列はほとんどの要素がゼロであるため, 疎行列 (Sparse Matrix) を用いることで高速化する可能性があります. Juliaの場合, `SparseArrays.jl` で実装されています.
 
@@ -547,8 +588,8 @@ end
 ```
 
 ```{julia}
-#| label: fig-pfi-vf
-#| fig-cap: Value Function from PFI and Linear Equation.
+#| label: fn-compute-vf
+#| output: false
 function compute_vf!(m::Model)
     (; hs, n_k, k_grid, β, δ) = m
     P = zeros(n_k, n_k)
@@ -563,12 +604,19 @@ function compute_vf!(m::Model)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-pfi-vf
+#| code-fold: true
+#| fig-cap: Value Function from PFI and Linear Equation.
 compute_vf!(m)
 plot(m.k_grid, m.Vs, label=false, xlabel=L"Capital $k$", ylabel=L"Value $V(k)$")
 ```
 
-また, VFIよりもPFIの方が収束速度が速いことも確認できますが, 実行速度も速いことも確認できます.
+#### 実行速度の比較
+
+VFIよりもPFIの方が収束速度が速いことは確認しましたが, 実行速度も速いことも確認できます.
 
 ```{julia}
 #| label: bm-vfi
@@ -612,8 +660,8 @@ $$
 :::
 
 ```{julia}
-#| label: fig-egm
-#| fig-cap: Endogenous Grid Method.
+#| label: fn-egm
+#| output: false
 u_c_inv(marg_u; m) = 1 / marg_u
 
 function egm!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
@@ -654,7 +702,12 @@ function egm!(m::Model; tol=1e-6, max_iter=1000, verbose=true)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-egm
+#| code-fold: true
+#| fig-cap: Endogenous Grid Method.
 m = Model()
 egm!(m)
 plot(m.k_grid, m.hs, label=false, xlabel=L"Capital $k$",
@@ -688,8 +741,6 @@ println("Grid: ", round.(collect(z_chain.state_values), digits=3))
 println("Transition matrix Π:")
 z_chain.p
 ```
-
-`rouwenhorst` の引数の AR(1) の定義 (切片 $\mu$ の扱い) と, 過程の平均を任意の値に設定する方法は @sec-discretization を参照してください.
 
 ### Value Function Iteration
 
@@ -730,8 +781,8 @@ f_k(k, z; m) = z * m.α * k^(m.α - 1)
 ```
 
 ```{julia}
-#| label: fig-model-stochastic
-#| fig-cap: Value Function of Stochastic Model.
+#| label: fn-vfi-stochastic
+#| output: false
 function vfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, z_grid, β, δ, Π) = m
 
@@ -763,7 +814,12 @@ function vfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-model-stochastic
+#| code-fold: true
+#| fig-cap: Value Function of Stochastic Model.
 m_stoch = StochasticModel()
 vfi!(m_stoch)
 p = plot(m_stoch.k_grid, m_stoch.V[:, 5], label=L"z_5",
@@ -787,8 +843,8 @@ $$ {#eq-pfi-euler-stochastic}
 決定論的な場合 (@eq-pfi-euler) との違いは2点だけです. 第一に, 政策関数が $h(k, z)$ と2変数になるため, 補間は生産性の状態ごとに1本ずつ, 計 $n_z$ 本の $\tilde{h}(\cdot, z')$ を作ります. $z$ はグリッド上の有限個の状態しか取らないので, 補間が必要なのは $k$ の方向だけです. 第二に, 右辺が $\pi(z' \mid z)$ による期待値になります. なお予算制約 $k' = f(k, z) + (1-\delta)k - c$ に入るのは今期の $z$ である点に注意してください.
 
 ```{julia}
-#| label: fig-pfi-stochastic
-#| fig-cap: Policy Function Iteration (Stochastic).
+#| label: fn-pfi-stochastic
+#| output: false
 function euler_eq(c, k, i_z, h_itps; m)
     (; β, δ, k_grid, z_grid, Π) = m
 
@@ -840,7 +896,12 @@ function pfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-pfi-stochastic
+#| code-fold: true
+#| fig-cap: Policy Function Iteration (Stochastic).
 m_stoch_pfi = StochasticModel()
 pfi!(m_stoch_pfi)
 p = plot(m_stoch_pfi.k_grid, m_stoch_pfi.h[:, 5], label=L"z_5",
@@ -852,13 +913,13 @@ end
 p
 ```
 
-**価値関数の復元**
+#### 価値関数の復元
 
-PFI が返すのは政策関数 $h(k, z)$ です. 決定論的な場合と同じ線形方程式で価値関数 $V(k, z)$ を復元できます. 政策から来期資本 $g(k, z) = f(k, z) + (1-\delta)k - h(k, z)$ を求め, $(k, z)$ 上の遷移行列 $P$ を作ります. 資本方向は決定論的な場合と同じく `lottery` の重みで $g(k, z)$ を挟む2つのグリッド点に振り分け, 生産性方向は $\pi(z' \mid z)$ で遷移させます. すると $\boldsymbol{V} = (I - \beta P)^{-1} \boldsymbol{u}$ で価値関数が求まります.
+価値関数の復元は決定論的な場合 (@alg-value-recovery) と同じです. 違いは状態が $(k, z)$ になる点だけで, $(k, z)$ から $(k_j, z')$ への遷移確率は `lottery` の重みと $\pi(z' \mid z)$ の積になります.
 
 ```{julia}
-#| label: fig-vfi-recover
-#| fig-cap: Value function recovered from the PFI policy (stochastic model).
+#| label: fn-compute-vf-stochastic
+#| output: false
 function compute_vf!(m::StochasticModel)
     (; h, n_k, n_z, k_grid, z_grid, β, δ, Π) = m
     n_kz = n_k * n_z
@@ -878,7 +939,12 @@ function compute_vf!(m::StochasticModel)
     m.V .= reshape((I - β * P) \ us, n_k, n_z)
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-vfi-recover
+#| code-fold: true
+#| fig-cap: Value function recovered from the PFI policy (stochastic model).
 compute_vf!(m_stoch_pfi)
 p = plot(m_stoch_pfi.k_grid, m_stoch_pfi.V[:, 5], label=L"z_5",
     xlabel=L"Capital $k$", ylabel=L"Value $V(k, z)$")
@@ -898,8 +964,8 @@ $$
 この $c$ から資源制約 $c + k' = z k^\alpha + (1-\delta)k$ を $k$ について解けば内生グリッドが得られます. 決定論的な場合との違いは2点だけです. 第一に, 右辺が $\pi(z' \mid z)$ による期待値になります. 第二に, 資源制約の左辺 $M(k, z) = z k^\alpha + (1-\delta)k$ が今期の $z$ に依存するので, その逆関数 $M^{-1}(\cdot, z)$ を生産性の状態ごとに1本ずつ用意します.
 
 ```{julia}
-#| label: fig-egm-stochastic
-#| fig-cap: Endogenous Grid Method (Stochastic).
+#| label: fn-egm-stochastic
+#| output: false
 function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
     (; k_grid, z_grid, β, δ, Π, n_z) = m
     # resource function M(k, z) = z k^α + (1-δ)k, inverse per state
@@ -941,7 +1007,12 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
 
     return nothing
 end
+```
 
+```{julia}
+#| label: fig-egm-stochastic
+#| code-fold: true
+#| fig-cap: Endogenous Grid Method (Stochastic).
 m_stoch_egm = StochasticModel()
 egm!(m_stoch_egm)
 p = plot(m_stoch_egm.k_grid, m_stoch_egm.h[:, 5], label=L"z_5",
@@ -957,7 +1028,7 @@ p
 
 ## Aiyagari モデル {#sec-dp-hetero}
 
-数値計算を行う最大のモチベーションは, 異質な個人を扱うということです. コアマクロで扱った, Ramsey 型の代表的個人モデルを自然に拡張したものが Aiyagari モデルです [@aiyagari1994].
+数値計算を行う最大のモチベーションは, 異質な個人を扱うということです. コアマクロで扱った, Ramsey 型の代表的個人モデルを自然に拡張したものが Aiyagari モデルです [@aiyagari1994]. 家計の問題は @sec-dp-stochastic の確率的なモデルとほぼ同じで, 違いは (1) ショックが家計ごとに独立な個別ショックであること, (2) 借入制約があることの2点です.
 
 ### モデル
 
@@ -969,7 +1040,7 @@ $$
 $$
 \log z_{t+1} = \rho \log z_t + \sigma \varepsilon_{t+1}, \qquad \varepsilon_{t+1} \sim \mathcal{N}(0, 1).
 $$
-ここで $\rho \in (-1, 1)$ なので $z_t$ は定常なマルコフ過程です. その定常分布関数を $\Phi(z)$, 遷移分布関数を $\Pi\left(z' \mid z\right) = \Pr\left(z_{t+1} \leq z' \mid z_t = z\right)$ と書きます. 将来の期待値 $\mathbb{E}\left[\cdot \mid z\right]$ はこの $\Pi$ に関する積分です.
+その定常分布を $\Phi(z)$, 遷移分布を $\Pi\left(z' \mid z\right)$ と書きます.
 
 
 家計が保有できる資産は単一の安全資産 $a_t$ のみです. 実質賃金 $w$ と実質利子率 $r$ を所与として, 予算制約は
@@ -999,9 +1070,9 @@ $${#eq-aiyagari-euler}
 等式は $a' > -\underline{a}$ のとき成立します.
 
 
-::: {.remark}
+::: {.callout-note collapse="true"}
 
-## 予備的貯蓄, precautionary saving
+## 予備的貯蓄 (precautionary saving)
 
 CRRA 効用は $u_{ccc}(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u_c(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼び, 保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機です.
 
@@ -1052,17 +1123,17 @@ $$
 
 ## 市場が完備な場合
 
-完備市場とは, 個別状態 $z$ のあらゆる実現に対して支払いが条件づけられた証券 (Arrow 証券) を家計が自由に売買できる状況を指す. 本モデルには集計的な不確実性がない (個別ショックは大数の法則で平均化される) ため, 個別リスクは完全に分散可能である. したがって均衡では完全なリスク分散 (perfect risk sharing) が達成され, 各家計の消費は個別状態 $z$ に依存しなくなる.
+完備市場とは, 個別状態 $z$ のあらゆる実現に対して支払いが条件づけられた証券 (Arrow 証券) を家計が自由に売買できる状況を指します. 本モデルには集計的な不確実性がない (個別ショックは大数の法則で平均化される) ため, 個別リスクは完全に分散可能です. したがって均衡では完全なリスク分散 (perfect risk sharing) が達成され, 各家計の消費は個別状態 $z$ に依存しなくなります.
 
-これを家計の問題で見る. 完備市場では予算制約が生涯の一本の異時点間制約に統合され, 状態ごとの借入制約 $a' \geq -\underline{a}$ は均衡で拘束しない. このとき @eq-aiyagari-euler は等号で成立し, さらにリスク分散により $c_{t+1}$ が確実 (個別状態によらず一定) になるので, 右辺の期待値が外れて
+これを家計の問題で確認しましょう. 完備市場では予算制約が生涯の一本の異時点間制約に統合され, 状態ごとの借入制約 $a' \geq -\underline{a}$ は均衡で拘束しません. このとき @eq-aiyagari-euler は等号で成立し, さらにリスク分散により $c_{t+1}$ が確実 (個別状態によらず一定) になるので, 右辺の期待値が外れて
 $$
 u_c(c_t) = \beta (1+r)\, u_c(c_{t+1})
 $$
-となる. 集計的な不確実性も成長もない定常状態では消費は一定 $c_t = c_{t+1}$ なので $u_c(c_t) = u_c(c_{t+1})$ となり,
+となります. 集計的な不確実性も成長もない定常状態では消費は一定 $c_t = c_{t+1}$ なので $u_c(c_t) = u_c(c_{t+1})$ となり,
 $$
 1 = \beta (1 + r) \quad\Longleftrightarrow\quad r = \frac{1}{\beta} - 1.
 $$
-すなわち均衡利子率は時間選好率にちょうど一致する. これは, 集計量が代表的個人の新古典派成長モデルと同じ修正黄金律に従うことの帰結でもある. 完備市場では予備的貯蓄の動機が消えるため, 資産供給曲線 $A(r)$ は @fig-supply-demand の不完備市場の曲線よりも左に位置し, $r = 1/\beta - 1$ で初めて発散する. 不完備市場の均衡 $r^*$ がその手前に来るのは, この予備的貯蓄の分だけ供給が右に膨らむためである.
+すなわち均衡利子率は時間選好率にちょうど一致します. これは, 集計量が代表的個人の新古典派成長モデルと同じ修正黄金律に従うことの帰結でもあります. 完備市場では予備的貯蓄の動機が消えるため, 資産供給曲線 $A(r)$ は @fig-supply-demand の不完備市場の曲線よりも左に位置し, $r = 1/\beta - 1$ で初めて発散します. 不完備市場の均衡 $r^*$ がその手前に来るのは, この予備的貯蓄の分だけ供給が右に膨らむためです.
 
 :::
 
@@ -1080,24 +1151,16 @@ $$
 
 1. $r$ を所与として, @eq-aiyagari-Kd から賃金 $w(r)$ を計算する.
 1. 内側ループ (家計): EGM でオイラー方程式 (@eq-aiyagari-euler) を解き, 貯蓄の政策 $g(a, z)$ を得る.
-1. 政策 $g$ のもとで分布の更新式を反復し, 定常分布 $\Lambda$ を求める.
+1. 政策 $g$ のもとで遷移行列 $P$ を作り, 線形方程式を解いて定常分布 $\Lambda$ を求める.
 1. 総資産 $A(r) = \int a\, d\Lambda$ を集計する.
 
 $A(r)$ は $r$ について増加, $K^d(r)$ は減少するので, 超過需要は単調増加である. したがって二分法 (@sec-root-finding) が安定に使える.
 
 :::
 
-**生産性ショックの離散化**
+#### パラメータの設定
 
-モデルは連続な生産性 $z$ で書きましたが, 数値計算では状態空間を有限にする必要があります. 生産性の AR(1) 過程 $\log z' = \rho \log z + \sigma \varepsilon$ は, @sec-discretization の Rouwenhorst 法で $n_z$ 状態のマルコフ連鎖 $\{z_1, \ldots, z_{n_z}\}$ と遷移確率 $\pi(z' \mid z)$ に離散化します. これにより $\Pi$ に関する積分は有限和に置き換わり, 条件付き期待値は
-$$
-\mathbb{E}\left[ V(a', z') \mid z \right] = \int V(a', z')\, d\Pi\left(z' \mid z\right) \;\approx\; \sum_{z'} \pi(z' \mid z)\, V(a', z')
-$$
-と評価できます. 生産性の定常分布 $\Phi$ は遷移行列の不変分布に, 家計の定常分布 $\Lambda$ は資産グリッドと生産性グリッド上の確率質量 (コードの `λ`) に対応し, 定常性の条件はその質量の更新式になります. ここでは `QuantEcon.jl` の `rouwenhorst` と, 遷移行列の不変分布を求める `stationary_distributions` をそのまま使います.
-
-**パラメータの設定**
-
-モデルのパラメータと, 状態空間 (資産グリッドと生産性グリッド) を `AiyagariModel` にまとめます. 借入制約 $a \geq 0$ の近くで政策関数が大きく曲がるため, 資産グリッドは原点付近を密にとります.^[`(range(0, 1, length=n_a)).^2` のように $[0, 1]$ の等間隔点を二乗することで, 原点付近に点を集めたグリッドを作っています.] 生産性は不変分布での平均が $1$ になるよう基準化し, 総労働を $L = 1$ とします.
+モデルのパラメータと, 状態空間 (資産グリッドと生産性グリッド) を `AiyagariModel` にまとめます. 借入制約 $a \geq 0$ の近くで政策関数が大きく曲がるため, 資産グリッドは原点付近を密にとります.^[`(range(0, 1, length=n_a)).^2` のように $[0, 1]$ の等間隔点を二乗することで, 原点付近に点を集めたグリッドを作っています.] 生産性は @sec-dp-stochastic と同じく Rouwenhorst 法で $n_z$ 状態のマルコフ連鎖に離散化し, その不変分布 ($\Phi$ に対応) での平均が $1$ になるよう基準化して, 総労働を $L = 1$ とします. 不変分布は `QuantEcon.jl` の `stationary_distributions` で求めます.
 
 ```{julia}
 #| label: setup-model
@@ -1128,7 +1191,7 @@ K_demand(r, m) = m.L * (m.α / (r + m.δ))^(1 / (1 - m.α))
 wage(r, m) = (1 - m.α) * (m.α / (r + m.δ))^(m.α / (1 - m.α))
 ```
 
-**家計の問題 (内側ループ)**
+#### 家計の問題
 
 オイラー方程式 (@eq-aiyagari-euler) を EGM で解きます. 手順は @sec-dp-stochastic と同じで, 新しいのは借入制約の扱いだけです. 内生グリッドの下端 (コードの `as_endog[1]`) は $a' = 0$ を選ぶ家計に対応するので, 手持ち資産がこれより小さい家計では制約が拘束します. その領域では $a' = 0$ に張り付き, 消費は予算制約から $c = wz + (1+r)a$ となります.
 
@@ -1177,45 +1240,48 @@ function solve_household(r, m; tol=1e-9, max_iter=10_000)
 end
 ```
 
-**定常分布の計算 (滑らかな分布のための工夫)**
+#### 定常分布の計算
 
-EGM が返す貯蓄政策 $g(a, z)$ は補間で構成された滑らかな連続関数ですが, その返り値 $a'$ は資産グリッドの点とは限りません. これを最近傍のグリッド点に丸めて分布を更新すると, 到達可能な少数の点だけに質量が集中し, 分布がギザギザになります. そこで, $a'$ を挟む2つのグリッド点 $a_j \leq a' < a_{j+1}$ に家計の質量を按分します. 按分の重みは, PFI で価値関数を復元したとき (@alg-value-recovery) の遷移行列 $P$ の重みと同じ
-$$
-\omega = \frac{a_{j+1} - a'}{a_{j+1} - a_j}
-$$
-で, 関数もそこで定義した `lottery` をそのまま使います.
+家計の定常分布 $\Lambda$ は, 資産グリッドと生産性グリッド上の確率質量 $\lambda(a_i, z_k) = \Pr(a = a_i,\, z = z_k)$ (コードの `λ`) で表します. 分布関数を大文字, 確率質量を小文字で書き分けている点に注意してください.
 
-違うのは $P$ を使う向きだけです. 価値関数の復元では $P$ を右から $\boldsymbol{V}$ に掛け, 来期の価値 $V(a')$ を2点の値の加重平均 $\omega V_j + \left(1 - \omega\right) V_{j+1}$ で近似しました (線形補間). 分布の更新では, 同じ重みで今期の質量を来期の2点に振り分けます. 遷移行列 $P$ を確率的なモデルの価値関数の復元と同じく $(a, z)$ 上に作れば, 更新式は転置を掛けた $\boldsymbol{\lambda}' = P^\top \boldsymbol{\lambda}$ です. 下のコードは $P$ を作らずに, この積をループで直接計算しています.
+EGM が返す $a' = g(a, z)$ は資産グリッドの点とは限りません. 最近傍のグリッド点に丸めると質量が少数の点に集中して分布がギザギザになるので, `lottery` で $a'$ を挟む2点に質量を按分します. 按分しても資産の平均は $a'$ のまま保たれます. この按分の方法は非確率的シミュレーション (non-stochastic simulation) [@young2010] とも呼ばれます.
 
-重みは $\omega a_j + \left(1 - \omega\right) a_{j+1} = a'$ を満たすので, 振り分けた後の資産の平均はもとの $a'$ に一致します. 家計を確率 $\omega$ で $a_j$ に, 確率 $1 - \omega$ で $a_{j+1}$ に送る抽選とみなせるので, この使い方を抽選 (lottery) と呼びます. 非確率的シミュレーション [@young2010] としても知られ, 離散グリッド上で連続的な分布を精度よく近似します.
+按分の重みで @alg-value-recovery の遷移行列 $P$ を $(a, z)$ 上に作ると, 価値関数の復元が $P \boldsymbol{V}$ だったのに対し, 定常分布は転置を掛けた $\boldsymbol{\lambda} = P^\top \boldsymbol{\lambda}$ を満たします. $P$ の各行の和は $1$ なので $I - P^\top$ は特異で, このままでは $\boldsymbol{\lambda} = \boldsymbol{0}$ も解になります. そこで $(I - P^\top)\boldsymbol{\lambda} = \boldsymbol{0}$ のうち1本を正規化条件 $\sum_i \lambda_i = 1$ に置き換え, 線形方程式として解きます. $P$ は各行に非ゼロ要素が $2 n_z$ 個しかないので, `SparseArrays.jl` の疎行列で持ちます.
 
 ```{julia}
 #| label: fn-distribution
 #| output: false
-function distribution(g, m; tol=1e-12, max_iter=100_000)
+using SparseArrays
+
+function distribution(g, m)
     (; a_grid, Π, n_a, n_z) = m
-    λ = fill(1 / (n_a * n_z), n_a, n_z)
-    for _ in 1:max_iter
-        λ_new = zeros(n_a, n_z)
-        for iz in 1:n_z, ia in 1:n_a
-            # split a' between grid points
-            j_lo, j_hi, ω = lottery(g[ia, iz], a_grid)
-            for jz in 1:n_z
-                λ_new[j_lo, jz] += λ[ia, iz] * Π[iz, jz] * ω
-                λ_new[j_hi, jz] += λ[ia, iz] * Π[iz, jz] * (1 - ω)
-            end
+    n = n_a * n_z
+    state_index(ia, iz) = ia + (iz - 1) * n_a  # linear index for (a, z)
+    rows, cols, vals = Int[], Int[], Float64[]
+    for iz in 1:n_z, ia in 1:n_a
+        # split a' between grid points
+        j_lo, j_hi, ω = lottery(g[ia, iz], a_grid)
+        for jz in 1:n_z
+            push!(rows, state_index(ia, iz), state_index(ia, iz))
+            push!(cols, state_index(j_lo, jz), state_index(j_hi, jz))
+            push!(vals, ω * Π[iz, jz], (1 - ω) * Π[iz, jz])
         end
-        maximum(abs.(λ_new - λ)) < tol && return λ_new
-        λ = λ_new
     end
-    return λ
+    P = sparse(rows, cols, vals, n, n)  # duplicate entries are summed
+
+    # λ = Pᵀλ is singular; replace the first equation with sum(λ) = 1
+    A = sparse(I - P')
+    A[1, :] .= 1.0
+    b = zeros(n)
+    b[1] = 1.0
+    return reshape(A \ b, n_a, n_z)
 end
 
 aggregate_A(λ, m) =
     sum(λ[ia, iz] * m.a_grid[ia] for ia in 1:m.n_a, iz in 1:m.n_z)
 ```
 
-**一般均衡 (外側ループ)**
+#### 一般均衡
 
 与えられた $r$ に対する超過需要 $A(r) - K^d(r)$ を関数にまとめ, Bracketing method でゼロ点を求めます. 上限は完備市場の利子率 $1/\beta - 1$ のすぐ手前に置きます.
 
@@ -1239,7 +1305,7 @@ K_star = K_demand(r_star, m_aiyagari)
 
 ### 結果
 
-**貯蓄の政策関数**
+#### 貯蓄の政策関数
 
 均衡 $r^*$ における貯蓄の政策関数 $a' = g(a, z)$ を生産性ごとに描きます. 低生産性の家計は手持ち資産を取り崩し ($a' < a$), 高生産性の家計は資産を積み増します. 借入制約 $a' = 0$ が拘束するのは $z_{\min}$ の家計の $a \lesssim 0.03$ の範囲だけで, 資産の全域 ($a \leq 50$) に比べると非常に狭いため, 右のパネルで原点付近を拡大しています. 労働所得の下限 $w z_{\min} \approx 0.37$ が正である限り, 無資産の家計でも消費を賄えるので, 制約が効く領域はこの程度に留まります.
 
@@ -1264,7 +1330,7 @@ plot(policy_panel(20.0), policy_panel(0.3, legend=false),
     layout=(1, 2), size=(700, 300))
 ```
 
-**資産の定常分布**
+#### 資産の定常分布
 
 定常分布を資産について周辺化すると, 富の分布が得られます. ヒストグラムにするときは集計の仕方に注意が必要です. 資産グリッドは原点付近を密にとっているので, 各グリッド点の質量を素朴に等間隔ビンへ足し込むと, ビンに入るグリッド点の数が場所によって 2 個や 3 個と変わり, 分布の性質ではない凹凸が出ます. そこで各グリッド点の質量を, その点が代表する区間 (隣接点との中点で区切った幅) とビンの重なりに応じて按分します. 借入制約上の質量は幅を持たない点質量なので, 最初のビンにそのまま入れます.
 
@@ -1297,20 +1363,23 @@ bar(bin_centers, masses_by_bin, label=false, xlabel=L"a", ylabel="mass",
     lw=0, color=1, bar_width=step(bin_edges), xlims=(-0.8, 30))
 ```
 
-**資本の需要と供給**
+#### 資本の需要と供給
 
-最後に, Aiyagari モデルを象徴する図を描きます. 利子率 $r$ の各値に対して資産供給 $A(r)$ と資本需要 $K^d(r)$ を計算し, 縦軸に $r$, 横軸に資本をとります. 供給曲線は右上がりで $r \to 1/\beta - 1$ の水平線に漸近し, 需要曲線は右下がりです. 両者の交点が均衡で, 完備市場の利子率より低い位置にあります.
+最後に, Aiyagari モデルを象徴する図を描きます. 利子率 $r$ の各値に対して資産供給 $A(r)$ と資本需要 $K^d(r)$ を計算し, 縦軸に $r$, 横軸に資本をとります. 供給曲線は右上がりで $r \to 1/\beta - 1$ の水平線に漸近し, 需要曲線は右下がりです. 両者の交点が均衡で, 完備市場の利子率より低い位置にあります. 完備市場では供給曲線が水平線 $r = 1/\beta - 1$ そのものになるので, その均衡は $K^d(r)$ と水平線の交点です.
 
 ```{julia}
 #| label: fig-supply-demand
 #| code-fold: true
 #| fig-cap: "Capital supply and demand"
-#| fig-notes: "灰破線は完備市場の利子率 $1/\\beta - 1$, 点は均衡 $\\left(K^*, r^*\\right)$."
+#| fig-notes: "灰破線は完備市場の利子率 $1/\\beta - 1$. 黒点は不完備市場の均衡 $\\left(K^*, r^*\\right)$, 白抜きの点は完備市場の均衡."
 r_grid = range(-0.01, r_complete - 2e-3, length=40)
 As_supply = [aggregate_A(distribution(solve_household(r, m_aiyagari),
                                       m_aiyagari), m_aiyagari)
              for r in r_grid]
-Ks_demand = K_demand.(r_grid, Ref(m_aiyagari))
+# demand is defined for any r, so extend it past the complete-markets rate
+r_grid_demand = range(-0.01, r_complete + 0.004, length=40)
+Ks_demand = K_demand.(r_grid_demand, Ref(m_aiyagari))
+K_complete = K_demand(r_complete, m_aiyagari)
 
 visible = As_supply .<= 13.2     # both curves end at a similar capital level
 xmax = 15.0
@@ -1318,15 +1387,17 @@ xmax = 15.0
 plot(As_supply[visible], r_grid[visible], label=false, lw=2,
     xlabel="capital", ylabel=L"r",
     xlims=(0, xmax), ylims=(-0.015, r_complete + 0.007))
-plot!(Ks_demand, r_grid, label=false, lw=2)
+plot!(Ks_demand, r_grid_demand, label=false, lw=2)
 plot!([0, 13.6], [r_complete, r_complete], ls=:dash, color=:gray, lw=1,
     label=false)
 scatter!([K_star], [r_star], label=false, color=mypalette[3])
+scatter!([K_complete], [r_complete], label=false, color=:white,
+    msc=mypalette[3])
 
 # label each line at its right end instead of using a legend
 annotate!(As_supply[visible][end] + 0.3, r_grid[visible][end],
     text(L"A(r)", :black, 9, :left))
-annotate!(Ks_demand[begin] + 0.3, r_grid[begin],
+annotate!(Ks_demand[begin] + 0.3, r_grid_demand[begin],
     text(L"K^d(r)", :black, 9, :left))
 annotate!(13.9, r_complete, text(L"1/\beta - 1", :black, 9, :left))
 annotate!(K_star - 0.4, r_star - 0.004, text(L"r^*", :black, 9, :left))
