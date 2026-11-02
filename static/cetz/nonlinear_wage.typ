@@ -1,6 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
+#show: fig-style
 
 #let xbar = 0.5
 #let theta1 = 2.0

@@ -257,7 +257,7 @@ $$
 
 :::
 
-![Vizualization of Trapezoidal Rule](/static/cetz/trapezoid_rule.svg){#fig-trapezoid-rule width=100%}
+![Vizualization of Trapezoidal Rule](/static/cetz/trapezoid_rule.svg){#fig-trapezoid-rule}
 
 ここでは, $f(x) = \sqrt{1 - x^2}$ の $[0, 1]$ での積分を計算してみましょう. 単位円の1/4の面積であるため, 解析解は $\pi / 4$ です.
 
@@ -397,7 +397,7 @@ println("Mean hours, quasi-Monte Carlo with $(n_sobol) Sobol points: ",
 
 ### ガウス求積 (Gaussian Quadrature)
 
-::: {#prp-gauss-quadrature}
+::: {#prp-gauss-quadrature proof="prf-gauss-quadrature"}
 
 ## ガウス求積 (Gaussian Quadrature)
 
@@ -408,8 +408,6 @@ $$
 が任意の $2n-1$ 次の多項式 $f(x)$ において成り立つ.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-gauss-quadrature)にあります.
 
 この方法は近似値ではなく, $2n-1$ 次の多項式に対して**厳密な**値を計算することができるという点で強力です. また, $f(x)$ が $2n-1$ 次の多項式で十分近似できる場合, 精度の高い計算が可能です.
 
@@ -546,7 +544,7 @@ $$
 
 :::
 
-![**Visualization of Tauchen Method**.](/static/cetz/tauchen_method.svg){#fig-tauchen-method width=100%}
+![**Visualization of Tauchen Method**.](/static/cetz/tauchen_method.svg){#fig-tauchen-method}
 
 ```{julia}
 #| label: tauchen-method

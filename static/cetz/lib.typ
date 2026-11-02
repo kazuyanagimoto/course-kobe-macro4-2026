@@ -16,6 +16,18 @@
 #let stroke-dashed = (dash: "dashed", paint: gray)
 #let stroke-guide = (paint: gray)
 
+// ---- text -------------------------------------------------------------------
+// The notes include every figure at its natural size (`width` = SVG width /
+// 450pt, the PDF text width), so this is the size the reader sees: a step
+// below the 10pt body, like jsbook's \small, in the body's latin font. Apply
+// with `#show: fig-style` and draw a figure larger through the canvas
+// `length`, never by scaling it in the notes.
+#let fig-text-size = 9pt
+#let fig-style(body) = {
+  set text(font: "New Computer Modern", size: fig-text-size)
+  body
+}
+
 // ---- coordinate context -----------------------------------------------------
 // x-range / y-range: (min, max) of the visible data window.
 // size: (width, height) in canvas units (scaled by canvas `length`).

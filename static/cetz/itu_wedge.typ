@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 8pt)
+#show: fig-style
 
 // Explicit parameterisation of a bargaining frontier by the wedge w = u - v.
 // Each w picks out the single frontier point on the slope-1 line through
@@ -30,7 +30,7 @@
 
 #let uBottom = bisect(u => front(u) - ymin, xmin, calc.ln(bigB) - 0.0001)
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 4.7cm, {
   import cetz.draw: *
 
   let ctx = plot-ctx(x-range: (xmin, xmax), y-range: (ymin, ymax), size: (1.95, 1.6))

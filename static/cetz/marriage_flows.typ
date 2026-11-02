@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 9pt)
+#show: fig-style
 
 #cetz.canvas(length: 1cm, {
   import cetz.draw: *

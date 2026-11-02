@@ -86,7 +86,7 @@ Non-bracketing method は基本的には一階微分を利用し, 初期値 $x_0
 
 :::
 
-![Visualization of Newton Method](/static/cetz/newton_method.svg){#fig-newton-method width=80%}
+![Visualization of Newton Method](/static/cetz/newton_method.svg){#fig-newton-method}
 
 ```{julia}
 #| label: find-zero-newton
@@ -262,7 +262,7 @@ Bracketing method は, 解が存在する区間 $[a, b]$ を選び, その区間
 :::
 
 
-![Visualization of Bisection Method](/static/cetz/bisection_method.svg){#fig-bisection-method width=80%}
+![Visualization of Bisection Method](/static/cetz/bisection_method.svg){#fig-bisection-method}
 
 例えば, 今回の例では $l \in (0, 1)$ ですので, $l = 0$ と $l = 1$ で効用が発散することから, 解が存在する区間は $(0, 1)$ です. なお, 端点でFOCが定義されてない場合も多いので, 端点より微小に内側の区間を選ぶことが多いです.
 
@@ -601,7 +601,7 @@ println("BFGS with Fminbox: l = ", result.minimizer[1])
 
 :::
 
-![Visualization of Golden Section Search](/static/cetz/golden_section.svg){#fig-golden-section width=80%}
+![Visualization of Golden Section Search](/static/cetz/golden_section.svg){#fig-golden-section}
 
 @fig-golden-section は単峰関数 $f$ に対する黄金分割法の一ステップを表しています. 内分点 $x_1, x_2$ で関数値を比較し, $f(x_1) > f(x_2)$ であるため極小値は $x_1$ より右側にあると判断でき, 区間の左端を $a \leftarrow x_1$ (赤い破線) に更新して探索区間を縮小します.
 

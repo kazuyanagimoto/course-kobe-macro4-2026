@@ -59,6 +59,10 @@ filters:
   - static/filters/sec-ref-ja.lua
   # Typst only: Observable JS cells need a browser, so the PDF leaves them out.
   - static/filters/ojs-html-only.lua
+  # ::: {#prp-x proof="prf-x"}: a link to the proof at the end of the statement.
+  - static/filters/proof-link.lua
+  # static/cetz/*.svg at their natural size, so all figures share one text size.
+  - static/filters/cetz-width.lua
   # HTML only: a theorem label with nothing after it gets a paragraph of its
   # own, so that the label line styled in styles.css leaves no empty line.
   - path: static/filters/theorem-label.lua

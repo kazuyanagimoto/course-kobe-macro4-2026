@@ -1,6 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
+#show: fig-style
 
 #show math.equation: block.with(fill: white, inset: 1pt)
 
@@ -10,7 +11,7 @@
 #let b0 = 1.8
 #let a1 = (a0 + b0) / 2
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 5cm, {
   import cetz.draw: *
 
   let ctx = plot-ctx(x-range: (0, 2.4), y-range: (-2.6, 3.0), size: (2, 1))

@@ -65,6 +65,41 @@
   margin-bottom: 0;
 }
 
+/* Link to the proof in the appendix (static/filters/proof-link.lua): a small
+   outlined pill at the bottom right of the box, filled on hover. */
+.theorem .proof-link {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.theorem .proof-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.1rem 0.75rem;
+  border: 1px solid rgba(var(--thm-rgb), 0.5);
+  border-radius: 999px;
+  color: var(--thm-label);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.theorem .proof-link a:hover,
+.theorem .proof-link a:focus-visible {
+  background: rgb(var(--thm-rgb));
+  border-color: rgb(var(--thm-rgb));
+  color: #fff;
+}
+
+.theorem .proof-link .arrow {
+  transition: transform 0.15s;
+}
+
+.theorem .proof-link a:hover .arrow {
+  transform: translateX(2px);
+}
+
 .proof.remark {
   margin: 1.25rem 0;
   padding-left: 1rem;

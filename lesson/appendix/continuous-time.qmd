@@ -386,7 +386,7 @@ $${#eq-clearing}
 
 HJB 方程式が価値関数を「後ろ向き」に決め, その政策関数のもとで KF 方程式が分布を「前向き」に決め, 分布が価格 $r$ を決めて HJB に戻る, というループ構造です.^[この「後ろ向きの HJB + 前向きの KF」という連立系は, 平均場ゲーム (Mean Field Game) の定常系そのものです. @achdou2022 の枠組みは, Lasry と Lions の MFG 理論を異質エージェント・マクロに持ち込んだものといえます.] アルゴリズムの全体像を先に図で示しておきます (@fig-hact-loop). 以下の数値解法の節は, この図の各ブロックを上から順に実装していきます.
 
-![Equilibrium loop of the finite difference method](/static/cetz/hact_loop.svg){#fig-hact-loop width=55%}
+![Equilibrium loop of the finite difference method](/static/cetz/hact_loop.svg){#fig-hact-loop}
 
 **借入制約の入り方**が離散時間と決定的に違います. 連続時間では制約は内点で決して binding にならないため, 一階条件 $u'\left(c\left(a, x\right)\right) = \partial_a v\left(a, x\right)$ が $a > 0$ の**すべての点で等号で**成り立ちます. 制約は HJB 方程式そのものではなく, 境界条件
 $$
@@ -410,7 +410,7 @@ $$
 $${#eq-upwind}
 と離散化します (@fig-upwind).
 
-![Upwind scheme: the difference follows the drift](/static/cetz/upwind_scheme.svg){#fig-upwind width=75%}
+![Upwind scheme: the difference follows the drift](/static/cetz/upwind_scheme.svg){#fig-upwind}
 
 有限差分スキームが真の解 (粘性解) に収束するための Barles--Souganidis の十分条件は単調性・整合性・安定性の3つで, このうち非自明なのが単調性です. Upwind は, まさに単調性を保証するための差分の選び方になっています [@achdou2022, sec. 5.3].
 
@@ -446,7 +446,7 @@ $${#eq-hjb-discrete}
 
 @fig-fd-stencil がこのジャンプの解釈を図解しています. 状態 $\left(a_i, x_j\right)$ から確率的に移れる先は, **上下左右の隣接グリッドの4点だけ**です. 資産方向は upwind が選んだ片側 (実際に正の強度を持つのは矢印2本のうち1本), 生産性方向は @eq-ou-intensity の2本です.
 
-![Poisson-jump interpretation of the generator](/static/cetz/fd_stencil.svg){#fig-fd-stencil width=60%}
+![Poisson-jump interpretation of the generator](/static/cetz/fd_stencil.svg){#fig-fd-stencil}
 
 この「隣にしか跳べない」構造が, そのまま $A$ の疎パターンになります. @fig-hact-sparsity は小さいグリッド ($N_a = 12$, $N_x = 4$) で $A$ の非ゼロ要素の位置を描いたものです. 資産方向のジャンプは各ブロック内の**三重対角** (対角とその上下1本ずつ), 生産性方向のジャンプはブロックを跨ぐ $\pm N_a$ の位置の**帯2本**として現れ, $A$ の各行の非ゼロ要素は高々5個です.
 
@@ -742,43 +742,43 @@ end
 
 function discrete_vfi(r, w, model; n_howard=50, tol=1e-6, max_iter=1000)
     (; Π, z_grid_discrete, a_grid_discrete, n_a, n_z) = model
-    V = [u(w * z_grid_discrete[iz] + r * a_grid_discrete[ia] + 1e-10) / (1 - β)
-         for ia in 1:n_a, iz in 1:n_z]
+    V = [u(w * z_grid_discrete[i_z] + r * a_grid_discrete[i_a] + 1e-10) / (1 - β)
+         for i_a in 1:n_a, i_z in 1:n_z]
     policy = ones(Int, n_a, n_z)      # index of the chosen a' on the grid
     n_iter = 0
     for it in 1:max_iter
         n_iter = it
         continuation = β .* (V * Π')  # discounted expected value of each a'
         V_new = similar(V)
-        for iz in 1:n_z
-            ja_min = 1                # monotone policy: search from here up
-            for ia in 1:n_a
-                resources = w * z_grid_discrete[iz] +
-                            (1 + r) * a_grid_discrete[ia]
+        for i_z in 1:n_z
+            i_a′_min = 1              # monotone policy: search from here up
+            for i_a in 1:n_a
+                resources = w * z_grid_discrete[i_z] +
+                            (1 + r) * a_grid_discrete[i_a]
                 best_value = -Inf
-                best_ja = ja_min
-                for ja in ja_min:n_a                  # monotone grid search
-                    c = resources - a_grid_discrete[ja]
+                best_i_a′ = i_a′_min
+                for i_a′ in i_a′_min:n_a              # monotone grid search
+                    c = resources - a_grid_discrete[i_a′]
                     c <= 0 && break
-                    value = u(c) + continuation[ja, iz]
+                    value = u(c) + continuation[i_a′, i_z]
                     if value > best_value
                         best_value = value
-                        best_ja = ja
+                        best_i_a′ = i_a′
                     else
                         break                       # concavity: passed the peak
                     end
                 end
-                V_new[ia, iz] = best_value
-                policy[ia, iz] = best_ja
-                ja_min = best_ja
+                V_new[i_a, i_z] = best_value
+                policy[i_a, i_z] = best_i_a′
+                i_a′_min = best_i_a′
             end
         end
         for _ in 1:n_howard                           # Howard improvement
             continuation = β .* (V_new * Π')
-            for iz in 1:n_z, ia in 1:n_a
-                c = w * z_grid_discrete[iz] + (1 + r) * a_grid_discrete[ia] -
-                    a_grid_discrete[policy[ia, iz]]
-                V_new[ia, iz] = u(c) + continuation[policy[ia, iz], iz]
+            for i_z in 1:n_z, i_a in 1:n_a
+                c = w * z_grid_discrete[i_z] + (1 + r) * a_grid_discrete[i_a] -
+                    a_grid_discrete[policy[i_a, i_z]]
+                V_new[i_a, i_z] = u(c) + continuation[policy[i_a, i_z], i_z]
             end
         end
         if maximum(abs.(V_new .- V)) < tol
@@ -796,12 +796,12 @@ function discrete_dist(policy, model; tol=1e-10, max_iter=100_000)
     from_states = Int[];
     to_states = Int[];
     probs = Float64[]
-    for iz in 1:n_z, ia in 1:n_a
-        i_from = ia + (iz - 1) * n_a
-        for jz in 1:n_z
+    for i_z in 1:n_z, i_a in 1:n_a
+        i_from = i_a + (i_z - 1) * n_a
+        for i_z′ in 1:n_z
             push!(from_states, i_from)
-            push!(to_states, policy[ia, iz] + (jz - 1) * n_a)
-            push!(probs, Π[iz, jz])
+            push!(to_states, policy[i_a, i_z] + (i_z′ - 1) * n_a)
+            push!(probs, Π[i_z, i_z′])
         end
     end
     # transposed transition matrix

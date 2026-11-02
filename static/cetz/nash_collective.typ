@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 8pt)
+#show: fig-style
 
 #show math.equation: block.with(fill: white, inset: 1pt)
 
@@ -37,7 +37,7 @@
   label(ctx, 0.95, 2.32, title)
 }
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 2.95cm, {
   import cetz.draw: *
 
   // ---- (a) collective model --------------------------------------------------

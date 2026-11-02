@@ -47,7 +47,7 @@ $$
 
 これに対して collective model [@chiappori1988; @chiappori1992] は, 家計が異なる選好を持つ個人の集合であることを明示し, 特定の交渉メカニズムを仮定する代わりに, 結果としての配分が Pareto 効率的であることだけを公理とします.
 
-::: {#prp-collective}
+::: {#prp-collective proof="prf-collective"}
 
 ## 効率性と加重和最大化の双対性
 
@@ -58,8 +58,6 @@ $${#eq-collective}
 となることと同値である.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-collective)にあります.
 
 つまり collective model の家計問題は
 $$
@@ -72,7 +70,7 @@ $$
 
 Collective model は unitary model を特殊ケースとして含みます. Pareto ウェイトが動かなければ, 加重和そのものが家族の効用関数になるからです.
 
-::: {#prp-collective-unitary}
+::: {#prp-collective-unitary proof="prf-collective-unitary"}
 
 ## Unitary model は collective model の特殊ケース
 
@@ -83,8 +81,6 @@ $${#eq-unitary-weighted}
 とした unitary model の需要に一致し, income pooling と Slutsky 対称性がともに成り立つ.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-collective-unitary)にあります.
 
 特に $\bar{\mu} = 1/2$ とすると, 家族の効用関数は2人の効用の単純な和 $u_W + u_H$ (の $1/2$ 倍), すなわち夫婦の効用を等しい重みで足し合わせる (功利主義的な) 家族の効用関数になります. ただし, 家計が unitary になるのは $\mu$ が動かないからで, その値が $1/2$ だからではありません. $\mu = 0.3$ で固定された家計も unitary です. そもそも $\mu$ の値は効用の尺度に依存します [@browning2014]. 妻の効用を $2 u_W$ に取り替えても妻の選好は変わりませんが, $\mu = 1/2$ での加重和 $\left(2 u_W + u_H\right) / 2$ は元の効用で $\mu = 2/3$ とおいた加重和 $\left(2 u_W + u_H\right) / 3$ に比例するので, 同じ配分を選ぶウェイトは $1/2$ から $2/3$ に変わります. したがって $\mu$ を交渉力と読めるのは「$\mu$ が大きいほど妻の交渉力が強い」という大小の比較の意味においてで, $1/2$ という水準そのものが対等を意味するわけではありません [@browning2014; @chiappori2017b].
 
@@ -220,7 +216,7 @@ $\beta = 1/2$ が @nash1950 の対称な Nash 交渉解で, @nash1950 はこれ�
 
 Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロンティア上の1点を選ぶ問題です. したがって, @prp-collective から, ある $\mu$ の collective model として書けるはずです. 逆に, 任意の Pareto 効率的な配分は, 脅威点を適当に選べば Nash 交渉解として実現できます.
 
-::: {#prp-nash-collective}
+::: {#prp-nash-collective proof="prf-nash-collective"}
 
 ## Nash 交渉と collective model の双対性
 
@@ -235,9 +231,7 @@ $${#eq-nash-weight}
 
 :::
 
-証明は[付録](../appendix/proof.qmd#prf-nash-collective)にあります.
-
-![Collective model と Nash 交渉](/static/cetz/nash_collective.svg){#fig-nash-collective width=100% fig-notes="影は実現可能集合 $\mathcal{U}$, 青い曲線はその Pareto フロンティア $\Psi$. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 $\boldsymbol{T}$ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線."}
+![Collective model と Nash 交渉](/static/cetz/nash_collective.svg){#fig-nash-collective fig-notes="影は実現可能集合 $\mathcal{U}$, 青い曲線はその Pareto フロンティア $\Psi$. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 $\boldsymbol{T}$ から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線."}
 
 @fig-nash-collective は2つの問題を図解したものです. どちらも Pareto フロンティア上の1点を選ぶ問題ですが, 選び方が違います.
 

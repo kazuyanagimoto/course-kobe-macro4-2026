@@ -1,6 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
+#show: fig-style
 
 #show math.equation: block.with(fill: white, inset: 1pt)
 
@@ -15,7 +16,7 @@
   xs.push(a + i * (b - a) / n)
 }
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 5cm, {
   import cetz.draw: *
 
   let ctx = plot-ctx(x-range: (0, 2.8), y-range: (-0.7, 3.7), size: (2, 1))

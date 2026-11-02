@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 8pt)
+#show: fig-style
 
 // Distance-to-frontier function of a proper bargaining set.
 // The set is the ETU one, exp(u) + exp(v) <= B, so the frontier is
@@ -32,7 +32,7 @@
 #let zOut = dist(uOut, vOut)
 #let zIn = dist(uIn, vIn)
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 4.45cm, {
   import cetz.draw: *
 
   let ctx = plot-ctx(x-range: (xmin, xmax), y-range: (ymin, ymax), size: (2.0, 1.85))

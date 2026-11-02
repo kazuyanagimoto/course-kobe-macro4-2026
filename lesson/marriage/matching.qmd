@@ -42,7 +42,7 @@ $$
 
 @fig-matching-frontiers は, 典型的なフロンティアを並べたものです.
 
-![移転可能性とフロンティア](/static/cetz/matching_frontiers.svg){#fig-matching-frontiers width=80% fig-align="center" fig-notes="影は交渉可能集合 $\mathcal{F}_{xy}$, 黒線はそのフロンティア."}
+![移転可能性とフロンティア](/static/cetz/matching_frontiers.svg){#fig-matching-frontiers fig-align="center" fig-notes="影は交渉可能集合 $\mathcal{F}_{xy}$, 黒線はそのフロンティア."}
 
 TUはフロンティアが傾き $-1$ の直線で, NTUは1点だけが効率的です. ITUは一般の減少曲線で, 内側にへこむこともあります. LTU (linearly transferable utility) は ITU の特殊ケースで, 交換レートは一定だが $1$ ではありません.
 
@@ -67,13 +67,13 @@ $$
 $$
 であり, フロンティアは $D_{xy}\left(u, v\right) = 0$ を満たす点の集合です.
 
-![距離関数](/static/cetz/itu_distance.svg){#fig-matching-itu-distance width=62% fig-align="center" fig-notes="各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では $D_{xy} > 0$, 内部の点では $D_{xy} < 0$, フロンティア上で $D_{xy} = 0$. [@galichon2019] にもとづく."}
+![距離関数](/static/cetz/itu_distance.svg){#fig-matching-itu-distance fig-align="center" fig-notes="各点から 45° の対角線に沿ってフロンティアまで測る. 集合の外の点では $D_{xy} > 0$, 内部の点では $D_{xy} < 0$, フロンティア上で $D_{xy} = 0$. [@galichon2019] にもとづく."}
 
 #### 距離関数の性質
 
 定義から, 距離関数は次の性質を持ちます [@galichon2019].
 
-::: {#lem-dist-props}
+::: {#lem-dist-props proof="prf-dist-props"}
 
 ## 距離関数の性質
 
@@ -92,8 +92,6 @@ $\mathcal{F}_{xy}$ を proper bargaining set, $D_{xy}$ をその距離関数と�
    が成り立ち, 特に $D_{xy}$ は連続である.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-dist-props)にあります.
 
 1つ目の性質により, 交渉可能集合はまるごと1つの関数の符号で表せます. 「夫婦がフロンティア上にいる」という条件は $D_{xy}\left(u, v\right) = 0$ という1本の等式になるので, 実行可能性を均衡条件に方程式として入れられます. 2つ目は, 2人とも取り分を増やせば集合からより遠ざかる, という当たり前の性質です. 3つ目の平行移動不変性は, 点を対角線方向に $a$ だけ動かせば, フロンティアまでの対角線上の距離もちょうど $a$ だけ変わる, ということです. 両辺を $a$ で微分すれば, $D_{xy}$ が微分可能な点では $\partial_u D_{xy} + \partial_v D_{xy} = 1$ も分かります. 図で見れば当たり前の性質ですが, 結婚の章でロジットのマッチング関数を閉形式で与え, その1次同次性を生む鍵になります. 4つ目は, 2人の取り分を動かしたときの $D_{xy}$ の変化が, 2人の変化のうち小さい方と大きい方の間に収まることを表しています. どちらの取り分も高々 $\varepsilon$ しか動かなければ $D_{xy}$ も高々 $\varepsilon$ しか動かないので, $D_{xy}$ は連続です.
 
@@ -198,7 +196,7 @@ $\left(\mu_{xy}, U_{xy}, V_{xy}\right)$ が集計均衡であるとは,
 
 集計均衡と個人均衡は次のように結びついています. ここでは $U_{x0} = V_{0y} = 0$ とします.
 
-::: {#thm-type-payoffs}
+::: {#thm-type-payoffs proof="prf-type-payoffs"}
 
 ## 取り分はタイプの組で決まる [@galichon2019]
 
@@ -221,8 +219,6 @@ $\left(\mu_{xy}, U_{xy}, V_{xy}\right)$ が集計均衡であるとは,
 
 :::
 
-証明は[付録](../appendix/proof.qmd#prf-type-payoffs)にあります.
-
 1は「取り分がタイプの組で決まる個人均衡は常にある」, 2は「フロンティアが狭義に右下がりなら, 個人均衡はそれしかない」という主張です. 2の条件は「自分の取り分を下げれば, そのぶん相手の取り分が上がる」ことで, 一物一価の理屈に必要です. NTU のようにフロンティアに水平・垂直な部分があると, 取り分を下げても相手は得をしないので, 取り分がそろうとは限りません. 一方で, フロンティアが直線 (TU) か曲線 (ITU) かは関係なく, この点で TU と ITU に違いはありません.
 
 #### 価格は wedge である
@@ -235,7 +231,7 @@ $$
 $${#eq-wedge-param}
 と閉形式で書けます ($\mathcal{U}_{xy}$ は非減少, $\mathcal{V}_{xy}$ は非増加で, ともに 1-Lipschitz). 図で見ると, wedge $w$ を動かすことはフロンティア上を滑ることに対応し, $w$ が大きいほど男性に有利な点が選ばれます.
 
-![wedge によるパラメトライズ](/static/cetz/itu_wedge.svg){#fig-itu-wedge width=64% fig-align="center" fig-notes="傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' > w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく."}
+![wedge によるパラメトライズ](/static/cetz/itu_wedge.svg){#fig-itu-wedge fig-align="center" fig-notes="傾き $1$ の直線 $v = u - w$ とフロンティアの交点 (赤い点) が $\left(\mathcal{U}_{xy}\left(w\right), \mathcal{V}_{xy}\left(w\right)\right)$ である. $w' > w$ のように wedge を大きくすると, 男性に有利な点に移る. [@galichon2019] にもとづく."}
 
 ここでカップルのタイプ $xy$ を1つの**財**とみなします. 男性が生産者, 女性が消費者で, $W_{xy}$ がその財の**価格**です. 供給は $\partial G\left(\mathcal{U}\left(W\right)\right)/\partial U_{xy}$, 需要は $\partial H\left(\mathcal{V}\left(W\right)\right)/\partial V_{xy}$ で, 超過需要関数は
 $$
@@ -299,7 +295,7 @@ $${#eq-tu-max}
 
 TU マッチング理論の中心的な結果は, 分権的な均衡概念である安定性が, 集計的な最適化問題と正確に等価になることです.
 
-::: {#prp-tu-duality}
+::: {#prp-tu-duality proof="prf-tu-duality"}
 
 ## 安定性と余剰最大化の双対性
 
@@ -322,8 +318,6 @@ $${#eq-tu-dual}
 
 :::
 
-証明は[付録](../appendix/proof.qmd#prf-tu-duality)にあります.
-
 この定理は @koopmans1957, @shapley1971, @becker1973b に遡るもので, 「TU マッチング理論の最も強力な結果」と呼ばれます. 分権的なゲーム理論的概念 (安定性) と中央集権的な規範的問題 (総余剰の最大化) の等価性という意味で, 厚生経済学の2つの基本定理の類似物になっています. タイプの水準で書けば, 主問題は $\mathcal{M}$ 上で $\sum_{x, y} \mu_{xy}\Phi_{xy}$ を最大化する線形計画 (最適輸送問題) で, 双対変数はタイプごとの利得 $u_x$, $v_y$ です. 連続分布の場合も最適輸送の双対性により同じ結果が成り立ちます. また, 誰が誰とマッチするかは主問題の解として「一般に」一意に定まる一方, 有限人口では分配 $\left(u, v\right)$ は区間の幅でしか決まりません. 互いに完全な代替者がいないため, 交渉の余地が残るからです. 連続分布ではこの余地が消えることを後で見ます.
 
 ### Becker の同類婚
@@ -344,15 +338,13 @@ $$
 
 優モジュラ性の経済的な意味は, 「より良い相手を得るために限界的に上乗せできる入札額が, 自分のタイプとともに増える」こと, すなわちタイプ同士が**補完的**であることです.
 
-::: {#prp-pam}
+::: {#prp-pam proof="prf-pam"}
 
 ## Becker の同類婚定理
 
 $\Phi$ が強い意味で優モジュラなら, 安定マッチングは一意であり, 正の同類婚 (PAM) になる. すなわち, マッチした2組 $\left(x, y\right)$, $\left(x', y'\right)$ について $x < x'$ ならば $y \leq y'$ である. 劣モジュラなら負の同類婚 (NAM) になる.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-pam)にあります.
 
 PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を $F$, 女性のそれを $G$ とすると, 結婚する人数が男女で等しいとき, タイプ $x$ の男性の相手 $\varphi\left(x\right)$ は $1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)$ で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, $\Phi$ が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります [@chiappori2016].
 
@@ -364,7 +356,7 @@ PAM のもとでは, 結婚している人々はタイプの順位で組みま�
 
 TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各夫婦の中での余剰の分配の仕方まで決めます. 家計内配分の章 (@sec-allocation) では家計内の分配 (Pareto ウェイト) を所与としていましたが, ここではそれが結婚市場で決まります. これが2つの章をつなぐ最重要ポイントです.
 
-::: {#prp-share}
+::: {#prp-share proof="prf-share"}
 
 ## 連続分布のもとでの分配
 
@@ -381,8 +373,6 @@ $$
 と書ける. すなわち既婚者の利得は, 定数 $K$ の自由度を除いて一意に定まる.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-share)にあります.
 
 連続分布のもとでは, どの個人にも「ほぼ完全な代替者」が無数にいるため, 有限人口で残っていた交渉の余地が消え, 分配は定数1つを残して市場で決まってしまうわけです. 残った定数 $K$ も, 男女の人口が非対称なら決まります. たとえば女性側が過剰なら, 結婚できる最下位の女性 $\underline{y}$ のすぐ下に, 彼女とほぼ同じタイプの独身女性が存在します. その独身女性はわずかでも正の利得があれば $\underline{y}$ の夫を「安値で」奪えるので, 均衡では $v\left(\underline{y}\right) = 0$, すなわち限界的な夫婦では夫が余剰を総取りします. しかもこの効果は限界的な夫婦にとどまらず, 定数 $K$ を通じてすべての夫婦の分配を同じ方向にシフトさせます. 性比 (gender ratio) が家計内の交渉力を決める distribution factor になる, という実証研究の理論的基礎がここにあります.
 

@@ -1,6 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
+#show: fig-style
 
 #show math.equation: block.with(fill: white, inset: 1pt)
 
@@ -12,7 +13,7 @@
 #let x0 = 0.8
 #let x1 = newton(x0)
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 5cm, {
   import cetz.draw: *
 
   let ctx = plot-ctx(x-range: (-0.5, 2.2), y-range: (-2.8, 2.5), size: (2, 1))

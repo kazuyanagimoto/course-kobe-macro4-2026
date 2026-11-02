@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 7pt)
+#show: fig-style
 
 // Pareto frontiers of the four models of transferability, in a 2 x 2 grid.
 // The functional forms follow itu_bargaining_sets.typ; the ITU panel uses a
@@ -49,12 +49,12 @@
   } else {
     draw-curve(ctx, f, visible(f), samples: 400, stroke: (paint: black, thickness: 1pt))
   }
-  label(ctx, 2.0, 0.19, text(size: 6pt)[$u$])
-  label(ctx, -0.16, 2.4, text(size: 6pt)[$v$])
+  label(ctx, 2.0, 0.19, [$u$])
+  label(ctx, -0.16, 2.4, [$v$])
   label(ctx, 0.7, -1.16, tag)
 }
 
-#cetz.canvas(length: 3cm, {
+#cetz.canvas(length: 4.6cm, {
   import cetz.draw: *
 
   let mk() = plot-ctx(x-range: (xmin, xmax), y-range: (ymin, ymax), size: (1.05, 1.05))

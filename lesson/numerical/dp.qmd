@@ -793,7 +793,7 @@ function vfi!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
             c_min = 1e-9 # consumption cannot be negative
             V_new[i_k, i_z] = maximum(
                 log(max(f(k, z; m) + (1 - δ) * k - k′, c_min)) +
-                β * sum(Π[i_z, i_z′] * m.V[i_k′, i_z′]
+                    β * sum(Π[i_z, i_z′] * m.V[i_k′, i_z′]
                         for (i_z′, z′) in enumerate(z_grid))
                 for (i_k′, k′) in enumerate(k_grid)
             )
@@ -980,7 +980,7 @@ function egm!(m::StochasticModel; tol=1e-6, max_iter=1000, verbose=true)
         for (i_z, z) in enumerate(z_grid)
             for (j, k′) in enumerate(k_grid)               # fix k' on the grid
                 rhs = β * sum(Π[i_z, i_z′] * u_c(c[j, i_z′]; m) *
-                              (f_k(k′, z′; m) + 1 - δ)
+                    (f_k(k′, z′; m) + 1 - δ)
                               for (i_z′, z′) in enumerate(z_grid))
                 cs_endog[j] = 1 / rhs  # u_c⁻¹(rhs) since u = log
                 ks_endog[j] = M⁻¹[i_z](cs_endog[j] + k′)  # invert M(k, z)
@@ -1069,15 +1069,6 @@ u_c\left( c(a, z) \right) \geq \beta (1+r)\, \mathbb{E}\left[ u_c\left( c(a', z'
 $${#eq-aiyagari-euler}
 等式は $a' > -\underline{a}$ のとき成立します.
 
-
-::: {.callout-note collapse="true"}
-
-## 予備的貯蓄 (precautionary saving)
-
-CRRA 効用は $u_{ccc}(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u_c(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼び, 保険が完備な経済には存在しない, 市場の不完備性に固有の貯蓄動機です.
-
-:::
-
 ### 企業と価格
 
 生産側は, コブ・ダグラス型生産関数 $Y = K^{\alpha} L^{1-\alpha}$ を持つ代表的企業で記述されます. $\delta$ を資本減耗率とすると, 競争市場での利潤最大化条件 (要素価格 = 限界生産性) から, 価格は資本労働比 $K/L$ の関数として決まります.
@@ -1109,7 +1100,7 @@ $$
 右辺は, 今期 $\Lambda$ に従う家計のうち, 貯蓄が $a'$ 以下で, かつ生産性が $z'$ 以下に遷移する家計の割合である. 借入制約に張り付く家計の質量は $a = -\underline{a}$ での $\Lambda$ のジャンプとして現れる.
 1. **資産市場の清算**: 家計の総資産供給が企業の資本需要に等しい.
 $$
-\underbrace{\int a\, d\Lambda(a, z)}_{\text{asset supply } A(r)} = \underbrace{K^d(r)}_{\text{capital demand}}.
+\underbrace{\int a\, d\Lambda(a, z)}_{\text{capital supply } K^s(r)} = \underbrace{K^d(r)}_{\text{capital demand}}.
 $${#eq-aiyagari-clearing}
 
 :::
@@ -1133,28 +1124,40 @@ $$
 $$
 1 = \beta (1 + r) \quad\Longleftrightarrow\quad r = \frac{1}{\beta} - 1.
 $$
-すなわち均衡利子率は時間選好率にちょうど一致します. これは, 集計量が代表的個人の新古典派成長モデルと同じ修正黄金律に従うことの帰結でもあります. 完備市場では予備的貯蓄の動機が消えるため, 資産供給曲線 $A(r)$ は @fig-supply-demand の不完備市場の曲線よりも左に位置し, $r = 1/\beta - 1$ で初めて発散します. 不完備市場の均衡 $r^*$ がその手前に来るのは, この予備的貯蓄の分だけ供給が右に膨らむためです.
+すなわち均衡利子率は時間選好率にちょうど一致します. これは, 集計量が代表的個人の新古典派成長モデルと同じ修正黄金律に従うことの帰結でもあります. 完備市場では予備的貯蓄の動機が消えるため, 資本供給曲線 $K^s(r)$ は @fig-supply-demand の不完備市場の曲線よりも左に位置し, $r = 1/\beta - 1$ で初めて発散します. 不完備市場の均衡 $r^*$ がその手前に来るのは, この予備的貯蓄の分だけ供給が右に膨らむためです.
 
 :::
 
-直観は予備的貯蓄にあります. 家計は保険できない所得リスクに備えて自衛的に貯蓄するため, $r$ が $1/\beta - 1$ より低くても正の純資産を持とうとします. その結果, 資産供給 $A(r)$ は右上がりで $r \to 1/\beta - 1$ で発散する一方, 資本需要 $K^d(r)$ は @eq-aiyagari-Kd より右下がりです. 両者の交点である均衡 $r^*$ は, 必ず $1/\beta - 1$ の手前に来ます.
+直観は予備的貯蓄にあります. 家計は保険できない所得リスクに備えて自衛的に貯蓄するため, $r$ が $1/\beta - 1$ より低くても正の純資産を持とうとします. その結果, 資本供給 $K^s(r)$ は右上がりで $r \to 1/\beta - 1$ で発散する一方, 資本需要 $K^d(r)$ は @eq-aiyagari-Kd より右下がりです. 両者の交点である均衡 $r^*$ は, 必ず $1/\beta - 1$ の手前に来ます.
+
+::: {.callout-note collapse="true"}
+
+## 予備的貯蓄 (precautionary saving)
+
+CRRA 効用は $u_{ccc}(c) > 0$ を満たします. このとき, イェンセンの不等式から将来消費の不確実性は限界効用の期待値 $\mathbb{E}[u_c(c')]$ を引き上げます. @eq-aiyagari-euler の右辺が大きくなるため, 家計は現在の消費を抑えて余分に貯蓄する誘因を持ちます. これを予備的貯蓄と呼びます. Arrow 証券がある完備市場では, 上で見たように来期の消費が個別状態 $z'$ によらず確実になるので, この動機は生じません. 予備的貯蓄は, 市場の不完備性に固有の貯蓄動機です.
+
+@fig-precautionary-saving は, イェンセンの不等式の部分を図にしたものです. $u_c$ が凸なので, 2 点 $\left(c'_L, u_c\left(c'_L\right)\right)$ と $\left(c'_H, u_c\left(c'_H\right)\right)$ を結ぶ弦は曲線より上にあります. その中点の高さが限界効用の期待値 $\mathbb{E}[u_c(c')]$ (赤い点) で, 平均と同じ消費を確実に得るときの限界効用 $u_c(\mathbb{E}[c'])$ (青い点) を上回ります. 平均を変えずにリスクだけを加えると, @eq-aiyagari-euler の右辺はこの差の $\beta\left(1 + r\right)$ 倍だけ上がります.
+
+![Precautionary saving](/static/cetz/precautionary_saving.svg){#fig-precautionary-saving fig-notes="概念図. 来期の消費 $c'$ は確率 $1/2$ ずつで $c'_L$ か $c'_H$ をとるので, 弦の中点が期待値を表す."}
+
+:::
 
 ### 数値解法
 
-均衡の探索は, 利子率 $r$ に関する一次元の求根問題に帰着します. 与えられた $r$ に対して家計の問題を解いて資産供給 $A(r)$ を集計し, @eq-aiyagari-clearing の超過需要 $A(r) - K^d(r)$ がゼロになる $r$ を探します.
+均衡の探索は, 利子率 $r$ に関する一次元の求根問題に帰着します. 与えられた $r$ に対して家計の問題を解いて資本供給 $K^s(r)$ を集計し, @eq-aiyagari-clearing の超過需要 $K^d(r) - K^s(r)$ がゼロになる $r$ を探します.
 
 ::: {#alg-aiyagari}
 
 ## Aiyagari モデルの解法
 
-外側ループ (一般均衡): 超過需要 $A(r) - K^d(r) = 0$ を $r$ について解く. $A(r)$ は次の手順で評価する.
+外側ループ (一般均衡): 超過需要 $K^d(r) - K^s(r) = 0$ を $r$ について解く. $K^s(r)$ は次の手順で評価する.
 
 1. $r$ を所与として, @eq-aiyagari-Kd から賃金 $w(r)$ を計算する.
 1. 内側ループ (家計): EGM でオイラー方程式 (@eq-aiyagari-euler) を解き, 貯蓄の政策 $g(a, z)$ を得る.
 1. 政策 $g$ のもとで遷移行列 $P$ を作り, 線形方程式を解いて定常分布 $\Lambda$ を求める.
-1. 総資産 $A(r) = \int a\, d\Lambda$ を集計する.
+1. 総資産 $K^s(r) = \int a\, d\Lambda$ を集計する.
 
-$A(r)$ は $r$ について増加, $K^d(r)$ は減少するので, 超過需要は単調増加である. したがって二分法 (@sec-root-finding) が安定に使える.
+$K^s(r)$ は $r$ について増加, $K^d(r)$ は減少するので, 超過需要は単調減少である. したがって二分法 (@sec-root-finding) が安定に使える.
 
 :::
 
@@ -1213,20 +1216,20 @@ function solve_household(r, m; tol=1e-9, max_iter=10_000)
     for _ in 1:max_iter
         # expected marginal utility at (a', z): Σ_z' π(z'|z) u_c(c(a', z'))
         expected_u_c = (u_c.(c, γ)) * Π'
-        for iz in 1:n_z
-            for ja in 1:n_a
+        for i_z in 1:n_z
+            for i_a′ in 1:n_a
                 # invert the Euler eq., then the budget for the endogenous asset
-                cs_endog[ja] = u_c_inv(β * (1 + r) * expected_u_c[ja, iz], γ)
-                as_endog[ja] =
-                    (cs_endog[ja] + a_grid[ja] - w * z_grid[iz]) / (1 + r)
+                cs_endog[i_a′] = u_c_inv(β * (1 + r) * expected_u_c[i_a′, i_z], γ)
+                as_endog[i_a′] =
+                    (cs_endog[i_a′] + a_grid[i_a′] - w * z_grid[i_z]) / (1 + r)
             end
             c_itp = linear_interpolation(as_endog, cs_endog,
                 extrapolation_bc=Line())
-            for ia in 1:n_a
-                if a_grid[ia] <= as_endog[begin]  # constraint binds: a' = 0
-                    c_new[ia, iz] = w * z_grid[iz] + (1 + r) * a_grid[ia]
+            for i_a in 1:n_a
+                if a_grid[i_a] <= as_endog[begin]  # constraint binds: a' = 0
+                    c_new[i_a, i_z] = w * z_grid[i_z] + (1 + r) * a_grid[i_a]
                 else
-                    c_new[ia, iz] = c_itp(a_grid[ia])
+                    c_new[i_a, i_z] = c_itp(a_grid[i_a])
                 end
             end
         end
@@ -1256,15 +1259,15 @@ using SparseArrays
 function distribution(g, m)
     (; a_grid, Π, n_a, n_z) = m
     n = n_a * n_z
-    state_index(ia, iz) = ia + (iz - 1) * n_a  # linear index for (a, z)
+    state_index(i_a, i_z) = i_a + (i_z - 1) * n_a  # linear index for (a, z)
     rows, cols, vals = Int[], Int[], Float64[]
-    for iz in 1:n_z, ia in 1:n_a
+    for i_z in 1:n_z, i_a in 1:n_a
         # split a' between grid points
-        j_lo, j_hi, ω = lottery(g[ia, iz], a_grid)
-        for jz in 1:n_z
-            push!(rows, state_index(ia, iz), state_index(ia, iz))
-            push!(cols, state_index(j_lo, jz), state_index(j_hi, jz))
-            push!(vals, ω * Π[iz, jz], (1 - ω) * Π[iz, jz])
+        j_lo, j_hi, ω = lottery(g[i_a, i_z], a_grid)
+        for i_z′ in 1:n_z
+            push!(rows, state_index(i_a, i_z), state_index(i_a, i_z))
+            push!(cols, state_index(j_lo, i_z′), state_index(j_hi, i_z′))
+            push!(vals, ω * Π[i_z, i_z′], (1 - ω) * Π[i_z, i_z′])
         end
     end
     P = sparse(rows, cols, vals, n, n)  # duplicate entries are summed
@@ -1277,20 +1280,20 @@ function distribution(g, m)
     return reshape(A \ b, n_a, n_z)
 end
 
-aggregate_A(λ, m) =
-    sum(λ[ia, iz] * m.a_grid[ia] for ia in 1:m.n_a, iz in 1:m.n_z)
+K_supply(λ, m) =
+    sum(λ[i_a, i_z] * m.a_grid[i_a] for i_a in 1:m.n_a, i_z in 1:m.n_z)
 ```
 
 #### 一般均衡
 
-与えられた $r$ に対する超過需要 $A(r) - K^d(r)$ を関数にまとめ, Bracketing method でゼロ点を求めます. 上限は完備市場の利子率 $1/\beta - 1$ のすぐ手前に置きます.
+与えられた $r$ に対する超過需要 $K^d(r) - K^s(r)$ を関数にまとめ, Bracketing method でゼロ点を求めます. 上限は完備市場の利子率 $1/\beta - 1$ のすぐ手前に置きます.
 
 ```{julia}
 #| label: solve-equilibrium
 function excess_demand(r, m)
     g = solve_household(r, m)
     λ = distribution(g, m)
-    return aggregate_A(λ, m) - K_demand(r, m)
+    return K_demand(r, m) - K_supply(λ, m)
 end
 
 m_aiyagari = AiyagariModel()
@@ -1365,7 +1368,7 @@ bar(bin_centers, masses_by_bin, label=false, xlabel=L"a", ylabel="mass",
 
 #### 資本の需要と供給
 
-最後に, Aiyagari モデルを象徴する図を描きます. 利子率 $r$ の各値に対して資産供給 $A(r)$ と資本需要 $K^d(r)$ を計算し, 縦軸に $r$, 横軸に資本をとります. 供給曲線は右上がりで $r \to 1/\beta - 1$ の水平線に漸近し, 需要曲線は右下がりです. 両者の交点が均衡で, 完備市場の利子率より低い位置にあります. 完備市場では供給曲線が水平線 $r = 1/\beta - 1$ そのものになるので, その均衡は $K^d(r)$ と水平線の交点です.
+最後に, Aiyagari モデルを象徴する図を描きます. 利子率 $r$ の各値に対して資本供給 $K^s(r)$ と資本需要 $K^d(r)$ を計算し, 縦軸に $r$, 横軸に資本をとります. 供給曲線は右上がりで $r \to 1/\beta - 1$ の水平線に漸近し, 需要曲線は右下がりです. 両者の交点が均衡で, 完備市場の利子率より低い位置にあります. 完備市場では供給曲線が水平線 $r = 1/\beta - 1$ そのものになるので, その均衡は $K^d(r)$ と水平線の交点です.
 
 ```{julia}
 #| label: fig-supply-demand
@@ -1373,18 +1376,18 @@ bar(bin_centers, masses_by_bin, label=false, xlabel=L"a", ylabel="mass",
 #| fig-cap: "Capital supply and demand"
 #| fig-notes: "灰破線は完備市場の利子率 $1/\\beta - 1$. 黒点は不完備市場の均衡 $\\left(K^*, r^*\\right)$, 白抜きの点は完備市場の均衡."
 r_grid = range(-0.01, r_complete - 2e-3, length=40)
-As_supply = [aggregate_A(distribution(solve_household(r, m_aiyagari),
-                                      m_aiyagari), m_aiyagari)
+Ks_supply = [K_supply(distribution(solve_household(r, m_aiyagari),
+    m_aiyagari), m_aiyagari)
              for r in r_grid]
 # demand is defined for any r, so extend it past the complete-markets rate
 r_grid_demand = range(-0.01, r_complete + 0.004, length=40)
 Ks_demand = K_demand.(r_grid_demand, Ref(m_aiyagari))
 K_complete = K_demand(r_complete, m_aiyagari)
 
-visible = As_supply .<= 13.2     # both curves end at a similar capital level
+visible = Ks_supply .<= 13.2     # both curves end at a similar capital level
 xmax = 15.0
 
-plot(As_supply[visible], r_grid[visible], label=false, lw=2,
+plot(Ks_supply[visible], r_grid[visible], label=false, lw=2,
     xlabel="capital", ylabel=L"r",
     xlims=(0, xmax), ylims=(-0.015, r_complete + 0.007))
 plot!(Ks_demand, r_grid_demand, label=false, lw=2)
@@ -1395,8 +1398,8 @@ scatter!([K_complete], [r_complete], label=false, color=:white,
     msc=mypalette[3])
 
 # label each line at its right end instead of using a legend
-annotate!(As_supply[visible][end] + 0.3, r_grid[visible][end],
-    text(L"A(r)", :black, 9, :left))
+annotate!(Ks_supply[visible][end] + 0.3, r_grid[visible][end],
+    text(L"K^s(r)", :black, 9, :left))
 annotate!(Ks_demand[begin] + 0.3, r_grid_demand[begin],
     text(L"K^d(r)", :black, 9, :left))
 annotate!(13.9, r_complete, text(L"1/\beta - 1", :black, 9, :left))

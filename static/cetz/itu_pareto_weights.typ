@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 8pt)
+#show: fig-style
 
 // Pareto efficiency versus Pareto weights on a non-convex bargaining set.
 // The set is the union of two ETU sets, one per level of a discrete public good

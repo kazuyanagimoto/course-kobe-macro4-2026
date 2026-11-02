@@ -27,7 +27,7 @@ C = b + \beta \int V\left(w'\right)\, dF\left(w'\right).
 $$
 受諾の価値は $w$ について増加, 継続の価値は一定なので, 最適な戦略は閾値ルールになります.
 
-::: {#prp-reservation}
+::: {#prp-reservation proof="prf-reservation"}
 
 ## 留保賃金, reservation wage
 
@@ -38,11 +38,9 @@ $${#eq-reservation}
 
 :::
 
-証明は[付録](../appendix/proof.qmd#prf-reservation)にあります.
-
 @eq-reservation の第二項は, 「もう1期待てば, いまの基準 $w^*$ を上回るオファーを引けるかもしれない」という待つことのオプション価値です. 留保賃金は失業給付 $b$ にこのオプション価値を上乗せした水準になります. オファーの上限が $w^*$ より大きい限り, 失業者は $b$ を上回るオファーでも拒否します.
 
-::: {#prp-mccall-cs}
+::: {#prp-mccall-cs proof="prf-mccall-cs"}
 
 ## 留保賃金の比較静学
 
@@ -50,8 +48,6 @@ $${#eq-reservation}
 1. オファー分布の平均保存的な広がりは, $w^*$ を上昇させる.
 
 :::
-
-証明は[付録](../appendix/proof.qmd#prf-mccall-cs)にあります.
 
 
 
@@ -67,7 +63,7 @@ $${#eq-reservation}
 
 1期を1年とする無限期間モデルで, 各期に確率 $\delta$ で退出し, 同数の独身者が新しく生まれます. エージェントは性別を持たない「中性」の個人で, 独身か有配偶かのどちらかです. 独身者は毎期ランダムに他の独身者と出会い, マッチの質 $b$ を観察して結婚するかを決めます. 有配偶者のマッチの質は毎期変動し, その値に応じて離婚するかを決めます. つまり本章前半で見たとおり, 結婚と離婚が同じ最適停止問題の表と裏として定式化されています (@fig-gg2009-flows).
 
-![Flows between singlehood and marriage](/static/cetz/marriage_flows.svg){#fig-gg2009-flows width=90%}
+![Flows between singlehood and marriage](/static/cetz/marriage_flows.svg){#fig-gg2009-flows}
 
 **選好.** 1期あたりの効用は, 市場消費 $c$ と家庭内生産 $n$ から得られます.
 $$
@@ -402,7 +398,7 @@ $$ {#eq-gousse2017-alpha}
 
 @fig-gousse2017-flowchart にここまでの構造をまとめました. 独身の男女がそれぞれのプールで相手を探し, 率 $\lambda$ で出会って $z$ を引き, 合意すれば夫婦のプールへ移ります. 結婚後は率 $\delta$ で $z$ が引き直され, 合意が続けばそのまま, 途切れれば両者が独身のプールに戻ります. 図の下に書いた流出入のバランスが, 後で定常状態を定める条件になります.
 
-![Search and matching with types, bargaining, and renegotiation](/static/cetz/marriage_search_match.svg){#fig-gousse2017-flowchart width=100%}
+![Search and matching with types, bargaining, and renegotiation](/static/cetz/marriage_search_match.svg){#fig-gousse2017-flowchart}
 
 #### 選好と家庭内生産
 

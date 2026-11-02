@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "lib.typ": *
 #set page(width: auto, height: auto, margin: .5cm)
-#set text(size: 7pt)
+#show: fig-style
 
 // Six bargaining sets, one per model of transferability.  Each frontier is the
 // exact curve implied by its distance-to-frontier function, so editing the
@@ -63,8 +63,8 @@
     draw-curve(ctx, f, visible(f), stroke: (paint: black, thickness: 1pt))
   }
   label(ctx, 0.42, 0.42, text(fill: rgb("#33556a"))[$cal(F)_(x y)$])
-  label(ctx, 2.0, 0.19, text(size: 6pt)[$u$])
-  label(ctx, -0.16, 2.4, text(size: 6pt)[$v$])
+  label(ctx, 2.0, 0.19, [$u$])
+  label(ctx, -0.16, 2.4, [$v$])
   label(ctx, 0.7, -1.16, tag)
 }
 
