@@ -81,8 +81,8 @@ format:
     css: styles.css
     lightbox: true
   jsbook-typst:
-    CJKmainfont: Noto Serif CJK JP
-    CJKsansfont: Noto Sans CJK JP
+    CJKmainfont: Noto Serif JP
+    CJKsansfont: Noto Sans JP
     codefont: JuliaMono
     linkcolor: "#0F6A81"
     citecolor: "#0F6A81"
