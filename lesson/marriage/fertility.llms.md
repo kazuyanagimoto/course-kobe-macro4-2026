@@ -76,7 +76,7 @@ Code
 
 **命題 9.1 (閉形式解と賃金の効果)** 内点解 (\\\gamma \phi w \> p \theta\\) において, 最適な子どもの数と教育時間は \\ n = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}, \qquad e = \frac{\gamma \phi w - p\theta}{p \left(1-\gamma\right)}. \\ したがって賃金 \\w\\ の上昇は, 子どもの数 \\n\\ を減らし, 1人あたりの教育時間 \\e\\ を増やす.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-qq-simple)にあります
+[証明→](../../lesson/appendix/proof.llms.md#prf-qq-simple "付録: 閉形式解と賃金の効果")
 
 直感はこうです. 子どもの「数」の費用の中心は親の子育て時間 \\\phi\\ であり, その機会費用 \\\phi w\\ は親の賃金に比例して上がります. 一方, 「質」の費用 \\p\\ は市場で決まる外生的な価格です. 賃金が上がると, 数は高くなり質は相対的に安くなるので, 親は数から質へ投資を振り替えます. 先進国の少子化と教育水準の上昇という組み合わせが, 賃金の上昇ひとつから出てくるわけです.
 
@@ -150,7 +150,7 @@ Doepke et al. ([2023](#ref-doepke2023)) の見方では, quantity-quality トレ
 
 **命題 9.2 (女性の賃金と出生)** \\s\\ を所与とすると, \\ \frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi}{\pi\left(s\right)^2}. \\ 子どもの金銭的費用が時間費用に比べて小さい (\\\psi \< w_m \phi\\) とき, これは \\s \< s^\*\\ なら負, \\s = s^\*\\ ならゼロ, \\s \> s^\*\\ なら正である. ただし \\ s^\* = \frac{w_m \phi - \psi}{\left(p_s + w_m\right) \phi} \in \left(0, 1\right). \\
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-outsource)に示す.
+[証明→](../../lesson/appendix/proof.llms.md#prf-outsource "付録: 女性の賃金と出生")
 
 子育てを外部化する割合が大きいほど, 妻の賃金の上昇は子どもの限界費用をあまり押し上げず, 所得効果だけが残ります. 最適な \\s\\ と組み合わせると, 市場化の上限 \\\bar{s}\\ が女性の賃金と出生の関係をどう変えるかが分かります.
 

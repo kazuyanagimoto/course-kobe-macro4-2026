@@ -67,7 +67,7 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 3.  **平行移動不変性**: 任意の \\a \in \mathbb{R}\\ について \\ D\_{xy}\left(a + u, a + v\right) = a + D\_{xy}\left(u, v\right). \tag{7.2}\\
 4.  **連続性**: 任意の2点について \\ \min\left\\u' - u, v' - v\right\\ \leq D\_{xy}\left(u', v'\right) - D\_{xy}\left(u, v\right) \leq \max\left\\u' - u, v' - v\right\\ \\ が成り立ち, 特に \\D\_{xy}\\ は連続である.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-dist-props)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-dist-props "付録: 距離関数の性質")
 
 1つ目の性質により, 交渉可能集合はまるごと1つの関数の符号で表せます. 「夫婦がフロンティア上にいる」という条件は \\D\_{xy}\left(u, v\right) = 0\\ という1本の等式になるので, 実行可能性を均衡条件に方程式として入れられます. 2つ目は, 2人とも取り分を増やせば集合からより遠ざかる, という当たり前の性質です. 3つ目の平行移動不変性は, 点を対角線方向に \\a\\ だけ動かせば, フロンティアまでの対角線上の距離もちょうど \\a\\ だけ変わる, ということです. 両辺を \\a\\ で微分すれば, \\D\_{xy}\\ が微分可能な点では \\\partial_u D\_{xy} + \partial_v D\_{xy} = 1\\ も分かります. 図で見れば当たり前の性質ですが, 結婚の章でロジットのマッチング関数を閉形式で与え, その1次同次性を生む鍵になります. 4つ目は, 2人の取り分を動かしたときの \\D\_{xy}\\ の変化が, 2人の変化のうち小さい方と大きい方の間に収まることを表しています. どちらの取り分も高々 \\\varepsilon\\ しか動かなければ \\D\_{xy}\\ も高々 \\\varepsilon\\ しか動かないので, \\D\_{xy}\\ は連続です.
 
@@ -122,7 +122,7 @@ TUはフロンティアが傾き \\-1\\ の直線で, NTUは1点だけが効率�
 1.  \\\left(\mu, U, V\right)\\ を集計均衡とし, 各人の効用を \\ u_i = \max\_{y \in \mathcal{Y}\_0}\left\\U\_{x_i y} + \varepsilon\_{iy}\right\\, \qquad v_j = \max\_{x \in \mathcal{X}\_0}\left\\V\_{x y_j} + \eta\_{xj}\right\\ \\ と定める. このとき, \\\left(\mu\_{ij}, u_i, v_j\right)\\ が個人均衡になるような個人の間のマッチング \\\mu\_{ij}\\ が存在する.
 2.  すべての \\D\_{xy}\\ が両方の引数について狭義増加 (フロンティアが狭義に右下がり) であるとし, \\\left(\mu\_{ij}, u_i, v_j\right)\\ を任意の個人均衡とする. \\ U\_{xy} = \min\_{i : x_i = x}\left(u_i - \varepsilon\_{iy}\right), \qquad V\_{xy} = \min\_{j : y_j = y}\left(v_j - \eta\_{xj}\right) \\ とおくと, 各人の効用は1の式で表され, \\\left(U, V\right)\\ とそれが定めるタイプの組ごとのマッチングは集計均衡になる. 特に, タイプ \\x\\ の男性 \\i\\ とタイプ \\y\\ の女性 \\j\\ がマッチしていれば \\u_i - \varepsilon\_{iy} = U\_{xy}\\, \\v_j - \eta\_{xj} = V\_{xy}\\ である.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-type-payoffs)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-type-payoffs "付録: 取り分はタイプの組で決まる")
 
 1は「取り分がタイプの組で決まる個人均衡は常にある」, 2は「フロンティアが狭義に右下がりなら, 個人均衡はそれしかない」という主張です. 2の条件は「自分の取り分を下げれば, そのぶん相手の取り分が上がる」ことで, 一物一価の理屈に必要です. NTU のようにフロンティアに水平・垂直な部分があると, 取り分を下げても相手は得をしないので, 取り分がそろうとは限りません. 一方で, フロンティアが直線 (TU) か曲線 (ITU) かは関係なく, この点で TU と ITU に違いはありません.
 
@@ -174,7 +174,7 @@ TU マッチング理論の中心的な結果は, 分権的な均衡概念であ
 
 特に, 安定マッチングは常に存在する.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-tu-duality)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-tu-duality "付録: 安定性と余剰最大化の双対性")
 
 この定理は Koopmans and Beckmann ([1957](#ref-koopmans1957)), Shapley and Shubik ([1971](#ref-shapley1971)), Becker ([1973](#ref-becker1973b)) に遡るもので, 「TU マッチング理論の最も強力な結果」と呼ばれます. 分権的なゲーム理論的概念 (安定性) と中央集権的な規範的問題 (総余剰の最大化) の等価性という意味で, 厚生経済学の2つの基本定理の類似物になっています. タイプの水準で書けば, 主問題は \\\mathcal{M}\\ 上で \\\sum\_{x, y} \mu\_{xy}\Phi\_{xy}\\ を最大化する線形計画 (最適輸送問題) で, 双対変数はタイプごとの利得 \\u_x\\, \\v_y\\ です. 連続分布の場合も最適輸送の双対性により同じ結果が成り立ちます. また, 誰が誰とマッチするかは主問題の解として「一般に」一意に定まる一方, 有限人口では分配 \\\left(u, v\right)\\ は区間の幅でしか決まりません. 互いに完全な代替者がいないため, 交渉の余地が残るからです. 連続分布ではこの余地が消えることを後で見ます.
 
@@ -188,7 +188,7 @@ TU マッチング理論の中心的な結果は, 分権的な均衡概念であ
 
 **命題 7.4 (Becker の同類婚定理)** \\\Phi\\ が強い意味で優モジュラなら, 安定マッチングは一意であり, 正の同類婚 (PAM) になる. すなわち, マッチした2組 \\\left(x, y\right)\\, \\\left(x', y'\right)\\ について \\x \< x'\\ ならば \\y \leq y'\\ である. 劣モジュラなら負の同類婚 (NAM) になる.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-pam)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-pam "付録: Becker の同類婚定理")
 
 PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を \\F\\, 女性のそれを \\G\\ とすると, 結婚する人数が男女で等しいとき, タイプ \\x\\ の男性の相手 \\\varphi\left(x\right)\\ は \\1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)\\ で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, \\\Phi\\ が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります ([Chiappori and Salanié 2016](#ref-chiappori2016)).
 
@@ -202,7 +202,7 @@ TU マッチングの均衡は, 誰と誰が結婚するかだけでなく, 各�
 
 **命題 7.5 (連続分布のもとでの分配)** タイプは1次元とし, 男女のタイプの分布は mass point を持たず, その support は区間であるとする. \\\Phi\\ は \\C^1\\ 級で強い意味で優モジュラとする. このとき [命題 prp-pam](#prp-pam) より安定マッチングは PAM であり, 既婚男性のタイプ \\x\\ に相手のタイプ \\\varphi\left(x\right)\\ を対応させる増加関数で表せる. 既婚男性のタイプの最小値を \\\underline{x}\\ とすると, 安定な利得 \\\left(u, v\right)\\ について \\u\\ は微分可能で \\ u'\left(x\right) = \frac{\partial \Phi}{\partial x}\left(x, \varphi\left(x\right)\right) \tag{7.9}\\ を満たす. したがって \\K = u\left(\underline{x}\right)\\ として \\ u\left(x\right) = K + \int\_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\left(t, \varphi\left(t\right)\right) dt, \qquad v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right) \\ と書ける. すなわち既婚者の利得は, 定数 \\K\\ の自由度を除いて一意に定まる.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-share)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-share "付録: 連続分布のもとでの分配")
 
 連続分布のもとでは, どの個人にも「ほぼ完全な代替者」が無数にいるため, 有限人口で残っていた交渉の余地が消え, 分配は定数1つを残して市場で決まってしまうわけです. 残った定数 \\K\\ も, 男女の人口が非対称なら決まります. たとえば女性側が過剰なら, 結婚できる最下位の女性 \\\underline{y}\\ のすぐ下に, 彼女とほぼ同じタイプの独身女性が存在します. その独身女性はわずかでも正の利得があれば \\\underline{y}\\ の夫を「安値で」奪えるので, 均衡では \\v\left(\underline{y}\right) = 0\\, すなわち限界的な夫婦では夫が余剰を総取りします. しかもこの効果は限界的な夫婦にとどまらず, 定数 \\K\\ を通じてすべての夫婦の分配を同じ方向にシフトさせます. 性比 (gender ratio) が家計内の交渉力を決める distribution factor になる, という実証研究の理論的基礎がここにあります.
 

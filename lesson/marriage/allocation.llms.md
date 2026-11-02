@@ -27,7 +27,7 @@ Slutsky 対称性の意味は, 財として夫婦それぞれの余暇をとる�
 
 **命題 5.1 (効率性と加重和最大化の双対性)** \\\mathcal{U}\\ が凸のとき, 配分 \\\left(u_W^\*, u_H^\*\right) \in \mathcal{U}\\ が Pareto 効率的であることは, ある Pareto ウェイト \\\mu \in \left\[0, 1\right\]\\ が存在して \\ \left(u_W^\*, u_H^\*\right) \in \arg\max\_{\left(u_W, u_H\right) \in \mathcal{U}}\\ \mu\\ u_W + \left(1 - \mu\right) u_H \tag{5.2}\\ となることと同値である.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-collective)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-collective "付録: 効率性と加重和最大化の双対性")
 
 つまり collective model の家計問題は \\ \begin{aligned} \max\_{\boldsymbol{q}\_W, \boldsymbol{q}\_H, \boldsymbol{Q}}\\ & \mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right) u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right) + \left(1 - \mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right)\right) u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right) \\ \text{s.t.}\\ & \boldsymbol{p} \cdot \left(\boldsymbol{q}\_W + \boldsymbol{q}\_H\right) + \boldsymbol{P} \cdot \boldsymbol{Q} \leq Y \end{aligned} \\ と書け, フロンティア上の位置の選択はすべて \\\mu\\ に集約されます. \\\mu\\ は「交渉力」の指標であり, 価格 \\\boldsymbol{\pi}\\ と所得 \\Y\\ のほか, 選好にも予算集合にも影響しないが交渉力にだけ影響する変数のベクトル \\\boldsymbol{z}\\, すなわち **distribution factor** (結婚市場の性比, 離婚法制, 給付の帰属先など) に依存してよいとします. 実は[sec-gmm-micro](#sec-gmm-micro)節で GMM によって推定した二人家計のモデルは, まさにこの collective model であり, そこで推定した \\\mu\\ がここでの Pareto ウェイトです.
 
@@ -35,7 +35,7 @@ Collective model は unitary model を特殊ケースとして含みます. Pare
 
 **命題 5.2 (Unitary model は collective model の特殊ケース)** Collective model の Pareto ウェイトが価格・所得・distribution factor によらない定数 \\\mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right) = \bar{\mu} \in \left\[0, 1\right\]\\ であるとする. このとき家計の需要は, 家族の効用関数を \\ U\left(\boldsymbol{q}\_W, \boldsymbol{q}\_H, \boldsymbol{Q}\right) = \bar{\mu}\\ u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right) + \left(1 - \bar{\mu}\right) u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right) \tag{5.3}\\ とした unitary model の需要に一致し, income pooling と Slutsky 対称性がともに成り立つ.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-collective-unitary)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-collective-unitary "付録: Unitary model は collective model の特殊ケース")
 
 特に \\\bar{\mu} = 1/2\\ とすると, 家族の効用関数は2人の効用の単純な和 \\u_W + u_H\\ (の \\1/2\\ 倍), すなわち夫婦の効用を等しい重みで足し合わせる (功利主義的な) 家族の効用関数になります. ただし, 家計が unitary になるのは \\\mu\\ が動かないからで, その値が \\1/2\\ だからではありません. \\\mu = 0.3\\ で固定された家計も unitary です. そもそも \\\mu\\ の値は効用の尺度に依存します ([Browning et al. 2014](#ref-browning2014)). 妻の効用を \\2 u_W\\ に取り替えても妻の選好は変わりませんが, \\\mu = 1/2\\ での加重和 \\\left(2 u_W + u_H\right) / 2\\ は元の効用で \\\mu = 2/3\\ とおいた加重和 \\\left(2 u_W + u_H\right) / 3\\ に比例するので, 同じ配分を選ぶウェイトは \\1/2\\ から \\2/3\\ に変わります. したがって \\\mu\\ を交渉力と読めるのは「\\\mu\\ が大きいほど妻の交渉力が強い」という大小の比較の意味においてで, \\1/2\\ という水準そのものが対等を意味するわけではありません ([Browning et al. 2014](#ref-browning2014); [Chiappori and Mazzocco 2017](#ref-chiappori2017b)).
 
@@ -154,7 +154,7 @@ Nash bargaining は公理により Pareto 効率的なので, 交渉解はフロ
 1.  脅威点 \\\boldsymbol{T}\\, 交渉力 \\\beta\\ の Nash 交渉解 \\\left(u_W^\*, u_H^\*\right)\\ は, Pareto ウェイトを \\ \frac{\mu^\*}{1 - \mu^\*} = \frac{\beta}{1 - \beta} \cdot \frac{u_H^\* - T_H}{u_W^\* - T_W} \tag{5.8}\\ と選んだ collective model [式 eq-collective](#eq-collective) の解に一致する.
 2.  逆に, 任意の Pareto 効率的な配分 \\\left(u_W^\circ, u_H^\circ\right)\\ (内点) は, どんな \\\beta\\ に対しても, 脅威点を適当に選べば Nash 交渉解として実現できる.
 
-証明は[付録](../../lesson/appendix/proof.llms.md#prf-nash-collective)にあります.
+[証明→](../../lesson/appendix/proof.llms.md#prf-nash-collective "付録: Nash 交渉と collective model の双対性")
 
 [![](../../static/cetz/nash_collective.svg)](../../static/cetz/nash_collective.svg "図 5.5: Collective model と Nash 交渉影は実現可能集合 \mathcal{U}, 青い曲線はその Pareto フロンティア \Psi. (a) 加重和の等高線 (赤) がフロンティアに接する点を選ぶ. (b) 脅威点 \boldsymbol{T} から広げた Nash 積の等高線 (破線) がフロンティアに接する点を選ぶ. 赤線は両パネルとも解での接線.")
 
