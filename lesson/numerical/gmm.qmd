@@ -1043,7 +1043,7 @@ pretty_table(hcat(param_labels_ls, round.(θ̂s_ls, digits=4),
     backend=:markdown, allow_markdown_in_cells=true)
 ```
 
-4つとも `{julia} round(Int, 100 * maximum(abs, ses_boot ./ ses_analytic .- 1))`% 以内で一致していルコとが分かります. 一致するはずのものが一致した, というだけの結果ですが, 確かめる価値はあります. モーメントの関数 $\boldsymbol{\phi}$ の書き方やデルタ法の適用のどこかを間違えていれば, ここでずれます.
+4つとも `{julia} round(Int, 100 * maximum(abs, ses_boot ./ ses_analytic .- 1))`% 以内で一致していることが分かります. 一致するはずのものが一致した, というだけの結果ですが, 確かめる価値はあります. モーメントの関数 $\boldsymbol{\phi}$ の書き方やデルタ法の適用のどこかを間違えていれば, ここでずれます.
 
 ```{julia}
 #| label: fig-ls-boot

@@ -14,7 +14,7 @@
 -- attribute holds only the id. The filter runs before Quarto, which turns
 -- the .qmd link into the right .html path.
 
-local headings -- id -> { path = <project-relative .qmd>, title = <string> }
+local headings -- id -> project-relative .qmd that holds the heading
 
 local function read(path)
   local f = io.open(path, "r")
@@ -38,21 +38,23 @@ local function load_headings()
       or line:match("^%s*%-%s+(%S+%.qmd)%s*$")
     local src = path and read(pandoc.path.join({ dir, path }))
     if src then
-      for title, id in ("\n" .. src):gmatch("\n#+%s+([^\n]-)%s*{#([%w%-]+)[^\n]*}") do
-        headings[id] = { path = path, title = title }
+      for id in ("\n" .. src):gmatch("\n#+%s+[^\n]-%s*{#([%w%-]+)[^\n]*}") do
+        headings[id] = path
       end
     end
   end
 end
 
-local function html_link(id, heading)
+local function html_link(id, path)
   local dir = quarto.project.directory or "."
   local here = pandoc.path.directory(quarto.doc.input_file)
-  local target = pandoc.path.make_relative(pandoc.path.join({ dir, heading.path }), here, true)
+  local target = pandoc.path.make_relative(pandoc.path.join({ dir, path }), here, true)
   local link = pandoc.Link(
     { pandoc.Str("証明"), pandoc.Span({ pandoc.Str("→") }, { class = "arrow", ["aria-hidden"] = "true" }) },
     target .. "#" .. id,
-    "付録: " .. heading.title
+    -- Not the heading text: it is a cross reference back to the statement
+    -- ("@prp-x の証明"), which would show here unresolved.
+    "付録の証明"
   )
   return pandoc.Div({ pandoc.Plain({ link }) }, { class = "proof-link" })
 end
@@ -81,13 +83,13 @@ function Div(el)
   if headings == nil then
     load_headings()
   end
-  local heading = headings[id]
-  if heading == nil then
+  local path = headings[id]
+  if path == nil then
     quarto.log.warning("proof-link: no heading {#" .. id .. "} in the chapters of _quarto.yml")
     return el
   end
   if quarto.doc.is_format("html") then
-    el.content:insert(html_link(id, heading))
+    el.content:insert(html_link(id, path))
   elseif quarto.doc.is_format("typst") then
     el.content:insert(typst_link(id))
   end
