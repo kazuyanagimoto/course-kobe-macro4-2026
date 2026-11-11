@@ -49,7 +49,7 @@ Code
 
 **命題 8.1 (ロジットの選択確率)** \\\varepsilon\_{nj}\\ が iid で第一種極値分布に従うとき, \\ P\_{ni} = \frac{e^{V\_{ni}}}{\sum\_{j=1}^{J} e^{V\_{nj}}}. \tag{8.2}\\
 
-[証明→](../../lesson/appendix/proof.llms.md#sec-apdx-logit "付録: ロジットの選択確率と対数和")
+[証明→](../../lesson/appendix/proof.llms.md#sec-apdx-logit "付録の証明")
 
 [式 eq-logit](#eq-logit) はいくつかの望ましい性質を持ちます. 選択確率は必ず \\0 \< P\_{ni} \< 1\\ の範囲に収まり, 全選択肢について足すと \\1\\ になります. また \\P\_{ni}\\ は \\V\_{ni}\\ の増加に対してシグモイド型に変化し, \\P\_{ni} = 1/2\\ の付近で限界効果が最大になります. 線形の特定 \\V\_{nj} = \boldsymbol{x}\_{nj}^{\top} \boldsymbol{\beta}\\ のもとでは対数尤度が \\\boldsymbol{\beta}\\ について大域的に凹になることが知られており, 最尤推定が数値的に安定するのもロジットの利点です ([Train 2009, sec. 3.1](#ref-train2009)).
 

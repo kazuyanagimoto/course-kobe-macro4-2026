@@ -324,7 +324,7 @@ println("Mean hours, quasi-Monte Carlo with $(n_sobol) Sobol points: ",
 
 **命題 2.1 (ガウス求積 (Gaussian Quadrature))** \\n\\ 次の[ルジャンドル多項式](https://ja.wikipedia.org/wiki/ルジャンドル多項式) \\P_n(x)\\ の零点を \\x_1, \dots, x_n\\ とし, \\L_i(x) = \prod\_{j \neq i} (x - x_j)\\, \\w_i = \int\_{-1}^{1} \frac{L_i(x)}{L_i(x_i)} \\dx\\ とすると, \\ \int\_{-1}^{1} f(x) \\dx = \sum\_{i=1}^{n} w_i f(x_i) \\ が任意の \\2n-1\\ 次の多項式 \\f(x)\\ において成り立つ.
 
-[証明→](../../lesson/appendix/proof.llms.md#prf-gauss-quadrature "付録: ガウス求積")
+[証明→](../../lesson/appendix/proof.llms.md#prf-gauss-quadrature "付録の証明")
 
 この方法は近似値ではなく, \\2n-1\\ 次の多項式に対して**厳密な**値を計算することができるという点で強力です. また, \\f(x)\\ が \\2n-1\\ 次の多項式で十分近似できる場合, 精度の高い計算が可能です.
 

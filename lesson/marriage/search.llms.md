@@ -16,7 +16,7 @@ Code
 
 **命題 6.1 (留保賃金, reservation wage)** [式 eq-mccall](#eq-mccall) の解 \\V\\ は一意に存在し, 最適政策は留保賃金 \\w^\*\\ を用いた閾値ルール「\\w \geq w^\*\\ なら受諾」である. \\w^\*\\ は次の留保賃金方程式を満たす唯一の値である. \\ w^\* = b + \frac{\beta}{1 - \beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \tag{6.2}\\
 
-[証明→](../../lesson/appendix/proof.llms.md#prf-reservation "付録: 留保賃金, reservation wage")
+[証明→](../../lesson/appendix/proof.llms.md#prf-reservation "付録の証明")
 
 [式 eq-reservation](#eq-reservation) の第二項は, 「もう1期待てば, いまの基準 \\w^\*\\ を上回るオファーを引けるかもしれない」という待つことのオプション価値です. 留保賃金は失業給付 \\b\\ にこのオプション価値を上乗せした水準になります. オファーの上限が \\w^\*\\ より大きい限り, 失業者は \\b\\ を上回るオファーでも拒否します.
 
@@ -25,7 +25,7 @@ Code
 1.  失業給付 \\b\\ の増加は留保賃金 \\w^\*\\ を上げる.
 2.  オファー分布の平均保存的な広がりは, \\w^\*\\ を上昇させる.
 
-[証明→](../../lesson/appendix/proof.llms.md#prf-mccall-cs "付録: 留保賃金の比較静学")
+[証明→](../../lesson/appendix/proof.llms.md#prf-mccall-cs "付録の証明")
 
 ## 6.2 Greenwood and Guner ([2009](#ref-greenwood2009))
 

@@ -46,7 +46,7 @@ Code
 
 以上より, 自然な3次スプラインは「与えられた点を通る最も滑らかな関数」という変分問題の解になっています. これが, 高次の多項式補間で生じる不要な振動 (Runge 現象) を避けつつ, 線形補間と違って2階微分まで連続な補間が得られる理由です.
 
-### A.2.2 ガウス求積
+### A.2.2 [命題 prp-gauss-quadrature](#prp-gauss-quadrature) の証明
 
 [命題 prp-gauss-quadrature](#prp-gauss-quadrature) を, ルジャンドル多項式の直交性から示します. ルジャンドル多項式 \\P_0, P_1, \dots\\ は, \\P_k\\ が \\k\\ 次の多項式で, 次数の異なるものどうしが区間 \\\left\[-1, 1\right\]\\ で直交する \\ \int\_{-1}^{1} P_j\left(x\right) P_k\left(x\right) dx = 0, \qquad j \neq k \\ ような多項式の列です. \\n - 1\\ 次以下の多項式は \\P_0, \dots, P\_{n-1}\\ の線形結合で書けるので, \\P_n\\ は \\n - 1\\ 次以下のどの多項式 \\q\\ とも直交します. \\ \int\_{-1}^{1} q\left(x\right) P_n\left(x\right) dx = 0, \qquad \deg q \leq n - 1. \tag{A.1}\\
 
@@ -154,13 +154,21 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 ## A.4 家計内配分
 
-### A.4.1 効率性と加重和最大化の双対性
+### A.4.1 [命題 prp-collective](#prp-collective) の証明
 
-*証明*. (\\\Leftarrow\\) \\\mu \in \left(0, 1\right)\\ とする. もし \\\left(u_W^\*, u_H^\*\right)\\ を Pareto 支配する配分が \\\mathcal{U}\\ にあれば, その配分は加重和 [式 eq-collective](#eq-collective) を厳密に大きくするので, 最大性に矛盾する. (\\\mu\\ が \\0\\ または \\1\\ の端点の場合は, 最大化解のうち Pareto 効率的なものを選べばよい.)
+*証明*. 以下, \\\boldsymbol{u}^\* = \left(u_W^\*, u_H^\*\right)\\ と書く.
 
-(\\\Rightarrow\\) \\\left(u_W^\*, u_H^\*\right)\\ が Pareto 効率的とする. 集合 \\A = \left\\ \boldsymbol{u} \in \mathbb{R}^2 : u_W \> u_W^\*,\\ u_H \> u_H^\* \right\\\\ は凸で, 効率性より \\\mathcal{U}\\ と交わらない. 分離超平面定理より, ゼロでないベクトル \\\left(\mu, 1 - \mu\right)\\ (正規化済み) が存在して, \\\mathcal{U}\\ 上の任意の点で \\\mu u_W + \left(1 - \mu\right) u_H \leq \mu u_W^\* + \left(1 - \mu\right) u_H^\*\\ となる. \\A\\ の形状より \\\mu \geq 0\\ かつ \\1 - \mu \geq 0\\ であり, \\\left(u_W^\*, u_H^\*\right)\\ は [式 eq-collective](#eq-collective) の解である.
+(\\\Leftarrow\\) \\\mu \in \left(0, 1\right)\\ とし, \\\boldsymbol{u}^\*\\ が [式 eq-collective](#eq-collective) の解であるとする. もし \\\mathcal{U}\\ の中に \\\boldsymbol{u}^\*\\ を Pareto 支配する配分があれば, 2人の効用はどちらも下がらず少なくとも一方は上がるので, 正のウェイトをかけた加重和は厳密に大きくなる. これは最大性に矛盾する. (\\\mu\\ が \\0\\ または \\1\\ の端点の場合は, 最大化解のうち Pareto 効率的なものを選べばよい.)
 
-### A.4.2 Unitary model は collective model の特殊ケース
+(\\\Rightarrow\\) \\\boldsymbol{u}^\*\\ が Pareto 効率的とし, 3段階で示す.
+
+**分離.** 2人とも \\\boldsymbol{u}^\*\\ より厳密に良くなる効用の組の集合 \\ A = \left\\ \boldsymbol{u} \in \mathbb{R}^2 : u_W \> u_W^\*,\\ u_H \> u_H^\* \right\\ \\ は凸で, 効率性より \\\mathcal{U}\\ と交わらない. \\\mathcal{U}\\ も凸なので, 分離超平面定理より, ゼロでないベクトル \\\boldsymbol{\lambda} = \left(\lambda_W, \lambda_H\right)\\ と定数 \\c\\ が存在して \\ \boldsymbol{\lambda} \cdot \boldsymbol{u} \leq c \leq \boldsymbol{\lambda} \cdot \boldsymbol{v} \quad \text{for all } \boldsymbol{u} \in \mathcal{U},\\ \boldsymbol{v} \in A \\ となる. 以下, これを分離の不等式と呼ぶ.
+
+**符号と正規化.** \\A\\ は右上に限りなく伸びているので, \\\boldsymbol{\lambda}\\ の成分は負になれない. 実際, \\\lambda_W \< 0\\ なら \\A\\ の点 \\\boldsymbol{v} = \left(u_W^\* + t, u_H^\* + 1\right)\\ について \\ \boldsymbol{\lambda} \cdot \boldsymbol{v} = \lambda_W \left(u_W^\* + t\right) + \lambda_H \left(u_H^\* + 1\right) \to -\infty \quad \text{as } t \to \infty \\ となり, 分離の不等式の右側に反する. \\\lambda_H\\ も同様である. よって両成分は非負で, \\\boldsymbol{\lambda} \neq \boldsymbol{0}\\ より \\\lambda_W + \lambda_H \> 0\\ となる. \\\boldsymbol{\lambda}\\ と \\c\\ を \\\lambda_W + \lambda_H\\ で割っても分離の不等式は成り立つので, 以下では \\ \boldsymbol{\lambda} = \left(\mu, 1 - \mu\right), \quad \mu \in \left\[0, 1\right\] \\ と正規化する.
+
+**超平面は \\\boldsymbol{u}^\*\\ を通る.** \\\boldsymbol{u}^\*\\ は \\\mathcal{U}\\ に属し, 任意の \\\varepsilon \> 0\\ について \\\boldsymbol{u}^\* + \left(\varepsilon, \varepsilon\right)\\ は \\A\\ に属する. 分離の不等式の左側に前者を, 右側に後者を当てはめると \\ \mu u_W^\* + \left(1 - \mu\right) u_H^\* \leq c \leq \mu u_W^\* + \left(1 - \mu\right) u_H^\* + \varepsilon \\ で, \\\varepsilon \to 0\\ として \\c = \mu u_W^\* + \left(1 - \mu\right) u_H^\*\\ を得る. これを分離の不等式の左側に代入すると \\ \mu u_W + \left(1 - \mu\right) u_H \leq \mu u_W^\* + \left(1 - \mu\right) u_H^\* \quad \text{for all } \left(u_W, u_H\right) \in \mathcal{U} \\ となり, \\\boldsymbol{u}^\*\\ は [式 eq-collective](#eq-collective) の解である.
+
+### A.4.2 [命題 prp-collective-unitary](#prp-collective-unitary) の証明
 
 *証明*. \\\mu\left(\boldsymbol{\pi}, Y, \boldsymbol{z}\right) = \bar{\mu}\\ が定数なら, collective model の家計問題 \\ \max\_{\boldsymbol{q}\_W, \boldsymbol{q}\_H, \boldsymbol{Q}}\\ \bar{\mu}\\ u_W\left(\boldsymbol{q}\_W, \boldsymbol{Q}\right) + \left(1 - \bar{\mu}\right) u_H\left(\boldsymbol{q}\_H, \boldsymbol{Q}\right) \quad \text{s.t.} \quad \boldsymbol{p} \cdot \left(\boldsymbol{q}\_W + \boldsymbol{q}\_H\right) + \boldsymbol{P} \cdot \boldsymbol{Q} \leq Y \\ の目的関数は, 価格・所得・distribution factor によらない1つの関数 [式 eq-unitary-weighted](#eq-unitary-weighted) であり, 制約は unitary model と同じ家計の予算制約である. したがってこれは unitary model の家計問題そのもので, 需要は \\\boldsymbol{q}\left(\boldsymbol{\pi}, Y\right) = \tilde{\boldsymbol{q}}\left(\boldsymbol{\pi}, Y, \bar{\mu}\right)\\ と書ける.
 
@@ -168,7 +176,7 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 (Slutsky 対称性) 1つの効用関数を予算制約のもとで最大化した需要なので, 標準的な消費者理論から Slutsky 行列は対称かつ負値半定符号である. [式 eq-sr1](#eq-sr1) でいえば, \\\mu\\ が定数なので \\\boldsymbol{b} = \nabla\_{\boldsymbol{\pi}}\\ \mu + \boldsymbol{q}\\ \partial \mu / \partial Y = \boldsymbol{0}\\ となり, \\S = \Sigma\\ となる場合にあたる.
 
-### A.4.3 Nash 交渉と collective model の双対性
+### A.4.3 [命題 prp-nash-collective](#prp-nash-collective) の証明
 
 *証明*.
 
@@ -176,7 +184,7 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 2.  効率的な内点 \\\left(u_W^\circ, u_H^\circ\right)\\ における接線の傾きを \\-\lambda = \Psi'\left(u_W^\circ\right) \< 0\\ とする. 任意の \\a \> 0\\ に対して脅威点を \\T_W = u_W^\circ - a\\, \\T_H = u_H^\circ - \lambda a \left(1 - \beta\right) / \beta\\ と選べば, \\\left(u_W^\circ, u_H^\circ\right)\\ は (1) の一階条件を満たし, 凹性よりこの脅威点に対する Nash 交渉解になる.
 
-### A.4.4 限定コミットメントのもとでの Pareto ウェイトの動き
+### A.4.4 [式 eq-lc-weight](#eq-lc-weight) の導出
 
 [式 eq-lc-weight](#eq-lc-weight) を導きます. 導出は Theloudis et al. ([2025](#ref-theloudis2025)) に従います.
 
@@ -188,7 +196,7 @@ Step4 (収束の速さ): \\d\left(v_n, v^\*\right) = d\left(T^n v_0, T^n v^\*\ri
 
 ## A.5 サーチモデル
 
-### A.5.1 留保賃金, reservation wage
+### A.5.1 [命題 prp-reservation](#prp-reservation) の証明
 
 *証明*. Step1 (存在と一意性): [式 eq-mccall](#eq-mccall) の右辺は[sec-apdx-contraction](#sec-apdx-contraction)節で見たベルマン作用素の形をしており, オファーの台が有界なら Blackwell の条件を満たす縮小写像である. よって有界な解 \\V\\ が一意に存在する.
 
@@ -196,7 +204,7 @@ Step2 (閾値ルール): 受諾の価値 \\w / (1 - \beta)\\ は \\w\\ に対し
 
 Step3 (留保賃金と一意性): \\V\\ の表現を \\C\\ の定義に代入する. \\ \begin{aligned} \frac{w^\*}{1 - \beta} &= C \\ &= b + \frac{\beta}{1 - \beta} \int V\left(w'\right) dF\left(w'\right) \\ &= b + \frac{\beta}{1 - \beta} \left(w^\* + \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right) \right)\\ w^\* &= b + \frac{\beta}{1-\beta} \int\_{w^\*}^{\infty} \left(w - w^\*\right) dF\left(w\right). \end{aligned} \\ これは, 左辺が \\w^\*\\ に関して単調増加, 右辺が単調減少する方程式であり, 交点は一意に存在する.
 
-### A.5.2 留保賃金の比較静学
+### A.5.2 [命題 prp-mccall-cs](#prp-mccall-cs) の証明
 
 *証明*.
 
@@ -341,7 +349,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 ## A.6 マッチング理論
 
-### A.6.1 距離関数の性質
+### A.6.1 [補題 lem-dist-props](#lem-dist-props) の証明
 
 *証明*. まず \\D\_{xy}\\ が well-defined であることを確かめる. \\Z\left(u, v\right) = \left\\z \in \mathbb{R} : \left(u - z, v - z\right) \in \mathcal{F}\_{xy}\right\\\\ とおく. \\\mathcal{F}\_{xy}\\ は空でないので点 \\\left(a, b\right) \in \mathcal{F}\_{xy}\\ がとれ, \\z \geq \max\left\\u - a, v - b\right\\\\ なら \\\left(u - z, v - z\right) \leq \left(a, b\right)\\ なので, 下方に包括的であることから \\z \in Z\left(u, v\right)\\ である. \\\mathcal{F}\_{xy}\\ は閉なので \\Z\left(u, v\right)\\ も閉であり, \\z \to -\infty\\ では両方の座標が \\+\infty\\ に発散するので, 上に有界であることから \\Z\left(u, v\right)\\ は下に有界である. よって最小値 \\D\_{xy}\left(u, v\right)\\ が存在する.
 
@@ -353,7 +361,7 @@ Stone-Geary 型 \\F\_{ij} = Z\_{ij}\left(d_m - D_m\right)^{K_m}\left(d_f - D_f\r
 
 4.  \\\underline{\delta} = \min\left\\u' - u, v' - v\right\\\\, \\\bar{\delta} = \max\left\\u' - u, v' - v\right\\\\ とおくと, \\\left(u + \underline{\delta}, v + \underline{\delta}\right) \leq \left(u', v'\right) \leq \left(u + \bar{\delta}, v + \bar{\delta}\right)\\ である. (2) と (3) から \\ D\_{xy}\left(u, v\right) + \underline{\delta} \leq D\_{xy}\left(u', v'\right) \leq D\_{xy}\left(u, v\right) + \bar{\delta} \\ が成り立つ. \\\left(u', v'\right) \to \left(u, v\right)\\ のとき \\\underline{\delta}, \bar{\delta} \to 0\\ なので, \\D\_{xy}\\ は連続である.
 
-### A.6.2 取り分はタイプの組で決まる
+### A.6.2 [定理 thm-type-payoffs](#thm-type-payoffs) の証明
 
 Galichon et al. ([2019](#ref-galichon2019)) の付録に従います.
 
@@ -369,7 +377,7 @@ Galichon et al. ([2019](#ref-galichon2019)) の付録に従います.
 
 各人は自分の最大化の解のタイプと組むので, タイプ \\\left(x, y\right)\\ の組の質量は男性側から見て \\\partial G\left(U\right) / \partial U\_{xy}\\, 女性側から見て \\\partial H\left(V\right) / \partial V\_{xy}\\ であり, 両者は一致する. ショックの分布の密度が消えないので, すべての \\\left(x, y\right)\\ でこの質量は正であり, マッチした組では \\u_i - \varepsilon\_{iy} = U\_{xy}\\, \\v_j - \eta\_{xj} = V\_{xy}\\ かつ \\D\_{xy}\left(U\_{xy}, V\_{xy}\right) = 0\\ が成り立つ. よって \\\left(U, V\right)\\ は集計均衡を与える.
 
-### A.6.3 安定性と余剰最大化の双対性
+### A.6.3 [命題 prp-tu-duality](#prp-tu-duality) の証明
 
 *証明*. 主問題では \\\mu'\_{ij} \in \left\[0, 1\right\]\\ を \\i\\ と \\j\\ がマッチする確率と読み, 残りの確率は独身とする (制約行列が全ユニモジュラなので, 端点解は \\\left\\0, 1\right\\\\ に値をとる).
 
@@ -379,17 +387,17 @@ Step2 (安定 \\\Rightarrow\\ 最適): \\\left(\mu, u, v\right)\\ が安定な�
 
 Step3 (最適 \\\Rightarrow\\ 安定): \\\mu\\ を主問題の解とする. 線形計画の双対定理より, 双対問題の解 \\\left(u, v\right)\\ が存在して両問題の値が一致する. 値の一致を書き直すと \\ \sum\_{i, j} \mu\_{ij} \left(u_i + v_j - \Phi\_{ij}\right) + \sum_i \left(1 - \sum_j \mu\_{ij}\right) u_i + \sum_j \left(1 - \sum_i \mu\_{ij}\right) v_j = 0 \\ となり, 各項は双対制約と実行可能性より非負である. よってすべての項がゼロ, すなわちマッチした組では \\u_i + v_j = \Phi\_{ij}\\, 独身者の利得はゼロであり, \\\left(\mu, u, v\right)\\ は実行可能かつ [式 eq-tu-stability](#eq-tu-stability) を満たす安定マッチングである. 主問題は有界な線形計画なので解を持ち, 安定マッチングの存在も従う.
 
-### A.6.4 Becker の同類婚定理
+### A.6.4 [命題 prp-pam](#prp-pam) の証明
 
 *証明*. [命題 prp-tu-duality](#prp-tu-duality) より, 安定マッチングは総余剰を最大化する. \\x \< x'\\ がそれぞれ \\y'\\, \\y\\ (\\y \< y'\\) とマッチしていたとすると, 相手を交換すれば優モジュラ性より総余剰が厳密に増加し, 最大性に矛盾する. よって安定マッチングは PAM であり, タイプの順位同士を組み合わせる配置として一意に定まる. 劣モジュラ性の場合も同様である.
 
-### A.6.5 連続分布のもとでの分配
+### A.6.5 [命題 prp-share](#prp-share) の証明
 
 *証明*. [式 eq-tu-max](#eq-tu-max) より \\u\left(x\right) = \max_z \left\\ \Phi\left(x, z\right) - v\left(z\right) \right\\\\ であり, 最大は実際の相手 \\z = \varphi\left(x\right)\\ で達成される. 包絡線定理より, 最大値関数の微分は目的関数の \\x\\ に関する偏微分を最適解で評価したものに等しく, [式 eq-envelope](#eq-envelope) を得る. 積分すれば \\u\\ が定数 \\K\\ を除いて定まり, \\v\\ はマッチした組の実行可能性 \\u + v = \Phi\\ から定まる. \\u\\ の定数を \\+K\\ 動かすことは \\v\\ の定数を \\-K\\ 動かすことと表裏である.
 
 ## A.7 摩擦のない市場
 
-### A.7.1 ロジットの選択確率と対数和
+### A.7.1 [命題 prp-logit](#prp-logit), [命題 prp-gumbel-max](#prp-gumbel-max), [命題 prp-logsum](#prp-logsum) の証明
 
 結婚の部の frictionless marriage の章で述べた, ロジットの基本命題を証明します. いずれも第一種極値分布の分布関数 \\F\left(\varepsilon\right) = e^{-e^{-\varepsilon}}\\ を直接使う計算です.
 
@@ -409,13 +417,13 @@ Step2: [命題 prp-gumbel-max](#prp-gumbel-max) より, \\\max_j U_j\\ は「�
 
 ## A.8 結婚と出生
 
-### A.8.1 閉形式解と賃金の効果
+### A.8.1 [命題 prp-qq-simple](#prp-qq-simple) の証明
 
 *証明*. \\h = \left(\theta + e\right)^{\gamma}\\ を代入すると, 目的関数は \\\log c + \delta \log n + \delta \gamma \log \left(\theta + e\right)\\ となる. 予算制約より \\c = w - n\left(\phi w + p e\right)\\.
 
 \\n\\ と \\e\\ の一階条件はそれぞれ \\ \frac{\phi w + p e}{c} = \frac{\delta}{n}, \qquad \frac{n p}{c} = \frac{\delta \gamma}{\theta + e}. \\ 2本の比を取ると \\\gamma \left(\phi w + p e\right) = p \left(\theta + e\right)\\ となり, これを解いて \\e\\ の式を得る. \\n\\ の一階条件 \\n \left(\phi w + p e\right) = \delta c\\ を予算制約に代入すると \\c = w - \delta c\\, すなわち \\c = w / \left(1 + \delta\right)\\. また \\e\\ の式より \\\phi w + p e = \left(\phi w - p \theta\right) / \left(1 - \gamma\right)\\ なので, \\ n = \frac{\delta c}{\phi w + p e} = \frac{\delta}{1 + \delta} \cdot \frac{w \left(1 - \gamma\right)}{\phi w - p \theta} = \frac{\delta}{1 + \delta} \cdot \frac{1-\gamma}{\phi - \frac{p}{w}\theta}. \\ 比較静学は式から直ちに従う. \\w\\ が上がると分母の \\\phi - p\theta/w\\ が大きくなるので \\n\\ は減少し, \\\gamma \phi w - p \theta\\ が大きくなるので \\e\\ は増加する.
 
-### A.8.2 女性の賃金と出生
+### A.8.2 [命題 prp-outsource](#prp-outsource) の証明
 
 *証明*. [式 eq-outsource-n](#eq-outsource-n) を \\w_f\\ で微分すると, \\\partial \pi / \partial w_f = \left(1 - s\right) \phi\\ より \\ \frac{\partial n}{\partial w_f} = \frac{\delta}{1 + \delta} \cdot \frac{\pi\left(s\right) - \left(w_m + w_f\right) \left(1 - s\right) \phi}{\pi\left(s\right)^2}. \\ 分子は \\\psi + s p_s \phi + \left(1 - s\right) w_f \phi - \left(1 - s\right) w_m \phi - \left(1 - s\right) w_f \phi = \psi + \left(s p_s - \left(1 - s\right) w_m\right) \phi\\ である. これは \\s\\ の増加関数で, \\s \left(p_s + w_m\right) \phi = w_m \phi - \psi\\ のときゼロになる. \\\psi \< w_m \phi\\ なら \\s^\* \> 0\\, また \\w_m \phi - \psi \< \left(p_s + w_m\right) \phi\\ なので \\s^\* \< 1\\ である.
 

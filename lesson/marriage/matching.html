@@ -438,7 +438,7 @@ D_{xy}\left(a + u, a + v\right) = a + D_{xy}\left(u, v\right).
 \]</span> が成り立ち, 特に <span class="math inline">\(D_{xy}\)</span> は連続である.</li>
 </ol>
 <div class="proof-link">
-<a href="../../lesson/appendix/proof.html#prf-dist-props" title="付録: 距離関数の性質">証明<span class="arrow" aria-hidden="true">→</span></a>
+<a href="../../lesson/appendix/proof.html#prf-dist-props" title="付録の証明">証明<span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 <p>1つ目の性質により, 交渉可能集合はまるごと1つの関数の符号で表せます. 「夫婦がフロンティア上にいる」という条件は <span class="math inline">\(D_{xy}\left(u, v\right) = 0\)</span> という1本の等式になるので, 実行可能性を均衡条件に方程式として入れられます. 2つ目は, 2人とも取り分を増やせば集合からより遠ざかる, という当たり前の性質です. 3つ目の平行移動不変性は, 点を対角線方向に <span class="math inline">\(a\)</span> だけ動かせば, フロンティアまでの対角線上の距離もちょうど <span class="math inline">\(a\)</span> だけ変わる, ということです. 両辺を <span class="math inline">\(a\)</span> で微分すれば, <span class="math inline">\(D_{xy}\)</span> が微分可能な点では <span class="math inline">\(\partial_u D_{xy} + \partial_v D_{xy} = 1\)</span> も分かります. 図で見れば当たり前の性質ですが, 結婚の章でロジットのマッチング関数を閉形式で与え, その1次同次性を生む鍵になります. 4つ目は, 2人の取り分を動かしたときの <span class="math inline">\(D_{xy}\)</span> の変化が, 2人の変化のうち小さい方と大きい方の間に収まることを表しています. どちらの取り分も高々 <span class="math inline">\(\varepsilon\)</span> しか動かなければ <span class="math inline">\(D_{xy}\)</span> も高々 <span class="math inline">\(\varepsilon\)</span> しか動かないので, <span class="math inline">\(D_{xy}\)</span> は連続です.</p>
@@ -524,7 +524,7 @@ V_{xy} = \min_{j : y_j = y}\left(v_j - \eta_{xj}\right)
 \]</span> とおくと, 各人の効用は1の式で表され, <span class="math inline">\(\left(U, V\right)\)</span> とそれが定めるタイプの組ごとのマッチングは集計均衡になる. 特に, タイプ <span class="math inline">\(x\)</span> の男性 <span class="math inline">\(i\)</span> とタイプ <span class="math inline">\(y\)</span> の女性 <span class="math inline">\(j\)</span> がマッチしていれば <span class="math inline">\(u_i - \varepsilon_{iy} = U_{xy}\)</span>, <span class="math inline">\(v_j - \eta_{xj} = V_{xy}\)</span> である.</li>
 </ol>
 <div class="proof-link">
-<a href="../../lesson/appendix/proof.html#prf-type-payoffs" title="付録: 取り分はタイプの組で決まる">証明<span class="arrow" aria-hidden="true">→</span></a>
+<a href="../../lesson/appendix/proof.html#prf-type-payoffs" title="付録の証明">証明<span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 <p>1は「取り分がタイプの組で決まる個人均衡は常にある」, 2は「フロンティアが狭義に右下がりなら, 個人均衡はそれしかない」という主張です. 2の条件は「自分の取り分を下げれば, そのぶん相手の取り分が上がる」ことで, 一物一価の理屈に必要です. NTU のようにフロンティアに水平・垂直な部分があると, 取り分を下げても相手は得をしないので, 取り分がそろうとは限りません. 一方で, フロンティアが直線 (TU) か曲線 (ITU) かは関係なく, この点で TU と ITU に違いはありません.</p>
@@ -596,7 +596,7 @@ u_i = \max\left\{0,\ \max_{j \in \mathcal{J}}\left\{\Phi_{ij} - v_j\right\}\righ
 </ul>
 <p>特に, 安定マッチングは常に存在する.</p>
 <div class="proof-link">
-<a href="../../lesson/appendix/proof.html#prf-tu-duality" title="付録: 安定性と余剰最大化の双対性">証明<span class="arrow" aria-hidden="true">→</span></a>
+<a href="../../lesson/appendix/proof.html#prf-tu-duality" title="付録の証明">証明<span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 <p>この定理は <span class="citation" data-cites="koopmans1957">Koopmans and Beckmann (<a href="../../references.html#ref-koopmans1957" role="doc-biblioref">1957</a>)</span>, <span class="citation" data-cites="shapley1971">Shapley and Shubik (<a href="../../references.html#ref-shapley1971" role="doc-biblioref">1971</a>)</span>, <span class="citation" data-cites="becker1973b">Becker (<a href="../../references.html#ref-becker1973b" role="doc-biblioref">1973</a>)</span> に遡るもので, 「TU マッチング理論の最も強力な結果」と呼ばれます. 分権的なゲーム理論的概念 (安定性) と中央集権的な規範的問題 (総余剰の最大化) の等価性という意味で, 厚生経済学の2つの基本定理の類似物になっています. タイプの水準で書けば, 主問題は <span class="math inline">\(\mathcal{M}\)</span> 上で <span class="math inline">\(\sum_{x, y} \mu_{xy}\Phi_{xy}\)</span> を最大化する線形計画 (最適輸送問題) で, 双対変数はタイプごとの利得 <span class="math inline">\(u_x\)</span>, <span class="math inline">\(v_y\)</span> です. 連続分布の場合も最適輸送の双対性により同じ結果が成り立ちます. また, 誰が誰とマッチするかは主問題の解として「一般に」一意に定まる一方, 有限人口では分配 <span class="math inline">\(\left(u, v\right)\)</span> は区間の幅でしか決まりません. 互いに完全な代替者がいないため, 交渉の余地が残るからです. 連続分布ではこの余地が消えることを後で見ます.</p>
@@ -613,7 +613,7 @@ u_i = \max\left\{0,\ \max_{j \in \mathcal{J}}\left\{\Phi_{ij} - v_j\right\}\righ
 <div id="prp-pam" class="theorem proposition">
 <p><span class="theorem-title"><strong>命題 7.4 (Becker の同類婚定理)</strong></span> <span class="math inline">\(\Phi\)</span> が強い意味で優モジュラなら, 安定マッチングは一意であり, 正の同類婚 (PAM) になる. すなわち, マッチした2組 <span class="math inline">\(\left(x, y\right)\)</span>, <span class="math inline">\(\left(x', y'\right)\)</span> について <span class="math inline">\(x &lt; x'\)</span> ならば <span class="math inline">\(y \leq y'\)</span> である. 劣モジュラなら負の同類婚 (NAM) になる.</p>
 <div class="proof-link">
-<a href="../../lesson/appendix/proof.html#prf-pam" title="付録: Becker の同類婚定理">証明<span class="arrow" aria-hidden="true">→</span></a>
+<a href="../../lesson/appendix/proof.html#prf-pam" title="付録の証明">証明<span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 <p>PAM のもとでは, 結婚している人々はタイプの順位で組みます. 男性のタイプの分布関数を <span class="math inline">\(F\)</span>, 女性のそれを <span class="math inline">\(G\)</span> とすると, 結婚する人数が男女で等しいとき, タイプ <span class="math inline">\(x\)</span> の男性の相手 <span class="math inline">\(\varphi\left(x\right)\)</span> は <span class="math inline">\(1 - F\left(x\right) = 1 - G\left(\varphi\left(x\right)\right)\)</span> で決まります. 逆に言えば, 「誰が誰と組んでいるか」というマッチングパターンだけからは, <span class="math inline">\(\Phi\)</span> が優モジュラだという以上の情報は得られません. 余剰関数の識別には分配や独身率の情報が必要になります <span class="citation" data-cites="chiappori2016">(<a href="../../references.html#ref-chiappori2016" role="doc-biblioref">Chiappori and Salanié 2016</a>)</span>.</p>
@@ -632,7 +632,7 @@ u\left(x\right) = K + \int_{\underline{x}}^{x} \frac{\partial \Phi}{\partial x}\
 v\left(\varphi\left(x\right)\right) = \Phi\left(x, \varphi\left(x\right)\right) - u\left(x\right)
 \]</span> と書ける. すなわち既婚者の利得は, 定数 <span class="math inline">\(K\)</span> の自由度を除いて一意に定まる.</p>
 <div class="proof-link">
-<a href="../../lesson/appendix/proof.html#prf-share" title="付録: 連続分布のもとでの分配">証明<span class="arrow" aria-hidden="true">→</span></a>
+<a href="../../lesson/appendix/proof.html#prf-share" title="付録の証明">証明<span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 <p>連続分布のもとでは, どの個人にも「ほぼ完全な代替者」が無数にいるため, 有限人口で残っていた交渉の余地が消え, 分配は定数1つを残して市場で決まってしまうわけです. 残った定数 <span class="math inline">\(K\)</span> も, 男女の人口が非対称なら決まります. たとえば女性側が過剰なら, 結婚できる最下位の女性 <span class="math inline">\(\underline{y}\)</span> のすぐ下に, 彼女とほぼ同じタイプの独身女性が存在します. その独身女性はわずかでも正の利得があれば <span class="math inline">\(\underline{y}\)</span> の夫を「安値で」奪えるので, 均衡では <span class="math inline">\(v\left(\underline{y}\right) = 0\)</span>, すなわち限界的な夫婦では夫が余剰を総取りします. しかもこの効果は限界的な夫婦にとどまらず, 定数 <span class="math inline">\(K\)</span> を通じてすべての夫婦の分配を同じ方向にシフトさせます. 性比 (gender ratio) が家計内の交渉力を決める distribution factor になる, という実証研究の理論的基礎がここにあります.</p>
